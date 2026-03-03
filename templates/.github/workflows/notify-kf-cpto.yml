@@ -1,0 +1,30 @@
+# KF-CPTO Dashboard Sync
+# Triggers the KF-CPTO aggregator when kanban.md is updated
+#
+# Required secret: KF_PAT (Personal Access Token with repo scope)
+
+name: Notify KF-CPTO
+
+on:
+  push:
+    paths:
+      - 'kanban.md'
+    branches:
+      - main
+      - master
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger KF-CPTO Aggregation
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.KF_PAT }}" \
+            https://api.github.com/repos/kf-team/kf-cpto/dispatches \
+            -d '{"event_type":"kanban-update","client_payload":{"project":"${{ github.repository }}","ref":"${{ github.ref }}","sha":"${{ github.sha }}"}}'
+          echo "Triggered KF-CPTO aggregation for ${{ github.repository }}"

@@ -83,14 +83,14 @@ Follow these steps to integrate a new project repository with the KF-CPTO dashbo
 
 ### Quick Start with Templates
 
-Copy the starter templates from `repos/templates/`:
+Copy the starter templates from `templates/`:
 
 ```bash
 # From your project repo root
-curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/repos/templates/kanban.md -o kanban.md
-curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/repos/templates/REPO_README.md -o README.md
+curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/kanban.md -o kanban.md
+curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/REPO_README.md -o README.md
 mkdir -p .github/workflows
-curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/repos/templates/.github/workflows/notify-kf-cpto.yml -o .github/workflows/notify-kf-cpto.yml
+curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/.github/workflows/notify-kf-cpto.yml -o .github/workflows/notify-kf-cpto.yml
 ```
 
 Then customize the placeholders (`{project-name}`, `{PROJECT_DESCRIPTION}`, etc.).
@@ -408,12 +408,11 @@ kf-cpto/
 │       ├── airegio.md
 │       ├── nuoform.md
 │       └── waist-mgmt.md
-├── repos/
-│   └── templates/             # Starter templates for project repos
-│       ├── REPO_README.md     # README template
-│       ├── kanban.md          # Kanban template
-│       └── .github/workflows/
-│           └── notify-kf-cpto.yml  # Auto-sync workflow
+├── templates/                 # Starter templates for project repos
+│   ├── REPO_README.md         # README template
+│   ├── kanban.md              # Kanban template
+│   └── .github/workflows/
+│       └── notify-kf-cpto.yml # Auto-sync workflow
 ├── scripts/
 │   ├── aggregator.py          # Main aggregation script
 │   ├── sheets_sync.py         # Google Sheets sync
