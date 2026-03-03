@@ -2,7 +2,7 @@
 title: waist-mgmt
 project: waist-mgmt
 type: saas
-generated: 2026-03-03T21:43:20.374875
+generated: 2026-03-03T21:54:53.316047
 ---
 
 # waist-mgmt

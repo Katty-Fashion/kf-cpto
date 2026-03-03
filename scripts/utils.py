@@ -14,7 +14,7 @@ from typing import Any
 BASE_DIR = Path(__file__).parent.parent
 REPOS_DIR = BASE_DIR / "repos"
 DOCS_DIR = BASE_DIR / "docs"
-CONFIG_FILE = BASE_DIR / "_config.yml"
+CONFIG_FILE = BASE_DIR / "docs" / "_config.yml"
 
 # Valid task statuses
 TASK_STATUSES = ("Todo", "In Progress", "Review", "Done")
