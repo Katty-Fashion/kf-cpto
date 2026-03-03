@@ -64,12 +64,8 @@ def generate_unified_kanban(data: dict) -> str:
                     "id": f"task{task_counter}"
                 })
 
-    # Generate Mermaid kanban
+    # Generate Mermaid kanban (simple format for GitHub compatibility)
     lines.append("```mermaid")
-    lines.append("---")
-    lines.append("title: Unified Kanban")
-    lines.append(f"generated: {datetime.now().isoformat()}")
-    lines.append("---")
     lines.append("kanban")
 
     for status, tasks in statuses.items():
@@ -78,9 +74,6 @@ def generate_unified_kanban(data: dict) -> str:
             # Format: taskid[Project: Task Name]
             task_label = f"{task['project']}: {task['task']}"
             lines.append(f"    {task['id']}[{task_label}]")
-            # Metadata format: @{ key: 'value', key2: 'value2' }
-            assignee = task['assignee'].lstrip('@')
-            lines.append(f"      @{{ assigned: '{assignee}', effort: '{task['effort']}' }}")
 
     lines.append("```")
     lines.append("")
@@ -263,10 +256,6 @@ def generate_project_page(project: str, project_data: dict) -> str:
         lines.append("## Current Sprint Kanban")
         lines.append("")
         lines.append("```mermaid")
-        lines.append("---")
-        lines.append(f"title: {project} Kanban")
-        lines.append(f"generated: {datetime.now().isoformat()}")
-        lines.append("---")
         lines.append("kanban")
 
         # Group tasks by status with counter for unique IDs
@@ -284,9 +273,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
         for status, status_tasks in statuses.items():
             lines.append(f"  {status}")
             for task in status_tasks:
-                assignee = task['assignee'].lstrip('@')
                 lines.append(f"    {task['id']}[{task['task']}]")
-                lines.append(f"      @{{ assigned: '{assignee}', effort: '{task['effort']}' }}")
 
         lines.append("```")
         lines.append("")

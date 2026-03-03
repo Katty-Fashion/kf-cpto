@@ -21,21 +21,14 @@ generated: 2026-03-03T20:46:52.044799
 ## Current Sprint Kanban
 
 ```mermaid
----
-title: waist-mgmt Kanban
-generated: 2026-03-03T20:46:52.044804
----
 kanban
   Todo
     t3[User onboarding flow]
-      @{ assigned: 'ux', effort: '2d' }
   In-Progress
     t1[iOS app meal tracking]
-      @{ assigned: 'mobile', effort: '3d' }
   Review
   Done
     t2[Backend API optimization]
-      @{ assigned: 'backend', effort: '2d' }
 ```
 
 ## Task Summary

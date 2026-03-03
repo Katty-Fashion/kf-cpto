@@ -2,7 +2,7 @@
 title: ex_ai-rise
 project: ex_ai-rise
 type: saas
-generated: 2026-03-03T21:07:44.245020
+generated: 2026-03-03T21:43:20.374064
 ---
 
 # ex_ai-rise

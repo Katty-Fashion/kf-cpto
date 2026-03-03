@@ -168,45 +168,19 @@ gantt
 
 ### Kanban Diagram
 
-MermaidJS supports native Kanban diagrams (since v11.4). Define columns and tasks with metadata:
+MermaidJS supports native Kanban diagrams (since v11.4):
 
 ```mermaid
----
-config:
-  kanban:
-    ticketBaseUrl: 'https://github.com/kf-team/nuoform/issues/#TICKET#'
----
 kanban
   Todo
-    task1[OAS3 Billing API]
-      @{ assigned: 'backend', priority: 'High' }
-    task2[ArgoCD Pipeline Config]
-      @{ assigned: 'devops', ticket: 42 }
-
+    id1[OAS3 Billing API]
+    id2[ArgoCD Pipeline Config]
   In-Progress
-    task3[OpenTelemetry Integration]
-      @{ assigned: 'devops', priority: 'Medium' }
-
+    id3[OpenTelemetry Integration]
   Review
-    task4[HLD Architecture v2]
-      @{ assigned: 'lead' }
-
+    id4[HLD Architecture v2]
   Done
-    task5[HLD Diagram v1]
-      @{ assigned: 'lead', ticket: 38 }
-```
-
-### Kanban — Simple Format
-
-```mermaid
-kanban
-  Todo
-    task1[Create Documentation]
-    task2[Setup CI Pipeline]
-  In-Progress
-    task3[Develop Core Feature]
-  Done
-    task4[Initial Setup]
+    id5[HLD Diagram v1]
 ```
 
 ### Timeline — Project Milestones

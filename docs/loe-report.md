@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-03-03T21:07:44.244467
+generated: 2026-03-03T21:43:20.373580
 ---
 
 # KF Team — Level of Effort Report

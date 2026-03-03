@@ -2,7 +2,7 @@
 title: waist-mgmt
 project: waist-mgmt
 type: saas
-generated: 2026-03-03T21:07:44.245609
+generated: 2026-03-03T21:43:20.374875
 ---
 
 # waist-mgmt
@@ -21,21 +21,14 @@ generated: 2026-03-03T21:07:44.245609
 ## Current Sprint Kanban
 
 ```mermaid
----
-title: waist-mgmt Kanban
-generated: 2026-03-03T21:07:44.245614
----
 kanban
   Todo
     t3[User onboarding flow]
-      @{ assigned: 'ux', effort: '2d' }
   In-Progress
     t1[iOS app meal tracking]
-      @{ assigned: 'mobile', effort: '3d' }
   Review
   Done
     t2[Backend API optimization]
-      @{ assigned: 'backend', effort: '2d' }
 ```
 
 ## Task Summary
