@@ -77,6 +77,111 @@ kf_projects:
 
 To add a new project, append it to the list. The aggregator scripts and GitHub Actions workflow read from this single source of truth.
 
+## Repository Setup Guide
+
+Follow these steps to integrate a new project repository with the KF-CPTO dashboard.
+
+### Step 1: Create `kanban.md` in Your Repository
+
+Create a `kanban.md` file in the **root** of your project repository with this structure:
+
+```markdown
+---
+project: your-project-name
+sprint: S3
+sprint_start: 2026-03-02
+sprint_end: 2026-03-13
+---
+
+# Project Kanban
+
+| Task | Assignee | Effort | Status |
+| :--- | :--- | :--- | :--- |
+| Implement feature X | @developer | 3d | In Progress |
+| Code review for Y | @reviewer | 1d | Review |
+| Deploy to staging | @devops | 2d | Todo |
+```
+
+**Frontmatter fields:**
+
+| Field | Required | Description |
+| :--- | :---: | :--- |
+| `project` | Yes | Project identifier (should match repo name) |
+| `sprint` | Yes | Current sprint name (e.g., S3, Sprint-5) |
+| `sprint_start` | Yes | Sprint start date (YYYY-MM-DD) |
+| `sprint_end` | Yes | Sprint end date (YYYY-MM-DD) |
+
+**Task table columns:**
+
+| Column | Format | Valid Values |
+| :--- | :--- | :--- |
+| Task | Free text | Task description |
+| Assignee | `@username` | GitHub username with @ prefix |
+| Effort | `Nd` | Number + 'd' for days (e.g., `3d`, `0.5d`) |
+| Status | Exact match | `Todo`, `In Progress`, `Review`, `Done` |
+
+### Step 2: Register in KF-CPTO
+
+1. **Fork/clone** the kf-cpto repository
+2. **Edit** `docs/_config.yml` and add your project to `kf_projects`:
+
+```yaml
+kf_projects:
+- ai-rise
+- airegio
+- nuoform
+- waist-mgmt
+- your-new-project  # Add here
+```
+
+3. **Commit and push** — the GitHub Action will clone your repo and aggregate
+
+### Step 3: (Optional) Auto-Trigger on Kanban Updates
+
+Add a GitHub Action to your project repo to notify kf-cpto when `kanban.md` changes:
+
+```yaml
+# .github/workflows/notify-kf-cpto.yml
+name: Notify KF-CPTO
+
+on:
+  push:
+    paths:
+      - 'kanban.md'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger KF-CPTO Aggregation
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.KF_PAT }}" \
+            https://api.github.com/repos/kf-team/kf-cpto/dispatches \
+            -d '{"event_type":"kanban-update","client_payload":{"project":"${{ github.repository }}"}}'
+```
+
+**Required secret:** `KF_PAT` — Personal Access Token with `repo` scope for kf-cpto.
+
+### Step 4: Verify Integration
+
+After the aggregator runs:
+
+1. Check the [Unified Kanban](https://kf-team.github.io/kf-cpto/unified-kanban.html) — your tasks should appear
+2. Check your [Project Page](https://kf-team.github.io/kf-cpto/projects/your-project.html) — auto-generated
+3. Check the [LOE Report](https://kf-team.github.io/kf-cpto/loe-report.html) — effort totals included
+
+### Troubleshooting
+
+| Issue | Solution |
+| :--- | :--- |
+| Tasks not appearing | Verify `kanban.md` is in repo root, not a subdirectory |
+| Status not recognized | Use exact values: `Todo`, `In Progress`, `Review`, `Done` |
+| Effort not calculated | Format must be `Nd` (e.g., `3d`, `1.5d`) |
+| Project page missing | Ensure project name in `_config.yml` matches repo name exactly |
+| Aggregator warnings | Check GitHub Actions logs for specific parsing errors |
+
 ## Automation Workflows
 
 ### Primary Workflow: Unified Sync
@@ -230,11 +335,11 @@ quadrantChart
 
 ### Jekyll Configuration
 
-The `_config.yml` configures GitHub Pages and serves as the single source of truth for:
+The `docs/_config.yml` configures GitHub Pages and serves as the single source of truth for:
 
 - `kf_projects` — List of project repositories to aggregate
-- Jekyll theme: minima
-- MermaidJS support via `jekyll-mermaid` plugin
+- Custom layout with Pico CSS
+- MermaidJS client-side rendering (v11)
 - Project collections for individual project pages
 
 ## Local Development
@@ -251,9 +356,9 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Clone project repos locally (reads from _config.yml)
+# Clone project repos locally (reads from docs/_config.yml)
 mkdir -p repos
-PROJECTS=$(python -c "import yaml; print(' '.join(yaml.safe_load(open('_config.yml'))['kf_projects']))")
+PROJECTS=$(python -c "import yaml; print(' '.join(yaml.safe_load(open('docs/_config.yml'))['kf_projects']))")
 for repo in $PROJECTS; do
     git clone https://github.com/kf-team/${repo}.git repos/${repo}
 done
@@ -277,6 +382,9 @@ kf-cpto/
 │       ├── aggregate.yml      # Primary workflow - full sync pipeline
 │       └── sync_to_sheets.yml # Secondary workflow - LOE sync only
 ├── docs/
+│   ├── _config.yml            # Jekyll configuration
+│   ├── _layouts/
+│   │   └── default.html       # Custom layout with MermaidJS
 │   ├── index.md               # Dashboard homepage
 │   ├── unified-kanban.md      # Aggregated kanban (auto-generated)
 │   ├── unified-calendar.md    # Sprint calendar (auto-generated)
@@ -290,7 +398,6 @@ kf-cpto/
 │   ├── aggregator.py          # Main aggregation script
 │   ├── sheets_sync.py         # Google Sheets sync
 │   └── utils.py               # Shared utilities module
-├── _config.yml                # Jekyll configuration
 ├── requirements.txt           # Python dependencies
 └── README.md
 ```
