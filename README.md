@@ -81,6 +81,20 @@ To add a new project, append it to the list. The aggregator scripts and GitHub A
 
 Follow these steps to integrate a new project repository with the KF-CPTO dashboard.
 
+### Quick Start with Templates
+
+Copy the starter templates from `repos/templates/`:
+
+```bash
+# From your project repo root
+curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/repos/templates/kanban.md -o kanban.md
+curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/repos/templates/REPO_README.md -o README.md
+mkdir -p .github/workflows
+curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/repos/templates/.github/workflows/notify-kf-cpto.yml -o .github/workflows/notify-kf-cpto.yml
+```
+
+Then customize the placeholders (`{project-name}`, `{PROJECT_DESCRIPTION}`, etc.).
+
 ### Step 1: Create `kanban.md` in Your Repository
 
 Create a `kanban.md` file in the **root** of your project repository with this structure:
@@ -394,6 +408,12 @@ kf-cpto/
 │       ├── airegio.md
 │       ├── nuoform.md
 │       └── waist-mgmt.md
+├── repos/
+│   └── templates/             # Starter templates for project repos
+│       ├── REPO_README.md     # README template
+│       ├── kanban.md          # Kanban template
+│       └── .github/workflows/
+│           └── notify-kf-cpto.yml  # Auto-sync workflow
 ├── scripts/
 │   ├── aggregator.py          # Main aggregation script
 │   ├── sheets_sync.py         # Google Sheets sync
