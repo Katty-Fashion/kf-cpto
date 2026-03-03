@@ -8,12 +8,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <style>
     :root { --pico-font-size: 16px; }
-    body { padding: 1rem; }
+    body { margin: 0; padding: 1rem 2rem; }
+    main { max-width: 1400px; margin: 0 auto; }
     nav ul { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; }
     nav a { white-space: nowrap; }
-    pre { background: var(--pico-code-background-color); padding: 1rem; overflow-x: auto; }
     table { width: 100%; }
-    .mermaid { background: white; padding: 1rem; border-radius: 8px; }
+    .mermaid {
+      background: #fafafa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .mermaid svg { max-width: 100%; height: auto; }
+    @media (max-width: 768px) {
+      body { padding: 0.5rem 1rem; }
+      nav ul { gap: 0.25rem; }
+    }
   </style>
 </head>
 <body>
@@ -45,11 +56,25 @@
 
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    // Convert kramdown mermaid code blocks to mermaid divs
+    // Jekyll outputs: <pre><code class="language-mermaid">...</code></pre>
+    // MermaidJS needs: <div class="mermaid">...</div>
+    document.querySelectorAll('pre > code.language-mermaid').forEach(codeBlock => {
+      const pre = codeBlock.parentElement;
+      const div = document.createElement('div');
+      div.className = 'mermaid';
+      div.textContent = codeBlock.textContent;
+      pre.replaceWith(div);
+    });
+
+    // Initialize and run mermaid
     mermaid.initialize({
-      startOnLoad: true,
+      startOnLoad: false,
       theme: 'neutral',
       securityLevel: 'loose'
     });
+    mermaid.run();
   </script>
 </body>
 </html>
