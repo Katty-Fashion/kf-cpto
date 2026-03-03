@@ -60,4 +60,5 @@ tmp/
 temp/
 *.tmp
 
-#Cl
+#Claude
+.claude/

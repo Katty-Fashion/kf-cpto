@@ -179,4 +179,19 @@ jobs:
 
 ---
 
+
+File	Purpose
+REPO_README.md	Full project README with kanban docs, dev setup, team section
+kanban.md	Starter kanban with frontmatter and example tasks
+.github/workflows/notify-kf-cpto.yml	Auto-sync workflow to trigger dashboard updates
+Quick setup for new repos:
+
+
+# From project repo root
+curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/kanban.md -o kanban.md
+curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/REPO_README.md -o README.md
+mkdir -p .github/workflows
+curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/.github/workflows/notify-kf-cpto.yml -o .github/workflows/notify-kf-cpto.yml
+Then replace {project-name}, {PROJECT_DESCRIPTION}, etc.
+
 *Part of [KF Team](https://github.com/kf-team) · Managed via [KF-CPTO](https://github.com/kf-team/kf-cpto)*
