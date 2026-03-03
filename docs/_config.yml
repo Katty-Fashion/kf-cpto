@@ -15,17 +15,11 @@ kf_projects:
 
 # Build settings
 markdown: kramdown
-theme: minima
 
-# Plugins
+# Plugins (only GitHub Pages supported plugins)
 plugins:
 - jekyll-feed
 - jekyll-seo-tag
-- jekyll-mermaid
-
-# Mermaid support
-mermaid:
-  src: https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
 
 # Collections
 collections:

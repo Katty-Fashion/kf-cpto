@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root { --pico-font-size: 16px; }
+    body { padding: 1rem; }
+    nav ul { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; }
+    nav a { white-space: nowrap; }
+    pre { background: var(--pico-code-background-color); padding: 1rem; overflow-x: auto; }
+    table { width: 100%; }
+    .mermaid { background: white; padding: 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><strong><a href="{{ '/' | relative_url }}">{{ site.title }}</a></strong></li>
+      </ul>
+      <ul>
+        {% for project in site.kf_projects %}
+        <li><a href="{{ '/projects/' | append: project | append: '.html' | relative_url }}">{{ project }}</a></li>
+        {% endfor %}
+        <li><a href="{{ '/index.html' | relative_url }}">Dashboard</a></li>
+        <li><a href="{{ '/loe-report.html' | relative_url }}">LOE Report</a></li>
+        <li><a href="{{ '/unified-calendar.html' | relative_url }}">Calendar</a></li>
+        <li><a href="{{ '/unified-kanban.html' | relative_url }}">Kanban</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer>
+    <hr>
+    <small>{{ site.title }} &middot; {{ site.description }}</small>
+  </footer>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'neutral',
+      securityLevel: 'loose'
+    });
+  </script>
+</body>
+</html>
