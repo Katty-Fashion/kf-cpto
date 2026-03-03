@@ -1,0 +1,39 @@
+name: Sync LOE to Google Sheets
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * 1-5'  # Weekdays 09:00 UTC
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.KF_PAT }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install pyyaml google-auth google-api-python-client
+
+      - name: Clone project repos
+        run: |
+          mkdir -p repos
+          PROJECTS=$(python -c "import yaml; print(' '.join(yaml.safe_load(open('_config.yml'))['kf_projects']))")
+          for repo in $PROJECTS; do
+            git clone --depth=1 \
+              https://${{ secrets.KF_PAT }}@github.com/kf-team/${repo}.git \
+              repos/${repo} || echo "Warning: Could not clone ${repo}"
+          done
+
+      - name: Sync to Google Sheets
+        run: python scripts/sheets_sync.py
+        env:
+          GSHEET_ID: ${{ secrets.GSHEET_ID }}
+          GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
+          GSHEET_PRIVATE_KEY: ${{ secrets.GSHEET_PRIVATE_KEY }}

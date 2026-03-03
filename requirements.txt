@@ -1,0 +1,12 @@
+# KF-CPTO Dependencies
+# Python 3.9+ required
+
+# Core dependencies
+pyyaml>=6.0
+
+# Google Sheets integration (optional - scripts fallback gracefully)
+google-auth>=2.0
+google-api-python-client>=2.0
+
+# HTTP requests (optional)
+requests>=2.28

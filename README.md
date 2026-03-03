@@ -1,0 +1,330 @@
+# KF-CPTO — Git-Native Project Management Dashboard
+
+> **Single Pane of Glass** for KF Team projects — aggregating Kanban boards, calendars, and LOE tracking across multiple repositories.
+
+## Overview
+
+KF-CPTO is a centralized dashboard that automatically aggregates project management data from multiple KF Team repositories into a unified view. It provides:
+
+- **Unified Kanban Board** — All project tasks in one view
+- **Sprint Calendar** — Visual timeline with Gantt charts
+- **LOE (Level of Effort) Reports** — Effort tracking by project and assignee
+- **Google Sheets Integration** — Automatic sync for reporting
+- **GitHub Pages Deployment** — Live dashboard at `https://kf-team.github.io/kf-cpto/`
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    KF-CPTO Repository                           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │
+│   │ ai-rise  │  │ airegio  │  │ nuoform  │  │waist-mgmt│       │
+│   │ repo     │  │ repo     │  │ repo     │  │ repo     │       │
+│   └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘       │
+│        │             │             │             │              │
+│        └─────────────┴──────┬──────┴─────────────┘              │
+│                             │                                   │
+│                             ▼                                   │
+│                    ┌────────────────┐                           │
+│                    │  aggregator.py │                           │
+│                    └────────┬───────┘                           │
+│                             │                                   │
+│              ┌──────────────┼──────────────┐                    │
+│              ▼              ▼              ▼                    │
+│     ┌─────────────┐ ┌─────────────┐ ┌─────────────┐            │
+│     │unified-     │ │unified-     │ │loe-report   │            │
+│     │kanban.md    │ │calendar.md  │ │.md          │            │
+│     └─────────────┘ └─────────────┘ └──────┬──────┘            │
+│                                            │                    │
+│                                            ▼                    │
+│                                   ┌────────────────┐            │
+│                                   │ sheets_sync.py │            │
+│                                   └────────┬───────┘            │
+│                                            │                    │
+│                                            ▼                    │
+│                                   ┌────────────────┐            │
+│                                   │ Google Sheets  │            │
+│                                   └────────────────┘            │
+│                                                                 │
+│                    GitHub Pages (docs/)                         │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Project Repositories
+
+| Project | Type | Description | Repository |
+| :--- | :--- | :--- | :--- |
+| **ai-rise** | EU Project | European Union AI research and innovation project | [kf-team/ai-rise](https://github.com/kf-team/ai-rise) |
+| **airegio** | EU Project | EU Regional AI initiative | [kf-team/airegio](https://github.com/kf-team/airegio) |
+| **nuoform** | SaaS Product | SaaS platform | [kf-team/nuoform](https://github.com/kf-team/nuoform) |
+| **waist-mgmt** | SaaS Product | Health SaaS application | [kf-team/waist-mgmt](https://github.com/kf-team/waist-mgmt) |
+
+Each project repository contains a `kanban.md` file with task tracking in a standardized format.
+
+### Adding/Removing Projects
+
+Projects are configured in `_config.yml` under `kf_projects`:
+
+```yaml
+kf_projects:
+  - ai-rise
+  - airegio
+  - nuoform
+  - waist-mgmt
+```
+
+To add a new project, append it to the list. The aggregator scripts and GitHub Actions workflow read from this single source of truth.
+
+## Automation Workflows
+
+### Primary Workflow: Unified Sync
+
+The main workflow (`.github/workflows/aggregate.yml`) runs automatically:
+
+- **On push to main/master** — Immediate sync
+- **On repository dispatch** — When any project updates its kanban
+- **Weekly schedule** — Every Monday at 04:00 UTC
+- **Manual trigger** — Via workflow_dispatch
+
+**Steps:**
+1. Clone all project repositories
+2. Run `aggregator.py` to generate:
+   - `unified-kanban.md` — All tasks across projects
+   - `unified-calendar.md` — Sprint timeline
+   - `loe-report.md` — Level of Effort summary
+   - `projects/{project}.md` — Individual project pages (auto-generated)
+3. Sync LOE data to Google Sheets via `sheets_sync.py`
+4. Commit and push updated docs
+5. Deploy to GitHub Pages
+6. Notify Google Chat webhook
+
+### Secondary Workflow: Sheets Sync
+
+A lightweight workflow (`.github/workflows/sync_to_sheets.yml`) for frequent LOE updates:
+
+- **Weekday schedule** — Monday-Friday at 09:00 UTC
+- **Manual trigger** — Via workflow_dispatch
+
+**Steps:**
+1. Clone all project repositories
+2. Sync LOE data to Google Sheets via `sheets_sync.py`
+
+## Kanban Format
+
+Each project's `kanban.md` should follow this format:
+
+```markdown
+---
+project: project-name
+sprint: S3
+sprint_start: 2026-03-02
+sprint_end: 2026-03-13
+---
+
+# Project Kanban
+
+| Task | Assignee | Effort | Status |
+| :--- | :--- | :--- | :--- |
+| Implement feature X | @developer | 3d | In Progress |
+| Code review for Y | @reviewer | 1d | Review |
+| Deploy to staging | @devops | 2d | Todo |
+```
+
+## MermaidJS Visualization Examples
+
+The dashboard uses MermaidJS for visual representations. Here are valid syntax examples:
+
+### Pie Chart — Time Allocation
+
+```mermaid
+pie title Monthly 50h CPTO Allocation
+    "Sync & Team Rhythm" : 10
+    "Technical Health" : 12
+    "Pre-Sales" : 8
+    "EU Projects" : 10
+    "SaaS Products" : 8
+    "Team Events" : 2
+```
+
+### Gantt Chart — Sprint Calendar
+
+```mermaid
+gantt
+    title Sprint Calendar
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    section nuoform
+    Sprint 3 Planning        :crit, 2026-03-02, 1d
+    Sprint 3 Active          :active, 2026-03-03, 9d
+    Sprint 3 Demo + Retro    :crit, 2026-03-13, 1d
+
+    section ai-rise
+    Research Phase           :2026-03-03, 5d
+    Documentation            :2026-03-10, 3d
+```
+
+### Kanban Diagram
+
+MermaidJS supports native Kanban diagrams (since v11.4). Define columns and tasks with metadata:
+
+```mermaid
+---
+config:
+  kanban:
+    ticketBaseUrl: 'https://github.com/kf-team/nuoform/issues/#TICKET#'
+---
+kanban
+  Todo
+    task1[OAS3 Billing API]
+      @{ assigned: 'backend', priority: 'High' }
+    task2[ArgoCD Pipeline Config]
+      @{ assigned: 'devops', ticket: 42 }
+
+  In-Progress
+    task3[OpenTelemetry Integration]
+      @{ assigned: 'devops', priority: 'Medium' }
+
+  Review
+    task4[HLD Architecture v2]
+      @{ assigned: 'lead' }
+
+  Done
+    task5[HLD Diagram v1]
+      @{ assigned: 'lead', ticket: 38 }
+```
+
+### Kanban — Simple Format
+
+```mermaid
+kanban
+  Todo
+    task1[Create Documentation]
+    task2[Setup CI Pipeline]
+  In-Progress
+    task3[Develop Core Feature]
+  Done
+    task4[Initial Setup]
+```
+
+### Timeline — Project Milestones
+
+```mermaid
+timeline
+    title KF Team Q1 2026 Milestones
+    section January
+        ai-rise Kickoff : Project launch
+        nuoform v1.0 : Initial release
+    section February
+        airegio Phase 1 : Complete
+        waist-mgmt Beta : Beta launch
+    section March
+        Sprint 3 : All projects aligned
+        Q1 Review : Quarterly assessment
+```
+
+### Quadrant Chart — Project Priority Matrix
+
+```mermaid
+quadrantChart
+    title Project Priority Matrix
+    x-axis Low Effort --> High Effort
+    y-axis Low Impact --> High Impact
+    quadrant-1 Quick Wins
+    quadrant-2 Major Projects
+    quadrant-3 Fill-ins
+    quadrant-4 Time Sinks
+    nuoform: [0.7, 0.8]
+    ai-rise: [0.8, 0.9]
+    airegio: [0.6, 0.7]
+    waist-mgmt: [0.4, 0.6]
+```
+
+## Configuration
+
+### Required GitHub Secrets
+
+| Secret | Description |
+| :--- | :--- |
+| `KF_PAT` | Personal Access Token with repo access to clone project repos |
+| `GSHEET_ID` | Google Sheets document ID for LOE sync |
+| `GSHEET_CLIENT_EMAIL` | Google Service Account email |
+| `GSHEET_PRIVATE_KEY` | Google Service Account private key |
+| `GOOGLE_CHAT_WEBHOOK` | Google Chat webhook URL for notifications |
+
+### Jekyll Configuration
+
+The `_config.yml` configures GitHub Pages and serves as the single source of truth for:
+
+- `kf_projects` — List of project repositories to aggregate
+- Jekyll theme: minima
+- MermaidJS support via `jekyll-mermaid` plugin
+- Project collections for individual project pages
+
+## Local Development
+
+```bash
+# Clone the repository
+git clone https://github.com/kf-team/kf-cpto.git
+cd kf-cpto
+
+# Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Clone project repos locally (reads from _config.yml)
+mkdir -p repos
+PROJECTS=$(python -c "import yaml; print(' '.join(yaml.safe_load(open('_config.yml'))['kf_projects']))")
+for repo in $PROJECTS; do
+    git clone https://github.com/kf-team/${repo}.git repos/${repo}
+done
+
+# Run the aggregator
+python scripts/aggregator.py
+
+# Run sheets sync (dry-run without credentials)
+python scripts/sheets_sync.py
+
+# Serve docs locally with Jekyll
+cd docs && bundle exec jekyll serve
+```
+
+## File Structure
+
+```
+kf-cpto/
+├── .github/
+│   └── workflows/
+│       ├── aggregate.yml      # Primary workflow - full sync pipeline
+│       └── sync_to_sheets.yml # Secondary workflow - LOE sync only
+├── docs/
+│   ├── index.md               # Dashboard homepage
+│   ├── unified-kanban.md      # Aggregated kanban (auto-generated)
+│   ├── unified-calendar.md    # Sprint calendar (auto-generated)
+│   ├── loe-report.md          # LOE report (auto-generated)
+│   └── projects/              # Individual project pages (auto-generated)
+│       ├── ai-rise.md
+│       ├── airegio.md
+│       ├── nuoform.md
+│       └── waist-mgmt.md
+├── scripts/
+│   ├── aggregator.py          # Main aggregation script
+│   ├── sheets_sync.py         # Google Sheets sync
+│   └── utils.py               # Shared utilities module
+├── _config.yml                # Jekyll configuration
+├── requirements.txt           # Python dependencies
+└── README.md
+```
+
+## License
+
+KF Team Internal Project
+
+---
+
+*KF Team — Git-Native Project Management*

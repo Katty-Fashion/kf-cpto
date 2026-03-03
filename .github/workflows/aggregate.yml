@@ -1,0 +1,73 @@
+name: KF Unified Sync
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [kanban-updated]
+  schedule:
+    - cron: '0 4 * * 1'    # Luni 04:00 UTC — refresh săptămânal
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.KF_PAT }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install pyyaml requests google-auth google-api-python-client
+
+      - name: Clone project repos
+        run: |
+          mkdir -p repos
+          PROJECTS=$(python -c "import yaml; print(' '.join(yaml.safe_load(open('_config.yml'))['kf_projects']))")
+          for repo in $PROJECTS; do
+            git clone --depth=1 \
+              https://${{ secrets.KF_PAT }}@github.com/kf-team/${repo}.git \
+              repos/${repo}
+          done
+
+      - name: Aggregate Kanbans + Calendar
+        run: python scripts/aggregator.py
+
+      - name: Sync LOE to Google Sheets
+        run: python scripts/sheets_sync.py
+        env:
+          GSHEET_ID: ${{ secrets.GSHEET_ID }}
+          GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
+          GSHEET_PRIVATE_KEY: ${{ secrets.GSHEET_PRIVATE_KEY }}
+
+      - name: Commit unified docs
+        run: |
+          git config user.name "KF Bot"
+          git config user.email "bot@kf-team.dev"
+          git add docs/
+          git diff --staged --quiet || \
+            git commit -m "chore: auto-update unified docs [skip ci]"
+          git push
+
+      - name: Deploy GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages
+
+      - name: Notify Google Chat
+        run: |
+          curl -s -X POST "${{ secrets.GOOGLE_CHAT_WEBHOOK }}" \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "text": "🚀 *KF Dashboard Updated*\n✅ Kanban + Calendar refreshed\n📊 LOE synced to Google Sheets\n🔗 https://kf-team.github.io/kf-cpto/"
+          }'

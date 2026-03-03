@@ -1,0 +1,56 @@
+# KF Team — GitHub Pages Configuration
+# Jekyll config for Git-Native Project Management Dashboard
+
+title: KF Team Dashboard
+description: Single Pane of Glass · GitHub Native · Google Workspace Integration
+baseurl: "/kf-cpto"
+url: "https://kf-team.github.io"
+
+# Project repositories to aggregate
+kf_projects:
+- ex_ai-rise
+- ex_airegio
+- ex_nuoform
+- waist-mgmt
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Plugins
+plugins:
+- jekyll-feed
+- jekyll-seo-tag
+- jekyll-mermaid
+
+# Mermaid support
+mermaid:
+  src: https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+# Defaults
+defaults:
+- scope:
+    path: ""
+    type: "pages"
+  values:
+    layout: "default"
+- scope:
+    path: "projects"
+  values:
+    layout: "default"
+
+# Exclude from build
+exclude:
+- scripts/
+- repos/
+- "*.py"
+- Gemfile
+- Gemfile.lock
+- README.md
+- kf-cpto.md
