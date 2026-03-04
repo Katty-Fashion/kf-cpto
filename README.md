@@ -83,7 +83,18 @@ Follow these steps to integrate a new project repository with the KF-CPTO dashbo
 
 ### Quick Start with Templates
 
-Copy the starter templates from `templates/`:
+**Option A: Use GitHub Template Repo (Recommended)**
+
+Create new project from template: [kf-team/project-template](https://github.com/kf-team/project-template) → **Use this template**
+
+New repos automatically include:
+- `kanban.md` with correct format
+- `.github/workflows/notify-kf-cpto.yml` for auto-sync
+- `README.md` with project structure
+
+**Option B: Manual Setup**
+
+Copy starter templates from `templates/`:
 
 ```bash
 # From your project repo root
@@ -346,6 +357,64 @@ quadrantChart
 | `GSHEET_CLIENT_EMAIL` | Google Service Account email |
 | `GSHEET_PRIVATE_KEY` | Google Service Account private key |
 | `GOOGLE_CHAT_WEBHOOK` | Google Chat webhook URL for notifications |
+
+### Setting Up GitHub PAT (Organization Secret)
+
+Use **organization-level secrets** so all repos automatically have access:
+
+1. **Create PAT:**
+   - Go to **GitHub → Settings → Developer Settings → Personal Access Tokens → Fine-grained tokens**
+   - **Name:** `kf-cpto-sync`
+   - **Expiration:** 90 days (set reminder to rotate)
+   - **Repository access:** All repositories (or select kf-team repos)
+   - **Permissions:** Contents (Read-only), Metadata (Read-only)
+
+2. **Add as Organization Secret:**
+   - Go to **github.com/kf-team → Settings → Secrets and variables → Actions**
+   - Click **New organization secret**
+   - **Name:** `KF_PAT`
+   - **Value:** Paste the token
+   - **Repository access:** All repositories
+
+All new repos automatically inherit this secret — no per-repo setup needed.
+
+### Setting Up Google Sheets
+
+1. **Create Google Cloud Project**
+   - Go to [Google Cloud Console](https://console.cloud.google.com)
+   - Create new project or select existing
+   - Enable **Google Sheets API**
+
+2. **Create Service Account**
+   - Go to **IAM & Admin → Service Accounts**
+   - Create service account (e.g., `kf-cpto-sync@project.iam.gserviceaccount.com`)
+   - Click **Keys → Add Key → Create new key → JSON**
+   - Download the JSON file
+
+3. **Create Google Sheet**
+   - Create new Google Sheet for LOE data
+   - Share with service account email (Editor access)
+   - Create a sheet tab named **LOE**
+   - Copy Sheet ID from URL: `https://docs.google.com/spreadsheets/d/{SHEET_ID}/edit`
+
+4. **Add GitHub Secrets** (from JSON key file):
+   ```
+   GSHEET_ID=your-sheet-id-from-url
+   GSHEET_CLIENT_EMAIL=service-account@project.iam.gserviceaccount.com
+   GSHEET_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----
+   ```
+
+### Setting Up Google Chat
+
+1. **Create Webhook**
+   - Open your Google Chat space
+   - Click space name → **Manage webhooks**
+   - Create webhook, copy the URL
+
+2. **Add GitHub Secret**
+   ```
+   GOOGLE_CHAT_WEBHOOK=https://chat.googleapis.com/v1/spaces/XXX/messages?key=YYY&token=ZZZ
+   ```
 
 ### Jekyll Configuration
 

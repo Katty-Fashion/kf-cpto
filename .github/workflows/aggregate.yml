@@ -31,7 +31,7 @@ jobs:
       - name: Clone project repos
         run: |
           mkdir -p repos
-          PROJECTS=$(python -c "import yaml; print(' '.join(yaml.safe_load(open('_config.yml'))['kf_projects']))")
+          PROJECTS=$(python -c "import yaml; print(' '.join(yaml.safe_load(open('docs/_config.yml'))['kf_projects']))")
           for repo in $PROJECTS; do
             git clone --depth=1 \
               https://${{ secrets.KF_PAT }}@github.com/kf-team/${repo}.git \
