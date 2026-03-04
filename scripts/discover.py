@@ -60,7 +60,7 @@ def discover_kanban_repos(org: str = ORG, token: str = None) -> list[str]:
     # Check which repos have kanban.md at root
     discovered = []
     for name in candidates:
-        resp = requests.head(
+        resp = requests.get(
             f"https://api.github.com/repos/{org}/{name}/contents/kanban.md",
             headers=headers,
         )
