@@ -15,9 +15,20 @@ BASE_DIR = Path(__file__).parent.parent
 REPOS_DIR = BASE_DIR / "repos"
 DOCS_DIR = BASE_DIR / "docs"
 CONFIG_FILE = BASE_DIR / "docs" / "_config.yml"
+DISCOVERED_FILE = REPOS_DIR / "discovered.txt"
 
 # Valid task statuses
 TASK_STATUSES = ("Todo", "In Progress", "Review", "Done")
+
+# Defaults for optional kanban.md frontmatter fields
+FRONTMATTER_DEFAULTS = {
+    "description": "",
+    "type": "internal",
+    "po": "",
+    "lead": "",
+    "depends_on": [],
+    "tags": [],
+}
 
 
 def load_config() -> dict[str, Any]:
@@ -28,7 +39,12 @@ def load_config() -> dict[str, Any]:
 
 
 def load_projects() -> list[str]:
-    """Load project list from _config.yml"""
+    """Load project list from discovered repos, falling back to _config.yml for local dev."""
+    if DISCOVERED_FILE.exists():
+        projects = [line.strip() for line in DISCOVERED_FILE.read_text().splitlines() if line.strip()]
+        if projects:
+            return projects
+    # Fallback: _config.yml (for local development without running discover.py)
     config = load_config()
     return config.get("kf_projects", [])
 
@@ -85,6 +101,28 @@ def parse_kanban_tasks(content: str) -> list[dict[str, str]]:
     return tasks
 
 
+def normalize_frontmatter(meta: dict) -> dict:
+    """Apply defaults to frontmatter, ensuring all expected keys exist.
+
+    Args:
+        meta: Raw frontmatter dictionary from parse_kanban_frontmatter()
+
+    Returns:
+        Dictionary with all expected keys populated (defaults for missing ones)
+    """
+    result = dict(FRONTMATTER_DEFAULTS)
+    result.update(meta)
+    # Normalize type aliases
+    type_aliases = {"eu": "eu-project", "saas": "saas", "internal": "internal"}
+    result["type"] = type_aliases.get(result["type"], result["type"])
+    # Ensure depends_on is always a list
+    if isinstance(result["depends_on"], str):
+        result["depends_on"] = [result["depends_on"]]
+    if isinstance(result["tags"], str):
+        result["tags"] = [result["tags"]]
+    return result
+
+
 def parse_effort_days(effort: str) -> float:
     """Parse effort string to float days
 
@@ -117,15 +155,16 @@ def load_project_kanban(project: str) -> dict[str, Any]:
 
     if kanban_path.exists():
         content = kanban_path.read_text()
+        meta = normalize_frontmatter(parse_kanban_frontmatter(content))
         return {
-            "meta": parse_kanban_frontmatter(content),
+            "meta": meta,
             "tasks": parse_kanban_tasks(content),
             "raw": content,
             "exists": True
         }
 
     return {
-        "meta": {},
+        "meta": normalize_frontmatter({}),
         "tasks": [],
         "raw": "",
         "exists": False

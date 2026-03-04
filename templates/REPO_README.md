@@ -185,9 +185,15 @@ Edit `kanban.md` in the repository root:
 ```markdown
 ---
 project: {project-name}
+description: "Short project description"
+type: saas                # saas | eu-project | internal
+po: "@product-owner"
+lead: "@tech-lead"
 sprint: S3
 sprint_start: 2026-03-02
 sprint_end: 2026-03-13
+depends_on: []            # e.g. [nuoform, ai-rise]
+tags: [frontend, mvp]     # free-form tags
 ---
 
 # Project Kanban
@@ -198,6 +204,21 @@ sprint_end: 2026-03-13
 | Code review for Y | @reviewer | 1d | Review |
 | Deploy to staging | @devops | 2d | Todo |
 ```
+
+### Frontmatter Fields
+
+| Field | Required | Description |
+| :--- | :--- | :--- |
+| `project` | Yes | Repo name (must match GitHub repo) |
+| `description` | No | Short description shown on dashboard |
+| `type` | No | `saas`, `eu-project`, or `internal` |
+| `po` | No | Product owner contact |
+| `lead` | No | Technical lead contact |
+| `sprint` | Yes | Sprint identifier (S1, S2...) |
+| `sprint_start` | Yes | Sprint start date (YYYY-MM-DD) |
+| `sprint_end` | Yes | Sprint end date (YYYY-MM-DD) |
+| `depends_on` | No | List of project names this depends on |
+| `tags` | No | Free-form tags for categorization |
 
 ### Task Status Values
 
@@ -222,9 +243,15 @@ Update the frontmatter at the start of each sprint:
 ```yaml
 ---
 project: {project-name}
+description: "Short project description"
+type: saas
+po: "@product-owner"
+lead: "@tech-lead"
 sprint: S4              # Increment sprint number
 sprint_start: 2026-03-16  # New sprint start
 sprint_end: 2026-03-27    # New sprint end
+depends_on: [shared-auth]
+tags: [frontend, mvp]
 ---
 ```
 

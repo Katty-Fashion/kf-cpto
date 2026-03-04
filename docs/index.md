@@ -16,6 +16,7 @@ layout: default
 {% include card.html title="Kanban" description="All projects in one view" link="unified-kanban.html" %}
 {% include card.html title="Calendar" description="CPTO 50h allocation" link="unified-calendar.html" %}
 {% include card.html title="LOE Report" description="Level of Effort tracking" link="loe-report.html" %}
+{% include card.html title="Dependencies" description="Inter-project dependency graph" link="dependency-graph.html" %}
 
 </div>
 
@@ -25,12 +26,16 @@ layout: default
 
 <div class="card-grid">
 
-{% include card.html title="AI-RISE" description="EU AI Project" status="Active" link="projects/ai-rise.html" %}
-{% include card.html title="AIREGIO" description="EU Regional AI" status="Active" link="projects/airegio.html" %}
-{% include card.html title="NuoForm" description="SaaS Platform" status="Active" link="projects/nuoform.html" %}
-{% include card.html title="Waist Management" description="Health SaaS" status="Active" link="projects/waist-mgmt.html" %}
+{% assign sorted_projects = site.projects | sort: "title" %}
+{% for proj in sorted_projects %}
+{% include card.html title=proj.title description=proj.description status="Active" link=proj.url %}
+{% endfor %}
 
 </div>
+
+{% if site.projects.size == 0 %}
+*No projects found yet. Add a `kanban.md` to any repo in the kf-team org to get started.*
+{% endif %}
 
 ---
 

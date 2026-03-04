@@ -214,23 +214,33 @@ def generate_project_page(project: str, project_data: dict) -> str:
     meta = project_data.get("meta", {})
     tasks = project_data.get("tasks", [])
 
-    # Determine project type
-    project_type = meta.get("type", "project")
-    if project in ["ai-rise", "airegio"]:
-        project_type = "EU Project"
-        type_key = "eu-project"
-    else:
-        project_type = "SaaS Product"
-        type_key = "saas"
+    # Project type from frontmatter (populated by normalize_frontmatter)
+    type_key = meta.get("type", "internal")
+    type_display = {
+        "saas": "SaaS Product",
+        "eu-project": "EU Project",
+        "internal": "Internal",
+    }.get(type_key, type_key)
+
+    description = meta.get("description", "") or type_display
+    po = meta.get("po", "-") or "-"
+    lead = meta.get("lead", "-") or "-"
+    depends_on = meta.get("depends_on", [])
+    tags = meta.get("tags", [])
 
     sprint = meta.get("sprint", "-")
     sprint_start = meta.get("sprint_start", "")
     sprint_end = meta.get("sprint_end", "")
     sprint_period = f"{sprint_start} to {sprint_end}" if sprint_start and sprint_end else "-"
 
+    deps_display = ", ".join(
+        f"[{d}](../projects/{d}.html)" for d in depends_on
+    ) if depends_on else "None"
+
     lines = [
         "---",
         f"title: {project}",
+        f"description: \"{description}\"",
         f"project: {project}",
         f"type: {type_key}",
         f"generated: {datetime.now().isoformat()}",
@@ -238,16 +248,20 @@ def generate_project_page(project: str, project_data: dict) -> str:
         "",
         f"# {project}",
         "",
-        f"> {project_type}",
+        f"> {description}",
         "",
         "## Status",
         "",
         "| Metric | Value |",
         "| :--- | :--- |",
         "| Status | Active |",
-        f"| Type | {project_type} |",
+        f"| Type | {type_display} |",
+        f"| PO | {po} |",
+        f"| Lead | {lead} |",
         f"| Current Sprint | {sprint} |",
         f"| Sprint Period | {sprint_period} |",
+        f"| Tags | {', '.join(tags) if tags else '-'} |",
+        f"| Dependencies | {deps_display} |",
         "",
     ]
 
@@ -323,6 +337,62 @@ def generate_project_page(project: str, project_data: dict) -> str:
     return "\n".join(lines)
 
 
+def generate_dependency_graph(data: dict) -> str:
+    """Generate dependency graph page with MermaidJS directed graph."""
+    lines = [
+        "---",
+        "title: Dependency Graph",
+        f"generated: {datetime.now().isoformat()}",
+        "---",
+        "",
+        "# KF Team — Dependency Graph",
+        "",
+        "> Inter-project dependencies (auto-generated from kanban.md frontmatter)",
+        "",
+        "```mermaid",
+        "graph LR",
+    ]
+
+    # Add nodes with type-based styling
+    for project, project_data in data.items():
+        meta = project_data.get("meta", {})
+        proj_type = meta.get("type", "internal")
+        style_class = {"saas": ":::saas", "eu-project": ":::eu"}.get(proj_type, ":::internal")
+        label = project.replace("-", " ").title()
+        lines.append(f"    {project}[{label}]{style_class}")
+
+    # Add edges from depends_on
+    has_edges = False
+    for project, project_data in data.items():
+        meta = project_data.get("meta", {})
+        for dep in meta.get("depends_on", []):
+            if dep in data:
+                lines.append(f"    {dep} --> {project}")
+                has_edges = True
+
+    lines.append("")
+    lines.append("    classDef saas fill:#4CAF50,color:#fff")
+    lines.append("    classDef eu fill:#2196F3,color:#fff")
+    lines.append("    classDef internal fill:#FF9800,color:#fff")
+    lines.append("```")
+    lines.append("")
+
+    if not has_edges:
+        lines.append("*No inter-project dependencies declared yet. Add `depends_on` to your kanban.md frontmatter.*")
+        lines.append("")
+
+    # Legend
+    lines.append("## Legend")
+    lines.append("")
+    lines.append("| Color | Type |")
+    lines.append("| :--- | :--- |")
+    lines.append("| Green | SaaS Product |")
+    lines.append("| Blue | EU Project |")
+    lines.append("| Orange | Internal |")
+
+    return "\n".join(lines)
+
+
 def generate_project_pages(data: dict):
     """Generate individual project pages"""
     projects_dir = DOCS_DIR / "projects"
@@ -356,6 +426,11 @@ def main():
     loe_content = generate_loe_report(data)
     (DOCS_DIR / "loe-report.md").write_text(loe_content)
     print("Generated loe-report.md")
+
+    # Generate dependency graph
+    graph_content = generate_dependency_graph(data)
+    (DOCS_DIR / "dependency-graph.md").write_text(graph_content)
+    print("Generated dependency-graph.md")
 
     # Generate individual project pages
     generate_project_pages(data)

@@ -26,5 +26,5 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.KF_PAT }}" \
             https://api.github.com/repos/kf-team/kf-cpto/dispatches \
-            -d '{"event_type":"kanban-update","client_payload":{"project":"${{ github.repository }}","ref":"${{ github.ref }}","sha":"${{ github.sha }}"}}'
+            -d '{"event_type":"kanban-updated","client_payload":{"project":"${{ github.repository }}","ref":"${{ github.ref }}","sha":"${{ github.sha }}"}}'
           echo "Triggered KF-CPTO aggregation for ${{ github.repository }}"

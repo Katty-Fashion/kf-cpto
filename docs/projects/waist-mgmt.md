@@ -1,22 +1,27 @@
 ---
 title: waist-mgmt
+description: "Internal"
 project: waist-mgmt
-type: saas
-generated: 2026-03-03T21:54:53.316047
+type: internal
+generated: 2026-03-04T22:41:03.830670
 ---
 
 # waist-mgmt
 
-> SaaS Product
+> Internal
 
 ## Status
 
 | Metric | Value |
 | :--- | :--- |
 | Status | Active |
-| Type | SaaS Product |
+| Type | Internal |
+| PO | health@kf-team.dev |
+| Lead | mobile@kf-team.dev |
 | Current Sprint | S3 |
 | Sprint Period | 2026-03-03 to 2026-03-14 |
+| Tags | - |
+| Dependencies | None |
 
 ## Current Sprint Kanban
 

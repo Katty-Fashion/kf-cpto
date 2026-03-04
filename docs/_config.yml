@@ -6,9 +6,9 @@ description: Single Pane of Glass · GitHub Native · Google Workspace Integrati
 baseurl: "/kf-cpto"
 url: "https://kf-team.github.io"
 
-# Project repositories to aggregate
-kf_projects:
-- project-template
+# Project repos are discovered dynamically via scripts/discover.py
+# No static kf_projects list needed — any repo in the org with kanban.md
+# is automatically included in the dashboard.
 
 # Build settings
 markdown: kramdown

@@ -1,85 +1,82 @@
 # KF-CPTO — Git-Native Project Management Dashboard
 
-> **Single Pane of Glass** for KF Team projects — aggregating Kanban boards, calendars, and LOE tracking across multiple repositories.
+> **Single Pane of Glass** for KF Team projects — zero-config aggregation of Kanban boards, calendars, LOE tracking, and dependency graphs across all repositories.
 
 ## Overview
 
-KF-CPTO is a centralized dashboard that automatically aggregates project management data from multiple KF Team repositories into a unified view. It provides:
+KF-CPTO is a centralized dashboard that **automatically discovers** and aggregates project management data from KF Team repositories. Any repo in the `kf-team` org with a `kanban.md` file is automatically included — no manual configuration required.
 
 - **Unified Kanban Board** — All project tasks in one view
 - **Sprint Calendar** — Visual timeline with Gantt charts
 - **LOE (Level of Effort) Reports** — Effort tracking by project and assignee
-- **Google Sheets Integration** — Automatic sync for reporting
-- **GitHub Pages Deployment** — Live dashboard at `https://kf-team.github.io/kf-cpto/`
+- **Dependency Graph** — Obsidian-style directed graph showing inter-project dependencies
+- **Google Sheets Integration** — Automatic LOE sync for reporting
+- **GitHub Pages Deployment** — Live at `https://kf-team.github.io/kf-cpto/`
 
-## Architecture
+## How It Works
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    KF-CPTO Repository                           │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │
-│   │ ai-rise  │  │ airegio  │  │ nuoform  │  │waist-mgmt│       │
-│   │ repo     │  │ repo     │  │ repo     │  │ repo     │       │
-│   └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘       │
-│        │             │             │             │              │
-│        └─────────────┴──────┬──────┴─────────────┘              │
-│                             │                                   │
-│                             ▼                                   │
-│                    ┌────────────────┐                           │
-│                    │  aggregator.py │                           │
-│                    └────────┬───────┘                           │
-│                             │                                   │
-│              ┌──────────────┼──────────────┐                    │
-│              ▼              ▼              ▼                    │
-│     ┌─────────────┐ ┌─────────────┐ ┌─────────────┐            │
-│     │unified-     │ │unified-     │ │loe-report   │            │
-│     │kanban.md    │ │calendar.md  │ │.md          │            │
-│     └─────────────┘ └─────────────┘ └──────┬──────┘            │
-│                                            │                    │
-│                                            ▼                    │
-│                                   ┌────────────────┐            │
-│                                   │ sheets_sync.py │            │
-│                                   └────────┬───────┘            │
-│                                            │                    │
-│                                            ▼                    │
-│                                   ┌────────────────┐            │
-│                                   │ Google Sheets  │            │
-│                                   └────────────────┘            │
-│                                                                 │
-│                    GitHub Pages (docs/)                         │
-└─────────────────────────────────────────────────────────────────┘
-```
+```mermaid
+graph TD
+    subgraph repos["Repo-uri Individuale"]
+        A["ai-rise/kanban.md<br/>MermaidJS Kanban"]
+        B["airegio/kanban.md<br/>MermaidJS Kanban"]
+        C["nuoform/kanban.md<br/>MermaidJS Kanban"]
+        D["waist-mgmt/kanban.md<br/>MermaidJS Kanban"]
+    end
 
-## Project Repositories
+    A -->|push trigger| GHA
+    B -->|push trigger| GHA
+    C -->|push trigger| GHA
+    D -->|push trigger| GHA
 
-| Project | Type | Description | Repository |
-| :--- | :--- | :--- | :--- |
-| **ai-rise** | EU Project | European Union AI research and innovation project | [kf-team/ai-rise](https://github.com/kf-team/ai-rise) |
-| **airegio** | EU Project | EU Regional AI initiative | [kf-team/airegio](https://github.com/kf-team/airegio) |
-| **nuoform** | SaaS Product | SaaS platform | [kf-team/nuoform](https://github.com/kf-team/nuoform) |
-| **waist-mgmt** | SaaS Product | Health SaaS application | [kf-team/waist-mgmt](https://github.com/kf-team/waist-mgmt) |
+    subgraph GHA["GitHub Actions"]
+        DISC["discover.py<br/>GitHub API scan"]
+        AGG["aggregator.py<br/>parse + merge kanbans"]
+        CAL["Calendar + LOE<br/>effort + events"]
+        DISC --> AGG
+        AGG --> CAL
+    end
 
-Each project repository contains a `kanban.md` file with task tracking in a standardized format.
+    subgraph kfcpto["kf-cpto (Main Repo)"]
+        UK["unified-kanban.md<br/>Kanban Unificat"]
+        UC["unified-calendar.md<br/>Calendar + LOE"]
+        DG["dependency-graph.md<br/>Inter-project graph"]
+        PP["projects/*.md<br/>Per-project pages"]
+    end
 
-### Adding/Removing Projects
+    AGG --> UK
+    AGG --> DG
+    AGG --> PP
+    CAL --> UC
 
-Projects are configured in `_config.yml` under `kf_projects`:
+    UK --> PAGES
+    UC --> PAGES
+    DG --> PAGES
+    PP --> PAGES
 
-```yaml
-kf_projects:
-  - ai-rise
-  - airegio
-  - nuoform
-  - waist-mgmt
+    PAGES["GitHub Pages<br/>Dashboard Echipa"]
+    PAGES --> GS["Google Sheets<br/>LOE Data"]
+    PAGES --> GC["Google Chat<br/>Notifications"]
 ```
 
-To add a new project, append it to the list. The aggregator scripts and GitHub Actions workflow read from this single source of truth.
+### Data Flow
 
-## Repository Setup Guide
+1. **A developer updates `kanban.md`** in their project repo and pushes
+2. **`notify-kf-cpto.yml`** triggers a `repository_dispatch` event to kf-cpto
+3. **`discover.py`** scans the GitHub org via API to find all repos with `kanban.md`
+4. **`aggregate.yml`** clones discovered repos and runs the aggregation pipeline
+5. **`aggregator.py`** parses all kanbans and generates unified views + dependency graph
+6. **`sheets_sync.py`** pushes LOE data to Google Sheets
+7. **GitHub Pages** deploys the dashboard
+8. **Google Chat** receives a notification
 
-Follow these steps to integrate a new project repository with the KF-CPTO dashboard.
+## Zero-Config Repo Registration
+
+**No manual configuration needed.** To add a project to the dashboard:
+
+1. Add a `kanban.md` file to your repo root (see format below)
+2. Add the `.github/workflows/notify-kf-cpto.yml` workflow
+3. Push — the dashboard discovers and includes your project automatically
 
 ### Quick Start with Templates
 
@@ -90,11 +87,9 @@ Create new project from template: [kf-team/project-template](https://github.com/
 New repos automatically include:
 - `kanban.md` with correct format
 - `.github/workflows/notify-kf-cpto.yml` for auto-sync
-- `README.md` with project structure
+- `README.md` with architecture documentation
 
 **Option B: Manual Setup**
-
-Copy starter templates from `templates/`:
 
 ```bash
 # From your project repo root
@@ -104,18 +99,22 @@ mkdir -p .github/workflows
 curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/.github/workflows/notify-kf-cpto.yml -o .github/workflows/notify-kf-cpto.yml
 ```
 
-Then customize the placeholders (`{project-name}`, `{PROJECT_DESCRIPTION}`, etc.).
+## Kanban Format
 
-### Step 1: Create `kanban.md` in Your Repository
+Each project's `kanban.md` is the **single source of truth** — it seeds the dashboard with all project data.
 
-Create a `kanban.md` file in the **root** of your project repository with this structure:
-
-```markdown
+```yaml
 ---
 project: your-project-name
+description: "Short project description"
+type: saas                # saas | eu-project | internal
+po: "@product-owner"
+lead: "@tech-lead"
 sprint: S3
 sprint_start: 2026-03-02
 sprint_end: 2026-03-13
+depends_on: [nuoform]     # other project names this depends on
+tags: [frontend, mvp]     # free-form tags
 ---
 
 # Project Kanban
@@ -127,16 +126,22 @@ sprint_end: 2026-03-13
 | Deploy to staging | @devops | 2d | Todo |
 ```
 
-**Frontmatter fields:**
+### Frontmatter Fields
 
 | Field | Required | Description |
 | :--- | :---: | :--- |
-| `project` | Yes | Project identifier (should match repo name) |
-| `sprint` | Yes | Current sprint name (e.g., S3, Sprint-5) |
+| `project` | Yes | Repo name (must match GitHub repo) |
+| `description` | No | Short description shown on dashboard cards |
+| `type` | No | `saas`, `eu-project`, or `internal` (default) |
+| `po` | No | Product owner contact |
+| `lead` | No | Technical lead contact |
+| `sprint` | Yes | Sprint identifier (S1, S2...) |
 | `sprint_start` | Yes | Sprint start date (YYYY-MM-DD) |
 | `sprint_end` | Yes | Sprint end date (YYYY-MM-DD) |
+| `depends_on` | No | List of project names this depends on (powers the dependency graph) |
+| `tags` | No | Free-form tags for categorization |
 
-**Task table columns:**
+### Task Table
 
 | Column | Format | Valid Values |
 | :--- | :--- | :--- |
@@ -145,328 +150,93 @@ sprint_end: 2026-03-13
 | Effort | `Nd` | Number + 'd' for days (e.g., `3d`, `0.5d`) |
 | Status | Exact match | `Todo`, `In Progress`, `Review`, `Done` |
 
-### Step 2: Register in KF-CPTO
-
-1. **Fork/clone** the kf-cpto repository
-2. **Edit** `docs/_config.yml` and add your project to `kf_projects`:
-
-```yaml
-kf_projects:
-- ai-rise
-- airegio
-- nuoform
-- waist-mgmt
-- your-new-project  # Add here
-```
-
-3. **Commit and push** — the GitHub Action will clone your repo and aggregate
-
-### Step 3: (Optional) Auto-Trigger on Kanban Updates
-
-Add a GitHub Action to your project repo to notify kf-cpto when `kanban.md` changes:
-
-```yaml
-# .github/workflows/notify-kf-cpto.yml
-name: Notify KF-CPTO
-
-on:
-  push:
-    paths:
-      - 'kanban.md'
-
-jobs:
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger KF-CPTO Aggregation
-        run: |
-          curl -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.KF_PAT }}" \
-            https://api.github.com/repos/kf-team/kf-cpto/dispatches \
-            -d '{"event_type":"kanban-update","client_payload":{"project":"${{ github.repository }}"}}'
-```
-
-**Required secret:** `KF_PAT` — Personal Access Token with `repo` scope for kf-cpto.
-
-### Step 4: Verify Integration
-
-After the aggregator runs:
-
-1. Check the [Unified Kanban](https://kf-team.github.io/kf-cpto/unified-kanban.html) — your tasks should appear
-2. Check your [Project Page](https://kf-team.github.io/kf-cpto/projects/your-project.html) — auto-generated
-3. Check the [LOE Report](https://kf-team.github.io/kf-cpto/loe-report.html) — effort totals included
-
-### Troubleshooting
-
-| Issue | Solution |
-| :--- | :--- |
-| Tasks not appearing | Verify `kanban.md` is in repo root, not a subdirectory |
-| Status not recognized | Use exact values: `Todo`, `In Progress`, `Review`, `Done` |
-| Effort not calculated | Format must be `Nd` (e.g., `3d`, `1.5d`) |
-| Project page missing | Ensure project name in `_config.yml` matches repo name exactly |
-| Aggregator warnings | Check GitHub Actions logs for specific parsing errors |
-
 ## Automation Workflows
 
-### Primary Workflow: Unified Sync
+### Primary: Unified Sync (`aggregate.yml`)
 
-The main workflow (`.github/workflows/aggregate.yml`) runs automatically:
+| Trigger | When |
+| :--- | :--- |
+| Push to main | Immediate |
+| Repository dispatch | When any project updates its kanban |
+| Schedule | Monday 04:00 UTC |
+| Manual | workflow_dispatch |
 
-- **On push to main/master** — Immediate sync
-- **On repository dispatch** — When any project updates its kanban
-- **Weekly schedule** — Every Monday at 04:00 UTC
-- **Manual trigger** — Via workflow_dispatch
+**Pipeline steps:**
+1. `discover.py` — Scan GitHub org for repos with `kanban.md`
+2. Clone all discovered repos
+3. `aggregator.py` — Generate unified-kanban, calendar, LOE report, dependency graph, project pages
+4. `sheets_sync.py` — Sync LOE data to Google Sheets
+5. Commit and push updated docs
+6. Deploy to GitHub Pages
+7. Notify Google Chat
 
-**Steps:**
-1. Clone all project repositories
-2. Run `aggregator.py` to generate:
-   - `unified-kanban.md` — All tasks across projects
-   - `unified-calendar.md` — Sprint timeline
-   - `loe-report.md` — Level of Effort summary
-   - `projects/{project}.md` — Individual project pages (auto-generated)
-3. Sync LOE data to Google Sheets via `sheets_sync.py`
-4. Commit and push updated docs
-5. Deploy to GitHub Pages
-6. Notify Google Chat webhook
+### Secondary: Sheets Sync (`sync_to_sheets.yml`)
 
-### Secondary Workflow: Sheets Sync
+| Trigger | When |
+| :--- | :--- |
+| Schedule | Weekdays 09:00 UTC |
+| Manual | workflow_dispatch |
 
-A lightweight workflow (`.github/workflows/sync_to_sheets.yml`) for frequent LOE updates:
+Lightweight — discovers repos, syncs LOE data to Google Sheets only.
 
-- **Weekday schedule** — Monday-Friday at 09:00 UTC
-- **Manual trigger** — Via workflow_dispatch
+### Per-Repo: Notify (`notify-kf-cpto.yml`)
 
-**Steps:**
-1. Clone all project repositories
-2. Sync LOE data to Google Sheets via `sheets_sync.py`
-
-## Kanban Format
-
-Each project's `kanban.md` should follow this format:
-
-```markdown
----
-project: project-name
-sprint: S3
-sprint_start: 2026-03-02
-sprint_end: 2026-03-13
----
-
-# Project Kanban
-
-| Task | Assignee | Effort | Status |
-| :--- | :--- | :--- | :--- |
-| Implement feature X | @developer | 3d | In Progress |
-| Code review for Y | @reviewer | 1d | Review |
-| Deploy to staging | @devops | 2d | Todo |
-```
-
-## MermaidJS Visualization Examples
-
-The dashboard uses MermaidJS for visual representations. Here are valid syntax examples:
-
-### Pie Chart — Time Allocation
-
-```mermaid
-pie title Monthly 50h CPTO Allocation
-    "Sync & Team Rhythm" : 10
-    "Technical Health" : 12
-    "Pre-Sales" : 8
-    "EU Projects" : 10
-    "SaaS Products" : 8
-    "Team Events" : 2
-```
-
-### Gantt Chart — Sprint Calendar
-
-```mermaid
-gantt
-    title Sprint Calendar
-    dateFormat YYYY-MM-DD
-    excludes weekends
-
-    section nuoform
-    Sprint 3 Planning        :crit, 2026-03-02, 1d
-    Sprint 3 Active          :active, 2026-03-03, 9d
-    Sprint 3 Demo + Retro    :crit, 2026-03-13, 1d
-
-    section ai-rise
-    Research Phase           :2026-03-03, 5d
-    Documentation            :2026-03-10, 3d
-```
-
-### Kanban Diagram
-
-MermaidJS supports native Kanban diagrams (since v11.4):
-
-```mermaid
-kanban
-  Todo
-    id1[OAS3 Billing API]
-    id2[ArgoCD Pipeline Config]
-  In-Progress
-    id3[OpenTelemetry Integration]
-  Review
-    id4[HLD Architecture v2]
-  Done
-    id5[HLD Diagram v1]
-```
-
-### Timeline — Project Milestones
-
-```mermaid
-timeline
-    title KF Team Q1 2026 Milestones
-    section January
-        ai-rise Kickoff : Project launch
-        nuoform v1.0 : Initial release
-    section February
-        airegio Phase 1 : Complete
-        waist-mgmt Beta : Beta launch
-    section March
-        Sprint 3 : All projects aligned
-        Q1 Review : Quarterly assessment
-```
-
-### Quadrant Chart — Project Priority Matrix
-
-```mermaid
-quadrantChart
-    title Project Priority Matrix
-    x-axis Low Effort --> High Effort
-    y-axis Low Impact --> High Impact
-    quadrant-1 Quick Wins
-    quadrant-2 Major Projects
-    quadrant-3 Fill-ins
-    quadrant-4 Time Sinks
-    nuoform: [0.7, 0.8]
-    ai-rise: [0.8, 0.9]
-    airegio: [0.6, 0.7]
-    waist-mgmt: [0.4, 0.6]
-```
+Installed in each project repo. Triggers on push to `kanban.md` and sends a `repository_dispatch` event to kf-cpto.
 
 ## Configuration
 
 ### Required GitHub Secrets
 
-| Secret | Level | Why |
+| Secret | Level | Purpose |
 | :--- | :--- | :--- |
-| `KF_PAT` | **Org** | Needed by kf-cpto + every project repo for cross-repo dispatch/cloning |
-| `GOOGLE_CHAT_WEBHOOK` | **Org** | Used in notify.yml on every repo |
-| `GSHEET_ID` | **Repo** (kf-cpto only) | Only the aggregator needs Sheets access |
-| `GSHEET_CLIENT_EMAIL` | **Repo** (kf-cpto only) | Only the aggregator needs Sheets access |
-| `GSHEET_PRIVATE_KEY` | **Repo** (kf-cpto only) | Only the aggregator needs Sheets access |
-| `GITHUB_TOKEN` | **Automatic** | Provided by GitHub Actions — no setup needed |
-
-### GitHub Organization Secrets
-
-GitHub org secrets come in four types. Use the right one for your use case:
-
-| Type | Settings Path | When to Use | KF-CPTO Example |
-| :--- | :--- | :--- | :--- |
-| **Actions** | Secrets → Actions | CI/CD workflows need a token or credential | `KF_PAT`, `GOOGLE_CHAT_WEBHOOK` |
-| **Codespaces** | Secrets → Codespaces | Devs need credentials available inside Codespaces | API keys for local dev |
-| **Dependabot** | Secrets → Dependabot | Dependabot needs auth to access private registries or repos for version/security updates | Private npm registry tokens |
-| **Private registries** | Packages → Private registries | Pulling container images or packages from authenticated registries (Docker Hub, GHCR, npm, etc.) | Docker Hub credentials |
-
-> **Rule of thumb:** If a workflow file uses `${{ secrets.X }}`, put it in **Actions**. If Dependabot PRs fail with 401/403, put it in **Dependabot**. If `docker pull` or `npm install` in Codespaces needs auth, put it in **Codespaces** or **Private registries**.
-
-Each type has its own **Repository access** policy (All repositories, Private repositories, or Selected repositories). Secrets set at the org level are inherited automatically — no per-repo setup needed.
+| `KF_PAT` | **Org** | Cross-repo dispatch + cloning (needed by kf-cpto and every project repo) |
+| `GOOGLE_CHAT_WEBHOOK` | **Org** | Dashboard update notifications |
+| `GSHEET_ID` | **Repo** (kf-cpto) | Google Sheet ID for LOE sync |
+| `GSHEET_CLIENT_EMAIL` | **Repo** (kf-cpto) | Service account email |
+| `GSHEET_PRIVATE_KEY` | **Repo** (kf-cpto) | Service account private key |
+| `GITHUB_TOKEN` | **Auto** | Provided by GitHub Actions |
 
 ### Setting Up GitHub PAT (Organization Secret)
 
-Use **organization-level Actions secrets** so all repos automatically have access:
-
-1. **Create PAT:**
-   - Go to **GitHub → Settings → Developer Settings → Personal Access Tokens → Fine-grained tokens**
-   - **Name:** `kf-cpto-sync`
-   - **Expiration:** 90 days (set reminder to rotate)
-   - **Repository access:** All repositories (or select kf-team repos)
-   - **Permissions:** Contents (Read-only), Metadata (Read-only)
-
-2. **Add as Organization Secret:**
-   - Go to **github.com/kf-team → Settings → Secrets and variables → Actions**
-   - Click **New organization secret**
-   - **Name:** `KF_PAT`
-   - **Value:** Paste the token
-   - **Repository access:** All repositories
+1. **GitHub → Settings → Developer Settings → Personal Access Tokens → Fine-grained tokens**
+2. **Name:** `kf-cpto-sync`, **Expiration:** 90 days
+3. **Repository access:** All repositories (or select kf-team repos)
+4. **Permissions:** Contents (Read-only), Metadata (Read-only)
+5. **Add as Org Secret:** `github.com/kf-team → Settings → Secrets → Actions → New organization secret`
 
 ### Setting Up Google Sheets
 
-1. **Create Google Cloud Project**
-   - Go to [Google Cloud Console](https://console.cloud.google.com)
-   - Create new project or select existing
-   - Enable **Google Sheets API**
-
-2. **Create Service Account**
-   - Go to **IAM & Admin → Service Accounts**
-   - Create service account (e.g., `kf-cpto-sync@project.iam.gserviceaccount.com`)
-   - Click **Keys → Add Key → Create new key → JSON**
-   - Download the JSON file
-
-3. **Create Google Sheet**
-   - Create new Google Sheet for LOE data
-   - Share with service account email (Editor access)
-   - Create a sheet tab named **LOE**
-   - Copy Sheet ID from URL: `https://docs.google.com/spreadsheets/d/{SHEET_ID}/edit`
-
-4. **Add GitHub Secrets** (from JSON key file):
-   ```
-   GSHEET_ID=your-sheet-id-from-url
-   GSHEET_CLIENT_EMAIL=service-account@project.iam.gserviceaccount.com
-   GSHEET_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----
-   ```
+1. Enable **Google Sheets API** in [Google Cloud Console](https://console.cloud.google.com)
+2. Create **Service Account** → Download JSON key
+3. Create Google Sheet → Share with service account email (Editor) → Create **LOE** tab
+4. Add secrets: `GSHEET_ID`, `GSHEET_CLIENT_EMAIL`, `GSHEET_PRIVATE_KEY`
 
 ### Setting Up Google Chat
 
-1. **Create Webhook**
-   - Open your Google Chat space
-   - Click space name → **Manage webhooks**
-   - Create webhook, copy the URL
-
-2. **Add GitHub Secret**
-   ```
-   GOOGLE_CHAT_WEBHOOK=https://chat.googleapis.com/v1/spaces/XXX/messages?key=YYY&token=ZZZ
-   ```
-
-### Jekyll Configuration
-
-The `docs/_config.yml` configures GitHub Pages and serves as the single source of truth for:
-
-- `kf_projects` — List of project repositories to aggregate
-- Custom layout with Pico CSS
-- MermaidJS client-side rendering (v11)
-- Project collections for individual project pages
+1. Open Chat space → **Manage webhooks** → Create webhook
+2. Add `GOOGLE_CHAT_WEBHOOK` as org secret
 
 ## Local Development
 
 ```bash
-# Clone the repository
+# Clone
 git clone https://github.com/kf-team/kf-cpto.git
 cd kf-cpto
 
-# Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Discover and clone project repos
+export KF_PAT=your-token
+uv run --with pyyaml --with requests scripts/discover.py
+while read repo; do
+  git clone --depth=1 https://github.com/kf-team/${repo}.git repos/${repo}
+done < repos/discovered.txt
 
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Clone project repos locally (reads from docs/_config.yml)
-mkdir -p repos
-PROJECTS=$(python -c "import yaml; print(' '.join(yaml.safe_load(open('docs/_config.yml'))['kf_projects']))")
-for repo in $PROJECTS; do
-    git clone https://github.com/kf-team/${repo}.git repos/${repo}
-done
-
-# Run the aggregator
-python scripts/aggregator.py
+# Run aggregator
+uv run --with pyyaml scripts/aggregator.py
 
 # Run sheets sync (dry-run without credentials)
-python scripts/sheets_sync.py
+uv run --with pyyaml scripts/sheets_sync.py
 
-# Serve docs locally with Jekyll
+# Serve docs locally
 cd docs && bundle exec jekyll serve
 ```
 
@@ -474,45 +244,50 @@ cd docs && bundle exec jekyll serve
 
 ```
 kf-cpto/
-├── .github/
-│   └── workflows/
-│       ├── aggregate.yml      # Primary workflow - full sync pipeline
-│       └── sync_to_sheets.yml # Secondary workflow - LOE sync only
+├── .github/workflows/
+│   ├── aggregate.yml          # Primary workflow — full sync pipeline
+│   └── sync_to_sheets.yml    # Secondary workflow — LOE sync only
 ├── docs/
 │   ├── _config.yml            # Jekyll configuration
-│   ├── _layouts/
-│   │   └── default.html       # Custom layout with MermaidJS
-│   ├── index.md               # Dashboard homepage
+│   ├── _layouts/default.html  # Layout with Pico CSS + MermaidJS
+│   ├── _includes/
+│   │   ├── sidebar.html       # Dynamic navigation (from projects collection)
+│   │   └── card.html          # Card component
+│   ├── index.md               # Dashboard homepage (dynamic project cards)
 │   ├── unified-kanban.md      # Aggregated kanban (auto-generated)
 │   ├── unified-calendar.md    # Sprint calendar (auto-generated)
 │   ├── loe-report.md          # LOE report (auto-generated)
-│   └── projects/              # Individual project pages (auto-generated)
-│       ├── ai-rise.md
-│       ├── airegio.md
-│       ├── nuoform.md
-│       └── waist-mgmt.md
-├── templates/                 # Starter templates for project repos
-│   ├── REPO_README.md         # README template
-│   ├── kanban.md              # Kanban template
-│   └── .github/workflows/
-│       └── notify-kf-cpto.yml # Auto-sync workflow
+│   ├── dependency-graph.md    # Inter-project graph (auto-generated)
+│   └── projects/              # Per-project pages (auto-generated)
 ├── scripts/
-│   ├── aggregator.py          # Main aggregation script
-│   ├── sheets_sync.py         # Google Sheets sync
-│   └── utils.py               # Shared utilities module
-├── requirements.txt           # Python dependencies
+│   ├── discover.py            # GitHub API repo discovery
+│   ├── aggregator.py          # Main aggregation + generation
+│   ├── sheets_sync.py         # Google Sheets LOE sync
+│   └── utils.py               # Shared utilities
+├── templates/                 # Starter templates for new project repos
+│   ├── kanban.md              # Kanban template with full frontmatter
+│   ├── REPO_README.md         # README template with architecture docs
+│   └── .github/workflows/
+│       └── notify-kf-cpto.yml # Auto-sync dispatch workflow
 └── README.md
 ```
+
+## Troubleshooting
+
+| Issue | Solution |
+| :--- | :--- |
+| Project not appearing on dashboard | Ensure `kanban.md` exists at repo root (not in a subdirectory) |
+| Tasks not parsing | Use exact status values: `Todo`, `In Progress`, `Review`, `Done` |
+| Effort not calculated | Format: `Nd` (e.g., `3d`, `1.5d`, `0.5d`) |
+| Dispatch not triggering | Verify event type is `kanban-updated` in notify workflow |
+| Sheets empty | Check `GSHEET_ID`, `GSHEET_CLIENT_EMAIL`, `GSHEET_PRIVATE_KEY` secrets are set |
+| Discovery finds no repos | Ensure `KF_PAT` has read access to org repos |
 
 ## Tools Under Evaluation
 
 | Tool | Purpose | Link |
 | :--- | :--- | :--- |
 | **Dockwatch** | Docker container management — Web UI for per-container update scheduling, cron-based updates, multi-platform notifications (Slack, Discord, email). Potential to greatly simplify container update workflows vs manual `docker pull`/`compose up` cycles. | [Wiki](https://dockwatch.wiki/) · [GitHub](https://github.com/Notifiarr/dockwatch) |
-
-## License
-
-KF Team Internal Project
 
 ---
 

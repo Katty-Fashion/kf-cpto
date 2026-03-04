@@ -16,23 +16,14 @@
     <details open>
       <summary>Projects</summary>
       <ul>
-        {% for project in site.kf_projects %}
-        <li>
-          <a href="{{ '/projects/' | append: project | append: '.html' | relative_url }}"
-            {% if page.url contains project %}aria-current="page"{% endif %}>
-            {{ project | replace: '-', ' ' | capitalize }}
-          </a>
-        </li>
-        {% endfor %}
-        {% for proj in site.projects %}
-        {% unless site.kf_projects contains proj.slug %}
+        {% assign sorted_projects = site.projects | sort: "title" %}
+        {% for proj in sorted_projects %}
         <li>
           <a href="{{ proj.url | relative_url }}"
             {% if page.url == proj.url %}aria-current="page"{% endif %}>
             {{ proj.title | default: proj.slug | replace: '-', ' ' | capitalize }}
           </a>
         </li>
-        {% endunless %}
         {% endfor %}
       </ul>
     </details>
@@ -56,6 +47,12 @@
           <a href="{{ '/loe-report.html' | relative_url }}"
             {% if page.url contains 'loe' %}aria-current="page"{% endif %}>
             LOE Report
+          </a>
+        </li>
+        <li>
+          <a href="{{ '/dependency-graph.html' | relative_url }}"
+            {% if page.url contains 'dependency' %}aria-current="page"{% endif %}>
+            Dependencies
           </a>
         </li>
       </ul>

@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-03-03T21:54:53.314546
+generated: 2026-03-04T22:41:03.827542
 ---
 
 # KF Team — Unified Calendar
@@ -25,6 +25,12 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
+    section ai-rise
+    S3 :active, 2026-03-03, 2026-03-14
+    section airegio
+    S3 :active, 2026-03-03, 2026-03-14
+    section nuoform
+    S3 :active, 2026-03-03, 2026-03-14
     section waist-mgmt
     S3 :active, 2026-03-03, 2026-03-14
 ```

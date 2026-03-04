@@ -19,17 +19,23 @@ jobs:
           python-version: '3.11'
 
       - name: Install deps
-        run: pip install pyyaml google-auth google-api-python-client
+        run: pip install pyyaml requests google-auth google-api-python-client
 
-      - name: Clone project repos
+      - name: Discover repos with kanban.md
+        run: python scripts/discover.py
+        env:
+          KF_PAT: ${{ secrets.KF_PAT }}
+
+      - name: Clone discovered repos
         run: |
           mkdir -p repos
-          PROJECTS=$(python -c "import yaml; print(' '.join(yaml.safe_load(open('_config.yml'))['kf_projects']))")
-          for repo in $PROJECTS; do
+          while IFS= read -r repo; do
+            [ -z "$repo" ] && continue
+            echo "Cloning $repo..."
             git clone --depth=1 \
               https://${{ secrets.KF_PAT }}@github.com/kf-team/${repo}.git \
-              repos/${repo} || echo "Warning: Could not clone ${repo}"
-          done
+              repos/${repo} || echo "Warning: Failed to clone ${repo}"
+          done < repos/discovered.txt
 
       - name: Sync to Google Sheets
         run: python scripts/sheets_sync.py
