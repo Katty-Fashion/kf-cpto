@@ -10,6 +10,170 @@
 
 ---
 
+## Architecture
+
+### High-Level Design (HLD) — Sequence Flow
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant API Gateway
+    participant Service
+    participant Database
+    participant Cache
+    participant External API
+
+    Client->>API Gateway: HTTP Request
+    API Gateway->>API Gateway: Auth / Rate Limit
+    API Gateway->>Service: Forward Request
+
+    Service->>Cache: Check Cache
+    alt Cache Hit
+        Cache-->>Service: Return Cached Data
+    else Cache Miss
+        Service->>Database: Query Data
+        Database-->>Service: Return Data
+        Service->>Cache: Store in Cache
+    end
+
+    opt External Integration
+        Service->>External API: API Call
+        External API-->>Service: Response
+    end
+
+    Service-->>API Gateway: Response
+    API Gateway-->>Client: HTTP Response
+```
+
+### Backend Service Anatomy
+
+Every backend service/container follows this standard architecture:
+
+```mermaid
+block-beta
+    columns 3
+
+    block:external:3
+        A["API Layer (REST/GraphQL)"]
+    end
+
+    block:infra:3
+        B["Networking"] C["Auth/Security"] D["Config"]
+    end
+
+    block:core:3
+        E["Business Logic / Feature Code"]
+    end
+
+    block:observability:3
+        F["Observability"] G["Telemetry"] H["Logging"]
+    end
+
+    block:io:3
+        I["Database"] J["Cache"] K["Message Queue"]
+    end
+
+    block:output:3
+        L["stdout"] M["stderr"] N["Metrics Endpoint"]
+    end
+```
+
+**Layer Responsibilities:**
+
+| Layer | Components | Purpose |
+| :--- | :--- | :--- |
+| **API Layer** | REST endpoints, GraphQL resolvers | External interface |
+| **Infrastructure** | Network config, TLS, CORS, Auth middleware | Cross-cutting concerns |
+| **Business Logic** | Domain models, services, handlers | Your feature code |
+| **Observability** | OpenTelemetry, Prometheus, structured logs | Monitoring & debugging |
+| **I/O** | PostgreSQL, Redis, RabbitMQ/Kafka | Data persistence & messaging |
+| **Output** | stdout (logs), stderr (errors), /metrics | Container output streams |
+
+**Minimum Requirements for Production:**
+
+```yaml
+# Every service must have:
+observability:
+  - health_check: /health
+  - readiness: /ready
+  - metrics: /metrics (Prometheus format)
+  - tracing: OpenTelemetry spans
+
+logging:
+  - format: JSON structured
+  - output: stdout (info), stderr (errors)
+  - correlation_id: request tracing
+
+config:
+  - env_vars: 12-factor app
+  - secrets: mounted from vault/k8s secrets
+  - feature_flags: runtime toggles
+```
+
+### Frontend (React Web) Anatomy
+
+```mermaid
+block-beta
+    columns 3
+
+    block:entry:3
+        A["Entry Point (main.tsx)"]
+    end
+
+    block:routing:3
+        B["Router (React Router / Next.js)"]
+    end
+
+    block:state:3
+        C["State Management"] D["API Client"] E["Auth Context"]
+    end
+
+    block:ui:3
+        F["Pages / Views"]
+    end
+
+    block:components:3
+        G["Components"] H["Hooks"] I["Utils"]
+    end
+
+    block:infra:3
+        J["Design System"] K["i18n"] L["Analytics"]
+    end
+```
+
+**Frontend Layer Responsibilities:**
+
+| Layer | Components | Purpose |
+| :--- | :--- | :--- |
+| **Entry** | main.tsx, App.tsx | Bootstrap application |
+| **Routing** | React Router, layouts | Navigation & URL mapping |
+| **State** | Redux/Zustand, React Query, Context | Data management |
+| **Pages** | Route components, views | Screen-level components |
+| **Components** | Reusable UI, hooks, utilities | Building blocks |
+| **Infrastructure** | Theme, translations, tracking | Cross-cutting concerns |
+
+**Frontend Checklist:**
+
+```yaml
+# Every React app must have:
+performance:
+  - code_splitting: lazy loading routes
+  - bundle_size: < 200KB initial JS
+  - lighthouse: > 90 score
+
+observability:
+  - error_boundary: global error catching
+  - analytics: page views, events
+  - source_maps: uploaded to error tracker
+
+security:
+  - csp: Content Security Policy
+  - auth: token refresh, secure storage
+  - sanitization: XSS prevention
+```
+
+---
+
 ## Kanban Management
 
 This repository uses a `kanban.md` file for task tracking that integrates with the [KF-CPTO Dashboard](https://github.com/kf-team/kf-cpto).
@@ -72,9 +236,9 @@ sprint_end: 2026-03-27    # New sprint end
 
 ```bash
 # Required tools
-- Python 3.9+
-- Node.js 18+ (if applicable)
-- Docker (if applicable)
+- Python 3.11+ / Node.js 20+
+- Docker & Docker Compose
+- kubectl (for K8s deployments)
 ```
 
 ### Setup
@@ -111,7 +275,16 @@ cd {project-name}
 ├── .github/
 │   └── workflows/
 │       └── notify-kf-cpto.yml  # Auto-sync to dashboard
-└── src/                   # Project source code
+├── src/                   # Source code
+│   ├── api/               # API layer (routes, controllers)
+│   ├── services/          # Business logic
+│   ├── models/            # Data models
+│   ├── config/            # Configuration
+│   └── utils/             # Utilities
+├── tests/                 # Test suites
+├── docs/                  # Documentation
+├── Dockerfile             # Container definition
+└── docker-compose.yml     # Local dev environment
 ```
 
 ---
@@ -124,36 +297,9 @@ When you push changes to `kanban.md`, the KF-CPTO dashboard automatically update
 
 ### Manual Trigger
 
-To manually trigger a dashboard sync:
-
 ```bash
 # Via GitHub CLI
 gh workflow run notify-kf-cpto.yml
-```
-
-### Workflow Configuration
-
-The `.github/workflows/notify-kf-cpto.yml` file handles automatic sync:
-
-```yaml
-name: Notify KF-CPTO
-
-on:
-  push:
-    paths:
-      - 'kanban.md'
-
-jobs:
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger KF-CPTO Aggregation
-        run: |
-          curl -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.KF_PAT }}" \
-            https://api.github.com/repos/kf-team/kf-cpto/dispatches \
-            -d '{"event_type":"kanban-update","client_payload":{"project":"${{ github.repository }}"}}'
 ```
 
 ---
@@ -178,20 +324,5 @@ jobs:
 | Team | @kf-team/{project-name} |
 
 ---
-
-
-File	Purpose
-REPO_README.md	Full project README with kanban docs, dev setup, team section
-kanban.md	Starter kanban with frontmatter and example tasks
-.github/workflows/notify-kf-cpto.yml	Auto-sync workflow to trigger dashboard updates
-Quick setup for new repos:
-
-
-# From project repo root
-curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/kanban.md -o kanban.md
-curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/REPO_README.md -o README.md
-mkdir -p .github/workflows
-curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/.github/workflows/notify-kf-cpto.yml -o .github/workflows/notify-kf-cpto.yml
-Then replace {project-name}, {PROJECT_DESCRIPTION}, etc.
 
 *Part of [KF Team](https://github.com/kf-team) · Managed via [KF-CPTO](https://github.com/kf-team/kf-cpto)*
