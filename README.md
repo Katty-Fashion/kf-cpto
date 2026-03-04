@@ -490,6 +490,12 @@ kf-cpto/
 └── README.md
 ```
 
+## Tools Under Evaluation
+
+| Tool | Purpose | Link |
+| :--- | :--- | :--- |
+| **Dockwatch** | Docker container management — Web UI for per-container update scheduling, cron-based updates, multi-platform notifications (Slack, Discord, email). Potential to greatly simplify container update workflows vs manual `docker pull`/`compose up` cycles. | [Wiki](https://dockwatch.wiki/) · [GitHub](https://github.com/Notifiarr/dockwatch) |
+
 ## License
 
 KF Team Internal Project
