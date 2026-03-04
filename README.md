@@ -359,9 +359,24 @@ quadrantChart
 | `GSHEET_PRIVATE_KEY` | **Repo** (kf-cpto only) | Only the aggregator needs Sheets access |
 | `GITHUB_TOKEN` | **Automatic** | Provided by GitHub Actions — no setup needed |
 
+### GitHub Organization Secrets
+
+GitHub org secrets come in four types. Use the right one for your use case:
+
+| Type | Settings Path | When to Use | KF-CPTO Example |
+| :--- | :--- | :--- | :--- |
+| **Actions** | Secrets → Actions | CI/CD workflows need a token or credential | `KF_PAT`, `GOOGLE_CHAT_WEBHOOK` |
+| **Codespaces** | Secrets → Codespaces | Devs need credentials available inside Codespaces | API keys for local dev |
+| **Dependabot** | Secrets → Dependabot | Dependabot needs auth to access private registries or repos for version/security updates | Private npm registry tokens |
+| **Private registries** | Packages → Private registries | Pulling container images or packages from authenticated registries (Docker Hub, GHCR, npm, etc.) | Docker Hub credentials |
+
+> **Rule of thumb:** If a workflow file uses `${{ secrets.X }}`, put it in **Actions**. If Dependabot PRs fail with 401/403, put it in **Dependabot**. If `docker pull` or `npm install` in Codespaces needs auth, put it in **Codespaces** or **Private registries**.
+
+Each type has its own **Repository access** policy (All repositories, Private repositories, or Selected repositories). Secrets set at the org level are inherited automatically — no per-repo setup needed.
+
 ### Setting Up GitHub PAT (Organization Secret)
 
-Use **organization-level secrets** so all repos automatically have access:
+Use **organization-level Actions secrets** so all repos automatically have access:
 
 1. **Create PAT:**
    - Go to **GitHub → Settings → Developer Settings → Personal Access Tokens → Fine-grained tokens**
@@ -376,8 +391,6 @@ Use **organization-level secrets** so all repos automatically have access:
    - **Name:** `KF_PAT`
    - **Value:** Paste the token
    - **Repository access:** All repositories
-
-All new repos automatically inherit this secret — no per-repo setup needed.
 
 ### Setting Up Google Sheets
 
