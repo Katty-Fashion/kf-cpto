@@ -112,22 +112,28 @@ def sync_to_sheets(rows: list[list]):
     # Clear existing data and write new
     range_name = "LOE!A1:G1000"
 
-    # Clear the sheet
-    service.spreadsheets().values().clear(
-        spreadsheetId=sheet_id,
-        range=range_name
-    ).execute()
+    try:
+        # Clear the sheet
+        service.spreadsheets().values().clear(
+            spreadsheetId=sheet_id,
+            range=range_name
+        ).execute()
 
-    # Write new data
-    body = {"values": rows}
-    service.spreadsheets().values().update(
-        spreadsheetId=sheet_id,
-        range="LOE!A1",
-        valueInputOption="RAW",
-        body=body
-    ).execute()
+        # Write new data
+        body = {"values": rows}
+        service.spreadsheets().values().update(
+            spreadsheetId=sheet_id,
+            range="LOE!A1",
+            valueInputOption="RAW",
+            body=body
+        ).execute()
 
-    print(f"Synced {len(rows)} rows to Google Sheets")
+        print(f"Synced {len(rows)} rows to Google Sheets")
+    except Exception as e:
+        print(f"Error syncing to Google Sheets: {e}")
+        print("Falling back to dry-run output:")
+        for row in rows:
+            print("\t".join(str(cell) for cell in row))
 
 
 def main():

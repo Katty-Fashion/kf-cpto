@@ -48,6 +48,7 @@ jobs:
         run: python scripts/aggregator.py
 
       - name: Sync LOE to Google Sheets
+        continue-on-error: true
         run: python scripts/sheets_sync.py
         env:
           GSHEET_ID: ${{ secrets.GSHEET_ID }}
