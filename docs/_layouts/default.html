@@ -1,77 +1,63 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}" data-theme="auto">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-  <style>
-    :root { --pico-font-size: 16px; }
-    body { margin: 0; padding: 1rem 2rem; }
-    main { max-width: 1400px; margin: 0 auto; }
-    nav ul { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; }
-    nav a { white-space: nowrap; }
-    table { width: 100%; }
-    .mermaid {
-      background: #fafafa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin: 1rem 0;
-      overflow-x: auto;
-    }
-    .mermaid svg { max-width: 100%; height: auto; }
-    @media (max-width: 768px) {
-      body { padding: 0.5rem 1rem; }
-      nav ul { gap: 0.25rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><strong><a href="{{ '/' | relative_url }}">{{ site.title }}</a></strong></li>
-      </ul>
-      <ul>
-        {% for project in site.kf_projects %}
-        <li><a href="{{ '/projects/' | append: project | append: '.html' | relative_url }}">{{ project }}</a></li>
-        {% endfor %}
-        <li><a href="{{ '/index.html' | relative_url }}">Dashboard</a></li>
-        <li><a href="{{ '/loe-report.html' | relative_url }}">LOE Report</a></li>
-        <li><a href="{{ '/unified-calendar.html' | relative_url }}">Calendar</a></li>
-        <li><a href="{{ '/unified-kanban.html' | relative_url }}">Kanban</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    {{ content }}
-  </main>
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <button class="burger" id="burger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <strong>{{ site.title }}</strong>
+  </div>
 
-  <footer>
-    <hr>
-    <small>{{ site.title }} &middot; {{ site.description }}</small>
-  </footer>
+  <!-- Overlay -->
+  <div class="sidebar-overlay" id="sidebar-overlay" role="button" aria-label="Close navigation"></div>
+
+  <!-- Sidebar -->
+  {% include sidebar.html %}
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <main>
+      {{ content }}
+    </main>
+
+    <footer>
+      <hr>
+      <small>{{ site.title }} &middot; {{ site.description }}</small>
+    </footer>
+  </div>
+
+  <script src="{{ '/assets/js/sidebar.js' | relative_url }}"></script>
 
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 
     // Convert kramdown mermaid code blocks to mermaid divs
-    // Jekyll outputs: <pre><code class="language-mermaid">...</code></pre>
-    // MermaidJS needs: <div class="mermaid">...</div>
-    document.querySelectorAll('pre > code.language-mermaid').forEach(codeBlock => {
-      const pre = codeBlock.parentElement;
-      const div = document.createElement('div');
+    document.querySelectorAll('pre > code.language-mermaid').forEach(function (codeBlock) {
+      var pre = codeBlock.parentElement;
+      var div = document.createElement('div');
       div.className = 'mermaid';
       div.textContent = codeBlock.textContent;
       pre.replaceWith(div);
     });
 
-    // Initialize and run mermaid
+    // Pick mermaid theme based on OS preference
+    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     mermaid.initialize({
       startOnLoad: false,
-      theme: 'forest',
+      theme: isDark ? 'dark' : 'forest',
       securityLevel: 'loose'
     });
     mermaid.run();

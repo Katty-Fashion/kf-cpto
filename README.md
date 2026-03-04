@@ -350,13 +350,14 @@ quadrantChart
 
 ### Required GitHub Secrets
 
-| Secret | Description |
-| :--- | :--- |
-| `KF_PAT` | Personal Access Token with repo access to clone project repos |
-| `GSHEET_ID` | Google Sheets document ID for LOE sync |
-| `GSHEET_CLIENT_EMAIL` | Google Service Account email |
-| `GSHEET_PRIVATE_KEY` | Google Service Account private key |
-| `GOOGLE_CHAT_WEBHOOK` | Google Chat webhook URL for notifications |
+| Secret | Level | Why |
+| :--- | :--- | :--- |
+| `KF_PAT` | **Org** | Needed by kf-cpto + every project repo for cross-repo dispatch/cloning |
+| `GOOGLE_CHAT_WEBHOOK` | **Org** | Used in notify.yml on every repo |
+| `GSHEET_ID` | **Repo** (kf-cpto only) | Only the aggregator needs Sheets access |
+| `GSHEET_CLIENT_EMAIL` | **Repo** (kf-cpto only) | Only the aggregator needs Sheets access |
+| `GSHEET_PRIVATE_KEY` | **Repo** (kf-cpto only) | Only the aggregator needs Sheets access |
+| `GITHUB_TOKEN` | **Automatic** | Provided by GitHub Actions — no setup needed |
 
 ### Setting Up GitHub PAT (Organization Secret)
 

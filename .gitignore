@@ -4,6 +4,9 @@ kf-cpto.md
 # Cloned project repos (runtime)
 repos/
 
+#Project to ignore
+projects/*.*
+
 # Python
 __pycache__/
 *.py[cod]
@@ -21,13 +24,14 @@ pip-delete-this-directory.txt
 dist/
 build/
 
-# Jekyll
+# Jekyll / Ruby
 _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
 vendor/
 Gemfile.lock
+.bundle/
 
 # IDE
 .idea/

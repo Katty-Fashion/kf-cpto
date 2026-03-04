@@ -1,0 +1,20 @@
+<article class="card">
+  <header>
+    {% if include.link %}
+    <a href="{{ include.link }}"><strong>{{ include.title }}</strong></a>
+    {% else %}
+    <strong>{{ include.title }}</strong>
+    {% endif %}
+    {% if include.status %}
+    <small>{{ include.status }}</small>
+    {% endif %}
+  </header>
+  {% if include.description %}
+  <p>{{ include.description }}</p>
+  {% endif %}
+  {% if include.footer %}
+  <footer>
+    <small>{{ include.footer }}</small>
+  </footer>
+  {% endif %}
+</article>

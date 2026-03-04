@@ -1,0 +1,64 @@
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <header>
+      <strong>{{ site.title }}</strong>
+    </header>
+
+    <ul>
+      <li>
+        <a href="{{ '/' | relative_url }}"
+          {% if page.url == '/' or page.url == '/index.html' %}aria-current="page"{% endif %}>
+          Dashboard
+        </a>
+      </li>
+    </ul>
+
+    <details open>
+      <summary>Projects</summary>
+      <ul>
+        {% for project in site.kf_projects %}
+        <li>
+          <a href="{{ '/projects/' | append: project | append: '.html' | relative_url }}"
+            {% if page.url contains project %}aria-current="page"{% endif %}>
+            {{ project | replace: '-', ' ' | capitalize }}
+          </a>
+        </li>
+        {% endfor %}
+        {% for proj in site.projects %}
+        {% unless site.kf_projects contains proj.slug %}
+        <li>
+          <a href="{{ proj.url | relative_url }}"
+            {% if page.url == proj.url %}aria-current="page"{% endif %}>
+            {{ proj.title | default: proj.slug | replace: '-', ' ' | capitalize }}
+          </a>
+        </li>
+        {% endunless %}
+        {% endfor %}
+      </ul>
+    </details>
+
+    <details open>
+      <summary>Views</summary>
+      <ul>
+        <li>
+          <a href="{{ '/unified-kanban.html' | relative_url }}"
+            {% if page.url contains 'kanban' %}aria-current="page"{% endif %}>
+            Kanban
+          </a>
+        </li>
+        <li>
+          <a href="{{ '/unified-calendar.html' | relative_url }}"
+            {% if page.url contains 'calendar' %}aria-current="page"{% endif %}>
+            Calendar
+          </a>
+        </li>
+        <li>
+          <a href="{{ '/loe-report.html' | relative_url }}"
+            {% if page.url contains 'loe' %}aria-current="page"{% endif %}>
+            LOE Report
+          </a>
+        </li>
+      </ul>
+    </details>
+  </nav>
+</aside>

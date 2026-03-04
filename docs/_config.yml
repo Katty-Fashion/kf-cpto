@@ -8,10 +8,7 @@ url: "https://kf-team.github.io"
 
 # Project repositories to aggregate
 kf_projects:
-- ex_ai-rise
-- ex_airegio
-- ex_nuoform
-- waist-mgmt
+- project-template
 
 # Build settings
 markdown: kramdown

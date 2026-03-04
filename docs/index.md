@@ -11,20 +11,26 @@ layout: default
 
 ## Quick Links
 
-- [Unified Kanban](unified-kanban.md) — All projects in one view
-- [Unified Calendar](unified-calendar.md) — CPTO 50h allocation
-- [LOE Report](loe-report.md) — Level of Effort tracking
+<div class="card-grid">
+
+{% include card.html title="Kanban" description="All projects in one view" link="unified-kanban.html" %}
+{% include card.html title="Calendar" description="CPTO 50h allocation" link="unified-calendar.html" %}
+{% include card.html title="LOE Report" description="Level of Effort tracking" link="loe-report.html" %}
+
+</div>
 
 ---
 
 ## Projects
 
-| Project | Description | Status |
-| :--- | :--- | :---: |
-| [AI-RISE](projects/ai-rise.md) | EU AI Project | Active |
-| [AIREGIO](projects/airegio.md) | EU Regional AI | Active |
-| [NuoForm](projects/nuoform.md) | SaaS Platform | Active |
-| [Waist Management](projects/waist-mgmt.md) | Health SaaS | Active |
+<div class="card-grid">
+
+{% include card.html title="AI-RISE" description="EU AI Project" status="Active" link="projects/ai-rise.html" %}
+{% include card.html title="AIREGIO" description="EU Regional AI" status="Active" link="projects/airegio.html" %}
+{% include card.html title="NuoForm" description="SaaS Platform" status="Active" link="projects/nuoform.html" %}
+{% include card.html title="Waist Management" description="Health SaaS" status="Active" link="projects/waist-mgmt.html" %}
+
+</div>
 
 ---
 
