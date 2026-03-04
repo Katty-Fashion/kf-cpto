@@ -40,7 +40,7 @@ jobs:
             [ -z "$repo" ] && continue
             echo "Cloning $repo..."
             git clone --depth=1 \
-              https://${{ secrets.KF_PAT }}@github.com/kf-team/${repo}.git \
+              https://${{ secrets.KF_PAT }}@github.com/katty-fashion/${repo}.git \
               repos/${repo} || echo "Warning: Failed to clone ${repo}"
           done < repos/discovered.txt
 
@@ -57,7 +57,7 @@ jobs:
       - name: Commit unified docs
         run: |
           git config user.name "KF Bot"
-          git config user.email "bot@kf-team.dev"
+          git config user.email "bot@katty-fashion.dev"
           git add docs/
           git diff --staged --quiet || \
             git commit -m "chore: auto-update unified docs [skip ci]"
@@ -75,5 +75,5 @@ jobs:
           curl -s -X POST "${{ secrets.GOOGLE_CHAT_WEBHOOK }}" \
           -H 'Content-Type: application/json' \
           -d '{
-            "text": "🚀 *KF Dashboard Updated*\n✅ Kanban + Calendar refreshed\n📊 LOE synced to Google Sheets\n🔗 https://kf-team.github.io/kf-cpto/"
+            "text": "🚀 *KF Dashboard Updated*\n✅ Kanban + Calendar refreshed\n📊 LOE synced to Google Sheets\n🔗 https://katty-fashion.github.io/kf-cpto/"
           }'

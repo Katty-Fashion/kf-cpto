@@ -16,8 +16,8 @@ generated: 2026-03-04T22:41:03.830059
 | :--- | :--- |
 | Status | Active |
 | Type | Internal |
-| PO | eu@kf-team.dev |
-| Lead | lead@kf-team.dev |
+| PO | eu@katty-fashion.dev |
+| Lead | lead@katty-fashion.dev |
 | Current Sprint | S3 |
 | Sprint Period | 2026-03-03 to 2026-03-14 |
 | Tags | - |
@@ -55,8 +55,8 @@ kanban
 
 ## Links
 
-- [Repository](https://github.com/kf-team/airegio)
-- [Kanban Board](https://github.com/kf-team/airegio/blob/main/kanban.md)
+- [Repository](https://github.com/katty-fashion/airegio)
+- [Kanban Board](https://github.com/katty-fashion/airegio/blob/main/kanban.md)
 
 ---
 

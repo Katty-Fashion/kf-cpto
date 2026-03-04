@@ -34,7 +34,7 @@ layout: default
 </div>
 
 {% if site.projects.size == 0 %}
-*No projects found yet. Add a `kanban.md` to any repo in the kf-team org to get started.*
+*No projects found yet. Add a `kanban.md` to any repo in the katty-fashion org to get started.*
 {% endif %}
 
 ---
@@ -69,4 +69,4 @@ pie title Monthly 50h Allocation
 
 ---
 
-*KF Team · Git-Native Project Management · [GitHub](https://github.com/kf-team/kf-cpto)*
+*KF Team · Git-Native Project Management · [GitHub](https://github.com/katty-fashion/kf-cpto)*

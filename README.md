@@ -4,14 +4,14 @@
 
 ## Overview
 
-KF-CPTO is a centralized dashboard that **automatically discovers** and aggregates project management data from KF Team repositories. Any repo in the `kf-team` org with a `kanban.md` file is automatically included — no manual configuration required.
+KF-CPTO is a centralized dashboard that **automatically discovers** and aggregates project management data from KF Team repositories. Any repo in the `katty-fashion` org with a `kanban.md` file is automatically included — no manual configuration required.
 
 - **Unified Kanban Board** — All project tasks in one view
 - **Sprint Calendar** — Visual timeline with Gantt charts
 - **LOE (Level of Effort) Reports** — Effort tracking by project and assignee
 - **Dependency Graph** — Obsidian-style directed graph showing inter-project dependencies
 - **Google Sheets Integration** — Automatic LOE sync for reporting
-- **GitHub Pages Deployment** — Live at `https://kf-team.github.io/kf-cpto/`
+- **GitHub Pages Deployment** — Live at `https://katty-fashion.github.io/kf-cpto/`
 
 ## How It Works
 
@@ -82,7 +82,7 @@ graph TD
 
 **Option A: Use GitHub Template Repo (Recommended)**
 
-Create new project from template: [kf-team/project-template](https://github.com/kf-team/project-template) → **Use this template**
+Create new project from template: [katty-fashion/project-template](https://github.com/katty-fashion/project-template) → **Use this template**
 
 New repos automatically include:
 - `kanban.md` with correct format
@@ -93,10 +93,10 @@ New repos automatically include:
 
 ```bash
 # From your project repo root
-curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/kanban.md -o kanban.md
-curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/REPO_README.md -o README.md
+curl -sL https://raw.githubusercontent.com/katty-fashion/kf-cpto/master/templates/kanban.md -o kanban.md
+curl -sL https://raw.githubusercontent.com/katty-fashion/kf-cpto/master/templates/REPO_README.md -o README.md
 mkdir -p .github/workflows
-curl -sL https://raw.githubusercontent.com/kf-team/kf-cpto/master/templates/.github/workflows/notify-kf-cpto.yml -o .github/workflows/notify-kf-cpto.yml
+curl -sL https://raw.githubusercontent.com/katty-fashion/kf-cpto/master/templates/.github/workflows/notify-kf-cpto.yml -o .github/workflows/notify-kf-cpto.yml
 ```
 
 ## Kanban Format
@@ -200,9 +200,9 @@ Installed in each project repo. Triggers on push to `kanban.md` and sends a `rep
 
 1. **GitHub → Settings → Developer Settings → Personal Access Tokens → Fine-grained tokens**
 2. **Name:** `kf-cpto-sync`, **Expiration:** 90 days
-3. **Repository access:** All repositories (or select kf-team repos)
+3. **Repository access:** All repositories (or select katty-fashion repos)
 4. **Permissions:** Contents (Read-only), Metadata (Read-only)
-5. **Add as Org Secret:** `github.com/kf-team → Settings → Secrets → Actions → New organization secret`
+5. **Add as Org Secret:** `github.com/katty-fashion → Settings → Secrets → Actions → New organization secret`
 
 ### Setting Up Google Sheets
 
@@ -220,14 +220,14 @@ Installed in each project repo. Triggers on push to `kanban.md` and sends a `rep
 
 ```bash
 # Clone
-git clone https://github.com/kf-team/kf-cpto.git
+git clone https://github.com/katty-fashion/kf-cpto.git
 cd kf-cpto
 
 # Discover and clone project repos
 export KF_PAT=your-token
 uv run --with pyyaml --with requests scripts/discover.py
 while read repo; do
-  git clone --depth=1 https://github.com/kf-team/${repo}.git repos/${repo}
+  git clone --depth=1 https://github.com/katty-fashion/${repo}.git repos/${repo}
 done < repos/discovered.txt
 
 # Run aggregator

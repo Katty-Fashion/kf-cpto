@@ -15,7 +15,7 @@ from pathlib import Path
 
 import requests
 
-ORG = "kf-team"
+ORG = "katty-fashion"
 BASE_DIR = Path(__file__).parent.parent
 DISCOVERED_FILE = BASE_DIR / "repos" / "discovered.txt"
 

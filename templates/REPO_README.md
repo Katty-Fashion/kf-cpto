@@ -4,9 +4,9 @@
 
 ## Quick Links
 
-- [KF Dashboard](https://kf-team.github.io/kf-cpto/) — Unified project view
-- [Project Page](https://kf-team.github.io/kf-cpto/projects/{project-name}.html) — Auto-generated from kanban
-- [Unified Kanban](https://kf-team.github.io/kf-cpto/unified-kanban.html) — All tasks across KF Team
+- [KF Dashboard](https://katty-fashion.github.io/kf-cpto/) — Unified project view
+- [Project Page](https://katty-fashion.github.io/kf-cpto/projects/{project-name}.html) — Auto-generated from kanban
+- [Unified Kanban](https://katty-fashion.github.io/kf-cpto/unified-kanban.html) — All tasks across KF Team
 
 ---
 
@@ -176,7 +176,7 @@ security:
 
 ## Kanban Management
 
-This repository uses a `kanban.md` file for task tracking that integrates with the [KF-CPTO Dashboard](https://github.com/kf-team/kf-cpto).
+This repository uses a `kanban.md` file for task tracking that integrates with the [KF-CPTO Dashboard](https://github.com/katty-fashion/kf-cpto).
 
 ### Updating Tasks
 
@@ -272,7 +272,7 @@ tags: [frontend, mvp]
 
 ```bash
 # Clone the repository
-git clone https://github.com/kf-team/{project-name}.git
+git clone https://github.com/katty-fashion/{project-name}.git
 cd {project-name}
 
 # Install dependencies
@@ -348,8 +348,8 @@ gh workflow run notify-kf-cpto.yml
 | :--- | :--- |
 | Project Lead | @{lead} |
 | Tech Lead | @{tech-lead} |
-| Team | @kf-team/{project-name} |
+| Team | @katty-fashion/{project-name} |
 
 ---
 
-*Part of [KF Team](https://github.com/kf-team) · Managed via [KF-CPTO](https://github.com/kf-team/kf-cpto)*
+*Part of [KF Team](https://github.com/katty-fashion) · Managed via [KF-CPTO](https://github.com/katty-fashion/kf-cpto)*

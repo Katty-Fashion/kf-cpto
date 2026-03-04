@@ -16,8 +16,8 @@ generated: 2026-03-04T22:41:03.829676
 | :--- | :--- |
 | Status | Active |
 | Type | Internal |
-| PO | po@kf-team.dev |
-| Lead | lead@kf-team.dev |
+| PO | po@katty-fashion.dev |
+| Lead | lead@katty-fashion.dev |
 | Current Sprint | S3 |
 | Sprint Period | 2026-03-03 to 2026-03-14 |
 | Tags | - |
@@ -57,8 +57,8 @@ kanban
 
 ## Links
 
-- [Repository](https://github.com/kf-team/ai-rise)
-- [Kanban Board](https://github.com/kf-team/ai-rise/blob/main/kanban.md)
+- [Repository](https://github.com/katty-fashion/ai-rise)
+- [Kanban Board](https://github.com/katty-fashion/ai-rise/blob/main/kanban.md)
 
 ---
 

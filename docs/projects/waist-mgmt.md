@@ -16,8 +16,8 @@ generated: 2026-03-04T22:41:03.830670
 | :--- | :--- |
 | Status | Active |
 | Type | Internal |
-| PO | health@kf-team.dev |
-| Lead | mobile@kf-team.dev |
+| PO | health@katty-fashion.dev |
+| Lead | mobile@katty-fashion.dev |
 | Current Sprint | S3 |
 | Sprint Period | 2026-03-03 to 2026-03-14 |
 | Tags | - |
@@ -55,8 +55,8 @@ kanban
 
 ## Links
 
-- [Repository](https://github.com/kf-team/waist-mgmt)
-- [Kanban Board](https://github.com/kf-team/waist-mgmt/blob/main/kanban.md)
+- [Repository](https://github.com/katty-fashion/waist-mgmt)
+- [Kanban Board](https://github.com/katty-fashion/waist-mgmt/blob/main/kanban.md)
 
 ---
 

@@ -4,7 +4,7 @@
 title: KF Team Dashboard
 description: Single Pane of Glass · GitHub Native · Google Workspace Integration
 baseurl: "/kf-cpto"
-url: "https://kf-team.github.io"
+url: "https://katty-fashion.github.io"
 
 # Project repos are discovered dynamically via scripts/discover.py
 # No static kf_projects list needed — any repo in the org with kanban.md

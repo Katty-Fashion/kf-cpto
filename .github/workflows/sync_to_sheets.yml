@@ -33,7 +33,7 @@ jobs:
             [ -z "$repo" ] && continue
             echo "Cloning $repo..."
             git clone --depth=1 \
-              https://${{ secrets.KF_PAT }}@github.com/kf-team/${repo}.git \
+              https://${{ secrets.KF_PAT }}@github.com/katty-fashion/${repo}.git \
               repos/${repo} || echo "Warning: Failed to clone ${repo}"
           done < repos/discovered.txt
 

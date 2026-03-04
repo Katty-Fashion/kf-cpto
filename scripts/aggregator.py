@@ -327,8 +327,8 @@ def generate_project_page(project: str, project_data: dict) -> str:
     # Links
     lines.append("## Links")
     lines.append("")
-    lines.append(f"- [Repository](https://github.com/kf-team/{project})")
-    lines.append(f"- [Kanban Board](https://github.com/kf-team/{project}/blob/main/kanban.md)")
+    lines.append(f"- [Repository](https://github.com/katty-fashion/{project})")
+    lines.append(f"- [Kanban Board](https://github.com/katty-fashion/{project}/blob/main/kanban.md)")
     lines.append("")
     lines.append("---")
     lines.append("")
