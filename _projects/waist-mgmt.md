@@ -4,7 +4,7 @@ description: "Internal"
 project: waist-mgmt
 type: internal
 edit_url: "https://github.com/katty-fashion/waist-mgmt/edit/master/kanban.md"
-generated: 2026-03-05T11:17:59.735779
+generated: 2026-03-05T12:10:18.122122
 ---
 
 # waist-mgmt
@@ -58,6 +58,28 @@ kanban
 | In Progress | 3.0d |
 | Completed | 2.0d |
 | Remaining | 5.0d |
+
+## Sprint Timeline
+
+```mermaid
+gantt
+    title S3 — waist-mgmt
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    Backend API optimization :done, 2026-03-03, 2d
+    iOS app meal tracking :active, 2026-03-05, 3d
+    User onboarding flow :2026-03-08, 2d
+```
+
+## Effort Distribution
+
+```mermaid
+pie title Effort by Status
+    "Todo" : 2.0
+    "In Progress" : 3.0
+    "Done" : 2.0
+```
 
 ## Links
 
