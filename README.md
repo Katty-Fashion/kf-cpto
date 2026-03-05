@@ -84,10 +84,14 @@ graph TD
 
 Create new project from template: [katty-fashion/project-template](https://github.com/katty-fashion/project-template) → **Use this template**
 
+> **Important:** Always use **"Use this template"**, never **"Fork"**. Forks inherit the parent's visibility and cannot be made private independently. Templates create standalone repos with full control over visibility and settings.
+
 New repos automatically include:
 - `kanban.md` with correct format
 - `.github/workflows/notify-kf-cpto.yml` for auto-sync
 - `README.md` with architecture documentation
+
+After creating, update `kanban.md` frontmatter: set `project:` to your repo name and fill in the other fields.
 
 **Option B: Manual Setup**
 

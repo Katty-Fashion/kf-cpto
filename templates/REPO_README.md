@@ -5,7 +5,7 @@
 ## Quick Links
 
 - [KF Dashboard](https://katty-fashion.github.io/kf-cpto/) — Unified project view
-- [Project Page](https://katty-fashion.github.io/kf-cpto/projects/{project-name}.html) — Auto-generated from kanban
+- [Project Page](https://katty-fashion.github.io/kf-cpto/projects/{project-name}/) — Auto-generated from kanban
 - [Unified Kanban](https://katty-fashion.github.io/kf-cpto/unified-kanban.html) — All tasks across KF Team
 
 ---
