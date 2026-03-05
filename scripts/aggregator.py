@@ -14,6 +14,7 @@ from datetime import datetime
 from utils import (
     DOCS_DIR,
     ORG,
+    EDIT_URL_TEMPLATE,
     TASK_STATUSES,
     STATUS_TO_MERMAID,
     STATUS_PRIORITY,
@@ -253,12 +254,15 @@ def generate_project_page(project: str, project_data: dict) -> str:
         f"[{d}]({{{{ '/projects/{d}/' | relative_url }}}})" for d in depends_on
     ) if depends_on else "None"
 
+    edit_url = EDIT_URL_TEMPLATE.format(repo=project)
+
     lines = [
         "---",
         f"title: {project}",
         f"description: \"{description}\"",
         f"project: {project}",
         f"type: {type_key}",
+        f"edit_url: \"{edit_url}\"",
         f"generated: {datetime.now().isoformat()}",
         "---",
         "",
@@ -283,7 +287,8 @@ def generate_project_page(project: str, project_data: dict) -> str:
 
     # Generate Kanban diagram if tasks exist
     if tasks:
-        lines.append("## Current Sprint Kanban")
+        edit_url = EDIT_URL_TEMPLATE.format(repo=project)
+        lines.append(f"## Current Sprint Kanban &nbsp; [Edit Kanban]({edit_url})")
         lines.append("")
         lines.append(_status_legend())
         lines.append("")
@@ -345,8 +350,9 @@ def generate_project_page(project: str, project_data: dict) -> str:
     # Links
     lines.append("## Links")
     lines.append("")
+    lines.append(f"- [Edit Kanban]({edit_url})")
     lines.append(f"- [Repository](https://github.com/{ORG}/{project})")
-    lines.append(f"- [Kanban Board](https://github.com/{ORG}/{project}/blob/main/kanban.md)")
+    lines.append(f"- [Kanban Board](https://github.com/{ORG}/{project}/blob/master/kanban.md)")
     lines.append("")
     lines.append("---")
     lines.append("")

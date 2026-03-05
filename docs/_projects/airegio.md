@@ -3,7 +3,8 @@ title: airegio
 description: "Internal"
 project: airegio
 type: internal
-generated: 2026-03-05T01:24:05.852042
+edit_url: "https://github.com/katty-fashion/airegio/edit/master/kanban.md"
+generated: 2026-03-05T11:17:59.734997
 ---
 
 # airegio
@@ -23,7 +24,7 @@ generated: 2026-03-05T01:24:05.852042
 | Tags | - |
 | Dependencies | None |
 
-## Current Sprint Kanban
+## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/airegio/edit/master/kanban.md)
 
 <div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
 <span class="status-pill status-pill--in-progress">In Progress</span>
@@ -60,8 +61,9 @@ kanban
 
 ## Links
 
+- [Edit Kanban](https://github.com/katty-fashion/airegio/edit/master/kanban.md)
 - [Repository](https://github.com/katty-fashion/airegio)
-- [Kanban Board](https://github.com/katty-fashion/airegio/blob/main/kanban.md)
+- [Kanban Board](https://github.com/katty-fashion/airegio/blob/master/kanban.md)
 
 ---
 

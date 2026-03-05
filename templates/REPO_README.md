@@ -178,6 +178,10 @@ security:
 
 This repository uses a `kanban.md` file for task tracking that integrates with the [KF-CPTO Dashboard](https://github.com/katty-fashion/kf-cpto).
 
+### Editing via Dashboard
+
+Click "Edit Kanban" on the [project dashboard page](https://katty-fashion.github.io/kf-cpto/projects/{project-name}/). In the commit message field, prefix with your name: `@yourname: what you changed`.
+
 ### Updating Tasks
 
 Edit `kanban.md` in the repository root:

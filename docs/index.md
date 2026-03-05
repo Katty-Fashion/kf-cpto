@@ -28,7 +28,8 @@ layout: default
 
 {% assign sorted_projects = site.projects | sort: "title" %}
 {% for proj in sorted_projects %}
-{% include card.html title=proj.title description=proj.description status="Active" link=proj.url %}
+{% capture edit_footer %}<a href="{{ proj.edit_url }}">Edit Kanban</a>{% endcapture %}
+{% include card.html title=proj.title description=proj.description status="Active" link=proj.url footer=edit_footer %}
 {% endfor %}
 
 </div>

@@ -20,6 +20,9 @@ DOCS_DIR = BASE_DIR / "docs"
 CONFIG_FILE = BASE_DIR / "docs" / "_config.yml"
 DISCOVERED_FILE = REPOS_DIR / "discovered.txt"
 
+# GitHub edit URL template — used by aggregator for "Edit Kanban" links
+EDIT_URL_TEMPLATE = f"https://github.com/{ORG}/{{repo}}/edit/master/kanban.md"
+
 # Valid task statuses (single source for all status references)
 TASK_STATUSES = ("Todo", "In Progress", "Review", "Done")
 
