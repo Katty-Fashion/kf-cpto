@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-03-05T00:47:23.500553
+generated: 2026-03-05T01:00:57.342432
 ---
 
 # KF Team — Unified Kanban
@@ -10,16 +10,16 @@ generated: 2026-03-05T00:47:23.500553
 ```mermaid
 kanban
   Todo
-    task4[Aladin-01: Documentation]
-    task7[project-template: Documentation]
+    task4[Aladin-01: Documentation]@{ priority: 'Low', assigned: 'developer' }
+    task7[project-template: Documentation]@{ priority: 'Low', assigned: 'developer' }
   In-Progress
-    task2[Aladin-01: Initial architecture]
-    task6[project-template: Initial architecture]
+    task2[Aladin-01: Initial architecture]@{ priority: 'Very High', assigned: 'tech-lead' }
+    task6[project-template: Initial architecture]@{ priority: 'Very High', assigned: 'tech-lead' }
   Review
-    task3[Aladin-01: Review architecture]
+    task3[Aladin-01: Review architecture]@{ priority: 'High', assigned: 'tech-lead' }
   Done
-    task1[Aladin-01: Project setup]
-    task5[project-template: Project setup]
+    task1[Aladin-01: Project setup]@{ assigned: 'lead' }
+    task5[project-template: Project setup]@{ assigned: 'lead' }
 ```
 
 ## Summary by Project
