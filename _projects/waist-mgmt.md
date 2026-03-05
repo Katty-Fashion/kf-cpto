@@ -3,7 +3,7 @@ title: waist-mgmt
 description: "Internal"
 project: waist-mgmt
 type: internal
-generated: 2026-03-04T22:41:03.830670
+generated: 2026-03-05T01:24:05.852562
 ---
 
 # waist-mgmt
@@ -16,8 +16,8 @@ generated: 2026-03-04T22:41:03.830670
 | :--- | :--- |
 | Status | Active |
 | Type | Internal |
-| PO | health@katty-fashion.dev |
-| Lead | mobile@katty-fashion.dev |
+| PO | health@kf-team.dev |
+| Lead | mobile@kf-team.dev |
 | Current Sprint | S3 |
 | Sprint Period | 2026-03-03 to 2026-03-14 |
 | Tags | - |
@@ -25,15 +25,20 @@ generated: 2026-03-04T22:41:03.830670
 
 ## Current Sprint Kanban
 
+<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
+<span class="status-pill status-pill--in-progress">In Progress</span>
+<span class="status-pill status-pill--review">Review</span>
+<span class="status-pill status-pill--done">Done</span></div>
+
 ```mermaid
 kanban
   Todo
-    t3[User onboarding flow]
+    t3[User onboarding flow]@{ priority: 'Low', assigned: 'ux' }
   In-Progress
-    t1[iOS app meal tracking]
+    t1[iOS app meal tracking]@{ priority: 'Very High', assigned: 'mobile' }
   Review
   Done
-    t2[Backend API optimization]
+    t2[Backend API optimization]@{ assigned: 'backend' }
 ```
 
 ## Task Summary

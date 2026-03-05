@@ -3,7 +3,7 @@ title: nuoform
 description: "Internal"
 project: nuoform
 type: internal
-generated: 2026-03-04T22:41:03.830332
+generated: 2026-03-05T01:24:05.852309
 ---
 
 # nuoform
@@ -16,8 +16,8 @@ generated: 2026-03-04T22:41:03.830332
 | :--- | :--- |
 | Status | Active |
 | Type | Internal |
-| PO | product@katty-fashion.dev |
-| Lead | tech@katty-fashion.dev |
+| PO | product@kf-team.dev |
+| Lead | tech@kf-team.dev |
 | Current Sprint | S3 |
 | Sprint Period | 2026-03-03 to 2026-03-14 |
 | Tags | - |
@@ -25,17 +25,22 @@ generated: 2026-03-04T22:41:03.830332
 
 ## Current Sprint Kanban
 
+<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
+<span class="status-pill status-pill--in-progress">In Progress</span>
+<span class="status-pill status-pill--review">Review</span>
+<span class="status-pill status-pill--done">Done</span></div>
+
 ```mermaid
 kanban
   Todo
-    t2[ArgoCD pipeline config]
+    t2[ArgoCD pipeline config]@{ priority: 'Low', assigned: 'devops' }
   In-Progress
-    t1[Implement billing API]
-    t3[OpenTelemetry integration]
+    t1[Implement billing API]@{ priority: 'Very High', assigned: 'backend' }
+    t3[OpenTelemetry integration]@{ priority: 'Very High', assigned: 'devops' }
   Review
-    t4[User dashboard redesign]
+    t4[User dashboard redesign]@{ priority: 'High', assigned: 'frontend' }
   Done
-    t5[Database migration script]
+    t5[Database migration script]@{ assigned: 'backend' }
 ```
 
 ## Task Summary
