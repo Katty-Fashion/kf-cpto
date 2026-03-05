@@ -1,0 +1,9 @@
+{
+  "enabledCssSnippets": [
+    "full-width"
+  ],
+  "showViewHeader": true,
+  "showRibbon": true,
+  "nativeMenus": true,
+  "translucency": true
+}

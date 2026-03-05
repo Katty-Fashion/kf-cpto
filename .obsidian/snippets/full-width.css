@@ -1,0 +1,33 @@
+/* Full width content with minimal equal margins */
+/* Adjust --content-margin to change side margins */
+body {
+  --content-margin: 40px;
+}
+
+.markdown-preview-view,
+.markdown-source-view .cm-content,
+.markdown-source-view .cm-line {
+  max-width: 100% !important;
+}
+
+.markdown-preview-view .markdown-preview-sizer {
+  max-width: 100% !important;
+  padding-left: var(--content-margin) !important;
+  padding-right: var(--content-margin) !important;
+  margin: 0 auto !important;
+}
+
+.markdown-source-view .cm-contentContainer {
+  max-width: 100% !important;
+  padding-left: var(--content-margin) !important;
+  padding-right: var(--content-margin) !important;
+}
+
+/* Ensure readable line length doesn't interfere */
+.is-readable-line-width .markdown-preview-sizer {
+  max-width: 100% !important;
+}
+
+.is-readable-line-width .cm-contentContainer {
+  max-width: 100% !important;
+}
