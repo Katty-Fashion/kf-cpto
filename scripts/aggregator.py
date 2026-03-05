@@ -9,7 +9,7 @@ Merges kanban.md files from all project repos and generates:
 - docs/_projects/{project}.md (per-project pages — Jekyll collection)
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from utils import (
     DOCS_DIR,
@@ -315,14 +315,21 @@ def generate_project_page(project: str, project_data: dict) -> str:
         lines.append("```")
         lines.append("")
 
-        # Task summary table
+        # Task summary table (6-col if any task has dates, 4-col otherwise)
+        has_dates = any(task.get("start") or task.get("end") for task in tasks)
         lines.append("## Task Summary")
         lines.append("")
-        lines.append("| Task | Assignee | Effort | Status |")
-        lines.append("| :--- | :--- | :--- | :--- |")
-
-        for task in tasks:
-            lines.append(f"| {task['task']} | {task['assignee']} | {task['effort']} | {task['status']} |")
+        if has_dates:
+            lines.append("| Task | Assignee | Effort | Start | End | Status |")
+            lines.append("| :--- | :--- | :--- | :--- | :--- | :--- |")
+            for task in tasks:
+                lines.append(f"| {task['task']} | {task['assignee']} | {task['effort']} "
+                             f"| {task.get('start', '')} | {task.get('end', '')} | {task['status']} |")
+        else:
+            lines.append("| Task | Assignee | Effort | Status |")
+            lines.append("| :--- | :--- | :--- | :--- |")
+            for task in tasks:
+                lines.append(f"| {task['task']} | {task['assignee']} | {task['effort']} | {task['status']} |")
 
         lines.append("")
 
@@ -341,6 +348,75 @@ def generate_project_page(project: str, project_data: dict) -> str:
         lines.append(f"| Completed | {completed}d |")
         lines.append(f"| Remaining | {remaining}d |")
         lines.append("")
+
+        # Sprint Gantt chart (only if sprint dates are available)
+        sprint_start = project_data.get("meta", {}).get("sprint_start")
+        sprint_end = project_data.get("meta", {}).get("sprint_end")
+        if sprint_start and sprint_end:
+            lines.append("## Sprint Timeline")
+            lines.append("")
+            lines.append("```mermaid")
+            lines.append("gantt")
+            lines.append(f"    title {sprint} — {project}")
+            lines.append("    dateFormat YYYY-MM-DD")
+            lines.append("    excludes weekends")
+            lines.append("")
+
+            # Schedule tasks: use explicit dates if available, else auto-schedule
+            cursor = str(sprint_start)
+            status_order = ["Done", "In Progress", "Review", "Todo"]
+            sorted_tasks = sorted(tasks, key=lambda t: status_order.index(t["status"])
+                                  if t["status"] in status_order else 99)
+
+            for task in sorted_tasks:
+                effort_d = parse_effort_days(task["effort"])
+                if effort_d <= 0:
+                    effort_d = 1
+                effort_str = f"{int(effort_d)}d"
+                t_start = task.get("start", "").strip() or cursor
+                t_end = task.get("end", "").strip()
+                label = task["task"].replace(":", " ")
+
+                if task["status"] == "Done":
+                    modifier = "done, "
+                elif task["status"] == "In Progress":
+                    modifier = "active, "
+                else:
+                    modifier = ""
+
+                if t_end:
+                    lines.append(f"    {label} :{modifier}{t_start}, {t_end}")
+                else:
+                    lines.append(f"    {label} :{modifier}{t_start}, {effort_str}")
+
+                # Advance cursor for next auto-scheduled task
+                try:
+                    start_dt = datetime.strptime(t_start, "%Y-%m-%d")
+                    cursor = (start_dt + timedelta(days=int(effort_d))).strftime("%Y-%m-%d")
+                except ValueError:
+                    pass
+
+            lines.append("```")
+            lines.append("")
+
+        # Effort distribution pie chart
+        effort_by_status = {}
+        for task in tasks:
+            days = parse_effort_days(task["effort"])
+            if days > 0:
+                effort_by_status[task["status"]] = effort_by_status.get(task["status"], 0) + days
+
+        if effort_by_status:
+            lines.append("## Effort Distribution")
+            lines.append("")
+            lines.append("```mermaid")
+            lines.append("pie title Effort by Status")
+            for status in TASK_STATUSES:
+                if status in effort_by_status:
+                    lines.append(f'    "{status}" : {effort_by_status[status]}')
+            lines.append("```")
+            lines.append("")
+
     else:
         lines.append("## Kanban")
         lines.append("")

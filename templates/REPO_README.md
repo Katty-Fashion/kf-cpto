@@ -202,11 +202,11 @@ tags: [frontend, mvp]     # free-form tags
 
 # Project Kanban
 
-| Task | Assignee | Effort | Status |
-| :--- | :--- | :--- | :--- |
-| Implement feature X | @developer | 3d | In Progress |
-| Code review for Y | @reviewer | 1d | Review |
-| Deploy to staging | @devops | 2d | Todo |
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Implement feature X | @developer | 3d | 2026-03-03 | 2026-03-05 | In Progress |
+| Code review for Y | @reviewer | 1d | 2026-03-06 | 2026-03-06 | Review |
+| Deploy to staging | @devops | 2d | | | Todo |
 ```
 
 ### Frontmatter Fields
@@ -237,7 +237,17 @@ Only these four statuses are recognized by the dashboard. Use exact spelling.
 
 ### Kanban Columns
 
-The table must have exactly four columns: **Task**, **Assignee**, **Effort**, **Status**. Do not add, remove, or rename columns — the aggregator parses this fixed format.
+Two table formats are supported:
+
+**6-column (recommended)** — includes task scheduling:
+
+`| Task | Assignee | Effort | Start | End | Status |`
+
+**4-column (legacy)** — still fully supported:
+
+`| Task | Assignee | Effort | Status |`
+
+Start/End dates are optional (leave blank if unknown). Format: `YYYY-MM-DD`. When provided, the dashboard generates a Sprint Gantt chart.
 
 ### Effort Format
 

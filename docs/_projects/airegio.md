@@ -4,7 +4,7 @@ description: "Internal"
 project: airegio
 type: internal
 edit_url: "https://github.com/katty-fashion/airegio/edit/master/kanban.md"
-generated: 2026-03-05T11:17:59.734997
+generated: 2026-03-05T12:10:18.120427
 ---
 
 # airegio
@@ -58,6 +58,28 @@ kanban
 | In Progress | 4.0d |
 | Completed | 0d |
 | Remaining | 9.0d |
+
+## Sprint Timeline
+
+```mermaid
+gantt
+    title S3 — airegio
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    Regional data analysis :active, 2026-03-03, 4d
+    Quarterly report draft :2026-03-07, 3d
+    Partner integration docs :2026-03-10, 2d
+```
+
+## Effort Distribution
+
+```mermaid
+pie title Effort by Status
+    "Todo" : 2.0
+    "In Progress" : 4.0
+    "Review" : 3.0
+```
 
 ## Links
 

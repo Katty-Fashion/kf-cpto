@@ -4,7 +4,7 @@ description: "Internal"
 project: ai-rise
 type: internal
 edit_url: "https://github.com/katty-fashion/ai-rise/edit/master/kanban.md"
-generated: 2026-03-05T11:17:59.734442
+generated: 2026-03-05T12:10:18.112694
 ---
 
 # ai-rise
@@ -60,6 +60,30 @@ kanban
 | In Progress | 3.0d |
 | Completed | 1.0d |
 | Remaining | 7.0d |
+
+## Sprint Timeline
+
+```mermaid
+gantt
+    title S3 — ai-rise
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    Setup development environment :done, 2026-03-03, 1d
+    Research ML pipeline architecture :active, 2026-03-04, 3d
+    Review EU compliance requirements :2026-03-07, 2d
+    Draft technical specification :2026-03-09, 2d
+```
+
+## Effort Distribution
+
+```mermaid
+pie title Effort by Status
+    "Todo" : 2.0
+    "In Progress" : 3.0
+    "Review" : 2.0
+    "Done" : 1.0
+```
 
 ## Links
 

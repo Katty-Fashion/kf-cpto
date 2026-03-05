@@ -26,6 +26,10 @@ EDIT_URL_TEMPLATE = f"https://github.com/{ORG}/{{repo}}/edit/master/kanban.md"
 # Valid task statuses (single source for all status references)
 TASK_STATUSES = ("Todo", "In Progress", "Review", "Done")
 
+# Kanban table column layouts (4-col legacy, 6-col extended with dates)
+TASK_COLUMNS_4 = ("Task", "Assignee", "Effort", "Status")
+TASK_COLUMNS_6 = ("Task", "Assignee", "Effort", "Start", "End", "Status")
+
 # Map from kanban.md status to MermaidJS column name (hyphenated)
 STATUS_TO_MERMAID = {s: s.replace(" ", "-") for s in TASK_STATUSES}
 
@@ -111,36 +115,58 @@ def parse_kanban_frontmatter(content: str) -> dict[str, Any]:
     return {}
 
 
-def parse_kanban_tasks(content: str) -> list[dict[str, str]]:
-    """Extract tasks from kanban markdown table
+def parse_kanban_tasks(content: str, project: str = "") -> list[dict[str, str]]:
+    """Extract tasks from kanban markdown table.
 
-    Expects table format:
-    | Task | Assignee | Effort | Status |
-    | :--- | :--- | :--- | :--- |
-    | Task name | @user | 3d | Todo |
-
-    Args:
-        content: Raw markdown content
+    Supports both 4-column and 6-column formats:
+      4-col: | Task | Assignee | Effort | Status |
+      6-col: | Task | Assignee | Effort | Start | End | Status |
 
     Returns:
-        List of task dictionaries with keys: task, assignee, effort, status
+        List of task dicts with keys: task, assignee, effort, start, end, status
     """
     tasks = []
-    table_pattern = r"\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|"
 
-    for match in re.finditer(table_pattern, content):
-        task, assignee, effort, status = match.groups()
-        task_name = task.strip()
+    # Detect table format: count pipes in the header row
+    header_match = re.search(r"^\|[^\n]+\|", content, re.MULTILINE)
+    if not header_match:
+        return tasks
+
+    pipe_count = header_match.group().count("|") - 1  # subtract leading pipe
+    is_6col = pipe_count >= 6
+
+    if is_6col:
+        pattern = r"\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|"
+    else:
+        pattern = r"\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|"
+
+    for match in re.finditer(pattern, content):
+        groups = match.groups()
+        first = groups[0].strip()
 
         # Skip header row and separator row
-        if task_name in ("Task", ":---") or task_name.startswith(":"):
+        if first in ("Task", ":---") or first.startswith(":"):
             continue
+
+        if is_6col:
+            task_name, assignee, effort, start, end, status = (g.strip() for g in groups)
+        else:
+            task_name, assignee, effort, status = (g.strip() for g in groups)
+            start, end = "", ""
+
+        # Validate status
+        if status not in TASK_STATUSES:
+            label = f" in {project}" if project else ""
+            print(f"Warning: Unknown status '{status}'{label} for task '{task_name}'. "
+                  f"Valid: {', '.join(TASK_STATUSES)}")
 
         tasks.append({
             "task": task_name,
-            "assignee": assignee.strip(),
-            "effort": effort.strip(),
-            "status": status.strip()
+            "assignee": assignee,
+            "effort": effort,
+            "start": start,
+            "end": end,
+            "status": status,
         })
     return tasks
 
@@ -202,7 +228,7 @@ def load_project_kanban(project: str) -> dict[str, Any]:
         meta = normalize_frontmatter(parse_kanban_frontmatter(content))
         return {
             "meta": meta,
-            "tasks": parse_kanban_tasks(content),
+            "tasks": parse_kanban_tasks(content, project=project),
             "raw": content,
             "exists": True
         }

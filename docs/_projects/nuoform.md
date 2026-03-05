@@ -4,7 +4,7 @@ description: "Internal"
 project: nuoform
 type: internal
 edit_url: "https://github.com/katty-fashion/nuoform/edit/master/kanban.md"
-generated: 2026-03-05T11:17:59.735489
+generated: 2026-03-05T12:10:18.121166
 ---
 
 # nuoform
@@ -62,6 +62,31 @@ kanban
 | In Progress | 8.0d |
 | Completed | 1.0d |
 | Remaining | 14.0d |
+
+## Sprint Timeline
+
+```mermaid
+gantt
+    title S3 — nuoform
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    Database migration script :done, 2026-03-03, 1d
+    Implement billing API :active, 2026-03-04, 5d
+    OpenTelemetry integration :active, 2026-03-09, 3d
+    User dashboard redesign :2026-03-12, 4d
+    ArgoCD pipeline config :2026-03-16, 2d
+```
+
+## Effort Distribution
+
+```mermaid
+pie title Effort by Status
+    "Todo" : 2.0
+    "In Progress" : 8.0
+    "Review" : 4.0
+    "Done" : 1.0
+```
 
 ## Links
 

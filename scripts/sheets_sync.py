@@ -61,7 +61,8 @@ def get_sheets_service():
 def load_loe_data() -> list[list]:
     """Load LOE data from all project repos and format for Google Sheets"""
     rows = [
-        ["Project", "Sprint", "Task", "Assignee", "Effort (days)", "Status", "Updated"]
+        ["Project", "Sprint", "Task", "Assignee", "Effort (days)",
+         "Start", "End", "Status", "Updated"]
     ]
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -73,7 +74,7 @@ def load_loe_data() -> list[list]:
 
         content = kanban_path.read_text()
         meta = parse_kanban_frontmatter(content)
-        tasks = parse_kanban_tasks(content)
+        tasks = parse_kanban_tasks(content, project=project)
 
         sprint = meta.get("sprint", "-")
 
@@ -85,6 +86,8 @@ def load_loe_data() -> list[list]:
                 task["task"],
                 task["assignee"],
                 effort_days,
+                task.get("start", ""),
+                task.get("end", ""),
                 task["status"],
                 timestamp
             ])
@@ -95,7 +98,7 @@ def load_loe_data() -> list[list]:
 def sync_to_sheets(rows: list[list]):
     """Upsert LOE data to Google Sheets.
 
-    Columns A-G are managed by automation. Any columns H+ are user notes
+    Columns A-I are managed by automation. Any columns J+ are user notes
     and are preserved across syncs. Rows are matched by composite key
     (Project + Task) to enable stable upsert.
     """
@@ -121,12 +124,12 @@ def sync_to_sheets(rows: list[list]):
             range="LOE!A1:Z1000",
         ).execute().get("values", [])
 
-        # Build lookup: (project, task) -> extra columns (H onwards)
+        # Build lookup: (project, task) -> extra columns (J onwards)
         notes_map = {}
         for erow in existing[1:]:  # skip header
             if len(erow) >= 2:
                 key = (erow[0], erow[2] if len(erow) > 2 else "")  # Project + Task
-                extras = erow[7:] if len(erow) > 7 else []  # columns H+
+                extras = erow[9:] if len(erow) > 9 else []  # columns J+
                 if any(cell.strip() for cell in extras if cell):
                     notes_map[key] = extras
 
@@ -137,10 +140,10 @@ def sync_to_sheets(rows: list[list]):
             extras = notes_map.get(key, [])
             merged.append(row + extras)
 
-        # Clear only columns A-G, then write merged data
+        # Clear only columns A-I, then write merged data
         service.spreadsheets().values().clear(
             spreadsheetId=sheet_id,
-            range="LOE!A1:G1000",
+            range="LOE!A1:I1000",
         ).execute()
 
         body = {"values": merged}
