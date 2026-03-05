@@ -3,7 +3,7 @@ title: project-template
 description: "KF Team project template"
 project: project-template
 type: internal
-generated: 2026-03-05T01:14:21.735749
+generated: 2026-03-05T01:27:10.351358
 ---
 
 # project-template
@@ -24,6 +24,11 @@ generated: 2026-03-05T01:14:21.735749
 | Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
 
 ## Current Sprint Kanban
+
+<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
+<span class="status-pill status-pill--in-progress">In Progress</span>
+<span class="status-pill status-pill--review">Review</span>
+<span class="status-pill status-pill--done">Done</span></div>
 
 ```mermaid
 kanban

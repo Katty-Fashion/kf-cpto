@@ -3,7 +3,7 @@ title: Aladin-01
 description: "Aladin-01 Team project template"
 project: Aladin-01
 type: internal
-generated: 2026-03-05T01:14:21.735635
+generated: 2026-03-05T01:27:10.351178
 ---
 
 # Aladin-01
@@ -24,6 +24,11 @@ generated: 2026-03-05T01:14:21.735635
 | Dependencies | [project-template]({{ '/projects/project-template/' | relative_url }}) |
 
 ## Current Sprint Kanban
+
+<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
+<span class="status-pill status-pill--in-progress">In Progress</span>
+<span class="status-pill status-pill--review">Review</span>
+<span class="status-pill status-pill--done">Done</span></div>
 
 ```mermaid
 kanban
