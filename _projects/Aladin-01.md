@@ -1,15 +1,15 @@
 ---
 title: Aladin-01
-description: "Aladin-01 Team project template"
+description: "Aladin-01 project"
 project: Aladin-01
 type: internal
 edit_url: "https://github.com/katty-fashion/Aladin-01/edit/main/kanban.md"
-generated: 2026-03-05T18:53:20.184915
+generated: 2026-03-05T18:54:36.731914
 ---
 
 # Aladin-01
 
-> Aladin-01 Team project template
+> Aladin-01 project
 
 ## Status
 
@@ -17,12 +17,12 @@ generated: 2026-03-05T18:53:20.184915
 | :--- | :--- |
 | Status | Active |
 | Type | Internal |
-| PO | @cpto |
+| PO | @po |
 | Lead | @tech-lead |
 | Current Sprint | S1 |
-| Sprint Period | 2026-03-02 to 2026-03-13 |
-| Tags | template |
-| Dependencies | [project-template]({{ '/projects/project-template/' | relative_url }}) |
+| Sprint Period | 2026-03-03 to 2026-03-14 |
+| Tags | - |
+| Dependencies | None |
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/Aladin-01/edit/main/kanban.md)
 
@@ -34,32 +34,30 @@ generated: 2026-03-05T18:53:20.184915
 ```mermaid
 kanban
   Todo
-    t4[Documentation]@{ priority: 'Low', assigned: 'developer' }
+    t3[Documentation]@{ priority: 'Low', assigned: 'developer' }
   In-Progress
     t2[Initial architecture]@{ priority: 'Very High', assigned: 'tech-lead' }
   Review
-    t3[Review architecture]@{ priority: 'High', assigned: 'tech-lead' }
   Done
     t1[Project setup]@{ assigned: 'lead' }
 ```
 
 ## Task Summary
 
-| Task | Assignee | Effort | Status |
-| :--- | :--- | :--- | :--- |
-| Project setup | @lead | 1d | Done |
-| Initial architecture | @tech-lead | 2d | In Progress |
-| Review architecture | @tech-lead | 2d | Review |
-| Documentation | @developer | 1d | Todo |
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Project setup | @lead | 1d | 2026-03-03 | 2026-03-03 | Done |
+| Initial architecture | @tech-lead | 2d | 2026-03-04 | 2026-03-05 | In Progress |
+| Documentation | @developer | 1d |  |  | Todo |
 
 ## LOE Summary
 
 | Metric | Value |
 | :--- | :--- |
-| Total Effort | 6.0d |
+| Total Effort | 4.0d |
 | In Progress | 2.0d |
 | Completed | 1.0d |
-| Remaining | 5.0d |
+| Remaining | 3.0d |
 
 ## Sprint Timeline
 
@@ -69,10 +67,9 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    Project setup :done, 2026-03-02, 1d
-    Initial architecture :active, 2026-03-03, 2d
-    Review architecture :2026-03-05, 2d
-    Documentation :2026-03-07, 1d
+    Project setup :done, 2026-03-03, 2026-03-03
+    Initial architecture :active, 2026-03-04, 2026-03-05
+    Documentation :2026-03-06, 1d
 ```
 
 ## Effort Distribution
@@ -81,7 +78,6 @@ gantt
 pie title Effort by Status
     "Todo" : 1.0
     "In Progress" : 2.0
-    "Review" : 2.0
     "Done" : 1.0
 ```
 
