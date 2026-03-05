@@ -1,0 +1,47 @@
+# KF Team — GitHub Pages Configuration
+# Jekyll config for Git-Native Project Management Dashboard
+
+title: KF Team Dashboard
+description: Single Pane of Glass · GitHub Native · Google Workspace Integration
+baseurl: "/kf-cpto"
+url: "https://katty-fashion.github.io"
+
+# Project repos are discovered dynamically via scripts/discover.py
+# No static kf_projects list needed — any repo in the org with kanban.md
+# is automatically included in the dashboard.
+
+# Build settings
+markdown: kramdown
+
+# Plugins (only GitHub Pages supported plugins)
+plugins:
+- jekyll-feed
+- jekyll-seo-tag
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+# Defaults
+defaults:
+- scope:
+    path: ""
+    type: "pages"
+  values:
+    layout: "default"
+- scope:
+    path: "projects"
+  values:
+    layout: "default"
+
+# Exclude from build
+exclude:
+- scripts/
+- repos/
+- "*.py"
+- Gemfile
+- Gemfile.lock
+- README.md
+- kf-cpto.md
