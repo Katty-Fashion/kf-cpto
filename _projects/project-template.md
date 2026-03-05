@@ -3,8 +3,8 @@ title: project-template
 description: "KF Team project template"
 project: project-template
 type: internal
-edit_url: "https://github.com/katty-fashion/project-template/edit/master/kanban.md"
-generated: 2026-03-05T12:27:09.026490
+edit_url: "https://github.com/katty-fashion/project-template/edit/main/kanban.md"
+generated: 2026-03-05T12:58:38.400875
 ---
 
 # project-template
@@ -24,7 +24,7 @@ generated: 2026-03-05T12:27:09.026490
 | Tags | template |
 | Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
 
-## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/project-template/edit/master/kanban.md)
+## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/project-template/edit/main/kanban.md)
 
 <div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
 <span class="status-pill status-pill--in-progress">In Progress</span>
@@ -83,9 +83,9 @@ pie title Effort by Status
 
 ## Links
 
-- [Edit Kanban](https://github.com/katty-fashion/project-template/edit/master/kanban.md)
+- [Edit Kanban](https://github.com/katty-fashion/project-template/edit/main/kanban.md)
 - [Repository](https://github.com/katty-fashion/project-template)
-- [Kanban Board](https://github.com/katty-fashion/project-template/blob/master/kanban.md)
+- [Kanban Board](https://github.com/katty-fashion/project-template/blob/main/kanban.md)
 
 ---
 

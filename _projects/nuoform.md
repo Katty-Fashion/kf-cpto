@@ -4,7 +4,7 @@ description: "Internal"
 project: nuoform
 type: internal
 edit_url: "https://github.com/katty-fashion/nuoform/edit/master/kanban.md"
-generated: 2026-03-05T12:10:18.121166
+generated: 2026-03-05T12:56:37.816006
 ---
 
 # nuoform
