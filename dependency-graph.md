@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-03-05T00:32:48.952662
+generated: 2026-03-05T00:44:24.366359
 ---
 
 # KF Team — Dependency Graph
@@ -9,14 +9,14 @@ generated: 2026-03-05T00:32:48.952662
 
 ```mermaid
 graph LR
+    Aladin-01[Aladin 01]:::internal
     project-template[Project Template]:::internal
+    project-template --> Aladin-01
 
     classDef saas fill:#4CAF50,color:#fff
     classDef eu fill:#2196F3,color:#fff
     classDef internal fill:#FF9800,color:#fff
 ```
-
-*No inter-project dependencies declared yet. Add `depends_on` to your kanban.md frontmatter.*
 
 ## Legend
 
