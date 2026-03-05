@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-03-05T18:53:20.184515
+generated: 2026-03-05T18:54:36.731470
 ---
 
 # KF Team — Level of Effort Report
@@ -11,9 +11,9 @@ generated: 2026-03-05T18:53:20.184515
 
 | Project | Sprint | Total Effort | Completed | Remaining |
 | :--- | :--- | :---: | :---: | :---: |
-| Aladin-01 | S1 | 6.0d | 1.0d | 5.0d |
+| Aladin-01 | S1 | 4.0d | 1.0d | 3.0d |
 | project-template | S1 | 4.0d | 1.0d | 3.0d |
-| **Total** | | **10.0d** | **2.0d** | **8.0d** |
+| **Total** | | **8.0d** | **2.0d** | **6.0d** |
 
 ## Effort by Assignee
 
@@ -21,4 +21,4 @@ generated: 2026-03-05T18:53:20.184515
 | :--- | :---: | :---: | :---: |
 | @developer | 2.0d | 0d | 0d |
 | @lead | 2.0d | 0d | 2.0d |
-| @tech-lead | 6.0d | 4.0d | 0d |
+| @tech-lead | 4.0d | 4.0d | 0d |
