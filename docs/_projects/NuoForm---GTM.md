@@ -1,15 +1,15 @@
 ---
 title: NuoForm---GTM
-description: "KF Team project template"
+description: "NuoForm GoToMarket plan"
 project: NuoForm---GTM
 type: internal
 edit_url: "https://github.com/katty-fashion/NuoForm---GTM/edit/main/kanban.md"
-generated: 2026-03-05T21:56:59.547576
+generated: 2026-03-05T23:21:50.026762
 ---
 
 # NuoForm---GTM
 
-> KF Team project template
+> NuoForm GoToMarket plan
 
 ## Status
 
@@ -21,8 +21,8 @@ generated: 2026-03-05T21:56:59.547576
 | Lead | @tech-lead |
 | Current Sprint | S1 |
 | Sprint Period | 2026-03-02 to 2026-03-13 |
-| Tags | template |
-| Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
+| Tags | GTM, Nuo, SaaS, DO |
+| Dependencies | [Waist-Management]({{ '/projects/Waist-Management/' | relative_url }}) |
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/NuoForm---GTM/edit/main/kanban.md)
 
@@ -34,30 +34,102 @@ generated: 2026-03-05T21:56:59.547576
 ```mermaid
 kanban
   Todo
-    t3[Documentation]@{ priority: 'Low', assigned: 'developer' }
+    t5[Define MVP scope + success metrics]@{ priority: 'Low', assigned: 'pm' }
+    t6[Market segmentation + ICP definition]@{ priority: 'Low', assigned: 'mkt' }
+    t7[Sustainability + compliance claims validation]@{ priority: 'Low', assigned: 'sme' }
+    t8[Product requirements baseline (PRD-lite)]@{ priority: 'Low', assigned: 'pm' }
+    t9[Define optimisation KPIs (efficiency %, waste %, cost)]@{ priority: 'Low', assigned: 'sme' }
+    t10[Data model for materials, BOM, suppliers]@{ priority: 'Low', assigned: 'be' }
+    t11[UX architecture + MVP screen flows]@{ priority: 'Low', assigned: 'fe' }
+    t12[Define layplan optimisation algorithm approach]@{ priority: 'Low', assigned: 'cpto' }
+    t13[BOM ingestion + validation workflow]@{ priority: 'Low', assigned: 'be' }
+    t14[Pattern file ingestion (DXF or equivalent)]@{ priority: 'Low', assigned: 'be' }
+    t15[Pattern geometry extraction]@{ priority: 'Low', assigned: 'be' }
+    t16[Layplan nesting engine (baseline optimisation)]@{ priority: 'Low', assigned: 'cpto' }
+    t17[Waste calculation engine (area, length, efficiency)]@{ priority: 'Low', assigned: 'be' }
+    t18[Waste cost model (direct + indirect costs)]@{ priority: 'Low', assigned: 'sme' }
+    t19[Waste analytics API]@{ priority: 'Low', assigned: 'be' }
+    t20[Waste dashboard UI]@{ priority: 'Low', assigned: 'fe' }
+    t21[Exportable waste report (PDF/HTML)]@{ priority: 'Low', assigned: 'fe' }
+    t22[Circular initiatives catalogue (recycle, return, donation)]@{ priority: 'Low', assigned: 'sme' }
+    t23[Waste reduction simulation scenarios]@{ priority: 'Low', assigned: 'be' }
+    t24[Traceability document generator]@{ priority: 'Low', assigned: 'be' }
+    t25[Role-based access (designer/factory/customer/admin)]@{ priority: 'Low', assigned: 'cpto' }
+    t26[Activity audit log]@{ priority: 'Low', assigned: 'be' }
+    t27[Internal QA testing]@{ priority: 'Low', assigned: 'proj' }
+    t28[Performance tuning]@{ priority: 'Low', assigned: 'cpto' }
+    t29[Pilot partner shortlist]@{ priority: 'Low', assigned: 'mkt' }
+    t30[Pilot onboarding kit]@{ priority: 'Low', assigned: 'pm' }
+    t31[Pilot garment baseline waste analysis]@{ priority: 'Low', assigned: 'sme' }
+    t32[Pilot optimisation run + results]@{ priority: 'Low', assigned: 'cpto' }
+    t33[Case study generation]@{ priority: 'Low', assigned: 'mkt' }
+    t34[Pricing model definition]@{ priority: 'Low', assigned: 'pm' }
+    t35[Landing page + positioning narrative]@{ priority: 'Low', assigned: 'mkt' }
+    t36[Sales demo script]@{ priority: 'Low', assigned: 'pm' }
+    t37[CRM pipeline setup]@{ priority: 'Low', assigned: 'mkt' }
+    t38[Launch readiness review]@{ priority: 'Low', assigned: 'proj' }
+    t39[MVP launch]@{ priority: 'Low', assigned: 'proj' }
   In-Progress
-    t2[Initial architecture]@{ priority: 'Very High', assigned: 'tech-lead' }
+    t3[Initial architecture (services, storage, auth, telemetry)]@{ priority: 'Very High', assigned: 'cpto' }
   Review
   Done
-    t1[Project setup]@{ assigned: 'lead' }
+    t1[Project kickoff + team alignment]@{ assigned: 'proj' }
+    t2[Project setup (repo, CI/CD, environments)]@{ assigned: 'cpto' }
+    t4[Vision statement + problem definition]@{ assigned: 'pm' }
 ```
 
 ## Task Summary
 
 | Task | Assignee | Effort | Start | End | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| Project setup | @lead | 1d | 2026-03-03 | 2026-03-03 | Done |
-| Initial architecture | @tech-lead | 2d | 2026-03-04 | 2026-03-05 | In Progress |
-| Documentation | @developer | 1d |  |  | Todo |
+| Project kickoff + team alignment | @proj | 0.5d | 2026-03-09 | 2026-03-09 | Done |
+| Project setup (repo, CI/CD, environments) | @cpto | 1d | 2026-03-09 | 2026-03-09 | Done |
+| Initial architecture (services, storage, auth, telemetry) | @cpto | 2d | 2026-03-09 | 2026-03-10 | In Progress |
+| Vision statement + problem definition | @pm | 1d | 2026-03-09 | 2026-03-09 | Done |
+| Define MVP scope + success metrics | @pm | 1d | 2026-03-10 | 2026-03-10 | Todo |
+| Market segmentation + ICP definition | @mkt | 2d | 2026-03-10 | 2026-03-11 | Todo |
+| Sustainability + compliance claims validation | @sme | 1d | 2026-03-11 | 2026-03-11 | Todo |
+| Product requirements baseline (PRD-lite) | @pm | 1d | 2026-03-11 | 2026-03-11 | Todo |
+| Define optimisation KPIs (efficiency %, waste %, cost) | @sme | 1d | 2026-03-12 | 2026-03-12 | Todo |
+| Data model for materials, BOM, suppliers | @be | 2d | 2026-03-12 | 2026-03-13 | Todo |
+| UX architecture + MVP screen flows | @fe | 2d | 2026-03-12 | 2026-03-13 | Todo |
+| Define layplan optimisation algorithm approach | @cpto | 2d | 2026-03-13 | 2026-03-16 | Todo |
+| BOM ingestion + validation workflow | @be | 3d | 2026-03-16 | 2026-03-18 | Todo |
+| Pattern file ingestion (DXF or equivalent) | @be | 3d | 2026-03-16 | 2026-03-18 | Todo |
+| Pattern geometry extraction | @be | 2d | 2026-03-18 | 2026-03-19 | Todo |
+| Layplan nesting engine (baseline optimisation) | @cpto | 4d | 2026-03-19 | 2026-03-24 | Todo |
+| Waste calculation engine (area, length, efficiency) | @be | 3d | 2026-03-23 | 2026-03-25 | Todo |
+| Waste cost model (direct + indirect costs) | @sme | 2d | 2026-03-23 | 2026-03-24 | Todo |
+| Waste analytics API | @be | 2d | 2026-03-24 | 2026-03-25 | Todo |
+| Waste dashboard UI | @fe | 3d | 2026-03-24 | 2026-03-26 | Todo |
+| Exportable waste report (PDF/HTML) | @fe | 2d | 2026-03-26 | 2026-03-27 | Todo |
+| Circular initiatives catalogue (recycle, return, donation) | @sme | 2d | 2026-03-26 | 2026-03-27 | Todo |
+| Waste reduction simulation scenarios | @be | 3d | 2026-03-27 | 2026-03-31 | Todo |
+| Traceability document generator | @be | 3d | 2026-03-30 | 2026-04-01 | Todo |
+| Role-based access (designer/factory/customer/admin) | @cpto | 2d | 2026-03-30 | 2026-03-31 | Todo |
+| Activity audit log | @be | 1d | 2026-03-31 | 2026-03-31 | Todo |
+| Internal QA testing | @proj | 3d | 2026-04-01 | 2026-04-03 | Todo |
+| Performance tuning | @cpto | 2d | 2026-04-02 | 2026-04-03 | Todo |
+| Pilot partner shortlist | @mkt | 2d | 2026-04-01 | 2026-04-02 | Todo |
+| Pilot onboarding kit | @pm | 2d | 2026-04-02 | 2026-04-03 | Todo |
+| Pilot garment baseline waste analysis | @sme | 3d | 2026-04-06 | 2026-04-08 | Todo |
+| Pilot optimisation run + results | @cpto | 2d | 2026-04-08 | 2026-04-09 | Todo |
+| Case study generation | @mkt | 2d | 2026-04-09 | 2026-04-10 | Todo |
+| Pricing model definition | @pm | 1d | 2026-04-09 | 2026-04-09 | Todo |
+| Landing page + positioning narrative | @mkt | 2d | 2026-04-13 | 2026-04-14 | Todo |
+| Sales demo script | @pm | 1d | 2026-04-13 | 2026-04-13 | Todo |
+| CRM pipeline setup | @mkt | 1d | 2026-04-14 | 2026-04-14 | Todo |
+| Launch readiness review | @proj | 1d | 2026-04-15 | 2026-04-15 | Todo |
+| MVP launch | @proj | 0.5d | 2026-04-16 | 2026-04-16 | Todo |
 
 ## LOE Summary
 
 | Metric | Value |
 | :--- | :--- |
-| Total Effort | 4.0d |
+| Total Effort | 74.0d |
 | In Progress | 2.0d |
-| Completed | 1.0d |
-| Remaining | 3.0d |
+| Completed | 2.5d |
+| Remaining | 71.5d |
 
 ## Sprint Timeline
 
@@ -67,18 +139,54 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    Project setup :done, 2026-03-03, 2026-03-03
-    Initial architecture :active, 2026-03-04, 2026-03-05
-    Documentation :2026-03-06, 1d
+    Project kickoff + team alignment :done, 2026-03-09, 2026-03-09
+    Project setup (repo, CI/CD, environments) :done, 2026-03-09, 2026-03-09
+    Vision statement + problem definition :done, 2026-03-09, 2026-03-09
+    Initial architecture (services, storage, auth, telemetry) :active, 2026-03-09, 2026-03-10
+    Define MVP scope + success metrics :2026-03-10, 2026-03-10
+    Market segmentation + ICP definition :2026-03-10, 2026-03-11
+    Sustainability + compliance claims validation :2026-03-11, 2026-03-11
+    Product requirements baseline (PRD-lite) :2026-03-11, 2026-03-11
+    Define optimisation KPIs (efficiency %, waste %, cost) :2026-03-12, 2026-03-12
+    Data model for materials, BOM, suppliers :2026-03-12, 2026-03-13
+    UX architecture + MVP screen flows :2026-03-12, 2026-03-13
+    Define layplan optimisation algorithm approach :2026-03-13, 2026-03-16
+    BOM ingestion + validation workflow :2026-03-16, 2026-03-18
+    Pattern file ingestion (DXF or equivalent) :2026-03-16, 2026-03-18
+    Pattern geometry extraction :2026-03-18, 2026-03-19
+    Layplan nesting engine (baseline optimisation) :2026-03-19, 2026-03-24
+    Waste calculation engine (area, length, efficiency) :2026-03-23, 2026-03-25
+    Waste cost model (direct + indirect costs) :2026-03-23, 2026-03-24
+    Waste analytics API :2026-03-24, 2026-03-25
+    Waste dashboard UI :2026-03-24, 2026-03-26
+    Exportable waste report (PDF/HTML) :2026-03-26, 2026-03-27
+    Circular initiatives catalogue (recycle, return, donation) :2026-03-26, 2026-03-27
+    Waste reduction simulation scenarios :2026-03-27, 2026-03-31
+    Traceability document generator :2026-03-30, 2026-04-01
+    Role-based access (designer/factory/customer/admin) :2026-03-30, 2026-03-31
+    Activity audit log :2026-03-31, 2026-03-31
+    Internal QA testing :2026-04-01, 2026-04-03
+    Performance tuning :2026-04-02, 2026-04-03
+    Pilot partner shortlist :2026-04-01, 2026-04-02
+    Pilot onboarding kit :2026-04-02, 2026-04-03
+    Pilot garment baseline waste analysis :2026-04-06, 2026-04-08
+    Pilot optimisation run + results :2026-04-08, 2026-04-09
+    Case study generation :2026-04-09, 2026-04-10
+    Pricing model definition :2026-04-09, 2026-04-09
+    Landing page + positioning narrative :2026-04-13, 2026-04-14
+    Sales demo script :2026-04-13, 2026-04-13
+    CRM pipeline setup :2026-04-14, 2026-04-14
+    Launch readiness review :2026-04-15, 2026-04-15
+    MVP launch :2026-04-16, 2026-04-16
 ```
 
 ## Effort Distribution
 
 ```mermaid
 pie title Effort by Status
-    "Todo" : 1.0
+    "Todo" : 69.5
     "In Progress" : 2.0
-    "Done" : 1.0
+    "Done" : 2.5
 ```
 
 ## Links
