@@ -4,7 +4,7 @@ description: "KF Team project template"
 project: project-template
 type: internal
 edit_url: "https://github.com/katty-fashion/project-template/edit/main/kanban.md"
-generated: 2026-03-05T12:58:38.400875
+generated: 2026-03-05T18:53:20.201285
 ---
 
 # project-template
@@ -44,11 +44,11 @@ kanban
 
 ## Task Summary
 
-| Task | Assignee | Effort | Status |
-| :--- | :--- | :--- | :--- |
-| Project setup | @lead | 1d | Done |
-| Initial architecture | @tech-lead | 2d | In Progress |
-| Documentation | @developer | 1d | Todo |
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Project setup | @lead | 1d | 2026-03-03 | 2026-03-03 | Done |
+| Initial architecture | @tech-lead | 2d | 2026-03-04 | 2026-03-05 | In Progress |
+| Documentation | @developer | 1d |  |  | Todo |
 
 ## LOE Summary
 
@@ -67,9 +67,9 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    Project setup :done, 2026-03-02, 1d
-    Initial architecture :active, 2026-03-03, 2d
-    Documentation :2026-03-05, 1d
+    Project setup :done, 2026-03-03, 2026-03-03
+    Initial architecture :active, 2026-03-04, 2026-03-05
+    Documentation :2026-03-06, 1d
 ```
 
 ## Effort Distribution
