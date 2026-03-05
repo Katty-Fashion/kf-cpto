@@ -1,11 +1,16 @@
 ---
 title: Unified Kanban
-generated: 2026-03-05T01:14:21.735101
+generated: 2026-03-05T01:26:07.593274
 ---
 
 # KF Team — Unified Kanban
 
 > Auto-generated from all project kanbans
+
+<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
+<span class="status-pill status-pill--in-progress">In Progress</span>
+<span class="status-pill status-pill--review">Review</span>
+<span class="status-pill status-pill--done">Done</span></div>
 
 ```mermaid
 kanban
