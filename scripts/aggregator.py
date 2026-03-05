@@ -13,6 +13,7 @@ from datetime import datetime
 
 from utils import (
     DOCS_DIR,
+    ORG,
     TASK_STATUSES,
     load_projects,
     load_all_project_data,
@@ -327,8 +328,8 @@ def generate_project_page(project: str, project_data: dict) -> str:
     # Links
     lines.append("## Links")
     lines.append("")
-    lines.append(f"- [Repository](https://github.com/katty-fashion/{project})")
-    lines.append(f"- [Kanban Board](https://github.com/katty-fashion/{project}/blob/main/kanban.md)")
+    lines.append(f"- [Repository](https://github.com/{ORG}/{project})")
+    lines.append(f"- [Kanban Board](https://github.com/{ORG}/{project}/blob/main/kanban.md)")
     lines.append("")
     lines.append("---")
     lines.append("")

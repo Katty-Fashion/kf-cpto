@@ -2,12 +2,15 @@ name: KF Unified Sync
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   repository_dispatch:
     types: [kanban-updated]
   schedule:
     - cron: '0 4 * * 1'    # Luni 04:00 UTC — refresh săptămânal
   workflow_dispatch:
+
+env:
+  KF_ORG: katty-fashion
 
 jobs:
   sync:
@@ -40,7 +43,7 @@ jobs:
             [ -z "$repo" ] && continue
             echo "Cloning $repo..."
             git clone --depth=1 \
-              https://${{ secrets.KF_PAT }}@github.com/katty-fashion/${repo}.git \
+              https://${{ secrets.KF_PAT }}@github.com/${{ env.KF_ORG }}/${repo}.git \
               repos/${repo} || echo "Warning: Failed to clone ${repo}"
           done < repos/discovered.txt
 

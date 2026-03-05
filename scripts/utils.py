@@ -10,6 +10,9 @@ import yaml
 from pathlib import Path
 from typing import Any
 
+# Single Point of Truth — org name used across all scripts
+ORG = "katty-fashion"
+
 # Base directory is the project root (parent of scripts/)
 BASE_DIR = Path(__file__).parent.parent
 REPOS_DIR = BASE_DIR / "repos"

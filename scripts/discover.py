@@ -15,9 +15,7 @@ from pathlib import Path
 
 import requests
 
-ORG = "katty-fashion"
-BASE_DIR = Path(__file__).parent.parent
-DISCOVERED_FILE = BASE_DIR / "repos" / "discovered.txt"
+from utils import ORG, DISCOVERED_FILE
 
 
 def discover_kanban_repos(org: str = ORG, token: str = None) -> list[str]:
@@ -50,10 +48,10 @@ def discover_kanban_repos(org: str = ORG, token: str = None) -> list[str]:
         remaining = resp.headers.get("X-RateLimit-Remaining", "?")
         print(f"  Page {page - 1}: {len(batch)} repos (rate limit remaining: {remaining})")
 
-    # Filter: skip archived and forked repos
+    # Filter: skip archived repos only (forks with kanban.md are valid projects)
     candidates = [
         r["name"] for r in repos
-        if not r.get("archived") and not r.get("fork")
+        if not r.get("archived")
     ]
     print(f"Found {len(candidates)} active repos in {org}")
 

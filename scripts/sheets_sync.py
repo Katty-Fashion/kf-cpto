@@ -93,7 +93,12 @@ def load_loe_data() -> list[list]:
 
 
 def sync_to_sheets(rows: list[list]):
-    """Sync LOE data to Google Sheets"""
+    """Upsert LOE data to Google Sheets.
+
+    Columns A-G are managed by automation. Any columns H+ are user notes
+    and are preserved across syncs. Rows are matched by composite key
+    (Project + Task) to enable stable upsert.
+    """
     sheet_id = os.environ.get("GSHEET_ID")
 
     if not sheet_id:
@@ -109,26 +114,44 @@ def sync_to_sheets(rows: list[list]):
             print("\t".join(str(cell) for cell in row))
         return
 
-    # Clear existing data and write new
-    range_name = "LOE!A1:G1000"
-
     try:
-        # Clear the sheet
+        # Read existing data to preserve user notes (columns H+)
+        existing = service.spreadsheets().values().get(
+            spreadsheetId=sheet_id,
+            range="LOE!A1:Z1000",
+        ).execute().get("values", [])
+
+        # Build lookup: (project, task) -> extra columns (H onwards)
+        notes_map = {}
+        for erow in existing[1:]:  # skip header
+            if len(erow) >= 2:
+                key = (erow[0], erow[2] if len(erow) > 2 else "")  # Project + Task
+                extras = erow[7:] if len(erow) > 7 else []  # columns H+
+                if any(cell.strip() for cell in extras if cell):
+                    notes_map[key] = extras
+
+        # Merge: append preserved notes to new rows
+        merged = [rows[0]]  # header
+        for row in rows[1:]:
+            key = (row[0], row[2] if len(row) > 2 else "")
+            extras = notes_map.get(key, [])
+            merged.append(row + extras)
+
+        # Clear only columns A-G, then write merged data
         service.spreadsheets().values().clear(
             spreadsheetId=sheet_id,
-            range=range_name
+            range="LOE!A1:G1000",
         ).execute()
 
-        # Write new data
-        body = {"values": rows}
+        body = {"values": merged}
         service.spreadsheets().values().update(
             spreadsheetId=sheet_id,
             range="LOE!A1",
             valueInputOption="RAW",
-            body=body
+            body=body,
         ).execute()
 
-        print(f"Synced {len(rows)} rows to Google Sheets")
+        print(f"Synced {len(merged)} rows to Google Sheets (preserved notes for {len(notes_map)} tasks)")
     except Exception as e:
         print(f"Error syncing to Google Sheets: {e}")
         print("Falling back to dry-run output:")
