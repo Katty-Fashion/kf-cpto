@@ -3,8 +3,8 @@ title: Aladin-01
 description: "Aladin-01 Team project template"
 project: Aladin-01
 type: internal
-edit_url: "https://github.com/katty-fashion/Aladin-01/edit/master/kanban.md"
-generated: 2026-03-05T12:27:09.009409
+edit_url: "https://github.com/katty-fashion/Aladin-01/edit/main/kanban.md"
+generated: 2026-03-05T12:58:38.384232
 ---
 
 # Aladin-01
@@ -24,7 +24,7 @@ generated: 2026-03-05T12:27:09.009409
 | Tags | template |
 | Dependencies | [project-template]({{ '/projects/project-template/' | relative_url }}) |
 
-## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/Aladin-01/edit/master/kanban.md)
+## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/Aladin-01/edit/main/kanban.md)
 
 <div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
 <span class="status-pill status-pill--in-progress">In Progress</span>
@@ -87,9 +87,9 @@ pie title Effort by Status
 
 ## Links
 
-- [Edit Kanban](https://github.com/katty-fashion/Aladin-01/edit/master/kanban.md)
+- [Edit Kanban](https://github.com/katty-fashion/Aladin-01/edit/main/kanban.md)
 - [Repository](https://github.com/katty-fashion/Aladin-01)
-- [Kanban Board](https://github.com/katty-fashion/Aladin-01/blob/master/kanban.md)
+- [Kanban Board](https://github.com/katty-fashion/Aladin-01/blob/main/kanban.md)
 
 ---
 
