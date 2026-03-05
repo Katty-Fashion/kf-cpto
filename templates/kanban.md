@@ -13,6 +13,10 @@ tags: []                  # e.g. [frontend, ml, mvp]
 
 # Project Kanban
 
+<!-- Columns are fixed: Task | Assignee | Effort | Status — do not add or rename columns -->
+<!-- Valid statuses: Todo, In Progress, Review, Done (exact spelling required) -->
+<!-- Effort format: Nd (e.g. 1d, 0.5d, 3d) -->
+
 | Task | Assignee | Effort | Status |
 | :--- | :--- | :--- | :--- |
 | Project setup | @lead | 1d | Done |

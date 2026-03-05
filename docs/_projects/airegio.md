@@ -3,7 +3,7 @@ title: airegio
 description: "Internal"
 project: airegio
 type: internal
-generated: 2026-03-04T22:41:03.830059
+generated: 2026-03-05T01:24:05.852042
 ---
 
 # airegio
@@ -16,8 +16,8 @@ generated: 2026-03-04T22:41:03.830059
 | :--- | :--- |
 | Status | Active |
 | Type | Internal |
-| PO | eu@katty-fashion.dev |
-| Lead | lead@katty-fashion.dev |
+| PO | eu@kf-team.dev |
+| Lead | lead@kf-team.dev |
 | Current Sprint | S3 |
 | Sprint Period | 2026-03-03 to 2026-03-14 |
 | Tags | - |
@@ -25,14 +25,19 @@ generated: 2026-03-04T22:41:03.830059
 
 ## Current Sprint Kanban
 
+<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
+<span class="status-pill status-pill--in-progress">In Progress</span>
+<span class="status-pill status-pill--review">Review</span>
+<span class="status-pill status-pill--done">Done</span></div>
+
 ```mermaid
 kanban
   Todo
-    t2[Partner integration docs]
+    t2[Partner integration docs]@{ priority: 'Low', assigned: 'lead' }
   In-Progress
-    t1[Regional data analysis]
+    t1[Regional data analysis]@{ priority: 'Very High', assigned: 'data' }
   Review
-    t3[Quarterly report draft]
+    t3[Quarterly report draft]@{ priority: 'High', assigned: 'pm' }
   Done
 ```
 

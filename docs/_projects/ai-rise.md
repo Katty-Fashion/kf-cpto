@@ -3,7 +3,7 @@ title: ai-rise
 description: "Internal"
 project: ai-rise
 type: internal
-generated: 2026-03-04T22:41:03.829676
+generated: 2026-03-05T01:24:05.851776
 ---
 
 # ai-rise
@@ -16,8 +16,8 @@ generated: 2026-03-04T22:41:03.829676
 | :--- | :--- |
 | Status | Active |
 | Type | Internal |
-| PO | po@katty-fashion.dev |
-| Lead | lead@katty-fashion.dev |
+| PO | po@kf-team.dev |
+| Lead | lead@kf-team.dev |
 | Current Sprint | S3 |
 | Sprint Period | 2026-03-03 to 2026-03-14 |
 | Tags | - |
@@ -25,16 +25,21 @@ generated: 2026-03-04T22:41:03.829676
 
 ## Current Sprint Kanban
 
+<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
+<span class="status-pill status-pill--in-progress">In Progress</span>
+<span class="status-pill status-pill--review">Review</span>
+<span class="status-pill status-pill--done">Done</span></div>
+
 ```mermaid
 kanban
   Todo
-    t2[Draft technical specification]
+    t2[Draft technical specification]@{ priority: 'Low', assigned: 'maria' }
   In-Progress
-    t1[Research ML pipeline architecture]
+    t1[Research ML pipeline architecture]@{ priority: 'Very High', assigned: 'alex' }
   Review
-    t4[Review EU compliance requirements]
+    t4[Review EU compliance requirements]@{ priority: 'High', assigned: 'lead' }
   Done
-    t3[Setup development environment]
+    t3[Setup development environment]@{ assigned: 'alex' }
 ```
 
 ## Task Summary

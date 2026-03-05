@@ -33,6 +33,14 @@ STATUS_PRIORITY = {
     "Todo": "Low",                # blue — queued
 }
 
+# Status pill colors — single source for CSS and legend generation
+STATUS_COLORS = {
+    "In Progress": "#e53e3e",  # red
+    "Review": "#ed8936",       # orange
+    "Todo": "#3182ce",         # blue
+    "Done": "#38a169",         # green
+}
+
 # Project type display names
 TYPE_DISPLAY = {
     "saas": "SaaS Product",

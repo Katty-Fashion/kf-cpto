@@ -222,12 +222,18 @@ tags: [frontend, mvp]     # free-form tags
 
 ### Task Status Values
 
+Only these four statuses are recognized by the dashboard. Use exact spelling.
+
 | Status | Description | Dashboard Color |
 | :--- | :--- | :--- |
 | `Todo` | Not started | Blue |
 | `In Progress` | Currently being worked on | Red |
 | `Review` | Awaiting code review or approval | Orange |
-| `Done` | Completed | Default |
+| `Done` | Completed | Green |
+
+### Kanban Columns
+
+The table must have exactly four columns: **Task**, **Assignee**, **Effort**, **Status**. Do not add, remove, or rename columns — the aggregator parses this fixed format.
 
 ### Effort Format
 

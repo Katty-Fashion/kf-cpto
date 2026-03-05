@@ -17,6 +17,7 @@ from utils import (
     TASK_STATUSES,
     STATUS_TO_MERMAID,
     STATUS_PRIORITY,
+    STATUS_COLORS,
     TYPE_DISPLAY,
     TYPE_MERMAID_CLASS,
     TYPE_MERMAID_DEFS,
@@ -26,6 +27,15 @@ from utils import (
 )
 
 PROJECTS = load_projects()
+
+
+def _status_legend() -> str:
+    """Generate HTML status legend with colored pills."""
+    pills = []
+    for status in TASK_STATUSES:
+        css_class = f"status-pill--{status.lower().replace(' ', '-')}"
+        pills.append(f'<span class="status-pill {css_class}">{status}</span>')
+    return '<div class="status-legend">' + "\n".join(pills) + "</div>"
 
 
 def _task_metadata(task: dict) -> str:
@@ -51,6 +61,8 @@ def generate_unified_kanban(data: dict) -> str:
         "# KF Team — Unified Kanban",
         "",
         "> Auto-generated from all project kanbans",
+        "",
+        _status_legend(),
         "",
     ]
 
@@ -272,6 +284,8 @@ def generate_project_page(project: str, project_data: dict) -> str:
     # Generate Kanban diagram if tasks exist
     if tasks:
         lines.append("## Current Sprint Kanban")
+        lines.append("")
+        lines.append(_status_legend())
         lines.append("")
         lines.append("```mermaid")
         lines.append("kanban")

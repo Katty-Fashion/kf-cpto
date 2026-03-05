@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-03-05T01:08:52.979182
+generated: 2026-03-05T01:24:05.851518
 ---
 
 # KF Team — Dependency Graph
@@ -9,14 +9,17 @@ generated: 2026-03-05T01:08:52.979182
 
 ```mermaid
 graph LR
-    Aladin-01[Aladin 01]:::internal
-    project-template[Project Template]:::internal
-    project-template --> Aladin-01
+    ai-rise[Ai Rise]:::internal
+    airegio[Airegio]:::internal
+    nuoform[Nuoform]:::internal
+    waist-mgmt[Waist Mgmt]:::internal
 
     classDef saas fill:#4CAF50,color:#fff
     classDef eu fill:#2196F3,color:#fff
     classDef internal fill:#FF9800,color:#fff
 ```
+
+*No inter-project dependencies declared yet. Add `depends_on` to your kanban.md frontmatter.*
 
 ## Legend
 
