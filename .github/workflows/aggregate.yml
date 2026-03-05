@@ -74,10 +74,16 @@ jobs:
           publish_dir: ./docs
           publish_branch: gh-pages
 
+      - name: Build summary
+        id: summary
+        run: |
+          PROJ_COUNT=$(wc -l < repos/discovered.txt | tr -d ' ')
+          TASK_COUNT=$(grep -c '|' docs/_projects/*.md 2>/dev/null | tail -1 | cut -d: -f2 || echo 0)
+          TRIGGER="${{ github.event.client_payload.project || github.event_name }}"
+          echo "text=🚀 *KF Dashboard Updated*\nProjects: ${PROJ_COUNT} | Trigger: ${TRIGGER}\nKanban + Calendar refreshed\nLOE synced to Google Sheets\n🔗 https://katty-fashion.github.io/kf-cpto/" >> "$GITHUB_OUTPUT"
+
       - name: Notify Google Chat
         run: |
           curl -s -X POST "${{ secrets.GOOGLE_CHAT_WEBHOOK }}" \
           -H 'Content-Type: application/json' \
-          -d '{
-            "text": "🚀 *KF Dashboard Updated*\n✅ Kanban + Calendar refreshed\n📊 LOE synced to Google Sheets\n🔗 https://katty-fashion.github.io/kf-cpto/"
-          }'
+          -d "{\"text\": \"${{ steps.summary.outputs.text }}\"}"
