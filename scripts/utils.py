@@ -21,7 +21,10 @@ CONFIG_FILE = BASE_DIR / "docs" / "_config.yml"
 DISCOVERED_FILE = REPOS_DIR / "discovered.txt"
 
 # GitHub edit URL template — used by aggregator for "Edit Kanban" links
-EDIT_URL_TEMPLATE = f"https://github.com/{ORG}/{{repo}}/edit/master/kanban.md"
+EDIT_URL_TEMPLATE = f"https://github.com/{ORG}/{{repo}}/edit/{{branch}}/kanban.md"
+
+# Per-repo default branch mapping (populated by load_projects())
+PROJECT_BRANCHES: dict[str, str] = {}
 
 # Valid task statuses (single source for all status references)
 TASK_STATUSES = ("Todo", "In Progress", "Review", "Done")
@@ -87,11 +90,25 @@ def load_config() -> dict[str, Any]:
 
 
 def load_projects() -> list[str]:
-    """Load project list from discovered repos, falling back to _config.yml for local dev."""
+    """Load project list from discovered repos, falling back to _config.yml for local dev.
+
+    Parses 'name:branch' format from discovered.txt and populates PROJECT_BRANCHES.
+    Plain 'name' entries default to 'master'.
+    """
     if DISCOVERED_FILE.exists():
-        projects = [line.strip() for line in DISCOVERED_FILE.read_text().splitlines() if line.strip()]
-        if projects:
-            return projects
+        names = []
+        for line in DISCOVERED_FILE.read_text().splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            if ":" in line:
+                name, branch = line.split(":", 1)
+            else:
+                name, branch = line, "master"
+            names.append(name)
+            PROJECT_BRANCHES[name] = branch
+        if names:
+            return names
     # Fallback: _config.yml (for local development without running discover.py)
     config = load_config()
     return config.get("kf_projects", [])

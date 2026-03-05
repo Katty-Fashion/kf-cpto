@@ -15,6 +15,7 @@ from utils import (
     DOCS_DIR,
     ORG,
     EDIT_URL_TEMPLATE,
+    PROJECT_BRANCHES,
     TASK_STATUSES,
     STATUS_TO_MERMAID,
     STATUS_PRIORITY,
@@ -254,7 +255,8 @@ def generate_project_page(project: str, project_data: dict) -> str:
         f"[{d}]({{{{ '/projects/{d}/' | relative_url }}}})" for d in depends_on
     ) if depends_on else "None"
 
-    edit_url = EDIT_URL_TEMPLATE.format(repo=project)
+    branch = PROJECT_BRANCHES.get(project, "master")
+    edit_url = EDIT_URL_TEMPLATE.format(repo=project, branch=branch)
 
     lines = [
         "---",
@@ -287,7 +289,6 @@ def generate_project_page(project: str, project_data: dict) -> str:
 
     # Generate Kanban diagram if tasks exist
     if tasks:
-        edit_url = EDIT_URL_TEMPLATE.format(repo=project)
         lines.append(f"## Current Sprint Kanban &nbsp; [Edit Kanban]({edit_url})")
         lines.append("")
         lines.append(_status_legend())
@@ -428,7 +429,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
     lines.append("")
     lines.append(f"- [Edit Kanban]({edit_url})")
     lines.append(f"- [Repository](https://github.com/{ORG}/{project})")
-    lines.append(f"- [Kanban Board](https://github.com/{ORG}/{project}/blob/master/kanban.md)")
+    lines.append(f"- [Kanban Board](https://github.com/{ORG}/{project}/blob/{branch}/kanban.md)")
     lines.append("")
     lines.append("---")
     lines.append("")

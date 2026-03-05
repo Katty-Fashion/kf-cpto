@@ -39,10 +39,13 @@ jobs:
       - name: Clone discovered repos
         run: |
           mkdir -p repos
-          while IFS= read -r repo; do
-            [ -z "$repo" ] && continue
-            echo "Cloning $repo..."
-            git clone --depth=1 \
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            repo="${line%%:*}"
+            branch="${line#*:}"
+            [ "$branch" = "$repo" ] && branch="master"
+            echo "Cloning $repo (branch: $branch)..."
+            git clone --depth=1 -b "$branch" \
               https://${{ secrets.KF_PAT }}@github.com/${{ env.KF_ORG }}/${repo}.git \
               repos/${repo} || echo "Warning: Failed to clone ${repo}"
           done < repos/discovered.txt

@@ -18,8 +18,8 @@ import requests
 from utils import ORG, DISCOVERED_FILE
 
 
-def discover_kanban_repos(org: str = ORG, token: str = None) -> list[str]:
-    """Return sorted list of repo names in the org that have kanban.md at root."""
+def discover_kanban_repos(org: str = ORG, token: str = None) -> list[dict]:
+    """Return sorted list of repo dicts (name, branch) in the org that have kanban.md at root."""
     headers = {"Accept": "application/vnd.github+json"}
     if token:
         headers["Authorization"] = f"Bearer {token}"
@@ -50,24 +50,25 @@ def discover_kanban_repos(org: str = ORG, token: str = None) -> list[str]:
 
     # Filter: skip archived repos only (forks with kanban.md are valid projects)
     candidates = [
-        r["name"] for r in repos
+        {"name": r["name"], "branch": r.get("default_branch", "master")}
+        for r in repos
         if not r.get("archived")
     ]
     print(f"Found {len(candidates)} active repos in {org}")
 
     # Check which repos have kanban.md at root
     discovered = []
-    for name in candidates:
+    for repo in candidates:
         resp = requests.get(
-            f"https://api.github.com/repos/{org}/{name}/contents/kanban.md",
+            f"https://api.github.com/repos/{org}/{repo['name']}/contents/kanban.md",
             headers=headers,
         )
         if resp.status_code == 200:
-            discovered.append(name)
-            print(f"  + {name} (has kanban.md)")
+            discovered.append(repo)
+            print(f"  + {repo['name']} (has kanban.md, branch: {repo['branch']})")
         # 404 = no kanban.md, skip silently
 
-    discovered.sort()
+    discovered.sort(key=lambda r: r["name"])
     return discovered
 
 
@@ -78,9 +79,10 @@ def main():
 
     repos = discover_kanban_repos(token=token)
 
-    # Write discovered repos
+    # Write discovered repos as name:branch (one per line)
     DISCOVERED_FILE.parent.mkdir(parents=True, exist_ok=True)
-    DISCOVERED_FILE.write_text("\n".join(repos) + "\n" if repos else "")
+    lines = [f"{r['name']}:{r['branch']}" for r in repos]
+    DISCOVERED_FILE.write_text("\n".join(lines) + "\n" if lines else "")
 
     print(f"\nDiscovered {len(repos)} repos with kanban.md")
     print(f"Written to {DISCOVERED_FILE}")
