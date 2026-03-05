@@ -4,7 +4,7 @@ description: "KF Team project template"
 project: NuoForm---GTM
 type: internal
 edit_url: "https://github.com/katty-fashion/NuoForm---GTM/edit/main/kanban.md"
-generated: 2026-03-05T19:12:15.808987
+generated: 2026-03-05T21:56:59.547576
 ---
 
 # NuoForm---GTM
