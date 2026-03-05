@@ -1,7 +1,7 @@
 <article class="card">
   <header>
     {% if include.link %}
-    <a href="{{ include.link }}"><strong>{{ include.title }}</strong></a>
+    <a href="{{ include.link | relative_url }}"><strong>{{ include.title }}</strong></a>
     {% else %}
     <strong>{{ include.title }}</strong>
     {% endif %}

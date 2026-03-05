@@ -3,7 +3,7 @@ title: Aladin-01
 description: "Aladin-01 Team project template"
 project: Aladin-01
 type: internal
-generated: 2026-03-05T00:47:23.501211
+generated: 2026-03-05T01:00:57.343052
 ---
 
 # Aladin-01
@@ -28,13 +28,13 @@ generated: 2026-03-05T00:47:23.501211
 ```mermaid
 kanban
   Todo
-    t4[Documentation]
+    t4[Documentation]@{ priority: 'Low', assigned: 'developer' }
   In-Progress
-    t2[Initial architecture]
+    t2[Initial architecture]@{ priority: 'Very High', assigned: 'tech-lead' }
   Review
-    t3[Review architecture]
+    t3[Review architecture]@{ priority: 'High', assigned: 'tech-lead' }
   Done
-    t1[Project setup]
+    t1[Project setup]@{ assigned: 'lead' }
 ```
 
 ## Task Summary

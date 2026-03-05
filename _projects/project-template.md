@@ -3,7 +3,7 @@ title: project-template
 description: "KF Team project template"
 project: project-template
 type: internal
-generated: 2026-03-05T00:47:23.501360
+generated: 2026-03-05T01:00:57.343188
 ---
 
 # project-template
@@ -28,12 +28,12 @@ generated: 2026-03-05T00:47:23.501360
 ```mermaid
 kanban
   Todo
-    t3[Documentation]
+    t3[Documentation]@{ priority: 'Low', assigned: 'developer' }
   In-Progress
-    t2[Initial architecture]
+    t2[Initial architecture]@{ priority: 'Very High', assigned: 'tech-lead' }
   Review
   Done
-    t1[Project setup]
+    t1[Project setup]@{ assigned: 'lead' }
 ```
 
 ## Task Summary
