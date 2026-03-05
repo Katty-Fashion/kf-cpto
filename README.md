@@ -154,13 +154,26 @@ tags: [frontend, mvp]     # free-form tags
 | Effort | `Nd` | Number + 'd' for days (e.g., `3d`, `0.5d`) |
 | Status | Exact match | `Todo`, `In Progress`, `Review`, `Done` |
 
+### Status Color Indicators
+
+The aggregator automatically adds colored left borders to kanban cards based on task status:
+
+| Status | Color | MermaidJS Priority |
+| :--- | :--- | :--- |
+| In Progress | Red | `Very High` |
+| Review | Orange | `High` |
+| Todo | Blue | `Low` |
+| Done | Default | — |
+
+Assignees are also shown on each card via the `assigned` metadata.
+
 ## Automation Workflows
 
 ### Primary: Unified Sync (`aggregate.yml`)
 
 | Trigger | When |
 | :--- | :--- |
-| Push to main | Immediate |
+| Push to master | Immediate |
 | Repository dispatch | When any project updates its kanban |
 | Schedule | Monday 04:00 UTC |
 | Manual | workflow_dispatch |

@@ -222,12 +222,12 @@ tags: [frontend, mvp]     # free-form tags
 
 ### Task Status Values
 
-| Status | Description |
-| :--- | :--- |
-| `Todo` | Not started |
-| `In Progress` | Currently being worked on |
-| `Review` | Awaiting code review or approval |
-| `Done` | Completed |
+| Status | Description | Dashboard Color |
+| :--- | :--- | :--- |
+| `Todo` | Not started | Blue |
+| `In Progress` | Currently being worked on | Red |
+| `Review` | Awaiting code review or approval | Orange |
+| `Done` | Completed | Default |
 
 ### Effort Format
 
