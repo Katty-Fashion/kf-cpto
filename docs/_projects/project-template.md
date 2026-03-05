@@ -3,8 +3,8 @@ title: project-template
 description: "KF Team project template"
 project: project-template
 type: internal
-edit_url: "https://github.com/katty-fashion/project-template/edit/master/kanban.md"
-generated: 2026-03-05T12:27:09.026490
+edit_url: "https://github.com/katty-fashion/project-template/edit/main/kanban.md"
+generated: 2026-03-05T19:12:15.809213
 ---
 
 # project-template
@@ -24,7 +24,7 @@ generated: 2026-03-05T12:27:09.026490
 | Tags | template |
 | Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
 
-## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/project-template/edit/master/kanban.md)
+## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/project-template/edit/main/kanban.md)
 
 <div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
 <span class="status-pill status-pill--in-progress">In Progress</span>
@@ -44,11 +44,11 @@ kanban
 
 ## Task Summary
 
-| Task | Assignee | Effort | Status |
-| :--- | :--- | :--- | :--- |
-| Project setup | @lead | 1d | Done |
-| Initial architecture | @tech-lead | 2d | In Progress |
-| Documentation | @developer | 1d | Todo |
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Project setup | @lead | 1d | 2026-03-03 | 2026-03-03 | Done |
+| Initial architecture | @tech-lead | 2d | 2026-03-04 | 2026-03-05 | In Progress |
+| Documentation | @developer | 1d |  |  | Todo |
 
 ## LOE Summary
 
@@ -67,9 +67,9 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    Project setup :done, 2026-03-02, 1d
-    Initial architecture :active, 2026-03-03, 2d
-    Documentation :2026-03-05, 1d
+    Project setup :done, 2026-03-03, 2026-03-03
+    Initial architecture :active, 2026-03-04, 2026-03-05
+    Documentation :2026-03-06, 1d
 ```
 
 ## Effort Distribution
@@ -83,9 +83,9 @@ pie title Effort by Status
 
 ## Links
 
-- [Edit Kanban](https://github.com/katty-fashion/project-template/edit/master/kanban.md)
+- [Edit Kanban](https://github.com/katty-fashion/project-template/edit/main/kanban.md)
 - [Repository](https://github.com/katty-fashion/project-template)
-- [Kanban Board](https://github.com/katty-fashion/project-template/blob/master/kanban.md)
+- [Kanban Board](https://github.com/katty-fashion/project-template/blob/main/kanban.md)
 
 ---
 

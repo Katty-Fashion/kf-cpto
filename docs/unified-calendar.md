@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-03-05T12:27:09.008874
+generated: 2026-03-05T19:12:15.743024
 ---
 
 # KF Team — Unified Calendar
@@ -26,6 +26,8 @@ gantt
     excludes weekends
 
     section Aladin-01
+    S1 :active, 2026-03-03, 2026-03-14
+    section NuoForm---GTM
     S1 :active, 2026-03-02, 2026-03-13
     section project-template
     S1 :active, 2026-03-02, 2026-03-13
