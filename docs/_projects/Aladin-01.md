@@ -1,14 +1,14 @@
 ---
-title: project-template
-description: "KF Team project template"
-project: project-template
+title: Aladin-01
+description: "Aladin-01 Team project template"
+project: Aladin-01
 type: internal
-generated: 2026-03-05T00:44:24.366651
+generated: 2026-03-05T00:44:24.366493
 ---
 
-# project-template
+# Aladin-01
 
-> KF Team project template
+> Aladin-01 Team project template
 
 ## Status
 
@@ -21,17 +21,18 @@ generated: 2026-03-05T00:44:24.366651
 | Current Sprint | S1 |
 | Sprint Period | 2026-03-02 to 2026-03-13 |
 | Tags | template |
-| Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
+| Dependencies | [project-template]({{ '/projects/project-template/' | relative_url }}) |
 
 ## Current Sprint Kanban
 
 ```mermaid
 kanban
   Todo
-    t3[Documentation]
+    t4[Documentation]
   In-Progress
     t2[Initial architecture]
   Review
+    t3[Review architecture]
   Done
     t1[Project setup]
 ```
@@ -42,21 +43,22 @@ kanban
 | :--- | :--- | :--- | :--- |
 | Project setup | @lead | 1d | Done |
 | Initial architecture | @tech-lead | 2d | In Progress |
+| Review architecture | @tech-lead | 2d | Review |
 | Documentation | @developer | 1d | Todo |
 
 ## LOE Summary
 
 | Metric | Value |
 | :--- | :--- |
-| Total Effort | 4.0d |
+| Total Effort | 6.0d |
 | In Progress | 2.0d |
 | Completed | 1.0d |
-| Remaining | 3.0d |
+| Remaining | 5.0d |
 
 ## Links
 
-- [Repository](https://github.com/katty-fashion/project-template)
-- [Kanban Board](https://github.com/katty-fashion/project-template/blob/main/kanban.md)
+- [Repository](https://github.com/katty-fashion/Aladin-01)
+- [Kanban Board](https://github.com/katty-fashion/Aladin-01/blob/main/kanban.md)
 
 ---
 
