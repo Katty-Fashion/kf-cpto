@@ -32,7 +32,8 @@ defaults:
   values:
     layout: "default"
 - scope:
-    path: "projects"
+    path: "_projects"
+    type: "projects"
   values:
     layout: "default"
 

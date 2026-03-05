@@ -3,7 +3,7 @@ title: project-template
 description: "KF Team project template"
 project: project-template
 type: internal
-generated: 2026-03-05T00:24:56.111011
+generated: 2026-03-05T00:28:13.670792
 ---
 
 # project-template
@@ -21,7 +21,7 @@ generated: 2026-03-05T00:24:56.111011
 | Current Sprint | S1 |
 | Sprint Period | 2026-03-02 to 2026-03-13 |
 | Tags | template |
-| Dependencies | [ai-rise](../projects/ai-rise.html) |
+| Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
 
 ## Current Sprint Kanban
 
