@@ -20,8 +20,38 @@ DOCS_DIR = BASE_DIR / "docs"
 CONFIG_FILE = BASE_DIR / "docs" / "_config.yml"
 DISCOVERED_FILE = REPOS_DIR / "discovered.txt"
 
-# Valid task statuses
+# Valid task statuses (single source for all status references)
 TASK_STATUSES = ("Todo", "In Progress", "Review", "Done")
+
+# Map from kanban.md status to MermaidJS column name (hyphenated)
+STATUS_TO_MERMAID = {s: s.replace(" ", "-") for s in TASK_STATUSES}
+
+# Map task status to MermaidJS kanban priority (colored left border)
+STATUS_PRIORITY = {
+    "In Progress": "Very High",   # red — active work
+    "Review": "High",             # orange — needs attention
+    "Todo": "Low",                # blue — queued
+}
+
+# Project type display names
+TYPE_DISPLAY = {
+    "saas": "SaaS Product",
+    "eu-project": "EU Project",
+    "internal": "Internal",
+}
+
+# MermaidJS graph classDef styles per project type
+TYPE_MERMAID_CLASS = {
+    "saas": ":::saas",
+    "eu-project": ":::eu",
+    "internal": ":::internal",
+}
+
+TYPE_MERMAID_DEFS = [
+    "classDef saas fill:#4CAF50,color:#fff",
+    "classDef eu fill:#2196F3,color:#fff",
+    "classDef internal fill:#FF9800,color:#fff",
+]
 
 # Defaults for optional kanban.md frontmatter fields
 FRONTMATTER_DEFAULTS = {

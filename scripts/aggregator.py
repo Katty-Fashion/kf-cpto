@@ -15,19 +15,17 @@ from utils import (
     DOCS_DIR,
     ORG,
     TASK_STATUSES,
+    STATUS_TO_MERMAID,
+    STATUS_PRIORITY,
+    TYPE_DISPLAY,
+    TYPE_MERMAID_CLASS,
+    TYPE_MERMAID_DEFS,
     load_projects,
     load_all_project_data,
     parse_effort_days,
 )
 
 PROJECTS = load_projects()
-
-# Map task status to MermaidJS kanban priority (colored left border)
-STATUS_PRIORITY = {
-    "In Progress": "Very High",   # red — active work
-    "Review": "High",             # orange — needs attention
-    "Todo": "Low",                # blue — queued
-}
 
 
 def _task_metadata(task: dict) -> str:
@@ -57,25 +55,13 @@ def generate_unified_kanban(data: dict) -> str:
     ]
 
     # Aggregate by status (use hyphenated names for MermaidJS)
-    statuses = {
-        "Todo": [],
-        "In-Progress": [],
-        "Review": [],
-        "Done": []
-    }
-    # Map from kanban.md status to MermaidJS column name
-    status_map = {
-        "Todo": "Todo",
-        "In Progress": "In-Progress",
-        "Review": "Review",
-        "Done": "Done"
-    }
+    statuses = {STATUS_TO_MERMAID[s]: [] for s in TASK_STATUSES}
 
     task_counter = 0
     for project, project_data in data.items():
         for task in project_data["tasks"]:
             status = task["status"]
-            mermaid_status = status_map.get(status)
+            mermaid_status = STATUS_TO_MERMAID.get(status)
             if mermaid_status and mermaid_status in statuses:
                 task_counter += 1
                 statuses[mermaid_status].append({
@@ -101,16 +87,18 @@ def generate_unified_kanban(data: dict) -> str:
     # Generate summary table
     lines.append("## Summary by Project")
     lines.append("")
-    lines.append("| Project | Todo | In Progress | Review | Done | Total |")
-    lines.append("| :--- | :---: | :---: | :---: | :---: | :---: |")
+    header_cols = " | ".join(TASK_STATUSES)
+    lines.append(f"| Project | {header_cols} | Total |")
+    lines.append("| :--- |" + " :---: |" * (len(TASK_STATUSES) + 1))
 
     for project, project_data in data.items():
-        counts = {"Todo": 0, "In Progress": 0, "Review": 0, "Done": 0}
+        counts = {s: 0 for s in TASK_STATUSES}
         for task in project_data["tasks"]:
             if task["status"] in counts:
                 counts[task["status"]] += 1
         total = sum(counts.values())
-        lines.append(f"| {project} | {counts['Todo']} | {counts['In Progress']} | {counts['Review']} | {counts['Done']} | {total} |")
+        count_cols = " | ".join(str(counts[s]) for s in TASK_STATUSES)
+        lines.append(f"| {project} | {count_cols} | {total} |")
 
     return "\n".join(lines)
 
@@ -236,11 +224,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
 
     # Project type from frontmatter (populated by normalize_frontmatter)
     type_key = meta.get("type", "internal")
-    type_display = {
-        "saas": "SaaS Product",
-        "eu-project": "EU Project",
-        "internal": "Internal",
-    }.get(type_key, type_key)
+    type_display = TYPE_DISPLAY.get(type_key, type_key)
 
     description = meta.get("description", "") or type_display
     po = meta.get("po", "-") or "-"
@@ -293,13 +277,12 @@ def generate_project_page(project: str, project_data: dict) -> str:
         lines.append("kanban")
 
         # Group tasks by status with counter for unique IDs
-        statuses = {"Todo": [], "In-Progress": [], "Review": [], "Done": []}
-        status_map = {"Todo": "Todo", "In Progress": "In-Progress", "Review": "Review", "Done": "Done"}
+        statuses = {STATUS_TO_MERMAID[s]: [] for s in TASK_STATUSES}
 
         task_counter = 0
         for task in tasks:
             status = task["status"]
-            mermaid_status = status_map.get(status)
+            mermaid_status = STATUS_TO_MERMAID.get(status)
             if mermaid_status and mermaid_status in statuses:
                 task_counter += 1
                 statuses[mermaid_status].append({**task, "id": f"t{task_counter}"})
@@ -378,7 +361,7 @@ def generate_dependency_graph(data: dict) -> str:
     for project, project_data in data.items():
         meta = project_data.get("meta", {})
         proj_type = meta.get("type", "internal")
-        style_class = {"saas": ":::saas", "eu-project": ":::eu"}.get(proj_type, ":::internal")
+        style_class = TYPE_MERMAID_CLASS.get(proj_type, ":::internal")
         label = project.replace("-", " ").title()
         lines.append(f"    {project}[{label}]{style_class}")
 
@@ -392,9 +375,8 @@ def generate_dependency_graph(data: dict) -> str:
                 has_edges = True
 
     lines.append("")
-    lines.append("    classDef saas fill:#4CAF50,color:#fff")
-    lines.append("    classDef eu fill:#2196F3,color:#fff")
-    lines.append("    classDef internal fill:#FF9800,color:#fff")
+    for cdef in TYPE_MERMAID_DEFS:
+        lines.append(f"    {cdef}")
     lines.append("```")
     lines.append("")
 
@@ -402,14 +384,14 @@ def generate_dependency_graph(data: dict) -> str:
         lines.append("*No inter-project dependencies declared yet. Add `depends_on` to your kanban.md frontmatter.*")
         lines.append("")
 
-    # Legend
+    # Legend (colors match TYPE_MERMAID_DEFS order: saas=green, eu=blue, internal=orange)
+    legend_colors = {"saas": "Green", "eu-project": "Blue", "internal": "Orange"}
     lines.append("## Legend")
     lines.append("")
     lines.append("| Color | Type |")
     lines.append("| :--- | :--- |")
-    lines.append("| Green | SaaS Product |")
-    lines.append("| Blue | EU Project |")
-    lines.append("| Orange | Internal |")
+    for type_key, display in TYPE_DISPLAY.items():
+        lines.append(f"| {legend_colors.get(type_key, '—')} | {display} |")
 
     return "\n".join(lines)
 
