@@ -6,7 +6,7 @@ Merges kanban.md files from all project repos and generates:
 - unified-kanban.md
 - unified-calendar.md
 - loe-report.md
-- docs/projects/{project}.md (per-project pages)
+- docs/_projects/{project}.md (per-project pages — Jekyll collection)
 """
 
 from datetime import datetime
@@ -234,7 +234,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
     sprint_period = f"{sprint_start} to {sprint_end}" if sprint_start and sprint_end else "-"
 
     deps_display = ", ".join(
-        f"[{d}](../projects/{d}.html)" for d in depends_on
+        f"[{d}]({{{{ '/projects/{d}/' | relative_url }}}})" for d in depends_on
     ) if depends_on else "None"
 
     lines = [
@@ -395,13 +395,13 @@ def generate_dependency_graph(data: dict) -> str:
 
 def generate_project_pages(data: dict):
     """Generate individual project pages"""
-    projects_dir = DOCS_DIR / "projects"
+    projects_dir = DOCS_DIR / "_projects"
     projects_dir.mkdir(parents=True, exist_ok=True)
 
     for project, project_data in data.items():
         content = generate_project_page(project, project_data)
         (projects_dir / f"{project}.md").write_text(content)
-        print(f"Generated projects/{project}.md")
+        print(f"Generated _projects/{project}.md")
 
 
 def main():

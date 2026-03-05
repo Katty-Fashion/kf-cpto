@@ -21,7 +21,7 @@ generated: 2026-03-05T00:24:56.111011
 | Current Sprint | S1 |
 | Sprint Period | 2026-03-02 to 2026-03-13 |
 | Tags | template |
-| Dependencies | [ai-rise](../projects/ai-rise.html) |
+| Dependencies | [ai-rise]({{ '/projects/ai-rise.html' | relative_url }}) |
 
 ## Current Sprint Kanban
 

@@ -258,7 +258,7 @@ kf-cpto/
 │   ├── unified-calendar.md    # Sprint calendar (auto-generated)
 │   ├── loe-report.md          # LOE report (auto-generated)
 │   ├── dependency-graph.md    # Inter-project graph (auto-generated)
-│   └── projects/              # Per-project pages (auto-generated)
+│   └── _projects/             # Per-project pages (Jekyll collection, auto-generated)
 ├── scripts/
 │   ├── discover.py            # GitHub API repo discovery
 │   ├── aggregator.py          # Main aggregation + generation

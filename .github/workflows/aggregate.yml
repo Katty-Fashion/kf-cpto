@@ -59,7 +59,7 @@ jobs:
         run: |
           git config user.name "KF Bot"
           git config user.email "bot@katty-fashion.dev"
-          git add docs/
+          git add docs/ || true
           git diff --staged --quiet || \
             git commit -m "chore: auto-update unified docs [skip ci]"
           git push
