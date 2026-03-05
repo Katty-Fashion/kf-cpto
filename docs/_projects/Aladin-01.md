@@ -4,7 +4,7 @@ description: "Aladin-01 Team project template"
 project: Aladin-01
 type: internal
 edit_url: "https://github.com/katty-fashion/Aladin-01/edit/master/kanban.md"
-generated: 2026-03-05T11:52:54.905008
+generated: 2026-03-05T12:27:09.009409
 ---
 
 # Aladin-01
@@ -60,6 +60,30 @@ kanban
 | In Progress | 2.0d |
 | Completed | 1.0d |
 | Remaining | 5.0d |
+
+## Sprint Timeline
+
+```mermaid
+gantt
+    title S1 — Aladin-01
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    Project setup :done, 2026-03-02, 1d
+    Initial architecture :active, 2026-03-03, 2d
+    Review architecture :2026-03-05, 2d
+    Documentation :2026-03-07, 1d
+```
+
+## Effort Distribution
+
+```mermaid
+pie title Effort by Status
+    "Todo" : 1.0
+    "In Progress" : 2.0
+    "Review" : 2.0
+    "Done" : 1.0
+```
 
 ## Links
 

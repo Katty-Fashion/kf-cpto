@@ -4,7 +4,7 @@ description: "KF Team project template"
 project: project-template
 type: internal
 edit_url: "https://github.com/katty-fashion/project-template/edit/master/kanban.md"
-generated: 2026-03-05T11:52:54.905158
+generated: 2026-03-05T12:27:09.026490
 ---
 
 # project-template
@@ -58,6 +58,28 @@ kanban
 | In Progress | 2.0d |
 | Completed | 1.0d |
 | Remaining | 3.0d |
+
+## Sprint Timeline
+
+```mermaid
+gantt
+    title S1 — project-template
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    Project setup :done, 2026-03-02, 1d
+    Initial architecture :active, 2026-03-03, 2d
+    Documentation :2026-03-05, 1d
+```
+
+## Effort Distribution
+
+```mermaid
+pie title Effort by Status
+    "Todo" : 1.0
+    "In Progress" : 2.0
+    "Done" : 1.0
+```
 
 ## Links
 
