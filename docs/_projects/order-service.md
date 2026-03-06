@@ -4,7 +4,7 @@ description: "NuoForm API"
 project: order-service
 type: internal
 edit_url: "https://github.com/katty-fashion/order-service/edit/master/kanban.md"
-generated: 2026-03-06T11:09:49.082187
+generated: 2026-03-06T19:58:18.697501
 ---
 
 # order-service
