@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-03-06T10:58:00.125588
+generated: 2026-03-06T11:09:49.063282
 ---
 
 # KF Team — Unified Kanban
@@ -52,12 +52,17 @@ kanban
     task43["NuoForm---GTM: CRM pipeline setup"]
     task44["NuoForm---GTM: Launch readiness review"]
     task45["NuoForm---GTM: MVP launch"]
-    task48["project-template: Documentation"]
+    task47["order-service: AAS integration with new Tech Process Structure"]
+    task48["order-service: Implement telemetry and observability"]
+    task49["order-service: Write documentation for backend API"]
+    task50["order-service: Generate more photos for AiRise dataset"]
+    task53["project-template: Documentation"]
   In-Progress
     task2["Aladin-01: Initial architecture"]
     task5["Edi-test: Initial architecture"]
     task9["NuoForm---GTM: Initial architecture (services, storage, auth, telemetry)"]
-    task47["project-template: Initial architecture"]
+    task46["order-service: Tech Process Blocker - Template for Techpack, Copy Version for Order Entry"]
+    task52["project-template: Initial architecture"]
   Review
   Done
     task1["Aladin-01: Project setup"]
@@ -65,7 +70,7 @@ kanban
     task7["NuoForm---GTM: Project kickoff + team alignment"]
     task8["NuoForm---GTM: Project setup (repo, CI/CD, environments)"]
     task10["NuoForm---GTM: Vision statement + problem definition"]
-    task46["project-template: Project setup"]
+    task51["project-template: Project setup"]
 ```
 
 ## Summary by Project
@@ -75,4 +80,5 @@ kanban
 | Aladin-01 | 1 | 1 | 0 | 1 | 3 |
 | Edi-test | 1 | 1 | 0 | 1 | 3 |
 | NuoForm---GTM | 35 | 1 | 0 | 3 | 39 |
+| order-service | 4 | 1 | 0 | 0 | 5 |
 | project-template | 1 | 1 | 0 | 1 | 3 |

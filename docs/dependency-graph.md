@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-03-06T10:58:00.126346
+generated: 2026-03-06T11:09:49.063968
 ---
 
 # KF Team — Dependency Graph
@@ -12,6 +12,7 @@ graph LR
     Aladin-01[Aladin 01]:::internal
     Edi-test[Edi Test]:::internal
     NuoForm---GTM[Nuoform   Gtm]:::internal
+    order-service[Order Service]:::internal
     project-template[Project Template]:::internal
 
     classDef saas fill:#4CAF50,color:#fff
