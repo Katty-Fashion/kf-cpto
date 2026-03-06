@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-03-06T11:09:49.063282
+generated: 2026-03-06T19:58:18.679010
 ---
 
 # KF Team — Unified Kanban
@@ -56,13 +56,24 @@ kanban
     task48["order-service: Implement telemetry and observability"]
     task49["order-service: Write documentation for backend API"]
     task50["order-service: Generate more photos for AiRise dataset"]
-    task53["project-template: Documentation"]
+    task53["project-template: Define integration between ALADIN and NuoForm platform"]
+    task54["project-template: Define Digital Product Passport (DPP) data model for garments"]
+    task55["project-template: Design micro-factory orchestration workflow"]
+    task56["project-template: Define circular production lifecycle (R-strategies: reuse, repair, recycle)"]
+    task57["project-template: Frontend architecture for product configuration and customization UI"]
+    task58["project-template: Backend services for product lifecycle and traceability"]
+    task59["project-template: Define demonstrator products (T-shirt, Kidswear Parka, Blazer Dress)"]
+    task60["project-template: Define API layer for design, production orchestration and DPP"]
+    task61["project-template: Define integration with external services (manufacturing, supply chain, sustainability metrics)"]
+    task62["project-template: Create architecture diagrams and technical documentation"]
+    task63["project-template: Prepare roadmap and Level-of-Effort estimation for ALADIN implementation"]
+    task64["project-template: Prepare dashboard integration for KF-CPTO monitoring"]
   In-Progress
     task2["Aladin-01: Initial architecture"]
     task5["Edi-test: Initial architecture"]
     task9["NuoForm---GTM: Initial architecture (services, storage, auth, telemetry)"]
     task46["order-service: Tech Process Blocker - Template for Techpack, Copy Version for Order Entry"]
-    task52["project-template: Initial architecture"]
+    task52["project-template: Define ALADIN system architecture (platform + microfactory orchestration)"]
   Review
   Done
     task1["Aladin-01: Project setup"]
@@ -70,7 +81,7 @@ kanban
     task7["NuoForm---GTM: Project kickoff + team alignment"]
     task8["NuoForm---GTM: Project setup (repo, CI/CD, environments)"]
     task10["NuoForm---GTM: Vision statement + problem definition"]
-    task51["project-template: Project setup"]
+    task51["project-template: Project scope definition and requirements analysis"]
 ```
 
 ## Summary by Project
@@ -81,4 +92,4 @@ kanban
 | Edi-test | 1 | 1 | 0 | 1 | 3 |
 | NuoForm---GTM | 35 | 1 | 0 | 3 | 39 |
 | order-service | 4 | 1 | 0 | 0 | 5 |
-| project-template | 1 | 1 | 0 | 1 | 3 |
+| project-template | 12 | 1 | 0 | 1 | 14 |
