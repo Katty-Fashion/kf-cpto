@@ -4,7 +4,7 @@ description: "NuoForm GoToMarket plan"
 project: NuoForm---GTM
 type: internal
 edit_url: "https://github.com/katty-fashion/NuoForm---GTM/edit/main/kanban.md"
-generated: 2026-03-05T23:56:33.404503
+generated: 2026-03-06T00:02:29.585695
 ---
 
 # NuoForm---GTM
@@ -34,48 +34,48 @@ generated: 2026-03-05T23:56:33.404503
 ```mermaid
 kanban
   Todo
-    t5[Define MVP scope + success metrics]@{ priority: 'Low', assigned: 'pm' }
-    t6[Market segmentation + ICP definition]@{ priority: 'Low', assigned: 'mkt' }
-    t7[Sustainability + compliance claims validation]@{ priority: 'Low', assigned: 'sme' }
-    t8[Product requirements baseline (PRD-lite)]@{ priority: 'Low', assigned: 'pm' }
-    t9[Define optimisation KPIs (efficiency %, waste %, cost)]@{ priority: 'Low', assigned: 'sme' }
-    t10[Data model for materials, BOM, suppliers]@{ priority: 'Low', assigned: 'be' }
-    t11[UX architecture + MVP screen flows]@{ priority: 'Low', assigned: 'fe' }
-    t12[Define layplan optimisation algorithm approach]@{ priority: 'Low', assigned: 'cpto' }
-    t13[BOM ingestion + validation workflow]@{ priority: 'Low', assigned: 'be' }
-    t14[Pattern file ingestion (DXF or equivalent)]@{ priority: 'Low', assigned: 'be' }
-    t15[Pattern geometry extraction]@{ priority: 'Low', assigned: 'be' }
-    t16[Layplan nesting engine (baseline optimisation)]@{ priority: 'Low', assigned: 'cpto' }
-    t17[Waste calculation engine (area, length, efficiency)]@{ priority: 'Low', assigned: 'be' }
-    t18[Waste cost model (direct + indirect costs)]@{ priority: 'Low', assigned: 'sme' }
-    t19[Waste analytics API]@{ priority: 'Low', assigned: 'be' }
-    t20[Waste dashboard UI]@{ priority: 'Low', assigned: 'fe' }
-    t21[Exportable waste report (PDF/HTML)]@{ priority: 'Low', assigned: 'fe' }
-    t22[Circular initiatives catalogue (recycle, return, donation)]@{ priority: 'Low', assigned: 'sme' }
-    t23[Waste reduction simulation scenarios]@{ priority: 'Low', assigned: 'be' }
-    t24[Traceability document generator]@{ priority: 'Low', assigned: 'be' }
-    t25[Role-based access (designer/factory/customer/admin)]@{ priority: 'Low', assigned: 'cpto' }
-    t26[Activity audit log]@{ priority: 'Low', assigned: 'be' }
-    t27[Internal QA testing]@{ priority: 'Low', assigned: 'proj' }
-    t28[Performance tuning]@{ priority: 'Low', assigned: 'cpto' }
-    t29[Pilot partner shortlist]@{ priority: 'Low', assigned: 'mkt' }
-    t30[Pilot onboarding kit]@{ priority: 'Low', assigned: 'pm' }
-    t31[Pilot garment baseline waste analysis]@{ priority: 'Low', assigned: 'sme' }
-    t32[Pilot optimisation run + results]@{ priority: 'Low', assigned: 'cpto' }
-    t33[Case study generation]@{ priority: 'Low', assigned: 'mkt' }
-    t34[Pricing model definition]@{ priority: 'Low', assigned: 'pm' }
-    t35[Landing page + positioning narrative]@{ priority: 'Low', assigned: 'mkt' }
-    t36[Sales demo script]@{ priority: 'Low', assigned: 'pm' }
-    t37[CRM pipeline setup]@{ priority: 'Low', assigned: 'mkt' }
-    t38[Launch readiness review]@{ priority: 'Low', assigned: 'proj' }
-    t39[MVP launch]@{ priority: 'Low', assigned: 'proj' }
+    t5["Define MVP scope + success metrics"]
+    t6["Market segmentation + ICP definition"]
+    t7["Sustainability + compliance claims validation"]
+    t8["Product requirements baseline (PRD-lite)"]
+    t9["Define optimisation KPIs (efficiency %, waste %, cost)"]
+    t10["Data model for materials, BOM, suppliers"]
+    t11["UX architecture + MVP screen flows"]
+    t12["Define layplan optimisation algorithm approach"]
+    t13["BOM ingestion + validation workflow"]
+    t14["Pattern file ingestion (DXF or equivalent)"]
+    t15["Pattern geometry extraction"]
+    t16["Layplan nesting engine (baseline optimisation)"]
+    t17["Waste calculation engine (area, length, efficiency)"]
+    t18["Waste cost model (direct + indirect costs)"]
+    t19["Waste analytics API"]
+    t20["Waste dashboard UI"]
+    t21["Exportable waste report (PDF/HTML)"]
+    t22["Circular initiatives catalogue (recycle, return, donation)"]
+    t23["Waste reduction simulation scenarios"]
+    t24["Traceability document generator"]
+    t25["Role-based access (designer/factory/customer/admin)"]
+    t26["Activity audit log"]
+    t27["Internal QA testing"]
+    t28["Performance tuning"]
+    t29["Pilot partner shortlist"]
+    t30["Pilot onboarding kit"]
+    t31["Pilot garment baseline waste analysis"]
+    t32["Pilot optimisation run + results"]
+    t33["Case study generation"]
+    t34["Pricing model definition"]
+    t35["Landing page + positioning narrative"]
+    t36["Sales demo script"]
+    t37["CRM pipeline setup"]
+    t38["Launch readiness review"]
+    t39["MVP launch"]
   In-Progress
-    t3[Initial architecture (services, storage, auth, telemetry)]@{ priority: 'Very High', assigned: 'cpto' }
+    t3["Initial architecture (services, storage, auth, telemetry)"]
   Review
   Done
-    t1[Project kickoff + team alignment]@{ assigned: 'proj' }
-    t2[Project setup (repo, CI/CD, environments)]@{ assigned: 'cpto' }
-    t4[Vision statement + problem definition]@{ assigned: 'pm' }
+    t1["Project kickoff + team alignment"]
+    t2["Project setup (repo, CI/CD, environments)"]
+    t4["Vision statement + problem definition"]
 ```
 
 ## Task Summary

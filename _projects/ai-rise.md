@@ -4,7 +4,7 @@ description: "Internal"
 project: ai-rise
 type: internal
 edit_url: "https://github.com/katty-fashion/ai-rise/edit/master/kanban.md"
-generated: 2026-03-05T12:56:37.808740
+generated: 2026-03-06T00:01:58.799215
 ---
 
 # ai-rise
@@ -34,13 +34,13 @@ generated: 2026-03-05T12:56:37.808740
 ```mermaid
 kanban
   Todo
-    t2[Draft technical specification]@{ priority: 'Low', assigned: 'maria' }
+    t2["Draft technical specification"]
   In-Progress
-    t1[Research ML pipeline architecture]@{ priority: 'Very High', assigned: 'alex' }
+    t1["Research ML pipeline architecture"]
   Review
-    t4[Review EU compliance requirements]@{ priority: 'High', assigned: 'lead' }
+    t4["Review EU compliance requirements"]
   Done
-    t3[Setup development environment]@{ assigned: 'alex' }
+    t3["Setup development environment"]
 ```
 
 ## Task Summary
