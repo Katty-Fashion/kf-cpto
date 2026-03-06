@@ -4,7 +4,7 @@ description: "Internal"
 project: airegio
 type: internal
 edit_url: "https://github.com/katty-fashion/airegio/edit/master/kanban.md"
-generated: 2026-03-05T12:56:37.815606
+generated: 2026-03-06T00:01:58.804119
 ---
 
 # airegio
@@ -34,11 +34,11 @@ generated: 2026-03-05T12:56:37.815606
 ```mermaid
 kanban
   Todo
-    t2[Partner integration docs]@{ priority: 'Low', assigned: 'lead' }
+    t2["Partner integration docs"]
   In-Progress
-    t1[Regional data analysis]@{ priority: 'Very High', assigned: 'data' }
+    t1["Regional data analysis"]
   Review
-    t3[Quarterly report draft]@{ priority: 'High', assigned: 'pm' }
+    t3["Quarterly report draft"]
   Done
 ```
 

@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-03-05T23:56:33.388307
+generated: 2026-03-06T00:01:58.798729
 ---
 
 # KF Team — Dependency Graph
@@ -9,9 +9,10 @@ generated: 2026-03-05T23:56:33.388307
 
 ```mermaid
 graph LR
-    Aladin-01[Aladin 01]:::internal
-    NuoForm---GTM[Nuoform   Gtm]:::internal
-    project-template[Project Template]:::internal
+    ai-rise[Ai Rise]:::internal
+    airegio[Airegio]:::internal
+    nuoform[Nuoform]:::internal
+    waist-mgmt[Waist Mgmt]:::internal
 
     classDef saas fill:#4CAF50,color:#fff
     classDef eu fill:#2196F3,color:#fff

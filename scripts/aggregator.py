@@ -18,7 +18,6 @@ from utils import (
     PROJECT_BRANCHES,
     TASK_STATUSES,
     STATUS_TO_MERMAID,
-    STATUS_PRIORITY,
     STATUS_COLORS,
     TYPE_DISPLAY,
     TYPE_MERMAID_CLASS,
@@ -39,17 +38,6 @@ def _status_legend() -> str:
         pills.append(f'<span class="status-pill {css_class}">{status}</span>')
     return '<div class="status-legend">' + "\n".join(pills) + "</div>"
 
-
-def _task_metadata(task: dict) -> str:
-    """Build MermaidJS @{} metadata string for a kanban task."""
-    parts = []
-    priority = STATUS_PRIORITY.get(task.get("status"))
-    if priority:
-        parts.append(f"priority: '{priority}'")
-    assignee = task.get("assignee", "").lstrip("@")
-    if assignee:
-        parts.append(f"assigned: '{assignee}'")
-    return f"@{{ {', '.join(parts)} }}" if parts else ""
 
 
 def generate_unified_kanban(data: dict) -> str:
@@ -92,8 +80,7 @@ def generate_unified_kanban(data: dict) -> str:
         lines.append(f"  {status}")
         for task in tasks:
             task_label = f"{task['project']}: {task['task']}"
-            meta = _task_metadata(task)
-            lines.append(f"    {task['id']}[{task_label}]{meta}")
+            lines.append(f'    {task["id"]}["{task_label}"]')
 
     lines.append("```")
     lines.append("")
@@ -310,8 +297,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
         for status, status_tasks in statuses.items():
             lines.append(f"  {status}")
             for task in status_tasks:
-                meta = _task_metadata(task)
-                lines.append(f"    {task['id']}[{task['task']}]{meta}")
+                lines.append(f'    {task["id"]}["{task["task"]}"]')
 
         lines.append("```")
         lines.append("")

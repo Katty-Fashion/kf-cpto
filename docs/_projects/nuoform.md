@@ -4,7 +4,7 @@ description: "Internal"
 project: nuoform
 type: internal
 edit_url: "https://github.com/katty-fashion/nuoform/edit/master/kanban.md"
-generated: 2026-03-05T12:56:37.816006
+generated: 2026-03-06T00:01:58.804464
 ---
 
 # nuoform
@@ -34,14 +34,14 @@ generated: 2026-03-05T12:56:37.816006
 ```mermaid
 kanban
   Todo
-    t2[ArgoCD pipeline config]@{ priority: 'Low', assigned: 'devops' }
+    t2["ArgoCD pipeline config"]
   In-Progress
-    t1[Implement billing API]@{ priority: 'Very High', assigned: 'backend' }
-    t3[OpenTelemetry integration]@{ priority: 'Very High', assigned: 'devops' }
+    t1["Implement billing API"]
+    t3["OpenTelemetry integration"]
   Review
-    t4[User dashboard redesign]@{ priority: 'High', assigned: 'frontend' }
+    t4["User dashboard redesign"]
   Done
-    t5[Database migration script]@{ assigned: 'backend' }
+    t5["Database migration script"]
 ```
 
 ## Task Summary

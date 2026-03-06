@@ -4,7 +4,7 @@ description: "Internal"
 project: waist-mgmt
 type: internal
 edit_url: "https://github.com/katty-fashion/waist-mgmt/edit/master/kanban.md"
-generated: 2026-03-05T12:56:37.816505
+generated: 2026-03-06T00:01:58.804896
 ---
 
 # waist-mgmt
@@ -34,12 +34,12 @@ generated: 2026-03-05T12:56:37.816505
 ```mermaid
 kanban
   Todo
-    t3[User onboarding flow]@{ priority: 'Low', assigned: 'ux' }
+    t3["User onboarding flow"]
   In-Progress
-    t1[iOS app meal tracking]@{ priority: 'Very High', assigned: 'mobile' }
+    t1["iOS app meal tracking"]
   Review
   Done
-    t2[Backend API optimization]@{ assigned: 'backend' }
+    t2["Backend API optimization"]
 ```
 
 ## Task Summary

@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-03-05T23:56:33.387983
+generated: 2026-03-06T00:01:58.798210
 ---
 
 # KF Team — Level of Effort Report
@@ -11,22 +11,23 @@ generated: 2026-03-05T23:56:33.387983
 
 | Project | Sprint | Total Effort | Completed | Remaining |
 | :--- | :--- | :---: | :---: | :---: |
-| Aladin-01 | S1 | 4.0d | 1.0d | 3.0d |
-| NuoForm---GTM | S1 | 74.0d | 2.5d | 71.5d |
-| project-template | S1 | 4.0d | 1.0d | 3.0d |
-| **Total** | | **82.0d** | **4.5d** | **77.5d** |
+| ai-rise | S3 | 8.0d | 1.0d | 7.0d |
+| airegio | S3 | 9.0d | 0d | 9.0d |
+| nuoform | S3 | 15.0d | 1.0d | 14.0d |
+| waist-mgmt | S3 | 7.0d | 2.0d | 5.0d |
+| **Total** | | **39.0d** | **4.0d** | **35.0d** |
 
 ## Effort by Assignee
 
 | Assignee | Total Effort | In Progress | Completed |
 | :--- | :---: | :---: | :---: |
-| @be | 22.0d | 0d | 0d |
-| @cpto | 15.0d | 2.0d | 1.0d |
-| @developer | 2.0d | 0d | 0d |
-| @fe | 7.0d | 0d | 0d |
-| @lead | 2.0d | 0d | 2.0d |
-| @mkt | 9.0d | 0d | 0d |
-| @pm | 7.0d | 0d | 1.0d |
-| @proj | 5.0d | 0d | 0.5d |
-| @sme | 9.0d | 0d | 0d |
-| @tech-lead | 4.0d | 4.0d | 0d |
+| @alex | 4.0d | 3.0d | 1.0d |
+| @backend | 8.0d | 5.0d | 3.0d |
+| @data | 4.0d | 4.0d | 0d |
+| @devops | 5.0d | 3.0d | 0d |
+| @frontend | 4.0d | 0d | 0d |
+| @lead | 4.0d | 0d | 0d |
+| @maria | 2.0d | 0d | 0d |
+| @mobile | 3.0d | 3.0d | 0d |
+| @pm | 3.0d | 0d | 0d |
+| @ux | 2.0d | 0d | 0d |
