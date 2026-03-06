@@ -4,7 +4,7 @@ description: "KF Team project template"
 project: project-template
 type: internal
 edit_url: "https://github.com/katty-fashion/project-template/edit/main/kanban.md"
-generated: 2026-03-05T23:56:33.405272
+generated: 2026-03-06T00:02:29.586369
 ---
 
 # project-template
@@ -34,12 +34,12 @@ generated: 2026-03-05T23:56:33.405272
 ```mermaid
 kanban
   Todo
-    t3[Documentation]@{ priority: 'Low', assigned: 'developer' }
+    t3["Documentation"]
   In-Progress
-    t2[Initial architecture]@{ priority: 'Very High', assigned: 'tech-lead' }
+    t2["Initial architecture"]
   Review
   Done
-    t1[Project setup]@{ assigned: 'lead' }
+    t1["Project setup"]
 ```
 
 ## Task Summary

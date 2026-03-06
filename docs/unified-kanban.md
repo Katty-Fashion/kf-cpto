@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-03-06T00:01:58.797654
+generated: 2026-03-06T00:02:29.570129
 ---
 
 # KF Team — Unified Kanban
@@ -15,31 +15,60 @@ generated: 2026-03-06T00:01:58.797654
 ```mermaid
 kanban
   Todo
-    task2["ai-rise: Draft technical specification"]
-    task6["airegio: Partner integration docs"]
-    task9["nuoform: ArgoCD pipeline config"]
-    task15["waist-mgmt: User onboarding flow"]
+    task3["Aladin-01: Documentation"]
+    task8["NuoForm---GTM: Define MVP scope + success metrics"]
+    task9["NuoForm---GTM: Market segmentation + ICP definition"]
+    task10["NuoForm---GTM: Sustainability + compliance claims validation"]
+    task11["NuoForm---GTM: Product requirements baseline (PRD-lite)"]
+    task12["NuoForm---GTM: Define optimisation KPIs (efficiency %, waste %, cost)"]
+    task13["NuoForm---GTM: Data model for materials, BOM, suppliers"]
+    task14["NuoForm---GTM: UX architecture + MVP screen flows"]
+    task15["NuoForm---GTM: Define layplan optimisation algorithm approach"]
+    task16["NuoForm---GTM: BOM ingestion + validation workflow"]
+    task17["NuoForm---GTM: Pattern file ingestion (DXF or equivalent)"]
+    task18["NuoForm---GTM: Pattern geometry extraction"]
+    task19["NuoForm---GTM: Layplan nesting engine (baseline optimisation)"]
+    task20["NuoForm---GTM: Waste calculation engine (area, length, efficiency)"]
+    task21["NuoForm---GTM: Waste cost model (direct + indirect costs)"]
+    task22["NuoForm---GTM: Waste analytics API"]
+    task23["NuoForm---GTM: Waste dashboard UI"]
+    task24["NuoForm---GTM: Exportable waste report (PDF/HTML)"]
+    task25["NuoForm---GTM: Circular initiatives catalogue (recycle, return, donation)"]
+    task26["NuoForm---GTM: Waste reduction simulation scenarios"]
+    task27["NuoForm---GTM: Traceability document generator"]
+    task28["NuoForm---GTM: Role-based access (designer/factory/customer/admin)"]
+    task29["NuoForm---GTM: Activity audit log"]
+    task30["NuoForm---GTM: Internal QA testing"]
+    task31["NuoForm---GTM: Performance tuning"]
+    task32["NuoForm---GTM: Pilot partner shortlist"]
+    task33["NuoForm---GTM: Pilot onboarding kit"]
+    task34["NuoForm---GTM: Pilot garment baseline waste analysis"]
+    task35["NuoForm---GTM: Pilot optimisation run + results"]
+    task36["NuoForm---GTM: Case study generation"]
+    task37["NuoForm---GTM: Pricing model definition"]
+    task38["NuoForm---GTM: Landing page + positioning narrative"]
+    task39["NuoForm---GTM: Sales demo script"]
+    task40["NuoForm---GTM: CRM pipeline setup"]
+    task41["NuoForm---GTM: Launch readiness review"]
+    task42["NuoForm---GTM: MVP launch"]
+    task45["project-template: Documentation"]
   In-Progress
-    task1["ai-rise: Research ML pipeline architecture"]
-    task5["airegio: Regional data analysis"]
-    task8["nuoform: Implement billing API"]
-    task10["nuoform: OpenTelemetry integration"]
-    task13["waist-mgmt: iOS app meal tracking"]
+    task2["Aladin-01: Initial architecture"]
+    task6["NuoForm---GTM: Initial architecture (services, storage, auth, telemetry)"]
+    task44["project-template: Initial architecture"]
   Review
-    task4["ai-rise: Review EU compliance requirements"]
-    task7["airegio: Quarterly report draft"]
-    task11["nuoform: User dashboard redesign"]
   Done
-    task3["ai-rise: Setup development environment"]
-    task12["nuoform: Database migration script"]
-    task14["waist-mgmt: Backend API optimization"]
+    task1["Aladin-01: Project setup"]
+    task4["NuoForm---GTM: Project kickoff + team alignment"]
+    task5["NuoForm---GTM: Project setup (repo, CI/CD, environments)"]
+    task7["NuoForm---GTM: Vision statement + problem definition"]
+    task43["project-template: Project setup"]
 ```
 
 ## Summary by Project
 
 | Project | Todo | In Progress | Review | Done | Total |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| ai-rise | 1 | 1 | 1 | 1 | 4 |
-| airegio | 1 | 1 | 1 | 0 | 3 |
-| nuoform | 1 | 2 | 1 | 1 | 5 |
-| waist-mgmt | 1 | 1 | 0 | 1 | 3 |
+| Aladin-01 | 1 | 1 | 0 | 1 | 3 |
+| NuoForm---GTM | 35 | 1 | 0 | 3 | 39 |
+| project-template | 1 | 1 | 0 | 1 | 3 |
