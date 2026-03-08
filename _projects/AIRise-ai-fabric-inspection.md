@@ -1,15 +1,15 @@
 ---
 title: AIRise-ai-fabric-inspection
-description: "ALADIN – Advanced LocAl and Digital Innovation Network for circular garments. Platform for local-for-local textile production using digital design, micro-factories and circular value chains."
+description: "AIFR-AI – AI-powered fabric defect detection system for Katty Fashion. CNN/YOLO-based real-time quality inspection on Jetson edge devices, integrated with MinIO/NiFi/Spark infrastructure. EU Horizon Europe – AIRISE Open Call 1."
 project: AIRise-ai-fabric-inspection
 type: eu-project
 edit_url: "https://github.com/katty-fashion/AIRise-ai-fabric-inspection/edit/main/kanban.md"
-generated: 2026-03-08T14:25:45.919390
+generated: 2026-03-08T14:55:04.067577
 ---
 
 # AIRise-ai-fabric-inspection
 
-> ALADIN – Advanced LocAl and Digital Innovation Network for circular garments. Platform for local-for-local textile production using digital design, micro-factories and circular value chains.
+> AIFR-AI – AI-powered fabric defect detection system for Katty Fashion. CNN/YOLO-based real-time quality inspection on Jetson edge devices, integrated with MinIO/NiFi/Spark infrastructure. EU Horizon Europe – AIRISE Open Call 1.
 
 ## Status
 
@@ -20,9 +20,9 @@ generated: 2026-03-08T14:25:45.919390
 | PO | @ps.tech |
 | Lead | @el.tech |
 | Current Sprint | S1 |
-| Sprint Period | 2026-03-03 to 2026-03-14 |
-| Tags | eu-project, circular-textiles, digital-platform, microfactory, dpp, manufacturing |
-| Dependencies | [nuoform]({{ '/projects/nuoform/' | relative_url }}) |
+| Sprint Period | 2026-03-09 to 2026-03-20 |
+| Tags | eu-project, ai, computer-vision, yolo, cnn, textile, defect-detection, jetson, edge-ai, minio, fastapi, nextjs |
+| Dependencies | None |
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/AIRise-ai-fabric-inspection/edit/main/kanban.md)
 
@@ -34,52 +34,62 @@ generated: 2026-03-08T14:25:45.919390
 ```mermaid
 kanban
   Todo
-    t3["Define integration between ALADIN and NuoForm platform"]
-    t4["Define Digital Product Passport (DPP) data model for garments"]
-    t5["Design micro-factory orchestration workflow"]
-    t6["Define circular production lifecycle (R-strategies: reuse, repair, recycle)"]
-    t7["Frontend architecture for product configuration and customization UI"]
-    t8["Backend services for product lifecycle and traceability"]
-    t9["Define demonstrator products (T-shirt, Kidswear Parka, Blazer Dress)"]
-    t10["Define API layer for design, production orchestration and DPP"]
-    t11["Define integration with external services (manufacturing, supply chain, sustainability metrics)"]
-    t12["Create architecture diagrams and technical documentation"]
-    t13["Prepare roadmap and Level-of-Effort estimation for ALADIN implementation"]
-    t14["Prepare dashboard integration for KF-CPTO monitoring"]
+    t5["Design data ingestion pipeline: Apache NiFi + MinIO on-premise"]
+    t6["Design data preprocessing pipeline: Apache Spark + augmentation strategy"]
+    t7["Define CNN/YOLO model architecture for fabric defect detection"]
+    t8["Define defect taxonomy and annotation schema (Damage, Hole, Knot, Line, Oil Stain, Stain, Wrinkle)"]
+    t9["Backend: FastAPI playback API (Plan B) — endpoints for defect results + annotations"]
+    t10["Backend: PostgreSQL/Supabase schema for defect events and annotations"]
+    t11["Frontend: PlaybackAnnotator UI — defect review and validation interface"]
+    t12["Frontend: TextileViewer component — live WebRTC defect stream view"]
+    t13["Jetson setup: YOLO multiprocess detector (4x parallel, 100+ FPS target)"]
+    t14["Define S3 storage strategy: MinIO on-premise (active) + Cloudflare R2 (archive)"]
+    t15["Define ELK stack monitoring: model prediction logs + feedback loop"]
+    t16["Create architecture diagrams and technical documentation"]
+    t17["Prepare KPI tracking dashboard (F1-score, inference speed, waste reduction)"]
+    t18["Define model retraining pipeline (target: retraining within 48h of new data)"]
+    t19["Prepare dissemination content: LinkedIn technical deep-dive post (mid-implementation)"]
   In-Progress
-    t2["Define ALADIN system architecture (platform + microfactory orchestration)"]
+    t2["Define system architecture: edge (Jetson) + cloud (MinIO/NiFi/Spark)"]
+    t4["Define streaming architecture: Plan A (WebRTC) vs Plan B (Async) vs Plan C (RTSP)"]
   Review
   Done
-    t1["Project scope definition and requirements analysis"]
+    t1["Project scope definition & AIRISE initialisation report review"]
+    t3["Setup repository structure and KF-CPTO kanban integration"]
 ```
 
 ## Task Summary
 
 | Task | Assignee | Effort | Start | End | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| Project scope definition and requirements analysis | @ps.tech | 2d | 2026-03-03 | 2026-03-04 | Done |
-| Define ALADIN system architecture (platform + microfactory orchestration) | @el.tech | 3d | 2026-03-04 | 2026-03-06 | In Progress |
-| Define integration between ALADIN and NuoForm platform | @razvan.boita | 2d | 2026-03-07 | 2026-03-08 | Todo |
-| Define Digital Product Passport (DPP) data model for garments | @razvan.boita | 2d | 2026-03-09 | 2026-03-10 | Todo |
-| Design micro-factory orchestration workflow | @el.tech | 2d | 2026-03-10 | 2026-03-11 | Todo |
-| Define circular production lifecycle (R-strategies: reuse, repair, recycle) | @ps.tech | 2d | 2026-03-11 | 2026-03-12 | Todo |
-| Frontend architecture for product configuration and customization UI | @alexandru.bejenari | 2d | 2026-03-12 | 2026-03-13 | Todo |
-| Backend services for product lifecycle and traceability | @razvan.boita | 3d | 2026-03-13 | 2026-03-15 | Todo |
-| Define demonstrator products (T-shirt, Kidswear Parka, Blazer Dress) | @ps.tech | 1d | 2026-03-15 | 2026-03-15 | Todo |
-| Define API layer for design, production orchestration and DPP | @razvan.boita | 2d | 2026-03-16 | 2026-03-17 | Todo |
-| Define integration with external services (manufacturing, supply chain, sustainability metrics) | @el.tech | 2d | 2026-03-18 | 2026-03-19 | Todo |
+| Project scope definition & AIRISE initialisation report review | @ps.tech | 1d | 2026-03-09 | 2026-03-09 | Done |
+| Define system architecture: edge (Jetson) + cloud (MinIO/NiFi/Spark) | @el.tech | 3d | 2026-03-09 | 2026-03-11 | In Progress |
+| Setup repository structure and KF-CPTO kanban integration | @alexandru.bejenari | 1d | 2026-03-09 | 2026-03-09 | Done |
+| Define streaming architecture: Plan A (WebRTC) vs Plan B (Async) vs Plan C (RTSP) | @el.tech | 1d | 2026-03-10 | 2026-03-10 | In Progress |
+| Design data ingestion pipeline: Apache NiFi + MinIO on-premise | @razvan.boita | 2d | 2026-03-11 | 2026-03-12 | Todo |
+| Design data preprocessing pipeline: Apache Spark + augmentation strategy | @razvan.boita | 2d | 2026-03-13 | 2026-03-14 | Todo |
+| Define CNN/YOLO model architecture for fabric defect detection | @el.tech | 3d | 2026-03-13 | 2026-03-17 | Todo |
+| Define defect taxonomy and annotation schema (Damage, Hole, Knot, Line, Oil Stain, Stain, Wrinkle) | @ps.tech | 1d | 2026-03-13 | 2026-03-13 | Todo |
+| Backend: FastAPI playback API (Plan B) — endpoints for defect results + annotations | @razvan.boita | 3d | 2026-03-16 | 2026-03-18 | Todo |
+| Backend: PostgreSQL/Supabase schema for defect events and annotations | @razvan.boita | 2d | 2026-03-19 | 2026-03-20 | Todo |
+| Frontend: PlaybackAnnotator UI — defect review and validation interface | @alexandru.bejenari | 3d | 2026-03-16 | 2026-03-18 | Todo |
+| Frontend: TextileViewer component — live WebRTC defect stream view | @alexandru.bejenari | 2d | 2026-03-19 | 2026-03-20 | Todo |
+| Jetson setup: YOLO multiprocess detector (4x parallel, 100+ FPS target) | @el.tech | 2d | 2026-03-19 | 2026-03-20 | Todo |
+| Define S3 storage strategy: MinIO on-premise (active) + Cloudflare R2 (archive) | @razvan.boita | 1d | 2026-03-20 | 2026-03-20 | Todo |
+| Define ELK stack monitoring: model prediction logs + feedback loop | @el.tech | 1d | 2026-03-20 | 2026-03-20 | Todo |
 | Create architecture diagrams and technical documentation | @alexandru.bejenari | 1d | 2026-03-20 | 2026-03-20 | Todo |
-| Prepare roadmap and Level-of-Effort estimation for ALADIN implementation | @ps.tech | 1d | 2026-03-21 | 2026-03-21 | Todo |
-| Prepare dashboard integration for KF-CPTO monitoring | @alexandru.bejenari | 1d | 2026-03-22 | 2026-03-22 | Todo |
+| Prepare KPI tracking dashboard (F1-score, inference speed, waste reduction) | @ps.tech | 1d | 2026-03-21 | 2026-03-21 | Todo |
+| Define model retraining pipeline (target: retraining within 48h of new data) | @el.tech | 2d | 2026-03-23 | 2026-03-24 | Todo |
+| Prepare dissemination content: LinkedIn technical deep-dive post (mid-implementation) | @ps.tech | 1d | 2026-03-25 | 2026-03-25 | Todo |
 
 ## LOE Summary
 
 | Metric | Value |
 | :--- | :--- |
-| Total Effort | 26.0d |
-| In Progress | 3.0d |
+| Total Effort | 33.0d |
+| In Progress | 4.0d |
 | Completed | 2.0d |
-| Remaining | 24.0d |
+| Remaining | 31.0d |
 
 ## Sprint Timeline
 
@@ -89,28 +99,33 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    Project scope definition and requirements analysis :done, 2026-03-03, 2026-03-04
-    Define ALADIN system architecture (platform + microfactory orchestration) :active, 2026-03-04, 2026-03-06
-    Define integration between ALADIN and NuoForm platform :2026-03-07, 2026-03-08
-    Define Digital Product Passport (DPP) data model for garments :2026-03-09, 2026-03-10
-    Design micro-factory orchestration workflow :2026-03-10, 2026-03-11
-    Define circular production lifecycle (R-strategies  reuse, repair, recycle) :2026-03-11, 2026-03-12
-    Frontend architecture for product configuration and customization UI :2026-03-12, 2026-03-13
-    Backend services for product lifecycle and traceability :2026-03-13, 2026-03-15
-    Define demonstrator products (T-shirt, Kidswear Parka, Blazer Dress) :2026-03-15, 2026-03-15
-    Define API layer for design, production orchestration and DPP :2026-03-16, 2026-03-17
-    Define integration with external services (manufacturing, supply chain, sustainability metrics) :2026-03-18, 2026-03-19
+    Project scope definition & AIRISE initialisation report review :done, 2026-03-09, 2026-03-09
+    Setup repository structure and KF-CPTO kanban integration :done, 2026-03-09, 2026-03-09
+    Define system architecture  edge (Jetson) + cloud (MinIO/NiFi/Spark) :active, 2026-03-09, 2026-03-11
+    Define streaming architecture  Plan A (WebRTC) vs Plan B (Async) vs Plan C (RTSP) :active, 2026-03-10, 2026-03-10
+    Design data ingestion pipeline  Apache NiFi + MinIO on-premise :2026-03-11, 2026-03-12
+    Design data preprocessing pipeline  Apache Spark + augmentation strategy :2026-03-13, 2026-03-14
+    Define CNN/YOLO model architecture for fabric defect detection :2026-03-13, 2026-03-17
+    Define defect taxonomy and annotation schema (Damage, Hole, Knot, Line, Oil Stain, Stain, Wrinkle) :2026-03-13, 2026-03-13
+    Backend  FastAPI playback API (Plan B) — endpoints for defect results + annotations :2026-03-16, 2026-03-18
+    Backend  PostgreSQL/Supabase schema for defect events and annotations :2026-03-19, 2026-03-20
+    Frontend  PlaybackAnnotator UI — defect review and validation interface :2026-03-16, 2026-03-18
+    Frontend  TextileViewer component — live WebRTC defect stream view :2026-03-19, 2026-03-20
+    Jetson setup  YOLO multiprocess detector (4x parallel, 100+ FPS target) :2026-03-19, 2026-03-20
+    Define S3 storage strategy  MinIO on-premise (active) + Cloudflare R2 (archive) :2026-03-20, 2026-03-20
+    Define ELK stack monitoring  model prediction logs + feedback loop :2026-03-20, 2026-03-20
     Create architecture diagrams and technical documentation :2026-03-20, 2026-03-20
-    Prepare roadmap and Level-of-Effort estimation for ALADIN implementation :2026-03-21, 2026-03-21
-    Prepare dashboard integration for KF-CPTO monitoring :2026-03-22, 2026-03-22
+    Prepare KPI tracking dashboard (F1-score, inference speed, waste reduction) :2026-03-21, 2026-03-21
+    Define model retraining pipeline (target  retraining within 48h of new data) :2026-03-23, 2026-03-24
+    Prepare dissemination content  LinkedIn technical deep-dive post (mid-implementation) :2026-03-25, 2026-03-25
 ```
 
 ## Effort Distribution
 
 ```mermaid
 pie title Effort by Status
-    "Todo" : 21.0
-    "In Progress" : 3.0
+    "Todo" : 27.0
+    "In Progress" : 4.0
     "Done" : 2.0
 ```
 
