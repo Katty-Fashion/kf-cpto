@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-03-08T14:01:33.803293
+generated: 2026-03-08T14:25:45.919228
 ---
 
 # KF Team — Dependency Graph
@@ -9,6 +9,7 @@ generated: 2026-03-08T14:01:33.803293
 
 ```mermaid
 graph LR
+    AIRise-ai-fabric-inspection[Airise Ai Fabric Inspection]:::eu
     Aladin-01[Aladin 01]:::internal
     Edi-test[Edi Test]:::internal
     NuoForm---GTM[Nuoform   Gtm]:::internal
