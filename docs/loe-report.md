@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-03-08T14:25:45.918718
+generated: 2026-03-08T14:55:04.066888
 ---
 
 # KF Team — Level of Effort Report
@@ -11,33 +11,33 @@ generated: 2026-03-08T14:25:45.918718
 
 | Project | Sprint | Total Effort | Completed | Remaining |
 | :--- | :--- | :---: | :---: | :---: |
-| AIRise-ai-fabric-inspection | S1 | 26.0d | 2.0d | 24.0d |
+| AIRise-ai-fabric-inspection | S1 | 33.0d | 2.0d | 31.0d |
 | Aladin-01 | S1 | 19.0d | 1.0d | 18.0d |
 | Edi-test | S1 | 4.0d | 1.0d | 3.0d |
 | NuoForm---GTM | S1 | 74.0d | 2.5d | 71.5d |
 | R3GROUP | S1 | 16.0d | 1.0d | 15.0d |
 | order-service | S1 | 13.5d | 0d | 13.5d |
 | project-template | S1 | 26.0d | 2.0d | 24.0d |
-| **Total** | | **178.5d** | **9.5d** | **169.0d** |
+| **Total** | | **185.5d** | **9.5d** | **176.0d** |
 
 ## Effort by Assignee
 
 | Assignee | Total Effort | In Progress | Completed |
 | :--- | :---: | :---: | :---: |
-| @alexandru.bejenari | 8.0d | 0d | 0d |
+| @alexandru.bejenari | 11.0d | 0d | 1.0d |
 | @backend | 20.5d | 3.0d | 0d |
 | @be | 22.0d | 0d | 0d |
 | @cpto | 15.0d | 2.0d | 1.0d |
 | @developer | 1.0d | 0d | 0d |
-| @el.tech | 14.0d | 6.0d | 0d |
+| @el.tech | 19.0d | 7.0d | 0d |
 | @fe | 7.0d | 0d | 0d |
 | @frontend | 4.5d | 0d | 0d |
 | @lead | 1.0d | 0d | 1.0d |
 | @mkt | 9.0d | 0d | 0d |
 | @pm | 7.0d | 0d | 1.0d |
 | @proj | 5.0d | 0d | 0.5d |
-| @ps.tech | 12.0d | 0d | 4.0d |
-| @razvan.boita | 18.0d | 0d | 0d |
+| @ps.tech | 10.0d | 0d | 3.0d |
+| @razvan.boita | 19.0d | 0d | 0d |
 | @sme | 9.0d | 0d | 0d |
 | @tech-lead | 6.5d | 5.0d | 1.0d |
 | alexandru.bejenari@katty-fashion.ro | 5.0d | 0d | 0d |
