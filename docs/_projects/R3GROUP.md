@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot – digital tools for co-creation, dig
 project: R3GROUP
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3GROUP/edit/main/kanban.md"
-generated: 2026-03-09T05:21:10.473521
+generated: 2026-03-09T07:46:05.822382
 ---
 
 # R3GROUP
@@ -34,42 +34,52 @@ generated: 2026-03-09T05:21:10.473521
 ```mermaid
 kanban
   Todo
-    t4["Define technician task model and scheduling logic"]
-    t5["Implement backend service for technician capacity planner"]
-    t6["Implement planner UI dashboard (calendar + workload view)"]
-    t7["Integrate planner with order and task data model"]
-    t8["Connect UI with backend API"]
-    t9["Sprint review and technical validation"]
+    t3["2d"]
   In-Progress
-    t2["Define system architecture (planner + digital twins)"]
-    t3["Setup project documentation (R3GROUP context)"]
+    t1["2d"]
+    t2["3d"]
   Review
   Done
-    t1["Repository setup and Kanban initialization"]
 ```
 
 ## Task Summary
 
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Repository setup and Kanban initialization | @tech-lead | 1d | 2026-03-02 | 2026-03-02 | Done |
-| Define system architecture (planner + digital twins) | @tech-lead | 2d | 2026-03-03 | 2026-03-04 | In Progress |
-| Setup project documentation (R3GROUP context) | @tech-lead | 1d | 2026-03-04 | 2026-03-04 | In Progress |
-| Define technician task model and scheduling logic | @backend | 2d | 2026-03-05 | 2026-03-06 | Todo |
-| Implement backend service for technician capacity planner | @backend | 3d | 2026-03-06 | 2026-03-10 | Todo |
-| Implement planner UI dashboard (calendar + workload view) | @frontend | 3d | 2026-03-06 | 2026-03-10 | Todo |
-| Integrate planner with order and task data model | @backend | 2d | 2026-03-10 | 2026-03-11 | Todo |
-| Connect UI with backend API | @frontend | 1.5d | 2026-03-11 | 2026-03-12 | Todo |
-| Sprint review and technical validation | @tech-lead | 0.5d | 2026-03-13 | 2026-03-13 | Todo |
+| Task | Assignee | Effort | Status |
+| :--- | :--- | :--- | :--- |
+| Pilon | Componentă | Status M36 | | :--- |
+| WP1 — Infrastructură Digitală | Structură Product Digital Twin | ✅ Finalizat & integrat | | T2.1 — Co-creare Nuoform |
+| ✅ Implementat & testat (2 clienți pilot) | | T3.2 — Digital Twins | Product DT | ✅ Finalizat |
+| T3.2 — Digital Twins | Process DT (Tecnomatix) | ✅ Implementat & validat cu date istorice | | T2.4 — Capacity Planner |
+| ✅ 100% finalizat | | T2.4 — Capacity Planner | KF Frontend UI | 🔄 Aproape finalizat |
+| T2.4 — Capacity Planner | Integrare UI ↔ LMS | 🔄 În curs | | T3.3 — IoT Monitoring |
+| 🧪 În testare | **KPI-uri țintă:** | Indicator | Țintă |
+| Reducere timp reconfigurare | −35% | | Reducere lead time | −50% |
+| Status | | :--- | :--- | :--- |
+| 2026-03-02 | 2026-03-02 | Done | | Define system architecture (planner + digital twins) |
+| 2d | 2026-03-03 | 2026-03-04 | In Progress |
+| Setup project documentation (R3GROUP context) | @tech-lead | 1d | 2026-03-04 |
+| In Progress | | Define technician task model and scheduling logic | @backend | 2d |
+| 2026-03-06 | Done | | Implement backend service for technician capacity planner | @backend |
+| 2026-03-06 | 2026-03-10 | Done | | Implement planner UI dashboard (calendar + workload view) |
+| 3d | 2026-03-06 | 2026-03-10 | In Progress |
+| Integrate planner with order and task data model | @backend | 2d | 2026-03-10 |
+| In Progress | | Connect UI with backend API (LMS integration) | @frontend | 1.5d |
+| 2026-03-12 | Todo | | Finalize AAS firmware integration (BLE box tracking) | @backend |
+| 2026-03-11 | 2026-03-12 | Todo | | Connect IoT sensors to AAS platform |
+| 2d | 2026-03-12 | 2026-03-13 | Todo |
+| Sprint review and technical validation | @tech-lead | 0.5d | 2026-03-13 |
+| Prioritate | Acțiune | Responsabil | | :--- |
+| 🔴 High | Finalizare integrare firmware AAS (cutii producție BLE) | @backend | | 🟡 Med |
+| @backend | | 🟢 Low | Trecere la demonstrație la scară largă TRL7 (M40, coordonat IPC) | @tech-lead |
 
 ## LOE Summary
 
 | Metric | Value |
 | :--- | :--- |
-| Total Effort | 16.0d |
-| In Progress | 3.0d |
-| Completed | 1.0d |
-| Remaining | 15.0d |
+| Total Effort | 3.5d |
+| In Progress | 0.0d |
+| Completed | 0d |
+| Remaining | 3.5d |
 
 ## Sprint Timeline
 
@@ -79,24 +89,37 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    Repository setup and Kanban initialization :done, 2026-03-02, 2026-03-02
-    Define system architecture (planner + digital twins) :active, 2026-03-03, 2026-03-04
-    Setup project documentation (R3GROUP context) :active, 2026-03-04, 2026-03-04
-    Define technician task model and scheduling logic :2026-03-05, 2026-03-06
-    Implement backend service for technician capacity planner :2026-03-06, 2026-03-10
-    Implement planner UI dashboard (calendar + workload view) :2026-03-06, 2026-03-10
-    Integrate planner with order and task data model :2026-03-10, 2026-03-11
-    Connect UI with backend API :2026-03-11, 2026-03-12
-    Sprint review and technical validation :2026-03-13, 2026-03-13
+    2d :active, 2026-03-02, 1d
+    3d :active, 2026-03-03, 1d
+    2d :2026-03-04, 1d
+    Pilon :2026-03-05, 1d
+    WP1 — Infrastructură Digitală :2026-03-06, 1d
+    ✅ Implementat & testat (2 clienți pilot) :2026-03-07, 1d
+    T3.2 — Digital Twins :2026-03-08, 1d
+    ✅ 100% finalizat :2026-03-09, 1d
+    T2.4 — Capacity Planner :2026-03-10, 1d
+    🧪 În testare :2026-03-11, 1d
+    Reducere timp reconfigurare :2026-03-12, 1d
+    Status :2026-03-13, 1d
+    2026-03-02 :2026-03-14, 1d
+    Setup project documentation (R3GROUP context) :2026-03-15, 1d
+    In Progress :2026-03-16, 1d
+    2026-03-06 :2026-03-17, 1d
+    2026-03-06 :2026-03-18, 1d
+    Integrate planner with order and task data model :2026-03-19, 2d
+    In Progress :2026-03-21, 1d
+    2026-03-12 :2026-03-22, 1d
+    2026-03-11 :2026-03-23, 1d
+    Sprint review and technical validation :2026-03-24, 0d
+    Prioritate :2026-03-24, 1d
+    🔴 High :2026-03-25, 1d
+    @backend :2026-03-26, 1d
 ```
 
 ## Effort Distribution
 
 ```mermaid
 pie title Effort by Status
-    "Todo" : 12.0
-    "In Progress" : 3.0
-    "Done" : 1.0
 ```
 
 ## Links
