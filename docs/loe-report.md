@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-03-09T07:46:05.788711
+generated: 2026-03-09T07:56:01.350810
 ---
 
 # KF Team — Level of Effort Report
@@ -11,14 +11,14 @@ generated: 2026-03-09T07:46:05.788711
 
 | Project | Sprint | Total Effort | Completed | Remaining |
 | :--- | :--- | :---: | :---: | :---: |
-| AIRise-ai-fabric-inspection | S1 | 33.0d | 2.0d | 31.0d |
+| AIRise-ai-fabric-inspection | S1 | 38.0d | 2.0d | 36.0d |
 | Aladin-01 | S1 | 19.0d | 1.0d | 18.0d |
 | Edi-test | S1 | 4.0d | 1.0d | 3.0d |
 | NuoForm---GTM | S1 | 74.0d | 2.5d | 71.5d |
 | R3GROUP | S1 | 3.5d | 0d | 3.5d |
 | order-service | S1 | 13.5d | 0d | 13.5d |
 | project-template | S1 | 26.0d | 2.0d | 24.0d |
-| **Total** | | **173.0d** | **8.5d** | **164.5d** |
+| **Total** | | **178.0d** | **8.5d** | **169.5d** |
 
 ## Effort by Assignee
 
@@ -35,13 +35,13 @@ generated: 2026-03-09T07:46:05.788711
 | @be | 22.0d | 0d | 0d |
 | @cpto | 15.0d | 2.0d | 1.0d |
 | @developer | 1.0d | 0d | 0d |
-| @el.tech | 19.0d | 7.0d | 0d |
+| @el.tech | 23.0d | 7.0d | 0d |
 | @fe | 7.0d | 0d | 0d |
 | @lead | 1.0d | 0d | 1.0d |
 | @mkt | 9.0d | 0d | 0d |
 | @pm | 7.0d | 0d | 1.0d |
 | @proj | 5.0d | 0d | 0.5d |
-| @ps.tech | 10.0d | 0d | 3.0d |
+| @ps.tech | 11.0d | 1.0d | 3.0d |
 | @razvan.boita | 19.0d | 0d | 0d |
 | @sme | 9.0d | 0d | 0d |
 | @tech-lead | 3.5d | 2.0d | 0d |

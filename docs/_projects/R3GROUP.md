@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot – digital tools for co-creation, dig
 project: R3GROUP
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3GROUP/edit/main/kanban.md"
-generated: 2026-03-09T07:46:05.822382
+generated: 2026-03-09T07:56:01.376590
 ---
 
 # R3GROUP
