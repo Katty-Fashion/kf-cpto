@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-03-14T20:22:14.779838
+generated: 2026-03-14T21:02:23.128031
 ---
 
 # KF Team — Unified Kanban
@@ -74,7 +74,9 @@ kanban
     task70["NuoForm---GTM: CRM pipeline setup"]
     task71["NuoForm---GTM: Launch readiness review"]
     task72["NuoForm---GTM: MVP launch"]
-    task75["R3GROUP: 2d"]
+    task73["R3GROUP: 1d"]
+    task74["R3GROUP: 2d"]
+    task75["R3GROUP: 1d"]
     task77["order-service: AAS integration with new Tech Process Structure"]
     task78["order-service: Implement telemetry and observability"]
     task79["order-service: Write documentation for backend API"]
@@ -98,8 +100,6 @@ kanban
     task24["Aladin-01: Initial platform architecture (WP2 / T2.1) — user personas & journey mapping"]
     task32["Edi-test: Initial architecture"]
     task36["NuoForm---GTM: Initial architecture (services, storage, auth, telemetry)"]
-    task73["R3GROUP: 2d"]
-    task74["R3GROUP: 3d"]
     task76["order-service: Tech Process Blocker - Template for Techpack, Copy Version for Order Entry"]
     task82["project-template: Define ALADIN system architecture (platform + microfactory orchestration)"]
   Review
@@ -122,6 +122,6 @@ kanban
 | Aladin-01 | 6 | 1 | 0 | 1 | 8 |
 | Edi-test | 1 | 1 | 0 | 1 | 3 |
 | NuoForm---GTM | 35 | 1 | 0 | 3 | 39 |
-| R3GROUP | 1 | 2 | 0 | 0 | 3 |
+| R3GROUP | 3 | 0 | 0 | 0 | 3 |
 | order-service | 4 | 1 | 0 | 0 | 5 |
 | project-template | 12 | 1 | 0 | 1 | 14 |

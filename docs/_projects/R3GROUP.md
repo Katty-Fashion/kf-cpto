@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot – digital tools for co-creation, dig
 project: R3GROUP
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3GROUP/edit/main/kanban.md"
-generated: 2026-03-14T20:22:14.791020
+generated: 2026-03-14T21:02:23.148753
 ---
 
 # R3GROUP
@@ -19,8 +19,8 @@ generated: 2026-03-14T20:22:14.791020
 | Type | EU Project |
 | PO | - |
 | Lead | - |
-| Current Sprint | S1 |
-| Sprint Period | 2026-03-02 to 2026-03-13 |
+| Current Sprint | S2 |
+| Sprint Period | 2026-03-16 to 2026-04-03 |
 | Tags | r3group, digital-twin, capacity-planner, manufacturing |
 | Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
 
@@ -34,10 +34,10 @@ generated: 2026-03-14T20:22:14.791020
 ```mermaid
 kanban
   Todo
-    t3["2d"]
+    t1["1d"]
+    t2["2d"]
+    t3["1d"]
   In-Progress
-    t1["2d"]
-    t2["3d"]
   Review
   Done
 ```
@@ -46,74 +46,90 @@ kanban
 
 | Task | Assignee | Effort | Status |
 | :--- | :--- | :--- | :--- |
-| Pilon | Componentă | Status M36 | | :--- |
-| WP1 — Infrastructură Digitală | Structură Product Digital Twin | ✅ Finalizat & integrat | | T2.1 — Co-creare Nuoform |
-| ✅ Implementat & testat (2 clienți pilot) | | T3.2 — Digital Twins | Product DT | ✅ Finalizat |
-| T3.2 — Digital Twins | Process DT (Tecnomatix) | ✅ Implementat & validat cu date istorice | | T2.4 — Capacity Planner |
-| ✅ 100% finalizat | | T2.4 — Capacity Planner | KF Frontend UI | 🔄 Aproape finalizat |
-| T2.4 — Capacity Planner | Integrare UI ↔ LMS | 🔄 În curs | | T3.3 — IoT Monitoring |
-| 🧪 În testare | **KPI-uri țintă:** | Indicator | Țintă |
-| Reducere timp reconfigurare | −35% | | Reducere lead time | −50% |
-| Status | | :--- | :--- | :--- |
-| 2026-03-02 | 2026-03-02 | Done | | Define system architecture (planner + digital twins) |
-| 2d | 2026-03-03 | 2026-03-04 | In Progress |
-| Setup project documentation (R3GROUP context) | @tech-lead | 1d | 2026-03-04 |
-| In Progress | | Define technician task model and scheduling logic | @backend | 2d |
-| 2026-03-06 | Done | | Implement backend service for technician capacity planner | @backend |
-| 2026-03-06 | 2026-03-10 | Done | | Implement planner UI dashboard (calendar + workload view) |
-| 3d | 2026-03-06 | 2026-03-10 | In Progress |
-| Integrate planner with order and task data model | @backend | 2d | 2026-03-10 |
-| In Progress | | Connect UI with backend API (LMS integration) | @frontend | 1.5d |
-| 2026-03-12 | Todo | | Finalize AAS firmware integration (BLE box tracking) | @backend |
-| 2026-03-11 | 2026-03-12 | Todo | | Connect IoT sensors to AAS platform |
-| 2d | 2026-03-12 | 2026-03-13 | Todo |
-| Sprint review and technical validation | @tech-lead | 0.5d | 2026-03-13 |
-| Prioritate | Acțiune | Responsabil | | :--- |
-| 🔴 High | Finalizare integrare firmware AAS (cutii producție BLE) | @backend | | 🟡 Med |
-| @backend | | 🟢 Low | Trecere la demonstrație la scară largă TRL7 (M40, coordonat IPC) | @tech-lead |
+| Pillar | Component | Status | |--- |
+| --- | | WP1 — Digital Infrastructure | AAS platform integration | 90% |
+| T2.1 — Co-creation platform | Nuoform platform | ✅ Completed | | T3.2 — Product Digital Twin |
+| ✅ Completed | | T3.2 — Process Digital Twin | Tecnomatix simulation | ✅ Implemented & validated |
+| T2.4 — Capacity Planner | LMS Scheduler Backend | ✅ Completed | | T2.4 — Capacity Planner |
+| 🔄 Near completion | | T2.4 — Capacity Planner | KF ↔ LMS Integration | 🔄 In progress |
+| T3.3 — IoT Monitoring | Sensors deployment | 🧪 Testing | | T2.3 — Supply Chain Digital Twin |
+| KPI | Target | |--- | --- |
+| Scrap reduction | −20% | | Reconfiguration time reduction | −35% |
+| Production lead time reduction | −50% | | Pre-production waste reduction | −95% |
+| Status | |--- | --- | --- |
+| --- | --- | | Review LMS API endpoints and AAS structure | @tech-lead |
+| 2026-03-16 | 2026-03-16 | Todo | | Technical architecture alignment for Planner integration |
+| 1d | 2026-03-17 | 2026-03-17 | Todo |
+| Define integration pipeline (KF UI → LMS Scheduler → KF UI) | @tech-lead | 1d | 2026-03-18 |
+| Todo | | Implement automatic AAS JSON export from KF platform | @backend | 2d |
+| 2026-03-18 | Todo | | Implement scheduling request endpoint (KF → LMS) | @backend |
+| 2026-03-19 | 2026-03-21 | Todo | | Implement scheduler response parser |
+| 2d | 2026-03-22 | 2026-03-24 | Todo |
+| Integrate scheduling results with planner UI | @frontend | 3d | 2026-03-19 |
+| Todo | | Implement planner visualization improvements (capacity / gaps) | @frontend | 2d |
+| 2026-03-27 | Todo | | Validate suitability constraints and scheduling logic | @backend |
+| 2026-03-26 | 2026-03-28 | Todo | | Run first scheduling tests with real production data |
+| 1d | 2026-03-28 | 2026-03-28 | Todo |
+| Debug integration issues with LMS team | @tech-lead | 1d | 2026-03-31 |
+| Todo | | Integration validation review | @tech-lead | 0.5d |
+| Priority | Action | Responsible | |--- |
+| --- | | 🔴 High | Complete KF ↔ LMS scheduling integration | Backend + Frontend |
+| 🔴 High | Validate scheduling algorithm with real production data | Tech Lead | | 🟡 Medium |
+| Backend | | 🟡 Medium | Extend Process Digital Twin data exchange | Tech Lead |
+| Milestone | Date | |--- | --- |
+| Integration testing start | March 2026 | | Capacity planner integration | June 2026 (M42) |
+| Pilot validation | Autumn 2026 | | Project completion | End 2026 |
 
 ## LOE Summary
 
 | Metric | Value |
 | :--- | :--- |
-| Total Effort | 3.5d |
-| In Progress | 0.0d |
+| Total Effort | 5.0d |
+| In Progress | 0d |
 | Completed | 0d |
-| Remaining | 3.5d |
+| Remaining | 5.0d |
 
 ## Sprint Timeline
 
 ```mermaid
 gantt
-    title S1 — R3GROUP
+    title S2 — R3GROUP
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    2d :active, 2026-03-02, 1d
-    3d :active, 2026-03-03, 1d
-    2d :2026-03-04, 1d
-    Pilon :2026-03-05, 1d
-    WP1 — Infrastructură Digitală :2026-03-06, 1d
-    ✅ Implementat & testat (2 clienți pilot) :2026-03-07, 1d
-    T3.2 — Digital Twins :2026-03-08, 1d
-    ✅ 100% finalizat :2026-03-09, 1d
-    T2.4 — Capacity Planner :2026-03-10, 1d
-    🧪 În testare :2026-03-11, 1d
-    Reducere timp reconfigurare :2026-03-12, 1d
-    Status :2026-03-13, 1d
-    2026-03-02 :2026-03-14, 1d
-    Setup project documentation (R3GROUP context) :2026-03-15, 1d
-    In Progress :2026-03-16, 1d
-    2026-03-06 :2026-03-17, 1d
-    2026-03-06 :2026-03-18, 1d
-    Integrate planner with order and task data model :2026-03-19, 2d
-    In Progress :2026-03-21, 1d
-    2026-03-12 :2026-03-22, 1d
-    2026-03-11 :2026-03-23, 1d
-    Sprint review and technical validation :2026-03-24, 0d
-    Prioritate :2026-03-24, 1d
-    🔴 High :2026-03-25, 1d
-    @backend :2026-03-26, 1d
+    1d :2026-03-16, 1d
+    2d :2026-03-17, 1d
+    1d :2026-03-18, 1d
+    Pillar :2026-03-19, 1d
+    --- :2026-03-20, 1d
+    T2.1 — Co-creation platform :2026-03-21, 1d
+    ✅ Completed :2026-03-22, 1d
+    T2.4 — Capacity Planner :2026-03-23, 1d
+    🔄 Near completion :2026-03-24, 1d
+    T3.3 — IoT Monitoring :2026-03-25, 1d
+    KPI :2026-03-26, 1d
+    Scrap reduction :2026-03-27, 1d
+    Production lead time reduction :2026-03-28, 1d
+    Status :2026-03-29, 1d
+    --- :2026-03-30, 1d
+    2026-03-16 :2026-03-31, 1d
+    Define integration pipeline (KF UI → LMS Scheduler → KF UI) :2026-04-01, 1d
+    Todo :2026-04-02, 1d
+    2026-03-18 :2026-04-03, 1d
+    2026-03-19 :2026-04-04, 1d
+    Integrate scheduling results with planner UI :2026-04-05, 3d
+    Todo :2026-04-08, 1d
+    2026-03-27 :2026-04-09, 1d
+    2026-03-26 :2026-04-10, 1d
+    Debug integration issues with LMS team :2026-04-11, 1d
+    Todo :2026-04-12, 1d
+    Priority :2026-04-13, 1d
+    --- :2026-04-14, 1d
+    🔴 High :2026-04-15, 1d
+    Backend :2026-04-16, 1d
+    Milestone :2026-04-17, 1d
+    Integration testing start :2026-04-18, 1d
+    Pilot validation :2026-04-19, 1d
 ```
 
 ## Effort Distribution
