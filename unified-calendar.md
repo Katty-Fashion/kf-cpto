@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-03-14T20:22:14.780171
+generated: 2026-03-14T21:02:23.128332
 ---
 
 # KF Team — Unified Calendar
@@ -34,7 +34,7 @@ gantt
     section NuoForm---GTM
     S1 :active, 2026-03-02, 2026-03-13
     section R3GROUP
-    S1 :active, 2026-03-02, 2026-03-13
+    S2 :active, 2026-03-16, 2026-04-03
     section order-service
     S1 :active, 2026-03-09, 2026-03-23
     section project-template
