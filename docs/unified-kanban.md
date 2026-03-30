@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-03-30T06:01:54.227984
+generated: 2026-03-30T08:38:31.651859
 ---
 
 # KF Team — Unified Kanban
@@ -74,25 +74,22 @@ kanban
     task70["NuoForm---GTM: CRM pipeline setup"]
     task71["NuoForm---GTM: Launch readiness review"]
     task72["NuoForm---GTM: MVP launch"]
-    task73["R3GROUP: 1d"]
-    task74["R3GROUP: 2d"]
-    task75["R3GROUP: 1d"]
-    task77["order-service: AAS integration with new Tech Process Structure"]
-    task78["order-service: Implement telemetry and observability"]
-    task79["order-service: Write documentation for backend API"]
-    task80["order-service: Generate more photos for AiRise dataset"]
-    task83["project-template: Define integration between ALADIN and NuoForm platform"]
-    task84["project-template: Define Digital Product Passport (DPP) data model for garments"]
-    task85["project-template: Design micro-factory orchestration workflow"]
-    task86["project-template: Define circular production lifecycle (R-strategies: reuse, repair, recycle)"]
-    task87["project-template: Frontend architecture for product configuration and customization UI"]
-    task88["project-template: Backend services for product lifecycle and traceability"]
-    task89["project-template: Define demonstrator products (T-shirt, Kidswear Parka, Blazer Dress)"]
-    task90["project-template: Define API layer for design, production orchestration and DPP"]
-    task91["project-template: Define integration with external services (manufacturing, supply chain, sustainability metrics)"]
-    task92["project-template: Create architecture diagrams and technical documentation"]
-    task93["project-template: Prepare roadmap and Level-of-Effort estimation for ALADIN implementation"]
-    task94["project-template: Prepare dashboard integration for KF-CPTO monitoring"]
+    task74["order-service: AAS integration with new Tech Process Structure"]
+    task75["order-service: Implement telemetry and observability"]
+    task76["order-service: Write documentation for backend API"]
+    task77["order-service: Generate more photos for AiRise dataset"]
+    task80["project-template: Define integration between ALADIN and NuoForm platform"]
+    task81["project-template: Define Digital Product Passport (DPP) data model for garments"]
+    task82["project-template: Design micro-factory orchestration workflow"]
+    task83["project-template: Define circular production lifecycle (R-strategies: reuse, repair, recycle)"]
+    task84["project-template: Frontend architecture for product configuration and customization UI"]
+    task85["project-template: Backend services for product lifecycle and traceability"]
+    task86["project-template: Define demonstrator products (T-shirt, Kidswear Parka, Blazer Dress)"]
+    task87["project-template: Define API layer for design, production orchestration and DPP"]
+    task88["project-template: Define integration with external services (manufacturing, supply chain, sustainability metrics)"]
+    task89["project-template: Create architecture diagrams and technical documentation"]
+    task90["project-template: Prepare roadmap and Level-of-Effort estimation for ALADIN implementation"]
+    task91["project-template: Prepare dashboard integration for KF-CPTO monitoring"]
   In-Progress
     task3["AIRise-ai-fabric-inspection: Define system architecture: edge (Jetson) + cloud (MinIO/NiFi/Spark)"]
     task4["AIRise-ai-fabric-inspection: Define streaming architecture — Plan B (Async Playback) selectat ca variantă recomandată"]
@@ -100,8 +97,8 @@ kanban
     task24["Aladin-01: Initial platform architecture (WP2 / T2.1) — user personas & journey mapping"]
     task32["Edi-test: Initial architecture"]
     task36["NuoForm---GTM: Initial architecture (services, storage, auth, telemetry)"]
-    task76["order-service: Tech Process Blocker - Template for Techpack, Copy Version for Order Entry"]
-    task82["project-template: Define ALADIN system architecture (platform + microfactory orchestration)"]
+    task73["order-service: Tech Process Blocker - Template for Techpack, Copy Version for Order Entry"]
+    task79["project-template: Define ALADIN system architecture (platform + microfactory orchestration)"]
   Review
   Done
     task1["AIRise-ai-fabric-inspection: Project scope definition & AIRISE initialisation report review"]
@@ -111,7 +108,7 @@ kanban
     task34["NuoForm---GTM: Project kickoff + team alignment"]
     task35["NuoForm---GTM: Project setup (repo, CI/CD, environments)"]
     task37["NuoForm---GTM: Vision statement + problem definition"]
-    task81["project-template: Project scope definition and requirements analysis"]
+    task78["project-template: Project scope definition and requirements analysis"]
 ```
 
 ## Summary by Project
@@ -122,6 +119,6 @@ kanban
 | Aladin-01 | 6 | 1 | 0 | 1 | 8 |
 | Edi-test | 1 | 1 | 0 | 1 | 3 |
 | NuoForm---GTM | 35 | 1 | 0 | 3 | 39 |
-| R3GROUP | 3 | 0 | 0 | 0 | 3 |
+| R3GROUP | 0 | 0 | 0 | 0 | 0 |
 | order-service | 4 | 1 | 0 | 0 | 5 |
 | project-template | 12 | 1 | 0 | 1 | 14 |
