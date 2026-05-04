@@ -4,7 +4,7 @@ description: "AIFR-AI – AI-powered fabric defect detection system for Katty Fa
 project: AIRise-ai-fabric-inspection
 type: eu-project
 edit_url: "https://github.com/katty-fashion/AIRise-ai-fabric-inspection/edit/main/kanban.md"
-generated: 2026-04-27T06:30:55.669605
+generated: 2026-05-04T06:42:26.877707
 ---
 
 # AIRise-ai-fabric-inspection

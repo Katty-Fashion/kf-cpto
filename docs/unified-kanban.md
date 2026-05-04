@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-04-27T06:30:55.666820
+generated: 2026-05-04T06:42:26.875535
 ---
 
 # KF Team — Unified Kanban
@@ -119,6 +119,6 @@ kanban
 | Aladin-01 | 6 | 1 | 0 | 1 | 8 |
 | Edi-test | 1 | 1 | 0 | 1 | 3 |
 | NuoForm---GTM | 35 | 1 | 0 | 3 | 39 |
-| R3GROUP | 0 | 0 | 0 | 0 | 0 |
+| R3-AAS | 0 | 0 | 0 | 0 | 0 |
 | order-service | 4 | 1 | 0 | 0 | 5 |
 | project-template | 12 | 1 | 0 | 1 | 14 |
