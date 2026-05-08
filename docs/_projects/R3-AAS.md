@@ -1,13 +1,13 @@
 ---
-title: R3GROUP
+title: R3-AAS
 description: "R3GROUP Katty Fashion pilot – digital tools for co-creation, digital twins and technician capacity planning"
-project: R3GROUP
+project: R3-AAS
 type: eu-project
-edit_url: "https://github.com/katty-fashion/R3GROUP/edit/main/kanban.md"
-generated: 2026-04-27T06:30:55.680396
+edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
+generated: 2026-05-04T06:42:26.898992
 ---
 
-# R3GROUP
+# R3-AAS
 
 > R3GROUP Katty Fashion pilot – digital tools for co-creation, digital twins and technician capacity planning
 
@@ -24,7 +24,7 @@ generated: 2026-04-27T06:30:55.680396
 | Tags | r3group, digital-twin, capacity-planner, manufacturing |
 | Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
 
-## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/R3GROUP/edit/main/kanban.md)
+## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md)
 
 <div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
 <span class="status-pill status-pill--in-progress">In Progress</span>
@@ -238,7 +238,7 @@ kanban
 
 ```mermaid
 gantt
-    title S2 — R3GROUP
+    title S2 — R3-AAS
     dateFormat YYYY-MM-DD
     excludes weekends
 
@@ -433,9 +433,9 @@ pie title Effort by Status
 
 ## Links
 
-- [Edit Kanban](https://github.com/katty-fashion/R3GROUP/edit/main/kanban.md)
-- [Repository](https://github.com/katty-fashion/R3GROUP)
-- [Kanban Board](https://github.com/katty-fashion/R3GROUP/blob/main/kanban.md)
+- [Edit Kanban](https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md)
+- [Repository](https://github.com/katty-fashion/R3-AAS)
+- [Kanban Board](https://github.com/katty-fashion/R3-AAS/blob/main/kanban.md)
 
 ---
 

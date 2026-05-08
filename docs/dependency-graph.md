@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-04-20T06:19:29.656263
+generated: 2026-05-04T06:42:26.877556
 ---
 
 # KF Team — Dependency Graph
@@ -13,15 +13,16 @@ graph LR
     Aladin-01[Aladin 01]:::internal
     Edi-test[Edi Test]:::internal
     NuoForm---GTM[Nuoform   Gtm]:::internal
-    R3GROUP[R3Group]:::eu
+    R3-AAS[R3 Aas]:::eu
     order-service[Order Service]:::internal
     project-template[Project Template]:::eu
-    R3GROUP --> order-service
 
     classDef saas fill:#4CAF50,color:#fff
     classDef eu fill:#2196F3,color:#fff
     classDef internal fill:#FF9800,color:#fff
 ```
+
+*No inter-project dependencies declared yet. Add `depends_on` to your kanban.md frontmatter.*
 
 ## Legend
 

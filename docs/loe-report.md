@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-04-20T06:19:29.654851
+generated: 2026-05-04T06:42:26.876181
 ---
 
 # KF Team — Level of Effort Report
@@ -15,7 +15,7 @@ generated: 2026-04-20T06:19:29.654851
 | Aladin-01 | S1 | 19.0d | 1.0d | 18.0d |
 | Edi-test | S1 | 4.0d | 1.0d | 3.0d |
 | NuoForm---GTM | S1 | 74.0d | 2.5d | 71.5d |
-| R3GROUP | S2 | 10.0d | 0d | 10.0d |
+| R3-AAS | S2 | 10.0d | 0d | 10.0d |
 | order-service | S1 | 13.5d | 0d | 13.5d |
 | project-template | S1 | 26.0d | 2.0d | 24.0d |
 | **Total** | | **184.5d** | **8.5d** | **176.0d** |
