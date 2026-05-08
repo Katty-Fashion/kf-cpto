@@ -63,6 +63,7 @@ logs/
 tmp/
 temp/
 *.tmp
+activity/
 
 #Claude
 .claude/
