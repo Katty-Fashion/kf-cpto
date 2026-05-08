@@ -4,7 +4,7 @@ description: "NuoForm GoToMarket plan"
 project: NuoForm---GTM
 type: internal
 edit_url: "https://github.com/katty-fashion/NuoForm---GTM/edit/main/kanban.md"
-generated: 2026-05-04T06:42:26.898401
+generated: 2026-05-08T16:18:07.902758
 ---
 
 # NuoForm---GTM
