@@ -4,7 +4,7 @@ description: "KF Team project template"
 project: Edi-test
 type: internal
 edit_url: "https://github.com/katty-fashion/Edi-test/edit/main/kanban.md"
-generated: 2026-05-08T16:18:07.902565
+generated: 2026-05-11T07:48:56.041924
 ---
 
 # Edi-test
