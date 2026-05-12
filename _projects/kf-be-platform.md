@@ -1,13 +1,13 @@
 ---
-title: project-template
+title: kf-be-platform
 description: "ALADIN – Advanced LocAl and Digital Innovation Network for circular garments. Platform for local-for-local textile production using digital design, micro-factories and circular value chains."
-project: project-template
+project: kf-be-platform
 type: eu-project
-edit_url: "https://github.com/katty-fashion/project-template/edit/main/kanban.md"
-generated: 2026-05-12T06:31:15.462742
+edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
+generated: 2026-05-12T06:31:15.462169
 ---
 
-# project-template
+# kf-be-platform
 
 > ALADIN – Advanced LocAl and Digital Innovation Network for circular garments. Platform for local-for-local textile production using digital design, micro-factories and circular value chains.
 
@@ -24,7 +24,7 @@ generated: 2026-05-12T06:31:15.462742
 | Tags | eu-project, circular-textiles, digital-platform, microfactory, dpp, manufacturing |
 | Dependencies | [nuoform]({{ '/projects/nuoform/' | relative_url }}) |
 
-## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/project-template/edit/main/kanban.md)
+## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md)
 
 <div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
 <span class="status-pill status-pill--in-progress">In Progress</span>
@@ -85,7 +85,7 @@ kanban
 
 ```mermaid
 gantt
-    title S1 — project-template
+    title S1 — kf-be-platform
     dateFormat YYYY-MM-DD
     excludes weekends
 
@@ -116,9 +116,9 @@ pie title Effort by Status
 
 ## Links
 
-- [Edit Kanban](https://github.com/katty-fashion/project-template/edit/main/kanban.md)
-- [Repository](https://github.com/katty-fashion/project-template)
-- [Kanban Board](https://github.com/katty-fashion/project-template/blob/main/kanban.md)
+- [Edit Kanban](https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md)
+- [Repository](https://github.com/katty-fashion/kf-be-platform)
+- [Kanban Board](https://github.com/katty-fashion/kf-be-platform/blob/main/kanban.md)
 
 ---
 
