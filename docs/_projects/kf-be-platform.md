@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-be-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-05-12T06:46:01.347850
+generated: 2026-05-12T07:42:25.940578
 ---
 
 # kf-be-platform
@@ -45,7 +45,7 @@ kanban
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | Project scope definition and requirements analysis | @ma.tech | 2d | 2026-05-11 | 2026-05-12 | In progress |
 | Refactor with generators | @ma.tech | 8d | 2026-05-13 | 2026-05-22 | In progress |
-| Dockerize for geral flow | @ma.tech | 1d | 2026-05-15 | 2026-05-15 | In progress |
+| Dockerize for general flow | @ma.tech | 1d | 2026-05-15 | 2026-05-16 | In progress |
 | Collaboration framework with sockets | @ma.tech | 5d | 2026-05-15 | 2026-05-22 | In progress |
 
 ## LOE Summary
@@ -67,7 +67,7 @@ gantt
 
     Project scope definition and requirements analysis :2026-05-11, 2026-05-12
     Refactor with generators :2026-05-13, 2026-05-22
-    Dockerize for geral flow :2026-05-15, 2026-05-15
+    Dockerize for general flow :2026-05-15, 2026-05-16
     Collaboration framework with sockets :2026-05-15, 2026-05-22
 ```
 
