@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-05-12T07:42:25.916092
+generated: 2026-05-14T07:19:28.781400
 ---
 
 # KF Team — Level of Effort Report
@@ -17,9 +17,10 @@ generated: 2026-05-12T07:42:25.916092
 | NuoForm---GTM | S1 | 74.0d | 2.5d | 71.5d |
 | R3-AAS | S2 | 10.0d | 0d | 10.0d |
 | kf-be-platform | S1 | 16.0d | 0d | 16.0d |
+| kf-fe-platform | S1 | 26.0d | 2.0d | 24.0d |
 | order-service | S1 | 13.5d | 0d | 13.5d |
 | project-template | S1 | 26.0d | 2.0d | 24.0d |
-| **Total** | | **200.5d** | **8.5d** | **192.0d** |
+| **Total** | | **226.5d** | **10.5d** | **216.0d** |
 
 ## Effort by Assignee
 
@@ -38,12 +39,12 @@ generated: 2026-05-12T07:42:25.916092
 | 2026-03-27 | 0.0d | 0d | 0d |
 | 2026-03-28 | 0.0d | 0d | 0d |
 | 2026-04-03 | 0.0d | 0d | 0d |
-| @alexandru.bejenari | 11.0d | 0d | 1.0d |
+| @alexandru.bejenari | 15.0d | 0d | 1.0d |
 | @backend | 17.5d | 3.0d | 0d |
 | @be | 22.0d | 0d | 0d |
 | @cpto | 15.0d | 2.0d | 1.0d |
 | @developer | 1.0d | 0d | 0d |
-| @el.tech | 23.0d | 7.0d | 0d |
+| @el.tech | 30.0d | 10.0d | 0d |
 | @fe | 7.0d | 0d | 0d |
 | @frontend | 3.0d | 0d | 0d |
 | @lead | 1.0d | 0d | 1.0d |
@@ -51,8 +52,8 @@ generated: 2026-05-12T07:42:25.916092
 | @mkt | 9.0d | 0d | 0d |
 | @pm | 7.0d | 0d | 1.0d |
 | @proj | 5.0d | 0d | 0.5d |
-| @ps.tech | 11.0d | 1.0d | 3.0d |
-| @razvan.boita | 19.0d | 0d | 0d |
+| @ps.tech | 17.0d | 1.0d | 5.0d |
+| @razvan.boita | 28.0d | 0d | 0d |
 | @sme | 9.0d | 0d | 0d |
 | @tech-lead | 5.0d | 2.0d | 0d |
 | Acțiune | 0.0d | 0d | 0d |
