@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-fe-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-05-27T06:23:32.046279
+generated: 2026-05-27T06:52:06.846266
 ---
 
 # kf-fe-platform
