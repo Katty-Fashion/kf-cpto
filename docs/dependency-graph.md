@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-05-25T05:39:35.472305
+generated: 2026-05-27T06:23:32.024298
 ---
 
 # KF Team — Dependency Graph
@@ -16,6 +16,7 @@ graph LR
     R3-AAS[R3 Aas]:::eu
     kf-be-platform[Kf Be Platform]:::eu
     kf-fe-platform[Kf Fe Platform]:::eu
+    kf-platform[Kf Platform]:::eu
     order-service[Order Service]:::internal
     project-template[Project Template]:::eu
 
