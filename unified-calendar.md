@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-05-25T05:39:35.470666
+generated: 2026-05-27T06:23:32.023196
 ---
 
 # KF Team — Unified Calendar
@@ -39,6 +39,8 @@ gantt
     S1 :active, 2026-05-11, 2026-05-22
     section kf-fe-platform
     S1 :active, 2026-05-11, 2026-05-22
+    section kf-platform
+    S1 :active, 2026-05-25, 2026-06-07
     section order-service
     S1 :active, 2026-03-09, 2026-03-23
     section project-template

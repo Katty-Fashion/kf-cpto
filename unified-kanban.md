@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-05-25T05:39:35.470067
+generated: 2026-05-27T06:23:32.022722
 ---
 
 # KF Team — Unified Kanban
@@ -74,22 +74,57 @@ kanban
     task70["NuoForm---GTM: CRM pipeline setup"]
     task71["NuoForm---GTM: Launch readiness review"]
     task72["NuoForm---GTM: MVP launch"]
-    task74["order-service: AAS integration with new Tech Process Structure"]
-    task75["order-service: Implement telemetry and observability"]
-    task76["order-service: Write documentation for backend API"]
-    task77["order-service: Generate more photos for AiRise dataset"]
-    task80["project-template: Define integration between ALADIN and NuoForm platform"]
-    task81["project-template: Define Digital Product Passport (DPP) data model for garments"]
-    task82["project-template: Design micro-factory orchestration workflow"]
-    task83["project-template: Define circular production lifecycle (R-strategies: reuse, repair, recycle)"]
-    task84["project-template: Frontend architecture for product configuration and customization UI"]
-    task85["project-template: Backend services for product lifecycle and traceability"]
-    task86["project-template: Define demonstrator products (T-shirt, Kidswear Parka, Blazer Dress)"]
-    task87["project-template: Define API layer for design, production orchestration and DPP"]
-    task88["project-template: Define integration with external services (manufacturing, supply chain, sustainability metrics)"]
-    task89["project-template: Create architecture diagrams and technical documentation"]
-    task90["project-template: Prepare roadmap and Level-of-Effort estimation for ALADIN implementation"]
-    task91["project-template: Prepare dashboard integration for KF-CPTO monitoring"]
+    task77["kf-platform: IDP setup (Keycloak/Auth0/logTo) + SMTP server"]
+    task78["kf-platform: RBAC system (scopes, claims, middleware)"]
+    task79["kf-platform: Login flow + redirect handling"]
+    task80["kf-platform: Tenant management (CRUD, provisioning, S3 prefix)"]
+    task81["kf-platform: Admin Console UI (Platform Admin operations)"]
+    task82["kf-platform: Overview refactor (dynamic widgets per rol)"]
+    task83["kf-platform: Collections fix + refactor (Kanban, season relations)"]
+    task84["kf-platform: Models Page refactor (filtere per rol, search)"]
+    task85["kf-platform: Tech Pack layout (sidebar, tooltips, guide)"]
+    task86["kf-platform: BOM editor + LLM ecodesign hook (PDF export fix + stub)"]
+    task87["kf-platform: Model Sheet fixes (imagini, reconciliere BOM)"]
+    task88["kf-platform: Sizing Table & QA Flow customizabil per tenant"]
+    task89["kf-platform: 3D Model performance optimization (multi-mesh, asset pipeline)"]
+    task90["kf-platform: Cost Breakdown & OCS clarification (Buyer approval workflow)"]
+    task91["kf-platform: Tech Process refactor (aliniere BE update)"]
+    task92["kf-platform: Inventory & Reception refactor (types, qty packaging, UOM)"]
+    task93["kf-platform: Orders refactor (Order Name, pricing, Buyer tracking portal)"]
+    task94["kf-platform: Planner (Calendar/Gantt/Kanban switch) — backend nou"]
+    task95["kf-platform: Batches & Assignment (Operator assignment integrat)"]
+    task96["kf-platform: Operator View tablet (Timer, QR scan, defect flag, 3D viewer)"]
+    task97["kf-platform: QC Module (Inspection flow, defect logger)"]
+    task98["kf-platform: Reports & Cutting (camera integration, COCO export)"]
+    task99["kf-platform: DPP Module (data model, dashboard, validation) — T2.4 ALADIN"]
+    task100["kf-platform: Public DPP / GS1 Digital Link / QR (no-auth endpoint)"]
+    task101["kf-platform: EPCIS Export (JSON, PDF, GS1 standard, possibly signed)"]
+    task102["kf-platform: LLM Ecodesign full integration — WP4 T4.1"]
+    task103["kf-platform: IoT Adapter & Event Log (MQTT) — T2.5 ALADIN"]
+    task104["kf-platform: Garment Configurator B2C (embeddable) — T2.3 ALADIN"]
+    task105["kf-platform: Auditor View (cross-tenant, elevated scope)"]
+    task106["kf-platform: i18n / l10n (EN + RO + customizable, RTL ready)"]
+    task107["kf-platform: Notifications multi-channel (email, SMS, webhook, in-app)"]
+    task108["kf-platform: Made2Flow dynamic JSONB schema"]
+    task109["kf-platform: Migration testing (data + flow E2E)"]
+    task110["kf-platform: Data migration scripts KF → ALADIN (one-shot + rollback)"]
+    task111["kf-platform: Final QA & production cutover (smoke tests, monitoring)"]
+    task113["order-service: AAS integration with new Tech Process Structure"]
+    task114["order-service: Implement telemetry and observability"]
+    task115["order-service: Write documentation for backend API"]
+    task116["order-service: Generate more photos for AiRise dataset"]
+    task119["project-template: Define integration between ALADIN and NuoForm platform"]
+    task120["project-template: Define Digital Product Passport (DPP) data model for garments"]
+    task121["project-template: Design micro-factory orchestration workflow"]
+    task122["project-template: Define circular production lifecycle (R-strategies: reuse, repair, recycle)"]
+    task123["project-template: Frontend architecture for product configuration and customization UI"]
+    task124["project-template: Backend services for product lifecycle and traceability"]
+    task125["project-template: Define demonstrator products (T-shirt, Kidswear Parka, Blazer Dress)"]
+    task126["project-template: Define API layer for design, production orchestration and DPP"]
+    task127["project-template: Define integration with external services (manufacturing, supply chain, sustainability metrics)"]
+    task128["project-template: Create architecture diagrams and technical documentation"]
+    task129["project-template: Prepare roadmap and Level-of-Effort estimation for ALADIN implementation"]
+    task130["project-template: Prepare dashboard integration for KF-CPTO monitoring"]
   In-Progress
     task3["AIRise-ai-fabric-inspection: Define system architecture: edge (Jetson) + cloud (MinIO/NiFi/Spark)"]
     task4["AIRise-ai-fabric-inspection: Define streaming architecture — Plan B (Async Playback) selectat ca variantă recomandată"]
@@ -97,8 +132,12 @@ kanban
     task24["Aladin-01: Initial platform architecture (WP2 / T2.1) — user personas & journey mapping"]
     task32["Edi-test: Initial architecture"]
     task36["NuoForm---GTM: Initial architecture (services, storage, auth, telemetry)"]
-    task73["order-service: Tech Process Blocker - Template for Techpack, Copy Version for Order Entry"]
-    task79["project-template: Define ALADIN system architecture (platform + microfactory orchestration)"]
+    task73["kf-platform: Project setup (repo, monorepo structure, conventions)"]
+    task74["kf-platform: Design system & design tokens (Tailwind, primitives, Storybook)"]
+    task75["kf-platform: Database schema v2 design + migrations (multi-tenant RLS)"]
+    task76["kf-platform: CI/CD pipeline (GitHub Actions / GitLab CI)"]
+    task112["order-service: Tech Process Blocker - Template for Techpack, Copy Version for Order Entry"]
+    task118["project-template: Define ALADIN system architecture (platform + microfactory orchestration)"]
   Review
   Done
     task1["AIRise-ai-fabric-inspection: Project scope definition & AIRISE initialisation report review"]
@@ -108,7 +147,7 @@ kanban
     task34["NuoForm---GTM: Project kickoff + team alignment"]
     task35["NuoForm---GTM: Project setup (repo, CI/CD, environments)"]
     task37["NuoForm---GTM: Vision statement + problem definition"]
-    task78["project-template: Project scope definition and requirements analysis"]
+    task117["project-template: Project scope definition and requirements analysis"]
 ```
 
 ## Summary by Project
@@ -122,5 +161,6 @@ kanban
 | R3-AAS | 0 | 0 | 0 | 0 | 0 |
 | kf-be-platform | 0 | 0 | 0 | 0 | 0 |
 | kf-fe-platform | 0 | 0 | 0 | 0 | 0 |
+| kf-platform | 35 | 4 | 0 | 0 | 39 |
 | order-service | 4 | 1 | 0 | 0 | 5 |
 | project-template | 12 | 1 | 0 | 1 | 14 |

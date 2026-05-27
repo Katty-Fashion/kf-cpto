@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-05-25T05:39:35.470850
+generated: 2026-05-27T06:23:32.023326
 ---
 
 # KF Team — Level of Effort Report
@@ -18,9 +18,10 @@ generated: 2026-05-25T05:39:35.470850
 | R3-AAS | S2 | 10.0d | 0d | 10.0d |
 | kf-be-platform | S1 | 16.0d | 0d | 16.0d |
 | kf-fe-platform | S1 | 16.0d | 0d | 16.0d |
+| kf-platform | S1 | 306.0d | 0d | 306.0d |
 | order-service | S1 | 13.5d | 0d | 13.5d |
 | project-template | S1 | 26.0d | 2.0d | 24.0d |
-| **Total** | | **216.5d** | **8.5d** | **208.0d** |
+| **Total** | | **522.5d** | **8.5d** | **514.0d** |
 
 ## Effort by Assignee
 
@@ -39,7 +40,8 @@ generated: 2026-05-25T05:39:35.470850
 | 2026-03-27 | 0.0d | 0d | 0d |
 | 2026-03-28 | 0.0d | 0d | 0d |
 | 2026-04-03 | 0.0d | 0d | 0d |
-| @alexandru.bejenari | 11.0d | 0d | 1.0d |
+| @alexandru.bejenari | 73.0d | 10.0d | 1.0d |
+| @alexandru.bejenari + @ma.tech | 167.0d | 2.0d | 0d |
 | @backend | 17.5d | 3.0d | 0d |
 | @be | 22.0d | 0d | 0d |
 | @cpto | 15.0d | 2.0d | 1.0d |
@@ -48,7 +50,7 @@ generated: 2026-05-25T05:39:35.470850
 | @fe | 7.0d | 0d | 0d |
 | @frontend | 3.0d | 0d | 0d |
 | @lead | 1.0d | 0d | 1.0d |
-| @ma.tech | 19.0d | 0d | 0d |
+| @ma.tech | 96.0d | 12.0d | 0d |
 | @ma.tech, @alexandru.bejenari | 13.0d | 0d | 0d |
 | @mkt | 9.0d | 0d | 0d |
 | @pm | 7.0d | 0d | 1.0d |
