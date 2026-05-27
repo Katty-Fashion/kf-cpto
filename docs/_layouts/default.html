@@ -52,15 +52,13 @@
       pre.replaceWith(div);
     });
 
-    // Pick mermaid theme based on OS preference
-    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    mermaid.initialize({
-      startOnLoad: false,
-      theme: isDark ? 'dark' : 'forest',
-      securityLevel: 'loose'
-    });
-    mermaid.run();
+    // Pick mermaid theme light
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'forest',
+  securityLevel: 'loose'
+});
+mermaid.run();
   </script>
 </body>
 </html>
