@@ -5,6 +5,8 @@ Shared Utilities for KF Team Git-Native Project Management
 Common functions used by aggregator.py and sheets_sync.py
 """
 
+from __future__ import annotations
+
 import os
 import re
 import yaml
@@ -20,6 +22,8 @@ BASE_DIR = Path(__file__).parent.parent
 REPOS_DIR = BASE_DIR / "repos"
 DOCS_DIR = BASE_DIR / "docs"
 DATA_DIR = DOCS_DIR / "_data"
+SCHEMAS_DIR = BASE_DIR / "schemas"
+KANBAN_SCHEMA_FILE = SCHEMAS_DIR / "kanban.schema.json"
 CONFIG_FILE = BASE_DIR / "docs" / "_config.yml"
 DISCOVERED_FILE = REPOS_DIR / "discovered.txt"
 
@@ -355,3 +359,166 @@ def load_all_project_data() -> dict[str, dict[str, Any]]:
         data[project] = project_data
 
     return data
+
+
+# --------------------------------------------------------------------------- #
+# Validation — used by `python -m scripts.utils validate <path>` and by the    #
+# per-repo validate-kanban.yml workflow in project-template.                   #
+# --------------------------------------------------------------------------- #
+
+def _stringify_dates(value):
+    """Recursively convert datetime.date / datetime.datetime to ISO strings.
+
+    PyYAML deserializes `2026-05-04` as a date object, which trips schemas
+    that declare these fields as strings. We normalize at the schema boundary
+    so the schema can stay as plain `type: string` + ISO regex.
+    """
+    from datetime import date, datetime as dt
+    if isinstance(value, dt):
+        return value.date().isoformat()
+    if isinstance(value, date):
+        return value.isoformat()
+    if isinstance(value, dict):
+        return {k: _stringify_dates(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_stringify_dates(v) for v in value]
+    return value
+
+
+def _load_kanban_schema() -> dict | None:
+    if not KANBAN_SCHEMA_FILE.exists():
+        return None
+    import json
+    try:
+        return json.loads(KANBAN_SCHEMA_FILE.read_text())
+    except (OSError, ValueError):
+        return None
+
+
+def validate_kanban(content: str, schema: dict | None = None) -> list[str]:
+    """Validate a kanban.md document against the canonical schema + table rules.
+
+    Returns a list of error strings (empty if the document is valid). Never
+    raises — failures are returned so callers can format them.
+
+    Three layers of check:
+      1. Frontmatter shape via JSON Schema (`jsonschema` optional dep).
+      2. Frontmatter YAML is syntactically valid.
+      3. Table has the expected column count (4 or 6) and known statuses.
+    """
+    errors: list[str] = []
+
+    # --- Layer 1+2: frontmatter ---
+    match = re.match(r"^---\n(.*?)\n---", content, re.DOTALL)
+    if not match:
+        errors.append("frontmatter: missing or malformed (expected `---\\n…\\n---` block at top)")
+    else:
+        try:
+            meta = yaml.safe_load(match.group(1)) or {}
+        except yaml.YAMLError as e:
+            errors.append(f"frontmatter: YAML parse error — {e}")
+            meta = None
+
+        if meta is not None and not isinstance(meta, dict):
+            errors.append(f"frontmatter: expected a mapping, got {type(meta).__name__}")
+            meta = None
+
+        if meta is not None:
+            meta = _stringify_dates(meta)
+            schema = schema or _load_kanban_schema()
+            if schema is None:
+                errors.append(
+                    "schema: kanban.schema.json not found — structural checks ran "
+                    "but JSON Schema validation was skipped"
+                )
+            else:
+                try:
+                    import jsonschema
+                    validator = jsonschema.Draft202012Validator(schema)
+                    for err in sorted(validator.iter_errors(meta), key=lambda e: list(e.absolute_path)):
+                        path = "/".join(str(p) for p in err.absolute_path) or "(root)"
+                        errors.append(f"frontmatter[{path}]: {err.message}")
+                except ImportError:
+                    errors.append(
+                        "schema: `jsonschema` not installed — structural checks ran "
+                        "but JSON Schema validation was skipped. "
+                        "Install with `pip install jsonschema` for full validation."
+                    )
+
+    # --- Layer 3: table structure & status enum ---
+    header_match = re.search(r"^\|[^\n]+\|", content, re.MULTILINE)
+    if not header_match:
+        errors.append("table: no markdown table found (expected `| Task | Assignee | ... |`)")
+    else:
+        pipe_count = header_match.group().count("|") - 1
+        if pipe_count not in (4, 6):
+            errors.append(
+                f"table: header has {pipe_count} column(s); expected 4 (Task|Assignee|Effort|Status) "
+                f"or 6 (Task|Assignee|Effort|Start|End|Status)"
+            )
+        else:
+            # Status enum check on data rows.
+            tasks = parse_kanban_tasks(content)
+            for idx, t in enumerate(tasks, 1):
+                if t["status"] not in TASK_STATUSES:
+                    errors.append(
+                        f"table[row {idx}]: status `{t['status']}` is not one of "
+                        f"{list(TASK_STATUSES)}"
+                    )
+                if not t["task"]:
+                    errors.append(f"table[row {idx}]: empty Task name")
+                # Date format sanity for 6-col rows
+                for field in ("start", "end"):
+                    val = t.get(field, "")
+                    if val and not re.match(r"^\d{4}-\d{2}-\d{2}$", val):
+                        errors.append(
+                            f"table[row {idx}]: `{field}` value `{val}` is not ISO date YYYY-MM-DD"
+                        )
+
+    return errors
+
+
+def _cli_validate(paths: list[str]) -> int:
+    schema = _load_kanban_schema()
+    if schema is None:
+        print(f"warn: schema not found at {KANBAN_SCHEMA_FILE} — running structural checks only")
+
+    total_errors = 0
+    for p in paths:
+        path = Path(p)
+        if not path.exists():
+            print(f"{path}: not found")
+            total_errors += 1
+            continue
+        errs = validate_kanban(path.read_text(), schema=schema)
+        if errs:
+            print(f"{path}: {len(errs)} error(s)")
+            for e in errs:
+                print(f"  - {e}")
+            total_errors += len(errs)
+        else:
+            print(f"{path}: OK")
+    return 0 if total_errors == 0 else 1
+
+
+def main():
+    """CLI entry point: `python -m utils validate <path> [<path> ...]`"""
+    import sys
+    args = sys.argv[1:]
+    if not args or args[0] in ("-h", "--help", "help"):
+        print("usage: python -m utils validate <path> [<path> ...]")
+        print("       python scripts/utils.py validate <path> [<path> ...]")
+        return 0 if args else 1
+    cmd, *rest = args
+    if cmd == "validate":
+        if not rest:
+            print("usage: validate <path> [<path> ...]")
+            return 1
+        return _cli_validate(rest)
+    print(f"unknown command: {cmd}")
+    return 1
+
+
+if __name__ == "__main__":
+    import sys
+    sys.exit(main())

@@ -30,7 +30,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install deps
-        run: pip install pyyaml requests google-auth google-api-python-client
+        run: pip install pyyaml jsonschema requests google-auth google-api-python-client
 
       - name: Discover repos with kanban.md
         run: python scripts/discover.py

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://katty-fashion.github.io/kf-cpto/schemas/kanban.schema.json",
+  "title": "KF Kanban Frontmatter",
+  "description": "Schema for the YAML frontmatter block in a repo's kanban.md. The aggregator and the per-repo validate-kanban workflow both check files against this schema. The table-shape rules below the frontmatter are enforced separately by the validator.",
+  "type": "object",
+  "required": ["sprint"],
+  "additionalProperties": true,
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Optional explicit project name. Defaults to repo name when absent.",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short human-readable summary shown on the project card."
+    },
+    "type": {
+      "type": "string",
+      "description": "Project category. Drives card styling and grouping in the dashboard.",
+      "enum": ["saas", "eu-project", "internal", "eu"]
+    },
+    "po": {
+      "type": "string",
+      "description": "Product owner. GitHub @-handle preferred.",
+      "pattern": "^@?[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "lead": {
+      "type": "string",
+      "description": "Tech lead. GitHub @-handle preferred.",
+      "pattern": "^@?[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "sprint": {
+      "description": "Current sprint identifier (e.g. S1, Sprint-3, 2026-03-A).",
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        { "type": "integer" }
+      ]
+    },
+    "sprint_start": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO date of sprint start (Monday). Drives the unified calendar Gantt.",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "sprint_end": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO date of sprint end (Friday).",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "depends_on": {
+      "description": "Project names this work depends on. Drives the dependency graph.",
+      "oneOf": [
+        {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }
+        },
+        { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" }
+      ]
+    },
+    "tags": {
+      "description": "Free-form tags for filtering/grouping.",
+      "oneOf": [
+        { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        { "type": "string", "minLength": 1 }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": { "required": ["sprint_start"] },
+      "then": { "required": ["sprint_end"] }
+    },
+    {
+      "if": { "required": ["sprint_end"] },
+      "then": { "required": ["sprint_start"] }
+    }
+  ]
+}
