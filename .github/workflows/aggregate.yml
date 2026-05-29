@@ -51,6 +51,9 @@ jobs:
               repos/${repo} || echo "Warning: Failed to clone ${repo}"
           done < repos/discovered.txt
 
+      - name: Validate auto-blocks in augmented Jekyll pages
+        run: python scripts/validate_auto_blocks.py
+
       - name: Aggregate Kanbans + Calendar
         run: python scripts/aggregator.py
 
