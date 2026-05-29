@@ -11,8 +11,12 @@ Merges kanban.md files from all project repos and generates:
 
 from datetime import datetime, timedelta
 
+import yaml
+
 from utils import (
+    DATA_DIR,
     DOCS_DIR,
+    LOE_DATA_FILE,
     ORG,
     EDIT_URL_TEMPLATE,
     PROJECT_BRANCHES,
@@ -24,7 +28,9 @@ from utils import (
     TYPE_MERMAID_DEFS,
     load_projects,
     load_all_project_data,
+    now_iso,
     parse_effort_days,
+    update_sync_status,
 )
 
 PROJECTS = load_projects()
@@ -479,6 +485,42 @@ def generate_dependency_graph(data: dict) -> str:
     return "\n".join(lines)
 
 
+def build_loe_rows(data: dict) -> list[dict]:
+    """Build the canonical LOE row list — the contract for sheets_sync.py.
+
+    Keys mirror the historic Sheets column order (Project, Sprint, Task, Assignee,
+    Effort days, Start, End, Status). Sheets sync reads this file rather than
+    re-parsing kanban.md. One parser, one canonical intermediate.
+    """
+    rows = []
+    for project, project_data in data.items():
+        meta = project_data["meta"]
+        sprint = meta.get("sprint", "-")
+        for task in project_data["tasks"]:
+            rows.append({
+                "project": project,
+                "sprint": sprint,
+                "task": task["task"],
+                "assignee": task["assignee"],
+                "effort_days": parse_effort_days(task["effort"]),
+                "start": task.get("start", ""),
+                "end": task.get("end", ""),
+                "status": task["status"],
+            })
+    return rows
+
+
+def write_loe_yaml(rows: list[dict]) -> None:
+    """Persist canonical LOE data for downstream consumers (Sheets export, etc.)."""
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "generated_at": now_iso(),
+        "row_count": len(rows),
+        "rows": rows,
+    }
+    LOE_DATA_FILE.write_text(yaml.safe_dump(payload, sort_keys=False, allow_unicode=True))
+
+
 def generate_project_pages(data: dict):
     """Generate individual project pages"""
     projects_dir = DOCS_DIR / "_projects"
@@ -520,6 +562,22 @@ def main():
 
     # Generate individual project pages
     generate_project_pages(data)
+
+    # Write canonical LOE data for downstream consumers (Sheets export reads this)
+    loe_rows = build_loe_rows(data)
+    write_loe_yaml(loe_rows)
+    print(f"Wrote canonical LOE data: {len(loe_rows)} rows -> {LOE_DATA_FILE}")
+
+    # Update aggregator section of sync_status (sheets_export section is written
+    # later by sheets_sync.py — it stays as-is from the previous run until then)
+    update_sync_status(
+        "aggregator",
+        last_run_at=now_iso(),
+        last_run_status="ok",
+        source_repo_count=len(data),
+        task_count=len(loe_rows),
+        errors=[],
+    )
 
     print("KF Aggregator — Done!")
 

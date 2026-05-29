@@ -5,8 +5,10 @@ Shared Utilities for KF Team Git-Native Project Management
 Common functions used by aggregator.py and sheets_sync.py
 """
 
+import os
 import re
 import yaml
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -17,8 +19,16 @@ ORG = "katty-fashion"
 BASE_DIR = Path(__file__).parent.parent
 REPOS_DIR = BASE_DIR / "repos"
 DOCS_DIR = BASE_DIR / "docs"
+DATA_DIR = DOCS_DIR / "_data"
 CONFIG_FILE = BASE_DIR / "docs" / "_config.yml"
 DISCOVERED_FILE = REPOS_DIR / "discovered.txt"
+
+# Canonical intermediate written by aggregator.py, consumed by sheets_sync.py.
+# This is the contract that lets the Sheets export be a strictly downstream consumer.
+LOE_DATA_FILE = DATA_DIR / "loe.yml"
+
+# Surfaced on the dashboard via the sidebar badge + index banner.
+STATUS_FILE = DATA_DIR / "sync_status.yml"
 
 # GitHub edit URL template — used by aggregator for "Edit Kanban" links
 EDIT_URL_TEMPLATE = f"https://github.com/{ORG}/{{repo}}/edit/{{branch}}/kanban.md"
@@ -256,6 +266,77 @@ def load_project_kanban(project: str) -> dict[str, Any]:
         "raw": "",
         "exists": False
     }
+
+
+def now_iso() -> str:
+    """UTC timestamp in ISO 8601, second precision, suitable for filenames."""
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def now_compact() -> str:
+    """UTC timestamp suitable for Google Sheets tab names (no colons)."""
+    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+
+_STATUS_DEFAULTS = {
+    "aggregator": {
+        "last_run_at": None,
+        "last_run_status": "unknown",
+        "source_repo_count": 0,
+        "task_count": 0,
+        "errors": [],
+    },
+    "sheets_export": {
+        "last_run_at": None,
+        "last_run_status": "unknown",
+        "row_count": 0,
+        "duration_seconds": None,
+        "last_error": None,
+        "last_error_issue": None,
+        "recent_failures": [],
+    },
+}
+
+
+def load_sync_status() -> dict:
+    """Read docs/_data/sync_status.yml, returning defaults if missing/corrupt.
+
+    Each call returns a deep-merged result so callers can safely overwrite
+    individual sections without erasing the other.
+    """
+    result = {k: dict(v) for k, v in _STATUS_DEFAULTS.items()}
+    if not STATUS_FILE.exists():
+        return result
+    try:
+        loaded = yaml.safe_load(STATUS_FILE.read_text()) or {}
+    except yaml.YAMLError:
+        return result
+    for section, defaults in _STATUS_DEFAULTS.items():
+        section_val = loaded.get(section)
+        if isinstance(section_val, dict):
+            merged = dict(defaults)
+            merged.update(section_val)
+            result[section] = merged
+    return result
+
+
+def save_sync_status(status: dict) -> None:
+    """Persist sync status to docs/_data/sync_status.yml.
+
+    Always succeeds (creates parent dir as needed). Callers may invoke this
+    even when the rest of their workflow is failing — that's the whole point.
+    """
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    STATUS_FILE.write_text(yaml.safe_dump(status, sort_keys=False))
+
+
+def update_sync_status(section: str, **fields) -> None:
+    """Read-modify-write a single section of sync_status.yml."""
+    status = load_sync_status()
+    if section not in status:
+        status[section] = {}
+    status[section].update(fields)
+    save_sync_status(status)
 
 
 def load_all_project_data() -> dict[str, dict[str, Any]]:
