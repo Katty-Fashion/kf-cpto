@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 
 import yaml
 
+from auto_blocks import load_context, process_page
 from utils import (
     DATA_DIR,
     DOCS_DIR,
@@ -562,6 +563,23 @@ def main():
 
     # Generate individual project pages
     generate_project_pages(data)
+
+    # Inject auto-blocks into every augmented Jekyll page (those declaring
+    # `auto_blocks: [...]` in frontmatter). Idempotent — re-runs replace
+    # marked sections without touching surrounding prose.
+    context = load_context(DATA_DIR)
+    augmented_count = 0
+    for md_path in sorted(DOCS_DIR.rglob("*.md")):
+        try:
+            if process_page(md_path, context):
+                augmented_count += 1
+                print(f"Refreshed auto-blocks: {md_path.relative_to(DOCS_DIR)}")
+        except ValueError as e:
+            # Surface but don't fail the whole aggregation — the validator
+            # script in CI catches these before merge.
+            print(f"WARN: auto-block injection failed for {md_path}: {e}")
+    if augmented_count:
+        print(f"Refreshed {augmented_count} augmented page(s)")
 
     # Write canonical LOE data for downstream consumers (Sheets export reads this)
     loe_rows = build_loe_rows(data)

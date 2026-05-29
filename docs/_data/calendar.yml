@@ -1,0 +1,31 @@
+# Migration calendar — drives auto-blocks on docs/migration-gantt.md
+# Editing this file regenerates the PW <-> CW table on next aggregator run.
+#
+# - start_date: ISO date (Monday) of PW1
+# - total_weeks: project length in working weeks
+# - sprint_length_weeks: scrum sprint cadence
+# - phases: each phase's project-week span (used to fill the "Faza" column)
+
+start_date: 2026-05-04
+total_weeks: 32
+sprint_length_weeks: 2
+
+phases:
+  - name: Faza 1
+    start_pw: 1
+    end_pw: 4
+  - name: Faza 2
+    start_pw: 3
+    end_pw: 9
+  - name: Faza 3
+    start_pw: 8
+    end_pw: 21
+  - name: Faza 4
+    start_pw: 14
+    end_pw: 22
+  - name: Faza 5
+    start_pw: 18
+    end_pw: 27
+  - name: Faza 6
+    start_pw: 26
+    end_pw: 32
