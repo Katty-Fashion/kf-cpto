@@ -57,5 +57,27 @@
         </li>
       </ul>
     </details>
+
+    {% if site.data.sync_status %}
+      {% assign agg = site.data.sync_status.aggregator %}
+      {% assign sx = site.data.sync_status.sheets_export %}
+      {% assign sx_state = sx.last_run_status | default: 'unknown' %}
+      <div class="sync-status sync-status--{{ sx_state }}">
+        <strong>Sheet export</strong>
+        {% case sx_state %}
+          {% when 'ok' %}OK — last {{ sx.last_run_at }}{% if sx.row_count %} ({{ sx.row_count }} rows){% endif %}
+          {% when 'failed' %}FAILED — {{ sx.last_run_at }}{% if sx.last_error_issue %} · <a href="{{ sx.last_error_issue }}">issue</a>{% endif %}
+          {% when 'skipped' %}skipped — {{ sx.last_run_at }}
+          {% when 'stale' %}STALE — {{ sx.last_run_at }}
+          {% else %}status unknown
+        {% endcase %}
+      </div>
+      {% if agg %}
+        <div class="sync-status sync-status--{{ agg.last_run_status | default: 'unknown' }}">
+          <strong>Aggregator</strong>
+          {{ agg.last_run_status | default: 'unknown' }} — {{ agg.last_run_at }}{% if agg.source_repo_count %} · {{ agg.source_repo_count }} repos{% endif %}
+        </div>
+      {% endif %}
+    {% endif %}
   </nav>
 </aside>

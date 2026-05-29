@@ -18,6 +18,7 @@ jobs:
     permissions:
       contents: write
       pages: write
+      issues: write
 
     steps:
       - uses: actions/checkout@v4
@@ -53,14 +54,6 @@ jobs:
       - name: Aggregate Kanbans + Calendar
         run: python scripts/aggregator.py
 
-      - name: Sync LOE to Google Sheets
-        continue-on-error: true
-        run: python scripts/sheets_sync.py
-        env:
-          GSHEET_ID: ${{ secrets.GSHEET_ID }}
-          GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
-          GSHEET_PRIVATE_KEY: ${{ secrets.GSHEET_PRIVATE_KEY }}
-
       - name: Commit unified docs
         run: |
           git config user.name "KF Bot"
@@ -76,6 +69,28 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           publish_branch: gh-pages
+
+      # Sheets export is a downstream consumer — runs AFTER Pages is live.
+      # A failure here never blanks the team's canonical dashboard.
+      # The script exits 0 even on failure (it files a sync-failure issue
+      # and records the failure in docs/_data/sync_status.yml).
+      - name: Sync LOE to Google Sheets (downstream export)
+        run: python scripts/sheets_sync.py
+        env:
+          GSHEET_ID: ${{ secrets.GSHEET_ID }}
+          GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
+          GSHEET_PRIVATE_KEY: ${{ secrets.GSHEET_PRIVATE_KEY }}
+          GH_TOKEN: ${{ secrets.KF_PAT }}
+          GOOGLE_CHAT_WEBHOOK: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
+
+      - name: Persist sheets sync status
+        if: always()
+        run: |
+          git add docs/_data/sync_status.yml 2>/dev/null || true
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update sheets sync status [skip ci]"
+            git push || true
+          fi
 
       - name: Build summary
         id: summary

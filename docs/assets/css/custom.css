@@ -223,6 +223,33 @@ body {
 .status-pill--todo        { background: #3182ce; }
 .status-pill--done        { background: #38a169; }
 
+/* ===== Sync status (sidebar badge + dashboard banner) ===== */
+.sync-status {
+  margin: 0.75rem 0.5rem 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  border-left: 3px solid transparent;
+}
+.sync-status strong { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.7; margin-bottom: 0.2rem; }
+.sync-status--ok      { background: #f0fdf4; border-left-color: #38a169; color: #14532d; }
+.sync-status--failed  { background: #fef2f2; border-left-color: #e53e3e; color: #7f1d1d; }
+.sync-status--stale   { background: #fffbeb; border-left-color: #ed8936; color: #78350f; }
+.sync-status--unknown { background: #f1f5f9; border-left-color: #94a3b8; color: #334155; }
+.sync-status a { color: inherit; text-decoration: underline; }
+
+.sync-banner {
+  margin: 1rem 0 1.5rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #e53e3e;
+  background: #fef2f2;
+  color: #7f1d1d;
+}
+.sync-banner strong { color: #991b1b; }
+.sync-banner a { color: inherit; }
+
 /* ===== Tables ===== */
 .main-content table {
   width: 100%;

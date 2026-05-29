@@ -7,6 +7,19 @@ layout: default
 
 > **Single Pane of Glass** · GitHub Native · Google Workspace Integration
 
+{% if site.data.sync_status.sheets_export.last_run_status == 'failed' %}
+<div class="sync-banner" role="alert">
+  <strong>Heads up:</strong> the downstream Google Sheet export failed at
+  {{ site.data.sync_status.sheets_export.last_run_at }}.
+  <em>The dashboard you're looking at is the canonical view and is current.</em>
+  The `LOE` tab in Google Sheets still shows the last successful export — it was
+  <strong>not</strong> blanked.
+  {% if site.data.sync_status.sheets_export.last_error_issue %}
+    See <a href="{{ site.data.sync_status.sheets_export.last_error_issue }}">the sync-failure issue</a> for details.
+  {% endif %}
+</div>
+{% endif %}
+
 ---
 
 ## Quick Links
