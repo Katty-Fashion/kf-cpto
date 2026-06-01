@@ -1,5 +1,5 @@
 aggregator:
-  last_run_at: '2026-05-29T11:05:45Z'
+  last_run_at: '2026-06-01T05:45:15Z'
   last_run_status: ok
   source_repo_count: 10
   task_count: 322
