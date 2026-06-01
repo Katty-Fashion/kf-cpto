@@ -4,7 +4,7 @@ description: "ALADIN – Advanced LocAl and Digital Innovation Network for circu
 project: project-template
 type: eu-project
 edit_url: "https://github.com/katty-fashion/project-template/edit/main/kanban.md"
-generated: 2026-05-29T11:05:45.471578
+generated: 2026-06-01T05:45:15.499878
 ---
 
 # project-template
