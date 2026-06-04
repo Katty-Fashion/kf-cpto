@@ -276,9 +276,34 @@ check(
 
 print("--- split_kanban / reconstruct_kanban ---")
 
-_REPO_ROOT_DIR = _SKILL_DIR.parent.parent.parent.parent
-_KANBAN_TEMPLATE = _REPO_ROOT_DIR / "templates" / "kanban.md"
-_KANBAN_ORIG = _KANBAN_TEMPLATE.read_text(encoding="utf-8")
+# Use an inline fixture with valid YAML frontmatter (no template placeholders).
+# The templates/kanban.md uses {project-name} which is not valid YAML and would
+# be parsed as a flow-mapping by ruamel, breaking byte-identity. Real kanban.md
+# files in tracked repos always have concrete values.
+_KANBAN_ORIG = """\
+---
+project: kf-platform
+description: "Infra platform for kf web based services"
+type: eu-project  # eu-project | saas | internal
+po: "@ps.tech"
+lead: "@el.tech"
+sprint: S1
+sprint_start: 2026-05-25
+sprint_end: 2026-06-07
+depends_on: [nuoform]
+tags: [eu-project, circular-textiles]
+---
+
+# Project Kanban
+
+<!-- Valid statuses: Todo, In Progress, Review, Done (exact spelling required) -->
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Project setup | @lead | 1d | 2026-03-03 | 2026-03-03 | Done |
+| Initial architecture | @tech-lead | 2d | 2026-03-04 | 2026-03-05 | In Progress |
+| Documentation | @developer | 1d | | | Todo |
+"""
 
 fm_str, body_str = split_kanban(_KANBAN_ORIG)
 
@@ -299,7 +324,9 @@ check(
     not body_str.startswith("---"),
 )
 
-# Round-trip: reconstruct must be byte-identical to original (WB-01)
+# Round-trip: reconstruct must be byte-identical to original (WB-01).
+# The inline fixture uses real YAML values (no {placeholder} syntax) so
+# ruamel can round-trip it without structural changes.
 reconstructed = reconstruct_kanban(fm_str, body_str)
 check(
     "reconstruct_kanban byte-identical to original (WB-01)",
