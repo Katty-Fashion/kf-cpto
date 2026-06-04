@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Roadmap created — ROADMAP.md, STATE.md written; REQUIREMENTS.md traceability updated
-last_updated: "2026-06-04T07:17:15.121Z"
+last_updated: "2026-06-04T07:24:15.267Z"
 last_activity: 2026-06-04
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 3
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 ## Current Position
 
 Phase: 01 (repo-access-foundation) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-06-04
 
-Progress: [███░░░░░░░] 33%
+Progress: [███████░░░] 67%
 
 ## Performance Metrics
 
@@ -52,6 +52,7 @@ Progress: [███░░░░░░░] 33%
 - Trend: -
 
 *Updated after each plan completion*
+| Phase 01 P02 | 8min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -64,6 +65,8 @@ Recent decisions affecting current work:
 - [Pre-Phase 1]: One-parser constraint from day one — import `scripts/utils.py`; no local kanban parser in skill code
 - [Pre-Phase 1]: Agentic model runs in `reconcile.py` (skill-side), not in `aggregator.py` (CI-side)
 - [Pre-Phase 1]: Mermaid sanitization scoped strictly to task table rows; never frontmatter or AUTO-block markers
+- [Phase ?]: 01-02: Added 'from __future__ import annotations' to bootstrap.py so PEP 604 'str | None' annotations stay valid on the Python 3.9-pinned venv
+- [Phase ?]: 01-02: Full SSH clone (no --depth) for tracked repos because Phase 2 activity mining needs git history; clone URL built from hardcoded KF_ORG=Katty-Fashion constant
 
 ### Open Questions (resolve before affected phase begins)
 
@@ -91,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-04T07:17:15.104Z
+Last session: 2026-06-04T07:24:01.651Z
 Stopped at: Roadmap created — ROADMAP.md, STATE.md written; REQUIREMENTS.md traceability updated
 Resume file: None

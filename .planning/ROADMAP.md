@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. `git fetch origin` is verifiably executed per tracked repo before any read, and the skill logs whether each repo was already up-to-date or received new commits
 **Plans**: 3 plans
 - [x] 01-01-PLAN.md — Fix .gitignore (un-blanket .claude/, ignore repos-local/) + scaffold SKILL.md
-- [ ] 01-02-PLAN.md — bootstrap.py: clone + seed the 6 tracked repos into repos-local/
+- [x] 01-02-PLAN.md — bootstrap.py: clone + seed the 6 tracked repos into repos-local/
 - [ ] 01-03-PLAN.md — repo_enum.py: enumerate → fetch → parse-parity → assert-clean
 
 **Open questions to resolve during planning:**
@@ -110,7 +110,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Repo Access Foundation | 1/3 | In Progress|  |
+| 1. Repo Access Foundation | 2/3 | In Progress|  |
 | 2. Activity Mining + Reconciliation | 0/TBD | Not started | - |
 | 3. Write-Back + Diagram Sanitization | 0/TBD | Not started | - |
 | 4. Agentic Capacity Model | 0/TBD | Not started | - |
