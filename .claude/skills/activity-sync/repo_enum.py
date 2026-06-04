@@ -259,7 +259,7 @@ def run() -> list[dict[str, Any]]:
     repo_names = enumerate_repos(REPOS_LOCAL_DIR)
 
     if not repo_names:
-        print("[WARN] No valid git repos found in repos-local/ — nothing to enumerate")
+        print("Warning: no valid git repos found in repos-local/ — run bootstrap.py first")
         print("Activity Sync — Repo Enum — Done!")
         return []
 
