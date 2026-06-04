@@ -26,7 +26,7 @@ Requirements for this milestone. Each maps to a roadmap phase.
 
 ### Write-Back (WB)
 
-- [ ] **WB-01**: Skill writes corrected `kanban.md` back to each tracked repo, preserving all non-task content (frontmatter comments, prose)
+- [x] **WB-01**: Skill writes corrected `kanban.md` back to each tracked repo, preserving all non-task content (frontmatter comments, prose)
 - [ ] **WB-02**: Skill batch-confirms all writes once before committing (never per-repo prompting)
 - [ ] **WB-03**: Skill aborts a repo's write on non-fast-forward / divergence rather than clobbering concurrent human edits
 - [ ] **WB-04**: Skill commits and pushes to each repo's correct default branch, triggering the existing notify to dispatch pipeline
@@ -44,9 +44,9 @@ Requirements for this milestone. Each maps to a roadmap phase.
 
 ### Diagram Robustness (DIAG)
 
-- [ ] **DIAG-01**: Mermaid-breaking characters (emojis and `: ( ) " # ; { } |`) are sanitized from task content on ingest, before write
-- [ ] **DIAG-02**: Sanitization is scoped to the task table only — AUTO-block markers and Romanian diacritics (ă/â/î/ș/ț) are preserved
-- [ ] **DIAG-03**: Dashboard diagrams (gantt, kanban, pie, dependency graph) render without breaking after a skill run
+- [x] **DIAG-01**: Mermaid-breaking characters (emojis and `: ( ) " # ; { } |`) are sanitized from task content on ingest, before write
+- [x] **DIAG-02**: Sanitization is scoped to the task table only — AUTO-block markers and Romanian diacritics (ă/â/î/ș/ț) are preserved
+- [x] **DIAG-03**: Dashboard diagrams (gantt, kanban, pie, dependency graph) render without breaking after a skill run
 
 ## v2 Requirements
 
@@ -94,14 +94,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RECON-06 | Phase 2 | Complete |
 | RECON-07 | Phase 2 | Complete |
 | RECON-08 | Phase 2 | Complete |
-| WB-01 | Phase 3 | Pending |
+| WB-01 | Phase 3 | Complete |
 | WB-02 | Phase 3 | Pending |
 | WB-03 | Phase 3 | Pending |
 | WB-04 | Phase 3 | Pending |
 | WB-05 | Phase 3 | Pending |
-| DIAG-01 | Phase 3 | Pending |
-| DIAG-02 | Phase 3 | Pending |
-| DIAG-03 | Phase 3 | Pending |
+| DIAG-01 | Phase 3 | Complete |
+| DIAG-02 | Phase 3 | Complete |
+| DIAG-03 | Phase 3 | Complete |
 | CAP-01 | Phase 4 | Pending |
 | CAP-02 | Phase 4 | Pending |
 | CAP-03 | Phase 4 | Pending |

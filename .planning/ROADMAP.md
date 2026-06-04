@@ -72,7 +72,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. A recovery manifest file is written for each run recording which repos succeeded and which failed, and re-running the skill on a repo that already has the correct kanban.md produces zero git diff (idempotency)
   5. Task table rows containing emojis or Mermaid-breaking punctuation are sanitized before write; Romanian diacritics (ă/â/î/ș/ț) are preserved verbatim; AUTO-block marker lines are unchanged in the git diff; running `validate_auto_blocks.py` locally after the write produces exit 0
 **Plans**: 3 plans
-- [ ] 03-01-PLAN.md — sanitize.py + frontmatter round-trip + status-cell builder + idempotency (pure, git-free); requirements.txt/.gitignore groundwork (WB-01, DIAG-01/02/03)
+- [x] 03-01-PLAN.md — sanitize.py + frontmatter round-trip + status-cell builder + idempotency (pure, git-free); requirements.txt/.gitignore groundwork (WB-01, DIAG-01/02/03)
 - [ ] 03-02-PLAN.md — writeback.py git layer: conflict detection + token-masked push + _write_repo against a throwaway bare remote (WB-03, WB-04)
 - [ ] 03-03-PLAN.md — batch-confirm + recovery manifest + run()/main() orchestration over reconcile.run() + SKILL.md (WB-02, WB-05)
 
@@ -116,6 +116,6 @@ Decimal phases appear between their surrounding integers in numeric order.
 |-------|----------------|--------|-----------|
 | 1. Repo Access Foundation | 4/4 | Complete   | 2026-06-04 |
 | 2. Activity Mining + Reconciliation | 2/2 | Complete   | 2026-06-04 |
-| 3. Write-Back + Diagram Sanitization | 0/3 | Planned | - |
+| 3. Write-Back + Diagram Sanitization | 1/3 | In Progress|  |
 | 4. Agentic Capacity Model | 0/TBD | Not started | - |
 | 5. Hardening | 0/TBD | Not started | - |
