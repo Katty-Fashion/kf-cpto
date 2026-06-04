@@ -9,6 +9,8 @@ Usage:
     python .claude/skills/activity-sync/bootstrap.py
 """
 
+from __future__ import annotations
+
 import shutil
 import subprocess
 import sys
