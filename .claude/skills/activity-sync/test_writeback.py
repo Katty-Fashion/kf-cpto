@@ -527,9 +527,9 @@ _rg = _run_git(["--version"])
 check("_run_git: git --version returncode 0", _rg.returncode == 0)
 check("_run_git: stdout contains 'git'", "git" in _rg.stdout.lower())
 
-# _run_git with bad command should return non-zero
-_rg_bad = _run_git(["rev-parse", "--bad-flag-that-does-not-exist"])
-check("_run_git: bad flag returns non-zero", _rg_bad.returncode != 0)
+# _run_git with invalid subcommand should return non-zero
+_rg_bad = _run_git(["invalid-subcommand-xyz-notacommand"])
+check("_run_git: invalid subcommand returns non-zero", _rg_bad.returncode != 0)
 
 # _run_git: cwd parameter is honoured
 _tmpwd = Path(tempfile.mkdtemp())
@@ -980,14 +980,14 @@ def _write_repo_on_branch(target_branch: str) -> str:
     """Run _write_repo on a bare remote checked out on target_branch. Returns outcome."""
     tmpdir, bare, work = _make_bare_remote()
     try:
-        # Rename branch to target_branch if needed
+        # Make initial commit first, THEN read the branch name
+        (work / "kanban.md").write_text(_KANBAN_SEED, encoding="utf-8")
+        _git(["add", "."], work)
+        _git(["commit", "-m", "init"], work)
         current = subprocess.run(
             ["git", "rev-parse", "--abbrev-ref", "HEAD"],
             cwd=str(work), capture_output=True, text=True
         ).stdout.strip()
-        (work / "kanban.md").write_text(_KANBAN_SEED, encoding="utf-8")
-        _git(["add", "."], work)
-        _git(["commit", "-m", "init"], work)
         if current != target_branch:
             _git(["branch", "-m", current, target_branch], work)
             _git(["push", "-u", "origin", target_branch], work)
