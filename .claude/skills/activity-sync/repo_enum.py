@@ -53,14 +53,23 @@ from utils import (  # noqa: E402
 REPOS_LOCAL_DIR = _REPO_ROOT / "repos-local"
 SKILL_DIR = Path(__file__).parent
 
+# Timeout for git subprocess calls (seconds).  Fetch/rev-parse uses this directly;
+# clone callers pass GIT_CLONE_TIMEOUT_SECONDS instead.
+GIT_TIMEOUT_SECONDS = 60
+GIT_CLONE_TIMEOUT_SECONDS = 300
+
 
 # ---------------------------------------------------------------------------
 # Private git helpers
 # ---------------------------------------------------------------------------
 
-def _run_git(args: list[str], cwd: str | None = None) -> subprocess.CompletedProcess:
+def _run_git(args: list[str], cwd: str | None = None, timeout: int = GIT_TIMEOUT_SECONDS) -> subprocess.CompletedProcess:
     """Internal git subprocess wrapper. Uses arg-list subprocess; never shell-interpolated."""
-    return subprocess.run(["git"] + args, capture_output=True, text=True, cwd=cwd)
+    try:
+        return subprocess.run(["git"] + args, capture_output=True, text=True, cwd=cwd, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        print(f"Warning: git {args[0] if args else ''} timed out after {timeout}s")
+        return subprocess.CompletedProcess(["git"] + args, returncode=1, stdout="", stderr="git timed out")
 
 
 def _is_git_repo(path: str) -> bool:

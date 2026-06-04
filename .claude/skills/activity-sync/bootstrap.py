@@ -27,6 +27,10 @@ KF_ORG = "Katty-Fashion"
 
 REPOS_LOCAL_DIR = _REPO_ROOT / "repos-local"
 
+# Timeout for git subprocess calls (seconds).  Clone needs more time for large repos.
+GIT_TIMEOUT_SECONDS = 60
+GIT_CLONE_TIMEOUT_SECONDS = 300
+
 # Curated allowlist — membership in repos-local/ IS the tracked set after bootstrap.
 # This constant lives ONLY here; repo_enum.py scans repos-local/ at runtime (REPO-01).
 # "branch" is the remote default branch for each repo.
@@ -40,9 +44,13 @@ TRACKED_REPOS = [
 ]
 
 
-def _run_git(args: list[str], cwd: str | None = None) -> subprocess.CompletedProcess:
+def _run_git(args: list[str], cwd: str | None = None, timeout: int = GIT_TIMEOUT_SECONDS) -> subprocess.CompletedProcess:
     """Internal git subprocess wrapper. Always uses arg-list form; no shell interpolation (T-02-01)."""
-    return subprocess.run(["git"] + args, capture_output=True, text=True, cwd=cwd)
+    try:
+        return subprocess.run(["git"] + args, capture_output=True, text=True, cwd=cwd, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        print(f"Warning: git {args[0] if args else ''} timed out after {timeout}s")
+        return subprocess.CompletedProcess(["git"] + args, returncode=1, stdout="", stderr="git timed out")
 
 
 def _clone_repo(name: str, branch: str, repos_local: Path) -> bool:
@@ -61,7 +69,8 @@ def _clone_repo(name: str, branch: str, repos_local: Path) -> bool:
     result = _run_git(
         ["clone", "-b", branch,
          f"git@github.com:{KF_ORG}/{name}.git",
-         str(target)]
+         str(target)],
+        timeout=GIT_CLONE_TIMEOUT_SECONDS,
     )
     if result.returncode != 0:
         print(f"Warning: clone failed for {name}: {result.stderr.strip()}")
