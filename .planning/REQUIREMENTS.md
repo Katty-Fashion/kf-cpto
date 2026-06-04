@@ -27,10 +27,10 @@ Requirements for this milestone. Each maps to a roadmap phase.
 ### Write-Back (WB)
 
 - [x] **WB-01**: Skill writes corrected `kanban.md` back to each tracked repo, preserving all non-task content (frontmatter comments, prose)
-- [ ] **WB-02**: Skill batch-confirms all writes once before committing (never per-repo prompting)
+- [x] **WB-02**: Skill batch-confirms all writes once before committing (never per-repo prompting)
 - [x] **WB-03**: Skill aborts a repo's write on non-fast-forward / divergence rather than clobbering concurrent human edits
 - [x] **WB-04**: Skill commits and pushes to each repo's correct default branch, triggering the existing notify to dispatch pipeline
-- [ ] **WB-05**: Skill records a recovery manifest of what was written, so a partial-batch failure is recoverable
+- [x] **WB-05**: Skill records a recovery manifest of what was written, so a partial-batch failure is recoverable
 
 ### Agentic Capacity Model (CAP)
 
@@ -95,10 +95,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RECON-07 | Phase 2 | Complete |
 | RECON-08 | Phase 2 | Complete |
 | WB-01 | Phase 3 | Complete |
-| WB-02 | Phase 3 | Pending |
+| WB-02 | Phase 3 | Complete |
 | WB-03 | Phase 3 | Complete |
 | WB-04 | Phase 3 | Complete |
-| WB-05 | Phase 3 | Pending |
+| WB-05 | Phase 3 | Complete |
 | DIAG-01 | Phase 3 | Complete |
 | DIAG-02 | Phase 3 | Complete |
 | DIAG-03 | Phase 3 | Complete |
