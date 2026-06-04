@@ -10,6 +10,7 @@ Exits non-zero on any failed assert.
 
 import sys
 import io
+import os
 from pathlib import Path
 
 # Ensure we can import reconcile from this directory
@@ -30,6 +31,9 @@ from reconcile import (
     Proposal,
     render_change_list,
     reconcile_repo,
+    _build_headers,
+    _extract_issue_refs,
+    _is_merge_reachable,
 )
 
 PASS = 0
@@ -301,6 +305,208 @@ sys.stdout = old_stdout
 check("render_change_list with proposals prints repo name", "test-repo" in output_with_p)
 check("render_change_list with proposals prints task name", "Setup authentication" in output_with_p)
 check("render_change_list uses [TIER-2] pill", "[TIER-2]" in output_with_p)
+
+# ---------------------------------------------------------------------------
+# _extract_issue_refs assertions
+# ---------------------------------------------------------------------------
+
+print("--- _extract_issue_refs ---")
+check(
+    "_extract_issue_refs(None) returns empty list",
+    _extract_issue_refs(None) == [],
+)
+check(
+    "_extract_issue_refs('') returns empty list",
+    _extract_issue_refs("") == [],
+)
+check(
+    "_extract_issue_refs('closes #12') returns [12]",
+    _extract_issue_refs("closes #12") == [12],
+)
+check(
+    "_extract_issue_refs('Closes #12') case-insensitive",
+    _extract_issue_refs("Closes #12") == [12],
+)
+check(
+    "_extract_issue_refs('closes #12 and fixes: #34') returns [12, 34]",
+    _extract_issue_refs("closes #12 and fixes: #34") == [12, 34],
+)
+check(
+    "_extract_issue_refs('fixed #5') returns [5]",
+    _extract_issue_refs("fixed #5") == [5],
+)
+check(
+    "_extract_issue_refs('resolves #99') returns [99]",
+    _extract_issue_refs("resolves #99") == [99],
+)
+check(
+    "_extract_issue_refs('see owner/repo#9') returns [] (cross-repo ignored)",
+    _extract_issue_refs("see owner/repo#9") == [],
+)
+check(
+    "_extract_issue_refs('no issue references here') returns []",
+    _extract_issue_refs("no issue references here") == [],
+)
+check(
+    "_extract_issue_refs with multiple refs extracts all",
+    set(_extract_issue_refs("closes #1 fixes #2 resolved #3")) == {1, 2, 3},
+)
+
+# ---------------------------------------------------------------------------
+# _build_headers assertions
+# ---------------------------------------------------------------------------
+
+print("--- _build_headers ---")
+
+
+class _EnvPatch:
+    """Context manager to patch os.environ for tests."""
+    def __init__(self, overrides: dict):
+        self.overrides = overrides
+        self._orig = {}
+
+    def __enter__(self):
+        for k, v in self.overrides.items():
+            self._orig[k] = os.environ.get(k)
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+        return self
+
+    def __exit__(self, *args):
+        for k, orig in self._orig.items():
+            if orig is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = orig
+
+
+with _EnvPatch({"KF_PAT": None, "GITHUB_TOKEN": None}):
+    old_stdout = sys.stdout
+    sys.stdout = io.StringIO()
+    headers_no_token = _build_headers()
+    out = sys.stdout.getvalue()
+    sys.stdout = old_stdout
+
+check(
+    "_build_headers() without token includes Accept header",
+    headers_no_token.get("Accept") == "application/vnd.github+json",
+)
+check(
+    "_build_headers() without token has no Authorization header",
+    "Authorization" not in headers_no_token,
+)
+check(
+    "_build_headers() without token prints Warning",
+    "Warning" in out,
+)
+
+with _EnvPatch({"KF_PAT": "test_token_value", "GITHUB_TOKEN": None}):
+    old_stdout = sys.stdout
+    sys.stdout = io.StringIO()
+    headers_with_token = _build_headers()
+    out_with_token = sys.stdout.getvalue()
+    sys.stdout = old_stdout
+
+check(
+    "_build_headers() with KF_PAT includes Authorization header",
+    "Authorization" in headers_with_token,
+)
+check(
+    "_build_headers() with KF_PAT uses Bearer scheme",
+    headers_with_token.get("Authorization", "").startswith("Bearer "),
+)
+check(
+    "_build_headers() with KF_PAT does not print Warning",
+    "Warning" not in out_with_token,
+)
+check(
+    "_build_headers() token value is in Authorization (functional check)",
+    "test_token_value" in headers_with_token.get("Authorization", ""),
+)
+# Security: token value must not appear in any print output
+check(
+    "_build_headers() token value is never printed",
+    "test_token_value" not in out_with_token,
+)
+
+# GITHUB_TOKEN fallback
+with _EnvPatch({"KF_PAT": None, "GITHUB_TOKEN": "gh_fallback_token"}):
+    old_stdout = sys.stdout
+    sys.stdout = io.StringIO()
+    headers_gh = _build_headers()
+    sys.stdout = old_stdout
+
+check(
+    "_build_headers() GITHUB_TOKEN fallback adds Authorization",
+    "Authorization" in headers_gh,
+)
+check(
+    "_build_headers() GITHUB_TOKEN fallback value present",
+    "gh_fallback_token" in headers_gh.get("Authorization", ""),
+)
+
+# ---------------------------------------------------------------------------
+# _is_merge_reachable assertions (stub _run_git)
+# ---------------------------------------------------------------------------
+
+print("--- _is_merge_reachable ---")
+
+
+class _FakeRunGit:
+    """Context manager to monkeypatch reconcile._run_git."""
+    def __init__(self, returncode: int, stdout: str = "", stderr: str = ""):
+        self.returncode = returncode
+        self.stdout = stdout
+        self.stderr = stderr
+        self._orig = None
+
+    def __enter__(self):
+        self._orig = reconcile._run_git
+        rc = self.returncode
+        so = self.stdout
+        se = self.stderr
+
+        def _fake(args, cwd=None, timeout=60):
+            import subprocess as _sp
+            return _sp.CompletedProcess(args, rc, so, se)
+
+        reconcile._run_git = _fake
+        return self
+
+    def __exit__(self, *args):
+        reconcile._run_git = self._orig
+
+
+with _FakeRunGit(returncode=0):
+    result_reachable = _is_merge_reachable("/fake/repo", "abc123", "main")
+check(
+    "_is_merge_reachable returns True when git exit 0",
+    result_reachable is True,
+)
+
+with _FakeRunGit(returncode=1):
+    result_not_reachable = _is_merge_reachable("/fake/repo", "abc123", "main")
+check(
+    "_is_merge_reachable returns False when git exit 1",
+    result_not_reachable is False,
+)
+
+with _FakeRunGit(returncode=128, stderr="unknown revision"):
+    old_stdout = sys.stdout
+    sys.stdout = io.StringIO()
+    result_error = _is_merge_reachable("/fake/repo", "badsha", "main")
+    out_error = sys.stdout.getvalue()
+    sys.stdout = old_stdout
+check(
+    "_is_merge_reachable returns None when git exit 128",
+    result_error is None,
+)
+check(
+    "_is_merge_reachable prints Warning on git error",
+    "Warning" in out_error or "warning" in out_error.lower(),
+)
 
 # ---------------------------------------------------------------------------
 # Summary
