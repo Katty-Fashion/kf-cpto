@@ -15,7 +15,6 @@ Usage (imported by writeback.py):
 from __future__ import annotations
 
 import re
-import unicodedata  # noqa: F401 — used implicitly via ord/chr; ranges are stdlib
 
 # ---------------------------------------------------------------------------
 # Module constants (SCREAMING_SNAKE_CASE per CLAUDE.md)
@@ -44,6 +43,28 @@ _BREAK_MAP: dict[str, str] = {
 # "Task" identifies the header row (first data cell of the header).
 # ":---" is the canonical alignment marker in every pipe-table separator row.
 _HEADER_CELLS = frozenset({"Task", ":---"})
+
+# Structural GFM table-separator cell matcher (CR-01). A separator cell is a run
+# of one-or-more dashes optionally fenced by alignment colons:
+#   ---  :---  ---:  :--:  :-:  etc.
+# This recognises ALL valid GFM separator alignments, not just left-align ':---'.
+_SEP_CELL_RE = re.compile(r"^:?-+:?$")
+
+
+def _is_separator_row(stripped: str) -> bool:
+    """True if a pipe-table row is a GFM alignment separator row.
+
+    Detects separators structurally (every non-empty inter-pipe cell matches
+    ``^:?-+:?$``) rather than by the literal ':---' marker, so '---', ':--:',
+    and '---:' separators are recognised and passed through verbatim (CR-01).
+
+    Requires the row to start AND end with '|' (CR-02): a separator without a
+    trailing pipe is malformed and handled by the data-row path's guard.
+    """
+    if not (stripped.startswith("|") and stripped.endswith("|")):
+        return False
+    cells = [c.strip() for c in stripped.split("|")[1:-1]]
+    return bool(cells) and all(_SEP_CELL_RE.match(c) for c in cells)
 
 
 # ---------------------------------------------------------------------------
@@ -113,7 +134,9 @@ def sanitize_body(body: str) -> str:
     Skips (passes byte-for-byte):
     - Non-pipe lines: prose, blank lines, HTML comments
     - Header row: first cell == 'Task'
-    - Separator rows: ':---' present anywhere in the stripped line
+    - Separator rows: every cell matches a GFM alignment marker (---, :---,
+      ---:, :--:) — detected structurally via _is_separator_row (CR-01)
+    - Rows lacking a trailing '|': skipped with a [WARN] (CR-02)
 
     Sanitizes only data rows (rows that start with '|', are not header, not
     separator). Within data rows, sanitizes parts[1..-2] (all data cells,
@@ -141,17 +164,29 @@ def sanitize_body(body: str) -> str:
             result.append(line)
             continue
 
+        # Separator row: any valid GFM alignment markers (---, :---, ---:, :--:)
+        # Checked BEFORE the trailing-pipe guard so well-formed separators are
+        # always preserved verbatim (CR-01).
+        if _is_separator_row(stripped):
+            result.append(line)
+            continue
+
+        # CR-02: a well-formed data/header row must start AND end with '|'.
+        # GFM permits trailing-pipe-less rows, but the cell-index logic below
+        # (and apply_status_change's parts[-2] addressing) assumes a trailing
+        # pipe. Skip such rows verbatim with a [WARN] rather than corrupting the
+        # last cell by sanitizing past the true final column.
+        if not stripped.endswith("|"):
+            print(f"[WARN] Skipping malformed (no trailing pipe) row: {stripped!r}")
+            result.append(line)
+            continue
+
         # Split on pipe to inspect cells
         parts = stripped.split("|")
         first_cell = parts[1].strip() if len(parts) > 1 else ""
 
         # Header row: first data cell is literally "Task"
         if first_cell == "Task":
-            result.append(line)
-            continue
-
-        # Separator row: alignment markers like :--- or ---
-        if ":---" in stripped:
             result.append(line)
             continue
 

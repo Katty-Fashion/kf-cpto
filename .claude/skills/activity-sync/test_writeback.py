@@ -256,6 +256,78 @@ check(
 )
 
 # ---------------------------------------------------------------------------
+# sanitize_body: ALL GFM separator alignments preserved byte-identical (CR-01)
+# ---------------------------------------------------------------------------
+
+print("--- sanitize_body: GFM separator variants (CR-01) ---")
+
+# Every valid GFM separator alignment must pass through byte-identical — not just
+# the left-align ':---' the template happens to use. Previously '---', ':--:',
+# and '---:' fell through to the data-row path and got mangled by the ':' -> ' -'
+# substitution.
+for _sep in (
+    "| --- | --- | --- | --- |",     # no-colon (default align)
+    "| :--- | :--- | :--- | :--- |", # left
+    "| ---: | ---: | ---: | ---: |", # right
+    "| :--: | :--: | :--: | :--: |", # center
+    "| --- | :--: | ---: | :--- |",  # mixed alignments in one row
+    "| :-: | :-: | :-: | :-: |",     # minimal single-dash center
+):
+    _sep_body = (
+        "| Task | Assignee | Effort | Status |\n"
+        f"{_sep}\n"
+        "| Deploy: prod (v2) | @lead | 1d | Todo |\n"
+    )
+    _sep_out = sanitize_body(_sep_body)
+    check(
+        f"separator preserved byte-identical: {_sep!r}",
+        f"{_sep}\n" in _sep_out,
+    )
+    # Data row must still be sanitized even with a non-':---' separator
+    check(
+        f"data row still sanitized with separator {_sep!r}",
+        "Deploy - prod v2" in _sep_out,
+    )
+
+# ---------------------------------------------------------------------------
+# sanitize_body: trailing-pipe-less row skipped verbatim with [WARN] (CR-02)
+# ---------------------------------------------------------------------------
+
+print("--- sanitize_body: no-trailing-pipe row (CR-02) ---")
+
+_NO_TRAILING_BODY = (
+    "| Task | Assignee | Effort | Status |\n"
+    "| :--- | :--- | :--- | :--- |\n"
+    "| Documentation | @dev | 1d | Todo\n"  # no trailing pipe
+)
+
+old_stdout_nt = sys.stdout
+sys.stdout = io.StringIO()
+_nt_out = sanitize_body(_NO_TRAILING_BODY)
+_nt_warn = sys.stdout.getvalue()
+sys.stdout = old_stdout_nt
+
+check(
+    "no-trailing-pipe data row preserved verbatim (not corrupted)",
+    "| Documentation | @dev | 1d | Todo\n" in _nt_out,
+)
+check(
+    "no-trailing-pipe data row prints [WARN]",
+    "[WARN]" in _nt_warn,
+)
+# A trailing-pipe-less SEPARATOR is malformed; it must NOT be silently sanitized
+# into a mangled cell either — it falls to the same [WARN] skip path.
+_NO_TRAILING_SEP = "| Task | A | B | C |\n| --- | --- | --- | ---\n| X: y | @d | 1d | Todo |\n"
+old_stdout_nts = sys.stdout
+sys.stdout = io.StringIO()
+_nts_out = sanitize_body(_NO_TRAILING_SEP)
+sys.stdout = old_stdout_nts
+check(
+    "no-trailing-pipe separator not mangled by ':' substitution",
+    "| --- | --- | --- | ---\n" in _nts_out,
+)
+
+# ---------------------------------------------------------------------------
 # sanitize_body: idempotency
 # ---------------------------------------------------------------------------
 
