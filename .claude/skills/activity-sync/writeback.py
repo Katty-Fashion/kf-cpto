@@ -773,11 +773,21 @@ def apply_status_change(
     Args:
         body_str:   Body portion of kanban.md (everything after closing '---').
         task_name:  Exact task name to match (from Proposal.task; matches parts[1].strip()).
-        new_status: Target status string (validated TASK_STATUSES member by caller).
+        new_status: Target status string — validated here against TASK_STATUSES (WR-01).
 
     Returns:
         (new_body_str, was_changed) where was_changed is True if any row was modified.
     """
+    # WR-01: do not trust the caller to have validated new_status. A malformed
+    # proposal (typo, upstream reconcile regression) must never write an invalid
+    # status into a tracked repo. Reject non-members with a [WARN] and no-op.
+    if new_status not in TASK_STATUSES:
+        print(
+            f"[WARN] Invalid status {new_status!r} for task {task_name!r} "
+            f"(valid: {', '.join(TASK_STATUSES)}) — skipping"
+        )
+        return body_str, False
+
     lines = body_str.splitlines(keepends=True)
     new_lines: list[str] = []
     changed = False

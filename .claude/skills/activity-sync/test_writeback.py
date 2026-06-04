@@ -580,6 +580,37 @@ check(
 )
 
 # ---------------------------------------------------------------------------
+# apply_status_change: invalid status rejected against TASK_STATUSES (WR-01)
+# ---------------------------------------------------------------------------
+
+print("--- apply_status_change: invalid status rejected (WR-01) ---")
+
+old_stdout_inv = sys.stdout
+sys.stdout = io.StringIO()
+_inv_body, _inv_changed = apply_status_change(_BODY_4COL, "Documentation", "Dn")  # typo
+_inv_warn = sys.stdout.getvalue()
+sys.stdout = old_stdout_inv
+
+check(
+    "invalid status: returns changed=False",
+    _inv_changed is False,
+)
+check(
+    "invalid status: body unchanged (nothing written)",
+    _inv_body == _BODY_4COL,
+)
+check(
+    "invalid status: prints [WARN]",
+    "[WARN]" in _inv_warn,
+)
+# Sanity: a VALID status still applies (no false-positive rejection).
+_valid_body, _valid_changed = apply_status_change(_BODY_4COL, "Documentation", "Review")
+check(
+    "valid status still applies after WR-01 guard",
+    _valid_changed is True and "| Documentation | @developer | 1d | Review |" in _valid_body,
+)
+
+# ---------------------------------------------------------------------------
 # apply_status_change: 6-col table
 # ---------------------------------------------------------------------------
 
