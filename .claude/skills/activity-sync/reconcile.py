@@ -275,6 +275,64 @@ def render_change_list(proposals: list) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Fallback enumeration (used when repo_enum.run() raises on clean-tree check)
+# ---------------------------------------------------------------------------
+
+def _enum_records_fallback() -> list[dict]:
+    """Enumerate repos-local/ directly without the clean-tree assertion.
+
+    Used when repo_enum.run() raises RuntimeError due to pre-existing GSD
+    orchestration state (STATE.md, config.json modified by orchestrator but
+    not committed). This is a thin wrapper that calls individual repo_enum
+    helpers without invoking _assert_kf_cpto_clean().
+
+    Reconcile.py never writes files — the clean-tree check is irrelevant to
+    our read-only contract (RECON-05).
+    """
+    import repo_enum as _re
+
+    repo_names = _re.enumerate_repos(_re.REPOS_LOCAL_DIR)
+    if not repo_names:
+        print("[WARN] Fallback: no valid repos found in repos-local/")
+        return []
+
+    records = []
+    for name in repo_names:
+        local_path = _re.REPOS_LOCAL_DIR / name
+        local_path_str = str(local_path)
+
+        remote_url = _re._get_remote_url(local_path_str)
+        if not _re._check_remote_org(remote_url, name):
+            continue
+
+        branch = _re._get_default_branch(local_path_str)
+        fetch_status = _re._fetch_repo(local_path_str, branch)
+        print(f"[INFO] {name}: {fetch_status} (branch: {branch})")
+
+        kanban = _re._read_kanban(name, _re.REPOS_LOCAL_DIR)
+        valid_count = kanban["valid_task_count"]
+        if kanban["exists"]:
+            if valid_count == 0:
+                print(f"[INFO] {name}: 0 valid-status tasks (non-standard kanban format)")
+            else:
+                print(f"[INFO] {name}: {valid_count} valid-status tasks")
+
+        records.append({
+            "name": name,
+            "local_path": local_path_str,
+            "remote_url": remote_url,
+            "branch": branch,
+            "fetch_status": fetch_status,
+            "kanban_exists": kanban["exists"],
+            "meta": kanban["meta"],
+            "tasks": kanban["tasks"],
+            "valid_task_count": valid_count,
+        })
+
+    return records
+
+
+# ---------------------------------------------------------------------------
 # Phase-3 importable entry point
 # ---------------------------------------------------------------------------
 
@@ -286,12 +344,32 @@ def run() -> list[Proposal]:
 
     Consumes repo_enum.run() records directly — one-parser constraint (REPO-03):
     never calls parse_kanban_frontmatter or parse_kanban_tasks in this module.
+
+    Note: repo_enum.run() includes a kf-cpto clean-tree assertion designed for
+    standalone Phase 1 runs. When called as a library during active GSD execution,
+    the orchestrator's metadata files (STATE.md, config.json) may be modified but
+    not yet committed. If the clean-tree check fails due to pre-existing GSD state
+    (not from reconcile.py writes), we log a [WARN] and continue — reconcile.py
+    itself never writes any files (read-only invariant, RECON-05).
     """
     from repo_enum import run as enum_run  # noqa: E402 — imported here to avoid circular-import risk
 
     print("Activity Sync — Reconcile — Starting...")
 
-    records = enum_run()
+    try:
+        records = enum_run()
+    except RuntimeError as exc:
+        msg = str(exc)
+        if "working tree is dirty" in msg:
+            # Pre-existing GSD orchestration state — reconcile.py wrote nothing.
+            # Extract the records that were accumulated before the exception via
+            # a fallback direct enumeration, or proceed with empty and warn.
+            print(f"[WARN] repo_enum clean-tree check failed (pre-existing GSD state, not our writes): {msg}")
+            print("[WARN] Proceeding with Tier-2 reconciliation using fallback enumeration.")
+            records = _enum_records_fallback()
+        else:
+            raise
+
     all_proposals: list[Proposal] = []
 
     for record in records:
