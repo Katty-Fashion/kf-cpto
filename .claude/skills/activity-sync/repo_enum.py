@@ -20,7 +20,7 @@ Structured return shape (one dict per enumerated repo):
         "kanban_exists":    bool,        # True if kanban.md present
         "meta":             dict,        # normalize_frontmatter output
         "tasks":            list[dict],  # parse_kanban_tasks output
-        "valid_task_count": int,         # sum(1 for t if t["status"] in TASK_STATUSES)
+        "valid_task_count": int,         # sum(1 for t in tasks if t["status"] in TASK_STATUSES)
     }
 
 Phase 2 entry point:
@@ -163,13 +163,13 @@ def _read_kanban(repo_name: str, repos_local: Path) -> dict[str, Any]:
     The utils convenience loader is not used here — it is hardwired to the CI
     repos/ dir. Path must come from REPOS_LOCAL_DIR.
 
-    Parity check uses sum(1 for t if t["status"] in TASK_STATUSES) to match
+    Parity check uses sum(1 for t in tasks if t["status"] in TASK_STATUSES) to match
     aggregator.py lines 102-109 — NOT total row count (R3-AAS: 181 rows, 0 valid).
     """
     kanban_path = repos_local / repo_name / "kanban.md"
 
     if not kanban_path.exists():
-        print(f"[WARN] {repo_name}: kanban.md missing — run bootstrap.py first")
+        print(f"Warning: {repo_name}: kanban.md missing — run bootstrap.py first")
         return {
             "exists": False,
             "meta": normalize_frontmatter({}),
