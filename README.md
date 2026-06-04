@@ -12,6 +12,51 @@ KF-CPTO is a centralized dashboard that **automatically discovers** and aggregat
 - **Dependency Graph** — Obsidian-style directed graph showing inter-project dependencies
 - **Google Sheets Integration** — Automatic LOE sync for reporting
 - **GitHub Pages Deployment** — Live at `https://katty-fashion.github.io/kf-cpto/`
+- **Activity Sync Skill** — A local Claude skill that reconciles each repo's `kanban.md` against *real* git activity (merged PRs, active branches) and writes the corrections back (see below)
+
+## Activity Sync — Keep the Board Honest
+
+`activity-sync` is a **local Claude Code skill** (in `.claude/skills/activity-sync/`) that turns the dashboard from hand-maintained into **activity-driven**: it reads what actually happened in each tracked repo, proposes status corrections, and writes them back so the dashboard reflects reality. It runs **on your machine**, never in CI — the CI pipeline stays self-contained and just renders whatever `kanban.md` files say.
+
+### Setup (once)
+
+```bash
+export KF_PAT=your-token          # needs Contents: Read AND Write (write-back pushes)
+pip install -r requirements.txt   # installs pyyaml, ruamel.yaml, requests
+```
+
+Tracked repos live under a gitignored `repos-local/` directory beside the scripts.
+
+### The 3 steps
+
+```bash
+# 1. ENUMERATE — clone/refresh tracked repos and read their kanban.md
+python .claude/skills/activity-sync/bootstrap.py      # first run only: clone + seed markers
+python .claude/skills/activity-sync/repo_enum.py      # fetch + parse every tracked repo
+
+# 2. PREVIEW — dry-run reconciliation: show what WOULD change, write nothing
+python .claude/skills/activity-sync/reconcile.py --dry-run
+
+# 3. WRITE BACK — apply the changes, one batch confirm, then push (triggers the dashboard)
+python .claude/skills/activity-sync/writeback.py      # add --dry-run to preview the write plan
+```
+
+**What each step does:**
+
+| Step | Script | What happens |
+| :--- | :--- | :--- |
+| 1. Enumerate | `repo_enum.py` | `git fetch` each tracked repo, parse `kanban.md` (read-only) |
+| 2. Reconcile | `reconcile.py` | Match git signals to tasks — merged PR/closed issue → `Done`, active branch → `In Progress`; reverted merges and commit-message keywords are ignored. Prints a change list; writes nothing |
+| 3. Write back | `writeback.py` | Sanitizes Mermaid-breaking characters, applies the status changes, asks for **one** confirmation, then commits & pushes to each repo's default branch — which fires the dashboard rebuild |
+
+**Good to know:**
+- **Dry-run first.** Always safe — `reconcile.py --dry-run` and `writeback.py --dry-run` change nothing.
+- **One confirmation.** Write-back shows a single summary for all repos and asks once — no per-repo prompts.
+- **Conflicts are skipped, not forced.** If a repo's local copy is behind its remote, that repo is logged `[CONFLICT]` and skipped; the others still go through.
+- **Idempotent.** Re-running on an already-correct repo produces zero changes.
+- **Recovery manifest.** Every run writes a JSON record of what succeeded/failed to `.claude/skills/activity-sync/manifests/` (gitignored).
+
+> Full reference (output formats, conflict recovery, env vars): [`.claude/skills/activity-sync/SKILL.md`](.claude/skills/activity-sync/SKILL.md)
 
 ## How It Works
 
@@ -218,7 +263,7 @@ Installed in each project repo. Triggers on push to `kanban.md` and sends a `rep
 1. **GitHub → Settings → Developer Settings → Personal Access Tokens → Fine-grained tokens**
 2. **Name:** `kf-cpto-sync`, **Expiration:** 90 days
 3. **Repository access:** All repositories (or select katty-fashion repos)
-4. **Permissions:** Contents (Read-only), Metadata (Read-only)
+4. **Permissions:** Contents (Read-only), Metadata (Read-only) — for CI discovery/cloning. **Note:** the local `activity-sync` write-back step needs **Contents: Read and Write** (plus Pull requests: Read to mine merged PRs); use a token with write access when running `writeback.py`.
 5. **Add as Org Secret:** `github.com/katty-fashion → Settings → Secrets → Actions → New organization secret`
 
 ### Setting Up Google Sheets
@@ -261,6 +306,13 @@ cd docs && bundle exec jekyll serve
 
 ```
 kf-cpto/
+├── .claude/skills/activity-sync/  # Local Claude skill — activity-driven reconciliation
+│   ├── SKILL.md               # Skill reference (commands, output, recovery)
+│   ├── bootstrap.py           # First-run: clone tracked repos + seed markers
+│   ├── repo_enum.py           # Enumerate + fetch + parse tracked repos (read-only)
+│   ├── reconcile.py           # Mine git activity → propose status changes (dry-run)
+│   ├── writeback.py           # Sanitize + write + push corrected kanban.md
+│   └── sanitize.py            # Mermaid-breaking-character sanitization
 ├── .github/workflows/
 │   ├── aggregate.yml          # Primary workflow — full sync pipeline
 │   └── sync_to_sheets.yml    # Secondary workflow — LOE sync only
