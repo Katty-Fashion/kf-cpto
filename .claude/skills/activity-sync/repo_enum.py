@@ -163,9 +163,15 @@ def _fetch_repo(repo_path: str, branch: str) -> str:
 def _assert_kf_cpto_clean(kf_cpto_root: Path) -> None:
     """Assert the kf-cpto working tree is unchanged after the skill run.
 
-    Raises RuntimeError if git status --porcelain is non-empty (criterion 3).
+    Raises RuntimeError if git status failed (returncode != 0) or if
+    git status --porcelain is non-empty (criterion 3).
     """
     result = _run_git(["-C", str(kf_cpto_root), "status", "--porcelain"])
+    if result.returncode != 0:
+        raise RuntimeError(
+            f"[ERROR] git status failed in kf-cpto (returncode={result.returncode}): "
+            f"{result.stderr.strip()}"
+        )
     if result.stdout.strip():
         raise RuntimeError(
             f"[ERROR] kf-cpto working tree is dirty after skill run:\n{result.stdout}"
