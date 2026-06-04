@@ -26,6 +26,7 @@ DISCOVERED_FILE = REPOS_DIR / "discovered.txt"
 # Canonical intermediate written by aggregator.py, consumed by sheets_sync.py.
 # This is the contract that lets the Sheets export be a strictly downstream consumer.
 LOE_DATA_FILE = DATA_DIR / "loe.yml"
+GANTT_DATA_FILE = DATA_DIR / "gantt.yml"
 
 # Surfaced on the dashboard via the sidebar badge + index banner.
 STATUS_FILE = DATA_DIR / "sync_status.yml"

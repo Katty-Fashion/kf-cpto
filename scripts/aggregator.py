@@ -9,6 +9,7 @@ Merges kanban.md files from all project repos and generates:
 - docs/_projects/{project}.md (per-project pages — Jekyll collection)
 """
 
+import re
 from datetime import datetime, timedelta
 
 import yaml
@@ -17,6 +18,7 @@ from auto_blocks import load_context, process_page
 from utils import (
     DATA_DIR,
     DOCS_DIR,
+    GANTT_DATA_FILE,
     LOE_DATA_FILE,
     ORG,
     EDIT_URL_TEMPLATE,
@@ -31,6 +33,7 @@ from utils import (
     load_all_project_data,
     now_iso,
     parse_effort_days,
+    strip_emojis,
     update_sync_status,
 )
 
@@ -522,6 +525,124 @@ def write_loe_yaml(rows: list[dict]) -> None:
     LOE_DATA_FILE.write_text(yaml.safe_dump(payload, sort_keys=False, allow_unicode=True))
 
 
+# ---------------------------------------------------------------------------
+# Migration Gantt -> canonical intermediate (gantt.yml) for the Sheets export
+# ---------------------------------------------------------------------------
+
+MIGRATION_GANTT_FILE = DOCS_DIR / "migration-gantt.md"
+
+# Mermaid gantt task line: "Task name (FE+BE)   :id, 2026-05-04, 10d"
+# or a milestone:          "M1 Infra ready       :milestone, m1, 2026-05-29, 0d"
+_GANTT_TASK_RE = re.compile(
+    r"^\s*(?P<name>.+?)\s+:(?P<attrs>[^:]+)$"
+)
+_GANTT_DISCIPLINE_RE = re.compile(r"\(([^)]*)\)\s*$")
+
+
+def _add_business_days(start: "datetime.date", working_days: int) -> "datetime.date":
+    """Return the inclusive end date after `working_days` working days (skips Sat/Sun).
+
+    The Mermaid gantt declares `excludes weekends`, so durations are in working
+    days. A 1-day task ends on its start day; an N-day task ends N-1 working
+    days later (inclusive span).
+    """
+    if working_days <= 0:
+        return start
+    d = start
+    remaining = working_days - 1
+    while remaining > 0:
+        d += timedelta(days=1)
+        if d.weekday() < 5:  # Mon-Fri
+            remaining -= 1
+    return d
+
+
+def _normalize_discipline(name: str) -> str:
+    """Extract FE / BE / FE+BE from a trailing parenthesised tag; '' if none."""
+    m = _GANTT_DISCIPLINE_RE.search(name)
+    if not m:
+        return ""
+    raw = m.group(1).upper().replace(" ", "")
+    if ("FE" in raw) and ("BE" in raw):
+        return "FE+BE"
+    if "FE" in raw:
+        return "FE"
+    if "BE" in raw:
+        return "BE"
+    return ""
+
+
+def parse_migration_gantt(md_path=MIGRATION_GANTT_FILE) -> list[dict]:
+    """Parse the Mermaid gantt block in migration-gantt.md into structured rows.
+
+    Returns one row per task/milestone:
+        {phase, task, discipline, start, end, effort_days, type}
+    `type` is 'task' or 'milestone'. Task names are stripped of their trailing
+    (FE/BE) discipline tag — that lives in its own column. Source is already
+    emoji-free prose; rows are passed through `strip_emojis` defensively anyway.
+    """
+    if not md_path.exists():
+        print(f"Warning: {md_path} not found — gantt.yml will be empty")
+        return []
+
+    content = md_path.read_text(encoding="utf-8")
+    block = re.search(r"```mermaid\s*\n(.*?)```", content, re.DOTALL)
+    if not block:
+        print("Warning: no ```mermaid``` gantt block found — gantt.yml will be empty")
+        return []
+
+    rows: list[dict] = []
+    section = "-"
+    for raw_line in block.group(1).splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith(("gantt", "title", "dateFormat", "axisFormat", "excludes")):
+            continue
+        if line.startswith("section "):
+            section = line[len("section "):].strip()
+            continue
+        m = _GANTT_TASK_RE.match(line)
+        if not m:
+            continue
+        name = m.group("name").strip()
+        attrs = [a.strip() for a in m.group("attrs").split(",")]
+        is_milestone = attrs and attrs[0] == "milestone"
+        if is_milestone:
+            attrs = attrs[1:]
+        # attrs now: [id, start-date, duration]
+        if len(attrs) < 3:
+            continue
+        start_str, dur_str = attrs[1], attrs[2]
+        try:
+            start = datetime.strptime(start_str, "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        dur = int(re.sub(r"\D", "", dur_str) or "0")
+        end = _add_business_days(start, dur)
+        discipline = "" if is_milestone else _normalize_discipline(name)
+        task = _GANTT_DISCIPLINE_RE.sub("", name).strip() if discipline else name
+        rows.append({
+            "phase": strip_emojis(section),
+            "task": strip_emojis(task),
+            "discipline": discipline,
+            "start": start.isoformat(),
+            "end": end.isoformat(),
+            "effort_days": dur,
+            "type": "milestone" if is_milestone else "task",
+        })
+    return rows
+
+
+def write_gantt_yaml(rows: list[dict]) -> None:
+    """Persist the migration gantt as a canonical intermediate for the Sheets export."""
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "generated_at": now_iso(),
+        "row_count": len(rows),
+        "rows": rows,
+    }
+    GANTT_DATA_FILE.write_text(yaml.safe_dump(payload, sort_keys=False, allow_unicode=True))
+
+
 def generate_project_pages(data: dict):
     """Generate individual project pages"""
     projects_dir = DOCS_DIR / "_projects"
@@ -585,6 +706,11 @@ def main():
     loe_rows = build_loe_rows(data)
     write_loe_yaml(loe_rows)
     print(f"Wrote canonical LOE data: {len(loe_rows)} rows -> {LOE_DATA_FILE}")
+
+    # Write canonical migration-gantt data (downstream: Sheets `Gantt_example` tab)
+    gantt_rows = parse_migration_gantt()
+    write_gantt_yaml(gantt_rows)
+    print(f"Wrote canonical Gantt data: {len(gantt_rows)} rows -> {GANTT_DATA_FILE}")
 
     # Update aggregator section of sync_status (sheets_export section is written
     # later by sheets_sync.py — it stays as-is from the previous run until then)

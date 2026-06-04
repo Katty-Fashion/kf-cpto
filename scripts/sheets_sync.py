@@ -30,6 +30,7 @@ from pathlib import Path
 import yaml
 
 from utils import (
+    GANTT_DATA_FILE,
     LOE_DATA_FILE,
     now_compact,
     now_iso,
@@ -51,6 +52,10 @@ LOE_HEADER = [
 EXPECTED_COL_COUNT = len(LOE_HEADER)
 LIVE_TAB = "LOE"
 STAGING_TAB = "LOE_staging"
+GANTT_TAB = "Gantt_example"
+GANTT_HEADER = [
+    "Phase", "Task", "Discipline", "Start", "End", "Effort (days)", "Type", "Updated",
+]
 BACKUP_PREFIX = "LOE_prev_"
 BACKUPS_TO_KEEP = 3
 MAX_WRITE_RETRIES = 3
@@ -84,6 +89,33 @@ def load_loe_from_yaml() -> list[list]:
             r.get("start", ""),
             r.get("end", ""),
             r.get("status", ""),
+            updated,
+        ])
+    return rows
+
+
+def load_gantt_from_yaml() -> list[list]:
+    """Read canonical migration-gantt data from docs/_data/gantt.yml into Sheets rows.
+
+    Returns header + data rows for the Gantt_example tab. Returns just the header
+    if the file is absent (gantt is an additive, non-critical export — its absence
+    must never fail the LOE sync).
+    """
+    rows = [GANTT_HEADER]
+    if not GANTT_DATA_FILE.exists():
+        print(f"Warning: {GANTT_DATA_FILE} missing — Gantt_example tab will not be updated.")
+        return rows
+    payload = yaml.safe_load(GANTT_DATA_FILE.read_text()) or {}
+    updated = payload.get("generated_at", now_iso())
+    for r in payload.get("rows", []):
+        rows.append([
+            r.get("phase", ""),
+            r.get("task", ""),
+            r.get("discipline", ""),
+            r.get("start", ""),
+            r.get("end", ""),
+            r.get("effort_days", 0),
+            r.get("type", "task"),
             updated,
         ])
     return rows
@@ -384,6 +416,41 @@ def sync_to_sheets(rows: list[list]) -> dict:
     }
 
 
+def sync_gantt_to_sheet(rows: list[list]) -> dict:
+    """Write the migration gantt to the Gantt_example tab (clear + overwrite).
+
+    Simpler than the LOE shadow-swap: Gantt_example is a derived/reference tab
+    (no user notes to preserve), so a clear-then-write is sufficient. Creates the
+    tab if absent. Skips cleanly (no creds / no GSHEET_ID) and is called inside
+    its own guard in main(), so it never affects the LOE sync or the exit code.
+    """
+    started_at = time.monotonic()
+    data_rows = len(rows) - 1
+    sheet_id = os.environ.get("GSHEET_ID")
+    if not sheet_id or not GOOGLE_API_AVAILABLE:
+        print(f"Gantt sync skipped (no GSHEET_ID/creds) — {data_rows} rows would go to {GANTT_TAB}")
+        return {"status": "skipped", "row_count": data_rows}
+    service = get_sheets_service()
+    if not service:
+        print(f"Gantt sync skipped (no service) — {data_rows} rows would go to {GANTT_TAB}")
+        return {"status": "skipped", "row_count": data_rows}
+
+    # Ensure the tab exists, then clear and overwrite.
+    if _get_sheet_id(service, sheet_id, GANTT_TAB) is None:
+        service.spreadsheets().batchUpdate(
+            spreadsheetId=sheet_id,
+            body={"requests": [{"addSheet": {"properties": {"title": GANTT_TAB}}}]},
+        ).execute()
+        print(f"Created tab {GANTT_TAB}")
+    service.spreadsheets().values().clear(
+        spreadsheetId=sheet_id, range=f"{GANTT_TAB}!A1:Z10000"
+    ).execute()
+    write_with_retry(service, sheet_id, f"{GANTT_TAB}!A1", rows)
+    duration = round(time.monotonic() - started_at, 2)
+    print(f"Synced {data_rows} gantt rows -> {GANTT_TAB} in {duration}s")
+    return {"status": "ok", "row_count": data_rows}
+
+
 def main() -> int:
     """Main entry point. Returns 0 even on failure — the workflow proceeds."""
     print("KF Sheets Sync — Starting...")
@@ -393,6 +460,15 @@ def main() -> int:
         result = sync_to_sheets(rows)
         update_sync_status("sheets_export", **result)
         print(f"KF Sheets Sync — Done ({result['last_run_status']})")
+
+        # Additive: push the migration gantt to the Gantt_example tab.
+        # Guarded separately so a gantt failure never affects the LOE result/exit.
+        try:
+            gantt_rows = load_gantt_from_yaml()
+            gantt_result = sync_gantt_to_sheet(gantt_rows)
+            print(f"KF Gantt Sync — {gantt_result['status']} ({gantt_result['row_count']} rows)")
+        except Exception as ge:  # noqa: BLE001
+            print(f"Warning: Gantt_example sync failed (non-fatal): {ge}", file=sys.stderr)
         return 0
     except Exception as e:  # noqa: BLE001
         tb = traceback.format_exc()
