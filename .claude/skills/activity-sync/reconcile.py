@@ -603,15 +603,26 @@ def main() -> int:
     """Parse --dry-run flag and delegate to run(). Map success/failure to exit codes."""
     import argparse
     parser = argparse.ArgumentParser(
-        description="Activity Mining + Reconciliation — dry-run only"
+        description="Activity Mining + Reconciliation — dry-run only (read-only; writes nothing)"
     )
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        default=True,
-        help="Preview proposed changes without writing (default and only mode this phase)",
+        help=(
+            "Explicit opt-in to the read-only preview. This phase is dry-run-only "
+            "and never writes; there is no write mode. The flag is accepted for "
+            "forward-compatibility with Phase 3 but does not change behavior here."
+        ),
     )
-    parser.parse_args()  # consume --dry-run; always dry-run this phase
+    args = parser.parse_args()
+
+    # WR-04: the flag is now read (no misleading default=True). This phase has no
+    # write path — make the read-only contract observable instead of implying a
+    # non-dry mode could exist. Phase 3 owns write-back.
+    if args.dry_run:
+        print("[INFO] --dry-run requested; this phase is read-only and writes nothing.")
+    else:
+        print("[INFO] Read-only mode (this phase only previews; it never writes).")
 
     try:
         run()
