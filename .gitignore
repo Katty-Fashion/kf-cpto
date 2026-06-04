@@ -71,3 +71,6 @@ activity/
 
 # Runtime dirs (skill-local; never committed)
 repos-local/
+
+# Skill runtime artifacts (per-run manifests; never committed)
+.claude/skills/activity-sync/manifests/

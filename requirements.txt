@@ -10,3 +10,6 @@ google-api-python-client>=2.0
 
 # HTTP requests (optional)
 requests>=2.28
+
+# Skill-local dependency (skill only; CI never installs this)
+ruamel.yaml>=0.17
