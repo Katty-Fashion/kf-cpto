@@ -114,6 +114,10 @@ def _fetch_repo(repo_path: str, branch: str) -> str:
     after = _run_git(["-C", repo_path, "rev-parse", tracking_ref])
     after_sha = after.stdout.strip() if after.returncode == 0 else None
 
+    if before_sha is None and after_sha is None:
+        print(f"Warning: tracking ref {tracking_ref!r} not found in {repo_path} — branch name may be wrong")
+        return "fetch-failed"
+
     return "up-to-date" if before_sha == after_sha else "new-commits"
 
 
