@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-06-04T14:03:45.625207
+generated: 2026-06-04T13:06:18.928710
 ---
 
 # KF Team — Level of Effort Report
@@ -12,12 +12,10 @@ generated: 2026-06-04T14:03:45.625207
 | Project | Sprint | Total Effort | Completed | Remaining |
 | :--- | :--- | :---: | :---: | :---: |
 | R3-AAS | S2 | 10.0d | 0.0d | 10.0d |
-| ai-rise-options | S1 | 4.0d | 1.0d | 3.0d |
 | kf-be-platform | S1 | 16.0d | 0d | 16.0d |
 | kf-fe-platform | S1 | 16.0d | 0d | 16.0d |
 | kf-platform | S1 | 306.0d | 0d | 306.0d |
-| tech_brainstorming | S1 | 4.0d | 1.0d | 3.0d |
-| **Total** | | **356.0d** | **2.0d** | **354.0d** |
+| **Total** | | **348.0d** | **0.0d** | **348.0d** |
 
 ## Effort by Assignee
 
@@ -39,12 +37,10 @@ generated: 2026-06-04T14:03:45.625207
 | @alexandru.bejenari | 62.0d | 10.0d | 0d |
 | @alexandru.bejenari + @ma.tech | 167.0d | 2.0d | 0d |
 | @backend | 4.0d | 0d | 0d |
-| @developer | 2.0d | 0d | 0d |
 | @frontend | 3.0d | 0d | 0d |
-| @lead | 2.0d | 0d | 2.0d |
 | @ma.tech | 96.0d | 12.0d | 0d |
 | @ma.tech, @alexandru.bejenari | 13.0d | 0d | 0d |
-| @tech-lead | 7.0d | 4.0d | 0d |
+| @tech-lead | 3.0d | 0d | 0d |
 | Acțiune | 0.0d | 0d | 0d |
 | Alexandru Bejenari | 0.0d | 0d | 0d |
 | Blocat (lipsă cont plătit) | 0.0d | 0d | 0d |

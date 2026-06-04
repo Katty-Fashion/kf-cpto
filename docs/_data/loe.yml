@@ -1,5 +1,5 @@
-generated_at: '2026-06-04T13:03:46Z'
-row_count: 234
+generated_at: '2026-06-04T13:06:19Z'
+row_count: 228
 rows:
 - project: R3-AAS
   sprint: S2
@@ -1450,30 +1450,6 @@ rows:
   start: ''
   end: ''
   status: Planificat
-- project: ai-rise-options
-  sprint: S1
-  task: Project setup
-  assignee: '@lead'
-  effort_days: 1.0
-  start: '2026-03-03'
-  end: '2026-03-03'
-  status: Done
-- project: ai-rise-options
-  sprint: S1
-  task: Initial architecture
-  assignee: '@tech-lead'
-  effort_days: 2.0
-  start: '2026-03-04'
-  end: '2026-03-05'
-  status: In Progress
-- project: ai-rise-options
-  sprint: S1
-  task: Documentation
-  assignee: '@developer'
-  effort_days: 1.0
-  start: ''
-  end: ''
-  status: Todo
 - project: kf-be-platform
   sprint: S1
   task: Project scope definition and requirements analysis
@@ -1849,28 +1825,4 @@ rows:
   effort_days: 5.0
   start: '2026-12-21'
   end: '2027-01-03'
-  status: Todo
-- project: tech_brainstorming
-  sprint: S1
-  task: Project setup
-  assignee: '@lead'
-  effort_days: 1.0
-  start: '2026-03-03'
-  end: '2026-03-03'
-  status: Done
-- project: tech_brainstorming
-  sprint: S1
-  task: Initial architecture
-  assignee: '@tech-lead'
-  effort_days: 2.0
-  start: '2026-03-04'
-  end: '2026-03-05'
-  status: In Progress
-- project: tech_brainstorming
-  sprint: S1
-  task: Documentation
-  assignee: '@developer'
-  effort_days: 1.0
-  start: ''
-  end: ''
   status: Todo

@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-06-04T14:03:45.624501
+generated: 2026-06-04T13:06:18.928613
 ---
 
 # KF Team — Unified Calendar
@@ -27,14 +27,10 @@ gantt
 
     section R3-AAS
     S2 :active, 2026-03-16, 2026-04-03
-    section ai-rise-options
-    S1 :active, 2026-03-02, 2026-03-13
     section kf-be-platform
     S1 :active, 2026-05-11, 2026-05-22
     section kf-fe-platform
     S1 :active, 2026-05-11, 2026-05-22
     section kf-platform
     S1 :active, 2026-05-25, 2026-06-07
-    section tech_brainstorming
-    S1 :active, 2026-03-02, 2026-03-13
 ```
