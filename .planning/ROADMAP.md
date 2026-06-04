@@ -30,7 +30,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Each enumerated repo's kanban.md is parsed successfully using `scripts/utils.py` parsers (no second parser introduced); task counts match what `aggregator.py` would produce on the same file
   3. After the skill runs, `git status` in the kf-cpto repo is clean, `repos/` is untouched, and `repos-local/` does not appear in a `git add -A` dry-run (gitignore confirmed)
   4. `git fetch origin` is verifiably executed per tracked repo before any read, and the skill logs whether each repo was already up-to-date or received new commits
-**Plans**: TBD
+**Plans**: 3 plans
+- [ ] 01-01-PLAN.md — Fix .gitignore (un-blanket .claude/, ignore repos-local/) + scaffold SKILL.md
+- [ ] 01-02-PLAN.md — bootstrap.py: clone + seed the 6 tracked repos into repos-local/
+- [ ] 01-03-PLAN.md — repo_enum.py: enumerate → fetch → parse-parity → assert-clean
 
 **Open questions to resolve during planning:**
 - Symlink topology: confirm all tracked repos live under the standard `~/Dev/` sibling layout; document any exceptions before implementation
@@ -107,7 +110,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Repo Access Foundation | 0/TBD | Not started | - |
+| 1. Repo Access Foundation | 0/3 | Not started | - |
 | 2. Activity Mining + Reconciliation | 0/TBD | Not started | - |
 | 3. Write-Back + Diagram Sanitization | 0/TBD | Not started | - |
 | 4. Agentic Capacity Model | 0/TBD | Not started | - |
