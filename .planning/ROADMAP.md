@@ -12,7 +12,7 @@ Five phases build the local Claude skill that turns actual repo activity into an
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Repo Access Foundation** - Read-only repo enumeration, symlink convention, and pre-flight git fetch; no writes, CI unaffected
+- [x] **Phase 1: Repo Access Foundation** - Read-only repo enumeration, symlink convention, and pre-flight git fetch; no writes, CI unaffected (completed 2026-06-04)
 - [ ] **Phase 2: Activity Mining + Reconciliation** - Git signal mining, three-tier taxonomy, dry-run change list; validated read-only before any write code exists
 - [ ] **Phase 3: Write-Back + Diagram Sanitization** - Closes the write-back loop; batch-confirm, push, conflict detection, Mermaid sanitization scoped to task table
 - [ ] **Phase 4: Agentic Capacity Model** - FE/BE overflow to synthetic Agentic assignee; ceiling, LOE row, §8.2 replacement
@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 - [x] 01-01-PLAN.md — Fix .gitignore (un-blanket .claude/, ignore repos-local/) + scaffold SKILL.md
 - [x] 01-02-PLAN.md — bootstrap.py: clone + seed the 6 tracked repos into repos-local/
-- [ ] 01-03-PLAN.md — repo_enum.py: enumerate → fetch → parse-parity → assert-clean
+- [x] 01-03-PLAN.md — repo_enum.py: enumerate → fetch → parse-parity → assert-clean
 
 **Open questions to resolve during planning:**
 - Symlink topology: confirm all tracked repos live under the standard `~/Dev/` sibling layout; document any exceptions before implementation
@@ -110,7 +110,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Repo Access Foundation | 2/3 | In Progress|  |
+| 1. Repo Access Foundation | 3/3 | Complete   | 2026-06-04 |
 | 2. Activity Mining + Reconciliation | 0/TBD | Not started | - |
 | 3. Write-Back + Diagram Sanitization | 0/TBD | Not started | - |
 | 4. Agentic Capacity Model | 0/TBD | Not started | - |

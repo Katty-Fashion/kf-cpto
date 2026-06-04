@@ -10,8 +10,8 @@ Requirements for this milestone. Each maps to a roadmap phase.
 ### Repo Access (REPO)
 
 - [x] **REPO-01**: Skill enumerates tracked repos by detecting both `kanban.md` and `notify-kf-cpto.yml` in local sibling checkouts (symlinked under a gitignored `repos-local/`), with no static project list
-- [ ] **REPO-02**: Skill runs `git fetch` on each tracked repo before reading, so activity reflects remote state (no stale-clone reads)
-- [ ] **REPO-03**: Skill reuses `scripts/utils.py` parsers and status constants instead of introducing a second `kanban.md` parser
+- [x] **REPO-02**: Skill runs `git fetch` on each tracked repo before reading, so activity reflects remote state (no stale-clone reads)
+- [x] **REPO-03**: Skill reuses `scripts/utils.py` parsers and status constants instead of introducing a second `kanban.md` parser
 
 ### Activity & Reconciliation (RECON)
 
@@ -84,8 +84,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | REPO-01 | Phase 1 | Complete |
-| REPO-02 | Phase 1 | Pending |
-| REPO-03 | Phase 1 | Pending |
+| REPO-02 | Phase 1 | Complete |
+| REPO-03 | Phase 1 | Complete |
 | RECON-01 | Phase 2 | Pending |
 | RECON-02 | Phase 2 | Pending |
 | RECON-03 | Phase 2 | Pending |
