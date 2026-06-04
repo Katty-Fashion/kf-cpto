@@ -394,6 +394,15 @@ check(
     "_extract_issue_refs('resolved #3') still matches after \\b fix",
     _extract_issue_refs("resolved #3") == [3],
 )
+# WR-05 regression: duplicate refs are collapsed, first-seen order preserved.
+check(
+    "_extract_issue_refs('closes #5 resolved #5') de-dupes to [5]",
+    _extract_issue_refs("closes #5 resolved #5") == [5],
+)
+check(
+    "_extract_issue_refs preserves first-seen order while de-duping",
+    _extract_issue_refs("fixes #2 closes #1 resolved #2") == [2, 1],
+)
 
 # ---------------------------------------------------------------------------
 # _build_headers assertions

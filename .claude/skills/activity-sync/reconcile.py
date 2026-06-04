@@ -187,7 +187,10 @@ def _extract_issue_refs(body: Optional[str]) -> list[int]:
     """
     if not body:
         return []
-    return [int(m) for m in _CLOSING_KEYWORDS_RE.findall(body)]
+    # WR-05: de-duplicate while preserving first-seen order so a body containing
+    # "closes #5 ... resolved #5" does not trigger duplicate API fetches or
+    # duplicate candidate entries downstream.
+    return list(dict.fromkeys(int(m) for m in _CLOSING_KEYWORDS_RE.findall(body)))
 
 
 def _get_issue(org: str, repo: str, issue_number: int, headers: dict) -> Optional[dict]:
