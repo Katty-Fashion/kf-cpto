@@ -86,22 +86,39 @@ def _seed_markers(repo_path: Path, kf_cpto_root: Path) -> None:
     Targets are built as repos_local/<name>/... where <name> comes from the
     curated allowlist — no path traversal possible (T-02-03).
     Writes only within the cloned repo dir; never touches the kf-cpto working tree.
+    Missing or unreadable template sources emit a Warning and continue rather
+    than raising an unhandled FileNotFoundError.
     """
     templates_dir = kf_cpto_root / "templates"
 
+    if not templates_dir.exists():
+        print(f"Warning: templates/ dir not found at {templates_dir} — skipping seed for {repo_path.name}")
+        return
+
+    kanban_src = templates_dir / "kanban.md"
     kanban_dest = repo_path / "kanban.md"
     if not kanban_dest.exists():
-        shutil.copy(templates_dir / "kanban.md", kanban_dest)
-        print(f"[INFO] Seeded kanban.md in {repo_path.name}")
+        if kanban_src.exists():
+            try:
+                shutil.copy(kanban_src, kanban_dest)
+                print(f"[INFO] Seeded kanban.md in {repo_path.name}")
+            except OSError as exc:
+                print(f"Warning: could not seed kanban.md in {repo_path.name}: {exc}")
+        else:
+            print(f"Warning: templates/kanban.md absent — cannot seed {repo_path.name}")
 
+    notify_src = templates_dir / ".github" / "workflows" / "notify-kf-cpto.yml"
     notify_dest = repo_path / ".github" / "workflows" / "notify-kf-cpto.yml"
     if not notify_dest.exists():
-        notify_dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy(
-            templates_dir / ".github" / "workflows" / "notify-kf-cpto.yml",
-            notify_dest,
-        )
-        print(f"[INFO] Seeded notify-kf-cpto.yml in {repo_path.name}")
+        if notify_src.exists():
+            try:
+                notify_dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy(notify_src, notify_dest)
+                print(f"[INFO] Seeded notify-kf-cpto.yml in {repo_path.name}")
+            except OSError as exc:
+                print(f"Warning: could not seed notify-kf-cpto.yml in {repo_path.name}: {exc}")
+        else:
+            print(f"Warning: templates notify workflow absent — cannot seed {repo_path.name}")
 
 
 def main() -> int:
