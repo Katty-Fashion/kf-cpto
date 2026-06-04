@@ -83,13 +83,38 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated by roadmapper) | | |
+| REPO-01 | Phase 1 | Pending |
+| REPO-02 | Phase 1 | Pending |
+| REPO-03 | Phase 1 | Pending |
+| RECON-01 | Phase 2 | Pending |
+| RECON-02 | Phase 2 | Pending |
+| RECON-03 | Phase 2 | Pending |
+| RECON-04 | Phase 2 | Pending |
+| RECON-05 | Phase 2 | Pending |
+| RECON-06 | Phase 2 | Pending |
+| RECON-07 | Phase 2 | Pending |
+| RECON-08 | Phase 2 | Pending |
+| WB-01 | Phase 3 | Pending |
+| WB-02 | Phase 3 | Pending |
+| WB-03 | Phase 3 | Pending |
+| WB-04 | Phase 3 | Pending |
+| WB-05 | Phase 3 | Pending |
+| DIAG-01 | Phase 3 | Pending |
+| DIAG-02 | Phase 3 | Pending |
+| DIAG-03 | Phase 3 | Pending |
+| CAP-01 | Phase 4 | Pending |
+| CAP-02 | Phase 4 | Pending |
+| CAP-03 | Phase 4 | Pending |
+| CAP-04 | Phase 4 | Pending |
+| CAP-05 | Phase 4 | Pending |
+| CAP-06 | Phase 4 | Pending |
+| CAP-07 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 26 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 26
+- Mapped to phases: 26
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-06-04*
-*Last updated: 2026-06-04 after initial definition*
+*Last updated: 2026-06-04 after roadmap creation*
