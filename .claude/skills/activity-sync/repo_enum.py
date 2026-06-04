@@ -188,6 +188,7 @@ def enumerate_repos(repos_local: Path) -> list[str]:
 
     Scans repos-local/ membership at runtime — NO static repo list.
     Non-git subdirectories are skipped with a Warning.
+    Entries lacking both required markers (kanban.md + notify-kf-cpto.yml) are also skipped with a Warning.
     """
     if not repos_local.exists():
         print(f"Warning: repos-local/ directory not found at {repos_local}")
@@ -198,6 +199,11 @@ def enumerate_repos(repos_local: Path) -> list[str]:
         if not entry.is_dir():
             continue
         if _is_git_repo(str(entry)):
+            kanban_marker = entry / "kanban.md"
+            notify_marker = entry / ".github" / "workflows" / "notify-kf-cpto.yml"
+            if not (kanban_marker.exists() and notify_marker.exists()):
+                print(f"Warning: {entry.name} missing required markers (kanban.md + notify-kf-cpto.yml) — skipping")
+                continue
             names.append(entry.name)
         else:
             print(f"Warning: repos-local/{entry.name} is not a valid git repo — skipping")
