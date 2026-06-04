@@ -6,9 +6,19 @@ description: Single Pane of Glass · GitHub Native · Google Workspace Integrati
 baseurl: "/kf-cpto"
 url: "https://katty-fashion.github.io"
 
-# Project repos are discovered dynamically via scripts/discover.py
-# No static kf_projects list needed — any repo in the org with kanban.md
-# is automatically included in the dashboard.
+# Project repos are discovered dynamically via scripts/discover.py.
+# `tracked_repos` is a curated allowlist: when set (non-empty), discover.py
+# includes ONLY these repos (those that also have a kanban.md). This keeps
+# the dashboard scoped to the active migration set and excludes test,
+# template, archived, and unrelated org repos. Leave empty/remove to fall
+# back to "every org repo with a kanban.md".
+tracked_repos:
+  - kf-be-platform
+  - kf-fe-platform
+  - kf-platform
+  - R3-AAS
+  - ai-rise-options
+  - tech_brainstorming
 
 # Build settings
 markdown: kramdown

@@ -1,30 +1,30 @@
 ---
-title: Edi-test
-description: "KF Team project template"
-project: Edi-test
-type: internal
-edit_url: "https://github.com/katty-fashion/Edi-test/edit/main/kanban.md"
-generated: 2026-06-04T12:24:40.213638
+title: tech_brainstorming
+description: "Short project description"
+project: tech_brainstorming
+type: saas
+edit_url: "https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md"
+generated: 2026-06-04T14:03:45.677025
 ---
 
-# Edi-test
+# tech_brainstorming
 
-> KF Team project template
+> Short project description
 
 ## Status
 
 | Metric | Value |
 | :--- | :--- |
 | Status | Active |
-| Type | Internal |
-| PO | @cpto |
+| Type | SaaS Product |
+| PO | @product-owner |
 | Lead | @tech-lead |
 | Current Sprint | S1 |
 | Sprint Period | 2026-03-02 to 2026-03-13 |
-| Tags | template |
-| Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
+| Tags | - |
+| Dependencies | None |
 
-## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/Edi-test/edit/main/kanban.md)
+## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md)
 
 <div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
 <span class="status-pill status-pill--in-progress">In Progress</span>
@@ -63,7 +63,7 @@ kanban
 
 ```mermaid
 gantt
-    title S1 — Edi-test
+    title S1 — tech_brainstorming
     dateFormat YYYY-MM-DD
     excludes weekends
 
@@ -83,9 +83,9 @@ pie title Effort by Status
 
 ## Links
 
-- [Edit Kanban](https://github.com/katty-fashion/Edi-test/edit/main/kanban.md)
-- [Repository](https://github.com/katty-fashion/Edi-test)
-- [Kanban Board](https://github.com/katty-fashion/Edi-test/blob/main/kanban.md)
+- [Edit Kanban](https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md)
+- [Repository](https://github.com/katty-fashion/tech_brainstorming)
+- [Kanban Board](https://github.com/katty-fashion/tech_brainstorming/blob/main/kanban.md)
 
 ---
 

@@ -1,612 +1,6 @@
-generated_at: '2026-06-04T12:24:40Z'
-row_count: 322
+generated_at: '2026-06-04T13:06:19Z'
+row_count: 228
 rows:
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: Project scope definition & AIRISE initialisation report review
-  assignee: '@ps.tech'
-  effort_days: 1.0
-  start: '2026-03-09'
-  end: '2026-03-09'
-  status: Done
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: Setup repository structure and KF-CPTO kanban integration
-  assignee: '@alexandru.bejenari'
-  effort_days: 1.0
-  start: '2026-03-09'
-  end: '2026-03-09'
-  status: Done
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Define system architecture: edge (Jetson) + cloud (MinIO/NiFi/Spark)'
-  assignee: '@el.tech'
-  effort_days: 3.0
-  start: '2026-03-09'
-  end: '2026-03-11'
-  status: In Progress
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: Define streaming architecture — Plan B (Async Playback) selectat ca variantă
-    recomandată
-  assignee: '@el.tech'
-  effort_days: 1.0
-  start: '2026-03-10'
-  end: '2026-03-10'
-  status: In Progress
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: ⚠️ [BLOCKER] Audit dataset existent — evaluare volum și calitate imagini defecte
-    reale disponibile
-  assignee: '@ps.tech'
-  effort_days: 1.0
-  start: '2026-03-11'
-  end: '2026-03-11'
-  status: In Progress
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: ⚠️ [BLOCKER] Strategie generare date sintetice — prioritizare GAN/augmentare
-    pentru suplimentare dataset
-  assignee: '@el.tech'
-  effort_days: 2.0
-  start: '2026-03-12'
-  end: '2026-03-13'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Design data ingestion pipeline: Apache NiFi + MinIO on-premise'
-  assignee: '@razvan.boita'
-  effort_days: 2.0
-  start: '2026-03-11'
-  end: '2026-03-12'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Design data preprocessing pipeline: Apache Spark + augmentation strategy'
-  assignee: '@razvan.boita'
-  effort_days: 2.0
-  start: '2026-03-13'
-  end: '2026-03-14'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: Define defect taxonomy and annotation schema (Damage, Hole, Knot, Line, Oil
-    Stain, Stain, Wrinkle)
-  assignee: '@ps.tech'
-  effort_days: 1.0
-  start: '2026-03-13'
-  end: '2026-03-13'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: Define CNN/YOLO model architecture for fabric defect detection
-  assignee: '@el.tech'
-  effort_days: 3.0
-  start: '2026-03-13'
-  end: '2026-03-17'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Integrate model explainability: Grad-CAM + SHAP pentru vizualizare decizii
-    AI'
-  assignee: '@el.tech'
-  effort_days: 2.0
-  start: '2026-03-17'
-  end: '2026-03-18'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Backend: FastAPI playback API (Plan B) — endpoints for defect results + annotations'
-  assignee: '@razvan.boita'
-  effort_days: 3.0
-  start: '2026-03-16'
-  end: '2026-03-18'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Backend: PostgreSQL/Supabase schema for defect events and annotations'
-  assignee: '@razvan.boita'
-  effort_days: 2.0
-  start: '2026-03-19'
-  end: '2026-03-20'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Frontend: PlaybackAnnotator UI — defect review and validation interface'
-  assignee: '@alexandru.bejenari'
-  effort_days: 3.0
-  start: '2026-03-16'
-  end: '2026-03-18'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Frontend: TextileViewer component — live WebRTC defect stream view'
-  assignee: '@alexandru.bejenari'
-  effort_days: 2.0
-  start: '2026-03-19'
-  end: '2026-03-20'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Jetson setup: YOLO multiprocess detector (4x parallel, 100+ FPS target)'
-  assignee: '@el.tech'
-  effort_days: 2.0
-  start: '2026-03-19'
-  end: '2026-03-20'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Define S3 storage strategy: MinIO on-premise (active) + Cloudflare R2 (archive)'
-  assignee: '@razvan.boita'
-  effort_days: 1.0
-  start: '2026-03-20'
-  end: '2026-03-20'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Define ELK stack monitoring: model prediction logs + feedback loop'
-  assignee: '@el.tech'
-  effort_days: 1.0
-  start: '2026-03-20'
-  end: '2026-03-20'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: Create architecture diagrams and technical documentation
-  assignee: '@alexandru.bejenari'
-  effort_days: 1.0
-  start: '2026-03-20'
-  end: '2026-03-20'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: Prepare KPI tracking dashboard (F1 ≥70-80%, inferență ≤1000ms, deșeuri -20%)
-  assignee: '@ps.tech'
-  effort_days: 1.0
-  start: '2026-03-21'
-  end: '2026-03-21'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Define model retraining pipeline (target: retraining within 48h of new data)'
-  assignee: '@el.tech'
-  effort_days: 2.0
-  start: '2026-03-23'
-  end: '2026-03-24'
-  status: Todo
-- project: AIRise-ai-fabric-inspection
-  sprint: S1
-  task: 'Prepare dissemination content: LinkedIn technical deep-dive post (mid-implementation)'
-  assignee: '@ps.tech'
-  effort_days: 1.0
-  start: '2026-03-25'
-  end: '2026-03-25'
-  status: Todo
-- project: Aladin-01
-  sprint: S1
-  task: Project setup & repo bootstrap
-  assignee: el.tech@katty-fashion.ro
-  effort_days: 1.0
-  start: '2026-03-03'
-  end: '2026-03-03'
-  status: Done
-- project: Aladin-01
-  sprint: S1
-  task: Initial platform architecture (WP2 / T2.1) — user personas & journey mapping
-  assignee: el.tech@katty-fashion.ro
-  effort_days: 3.0
-  start: '2026-03-04'
-  end: '2026-03-06'
-  status: In Progress
-- project: Aladin-01
-  sprint: S1
-  task: Architecture documentation & DevOps playbook (Kubernetes, CI/CD, OAuth 2.0)
-  assignee: el.tech@katty-fashion.ro
-  effort_days: 2.0
-  start: '2026-03-09'
-  end: '2026-03-10'
-  status: Todo
-- project: Aladin-01
-  sprint: S1
-  task: B2B layer — core database schema & NuoForm instance setup (T2.2)
-  assignee: razvan.boita@katty-fashion.ro
-  effort_days: 3.0
-  start: '2026-03-09'
-  end: '2026-03-11'
-  status: Todo
-- project: Aladin-01
-  sprint: S1
-  task: B2B layer — Tech Pack & BOM backend services (T2.2)
-  assignee: razvan.boita@katty-fashion.ro
-  effort_days: 3.0
-  start: '2026-03-11'
-  end: '2026-03-13'
-  status: Todo
-- project: Aladin-01
-  sprint: S1
-  task: B2C frontend — OAuth 2.0 multi-tenant login & registration (T2.3)
-  assignee: alexandru.bejenari@katty-fashion.ro
-  effort_days: 2.0
-  start: '2026-03-09'
-  end: '2026-03-10'
-  status: Todo
-- project: Aladin-01
-  sprint: S1
-  task: B2C frontend — Client Garment Configurator MVP (T2.3)
-  assignee: alexandru.bejenari@katty-fashion.ro
-  effort_days: 3.0
-  start: '2026-03-11'
-  end: '2026-03-13'
-  status: Todo
-- project: Aladin-01
-  sprint: S1
-  task: Notification service — backend & UI (order status, design approval) (T2.3)
-  assignee: razvan.boita@katty-fashion.ro
-  effort_days: 1.0
-  start: '|'
-  end: Todo
-  status: '| DPP module — UI/UX wireframes & backend architecture (T2.4)'
-- project: Aladin-01
-  sprint: S1
-  task: 2d
-  assignee: '|'
-  effort_days: 0.0
-  start: '| Orchestration module — functional requirements & data format spec (T2.5)'
-  end: el.tech@katty-fashion.ro
-  status: 2d
-- project: Aladin-01
-  sprint: S1
-  task: '| Todo'
-  assignee: '| LLM integration — base pipeline for Tech Pack sustainability suggestions
-    (T2.2)'
-  effort_days: 0.0
-  start: 3d
-  end: '|'
-  status: Todo
-- project: Aladin-01
-  sprint: S1
-  task: Internal alpha demo & usability testing with ALADIN partners (T2.2)
-  assignee: el.tech@katty-fashion.ro
-  effort_days: 1.0
-  start: '|'
-  end: Todo
-  status: '| README & technical documentation'
-- project: Edi-test
-  sprint: S1
-  task: Project setup
-  assignee: '@lead'
-  effort_days: 1.0
-  start: '2026-03-03'
-  end: '2026-03-03'
-  status: Done
-- project: Edi-test
-  sprint: S1
-  task: Initial architecture
-  assignee: '@tech-lead'
-  effort_days: 2.0
-  start: '2026-03-04'
-  end: '2026-03-05'
-  status: In Progress
-- project: Edi-test
-  sprint: S1
-  task: Documentation
-  assignee: '@developer'
-  effort_days: 1.0
-  start: ''
-  end: ''
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Project kickoff + team alignment
-  assignee: '@proj'
-  effort_days: 0.5
-  start: '2026-03-09'
-  end: '2026-03-09'
-  status: Done
-- project: NuoForm---GTM
-  sprint: S1
-  task: Project setup (repo, CI/CD, environments)
-  assignee: '@cpto'
-  effort_days: 1.0
-  start: '2026-03-09'
-  end: '2026-03-09'
-  status: Done
-- project: NuoForm---GTM
-  sprint: S1
-  task: Initial architecture (services, storage, auth, telemetry)
-  assignee: '@cpto'
-  effort_days: 2.0
-  start: '2026-03-09'
-  end: '2026-03-10'
-  status: In Progress
-- project: NuoForm---GTM
-  sprint: S1
-  task: Vision statement + problem definition
-  assignee: '@pm'
-  effort_days: 1.0
-  start: '2026-03-09'
-  end: '2026-03-09'
-  status: Done
-- project: NuoForm---GTM
-  sprint: S1
-  task: Define MVP scope + success metrics
-  assignee: '@pm'
-  effort_days: 1.0
-  start: '2026-03-10'
-  end: '2026-03-10'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Market segmentation + ICP definition
-  assignee: '@mkt'
-  effort_days: 2.0
-  start: '2026-03-10'
-  end: '2026-03-11'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Sustainability + compliance claims validation
-  assignee: '@sme'
-  effort_days: 1.0
-  start: '2026-03-11'
-  end: '2026-03-11'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Product requirements baseline (PRD-lite)
-  assignee: '@pm'
-  effort_days: 1.0
-  start: '2026-03-11'
-  end: '2026-03-11'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Define optimisation KPIs (efficiency %, waste %, cost)
-  assignee: '@sme'
-  effort_days: 1.0
-  start: '2026-03-12'
-  end: '2026-03-12'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Data model for materials, BOM, suppliers
-  assignee: '@be'
-  effort_days: 2.0
-  start: '2026-03-12'
-  end: '2026-03-13'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: UX architecture + MVP screen flows
-  assignee: '@fe'
-  effort_days: 2.0
-  start: '2026-03-12'
-  end: '2026-03-13'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Define layplan optimisation algorithm approach
-  assignee: '@cpto'
-  effort_days: 2.0
-  start: '2026-03-13'
-  end: '2026-03-16'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: BOM ingestion + validation workflow
-  assignee: '@be'
-  effort_days: 3.0
-  start: '2026-03-16'
-  end: '2026-03-18'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Pattern file ingestion (DXF or equivalent)
-  assignee: '@be'
-  effort_days: 3.0
-  start: '2026-03-16'
-  end: '2026-03-18'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Pattern geometry extraction
-  assignee: '@be'
-  effort_days: 2.0
-  start: '2026-03-18'
-  end: '2026-03-19'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Layplan nesting engine (baseline optimisation)
-  assignee: '@cpto'
-  effort_days: 4.0
-  start: '2026-03-19'
-  end: '2026-03-24'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Waste calculation engine (area, length, efficiency)
-  assignee: '@be'
-  effort_days: 3.0
-  start: '2026-03-23'
-  end: '2026-03-25'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Waste cost model (direct + indirect costs)
-  assignee: '@sme'
-  effort_days: 2.0
-  start: '2026-03-23'
-  end: '2026-03-24'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Waste analytics API
-  assignee: '@be'
-  effort_days: 2.0
-  start: '2026-03-24'
-  end: '2026-03-25'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Waste dashboard UI
-  assignee: '@fe'
-  effort_days: 3.0
-  start: '2026-03-24'
-  end: '2026-03-26'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Exportable waste report (PDF/HTML)
-  assignee: '@fe'
-  effort_days: 2.0
-  start: '2026-03-26'
-  end: '2026-03-27'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Circular initiatives catalogue (recycle, return, donation)
-  assignee: '@sme'
-  effort_days: 2.0
-  start: '2026-03-26'
-  end: '2026-03-27'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Waste reduction simulation scenarios
-  assignee: '@be'
-  effort_days: 3.0
-  start: '2026-03-27'
-  end: '2026-03-31'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Traceability document generator
-  assignee: '@be'
-  effort_days: 3.0
-  start: '2026-03-30'
-  end: '2026-04-01'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Role-based access (designer/factory/customer/admin)
-  assignee: '@cpto'
-  effort_days: 2.0
-  start: '2026-03-30'
-  end: '2026-03-31'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Activity audit log
-  assignee: '@be'
-  effort_days: 1.0
-  start: '2026-03-31'
-  end: '2026-03-31'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Internal QA testing
-  assignee: '@proj'
-  effort_days: 3.0
-  start: '2026-04-01'
-  end: '2026-04-03'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Performance tuning
-  assignee: '@cpto'
-  effort_days: 2.0
-  start: '2026-04-02'
-  end: '2026-04-03'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Pilot partner shortlist
-  assignee: '@mkt'
-  effort_days: 2.0
-  start: '2026-04-01'
-  end: '2026-04-02'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Pilot onboarding kit
-  assignee: '@pm'
-  effort_days: 2.0
-  start: '2026-04-02'
-  end: '2026-04-03'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Pilot garment baseline waste analysis
-  assignee: '@sme'
-  effort_days: 3.0
-  start: '2026-04-06'
-  end: '2026-04-08'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Pilot optimisation run + results
-  assignee: '@cpto'
-  effort_days: 2.0
-  start: '2026-04-08'
-  end: '2026-04-09'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Case study generation
-  assignee: '@mkt'
-  effort_days: 2.0
-  start: '2026-04-09'
-  end: '2026-04-10'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Pricing model definition
-  assignee: '@pm'
-  effort_days: 1.0
-  start: '2026-04-09'
-  end: '2026-04-09'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Landing page + positioning narrative
-  assignee: '@mkt'
-  effort_days: 2.0
-  start: '2026-04-13'
-  end: '2026-04-14'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Sales demo script
-  assignee: '@pm'
-  effort_days: 1.0
-  start: '2026-04-13'
-  end: '2026-04-13'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: CRM pipeline setup
-  assignee: '@mkt'
-  effort_days: 1.0
-  start: '2026-04-14'
-  end: '2026-04-14'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: Launch readiness review
-  assignee: '@proj'
-  effort_days: 1.0
-  start: '2026-04-15'
-  end: '2026-04-15'
-  status: Todo
-- project: NuoForm---GTM
-  sprint: S1
-  task: MVP launch
-  assignee: '@proj'
-  effort_days: 0.5
-  start: '2026-04-16'
-  end: '2026-04-16'
-  status: Todo
 - project: R3-AAS
   sprint: S2
   task: Pillar
@@ -633,12 +27,12 @@ rows:
   status: '| T3.2 — Product Digital Twin'
 - project: R3-AAS
   sprint: S2
-  task: ✅ Completed
+  task: Completed
   assignee: '| T3.2 — Process Digital Twin'
   effort_days: 0.0
   start: ''
   end: ''
-  status: ✅ Implemented & validated
+  status: Implemented & validated
 - project: R3-AAS
   sprint: S2
   task: T2.4 — Capacity Planner
@@ -649,12 +43,12 @@ rows:
   status: '| T2.4 — Capacity Planner'
 - project: R3-AAS
   sprint: S2
-  task: 🔄 Near completion
+  task: Near completion
   assignee: '| T2.4 — Capacity Planner'
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In progress
+  status: In progress
 - project: R3-AAS
   sprint: S2
   task: T3.3 — IoT Monitoring
@@ -750,7 +144,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Ce este „Done" vs „Ready" pentru release'
@@ -758,7 +152,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Decizie Made2Flow (demo vs integrare reală)'
@@ -766,7 +160,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⚠️ Decizie pending
+  status: Decizie pending
 - project: R3-AAS
   sprint: S2
   task: '### Evaluare produse existente'
@@ -790,7 +184,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔴 P4
+  status: P4
 - project: R3-AAS
   sprint: S2
   task: —
@@ -825,7 +219,7 @@ rows:
   status: Paul Stanciuc
 - project: R3-AAS
   sprint: S2
-  task: ⏭️ Next
+  task: ⏭ Next
   assignee: Planificată
   effort_days: 0.0
   start: ''
@@ -850,7 +244,7 @@ rows:
 - project: R3-AAS
   sprint: S2
   task: —
-  assignee: 📋 Todo
+  assignee: Todo
   effort_days: 0.0
   start: ''
   end: ''
@@ -878,7 +272,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Validare integrare end-to-end (expunere API Nuoform)'
@@ -886,7 +280,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ✅ Done
+  status: Done
 - project: R3-AAS
   sprint: S2
   task: '|---'
@@ -902,7 +296,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ✅ Done
+  status: Done
 - project: R3-AAS
   sprint: S2
   task: '| Separare date per client (in place)'
@@ -910,7 +304,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ✅ Done
+  status: Done
 - project: R3-AAS
   sprint: S2
   task: '### Clarificare'
@@ -969,7 +363,7 @@ rows:
   status: Alexandru Bejenari
 - project: R3-AAS
   sprint: S2
-  task: 🔄 In Progress
+  task: In Progress
   assignee: Blocat acces server R3
   effort_days: 0.0
   start: ''
@@ -994,7 +388,7 @@ rows:
 - project: R3-AAS
   sprint: S2
   task: —
-  assignee: 🔄 In Progress
+  assignee: In Progress
   effort_days: 0.0
   start: ''
   end: ''
@@ -1022,7 +416,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭️ Next
+  status: ⏭ Next
 - project: R3-AAS
   sprint: S2
   task: Note
@@ -1041,7 +435,7 @@ rows:
   status: Alexandru Bejenari
 - project: R3-AAS
   sprint: S2
-  task: 🔄 In Progress
+  task: In Progress
   assignee: ~1 lună
   effort_days: 0.0
   start: ''
@@ -1049,8 +443,8 @@ rows:
   status: '| Sketch → JSON → sistem'
 - project: R3-AAS
   sprint: S2
-  task: 🔴 P2
-  assignee: ✅ Done
+  task: P2
+  assignee: Done
   effort_days: 0.0
   start: ''
   end: ''
@@ -1070,7 +464,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Review
+  status: In Review
 - project: R3-AAS
   sprint: S2
   task: '### Finalizare'
@@ -1121,7 +515,7 @@ rows:
   status: Alexandru Bejenari
 - project: R3-AAS
   sprint: S2
-  task: ⏭️ Next
+  task: ⏭ Next
   assignee: Continuare după modificările lui Răzvan
   effort_days: 0.0
   start: ''
@@ -1146,7 +540,7 @@ rows:
 - project: R3-AAS
   sprint: S2
   task: —
-  assignee: 📋 Todo
+  assignee: Todo
   effort_days: 0.0
   start: ''
   end: ''
@@ -1174,7 +568,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Review
+  status: In Review
 - project: R3-AAS
   sprint: S2
   task: '### Deploy'
@@ -1198,7 +592,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔴 P2
+  status: P2
 - project: R3-AAS
   sprint: S2
   task: Blocat de lipsă cont plătit Cloud; Eduard Lazăr deblochează; planificat vineri/luni
@@ -1225,7 +619,7 @@ rows:
   status: Alexandru Bejenari
 - project: R3-AAS
   sprint: S2
-  task: ⚠️ Blocat de parteneri
+  task: Blocat de parteneri
   assignee: Vangelis/LMS nu au specificat formatul exact de date așteptat
   effort_days: 0.0
   start: ''
@@ -1246,7 +640,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Setup
+  status: In Setup
 - project: R3-AAS
   sprint: S2
   task: '### Aliniere'
@@ -1270,7 +664,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔴 P3
+  status: P3
 - project: R3-AAS
   sprint: S2
   task: De aliniat
@@ -1297,7 +691,7 @@ rows:
   status: Paul Stanciuc
 - project: R3-AAS
   sprint: S2
-  task: 📋 Todo
+  task: Todo
   assignee: De standardizat
   effort_days: 0.0
   start: ''
@@ -1305,7 +699,7 @@ rows:
   status: Paul Stanciuc
 - project: R3-AAS
   sprint: S2
-  task: 📋 Todo
+  task: Todo
   assignee: De standardizat
   effort_days: 0.0
   start: ''
@@ -1330,7 +724,7 @@ rows:
 - project: R3-AAS
   sprint: S2
   task: —
-  assignee: 📋 Todo
+  assignee: Todo
   effort_days: 0.0
   start: ''
   end: ''
@@ -1358,7 +752,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Review
+  status: In Review
 - project: R3-AAS
   sprint: S2
   task: '| Generare automată status / reports'
@@ -1366,7 +760,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Review
+  status: In Review
 - project: R3-AAS
   sprint: S2
   task: '|---'
@@ -1382,7 +776,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Review
+  status: In Review
 - project: R3-AAS
   sprint: S2
   task: '### Implementare'
@@ -1406,7 +800,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔴 P7
+  status: P7
 - project: R3-AAS
   sprint: S2
   task: Inexistente momentan; de verificat și implementat
@@ -1433,7 +827,7 @@ rows:
   status: Răzvan Boița
 - project: R3-AAS
   sprint: S2
-  task: 📋 Todo
+  task: Todo
   assignee: 'Opțiuni: container logs / Grafana+Loki; necesar logs + tracing pe API
     calls'
   effort_days: 0.0
@@ -1458,8 +852,8 @@ rows:
   status: '| Code quality / stability înainte de release'
 - project: R3-AAS
   sprint: S2
-  task: 🔴 P7
-  assignee: 📋 Todo
+  task: P7
+  assignee: Todo
   effort_days: 0.0
   start: ''
   end: ''
@@ -1487,7 +881,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '|---'
@@ -1503,7 +897,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ✅ Done
+  status: Done
 - project: R3-AAS
   sprint: S2
   task: '| Acces corect la organizații (login flow issues)'
@@ -1511,7 +905,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Progress
+  status: In Progress
 - project: R3-AAS
   sprint: S2
   task: '| Conectivitate sisteme externe'
@@ -1519,7 +913,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Testare demo produse (clienți + testeri interni)'
@@ -1527,7 +921,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭️ Next
+  status: ⏭ Next
 - project: R3-AAS
   sprint: S2
   task: '|---'
@@ -1543,7 +937,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭️ Next
+  status: ⏭ Next
 - project: R3-AAS
   sprint: S2
   task: '| Evaluare competențe React + Node'
@@ -1551,7 +945,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭️ Next
+  status: ⏭ Next
 - project: R3-AAS
   sprint: S2
   task: '| Evaluare team fit (non-toxic, colaborativ)'
@@ -1559,7 +953,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭️ Next
+  status: ⏭ Next
 - project: R3-AAS
   sprint: S2
   task: '| Selectare profil echilibrat (nu doar tech heavy)'
@@ -1567,7 +961,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭️ Next
+  status: ⏭ Next
 - project: R3-AAS
   sprint: S2
   task: '|---'
@@ -1583,7 +977,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Corelare Sprint tasks ↔ Work Packages'
@@ -1591,7 +985,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Task-uri cu timeline (start/end)'
@@ -1599,7 +993,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Rapoarte săptămânale (nu daily)'
@@ -1607,7 +1001,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Gantt / timeline pentru progres'
@@ -1615,7 +1009,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '|---'
@@ -1631,7 +1025,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Demo / prezentare produs'
@@ -1639,7 +1033,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Definire tehnică monetizare (SaaS readiness)'
@@ -1647,7 +1041,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: '| Input pentru CRM / pipeline (structură tehnică)'
@@ -1655,7 +1049,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: Status
@@ -1682,7 +1076,7 @@ rows:
   status: '2026-03-16'
 - project: R3-AAS
   sprint: S2
-  task: ✅ Done
+  task: Done
   assignee: —
   effort_days: 0.0
   start: ''
@@ -1706,7 +1100,7 @@ rows:
   status: '2026-03-18'
 - project: R3-AAS
   sprint: S2
-  task: ✅ Done
+  task: Done
   assignee: —
   effort_days: 0.0
   start: ''
@@ -1730,7 +1124,7 @@ rows:
   status: '2026-03-19'
 - project: R3-AAS
   sprint: S2
-  task: 🔄 In Progress
+  task: In Progress
   assignee: Blocat acces server R3
   effort_days: 0.0
   start: ''
@@ -1754,7 +1148,7 @@ rows:
   status: '2026-03-19'
 - project: R3-AAS
   sprint: S2
-  task: 🔄 In Progress
+  task: In Progress
   assignee: Credențiale LMS primite; în testare
   effort_days: 0.0
   start: ''
@@ -1778,7 +1172,7 @@ rows:
   status: '2026-03-26'
 - project: R3-AAS
   sprint: S2
-  task: ⏭️ Next
+  task: ⏭ Next
   assignee: —
   effort_days: 0.0
   start: ''
@@ -1802,7 +1196,7 @@ rows:
   status: '2026-03-31'
 - project: R3-AAS
   sprint: S2
-  task: ⏭️ Next
+  task: ⏭ Next
   assignee: —
   effort_days: 0.0
   start: ''
@@ -1827,19 +1221,19 @@ rows:
 - project: R3-AAS
   sprint: S2
   task: Arhitectură multi-tenant
-  assignee: ✅ Done
+  assignee: Done
   effort_days: 0.0
   start: ''
   end: ''
-  status: ✅ Done
+  status: Done
 - project: R3-AAS
   sprint: S2
   task: Integrare între sisteme (Katty/LMS) — supervizare
-  assignee: 🔄 In Progress
+  assignee: In Progress
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Progress
+  status: In Progress
 - project: R3-AAS
   sprint: S2
   task: Taskuri active
@@ -1851,35 +1245,35 @@ rows:
 - project: R3-AAS
   sprint: S2
   task: Review arhitectură
-  assignee: 🔄 In Progress
+  assignee: In Progress
   effort_days: 0.0
   start: ''
   end: ''
-  status: ✅ Done
+  status: Done
 - project: R3-AAS
   sprint: S2
   task: Standardizare AAS (multiple tipuri)
-  assignee: 🔄 In Progress
+  assignee: In Progress
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: Deploy AAS în Cloud
-  assignee: ⚠️ Blocat (lipsă cont plătit)
+  assignee: Blocat (lipsă cont plătit)
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Review
+  status: In Review
 - project: R3-AAS
   sprint: S2
   task: Feature flags
-  assignee: 📋 Todo
+  assignee: Todo
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: Taskuri active
@@ -1891,43 +1285,43 @@ rows:
 - project: R3-AAS
   sprint: S2
   task: Gap analysis produs
-  assignee: 🔄 In Progress (la Eduard pentru review)
+  assignee: In Progress (la Eduard pentru review)
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Progress (~1 lună deadline)
+  status: In Progress (~1 lună deadline)
 - project: R3-AAS
   sprint: S2
   task: LMS specs + credentials
-  assignee: 🔄 In Review
+  assignee: In Review
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Progress (DOD de revizuit)
+  status: In Progress (DOD de revizuit)
 - project: R3-AAS
   sprint: S2
   task: Vizualizare date / analytics
-  assignee: 🔄 In Review
+  assignee: In Review
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭️ Next
+  status: ⏭ Next
 - project: R3-AAS
   sprint: S2
   task: Bug-uri + TDD
-  assignee: 📋 Todo
+  assignee: Todo
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: Landing page
-  assignee: 📋 Todo
+  assignee: Todo
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⚠️ Blocat de parteneri
+  status: Blocat de parteneri
 - project: R3-AAS
   sprint: S2
   task: Prioritate
@@ -1946,84 +1340,84 @@ rows:
   status: '---'
 - project: R3-AAS
   sprint: S2
-  task: 🔴 High
+  task: High
   assignee: Deblocare cont Cloud pentru Deploy AAS
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⚠️ Blocat
+  status: Blocat
 - project: R3-AAS
   sprint: S2
-  task: 🔴 High
+  task: High
   assignee: Răspuns Vangelis — acces server R3 + format date
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⚠️ Blocat extern
+  status: Blocat extern
 - project: R3-AAS
   sprint: S2
-  task: 🔴 High
+  task: High
   assignee: Finalizare integrare KF ↔ LMS scheduler
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Progress
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: 🔴 High
+  task: High
   assignee: Validare algoritm scheduling cu date reale
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭️ Next
+  status: ⏭ Next
 - project: R3-AAS
   sprint: S2
-  task: 🔴 High
+  task: High
   assignee: Interviuri tehnice full-stack (luni)
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭️ Next
+  status: ⏭ Next
 - project: R3-AAS
   sprint: S2
-  task: 🔴 High
+  task: High
   assignee: Decizie Made2Flow (demo vs integrare reală)
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⚠️ Pending
+  status: Pending
 - project: R3-AAS
   sprint: S2
-  task: 🟡 Medium
+  task: Medium
   assignee: Integrare date senzori cu digital twins
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭️ Next
+  status: ⏭ Next
 - project: R3-AAS
   sprint: S2
-  task: 🟡 Medium
+  task: Medium
   assignee: Extindere Process Digital Twin (schimb date)
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: 🟡 Medium
+  task: Medium
   assignee: Workshop lansare (feature set + value prop)
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo (~1 săpt.)
+  status: Todo (~1 săpt.)
 - project: R3-AAS
   sprint: S2
-  task: 🟢 Low
+  task: Low
   assignee: Pregătire demonstrație TRL7
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Todo
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: Milestone
@@ -2039,7 +1433,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: 🔄 In Progress
+  status: In Progress
 - project: R3-AAS
   sprint: S2
   task: Capacity planner integration
@@ -2050,12 +1444,12 @@ rows:
   status: '| Pilot validation'
 - project: R3-AAS
   sprint: S2
-  task: 📋 Planificat
+  task: Planificat
   assignee: '| Project completion'
   effort_days: 0.0
   start: ''
   end: ''
-  status: 📋 Planificat
+  status: Planificat
 - project: kf-be-platform
   sprint: S1
   task: Project scope definition and requirements analysis
@@ -2431,157 +1825,4 @@ rows:
   effort_days: 5.0
   start: '2026-12-21'
   end: '2027-01-03'
-  status: Todo
-- project: order-service
-  sprint: S1
-  task: Tech Process Blocker - Template for Techpack, Copy Version for Order Entry
-  assignee: '@backend'
-  effort_days: 3.0
-  start: '2026-03-09'
-  end: '2026-03-12'
-  status: In Progress
-- project: order-service
-  sprint: S1
-  task: AAS integration with new Tech Process Structure
-  assignee: '@backend'
-  effort_days: 1.5
-  start: '2026-03-09'
-  end: '2026-03-23'
-  status: Todo
-- project: order-service
-  sprint: S1
-  task: Implement telemetry and observability
-  assignee: '@backend'
-  effort_days: 4.0
-  start: '2026-03-09'
-  end: '2026-03-23'
-  status: Todo
-- project: order-service
-  sprint: S1
-  task: Write documentation for backend API
-  assignee: '@backend'
-  effort_days: 3.0
-  start: '2026-03-09'
-  end: '2026-03-23'
-  status: Todo
-- project: order-service
-  sprint: S1
-  task: Generate more photos for AiRise dataset
-  assignee: '@backend'
-  effort_days: 2.0
-  start: '2026-03-10'
-  end: '2026-03-10'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Project scope definition and requirements analysis
-  assignee: '@ps.tech'
-  effort_days: 2.0
-  start: '2026-03-03'
-  end: '2026-03-04'
-  status: Done
-- project: project-template
-  sprint: S1
-  task: Define ALADIN system architecture (platform + microfactory orchestration)
-  assignee: '@el.tech'
-  effort_days: 3.0
-  start: '2026-03-04'
-  end: '2026-03-06'
-  status: In Progress
-- project: project-template
-  sprint: S1
-  task: Define integration between ALADIN and NuoForm platform
-  assignee: '@razvan.boita'
-  effort_days: 2.0
-  start: '2026-03-07'
-  end: '2026-03-08'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Define Digital Product Passport (DPP) data model for garments
-  assignee: '@razvan.boita'
-  effort_days: 2.0
-  start: '2026-03-09'
-  end: '2026-03-10'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Design micro-factory orchestration workflow
-  assignee: '@el.tech'
-  effort_days: 2.0
-  start: '2026-03-10'
-  end: '2026-03-11'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: 'Define circular production lifecycle (R-strategies: reuse, repair, recycle)'
-  assignee: '@ps.tech'
-  effort_days: 2.0
-  start: '2026-03-11'
-  end: '2026-03-12'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Frontend architecture for product configuration and customization UI
-  assignee: '@alexandru.bejenari'
-  effort_days: 2.0
-  start: '2026-03-12'
-  end: '2026-03-13'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Backend services for product lifecycle and traceability
-  assignee: '@razvan.boita'
-  effort_days: 3.0
-  start: '2026-03-13'
-  end: '2026-03-15'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Define demonstrator products (T-shirt, Kidswear Parka, Blazer Dress)
-  assignee: '@ps.tech'
-  effort_days: 1.0
-  start: '2026-03-15'
-  end: '2026-03-15'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Define API layer for design, production orchestration and DPP
-  assignee: '@razvan.boita'
-  effort_days: 2.0
-  start: '2026-03-16'
-  end: '2026-03-17'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Define integration with external services (manufacturing, supply chain, sustainability
-    metrics)
-  assignee: '@el.tech'
-  effort_days: 2.0
-  start: '2026-03-18'
-  end: '2026-03-19'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Create architecture diagrams and technical documentation
-  assignee: '@alexandru.bejenari'
-  effort_days: 1.0
-  start: '2026-03-20'
-  end: '2026-03-20'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Prepare roadmap and Level-of-Effort estimation for ALADIN implementation
-  assignee: '@ps.tech'
-  effort_days: 1.0
-  start: '2026-03-21'
-  end: '2026-03-21'
-  status: Todo
-- project: project-template
-  sprint: S1
-  task: Prepare dashboard integration for KF-CPTO monitoring
-  assignee: '@alexandru.bejenari'
-  effort_days: 1.0
-  start: '2026-03-22'
-  end: '2026-03-22'
   status: Todo

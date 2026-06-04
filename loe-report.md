@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-06-04T12:24:40.201850
+generated: 2026-06-04T13:06:18.928710
 ---
 
 # KF Team — Level of Effort Report
@@ -11,17 +11,11 @@ generated: 2026-06-04T12:24:40.201850
 
 | Project | Sprint | Total Effort | Completed | Remaining |
 | :--- | :--- | :---: | :---: | :---: |
-| AIRise-ai-fabric-inspection | S1 | 38.0d | 2.0d | 36.0d |
-| Aladin-01 | S1 | 19.0d | 1.0d | 18.0d |
-| Edi-test | S1 | 4.0d | 1.0d | 3.0d |
-| NuoForm---GTM | S1 | 74.0d | 2.5d | 71.5d |
-| R3-AAS | S2 | 10.0d | 0d | 10.0d |
+| R3-AAS | S2 | 10.0d | 0.0d | 10.0d |
 | kf-be-platform | S1 | 16.0d | 0d | 16.0d |
 | kf-fe-platform | S1 | 16.0d | 0d | 16.0d |
 | kf-platform | S1 | 306.0d | 0d | 306.0d |
-| order-service | S1 | 13.5d | 0d | 13.5d |
-| project-template | S1 | 26.0d | 2.0d | 24.0d |
-| **Total** | | **522.5d** | **8.5d** | **514.0d** |
+| **Total** | | **348.0d** | **0.0d** | **348.0d** |
 
 ## Effort by Assignee
 
@@ -40,27 +34,16 @@ generated: 2026-06-04T12:24:40.201850
 | 2026-03-27 | 0.0d | 0d | 0d |
 | 2026-03-28 | 0.0d | 0d | 0d |
 | 2026-04-03 | 0.0d | 0d | 0d |
-| @alexandru.bejenari | 73.0d | 10.0d | 1.0d |
+| @alexandru.bejenari | 62.0d | 10.0d | 0d |
 | @alexandru.bejenari + @ma.tech | 167.0d | 2.0d | 0d |
-| @backend | 17.5d | 3.0d | 0d |
-| @be | 22.0d | 0d | 0d |
-| @cpto | 15.0d | 2.0d | 1.0d |
-| @developer | 1.0d | 0d | 0d |
-| @el.tech | 23.0d | 7.0d | 0d |
-| @fe | 7.0d | 0d | 0d |
+| @backend | 4.0d | 0d | 0d |
 | @frontend | 3.0d | 0d | 0d |
-| @lead | 1.0d | 0d | 1.0d |
 | @ma.tech | 96.0d | 12.0d | 0d |
 | @ma.tech, @alexandru.bejenari | 13.0d | 0d | 0d |
-| @mkt | 9.0d | 0d | 0d |
-| @pm | 7.0d | 0d | 1.0d |
-| @proj | 5.0d | 0d | 0.5d |
-| @ps.tech | 11.0d | 1.0d | 3.0d |
-| @razvan.boita | 19.0d | 0d | 0d |
-| @sme | 9.0d | 0d | 0d |
-| @tech-lead | 5.0d | 2.0d | 0d |
+| @tech-lead | 3.0d | 0d | 0d |
 | Acțiune | 0.0d | 0d | 0d |
 | Alexandru Bejenari | 0.0d | 0d | 0d |
+| Blocat (lipsă cont plătit) | 0.0d | 0d | 0d |
 | Blocat acces server R3 | 0.0d | 0d | 0d |
 | Clarificare acces server R3 (Vangelis) | 0.0d | 0d | 0d |
 | Clarificare format date platforma R3 | 0.0d | 0d | 0d |
@@ -72,11 +55,15 @@ generated: 2026-06-04T12:24:40.201850
 | Deblocare cont Cloud pentru Deploy AAS | 0.0d | 0d | 0d |
 | Decizie Made2Flow (demo vs integrare reală) | 0.0d | 0d | 0d |
 | Deploy AAS în Cloud (hosting) | 0.0d | 0d | 0d |
-| Eduard Lazăr | 0.0d | 0d | 0d |
+| Done | 0.0d | 0d | 0.0d |
+| Eduard Lazăr | 0.0d | 0d | 0.0d |
 | Eduard Lazăr / Paul Stanciuc | 0.0d | 0d | 0d |
-| Eduard Modreanu | 0.0d | 0d | 0d |
+| Eduard Modreanu | 0.0d | 0.0d | 0.0d |
 | Extindere Process Digital Twin (schimb date) | 0.0d | 0d | 0d |
-| Finalizare integrare KF ↔ LMS scheduler | 0.0d | 0d | 0d |
+| Finalizare integrare KF ↔ LMS scheduler | 0.0d | 0.0d | 0d |
+| In Progress | 0.0d | 0.0d | 0.0d |
+| In Progress (la Eduard pentru review) | 0.0d | 0d | 0d |
+| In Review | 0.0d | 0d | 0d |
 | Integrare date senzori cu digital twins | 0.0d | 0d | 0d |
 | Interviuri tehnice full-stack (luni) | 0.0d | 0d | 0d |
 | Iunie 2026 (M42) | 0.0d | 0d | 0d |
@@ -90,25 +77,21 @@ generated: 2026-06-04T12:24:40.201850
 | Pregătire demonstrație TRL7 | 0.0d | 0d | 0d |
 | Prioritate | 0.0d | 0d | 0d |
 | Răspuns Vangelis — acces server R3 + format date | 0.0d | 0d | 0d |
-| Răzvan Boița | 0.0d | 0d | 0d |
+| Răzvan Boița | 0.0d | 0d | 0.0d |
 | Sensors deployment | 0.0d | 0d | 0d |
 | Status | 0.0d | 0d | 0d |
 | Target | 0.0d | 0d | 0d |
 | Task | 0.0d | 0d | 0d |
+| Todo | 0.0d | 0d | 0d |
 | Validare algoritm scheduling cu date reale | 0.0d | 0d | 0d |
 | Vangelis/LMS nu au specificat formatul exact de date așteptat | 0.0d | 0d | 0d |
 | Workshop lansare (feature set + value prop) | 0.0d | 0d | 0d |
-| alexandru.bejenari@katty-fashion.ro | 5.0d | 0d | 0d |
-| el.tech@katty-fashion.ro | 7.0d | 3.0d | 1.0d |
-| razvan.boita@katty-fashion.ro | 7.0d | 0d | 0d |
-| | | 0.0d | 0d | 0d |
 | | Clarificare acces server R3 (Vangelis) | 0.0d | 0d | 0d |
 | | Deploy AAS în Cloud (hosting) | 0.0d | 0d | 0d |
 | | Feature flags | 0.0d | 0d | 0d |
 | | Flow sistem (UI → AAS → backend) | 0.0d | 0d | 0d |
 | | Identificare gaps / incomplete features | 0.0d | 0d | 0d |
-| | Integration testing start | 0.0d | 0d | 0d |
-| | LLM integration — base pipeline for Tech Pack sustainability suggestions (T2.2) | 0.0d | 0d | 0d |
+| | Integration testing start | 0.0d | 0.0d | 0d |
 | | Project completion | 0.0d | 0d | 0d |
 | | Review arhitectură | 0.0d | 0d | 0d |
 | | T2.4 — Capacity Planner | 0.0d | 0d | 0d |
@@ -121,9 +104,3 @@ generated: 2026-06-04T12:24:40.201850
 | — | 0.0d | 0d | 0d |
 | −20% | 0.0d | 0d | 0d |
 | −50% | 0.0d | 0d | 0d |
-| ⚠️ Blocat (lipsă cont plătit) | 0.0d | 0d | 0d |
-| ✅ Done | 0.0d | 0d | 0d |
-| 📋 Todo | 0.0d | 0d | 0d |
-| 🔄 In Progress | 0.0d | 0d | 0d |
-| 🔄 In Progress (la Eduard pentru review) | 0.0d | 0d | 0d |
-| 🔄 In Review | 0.0d | 0d | 0d |
