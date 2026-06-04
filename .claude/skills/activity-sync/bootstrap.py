@@ -129,7 +129,9 @@ def main() -> int:
         f"{skipped_count} failed (see Warning lines above)"
     )
     print("Activity Sync — Bootstrap — Done!")
-    return 0
+    # Exit non-zero only on total failure (no repos ready at all).
+    # Partial success (some cloned, some skipped) still returns 0 with warnings above.
+    return 1 if cloned_count == 0 else 0
 
 
 if __name__ == "__main__":
