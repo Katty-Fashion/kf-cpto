@@ -1,15 +1,17 @@
 ---
 name: activity-sync
-description: "Read-only enumeration and parsing of tracked sibling repos. Fetches
-  remote state and parses each kanban.md through the canonical scripts/utils.py
-  parsers. Use to inspect kanban state across all tracked repos. Triggers on:
-  activity sync, repo enum, list tracked repos, fetch kanban state."
+description: "Activity-driven write-back: enumerates tracked sibling repos, mines
+  activity signals (merged PRs, closed issues, active branches), and writes reconciled
+  task statuses back to each repo's kanban.md with a single batch confirmation. Also
+  supports read-only enumeration and dry-run preview. Triggers on: activity sync,
+  write back kanban, reconcile task statuses, repo enum, list tracked repos,
+  fetch kanban state."
 allowed-tools:
   - Bash
   - Read
 ---
 
-# Activity Sync — Repo Access
+# Activity Sync — Repo Access + Write-Back
 
 Read-only enumeration of tracked sibling repos in `repos-local/`. Fetches remote
 state via `git fetch` and parses each `kanban.md` through the canonical
@@ -78,13 +80,15 @@ What it does:
 
 ---
 
-## Script Locations
+## Script Locations (Phase 1 and 2)
 
 | Script | Path | Role |
 |--------|------|------|
 | Bootstrap | `.claude/skills/activity-sync/bootstrap.py` | One-shot clone + seed |
 | Enumeration | `.claude/skills/activity-sync/repo_enum.py` | Fetch + parse all tracked repos |
 | Reconcile | `.claude/skills/activity-sync/reconcile.py` | Activity mining + dry-run reconciliation |
+
+See the Phase 3: Write-Back section below for `writeback.py`.
 
 ---
 
@@ -140,3 +144,113 @@ This skill [NEVER] calls `utils.load_project_kanban()` — it is hardwired to `r
 
 `repos-local/` is listed in `.gitignore` (runtime-only; populated by `bootstrap.py`).
 Never commit files under `repos-local/`.
+
+---
+
+## Phase 3: Write-Back
+
+### [WRITE-BACK] Apply reconciled statuses and push to all tracked repos
+
+```
+python .claude/skills/activity-sync/writeback.py [--dry-run]
+```
+
+What it does:
+
+- Calls `reconcile.run()` to get the full list of proposed status changes
+- Groups proposals by repo and prints ONE [INFO] batch-confirm summary table
+- Reads a SINGLE `y/N` prompt before performing any write or push (zero per-repo prompts — matches the org-scan preference: confirm destructive ops once as a batch)
+- For each repo with proposals:
+  - Runs `_is_behind_origin()` (git fetch + rev-list) before writing — aborts that repo with `[CONFLICT]` if local is behind origin; continues with remaining repos
+  - Applies `apply_status_change()` THEN `sanitize_body()` on the kanban.md body
+  - Byte-compares proposed content to current file — skips write+commit+push if identical (idempotency gate SC-4)
+  - Commits with `chore(kanban): reconcile task statuses from repo activity` and pushes using HTTPS+KF_PAT (SSH URL restored in `finally`)
+- Writes a per-run JSON recovery manifest to `.claude/skills/activity-sync/manifests/{run_id}.json` recording each repo's outcome (`succeeded` / `failed` / `conflict` / `skipped`), pushed sha, and error
+- Prints a `[TALLY]` line: `N [DONE] / N [CONFLICT] / N [SKIP] / N [FAIL]`
+
+```
+python .claude/skills/activity-sync/writeback.py --dry-run
+```
+
+Dry-run path:
+
+- Previews the batch-confirm summary table
+- Writes nothing, pushes nothing
+- Does NOT read `KF_PAT` from env (token not required for dry-run)
+
+### Output pills
+
+- `[INFO]`    — batch summary, dry-run indicator, no-op status
+- `[CONFLICT]` — repo's local checkout is behind origin; write skipped; batch continues
+- `[SKIP]`   — content unchanged (idempotent no-op); no git operations
+- `[DONE]`   — write succeeded; pushed sha logged
+- `[FAIL]`   — unexpected per-repo error; batch continues; error recorded in manifest
+- `[WARN]`   — non-fatal warning (e.g., manifest write failure, repo not in enum records)
+- `[ERROR]`  — fatal error printed to stderr (e.g., KF_PAT unset when push required)
+- `[TALLY]`  — final run summary line
+
+### Recovery manifest
+
+Each run writes `.claude/skills/activity-sync/manifests/{run_id}.json` (gitignored; never committed):
+
+```json
+{
+  "run_id": "20260604T114000Z",
+  "timestamp": "2026-06-04T11:40:00+00:00",
+  "total_repos": 3,
+  "summary": {"succeeded": 2, "failed": 0, "conflict": 1, "skipped": 0},
+  "repos": [
+    {
+      "repo": "kf-some-project",
+      "outcome": "succeeded",
+      "pushed_sha": "abc123def456...",
+      "changes": [{"task": "Setup authentication", "old_status": "Todo", "new_status": "Done"}],
+      "error": null
+    },
+    ...
+  ]
+}
+```
+
+Use the manifest to identify which repos were not written in a partial-failure run and re-run selectively.
+
+### [CONFLICT] handling
+
+A `[CONFLICT]` on one repo does NOT stop the batch. The loop continues to the next repo. Already-pushed repos' `notify-kf-cpto.yml` dispatches fire normally (natural per-repo dispatch, no `[skip ci]`).
+
+To resolve a conflict: `git pull` in the affected `repos-local/<repo>` dir, then re-run `writeback.py`.
+
+### Environment variables
+
+| Variable | Required | When read | Notes |
+|----------|----------|-----------|-------|
+| `KF_PAT` | Yes (live push) | Inside `run()` at push time, NOT at import time | GitHub PAT with `repo` scope; never logged or stored in manifest |
+| `KF_PAT` | No (dry-run) | Never read in `--dry-run` mode | |
+
+### [IMPORTANT] SC-1 — Live push is human-validated UAT
+
+[WARN] SC-1 (live push to katty-fashion org repos → CI dispatch → aggregate.yml → GitHub Pages deploy) is a **human-validated UAT step**. The autonomous skill build never fires live pushes to real org repos unprompted.
+
+Before running `writeback.py` against live org repos:
+1. Confirm `repos-local/` contains up-to-date clones (run `bootstrap.py` or `git pull` as needed)
+2. Run `writeback.py --dry-run` first to preview the proposed changes
+3. Review the batch-confirm summary carefully — it authorises pushes to N repos at once
+4. Confirm the single `y/N` prompt to proceed
+5. After pushing, verify the `notify-kf-cpto.yml` dispatch fired and `aggregate.yml` completed (GitHub Actions tab)
+6. Confirm the dashboard at `https://katty-fashion.github.io/kf-cpto/` reflects the updated task statuses
+
+SC-1 is explicitly not automated. This is a write-once confirmation loop, not a CI step.
+
+---
+
+## Script Locations (updated)
+
+| Script | Path | Role |
+|--------|------|------|
+| Bootstrap | `.claude/skills/activity-sync/bootstrap.py` | One-shot clone + seed |
+| Enumeration | `.claude/skills/activity-sync/repo_enum.py` | Fetch + parse all tracked repos |
+| Reconcile | `.claude/skills/activity-sync/reconcile.py` | Activity mining + dry-run reconciliation |
+| Write-back | `.claude/skills/activity-sync/writeback.py` | Batch write + push to tracked repos |
+
+Manifests (gitignored, runtime output only):
+- `.claude/skills/activity-sync/manifests/` — per-run JSON recovery manifests

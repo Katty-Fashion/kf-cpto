@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-Activity Sync — Write-Back (string builders + git operations)
+Activity Sync — Write-Back (string builders + git operations + batch orchestration)
 
 Consumes reconcile.run() Proposal objects and applies them to kanban.md files
-in repos-local/. Plans 02/03 complete the git operations layer.
+in repos-local/. Provides a single batch-confirm gate (WB-02) and a per-run JSON
+recovery manifest (WB-05).
 
 String-builder responsibilities:
 - split_kanban()          — split kanban.md into (frontmatter_str, body_str)
@@ -19,19 +20,25 @@ Git operation responsibilities (Plan 02):
 - _push_with_auth()       — HTTPS+KF_PAT push with finally-restore (WB-04)
 - _write_repo()           — single-repo write/commit/push orchestrator
 
-Usage:
-    from writeback import split_kanban, reconstruct_kanban, apply_status_change
-    from writeback import _write_repo
+Batch orchestration responsibilities (Plan 03):
+- _confirm_batch()        — single y/N summary prompt over all repos × proposals (WB-02)
+- _write_manifest()       — per-run JSON recovery manifest in manifests/ (WB-05)
+- run()                   — fan _write_repo over all repos, continue past conflicts
+- main()                  — CLI entry point: reconcile.run() -> run(); --dry-run flag
 
-Phase 3 entry point (plan 03 will add run() / main()):
+Usage:
     from writeback import run
+    # or as a CLI:
+    python .claude/skills/activity-sync/writeback.py [--dry-run]
 """
 from __future__ import annotations
 
+import json
 import os
 import re
 import subprocess
 import sys
+from datetime import datetime, timezone
 from io import StringIO
 from pathlib import Path
 from typing import Any
@@ -65,6 +72,11 @@ GIT_TIMEOUT_SECONDS = 60
 
 # KF GitHub org (matches utils.ORG)
 _KF_ORG = "katty-fashion"
+
+# Per-run JSON recovery manifests (WB-05). Gitignored — never committed.
+# Chain: writeback.py -> activity-sync/ -> skills/ -> .claude/ -> repo_root/
+#        -> .claude/skills/activity-sync/manifests/
+MANIFESTS_DIR = Path(__file__).parent / "manifests"
 
 
 # ---------------------------------------------------------------------------
@@ -350,6 +362,292 @@ def _write_repo(
             "changes": [],
             "error": str(exc),
         }
+
+
+# ---------------------------------------------------------------------------
+# Batch orchestration (Plan 03: WB-02, WB-05)
+# ---------------------------------------------------------------------------
+
+def _confirm_batch(proposals_by_repo: dict) -> bool:
+    """Print a single summary table and read ONE y/N prompt for the whole batch.
+
+    Exactly one prompt is read per call — never inside the per-repo loop (WB-02).
+    Confirms destructive ops once as a batch, matching the org-scan preference
+    (see project MEMORY.md: "confirm destructive ops once as a batch").
+
+    Args:
+        proposals_by_repo: dict[repo_name, list[Proposal-like objects]]
+
+    Returns:
+        True if the user answered y/yes (case-insensitive); False otherwise.
+    """
+    total_repos = len(proposals_by_repo)
+    total_changes = sum(len(ps) for ps in proposals_by_repo.values())
+
+    print(
+        f"\n[INFO] Write-back summary — {total_repos} repo(s), "
+        f"{total_changes} proposed change(s):\n"
+    )
+    print(f"  {'Repo':<30} {'Task':<40} {'Change'}")
+    print(f"  {'-'*30} {'-'*40} {'-'*25}")
+    for repo_name in sorted(proposals_by_repo):
+        for p in proposals_by_repo[repo_name]:
+            change_str = f"{p.old_status} -> {p.new_status}"
+            print(f"  {repo_name:<30} {p.task:<40} {change_str}")
+    print()
+
+    # Single prompt — EXACTLY one input() call per run (WB-02; T-03-09)
+    answer = input(f"Proceed with {total_changes} write(s) to {total_repos} repo(s)? [y/N]: ")
+    return answer.strip().lower() in ("y", "yes")
+
+
+def _write_manifest(
+    manifests_dir: Path,
+    run_id: str,
+    repos_results: list[dict],
+) -> None:
+    """Write a per-run JSON recovery manifest to manifests_dir/{run_id}.json.
+
+    Records every repo's outcome, pushed sha, change list, and error for
+    audit / partial-batch recovery (WB-05).
+
+    Security (T-03-11): manifests_dir is gitignored — the manifest is never
+    committed into kf-cpto. No token is stored in the manifest.
+
+    This function NEVER raises on OSError (manifest write failure must not abort
+    the run). Prints a Warning on failure and returns silently.
+
+    Args:
+        manifests_dir: Directory for manifest files (typically MANIFESTS_DIR).
+        run_id:        Run identifier string (UTC timestamp, e.g. '20260604T114000Z').
+        repos_results: List of manifest-entry dicts from _write_repo().
+    """
+    # Tally outcomes
+    summary: dict[str, int] = {"succeeded": 0, "failed": 0, "conflict": 0, "skipped": 0}
+    for entry in repos_results:
+        outcome = entry.get("outcome", "failed")
+        if outcome in summary:
+            summary[outcome] += 1
+        else:
+            summary["failed"] += 1
+
+    manifest: dict = {
+        "run_id": run_id,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "total_repos": len(repos_results),
+        "summary": summary,
+        "repos": repos_results,
+    }
+
+    try:
+        manifests_dir.mkdir(parents=True, exist_ok=True)
+        manifest_path = manifests_dir / f"{run_id}.json"
+        manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+        print(f"[INFO] Manifest written: {manifest_path}")
+    except OSError as exc:  # noqa: BLE001 — non-fatal; manifest failure must not abort run
+        print(f"Warning: failed to write manifest to {manifests_dir}/{run_id}.json: {exc}")
+
+
+def run(proposals: list, dry_run: bool = False) -> list[dict]:
+    """Batch-orchestrate write-back over all repos in the proposal list.
+
+    Flow:
+        1. Group proposals by repo name.
+        2. Pair each repo group with its enum record (from repo_enum.run()).
+        3. Call _confirm_batch() ONCE — or skip if dry_run=True.
+        4. If confirmed (and not dry_run), read KF_PAT from env (fail-fast if unset).
+        5. Loop over repos: call _write_repo() per repo; continue past conflicts/failures.
+        6. Call _write_manifest() with all results.
+        7. Print [DONE]/[CONFLICT]/[SKIP]/[FAIL] tally.
+        8. Return the list of manifest-entry dicts (no sys.exit).
+
+    Security (T-03-12): KF_PAT is read from os.environ only inside run() at push time,
+    fail-fast with a clear [ERROR] if unset when a non-dry push is requested. Never read
+    at import time.
+
+    Args:
+        proposals: List of Proposal-like objects with .repo, .task, .old_status, .new_status.
+        dry_run:   If True, print the summary but write and push nothing. No KF_PAT needed.
+
+    Returns:
+        List of manifest-entry dicts (one per repo that had proposals).
+    """
+    from repo_enum import run as enum_run  # noqa: E402 — deferred to avoid circular import
+
+    print("Activity Sync — Write-Back — Starting...")
+
+    if not proposals:
+        print("[INFO] No changes proposed — nothing to write.")
+        return []
+
+    # Group proposals by repo name
+    proposals_by_repo: dict = {}
+    for p in proposals:
+        proposals_by_repo.setdefault(p.repo, []).append(p)
+
+    # Build lookup of enum records by repo name
+    try:
+        records_list = enum_run()
+    except RuntimeError as exc:
+        # Pre-existing GSD orchestration state (same pattern as reconcile.py)
+        msg = str(exc)
+        if "working tree is dirty" in msg:
+            print(f"[WARN] repo_enum clean-tree check failed (pre-existing GSD state): {msg}")
+            print("[WARN] Continuing with direct repo enumeration.")
+            records_list = _enum_records_fallback_writeback()
+        else:
+            raise
+    records_by_name: dict = {r["name"]: r for r in records_list}
+
+    # Dry-run path: print summary, write nothing, no KF_PAT needed (T-03-12)
+    if dry_run:
+        print("[INFO] --dry-run: previewing changes (no write, no push).")
+        _confirm_batch_preview(proposals_by_repo)
+        print("[INFO] Dry-run complete — no files written, no pushes made.")
+        return []
+
+    # Single batch-confirm (WB-02, T-03-09): exactly one prompt for the whole batch
+    if not _confirm_batch(proposals_by_repo):
+        print("[INFO] Batch write cancelled by operator.")
+        return []
+
+    # Read KF_PAT at push time only (T-03-12: never at import time)
+    kf_pat = os.environ.get("KF_PAT", "")
+    if not kf_pat:
+        print("[ERROR] KF_PAT environment variable is unset. Set KF_PAT to your GitHub PAT before pushing.")
+        raise RuntimeError("KF_PAT unset — cannot push to remote repos")
+
+    # Generate run ID (UTC timestamp)
+    run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+    results: list[dict] = []
+
+    # Loop over repos — continue past conflict/failure (T-03-13, WB-03)
+    for repo_name, repo_proposals in sorted(proposals_by_repo.items()):
+        record = records_by_name.get(repo_name)
+        if record is None:
+            print(f"[WARN] No enum record found for repo '{repo_name}' — skipping")
+            results.append({
+                "repo": repo_name,
+                "outcome": "skipped",
+                "pushed_sha": None,
+                "changes": [],
+                "error": f"No enum record found for repo '{repo_name}'",
+            })
+            continue
+
+        # _write_repo never raises — per-repo error boundary (T-03-13)
+        entry = _write_repo(record, repo_proposals, kf_pat, run_id)
+        results.append(entry)
+
+    # Write recovery manifest (WB-05) — non-fatal
+    _write_manifest(MANIFESTS_DIR, run_id, results)
+
+    # Print tally
+    tally = {"succeeded": 0, "failed": 0, "conflict": 0, "skipped": 0}
+    for entry in results:
+        outcome = entry.get("outcome", "failed")
+        if outcome in tally:
+            tally[outcome] += 1
+    print(
+        f"\n[TALLY] {tally['succeeded']} [DONE] / "
+        f"{tally['conflict']} [CONFLICT] / "
+        f"{tally['skipped']} [SKIP] / "
+        f"{tally['failed']} [FAIL]"
+    )
+
+    print("Activity Sync — Write-Back — Done!")
+    return results
+
+
+def _confirm_batch_preview(proposals_by_repo: dict) -> None:
+    """Print the batch summary table without prompting (used by dry_run path)."""
+    total_repos = len(proposals_by_repo)
+    total_changes = sum(len(ps) for ps in proposals_by_repo.values())
+    print(
+        f"\n[INFO] Dry-run preview — {total_repos} repo(s), "
+        f"{total_changes} proposed change(s):\n"
+    )
+    print(f"  {'Repo':<30} {'Task':<40} {'Change'}")
+    print(f"  {'-'*30} {'-'*40} {'-'*25}")
+    for repo_name in sorted(proposals_by_repo):
+        for p in proposals_by_repo[repo_name]:
+            change_str = f"{p.old_status} -> {p.new_status}"
+            print(f"  {repo_name:<30} {p.task:<40} {change_str}")
+    print()
+
+
+def _enum_records_fallback_writeback() -> list[dict]:
+    """Enumerate repos-local/ directly without the clean-tree assertion.
+
+    Mirrors the fallback pattern in reconcile.py for pre-existing GSD state.
+    """
+    import repo_enum as _re
+    repo_names = _re.enumerate_repos(_re.REPOS_LOCAL_DIR)
+    if not repo_names:
+        return []
+    records = []
+    for name in repo_names:
+        local_path = _re.REPOS_LOCAL_DIR / name
+        local_path_str = str(local_path)
+        remote_url = _re._get_remote_url(local_path_str)
+        if not _re._check_remote_org(remote_url, name):
+            continue
+        branch = _re._get_default_branch(local_path_str)
+        records.append({
+            "name": name,
+            "local_path": local_path_str,
+            "remote_url": remote_url,
+            "branch": branch,
+        })
+    return records
+
+
+def main() -> int:
+    """Parse --dry-run flag and drive reconcile.run() -> writeback.run().
+
+    Mirrors reconcile.py main() pattern: argparse, try/except RuntimeError,
+    map to exit codes.
+
+    KF_PAT is read from os.environ inside run() at push time, not here
+    (T-03-12: never at import time; dry-run never reads it).
+
+    Returns:
+        0 on success, 1 on RuntimeError.
+    """
+    import argparse
+    import reconcile  # noqa: E402
+
+    parser = argparse.ArgumentParser(
+        description=(
+            "Activity Sync — Write-Back: reconcile task statuses, write and push "
+            "to tracked repos. Requires KF_PAT env var for live pushes."
+        )
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help=(
+            "Preview proposed changes without writing or pushing anything. "
+            "No KF_PAT required in dry-run mode."
+        ),
+    )
+    args = parser.parse_args()
+
+    if args.dry_run:
+        print("[INFO] --dry-run: read-only preview; no files will be written or pushed.")
+
+    try:
+        proposals = reconcile.run()
+        run(proposals, dry_run=args.dry_run)
+        return 0
+    except RuntimeError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
 
 
 # ---------------------------------------------------------------------------

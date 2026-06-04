@@ -1268,15 +1268,8 @@ try:
     check("_write_manifest: repo entry has 'changes' key", "changes" in _r0)
     check("_write_manifest: repo entry has 'error' key", "error" in _r0)
 
-    # Verify manifest file is under MANIFESTS_DIR path pattern (gitignored)
-    _manifest_rel_to_skill = _manifest_file.relative_to(Path(__file__).parent.parent.parent.parent)
-    _git_check = subprocess.run(
-        ["git", "check-ignore", str(_manifest_file)],
-        capture_output=True, text=True,
-        cwd=str(Path(__file__).parent.parent.parent.parent)
-    )
-    # Note: test manifests dir is in a tempdir so git check-ignore won't find it,
-    # but we test MANIFESTS_DIR path directly instead
+    # Verify MANIFESTS_DIR path is gitignored (test using the canonical MANIFESTS_DIR,
+    # not the tmpdir fixture above — tmpdir is outside the git repo)
     _skill_manifest = MANIFESTS_DIR / "test-run-gitignore.json"
     _skill_manifest.parent.mkdir(parents=True, exist_ok=True)
     _skill_manifest.write_text('{"test": true}')
@@ -1497,6 +1490,9 @@ try:
 
     _wb_conflict.input = _auto_confirm_input  # type: ignore[attr-defined]
 
+    # Set KF_PAT dummy token so run() passes the env check (T-03-12: checked at push time)
+    os.environ["KF_PAT"] = "DUMMY_TOKEN_FOR_TESTS"
+
     old_stdout_conflict = sys.stdout
     sys.stdout = io.StringIO()
     _conflict_result = run(_proposals_conflict, dry_run=False)
@@ -1505,6 +1501,7 @@ try:
 
     _re_mod.run = _orig_enum_run_conflict
     _wb_conflict._push_with_auth = _real_push_conflict
+    os.environ.pop("KF_PAT", None)
     try:
         del _wb_conflict.input
     except AttributeError:
