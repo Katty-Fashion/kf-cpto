@@ -295,10 +295,19 @@ def _list_remote_branches(repo_path: str, default_branch: str) -> list[str]:
 # Reconciliation engine
 # ---------------------------------------------------------------------------
 
-def reconcile_repo(record: dict) -> list[Proposal]:
-    """Mine Tier-2 signals for one repo and return Proposals.
+def reconcile_repo(record: dict, headers: dict) -> list[Proposal]:
+    """Mine Tier-1 and Tier-2 signals for one repo and return Proposals.
 
-    Tier-2 only this plan (Plan 02 adds Tier-1 ahead of the conflict-resolution step).
+    Tier-1 (Done): merged PRs reachable from origin/<default> whose title or
+    linked closed-issue title token-matches a task. Reachability via
+    git merge-base --is-ancestor (RECON-08 canonical revert gate).
+
+    Tier-2 (In Progress): active remote branches matching task tokens (pure-local
+    git, no API). Cap: never advance past In Progress (Todo -> In Progress only).
+
+    Both tiers feed the same per-task candidate dict; conflict resolution picks
+    most_advanced, so Tier-1 Done wins over Tier-2 In Progress (RECON-03).
+
     Uses record["local_path"] from repo_enum.run() — org-allowlist pre-validated
     in Phase 1; never accepts a path from external input (T-02-03).
 
@@ -321,8 +330,47 @@ def reconcile_repo(record: dict) -> list[Proposal]:
     # Per-task candidate list: (proposed_status, tier, signal, url)
     proposals: dict[str, list] = {}
 
+    # --- Tier-1: merged PRs reachable from origin/<default> ---
+    # This block runs before Tier-2 so both feeds the same proposals dict.
+    # Conflict resolution (most_advanced) then picks Done over In Progress.
+    merged_prs = _list_merged_prs(ORG, repo_name, headers)
+    for pr in merged_prs:
+        sha = pr.get("merge_commit_sha")
+        if not sha:
+            # Pitfall 1: merge_commit_sha absent — conservative skip (no git call)
+            continue
+        # Reachability gate (RECON-08): covers force-push, rebase, revert-of-merge
+        # merge_commit_sha passed via arg-list _run_git; never shell-interpolated (T-02-07)
+        reachable = _is_merge_reachable(repo_path, sha, default_branch)
+        if reachable is not True:
+            # False (not ancestor) or None (git error) — skip conservatively
+            continue
+
+        # Match PR title to task tokens (T-02-06: normalized plaintext, no eval)
+        pr_title = pr.get("title", "")
+        pr_url = pr.get("html_url")
+        signal_desc = f"PR #{pr['number']}: {pr_title} (merged)"
+        for task in tasks:
+            if task_matches_signal(task["task"], pr_title):
+                proposals.setdefault(task["task"], []).append(
+                    ("Done", 1, signal_desc, pr_url)
+                )
+
+        # Linked-issue match (RECON-01): parse closes/fixes #N from PR body
+        for issue_num in _extract_issue_refs(pr.get("body")):
+            issue = _get_issue(ORG, repo_name, issue_num, headers)
+            if issue and issue.get("state") == "closed":
+                issue_title = issue.get("title", "")
+                issue_signal = f"issue #{issue_num} closed (via PR #{pr['number']})"
+                issue_url = issue.get("html_url")
+                for task in tasks:
+                    if task_matches_signal(task["task"], issue_title):
+                        proposals.setdefault(task["task"], []).append(
+                            ("Done", 1, issue_signal, issue_url)
+                        )
+
     # --- Tier-2: active remote branches ---
-    # This is the ONLY signal source in this plan (RECON-06: no commit enumeration)
+    # Pure-local git (no API); no commit enumeration (RECON-06)
     remote_branches = _list_remote_branches(repo_path, default_branch)
     for branch in remote_branches:
         for task in tasks:
@@ -352,6 +400,8 @@ def reconcile_repo(record: dict) -> list[Proposal]:
             continue
 
         # Select the winning candidate that matches the best status
+        # Tier-1 (Done, tier=1) sorts before Tier-2 (In Progress, tier=2) because
+        # STATUS_RANK["Done"] == 3 > STATUS_RANK["In Progress"] == 1.
         winning = next(
             c for c in sorted(proposals[task_name], key=lambda x: -STATUS_RANK.get(x[0], -1))
             if c[0] == best
@@ -481,6 +531,9 @@ def run() -> list[Proposal]:
 
     print("Activity Sync — Reconcile — Starting...")
 
+    # Build headers once; pass to each reconcile_repo call (T-02-05: token read once)
+    headers = _build_headers()
+
     try:
         records = enum_run()
     except RuntimeError as exc:
@@ -490,7 +543,7 @@ def run() -> list[Proposal]:
             # Extract the records that were accumulated before the exception via
             # a fallback direct enumeration, or proceed with empty and warn.
             print(f"[WARN] repo_enum clean-tree check failed (pre-existing GSD state, not our writes): {msg}")
-            print("[WARN] Proceeding with Tier-2 reconciliation using fallback enumeration.")
+            print("[WARN] Proceeding with Tier-1/Tier-2 reconciliation using fallback enumeration.")
             records = _enum_records_fallback()
         else:
             raise
@@ -498,7 +551,7 @@ def run() -> list[Proposal]:
     all_proposals: list[Proposal] = []
 
     for record in records:
-        proposals = reconcile_repo(record)
+        proposals = reconcile_repo(record, headers)
         all_proposals.extend(proposals)
 
     render_change_list(all_proposals)

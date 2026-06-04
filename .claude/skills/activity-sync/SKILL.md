@@ -55,6 +55,27 @@ What it does:
 - Asserts kf-cpto working tree is clean after run (`git status --porcelain == ""`)
 - Returns `list[RepoRecord]` for Phase 2 downstream consumption
 
+### [RECONCILE] Dry-run activity reconciliation
+
+```
+python .claude/skills/activity-sync/reconcile.py --dry-run
+```
+
+What it does:
+- Imports `repo_enum.run()` records (name, local_path, branch, tasks, kanban metadata)
+- Mines [TIER-1] signals via GitHub REST API: merged PRs + closed linked issues -> Done
+  - Reachability-gates each merge commit via `git merge-base --is-ancestor` (RECON-08)
+  - Resolves `closes/fixes #N` body references; fetches closed issue titles for matching
+  - Reverted/unreachable merges produce no Done entry
+- Mines [TIER-2] signals via local git: active remote branches -> In Progress (Todo only)
+  - Pure-local `git for-each-ref refs/remotes/origin/` — no API call for branch detection
+- Forward-only: never downgrades a declared status (Done stays Done)
+- [TIER-1] Done wins over [TIER-2] In Progress for the same task (conflict resolution)
+- Prints a grouped change list to stdout — grouped by repo, task | old -> new | signal
+- Writes nothing this phase (dry-run only; Phase 3 implements write-back)
+- Requires `KF_PAT` or `GITHUB_TOKEN` env var for GitHub API; warns and continues with
+  empty [TIER-1] proposals when no token is set (graceful degradation)
+
 ---
 
 ## Script Locations
@@ -63,6 +84,7 @@ What it does:
 |--------|------|------|
 | Bootstrap | `.claude/skills/activity-sync/bootstrap.py` | One-shot clone + seed |
 | Enumeration | `.claude/skills/activity-sync/repo_enum.py` | Fetch + parse all tracked repos |
+| Reconcile | `.claude/skills/activity-sync/reconcile.py` | Activity mining + dry-run reconciliation |
 
 ---
 
@@ -77,6 +99,32 @@ Warning: <repo-name>: kanban.md missing — run bootstrap.py first
 ```
 
 Where `<fetch-status>` is one of: `up-to-date`, `new-commits`, `fetch-failed`.
+
+`reconcile.py` prints a change list grouped by repo:
+
+```
+Activity Sync — Reconcile — Starting...
+Warning: No KF_PAT or GITHUB_TOKEN set. API rate limits will be very low.
+
+Repo: kf-some-project
+Task                                          Old          New  Signal
+------------------------------------------------------------------------------------------
+Setup authentication                         Todo ->        Done  [TIER-1] PR #42: Setup authentication flow (merged)
+Add product catalog                          Todo ->        Done  [TIER-1] issue #7 closed (via PR #12)
+Migrate legacy API                           Todo ->  In Progress  [TIER-2] branch origin/migrate-legacy-api exists
+
+Activity Sync — Reconcile — Done!
+```
+
+When no changes are proposed (all declared statuses match activity):
+
+```
+[INFO] No changes proposed — all declared statuses match activity.
+```
+
+Pill legend:
+- `[TIER-1]` — merged PR or closed linked issue (verified via git reachability gate)
+- `[TIER-2]` — active remote branch (local git, no API)
 
 ---
 

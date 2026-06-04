@@ -181,6 +181,10 @@ check("Proposal signal_url accepts value", p_with_url.signal_url == "https://git
 # ---------------------------------------------------------------------------
 
 print("--- reconcile_repo early-skip ---")
+
+# Shared empty headers dict for tests that don't need API auth
+_TEST_HEADERS = {"Accept": "application/vnd.github+json"}
+
 record_no_kanban = {
     "name": "test-repo",
     "local_path": "/fake/path/test-repo",
@@ -189,7 +193,7 @@ record_no_kanban = {
     "valid_task_count": 0,
     "tasks": [],
 }
-result = reconcile_repo(record_no_kanban)
+result = reconcile_repo(record_no_kanban, _TEST_HEADERS)
 check("kanban_exists=False returns empty list", result == [])
 
 record_zero_valid = {
@@ -200,7 +204,7 @@ record_zero_valid = {
     "valid_task_count": 0,
     "tasks": [],
 }
-result = reconcile_repo(record_zero_valid)
+result = reconcile_repo(record_zero_valid, _TEST_HEADERS)
 check("valid_task_count=0 returns empty list", result == [])
 
 # ---------------------------------------------------------------------------
@@ -233,8 +237,20 @@ record_with_todo = {
     "tasks": [{"task": "Setup authentication", "status": "Todo"}],
 }
 
-with _FakeBranches(["setup-authentication"]):
-    proposals = reconcile_repo(record_with_todo)
+# Stub _list_merged_prs to return [] so Tier-1 doesn't interfere with Tier-2 tests
+class _FakeNoMergedPRs:
+    """Context manager to stub _list_merged_prs to return empty."""
+    def __enter__(self):
+        self._orig = reconcile._list_merged_prs
+        reconcile._list_merged_prs = lambda org, repo, headers: []
+        return self
+
+    def __exit__(self, *args):
+        reconcile._list_merged_prs = self._orig
+
+
+with _FakeBranches(["setup-authentication"]), _FakeNoMergedPRs():
+    proposals = reconcile_repo(record_with_todo, _TEST_HEADERS)
 
 check("Tier-2 match produces 1 proposal", len(proposals) == 1)
 if proposals:
@@ -252,8 +268,8 @@ record_in_progress = {
     "valid_task_count": 1,
     "tasks": [{"task": "Setup authentication", "status": "In Progress"}],
 }
-with _FakeBranches(["setup-authentication"]):
-    proposals_ip = reconcile_repo(record_in_progress)
+with _FakeBranches(["setup-authentication"]), _FakeNoMergedPRs():
+    proposals_ip = reconcile_repo(record_in_progress, _TEST_HEADERS)
 check("Tier-2 does NOT advance In Progress task", proposals_ip == [])
 
 # Task already Done — Tier-2 should NOT advance
@@ -265,8 +281,8 @@ record_done = {
     "valid_task_count": 1,
     "tasks": [{"task": "Setup authentication", "status": "Done"}],
 }
-with _FakeBranches(["setup-authentication"]):
-    proposals_done = reconcile_repo(record_done)
+with _FakeBranches(["setup-authentication"]), _FakeNoMergedPRs():
+    proposals_done = reconcile_repo(record_done, _TEST_HEADERS)
 check("Tier-2 does NOT advance Done task", proposals_done == [])
 
 # ---------------------------------------------------------------------------
