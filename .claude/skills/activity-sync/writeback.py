@@ -139,9 +139,11 @@ def _get_remote_url(repo_path: str) -> str:
 def _is_behind_origin(repo_path: str, branch: str) -> tuple[bool, int]:
     """Return (is_behind, behind_count) for local checkout vs origin/<branch>.
 
-    Fetches first (Pitfall 4: stale refs without fetch). Then counts commits
-    in origin/<branch> that are not in HEAD. Count > 0 means the local checkout
-    is behind and a push would be non-fast-forward — abort with [CONFLICT].
+    Fetches ONLY the target branch first (WR-06: Pitfall 4 — stale refs without
+    fetch; scoped fetch avoids depending on a possibly-stale origin/<branch>
+    tracking ref). Then counts commits in FETCH_HEAD (the just-fetched remote
+    tip) that are not in HEAD. Count > 0 means the local checkout is behind and a
+    push would be non-fast-forward — abort with [CONFLICT].
 
     Security (T-03-04): conservative — fetch failure also returns (True, -1) so
     we never accidentally skip the conflict check due to a transient error.
@@ -155,12 +157,19 @@ def _is_behind_origin(repo_path: str, branch: str) -> tuple[bool, int]:
         (False, 0) if local is up-to-date.
         (True, -1) on fetch error or rev-list error (conservative conflict).
     """
-    fetch_r = _run_git(["-C", repo_path, "fetch", "origin"])
+    # WR-06: fetch ONLY the target branch (not all refs) and count against
+    # FETCH_HEAD rather than origin/<branch>. Fetching the specific branch is
+    # cheaper for ref-heavy repos, and FETCH_HEAD always reflects the just-fetched
+    # tip — it does not depend on a remote-tracking ref (origin/<branch>) that may
+    # be stale or absent if the clone used a restricted refspec or different
+    # default branch, which would otherwise trip the conservative conflict path
+    # and silently skip a repo that is actually fine.
+    fetch_r = _run_git(["-C", repo_path, "fetch", "origin", branch])
     if fetch_r.returncode != 0:
         print(f"Warning: fetch failed for {repo_path}: {fetch_r.stderr.strip()}")
         return True, -1  # conservative — treat fetch failure as conflict
 
-    rev_r = _run_git(["-C", repo_path, "rev-list", "--count", f"HEAD..origin/{branch}"])
+    rev_r = _run_git(["-C", repo_path, "rev-list", "--count", "HEAD..FETCH_HEAD"])
     if rev_r.returncode != 0:
         print(f"Warning: rev-list failed for {repo_path}: {rev_r.stderr.strip()}")
         return True, -1  # conservative

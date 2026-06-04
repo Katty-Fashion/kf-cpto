@@ -863,6 +863,40 @@ finally:
     shutil.rmtree(_t3)
 
 # ---------------------------------------------------------------------------
+# WR-06: works when origin/<branch> tracking ref is absent (uses FETCH_HEAD)
+# ---------------------------------------------------------------------------
+
+print("--- _is_behind_origin: absent tracking ref (WR-06) ---")
+
+_t_wr06, _b_wr06, _w_wr06 = _make_bare_remote()
+try:
+    (_w_wr06 / "kanban.md").write_text("# initial\n", encoding="utf-8")
+    _git(["add", "."], _w_wr06)
+    _git(["commit", "-m", "init"], _w_wr06)
+    _branch_wr06 = _git(["rev-parse", "--abbrev-ref", "HEAD"], _w_wr06).stdout.strip()
+    _git(["push", "-u", "origin", _branch_wr06], _w_wr06)
+
+    # Simulate a restricted/odd clone: delete the remote-tracking ref so
+    # origin/<branch> does NOT exist. The OLD implementation (rev-list against
+    # origin/<branch>) would error -> conservative (True, -1) and skip a fine
+    # repo. The WR-06 fix counts against FETCH_HEAD, which the scoped fetch
+    # always populates, so an up-to-date repo correctly reports (False, 0).
+    _git(["update-ref", "-d", f"refs/remotes/origin/{_branch_wr06}"], _w_wr06)
+    # Confirm the tracking ref is genuinely gone for the test premise.
+    _track_check = _git(["rev-parse", "--verify", f"refs/remotes/origin/{_branch_wr06}"], _w_wr06)
+    check("WR-06: precondition — origin/<branch> tracking ref removed", _track_check.returncode != 0)
+
+    old_stdout_wr06 = sys.stdout
+    sys.stdout = io.StringIO()
+    _behind_wr06, _count_wr06 = _is_behind_origin(str(_w_wr06), _branch_wr06)
+    sys.stdout = old_stdout_wr06
+
+    check("WR-06: up-to-date reports is_behind=False despite missing tracking ref", _behind_wr06 is False)
+    check("WR-06: up-to-date reports count=0 (not -1 conservative)", _count_wr06 == 0)
+finally:
+    shutil.rmtree(_t_wr06)
+
+# ---------------------------------------------------------------------------
 # _push_with_auth: push success against bare remote (dummy token)
 # ---------------------------------------------------------------------------
 
