@@ -656,7 +656,7 @@ def main() -> int:
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **`merge_commit_sha` availability in list endpoint**
    - What we know: WebSearch confirms it IS in list endpoint responses; WebFetch of the schema docs says "Simple" schema omits it. Contradiction.
