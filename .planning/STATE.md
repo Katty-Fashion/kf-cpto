@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Completed 01-03-PLAN.md — repo_enum.py read-only pipeline; all 4 phase success criteria verified
-last_updated: "2026-06-04T11:31:29.233Z"
+last_updated: "2026-06-04T11:41:27.550Z"
 last_activity: 2026-06-04
 progress:
   total_phases: 5
   completed_phases: 2
   total_plans: 9
-  completed_plans: 7
+  completed_plans: 8
   percent: 40
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 ## Current Position
 
 Phase: 03 (write-back-diagram-sanitization) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-06-04
 
-Progress: [████████░░] 78%
+Progress: [█████████░] 89%
 
 ## Performance Metrics
 
@@ -55,6 +55,7 @@ Progress: [████████░░] 78%
 | Phase 01 P02 | 8min | 2 tasks | 1 files |
 | Phase 01-repo-access-foundation P03 | 3min | 2 tasks | 1 files |
 | Phase 02-activity-mining-reconciliation P02 | 8m22s | 2 tasks | 3 files |
+| Phase 03 P02 | 10m | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,8 @@ Recent decisions affecting current work:
 - [Phase ?]: 01-03: run() is the Phase 2 importable callable; main() delegates to it without sys.exit
 - [Phase 02]: reconcile_repo signature extended to (record, headers); run() builds _build_headers() once before record loop
 - [Phase 02]: Tier-1 Done beats Tier-2 In Progress via most_advanced on shared per-task proposals dict; RECON-03 compliant
+- [Phase ?]: _write_repo status order: apply_status_change BEFORE sanitize_body; sanitize would alter task name cells breaking Proposal.task match
+- [Phase ?]: Token URL save+restore in finally: never print HTTPS URL; [WARN] on restore failure but no re-raise (T-03-05, WB-04)
 
 ### Open Questions (resolve before affected phase begins)
 
@@ -101,6 +104,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-04T11:31:29.215Z
+Last session: 2026-06-04T11:41:22.723Z
 Stopped at: Completed 01-03-PLAN.md — repo_enum.py read-only pipeline; all 4 phase success criteria verified
 Resume file: None
