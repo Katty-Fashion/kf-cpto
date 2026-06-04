@@ -41,7 +41,6 @@ import sys
 from datetime import datetime, timezone
 from io import StringIO
 from pathlib import Path
-from typing import Any
 
 from ruamel.yaml import YAML
 
@@ -70,8 +69,8 @@ COMMIT_MSG = "chore(kanban): reconcile task statuses from repo activity"
 # Timeout for individual git subprocess calls (seconds).
 GIT_TIMEOUT_SECONDS = 60
 
-# KF GitHub org (matches utils.ORG)
-_KF_ORG = "katty-fashion"
+# KF GitHub org — reuse utils.ORG single source of truth (IN-02), no second const.
+_KF_ORG = ORG
 
 # Commit identity for all write-back commits (mirrors aggregate.yml git config).
 # WR-05: applied via per-invocation `-c` on the commit call so it can never be
