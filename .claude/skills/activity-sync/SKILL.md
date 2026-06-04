@@ -38,7 +38,7 @@ What it does:
 - Creates `repos-local/` if absent
 - Clones each tracked repo via SSH (full clone — no `--depth=1`; Phase 2 needs git history)
 - Seeds `kanban.md` and `notify-kf-cpto.yml` from `templates/` into repos that lack them
-- [WARN] on clone failure (non-fatal; continues to next repo)
+- `Warning:` on clone failure (non-fatal; continues to next repo)
 
 ### [ENUM] Enumerate, fetch, and parse all tracked repos
 
@@ -73,7 +73,7 @@ What it does:
 ```
 [INFO] <repo-name>: <fetch-status> (branch: <branch>)
 [INFO] <repo-name>: <N> valid-status tasks
-[WARN] <repo-name>: kanban.md absent — run bootstrap.py first
+Warning: <repo-name>: kanban.md missing — run bootstrap.py first
 ```
 
 Where `<fetch-status>` is one of: `up-to-date`, `new-commits`, `fetch-failed`.
