@@ -145,7 +145,7 @@ def _fetch_repo(repo_path: str, branch: str) -> str:
     before = _run_git(["-C", repo_path, "rev-parse", tracking_ref])
     before_sha = before.stdout.strip() if before.returncode == 0 else None
 
-    fetch = _run_git(["-C", repo_path, "fetch", "origin"])
+    fetch = _run_git(["-C", repo_path, "fetch", "origin"], timeout=GIT_CLONE_TIMEOUT_SECONDS)
     if fetch.returncode != 0:
         print(f"Warning: fetch failed for {repo_path}: {fetch.stderr.strip()}")
         return "fetch-failed"
