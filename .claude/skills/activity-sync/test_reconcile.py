@@ -509,6 +509,171 @@ check(
 )
 
 # ---------------------------------------------------------------------------
+# reconcile_repo Task-2 integration: Tier-1 + headers
+# ---------------------------------------------------------------------------
+
+print("--- reconcile_repo Tier-1 integration ---")
+
+# Fake record with a Todo task
+_TIER1_RECORD = {
+    "name": "some-repo",
+    "local_path": "/fake/some-repo",
+    "branch": "main",
+    "kanban_exists": True,
+    "valid_task_count": 1,
+    "tasks": [{"task": "Setup authentication", "status": "Todo"}],
+}
+
+_EMPTY_HEADERS = {"Accept": "application/vnd.github+json"}
+
+
+class _FakeMergedPRs:
+    """Context manager to stub _list_merged_prs."""
+    def __init__(self, prs: list):
+        self.prs = prs
+        self._orig = None
+
+    def __enter__(self):
+        self._orig = reconcile._list_merged_prs
+        prs = self.prs
+        reconcile._list_merged_prs = lambda org, repo, headers: prs
+        return self
+
+    def __exit__(self, *args):
+        reconcile._list_merged_prs = self._orig
+
+
+class _FakeIsReachable:
+    """Context manager to stub _is_merge_reachable."""
+    def __init__(self, result):
+        self.result = result
+        self._orig = None
+
+    def __enter__(self):
+        self._orig = reconcile._is_merge_reachable
+        result = self.result
+        reconcile._is_merge_reachable = lambda path, sha, branch: result
+        return self
+
+    def __exit__(self, *args):
+        reconcile._is_merge_reachable = self._orig
+
+
+class _FakeGetIssue:
+    """Context manager to stub _get_issue."""
+    def __init__(self, issue_data):
+        self.issue_data = issue_data
+        self._orig = None
+
+    def __enter__(self):
+        self._orig = reconcile._get_issue
+        data = self.issue_data
+        reconcile._get_issue = lambda org, repo, num, headers: data
+        return self
+
+    def __exit__(self, *args):
+        reconcile._get_issue = self._orig
+
+
+# Test: reachable PR title match -> Tier-1 Done proposal
+_pr_matching = {
+    "number": 42,
+    "title": "Setup authentication flow",
+    "body": None,
+    "merge_commit_sha": "deadbeef",
+    "merged_at": "2026-01-01T00:00:00Z",
+    "html_url": "https://github.com/test-org/some-repo/pull/42",
+}
+
+with _FakeMergedPRs([_pr_matching]), _FakeIsReachable(True), _FakeBranches([]), _FakeGetIssue(None):
+    proposals_tier1 = reconcile_repo(_TIER1_RECORD, _EMPTY_HEADERS)
+
+check("Tier-1 reachable PR -> 1 proposal", len(proposals_tier1) == 1)
+if proposals_tier1:
+    check("Tier-1 proposal new_status is Done", proposals_tier1[0].new_status == "Done")
+    check("Tier-1 proposal tier is 1", proposals_tier1[0].tier == 1)
+    check("Tier-1 signal mentions PR #42", "PR #42" in proposals_tier1[0].signal)
+    check("Tier-1 signal mentions merged", "merged" in proposals_tier1[0].signal)
+    check("Tier-1 signal_url is PR html_url", proposals_tier1[0].signal_url == "https://github.com/test-org/some-repo/pull/42")
+
+# Test: PR with merge_commit_sha=None is skipped
+_pr_no_sha = {
+    "number": 99,
+    "title": "Setup authentication flow",
+    "body": None,
+    "merge_commit_sha": None,
+    "merged_at": "2026-01-01T00:00:00Z",
+    "html_url": "https://github.com/test-org/some-repo/pull/99",
+}
+
+with _FakeMergedPRs([_pr_no_sha]), _FakeIsReachable(True), _FakeBranches([]), _FakeGetIssue(None):
+    proposals_no_sha = reconcile_repo(_TIER1_RECORD, _EMPTY_HEADERS)
+
+check("PR with merge_commit_sha=None produces no proposal", proposals_no_sha == [])
+
+# Test: unreachable PR (reachable=False) produces no Done
+with _FakeMergedPRs([_pr_matching]), _FakeIsReachable(False), _FakeBranches([]), _FakeGetIssue(None):
+    proposals_unreachable = reconcile_repo(_TIER1_RECORD, _EMPTY_HEADERS)
+
+check("Unreachable PR produces no Done proposal", proposals_unreachable == [])
+
+# Test: reachability=None (git error) also skips
+with _FakeMergedPRs([_pr_matching]), _FakeIsReachable(None), _FakeBranches([]), _FakeGetIssue(None):
+    proposals_none_reach = reconcile_repo(_TIER1_RECORD, _EMPTY_HEADERS)
+
+check("Reachability=None produces no Done proposal (conservative)", proposals_none_reach == [])
+
+# Test: linked issue Done via PR body "closes #5"
+_pr_with_body = {
+    "number": 7,
+    "title": "Misc fixes",
+    "body": "closes #5",
+    "merge_commit_sha": "cafe1234",
+    "merged_at": "2026-01-01T00:00:00Z",
+    "html_url": "https://github.com/test-org/some-repo/pull/7",
+}
+_issue_5 = {
+    "number": 5,
+    "title": "Setup authentication module",
+    "state": "closed",
+    "html_url": "https://github.com/test-org/some-repo/issues/5",
+}
+
+with _FakeMergedPRs([_pr_with_body]), _FakeIsReachable(True), _FakeBranches([]), _FakeGetIssue(_issue_5):
+    proposals_issue = reconcile_repo(_TIER1_RECORD, _EMPTY_HEADERS)
+
+check("Linked closed issue title match -> Tier-1 Done", len(proposals_issue) >= 1)
+if proposals_issue:
+    check("Linked issue proposal tier is 1", proposals_issue[0].tier == 1)
+    check("Linked issue signal mentions issue #5", "issue #5" in proposals_issue[0].signal)
+    check("Linked issue signal_url is issue html_url", proposals_issue[0].signal_url == "https://github.com/test-org/some-repo/issues/5")
+
+# Test: Tier-1 Done beats Tier-2 In Progress for same task
+_record_tier1_vs_tier2 = {
+    "name": "conflict-repo",
+    "local_path": "/fake/conflict-repo",
+    "branch": "main",
+    "kanban_exists": True,
+    "valid_task_count": 1,
+    "tasks": [{"task": "Setup authentication", "status": "Todo"}],
+}
+
+with _FakeMergedPRs([_pr_matching]), _FakeIsReachable(True), _FakeBranches(["setup-authentication"]), _FakeGetIssue(None):
+    proposals_conflict = reconcile_repo(_record_tier1_vs_tier2, _EMPTY_HEADERS)
+
+check("Tier-1 vs Tier-2 conflict -> exactly 1 proposal", len(proposals_conflict) == 1)
+if proposals_conflict:
+    check("Tier-1 wins conflict: new_status is Done", proposals_conflict[0].new_status == "Done")
+    check("Tier-1 wins conflict: tier is 1", proposals_conflict[0].tier == 1)
+
+# Test: kanban_exists=False still returns [] with headers param
+record_no_kanban_h = {
+    "name": "no-kanban", "local_path": "/fake", "branch": "main",
+    "kanban_exists": False, "valid_task_count": 0, "tasks": [],
+}
+check("kanban_exists=False with headers returns []", reconcile_repo(record_no_kanban_h, _EMPTY_HEADERS) == [])
+
+# ---------------------------------------------------------------------------
 # Summary
 # ---------------------------------------------------------------------------
 
