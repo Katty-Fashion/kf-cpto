@@ -71,10 +71,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. When a tracked repo's local checkout is behind `origin/<default-branch>` (simulated by making a competing push), the skill aborts that repo's write, logs it as `[CONFLICT]`, and continues with the remaining repos — the already-pushed repos' dispatch fires normally
   4. A recovery manifest file is written for each run recording which repos succeeded and which failed, and re-running the skill on a repo that already has the correct kanban.md produces zero git diff (idempotency)
   5. Task table rows containing emojis or Mermaid-breaking punctuation are sanitized before write; Romanian diacritics (ă/â/î/ș/ț) are preserved verbatim; AUTO-block marker lines are unchanged in the git diff; running `validate_auto_blocks.py` locally after the write produces exit 0
-**Plans**: TBD
+**Plans**: 3 plans
+- [ ] 03-01-PLAN.md — sanitize.py + frontmatter round-trip + status-cell builder + idempotency (pure, git-free); requirements.txt/.gitignore groundwork (WB-01, DIAG-01/02/03)
+- [ ] 03-02-PLAN.md — writeback.py git layer: conflict detection + token-masked push + _write_repo against a throwaway bare remote (WB-03, WB-04)
+- [ ] 03-03-PLAN.md — batch-confirm + recovery manifest + run()/main() orchestration over reconcile.run() + SKILL.md (WB-02, WB-05)
 
-**Open questions to resolve during planning:**
-- skip-ci dispatch strategy: decide between `[skip ci]` on per-repo commits + explicit `gh workflow run aggregate.yml` vs. natural per-repo dispatch (N pipeline runs); resolve before implementation
+**Note (SC-1):** The live push → CI → Pages deploy is a human-validated UAT item. The autonomous build tests the full write path against a local throwaway bare git remote; it never pushes to live katty-fashion org repos.
 
 ---
 
@@ -114,6 +116,6 @@ Decimal phases appear between their surrounding integers in numeric order.
 |-------|----------------|--------|-----------|
 | 1. Repo Access Foundation | 4/4 | Complete   | 2026-06-04 |
 | 2. Activity Mining + Reconciliation | 2/2 | Complete   | 2026-06-04 |
-| 3. Write-Back + Diagram Sanitization | 0/TBD | Not started | - |
+| 3. Write-Back + Diagram Sanitization | 0/3 | Planned | - |
 | 4. Agentic Capacity Model | 0/TBD | Not started | - |
 | 5. Hardening | 0/TBD | Not started | - |
