@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-06-04T12:22:55.345693
+generated: 2026-06-04T14:03:45.629514
 ---
 
 # KF Team — Dependency Graph
@@ -9,16 +9,12 @@ generated: 2026-06-04T12:22:55.345693
 
 ```mermaid
 graph LR
-    AIRise-ai-fabric-inspection[Airise Ai Fabric Inspection]:::eu
-    Aladin-01[Aladin 01]:::internal
-    Edi-test[Edi Test]:::internal
-    NuoForm---GTM[Nuoform   Gtm]:::internal
     R3-AAS[R3 Aas]:::eu
+    ai-rise-options[Ai Rise Options]:::saas
     kf-be-platform[Kf Be Platform]:::eu
     kf-fe-platform[Kf Fe Platform]:::eu
     kf-platform[Kf Platform]:::eu
-    order-service[Order Service]:::internal
-    project-template[Project Template]:::eu
+    tech_brainstorming[Tech_Brainstorming]:::saas
 
     classDef saas fill:#4CAF50,color:#fff
     classDef eu fill:#2196F3,color:#fff

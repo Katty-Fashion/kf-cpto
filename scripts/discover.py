@@ -15,7 +15,7 @@ from pathlib import Path
 
 import requests
 
-from utils import ORG, DISCOVERED_FILE
+from utils import ORG, DISCOVERED_FILE, load_config
 
 
 def discover_kanban_repos(org: str = ORG, token: str = None) -> list[dict]:
@@ -55,6 +55,17 @@ def discover_kanban_repos(org: str = ORG, token: str = None) -> list[dict]:
         if not r.get("archived")
     ]
     print(f"Found {len(candidates)} active repos in {org}")
+
+    # Curated allowlist (config-driven, not hardcoded): when `tracked_repos` is
+    # set in docs/_config.yml, restrict the dashboard to exactly those repos.
+    # Empty/absent -> keep every active repo (legacy "discover everything").
+    tracked = (load_config() or {}).get("tracked_repos") or []
+    if tracked:
+        tracked_set = set(tracked)
+        before = len(candidates)
+        candidates = [c for c in candidates if c["name"] in tracked_set]
+        print(f"Applied tracked_repos allowlist ({len(tracked_set)} repos): "
+              f"{before} -> {len(candidates)} candidates")
 
     # Check which repos have kanban.md at root
     discovered = []

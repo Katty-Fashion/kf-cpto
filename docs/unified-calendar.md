@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-06-04T12:22:55.344537
+generated: 2026-06-04T14:03:45.624501
 ---
 
 # KF Team — Unified Calendar
@@ -25,24 +25,16 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    section AIRise-ai-fabric-inspection
-    S1 :active, 2026-03-09, 2026-03-20
-    section Aladin-01
-    S1 :active, 2026-03-03, 2026-03-14
-    section Edi-test
-    S1 :active, 2026-03-02, 2026-03-13
-    section NuoForm---GTM
-    S1 :active, 2026-03-02, 2026-03-13
     section R3-AAS
     S2 :active, 2026-03-16, 2026-04-03
+    section ai-rise-options
+    S1 :active, 2026-03-02, 2026-03-13
     section kf-be-platform
     S1 :active, 2026-05-11, 2026-05-22
     section kf-fe-platform
     S1 :active, 2026-05-11, 2026-05-22
     section kf-platform
     S1 :active, 2026-05-25, 2026-06-07
-    section order-service
-    S1 :active, 2026-03-09, 2026-03-23
-    section project-template
-    S1 :active, 2026-03-03, 2026-03-14
+    section tech_brainstorming
+    S1 :active, 2026-03-02, 2026-03-13
 ```

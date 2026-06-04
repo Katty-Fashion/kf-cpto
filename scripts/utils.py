@@ -339,6 +339,50 @@ def update_sync_status(section: str, **fields) -> None:
     save_sync_status(status)
 
 
+def _is_emoji(cp: int) -> bool:
+    """True if Unicode codepoint cp falls in a known emoji block.
+
+    Romanian diacritics (ă/â/î/ș/ț — U+0103/00E2/00EE/0219/021B) live in the
+    Basic Latin + Latin Extended range and are never matched here. Mirrors the
+    block list used by the activity-sync skill's sanitizer for consistency.
+    """
+    return (
+        0x1F600 <= cp <= 0x1F64F or  # Emoticons
+        0x1F300 <= cp <= 0x1F5FF or  # Misc Symbols and Pictographs
+        0x1F680 <= cp <= 0x1F6FF or  # Transport and Map
+        0x1F700 <= cp <= 0x1F9FF or  # Alchemical + Geometric + Supplemental
+        0x1FA00 <= cp <= 0x1FA6F or  # Chess Symbols
+        0x1FA70 <= cp <= 0x1FAFF or  # Symbols and Pictographs Extended-A
+        0x2600 <= cp <= 0x26FF or    # Misc Symbols (includes ⚠ ✅ ⛔)
+        0x2700 <= cp <= 0x27BF or    # Dingbats (includes ✔ ✗ ➡)
+        0xFE00 <= cp <= 0xFE0F or    # Variation Selectors
+        0x1F1E0 <= cp <= 0x1F1FF or  # Regional Indicator Symbols (flags)
+        cp == 0x200D                 # Zero Width Joiner
+    )
+
+
+def strip_emojis(text: str) -> str:
+    """Drop emoji codepoints from text; collapse the resulting double spaces.
+
+    Render-time second fence (DIAG-V2-01): guarantees no emojis reach the
+    dashboard diagrams or the canonical LOE intermediate / Google Sheet,
+    independent of whether the activity-sync skill sanitized a given repo on
+    write-back. Romanian diacritics are preserved.
+    """
+    if not text:
+        return text
+    cleaned = "".join(c for c in text if not _is_emoji(ord(c)))
+    return re.sub(r"  +", " ", cleaned).strip()
+
+
+def _sanitize_task(task: dict[str, str]) -> dict[str, str]:
+    """Strip emojis from the human-facing fields of a parsed task dict."""
+    for key in ("task", "assignee", "status", "effort"):
+        if key in task and isinstance(task[key], str):
+            task[key] = strip_emojis(task[key])
+    return task
+
+
 def load_all_project_data() -> dict[str, dict[str, Any]]:
     """Load kanban data from all configured projects
 
@@ -352,6 +396,10 @@ def load_all_project_data() -> dict[str, dict[str, Any]]:
         project_data = load_project_kanban(project)
         if not project_data["exists"]:
             print(f"Warning: repos/{project}/kanban.md not found")
+        # Render-time emoji fence (DIAG-V2-01): scrub emojis from every task
+        # before they flow into kanban/gantt diagrams and the LOE intermediate.
+        for task in project_data.get("tasks", []):
+            _sanitize_task(task)
         data[project] = project_data
 
     return data

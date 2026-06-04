@@ -7,7 +7,9 @@ auto_blocks: [meta-header, calendar]
 # Migration Gantt — KF → ALADIN Platform
 
 <!-- AUTO:meta-header -->
+
 > **Project span (auto):** **2026-05-04** (CW19) → **2026-12-11** (CW50) · **32** weeks · **16** sprints of 2 weeks
+
 <!-- /AUTO:meta-header -->
 
 > **Versiune:** mai 2026
@@ -92,6 +94,7 @@ Documentul folosește **text pills** (`[LABEL]`) în loc de iconițe. Toate cate
 > Tabelul este **regenerat automat** din `docs/_data/calendar.yml`. Pentru a schimba data de start, lungimea proiectului sau granițele de fază, editează acel fișier — nu acest tabel.
 
 <!-- AUTO:calendar -->
+
 | PW | CW | Mon (start) | Fri (end) | Sprint | Faza |
 |---:|---:|---|---|:-:|---|
 |  1 | 19 | 2026-05-04 | 2026-05-08 |  S1 | 1 |
@@ -126,6 +129,7 @@ Documentul folosește **text pills** (`[LABEL]`) în loc de iconițe. Toate cate
 | 30 | 48 | 2026-11-23 | 2026-11-27 | S15 | 6 |
 | 31 | 49 | 2026-11-30 | 2026-12-04 | S16 | 6 |
 | 32 | 50 | 2026-12-07 | 2026-12-11 | S16 | 6 |
+
 <!-- /AUTO:calendar -->
 
 ---
@@ -147,69 +151,7 @@ Fazele se suprapun pentru a paraleliza munca FE/BE.
 
 ---
 
-## 4. Gantt Chart — vizualizare timeline (ASCII)
-
-```
-PW:  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32
-CW: 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
-═════════════════════════════════════════════════════════════════════════════════════════════════════
-FAZA 1 — Fundație
-  Project setup (BE+FE)       ██ ██
-  Design system & tokens (FE) ██ ██ ██ ██
-  Database schema v2 (BE)     ██ ██ ██ ██
-  CI/CD pipeline (BE)         ██ ██
-
-FAZA 2 — Auth & Multi-tenancy
-  IDP setup & SMTP (BE)             ██ ██ ██
-  RBAC system (BE)                  ██ ██ ██ ██
-  Login flow (FE)                         ██ ██
-  Tenant management (BE)                     ██ ██ ██
-  Admin Console (FE)                            ██ ██ ██
-
-FAZA 3 — Core Platform
-  Overview refactor (FE)                        ██ ██ ██
-  Collections fix+refactor (FE+BE)                 ██ ██ ██ ██
-  Models Page refactor (FE)                              ██ ██ ██
-  Tech Pack layout (FE)                                     ██ ██ ██
-  BOM editor + LLM hook (FE+BE)                                ██ ██ ██ ██
-  Model Sheet fixes (FE)                                          ██ ██
-  Sizing & QA Flow (FE+BE)                                           ██ ██ ██
-  3D Model performance (FE)                                             ██ ██ ██
-  Cost Breakdown & OCS (FE+BE)                                             ██ ██ ██
-  Tech Process refactor (FE+BE)                                               ██ ██ ██
-  Inventory & Reception (FE+BE)                                                  ██ ██ ██
-
-FAZA 4 — Production & Operations
-  Orders refactor (FE+BE)                                       ██ ██ ██ ██
-  Planner (Calendar/Gantt/Kanban) (FE+BE)                             ██ ██ ██ ██ ██
-  Batches & Assignment (FE+BE)                                              ██ ██ ██ ██
-  Operator View (tablet) (FE+BE)                                               ██ ██ ██ ██
-  QC Module (FE+BE)                                                               ██ ██ ██
-  Reports & Cutting (FE+BE)                                                          ██ ██
-
-FAZA 5 — ALADIN Features Noi
-  DPP Module (FE+BE)                                                  ██ ██ ██ ██ ██
-  Public DPP / GS1 QR (FE+BE)                                                  ██ ██ ██
-  EPCIS Export (BE)                                                               ██ ██ ██
-  LLM Ecodesign full (BE)                                                            ██ ██ ██
-  IoT Adapter & Events (BE)                                                             ██ ██ ██
-  Garment Configurator B2C (FE)                                                            ██ ██ ██
-  Auditor View (FE+BE)                                                                        ██ ██
-
-FAZA 6 — Polish & Cutover
-  i18n / l10n (FE)                                                                            ██ ██
-  Notifications multi-channel (BE)                                                                ██ ██
-  Made2Flow dynamic schema (FE+BE)                                                                    ██ ██
-  Migration testing (FE+BE)                                                                              ██ ██
-  Data migration scripts (BE)                                                                                ██ ██
-  Final QA & cutover (FE+BE)                                                                                    ██ ██
-
-LEGEND: ██ = activ
-```
-
----
-
-## 5. Mermaid Gantt
+## 4. Mermaid Gantt
 
 ```mermaid
 gantt
@@ -280,7 +222,7 @@ gantt
 
 ---
 
-## 6. Faze detaliate (cu date Mon/Fri)
+## 5. Faze detaliate (cu date Mon/Fri)
 
 ### FAZA 1 — Fundație & Infrastructure (PW 1-4 / CW 19-22)
 
@@ -375,7 +317,7 @@ gantt
 
 ---
 
-## 7. Sprint Plan — 16 sprinturi (2 săptămâni, FE + BE swimlanes)
+## 6. Sprint Plan — 16 sprinturi (2 săptămâni, FE + BE swimlanes)
 
 Fiecare sprint = 2 PW (10 zile lucrătoare). FE / BE listează task-urile **active** în fereastra sprintului (chiar dacă acel task se întinde peste mai multe sprinturi).
 
@@ -412,7 +354,7 @@ Fiecare sprint = 2 PW (10 zile lucrătoare). FE / BE listează task-urile **acti
 
 ---
 
-## 8. Sumar timeline & resurse
+## 7. Sumar timeline & resurse
 
 ### 8.1 Total ore estimate
 
@@ -443,7 +385,7 @@ Fiecare sprint = 2 PW (10 zile lucrătoare). FE / BE listează task-urile **acti
 
 ---
 
-## 9. Milestones cheie
+## 8. Milestones cheie
 
 | Milestone | PW / CW | Data (Fri) | Sprint | Livrabil |
 |---|:-:|:-:|:-:|---|
@@ -456,7 +398,7 @@ Fiecare sprint = 2 PW (10 zile lucrătoare). FE / BE listează task-urile **acti
 
 ---
 
-## 10. Riscuri & mitigare
+## 9. Riscuri & mitigare
 
 | Risc | Probabilitate | Impact | Mitigare |
 |---|:-:|:-:|---|
@@ -470,7 +412,7 @@ Fiecare sprint = 2 PW (10 zile lucrătoare). FE / BE listează task-urile **acti
 
 ---
 
-## 11. Dependențe externe
+## 10. Dependențe externe
 
 | Dependență | Necesar până în | Data (Fri) | Owner |
 |---|:-:|:-:|---|
@@ -484,7 +426,7 @@ Fiecare sprint = 2 PW (10 zile lucrătoare). FE / BE listează task-urile **acti
 
 ---
 
-## 12. Recomandări finale
+## 11. Recomandări finale
 
 ### 12.1 Prioritizare strategică
 
@@ -511,3 +453,65 @@ Dacă bugetul permite, profilul ideal pentru a 3-a persoană ar fi:
 - SAU **0.5 FTE QA** pentru fazele 4-6 (testare extensivă)
 
 Recomandarea mea: **0.5 FTE Designer/UX** — multe decizii UI/UX rămân în aer (vezi open questions), iar un designer dedicat ar accelera enorm fazele 3-5.
+
+---
+
+## 12. Gantt Chart — vizualizare timeline (ASCII)
+
+```
+PW:  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32
+CW: 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+═════════════════════════════════════════════════════════════════════════════════════════════════════
+FAZA 1 — Fundație
+  Project setup (BE+FE)       ██ ██
+  Design system & tokens (FE) ██ ██ ██ ██
+  Database schema v2 (BE)     ██ ██ ██ ██
+  CI/CD pipeline (BE)         ██ ██
+
+FAZA 2 — Auth & Multi-tenancy
+  IDP setup & SMTP (BE)             ██ ██ ██
+  RBAC system (BE)                  ██ ██ ██ ██
+  Login flow (FE)                         ██ ██
+  Tenant management (BE)                     ██ ██ ██
+  Admin Console (FE)                            ██ ██ ██
+
+FAZA 3 — Core Platform
+  Overview refactor (FE)                        ██ ██ ██
+  Collections fix+refactor (FE+BE)                 ██ ██ ██ ██
+  Models Page refactor (FE)                              ██ ██ ██
+  Tech Pack layout (FE)                                     ██ ██ ██
+  BOM editor + LLM hook (FE+BE)                                ██ ██ ██ ██
+  Model Sheet fixes (FE)                                          ██ ██
+  Sizing & QA Flow (FE+BE)                                           ██ ██ ██
+  3D Model performance (FE)                                             ██ ██ ██
+  Cost Breakdown & OCS (FE+BE)                                             ██ ██ ██
+  Tech Process refactor (FE+BE)                                               ██ ██ ██
+  Inventory & Reception (FE+BE)                                                  ██ ██ ██
+
+FAZA 4 — Production & Operations
+  Orders refactor (FE+BE)                                       ██ ██ ██ ██
+  Planner (Calendar/Gantt/Kanban) (FE+BE)                             ██ ██ ██ ██ ██
+  Batches & Assignment (FE+BE)                                              ██ ██ ██ ██
+  Operator View (tablet) (FE+BE)                                               ██ ██ ██ ██
+  QC Module (FE+BE)                                                               ██ ██ ██
+  Reports & Cutting (FE+BE)                                                          ██ ██
+
+FAZA 5 — ALADIN Features Noi
+  DPP Module (FE+BE)                                                  ██ ██ ██ ██ ██
+  Public DPP / GS1 QR (FE+BE)                                                  ██ ██ ██
+  EPCIS Export (BE)                                                               ██ ██ ██
+  LLM Ecodesign full (BE)                                                            ██ ██ ██
+  IoT Adapter & Events (BE)                                                             ██ ██ ██
+  Garment Configurator B2C (FE)                                                            ██ ██ ██
+  Auditor View (FE+BE)                                                                        ██ ██
+
+FAZA 6 — Polish & Cutover
+  i18n / l10n (FE)                                                                            ██ ██
+  Notifications multi-channel (BE)                                                                ██ ██
+  Made2Flow dynamic schema (FE+BE)                                                                    ██ ██
+  Migration testing (FE+BE)                                                                              ██ ██
+  Data migration scripts (BE)                                                                                ██ ██
+  Final QA & cutover (FE+BE)                                                                                    ██ ██
+
+LEGEND: ██ = activ
+```

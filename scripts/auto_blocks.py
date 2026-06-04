@@ -207,7 +207,11 @@ def inject_auto_blocks(content: str, context: dict, page_label: str = "") -> str
     for name, os_, oe, cs, ce in reversed(pairs):
         rendered = AUTO_BLOCK_RENDERERS[name](context)
         # Preserve the markers themselves; replace only the interior.
-        new_body = new_body[:oe] + "\n" + rendered.strip("\n") + "\n" + new_body[cs:]
+        # Wrap with blank lines so kramdown parses the content as its own block.
+        # A Markdown table placed directly after the HTML comment marker (no blank
+        # line) is absorbed into a paragraph and rendered as literal text, not a
+        # table — the blank lines force correct block parsing.
+        new_body = new_body[:oe] + "\n\n" + rendered.strip("\n") + "\n\n" + new_body[cs:]
 
     # Reassemble with original frontmatter.
     head_match = _FRONTMATTER_RE.match(content)
