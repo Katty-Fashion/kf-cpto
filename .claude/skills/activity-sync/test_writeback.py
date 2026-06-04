@@ -423,6 +423,75 @@ except ValueError:
     check("split_kanban raises ValueError on missing FM", True)
 
 # ---------------------------------------------------------------------------
+# roundtrip_frontmatter: empty/edge-case frontmatter byte-identity (CR-03)
+# ---------------------------------------------------------------------------
+
+print("--- roundtrip_frontmatter: empty / edge-case (CR-03) ---")
+
+# Empty frontmatter must NOT become 'null\n...\n' (which broke the SC-4 no-op
+# gate). It must preserve the raw text so reconstruct round-trips byte-identical.
+_EMPTY_FM_KANBAN = "---\n\n---\nbody text\n"
+_efm, _ebody = split_kanban(_EMPTY_FM_KANBAN)
+_e_reconstructed = reconstruct_kanban(_efm, _ebody)
+check(
+    "empty frontmatter does not inject 'null'",
+    "null" not in _e_reconstructed,
+)
+check(
+    "empty frontmatter does not inject document-end '...'",
+    "..." not in _e_reconstructed,
+)
+check(
+    "empty frontmatter round-trips byte-identical (SC-4)",
+    _e_reconstructed == _EMPTY_FM_KANBAN,
+)
+
+# Whitespace-only frontmatter (spaces/newlines) — same guarantee.
+check(
+    "whitespace-only frontmatter not dumped as 'null'",
+    "null" not in roundtrip_frontmatter("   \n  \n"),
+)
+
+# Comment-only frontmatter (yaml.load -> None) preserved verbatim, no 'null'.
+_comment_fm = "# just a comment\n"
+check(
+    "comment-only frontmatter preserved (no 'null')",
+    "null" not in roundtrip_frontmatter(_comment_fm) and "comment" in roundtrip_frontmatter(_comment_fm),
+)
+
+# Flow-style values + quoted/unquoted scalars must round-trip byte-identical
+# (the real-world shapes the single hand-picked fixture never exercised).
+_FLOW_FM_KANBAN = (
+    "---\n"
+    "project: kf-platform\n"
+    'description: "quoted value"\n'
+    "depends_on: [a, b, c]\n"
+    "tags: [eu-project, circular-textiles]\n"
+    "sprint: S1\n"
+    "---\n"
+    "# body\n"
+)
+_ffm, _fbody = split_kanban(_FLOW_FM_KANBAN)
+check(
+    "flow-style frontmatter round-trips byte-identical",
+    reconstruct_kanban(_ffm, _fbody) == _FLOW_FM_KANBAN,
+)
+
+# WR-04: a non-mapping frontmatter (bare scalar / list) must raise ValueError
+# so the repo is reported 'failed' rather than corrupted.
+try:
+    roundtrip_frontmatter("just a bare scalar string\n")
+    check("roundtrip_frontmatter raises on non-mapping (WR-04)", False)
+except ValueError:
+    check("roundtrip_frontmatter raises on non-mapping (WR-04)", True)
+
+try:
+    roundtrip_frontmatter("- item1\n- item2\n")
+    check("roundtrip_frontmatter raises on YAML sequence (WR-04)", False)
+except ValueError:
+    check("roundtrip_frontmatter raises on YAML sequence (WR-04)", True)
+
+# ---------------------------------------------------------------------------
 # apply_status_change: 4-col table
 # ---------------------------------------------------------------------------
 

@@ -695,10 +695,30 @@ def roundtrip_frontmatter(fm_str: str) -> str:
 
     Returns:
         Round-tripped YAML text ending with exactly one '\\n'.
+
+    Raises:
+        ValueError: If the frontmatter parses to a non-mapping YAML value (WR-04)
+            — e.g. a bare scalar or sequence, which is never valid kanban.md
+            frontmatter. Empty/blank frontmatter is allowed and preserved.
     """
+    # CR-03: empty/whitespace-only frontmatter must NOT be round-tripped through
+    # ruamel — yaml.load("") returns None, which dumps as 'null\n...\n' and breaks
+    # the SC-4 byte-identity no-op gate. Preserve the raw text verbatim instead
+    # (normalized to exactly one trailing newline for the reconstruct contract).
+    if not fm_str.strip():
+        return fm_str.rstrip("\n") + "\n" if fm_str else "\n"
+
     yaml = YAML()
     yaml.preserve_quotes = True
     data = yaml.load(fm_str)
+    # CR-03 / WR-04: a None result means the block was effectively empty (e.g.
+    # only comments). Preserve raw text rather than emitting 'null'. A non-mapping
+    # (scalar/list) is not valid frontmatter — raise so the repo is reported
+    # 'failed' rather than silently corrupted.
+    if data is None:
+        return fm_str.rstrip("\n") + "\n"
+    if not hasattr(data, "items"):
+        raise ValueError("Frontmatter did not parse to a YAML mapping")
     stream = StringIO()
     yaml.dump(data, stream)
     # Pitfall 5: normalize to exactly one trailing newline
