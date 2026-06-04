@@ -556,19 +556,22 @@ fetch remote state, and parse each kanban.md.
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Skill placement: `.claude/skills/` vs `.agents/skills/`**
+   - **RESOLVED:** Use `.claude/skills/activity-sync/` per the CONTEXT.md locked decision, unblocked by a fine-grained `.gitignore` change (`.claude/*` + `!.claude/skills/`) in Plan 01-01 Task 1 — this un-ignores ONLY `.claude/skills/` while keeping session/config files ignored.
    - What we know: `.claude/` is gitignored at line 69. `.agents/` does NOT exist yet and is NOT gitignored. Both are valid project skill discovery paths per the GSD system.
    - What's unclear: Which path the user prefers. Option A (`.claude/`) requires modifying `.gitignore`. Option B (`.agents/`) requires no gitignore change but the dir doesn't match the CONTEXT.md locked decision.
    - Recommendation: The planner should default to Option A (`.claude/` per the locked decision) and include a Wave 0 task to update `.gitignore` to fine-grained exclusions before creating any skill files.
 
 2. **Already-present local repos (R3-AAS, ai-rise-options) vs. `repos-local/`**
+   - **RESOLVED:** Clone fresh into `repos-local/` per the CONTEXT.md locked decision ("clone over symlink-only"); bootstrap (Plan 01-02) populates `repos-local/` with full SSH clones and leaves the existing `~/Dev/*` checkouts untouched.
    - What we know: R3-AAS at `/Users/machina/Dev/R3-AAS` and ai-rise-options at `/Users/machina/Dev/ai-rise-options` are existing full clones with SSH remotes. They are NOT under `repos-local/`.
    - What's unclear: Should bootstrap symlink these into `repos-local/` (fast, no duplication) or clone them fresh (consistent, self-contained)?
    - Recommendation: Clone fresh into `repos-local/` per the locked decision. The existing checkouts at `~/Dev/R3-AAS` etc. remain untouched; `repos-local/` is the skill's private space.
 
 3. **`tech_brainstorming` org existence**
+   - **RESOLVED:** Treated as the non-fatal path — bootstrap (Plan 01-02) attempts the clone and emits `print(f"Warning: ...")` + continues on failure per the CONTEXT.md locked error-handling decision (skip+[WARN] on missing checkout; clone failure is non-fatal). No hard dependency on this repo existing.
    - What we know: Not found locally; not in `repos/discovered.txt` snapshot on disk.
    - What's unclear: Whether it exists in `katty-fashion` org on GitHub.
    - Recommendation: Bootstrap should [WARN] gracefully on clone failure for any missing repo. The plan must include this skip path.
