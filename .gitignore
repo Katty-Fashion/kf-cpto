@@ -65,5 +65,9 @@ temp/
 *.tmp
 activity/
 
-#Claude
-.claude/
+# Claude: ignore everything under .claude/ EXCEPT the skills dir
+.claude/*
+!.claude/skills/
+
+# Runtime dirs (skill-local; never committed)
+repos-local/
