@@ -73,6 +73,12 @@ GIT_TIMEOUT_SECONDS = 60
 # KF GitHub org (matches utils.ORG)
 _KF_ORG = "katty-fashion"
 
+# Commit identity for all write-back commits (mirrors aggregate.yml git config).
+# WR-05: applied via per-invocation `-c` on the commit call so it can never be
+# missed by a silently-failing standalone `git config` step.
+_BOT_NAME = "KF Bot"
+_BOT_EMAIL = "bot@katty-fashion.dev"
+
 # Per-run JSON recovery manifests (WB-05). Gitignored — never committed.
 # Chain: writeback.py -> activity-sync/ -> skills/ -> .claude/ -> repo_root/
 #        -> .claude/skills/activity-sync/manifests/
@@ -221,7 +227,7 @@ def _push_with_auth(
     (never shell=True, never string-interpolated via shell), pushes, then restores
     in a finally block. NEVER prints or logs the HTTPS URL containing the token.
 
-    Sets git identity to "KF Bot" / bot@katty-fashion.dev (matches aggregate.yml).
+    Commit identity is set on the commit call in _write_repo (WR-05), not here.
 
     Pitfall 1: if URL restore fails, logs [WARN] but does not re-raise — the token
     would persist in .git/config (local file, never committed), and the operator
@@ -249,10 +255,10 @@ def _push_with_auth(
             # the recovery manifest. Return a fixed, redacted message instead.
             return False, "remote set-url failed (origin URL not changed)"
 
-        # Set commit identity (mirrors aggregate.yml git config step)
-        _run_git(["-C", repo_path, "config", "user.name", "KF Bot"])
-        _run_git(["-C", repo_path, "config", "user.email", "bot@katty-fashion.dev"])
-
+        # WR-05: identity is set on the commit call (per-invocation -c) in
+        # _write_repo, not here — push does not need a commit identity, and the
+        # previous duplicate `git config` here split that responsibility and
+        # ignored its return code.
         push_r = _run_git(["-C", repo_path, "push", "origin", f"HEAD:{branch}"])
         if push_r.returncode != 0:
             # WR-02: defensively scrub the token/URL in case git echoes the
@@ -360,11 +366,17 @@ def _write_repo(
         # Step 7: Write file
         kanban_path.write_text(new_content, encoding="utf-8")
 
-        # Step 8: git config + add + commit
-        _run_git(["-C", repo_path, "config", "user.name", "KF Bot"])
-        _run_git(["-C", repo_path, "config", "user.email", "bot@katty-fashion.dev"])
+        # Step 8: git add + commit. WR-05: identity is applied via per-invocation
+        # `-c user.name=... -c user.email=...` on the commit itself rather than two
+        # standalone `git config` calls whose return codes were ignored. This
+        # cannot be missed and never leaves an "empty ident" commit failure.
         _run_git(["-C", repo_path, "add", "kanban.md"])
-        commit_r = _run_git(["-C", repo_path, "commit", "-m", COMMIT_MSG])
+        commit_r = _run_git([
+            "-C", repo_path,
+            "-c", f"user.name={_BOT_NAME}",
+            "-c", f"user.email={_BOT_EMAIL}",
+            "commit", "-m", COMMIT_MSG,
+        ])
         if commit_r.returncode != 0:
             return {
                 "repo": repo_name,

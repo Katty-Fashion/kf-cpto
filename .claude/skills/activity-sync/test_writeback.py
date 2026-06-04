@@ -1270,6 +1270,74 @@ finally:
     shutil.rmtree(_t7)
 
 # ---------------------------------------------------------------------------
+# WR-05: commit identity applied via per-invocation -c (no local git config)
+# ---------------------------------------------------------------------------
+
+print("--- _write_repo: identity via -c on commit (WR-05) ---")
+
+import writeback as _wb_ident
+
+_t_id = Path(tempfile.mkdtemp())
+try:
+    _b_id = _t_id / "bare.git"
+    _w_id = _t_id / "workdir"
+    subprocess.run(["git", "init", "--bare", str(_b_id)], capture_output=True, check=True)
+    subprocess.run(["git", "clone", str(_b_id), str(_w_id)], capture_output=True, check=True)
+    # Seed initial commit WITH a throwaway identity so origin has content...
+    subprocess.run(["git", "config", "user.email", "seed@test.dev"], cwd=str(_w_id), capture_output=True)
+    subprocess.run(["git", "config", "user.name", "Seed"], cwd=str(_w_id), capture_output=True)
+    (_w_id / "kanban.md").write_text(_KANBAN_SEED, encoding="utf-8")
+    _git(["add", "."], _w_id)
+    _git(["commit", "-m", "init"], _w_id)
+    _branch_id = _git(["rev-parse", "--abbrev-ref", "HEAD"], _w_id).stdout.strip()
+    _git(["push", "-u", "origin", _branch_id], _w_id)
+    # ...then REMOVE the local identity so the reconcile commit must rely on the
+    # per-invocation -c flags WR-05 adds. Without them, git would fail "empty ident".
+    subprocess.run(["git", "config", "--unset", "user.email"], cwd=str(_w_id), capture_output=True)
+    subprocess.run(["git", "config", "--unset", "user.name"], cwd=str(_w_id), capture_output=True)
+
+    _record_id = {"name": "test-repo", "local_path": str(_w_id), "remote_url": str(_b_id), "branch": _branch_id}
+    _proposals_id = [_FakeProposal(repo="test-repo", task="Initial setup", old_status="Todo", new_status="Done")]
+
+    _real_p_id = _wb_ident._push_with_auth
+
+    def _local_push_id(repo_path, repo_name, branch, kf_pat):
+        original = _wb_ident._get_remote_url(repo_path)
+        import subprocess as _sp
+        try:
+            _sp.run(["git", "-C", repo_path, "remote", "set-url", "origin", str(_b_id)], capture_output=True)
+            pr = _wb_ident._run_git(["-C", repo_path, "push", "origin", f"HEAD:{branch}"])
+            if pr.returncode != 0:
+                return False, f"push failed: {pr.stderr.strip()}"
+            sr = _wb_ident._run_git(["-C", repo_path, "rev-parse", "HEAD"])
+            return True, sr.stdout.strip() if sr.returncode == 0 else "unknown"
+        finally:
+            if original:
+                _wb_ident._run_git(["-C", repo_path, "remote", "set-url", "origin", original])
+
+    _wb_ident._push_with_auth = _local_push_id
+    try:
+        old_stdout_id = sys.stdout
+        sys.stdout = io.StringIO()
+        _result_id = _write_repo(_record_id, _proposals_id, "DUMMY_TOKEN", "test-run-ident")
+        sys.stdout = old_stdout_id
+    finally:
+        _wb_ident._push_with_auth = _real_p_id
+
+    check(
+        "WR-05: commit succeeds without local git identity (-c supplies it)",
+        _result_id["outcome"] == "succeeded",
+    )
+    # The reconcile commit's author must be the bot identity from the -c flags.
+    _author_id = _git(["log", "-1", "--format=%an <%ae>"], _w_id).stdout.strip()
+    check(
+        "WR-05: commit author is the bot identity",
+        _author_id == "KF Bot <bot@katty-fashion.dev>",
+    )
+finally:
+    shutil.rmtree(_t_id)
+
+# ---------------------------------------------------------------------------
 # _write_repo: idempotent re-run returns skipped + zero new commits (SC-4)
 # ---------------------------------------------------------------------------
 
