@@ -1,0 +1,318 @@
+generated_at: '2026-06-04T13:14:52Z'
+row_count: 45
+rows:
+- phase: Faza 1 — Fundație
+  task: Project setup
+  discipline: FE+BE
+  start: '2026-05-04'
+  end: '2026-05-15'
+  effort_days: 10
+  type: task
+- phase: Faza 1 — Fundație
+  task: Design system & tokens
+  discipline: FE
+  start: '2026-05-04'
+  end: '2026-05-29'
+  effort_days: 20
+  type: task
+- phase: Faza 1 — Fundație
+  task: Database schema v2
+  discipline: BE
+  start: '2026-05-04'
+  end: '2026-05-29'
+  effort_days: 20
+  type: task
+- phase: Faza 1 — Fundație
+  task: CI/CD pipeline
+  discipline: BE
+  start: '2026-05-04'
+  end: '2026-05-15'
+  effort_days: 10
+  type: task
+- phase: Faza 2 — Auth & Multi-tenancy
+  task: IDP setup & SMTP
+  discipline: BE
+  start: '2026-05-18'
+  end: '2026-06-05'
+  effort_days: 15
+  type: task
+- phase: Faza 2 — Auth & Multi-tenancy
+  task: RBAC system
+  discipline: BE
+  start: '2026-05-18'
+  end: '2026-06-12'
+  effort_days: 20
+  type: task
+- phase: Faza 2 — Auth & Multi-tenancy
+  task: Login flow
+  discipline: FE
+  start: '2026-06-01'
+  end: '2026-06-12'
+  effort_days: 10
+  type: task
+- phase: Faza 2 — Auth & Multi-tenancy
+  task: Tenant management
+  discipline: BE
+  start: '2026-06-08'
+  end: '2026-06-26'
+  effort_days: 15
+  type: task
+- phase: Faza 2 — Auth & Multi-tenancy
+  task: Admin Console
+  discipline: FE
+  start: '2026-06-15'
+  end: '2026-07-03'
+  effort_days: 15
+  type: task
+- phase: Faza 3 — Core Platform
+  task: Overview refactor
+  discipline: FE
+  start: '2026-06-22'
+  end: '2026-07-10'
+  effort_days: 15
+  type: task
+- phase: Faza 3 — Core Platform
+  task: Collections fix+refactor
+  discipline: FE+BE
+  start: '2026-06-29'
+  end: '2026-07-24'
+  effort_days: 20
+  type: task
+- phase: Faza 3 — Core Platform
+  task: Models Page refactor
+  discipline: FE
+  start: '2026-07-13'
+  end: '2026-07-31'
+  effort_days: 15
+  type: task
+- phase: Faza 3 — Core Platform
+  task: Tech Pack layout
+  discipline: FE
+  start: '2026-07-20'
+  end: '2026-08-07'
+  effort_days: 15
+  type: task
+- phase: Faza 3 — Core Platform
+  task: BOM editor + LLM hook
+  discipline: FE+BE
+  start: '2026-07-27'
+  end: '2026-08-21'
+  effort_days: 20
+  type: task
+- phase: Faza 3 — Core Platform
+  task: Model Sheet fixes
+  discipline: FE
+  start: '2026-08-03'
+  end: '2026-08-14'
+  effort_days: 10
+  type: task
+- phase: Faza 3 — Core Platform
+  task: Sizing & QA Flow
+  discipline: FE+BE
+  start: '2026-08-10'
+  end: '2026-08-28'
+  effort_days: 15
+  type: task
+- phase: Faza 3 — Core Platform
+  task: 3D Model performance
+  discipline: FE
+  start: '2026-08-17'
+  end: '2026-09-04'
+  effort_days: 15
+  type: task
+- phase: Faza 3 — Core Platform
+  task: Cost Breakdown & OCS
+  discipline: FE+BE
+  start: '2026-08-24'
+  end: '2026-09-11'
+  effort_days: 15
+  type: task
+- phase: Faza 3 — Core Platform
+  task: Tech Process refactor
+  discipline: FE+BE
+  start: '2026-08-31'
+  end: '2026-09-18'
+  effort_days: 15
+  type: task
+- phase: Faza 3 — Core Platform
+  task: Inventory & Reception
+  discipline: FE+BE
+  start: '2026-09-07'
+  end: '2026-09-25'
+  effort_days: 15
+  type: task
+- phase: Faza 4 — Production & Operations
+  task: Orders refactor
+  discipline: FE+BE
+  start: '2026-08-03'
+  end: '2026-08-28'
+  effort_days: 20
+  type: task
+- phase: Faza 4 — Production & Operations
+  task: Planner Calendar/Gantt/Kanban
+  discipline: FE+BE
+  start: '2026-08-17'
+  end: '2026-09-18'
+  effort_days: 25
+  type: task
+- phase: Faza 4 — Production & Operations
+  task: Batches & Assignment
+  discipline: FE+BE
+  start: '2026-08-31'
+  end: '2026-09-25'
+  effort_days: 20
+  type: task
+- phase: Faza 4 — Production & Operations
+  task: Operator View tablet
+  discipline: FE+BE
+  start: '2026-09-07'
+  end: '2026-10-02'
+  effort_days: 20
+  type: task
+- phase: Faza 4 — Production & Operations
+  task: QC Module
+  discipline: FE+BE
+  start: '2026-09-14'
+  end: '2026-10-02'
+  effort_days: 15
+  type: task
+- phase: Faza 4 — Production & Operations
+  task: Reports & Cutting
+  discipline: FE+BE
+  start: '2026-09-21'
+  end: '2026-10-02'
+  effort_days: 10
+  type: task
+- phase: Faza 5 — ALADIN Features Noi
+  task: DPP Module
+  discipline: FE+BE
+  start: '2026-08-31'
+  end: '2026-10-02'
+  effort_days: 25
+  type: task
+- phase: Faza 5 — ALADIN Features Noi
+  task: Public DPP / GS1 QR
+  discipline: FE+BE
+  start: '2026-09-21'
+  end: '2026-10-09'
+  effort_days: 15
+  type: task
+- phase: Faza 5 — ALADIN Features Noi
+  task: EPCIS Export
+  discipline: BE
+  start: '2026-09-28'
+  end: '2026-10-16'
+  effort_days: 15
+  type: task
+- phase: Faza 5 — ALADIN Features Noi
+  task: LLM Ecodesign full
+  discipline: BE
+  start: '2026-10-05'
+  end: '2026-10-23'
+  effort_days: 15
+  type: task
+- phase: Faza 5 — ALADIN Features Noi
+  task: IoT Adapter & Events
+  discipline: BE
+  start: '2026-10-12'
+  end: '2026-10-30'
+  effort_days: 15
+  type: task
+- phase: Faza 5 — ALADIN Features Noi
+  task: Garment Configurator B2C
+  discipline: FE
+  start: '2026-10-19'
+  end: '2026-11-06'
+  effort_days: 15
+  type: task
+- phase: Faza 5 — ALADIN Features Noi
+  task: Auditor View
+  discipline: FE+BE
+  start: '2026-10-26'
+  end: '2026-11-06'
+  effort_days: 10
+  type: task
+- phase: Faza 6 — Polish & Cutover
+  task: i18n / l10n
+  discipline: FE
+  start: '2026-10-26'
+  end: '2026-11-06'
+  effort_days: 10
+  type: task
+- phase: Faza 6 — Polish & Cutover
+  task: Notifications multi-channel
+  discipline: BE
+  start: '2026-11-02'
+  end: '2026-11-13'
+  effort_days: 10
+  type: task
+- phase: Faza 6 — Polish & Cutover
+  task: Made2Flow dynamic schema
+  discipline: FE+BE
+  start: '2026-11-09'
+  end: '2026-11-20'
+  effort_days: 10
+  type: task
+- phase: Faza 6 — Polish & Cutover
+  task: Migration testing
+  discipline: FE+BE
+  start: '2026-11-16'
+  end: '2026-11-27'
+  effort_days: 10
+  type: task
+- phase: Faza 6 — Polish & Cutover
+  task: Data migration scripts
+  discipline: BE
+  start: '2026-11-23'
+  end: '2026-12-04'
+  effort_days: 10
+  type: task
+- phase: Faza 6 — Polish & Cutover
+  task: Final QA & cutover
+  discipline: FE+BE
+  start: '2026-11-30'
+  end: '2026-12-11'
+  effort_days: 10
+  type: task
+- phase: Milestones
+  task: M1 Infrastructure ready
+  discipline: ''
+  start: '2026-05-29'
+  end: '2026-05-29'
+  effort_days: 0
+  type: milestone
+- phase: Milestones
+  task: M2 Auth + Multi-tenancy live
+  discipline: ''
+  start: '2026-07-03'
+  end: '2026-07-03'
+  effort_days: 0
+  type: milestone
+- phase: Milestones
+  task: M3 Tech Pack complet
+  discipline: ''
+  start: '2026-08-21'
+  end: '2026-08-21'
+  effort_days: 0
+  type: milestone
+- phase: Milestones
+  task: M4 Production flow E2E
+  discipline: ''
+  start: '2026-10-02'
+  end: '2026-10-02'
+  effort_days: 0
+  type: milestone
+- phase: Milestones
+  task: M5 ALADIN features beta
+  discipline: ''
+  start: '2026-11-13'
+  end: '2026-11-13'
+  effort_days: 0
+  type: milestone
+- phase: Milestones
+  task: M6 Production cutover
+  discipline: ''
+  start: '2026-12-11'
+  end: '2026-12-11'
+  effort_days: 0
+  type: milestone
