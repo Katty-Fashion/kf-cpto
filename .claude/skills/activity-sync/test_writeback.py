@@ -992,6 +992,53 @@ finally:
     shutil.rmtree(_t5)
 
 # ---------------------------------------------------------------------------
+# WR-02: set-url failure error string never leaks the token URL
+# ---------------------------------------------------------------------------
+
+print("--- _push_with_auth: set-url failure redaction (WR-02) ---")
+
+from writeback import _redact_secret  # noqa: E402
+
+_WR02_TOKEN = "ghp_LEAKYTOKEN0987654321ABCDEF"
+_WR02_URL = f"https://{_WR02_TOKEN}@github.com/katty-fashion/some-repo.git"
+
+# _redact_secret scrubs both the full URL and the bare token.
+check(
+    "_redact_secret scrubs the full token URL",
+    _WR02_TOKEN not in _redact_secret(f"fatal: bad url {_WR02_URL}", _WR02_TOKEN, _WR02_URL),
+)
+check(
+    "_redact_secret scrubs a bare token occurrence",
+    _WR02_TOKEN not in _redact_secret(f"error involving {_WR02_TOKEN} here", _WR02_TOKEN),
+)
+check(
+    "_redact_secret leaves non-secret text intact",
+    _redact_secret("plain message", _WR02_TOKEN) == "plain message",
+)
+
+# Exercise the REAL _push_with_auth set-url failure path: point origin at a path
+# that forces remote set-url to fail (a directory we cannot write a config to is
+# hard to force, so we drive failure by calling on a non-repo path). The contract
+# under test: the returned error must contain neither the token nor the URL.
+_wr02_notgit = Path(tempfile.mkdtemp())
+try:
+    old_stdout_wr02 = sys.stdout
+    sys.stdout = io.StringIO()
+    _wr02_ok, _wr02_msg = _push_with_auth(str(_wr02_notgit), "some-repo", "main", _WR02_TOKEN)
+    _wr02_printed = sys.stdout.getvalue()
+    sys.stdout = old_stdout_wr02
+
+    check("WR-02: set-url on non-repo returns failure", _wr02_ok is False)
+    check("WR-02: returned error does not contain the token", _WR02_TOKEN not in _wr02_msg)
+    check(
+        "WR-02: returned error does not contain '@github.com' token URL fragment",
+        f"{_WR02_TOKEN}@github.com" not in _wr02_msg,
+    )
+    check("WR-02: nothing printed contains the token", _WR02_TOKEN not in _wr02_printed)
+finally:
+    shutil.rmtree(_wr02_notgit)
+
+# ---------------------------------------------------------------------------
 # _write_repo: conflict path (competing push) — WB-03
 # ---------------------------------------------------------------------------
 

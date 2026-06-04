@@ -163,6 +163,32 @@ def _is_behind_origin(repo_path: str, branch: str) -> tuple[bool, int]:
     return count > 0, count
 
 
+def _redact_secret(text: str, kf_pat: str, https_url: str = "") -> str:
+    """Scrub the KF_PAT and any token-bearing HTTPS URL out of arbitrary text (WR-02).
+
+    Used before printing or persisting git stderr that may have echoed the
+    configured remote URL. Replaces the full token URL first (most specific),
+    then any bare occurrence of the token, with a fixed placeholder. Never
+    raises — redaction must not itself become a failure path.
+
+    Args:
+        text:      Candidate string (e.g. git stderr) that may contain secrets.
+        kf_pat:    The GitHub PAT to scrub (may be empty in tests).
+        https_url: The full token-bearing URL to scrub, if known.
+
+    Returns:
+        text with all secret material replaced by '[REDACTED]'.
+    """
+    if not text:
+        return text
+    redacted = text
+    if https_url:
+        redacted = redacted.replace(https_url, "[REDACTED-URL]")
+    if kf_pat:
+        redacted = redacted.replace(kf_pat, "[REDACTED]")
+    return redacted
+
+
 def _push_with_auth(
     repo_path: str,
     repo_name: str,
@@ -197,7 +223,11 @@ def _push_with_auth(
     try:
         set_r = _run_git(["-C", repo_path, "remote", "set-url", "origin", https_url])
         if set_r.returncode != 0:
-            return False, f"remote set-url failed: {set_r.stderr.strip()}"
+            # WR-02: NEVER surface raw stderr from the token-bearing set-url
+            # command. Git can echo the offending URL (with the embedded token)
+            # on malformed-URL failures; that string is printed AND persisted to
+            # the recovery manifest. Return a fixed, redacted message instead.
+            return False, "remote set-url failed (origin URL not changed)"
 
         # Set commit identity (mirrors aggregate.yml git config step)
         _run_git(["-C", repo_path, "config", "user.name", "KF Bot"])
@@ -205,7 +235,9 @@ def _push_with_auth(
 
         push_r = _run_git(["-C", repo_path, "push", "origin", f"HEAD:{branch}"])
         if push_r.returncode != 0:
-            return False, f"push failed: {push_r.stderr.strip()}"
+            # WR-02: defensively scrub the token/URL in case git echoes the
+            # configured remote URL in push stderr before the finally-restore.
+            return False, f"push failed: {_redact_secret(push_r.stderr.strip(), kf_pat, https_url)}"
 
         sha_r = _run_git(["-C", repo_path, "rev-parse", "HEAD"])
         sha = sha_r.stdout.strip() if sha_r.returncode == 0 else "unknown"
