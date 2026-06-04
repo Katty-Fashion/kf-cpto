@@ -52,7 +52,7 @@ GITHUB_API = "https://api.github.com"
 # avoids resolving issues from untrusted orgs).
 # Source: docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue
 _CLOSING_KEYWORDS_RE = re.compile(
-    r'(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?):?\s+#(\d+)',
+    r'\b(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?):?\s+#(\d+)',
     re.IGNORECASE,
 )
 

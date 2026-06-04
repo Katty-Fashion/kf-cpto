@@ -367,6 +367,33 @@ check(
     "_extract_issue_refs with multiple refs extracts all",
     set(_extract_issue_refs("closes #1 fixes #2 resolved #3")) == {1, 2, 3},
 )
+# CR-01 / WR-06 regression: keyword stems must NOT match inside larger words.
+# Word boundary anchor (\b) ensures only standalone closing keywords resolve.
+check(
+    "_extract_issue_refs('discloses #9') ignores substring keyword",
+    _extract_issue_refs("discloses #9") == [],
+)
+check(
+    "_extract_issue_refs('prefix #5') ignores substring keyword",
+    _extract_issue_refs("prefix #5") == [],
+)
+check(
+    "_extract_issue_refs('This encloses #100 of work') ignores substring keyword",
+    _extract_issue_refs("This encloses #100 of work") == [],
+)
+# Confirm legitimate standalone keywords still match after the word-boundary fix
+check(
+    "_extract_issue_refs('closes #12') still matches after \\b fix",
+    _extract_issue_refs("closes #12") == [12],
+)
+check(
+    "_extract_issue_refs('fixes: #34') still matches after \\b fix",
+    _extract_issue_refs("fixes: #34") == [34],
+)
+check(
+    "_extract_issue_refs('resolved #3') still matches after \\b fix",
+    _extract_issue_refs("resolved #3") == [3],
+)
 
 # ---------------------------------------------------------------------------
 # _build_headers assertions
