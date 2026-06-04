@@ -4,7 +4,7 @@ description: "Advanced LocAl and Digital Innovation Network for Circular Garment
 project: Aladin-01
 type: eu-research
 edit_url: "https://github.com/katty-fashion/Aladin-01/edit/main/kanban.md"
-generated: 2026-05-29T02:21:55.568766
+generated: 2026-06-01T05:45:15.495154
 ---
 
 # Aladin-01
