@@ -58,6 +58,36 @@ SKILL_DIR = Path(__file__).parent
 GIT_TIMEOUT_SECONDS = 60
 GIT_CLONE_TIMEOUT_SECONDS = 300
 
+# Allowed origin URL prefixes for the katty-fashion org.
+# Case-insensitive check required: SSH remote display-name is "Katty-Fashion",
+# while utils.ORG (API/directory form) is "katty-fashion".
+_ALLOWED_ORG_HOSTS = (
+    f"git@github.com:{ORG}/",
+    f"https://github.com/{ORG}/",
+    f"git@github.com:Katty-Fashion/",
+    f"https://github.com/Katty-Fashion/",
+)
+
+
+# ---------------------------------------------------------------------------
+# Org allowlist guard
+# ---------------------------------------------------------------------------
+
+def _check_remote_org(remote_url: str, name: str) -> bool:
+    """Return True if remote_url belongs to the allowed katty-fashion org.
+
+    Checked case-insensitively against _ALLOWED_ORG_HOSTS because SSH remote
+    display-names use 'Katty-Fashion' while the API form is 'katty-fashion'.
+    """
+    if not remote_url:
+        print(f"Warning: {name} has no origin remote — skipping")
+        return False
+    url_lower = remote_url.lower()
+    if not any(url_lower.startswith(prefix.lower()) for prefix in _ALLOWED_ORG_HOSTS):
+        print(f"Warning: {name} remote URL {remote_url!r} is not in allowed org — skipping")
+        return False
+    return True
+
 
 # ---------------------------------------------------------------------------
 # Private git helpers
@@ -233,8 +263,11 @@ def run() -> list[dict[str, Any]]:
         local_path = REPOS_LOCAL_DIR / name
         local_path_str = str(local_path)
 
-        # Resolve remote URL and branch
+        # Resolve remote URL and validate org membership before doing any work
         remote_url = _get_remote_url(local_path_str)
+        if not _check_remote_org(remote_url, name):
+            continue
+
         branch = _get_default_branch(local_path_str)
 
         # REPO-02: fetch before read; compare before/after SHA
