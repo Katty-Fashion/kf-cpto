@@ -45,6 +45,7 @@ from utils import ORG, TASK_STATUSES  # noqa: E402
 
 REPOS_LOCAL_DIR = _REPO_ROOT / "repos-local"
 GIT_TIMEOUT_SECONDS = 60
+HTTP_TIMEOUT_SECONDS = 30  # bound GitHub REST calls (mirrors GIT_TIMEOUT_SECONDS discipline)
 GITHUB_API = "https://api.github.com"
 
 # Closing-keyword regex: matches the 9 GitHub closing keywords followed by #N.
@@ -136,13 +137,33 @@ def _list_merged_prs(org: str, repo: str, headers: dict) -> list[dict]:
     prs: list[dict] = []
     page = 1
     while True:
-        resp = requests.get(
-            f"{GITHUB_API}/repos/{org}/{repo}/pulls",
-            headers=headers,
-            params={"state": "closed", "per_page": 100, "page": page},
-        )
+        try:
+            resp = requests.get(
+                f"{GITHUB_API}/repos/{org}/{repo}/pulls",
+                headers=headers,
+                params={"state": "closed", "per_page": 100, "page": page},
+                timeout=HTTP_TIMEOUT_SECONDS,
+            )
+        except requests.RequestException as exc:
+            # WR-01: bound the call; a hung connection must not block forever.
+            # WR-02: surface that the result may be partial (don't silently truncate).
+            print(
+                f"[WARN] PR list for {repo} errored on page {page} ({exc}); "
+                f"results may be incomplete — change list for this repo is partial."
+            )
+            break
         if resp.status_code != 200:
-            print(f"Warning: PR list for {repo} failed: {resp.status_code}")
+            # WR-02: a 403 with rate-limit exhausted means the list is truncated,
+            # not empty-by-fact. Distinguish it so the operator knows the change
+            # list is partial rather than a confirmed no-activity result.
+            remaining = resp.headers.get("X-RateLimit-Remaining", "?")
+            if resp.status_code == 403 and str(remaining) == "0":
+                print(
+                    f"[WARN] PR list for {repo} hit GitHub rate limit at page {page}; "
+                    f"results may be incomplete — change list for this repo is partial."
+                )
+            else:
+                print(f"Warning: PR list for {repo} failed: {resp.status_code}")
             break
         batch = resp.json()
         if not batch:
@@ -151,7 +172,10 @@ def _list_merged_prs(org: str, repo: str, headers: dict) -> list[dict]:
         page += 1
         remaining = resp.headers.get("X-RateLimit-Remaining", "?")
         if str(remaining).isdigit() and int(remaining) < 100:
-            print(f"[WARN] GitHub rate limit low: {remaining} remaining")
+            print(
+                f"[WARN] GitHub rate limit low: {remaining} remaining "
+                f"(reached page {page - 1} for {repo}; further pages may truncate results)"
+            )
     return prs
 
 
@@ -172,10 +196,16 @@ def _get_issue(org: str, repo: str, issue_number: int, headers: dict) -> Optiona
     Used to resolve linked issue titles for task token-matching (RECON-01).
     Source: docs.github.com/en/rest/issues/issues
     """
-    resp = requests.get(
-        f"{GITHUB_API}/repos/{org}/{repo}/issues/{issue_number}",
-        headers=headers,
-    )
+    try:
+        resp = requests.get(
+            f"{GITHUB_API}/repos/{org}/{repo}/issues/{issue_number}",
+            headers=headers,
+            timeout=HTTP_TIMEOUT_SECONDS,
+        )
+    except requests.RequestException as exc:
+        # WR-01: bound the call so a hung connection can't block indefinitely.
+        print(f"Warning: issue fetch errored #{issue_number} in {repo}: {exc}")
+        return None
     if resp.status_code == 200:
         return resp.json()
     if resp.status_code == 404:
