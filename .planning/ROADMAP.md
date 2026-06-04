@@ -13,7 +13,7 @@ Five phases build the local Claude skill that turns actual repo activity into an
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Repo Access Foundation** - Read-only repo enumeration, symlink convention, and pre-flight git fetch; no writes, CI unaffected (completed 2026-06-04)
-- [ ] **Phase 2: Activity Mining + Reconciliation** - Git signal mining, three-tier taxonomy, dry-run change list; validated read-only before any write code exists
+- [x] **Phase 2: Activity Mining + Reconciliation** - Git signal mining, three-tier taxonomy, dry-run change list; validated read-only before any write code exists (completed 2026-06-04)
 - [ ] **Phase 3: Write-Back + Diagram Sanitization** - Closes the write-back loop; batch-confirm, push, conflict detection, Mermaid sanitization scoped to task table
 - [ ] **Phase 4: Agentic Capacity Model** - FE/BE overflow to synthetic Agentic assignee; ceiling, LOE row, §8.2 replacement
 - [ ] **Phase 5: Hardening** - End-to-end validation, aggregator-side second-fence sanitization, integration verification
@@ -53,7 +53,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. Running `--dry-run` twice in sequence on an already-reconciled repo produces an empty change list (idempotency confirmed before any write code is built)
 **Plans**: 2 plans
 - [x] 02-01-PLAN.md — reconcile.py end-to-end dry-run skeleton: Proposal/token-matching/STATUS_RANK + Tier-2 branch detection (RECON-02/04/05/06/07)
-- [ ] 02-02-PLAN.md — Tier-1 layer: merged-PR + linked-issue mining, reachability gate, conflict resolution; SKILL.md update (RECON-01/03/08)
+- [x] 02-02-PLAN.md — Tier-1 layer: merged-PR + linked-issue mining, reachability gate, conflict resolution; SKILL.md update (RECON-01/03/08)
 
 **Open questions to resolve during planning:**
 - pyyaml vs ruamel.yaml: evaluate actual kanban.md templates for hand-authored frontmatter comments before Phase 3 implementation; decision must be locked before writeback is built
@@ -113,7 +113,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Repo Access Foundation | 4/4 | Complete   | 2026-06-04 |
-| 2. Activity Mining + Reconciliation | 1/2 | In Progress|  |
+| 2. Activity Mining + Reconciliation | 2/2 | Complete   | 2026-06-04 |
 | 3. Write-Back + Diagram Sanitization | 0/TBD | Not started | - |
 | 4. Agentic Capacity Model | 0/TBD | Not started | - |
 | 5. Hardening | 0/TBD | Not started | - |
