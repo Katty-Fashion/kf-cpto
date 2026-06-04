@@ -2,10 +2,14 @@
 """
 Activity Sync — Reconciler
 
-Dry-run reconciliation engine: imports repo_enum.run(), mines Tier-2 active-branch
-signals (pure-local git, no API needed for this phase), reconciles them against
-declared kanban statuses forward-only, prints a grouped change list, and returns
-structured Proposal objects for Phase 3 consumption.
+Dry-run reconciliation engine: imports repo_enum.run(), mines Tier-1 merged-PR
+signals via GitHub REST API and Tier-2 active-branch signals via local git,
+reconciles them against declared kanban statuses forward-only, prints a grouped
+change list, and returns structured Proposal objects for Phase 3 consumption.
+
+Tier-1 (Done): merged PR whose merge commit is reachable from origin/<default>;
+               linked closed issues resolved via PR body closing keywords.
+Tier-2 (In Progress): active remote branches matching task tokens (no API).
 
 Usage:
     python .claude/skills/activity-sync/reconcile.py --dry-run
@@ -24,6 +28,8 @@ from pathlib import Path
 from dataclasses import dataclass
 from typing import Any, Optional
 
+import requests
+
 # sys.path injection — 4 .parent levels from reconcile.py to repo root
 # Chain: reconcile.py -> activity-sync/ -> skills/ -> .claude/ -> repo_root
 _REPO_ROOT = Path(__file__).parent.parent.parent.parent
@@ -39,6 +45,16 @@ from utils import ORG, TASK_STATUSES  # noqa: E402
 
 REPOS_LOCAL_DIR = _REPO_ROOT / "repos-local"
 GIT_TIMEOUT_SECONDS = 60
+GITHUB_API = "https://api.github.com"
+
+# Closing-keyword regex: matches the 9 GitHub closing keywords followed by #N.
+# Same-repo only — cross-repo OWNER/REPO#N deliberately not matched (security:
+# avoids resolving issues from untrusted orgs).
+# Source: docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue
+_CLOSING_KEYWORDS_RE = re.compile(
+    r'(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?):?\s+#(\d+)',
+    re.IGNORECASE,
+)
 
 # STATUS_RANK: integer ranking derived from TASK_STATUSES tuple index.
 # NEVER use the Mermaid-label priority dict from utils — it maps to strings, not ints.
@@ -87,6 +103,115 @@ def _run_git(args: list[str], cwd: str | None = None, timeout: int = GIT_TIMEOUT
     except subprocess.TimeoutExpired:
         print(f"Warning: git {args[0] if args else ''} timed out after {timeout}s")
         return subprocess.CompletedProcess(["git"] + args, returncode=1, stdout="", stderr="git timed out")
+
+
+# ---------------------------------------------------------------------------
+# Tier-1 acquisition helpers — GitHub REST API + reachability gate
+# ---------------------------------------------------------------------------
+
+def _build_headers() -> dict:
+    """Build GitHub API request headers with optional Bearer auth.
+
+    Reads KF_PAT first, falls back to GITHUB_TOKEN — mirrors discover.py pattern.
+    Warns on missing token (unauthenticated rate limit: 60 req/hr).
+    NEVER prints the token value (T-02-05 Information Disclosure mitigation).
+    """
+    token = os.environ.get("KF_PAT") or os.environ.get("GITHUB_TOKEN")
+    if not token:
+        print("Warning: No KF_PAT or GITHUB_TOKEN set. API rate limits will be very low.")
+    headers: dict = {"Accept": "application/vnd.github+json"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    return headers
+
+
+def _list_merged_prs(org: str, repo: str, headers: dict) -> list[dict]:
+    """Return all merged PRs for a repo (paginated, state=closed, filter merged_at).
+
+    Pagination mirrors discover.py pattern (per_page=100, page counter).
+    Warns and breaks on non-200 status. Rate-limit warning below 100 remaining.
+    Filters out PRs with merged_at is None (not actually merged).
+    PR body may be None for no-description PRs — callers must guard (Pitfall 4).
+    """
+    prs: list[dict] = []
+    page = 1
+    while True:
+        resp = requests.get(
+            f"{GITHUB_API}/repos/{org}/{repo}/pulls",
+            headers=headers,
+            params={"state": "closed", "per_page": 100, "page": page},
+        )
+        if resp.status_code != 200:
+            print(f"Warning: PR list for {repo} failed: {resp.status_code}")
+            break
+        batch = resp.json()
+        if not batch:
+            break
+        prs.extend(pr for pr in batch if pr.get("merged_at") is not None)
+        page += 1
+        remaining = resp.headers.get("X-RateLimit-Remaining", "?")
+        if str(remaining).isdigit() and int(remaining) < 100:
+            print(f"[WARN] GitHub rate limit low: {remaining} remaining")
+    return prs
+
+
+def _extract_issue_refs(body: Optional[str]) -> list[int]:
+    """Extract same-repo issue numbers from PR body using GitHub closing keywords.
+
+    Returns [] when body is None or empty (Pitfall 4 — body is None for PRs
+    with no description). Cross-repo OWNER/REPO#N patterns are NOT matched.
+    """
+    if not body:
+        return []
+    return [int(m) for m in _CLOSING_KEYWORDS_RE.findall(body)]
+
+
+def _get_issue(org: str, repo: str, issue_number: int, headers: dict) -> Optional[dict]:
+    """Fetch a single issue by number. Returns None on 404 or error.
+
+    Used to resolve linked issue titles for task token-matching (RECON-01).
+    Source: docs.github.com/en/rest/issues/issues
+    """
+    resp = requests.get(
+        f"{GITHUB_API}/repos/{org}/{repo}/issues/{issue_number}",
+        headers=headers,
+    )
+    if resp.status_code == 200:
+        return resp.json()
+    if resp.status_code == 404:
+        return None  # issue deleted or inaccessible — not an error
+    print(f"Warning: issue fetch failed #{issue_number} in {repo}: {resp.status_code}")
+    return None
+
+
+def _is_merge_reachable(
+    repo_path: str, merge_commit_sha: str, default_branch: str
+) -> Optional[bool]:
+    """Test whether a merge commit is still reachable from origin/<default_branch>.
+
+    Uses git merge-base --is-ancestor (RECON-08 canonical revert gate).
+    Covers force-push drops, rebases, revert-of-merge, squash merges.
+    NEVER parses Revert "..." commit messages (T-02-08).
+
+    Returns:
+        True  — exit 0: merge commit is an ancestor (reachable, not reverted)
+        False — exit 1: not an ancestor (reverted or force-pushed away)
+        None  — other exit code: git error; callers treat as not reachable (conservative)
+
+    merge_commit_sha is passed via arg-list subprocess; never shell-interpolated (T-02-07).
+    """
+    result = _run_git([
+        "-C", repo_path,
+        "merge-base", "--is-ancestor",
+        merge_commit_sha, f"origin/{default_branch}",
+    ])
+    if result.returncode == 0:
+        return True
+    elif result.returncode == 1:
+        return False
+    else:
+        print(f"Warning: merge-base error (rc={result.returncode}): {result.stderr.strip()}")
+        return None  # conservative: treat as not reachable
 
 
 # ---------------------------------------------------------------------------
