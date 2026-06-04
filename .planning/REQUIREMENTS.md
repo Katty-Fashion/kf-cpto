@@ -16,12 +16,12 @@ Requirements for this milestone. Each maps to a roadmap phase.
 ### Activity & Reconciliation (RECON)
 
 - [ ] **RECON-01**: Skill detects completed tasks from Tier-1 git signals — merged PRs carrying a task reference and linked issue-closes
-- [ ] **RECON-02**: Skill advances Todo to In Progress from Tier-2 branch existence
+- [x] **RECON-02**: Skill advances Todo to In Progress from Tier-2 branch existence
 - [ ] **RECON-03**: Skill auto-updates declared kanban status to match Tier-1 verified reality
-- [ ] **RECON-04**: Skill produces a reviewable change list (task, old to new status, triggering signal) for every change it makes
-- [ ] **RECON-05**: Skill supports a dry-run that previews all proposed changes without writing
-- [ ] **RECON-06**: Skill ignores Tier-3 noise (commit-message keywords, file paths touched) — these never change status
-- [ ] **RECON-07**: Skill normalizes every status string through the canonical status enum before any write (no `Unknown status` drops)
+- [x] **RECON-04**: Skill produces a reviewable change list (task, old to new status, triggering signal) for every change it makes
+- [x] **RECON-05**: Skill supports a dry-run that previews all proposed changes without writing
+- [x] **RECON-06**: Skill ignores Tier-3 noise (commit-message keywords, file paths touched) — these never change status
+- [x] **RECON-07**: Skill normalizes every status string through the canonical status enum before any write (no `Unknown status` drops)
 - [ ] **RECON-08**: Skill ignores reverted/un-reachable merges (a merge no longer reachable from the default-branch tip does not signal Done)
 
 ### Write-Back (WB)
@@ -87,12 +87,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | REPO-02 | Phase 1 | Complete |
 | REPO-03 | Phase 1 | Complete |
 | RECON-01 | Phase 2 | Pending |
-| RECON-02 | Phase 2 | Pending |
+| RECON-02 | Phase 2 | Complete |
 | RECON-03 | Phase 2 | Pending |
-| RECON-04 | Phase 2 | Pending |
-| RECON-05 | Phase 2 | Pending |
-| RECON-06 | Phase 2 | Pending |
-| RECON-07 | Phase 2 | Pending |
+| RECON-04 | Phase 2 | Complete |
+| RECON-05 | Phase 2 | Complete |
+| RECON-06 | Phase 2 | Complete |
+| RECON-07 | Phase 2 | Complete |
 | RECON-08 | Phase 2 | Pending |
 | WB-01 | Phase 3 | Pending |
 | WB-02 | Phase 3 | Pending |

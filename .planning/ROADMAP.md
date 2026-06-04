@@ -52,7 +52,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Every proposed status value in the dry-run output maps to a value in `utils.VALID_STATUSES`; no `Unknown status` warnings appear in the aggregator when the same file is parsed
   5. Running `--dry-run` twice in sequence on an already-reconciled repo produces an empty change list (idempotency confirmed before any write code is built)
 **Plans**: 2 plans
-- [ ] 02-01-PLAN.md — reconcile.py end-to-end dry-run skeleton: Proposal/token-matching/STATUS_RANK + Tier-2 branch detection (RECON-02/04/05/06/07)
+- [x] 02-01-PLAN.md — reconcile.py end-to-end dry-run skeleton: Proposal/token-matching/STATUS_RANK + Tier-2 branch detection (RECON-02/04/05/06/07)
 - [ ] 02-02-PLAN.md — Tier-1 layer: merged-PR + linked-issue mining, reachability gate, conflict resolution; SKILL.md update (RECON-01/03/08)
 
 **Open questions to resolve during planning:**
@@ -113,7 +113,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Repo Access Foundation | 4/4 | Complete   | 2026-06-04 |
-| 2. Activity Mining + Reconciliation | 0/2 | Not started | - |
+| 2. Activity Mining + Reconciliation | 1/2 | In Progress|  |
 | 3. Write-Back + Diagram Sanitization | 0/TBD | Not started | - |
 | 4. Agentic Capacity Model | 0/TBD | Not started | - |
 | 5. Hardening | 0/TBD | Not started | - |
