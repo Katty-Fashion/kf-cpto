@@ -1117,6 +1117,99 @@ finally:
     shutil.rmtree(_t6)
 
 # ---------------------------------------------------------------------------
+# WR-03: non-fast-forward push rejection classified as 'conflict' (TOCTOU)
+# ---------------------------------------------------------------------------
+
+print("--- _write_repo: non-fast-forward push -> conflict (WR-03) ---")
+
+from writeback import _is_non_fast_forward  # noqa: E402
+
+# Unit-level: the classifier recognises git's canonical rejection phrases.
+check(
+    "_is_non_fast_forward: matches 'non-fast-forward'",
+    _is_non_fast_forward("! [rejected] main -> main (non-fast-forward)"),
+)
+check(
+    "_is_non_fast_forward: matches 'fetch first'",
+    _is_non_fast_forward("Updates were rejected... fetch first"),
+)
+check(
+    "_is_non_fast_forward: rejects a generic auth error",
+    not _is_non_fast_forward("fatal: Authentication failed"),
+)
+check(
+    "_is_non_fast_forward: empty string is False",
+    not _is_non_fast_forward(""),
+)
+
+# Integration: simulate the TOCTOU window. The conflict gate passes (we stub
+# _is_behind_origin to (False, 0)), but origin has actually advanced — so the
+# real push is rejected non-fast-forward and must be classified 'conflict'.
+import writeback as _wb_toctou
+
+_t_nff, _b_nff, _w_nff = _make_bare_remote()
+try:
+    (_w_nff / "kanban.md").write_text(_KANBAN_SEED, encoding="utf-8")
+    _git(["add", "."], _w_nff)
+    _git(["commit", "-m", "init"], _w_nff)
+    _branch_nff = _git(["rev-parse", "--abbrev-ref", "HEAD"], _w_nff).stdout.strip()
+    _git(["push", "-u", "origin", _branch_nff], _w_nff)
+
+    # Competing push lands AFTER our (stubbed) gate would have run.
+    _w_nffb = _t_nff / "workdir2"
+    subprocess.run(["git", "clone", str(_b_nff), str(_w_nffb)], capture_output=True, check=True)
+    subprocess.run(["git", "config", "user.email", "other@test.dev"], cwd=str(_w_nffb), capture_output=True)
+    subprocess.run(["git", "config", "user.name", "Other"], cwd=str(_w_nffb), capture_output=True)
+    (_w_nffb / "kanban.md").write_text(_KANBAN_SEED + "| Late | @o | 1d | Done |\n", encoding="utf-8")
+    _git(["add", "."], _w_nffb)
+    _git(["commit", "-m", "competing"], _w_nffb)
+    _git(["push", "origin", f"HEAD:{_branch_nff}"], _w_nffb)
+
+    _record_nff = {"name": "test-repo", "local_path": str(_w_nff), "remote_url": str(_b_nff), "branch": _branch_nff}
+    _proposals_nff = [_FakeProposal(repo="test-repo", task="Initial setup", old_status="Todo", new_status="Done")]
+
+    # Stub the gate to say "not behind" (the TOCTOU race), and stub push to the
+    # local bare so no network is touched — the real bare push will be rejected.
+    _real_gate = _wb_toctou._is_behind_origin
+    _real_push_nff = _wb_toctou._push_with_auth
+
+    def _gate_clear(repo_path, branch):
+        return False, 0  # TOCTOU: gate clears, but origin has moved on
+
+    def _local_push_nff(repo_path, repo_name, branch, kf_pat):
+        original = _wb_toctou._get_remote_url(repo_path)
+        import subprocess as _sp
+        try:
+            _sp.run(["git", "-C", repo_path, "remote", "set-url", "origin", str(_b_nff)], capture_output=True)
+            pr = _wb_toctou._run_git(["-C", repo_path, "push", "origin", f"HEAD:{branch}"])
+            if pr.returncode != 0:
+                return False, f"push failed: {pr.stderr.strip()}"
+            sr = _wb_toctou._run_git(["-C", repo_path, "rev-parse", "HEAD"])
+            return True, sr.stdout.strip() if sr.returncode == 0 else "unknown"
+        finally:
+            if original:
+                _wb_toctou._run_git(["-C", repo_path, "remote", "set-url", "origin", original])
+
+    _wb_toctou._is_behind_origin = _gate_clear
+    _wb_toctou._push_with_auth = _local_push_nff
+    try:
+        old_stdout_nff = sys.stdout
+        sys.stdout = io.StringIO()
+        _result_nff = _write_repo(_record_nff, _proposals_nff, "DUMMY_TOKEN", "test-run-nff")
+        sys.stdout = old_stdout_nff
+    finally:
+        _wb_toctou._is_behind_origin = _real_gate
+        _wb_toctou._push_with_auth = _real_push_nff
+
+    check(
+        "WR-03: non-fast-forward push classified as 'conflict' (not 'failed')",
+        _result_nff["outcome"] == "conflict",
+    )
+    check("WR-03: conflict entry has pushed_sha=None", _result_nff["pushed_sha"] is None)
+finally:
+    shutil.rmtree(_t_nff)
+
+# ---------------------------------------------------------------------------
 # _write_repo: succeeded path — commit + push + manifest entry
 # ---------------------------------------------------------------------------
 

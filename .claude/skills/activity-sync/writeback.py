@@ -189,6 +189,26 @@ def _redact_secret(text: str, kf_pat: str, https_url: str = "") -> str:
     return redacted
 
 
+def _is_non_fast_forward(push_error: str) -> bool:
+    """True if a push error string indicates a non-fast-forward rejection (WR-03).
+
+    A competing push landing in the TOCTOU window between the conflict gate and
+    the push produces git's '! [rejected] ... (non-fast-forward)' / 'fetch first'
+    message. We classify such a failure as a 'conflict' rather than a generic
+    'failed' so the recovery manifest stays accurate. Case-insensitive substring
+    match against the canonical git phrases.
+    """
+    if not push_error:
+        return False
+    low = push_error.lower()
+    return (
+        "non-fast-forward" in low
+        or "fetch first" in low
+        or "[rejected]" in low
+        or "failed to push some refs" in low
+    )
+
+
 def _push_with_auth(
     repo_path: str,
     repo_name: str,
@@ -357,9 +377,20 @@ def _write_repo(
         # Step 9: Push with token + restore URL (WB-04)
         ok, sha_or_err = _push_with_auth(repo_path, repo_name, branch, kf_pat)
         if not ok:
+            # WR-03: a conflict landing in the TOCTOU window between the step-1
+            # conflict gate and this push surfaces as a non-fast-forward
+            # rejection. Classify it as 'conflict' (not generic 'failed') so the
+            # manifest accurately reflects that a competing push — not a bug —
+            # blocked the write. The bare `git push` (no --force) means no data
+            # was overwritten. Residual window is documented in _is_behind_origin.
+            if _is_non_fast_forward(sha_or_err):
+                print(f"[CONFLICT] {repo_name}: push rejected (non-fast-forward, TOCTOU)")
+                outcome = "conflict"
+            else:
+                outcome = "failed"
             return {
                 "repo": repo_name,
-                "outcome": "failed",
+                "outcome": outcome,
                 "pushed_sha": None,
                 "changes": [],
                 "error": sha_or_err,
