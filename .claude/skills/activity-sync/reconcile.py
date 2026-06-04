@@ -376,10 +376,15 @@ def reconcile_repo(record: dict, headers: dict) -> list[Proposal]:
             # False (not ancestor) or None (git error) — skip conservatively
             continue
 
+        # WR-03: read number defensively like every other field; one malformed
+        # PR object should skip that PR, not abort reconciliation for the repo.
+        pr_number = pr.get("number")
+        if pr_number is None:
+            continue
         # Match PR title to task tokens (T-02-06: normalized plaintext, no eval)
         pr_title = pr.get("title", "")
         pr_url = pr.get("html_url")
-        signal_desc = f"PR #{pr['number']}: {pr_title} (merged)"
+        signal_desc = f"PR #{pr_number}: {pr_title} (merged)"
         for task in tasks:
             if task_matches_signal(task["task"], pr_title):
                 proposals.setdefault(task["task"], []).append(
@@ -391,7 +396,7 @@ def reconcile_repo(record: dict, headers: dict) -> list[Proposal]:
             issue = _get_issue(ORG, repo_name, issue_num, headers)
             if issue and issue.get("state") == "closed":
                 issue_title = issue.get("title", "")
-                issue_signal = f"issue #{issue_num} closed (via PR #{pr['number']})"
+                issue_signal = f"issue #{issue_num} closed (via PR #{pr_number})"
                 issue_url = issue.get("html_url")
                 for task in tasks:
                     if task_matches_signal(task["task"], issue_title):
