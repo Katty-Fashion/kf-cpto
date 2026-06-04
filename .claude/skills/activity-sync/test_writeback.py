@@ -473,6 +473,44 @@ check(
 )
 
 # ---------------------------------------------------------------------------
+# apply_status_change: trailing-pipe-less row not corrupted (CR-02)
+# ---------------------------------------------------------------------------
+
+print("--- apply_status_change: no-trailing-pipe row (CR-02) ---")
+
+# GFM permits a data row without the closing pipe. parts[-2] would be the Effort
+# cell, NOT Status — applying there overwrites '1d' and leaves status 'Todo'.
+# The fix must skip such rows verbatim with a [WARN], changing nothing.
+_BODY_NO_TRAILING = (
+    "| Task | Assignee | Effort | Status |\n"
+    "| :--- | :--- | :--- | :--- |\n"
+    "| Documentation | @dev | 1d | Todo\n"  # no trailing pipe
+)
+
+old_stdout_ntp = sys.stdout
+sys.stdout = io.StringIO()
+_ntp_body, _ntp_changed = apply_status_change(_BODY_NO_TRAILING, "Documentation", "Done")
+_ntp_warn = sys.stdout.getvalue()
+sys.stdout = old_stdout_ntp
+
+check(
+    "no-trailing-pipe: returns changed=False (row skipped)",
+    _ntp_changed is False,
+)
+check(
+    "no-trailing-pipe: body unchanged (Effort cell NOT corrupted)",
+    _ntp_body == _BODY_NO_TRAILING,
+)
+check(
+    "no-trailing-pipe: prints [WARN]",
+    "[WARN]" in _ntp_warn,
+)
+check(
+    "no-trailing-pipe: status NOT written into Effort cell",
+    "| Documentation | @dev | Done | Todo" not in _ntp_body,
+)
+
+# ---------------------------------------------------------------------------
 # apply_status_change: 6-col table
 # ---------------------------------------------------------------------------
 

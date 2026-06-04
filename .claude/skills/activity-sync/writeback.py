@@ -739,7 +739,10 @@ def apply_status_change(
     """Replace the Status cell for the first row whose Task cell matches task_name.
 
     Operates on the raw body_str (pre-sanitize). Works for both 4-col and 6-col
-    tables because Status is always the last data column (parts[-2]).
+    tables because Status is always the last data column (parts[-2] of a row that
+    ends with a trailing '|'). Rows without a trailing '|' are malformed GFM for
+    this addressing scheme and are skipped with a [WARN] (CR-02) rather than
+    corrupting the Effort cell.
 
     Rules:
     - Only the FIRST matching row is updated (forward-only, one match per Proposal).
@@ -765,6 +768,16 @@ def apply_status_change(
 
         # Only process pipe-table rows
         if not stripped.startswith("|"):
+            new_lines.append(line)
+            continue
+
+        # CR-02: Status is addressed as parts[-2], which is only the Status cell
+        # when the row ends with a trailing '|'. GFM permits trailing-pipe-less
+        # rows; for those parts[-2] is the Effort cell and we would overwrite the
+        # wrong column while leaving the real status untouched (silent data loss).
+        # Require a well-formed row (starts AND ends with '|'); skip otherwise.
+        if not stripped.endswith("|"):
+            print(f"[WARN] Skipping malformed (no trailing pipe) row: {stripped!r}")
             new_lines.append(line)
             continue
 
