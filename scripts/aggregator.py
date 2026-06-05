@@ -120,6 +120,34 @@ def generate_unified_kanban(data: dict) -> str:
         count_cols = " | ".join(str(counts[s]) for s in TASK_STATUSES)
         lines.append(f"| {project} | {count_cols} | {total} |")
 
+    # Sprint Gantt — current sprint window per project (one bar each). Platform
+    # repos share a cadence (see generate_kanban.py), so they line up here.
+    sprint_rows = []
+    for project, project_data in data.items():
+        meta = project_data.get("meta", {})
+        s_start = str(meta.get("sprint_start", "")).strip()
+        s_end = str(meta.get("sprint_end", "")).strip()
+        if _ISO_DATE_RE.match(s_start) and _ISO_DATE_RE.match(s_end):
+            sprint_rows.append((project, str(meta.get("sprint", "Sprint")), s_start, s_end))
+
+    if sprint_rows:
+        lines.append("")
+        lines.append("## Sprint Timeline")
+        lines.append("")
+        lines.append("```mermaid")
+        lines.append("gantt")
+        lines.append("    title Current Sprint by Project")
+        lines.append("    dateFormat YYYY-MM-DD")
+        lines.append("    axisFormat %d %b")
+        lines.append("    excludes weekends")
+        lines.append("")
+        for project, sprint, s_start, s_end in sprint_rows:
+            lines.append(f"    section {mermaid_gantt_label(project)}")
+            lines.append(
+                f"    {mermaid_gantt_label(sprint)} :active, {s_start}, {s_end}"
+            )
+        lines.append("```")
+
     return "\n".join(lines)
 
 

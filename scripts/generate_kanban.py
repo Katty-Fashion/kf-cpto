@@ -44,7 +44,7 @@ import difflib
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date, timedelta
 from pathlib import Path
 
 import yaml
@@ -79,6 +79,9 @@ REPOS_LOCAL_DIR = _REPO_ROOT / "repos-local"
 
 # Canonical plan-of-record intermediate (seeded from kf-platform; never partitioned).
 PLAN_FILE = DATA_DIR / "migration_plan.yml"
+
+# Shared migration sprint cadence (start_date + sprint_length_weeks).
+CALENDAR_FILE = DATA_DIR / "calendar.yml"
 
 # The curated kanban the plan is seeded from.
 SEED_REPO = "kf-platform"
@@ -154,6 +157,64 @@ def _extract_milestone_block(content: str) -> str:
     """Return the milestone reference HTML comment block, or ''."""
     m = _MILESTONE_BLOCK_RE.search(content or "")
     return m.group(1) if m else ""
+
+
+def load_calendar() -> dict:
+    """Read the shared migration calendar (start_date, sprint_length_weeks, total_weeks)."""
+    if not CALENDAR_FILE.exists():
+        return {}
+    try:
+        return yaml.safe_load(CALENDAR_FILE.read_text(encoding="utf-8")) or {}
+    except yaml.YAMLError:
+        return {}
+
+
+def sprint_bounds(cal: dict, n: int) -> tuple[str, str]:
+    """Return (start, end) ISO dates for sprint number n on the shared cadence.
+
+    Sprint n runs Monday of week (n-1)*L .. Friday of its last week (weekends
+    excluded), where L = sprint_length_weeks (default 2) from start_date.
+    """
+    start0 = date.fromisoformat(str(cal.get("start_date", "2026-05-04")))
+    weeks = int(cal.get("sprint_length_weeks", 2) or 2)
+    s = start0 + timedelta(days=(n - 1) * weeks * 7)
+    e = s + timedelta(days=weeks * 7 - 3)  # Mon → Fri of the final week
+    return s.isoformat(), e.isoformat()
+
+
+def current_sprint_n(cal: dict, today: date) -> int:
+    """Which sprint number `today` falls in on the shared cadence (clamped 1..total)."""
+    start0 = date.fromisoformat(str(cal.get("start_date", "2026-05-04")))
+    weeks = int(cal.get("sprint_length_weeks", 2) or 2)
+    total_weeks = int(cal.get("total_weeks", 32) or 32)
+    n_total = max(1, (total_weeks + weeks - 1) // weeks)
+    if today < start0:
+        return 1
+    n = (today - start0).days // (weeks * 7) + 1
+    return max(1, min(n, n_total))
+
+
+def active_sprint_window(plan: dict, cal: dict, today: date) -> tuple[str, str, str]:
+    """Resolve the (label, start, end) the platform repos should share.
+
+    Honors an explicit `active_sprint: S<n>` in the plan-of-record; otherwise uses
+    the sprint that `today` falls in on the shared calendar cadence.
+    """
+    label = str(plan.get("active_sprint") or "").strip()
+    m = re.match(r"[Ss](\d+)", label)
+    n = int(m.group(1)) if m else current_sprint_n(cal, today)
+    start, end = sprint_bounds(cal, n)
+    return f"S{n}", start, end
+
+
+def _override_sprint_frontmatter(fm_block: str, label: str, start: str, end: str) -> str:
+    """Set sprint/sprint_start/sprint_end in a frontmatter block (keys exist on platform repos)."""
+    out = fm_block
+    for key, val in (("sprint", label), ("sprint_start", start), ("sprint_end", end)):
+        pat = re.compile(rf"^({key}):.*$", re.MULTILINE)
+        if pat.search(out):
+            out = pat.sub(rf"\1: {val}", out, count=1)
+    return out
 
 
 def seed_plan() -> dict:
@@ -261,8 +322,13 @@ def build_body(tasks: list[dict], milestone_block: str) -> str:
     return body
 
 
-def build_repo_content(repo: str, tasks: list[dict], milestone_block: str) -> str:
-    """Compose a full kanban.md for one target repo (frontmatter preserved + new body)."""
+def build_repo_content(repo: str, tasks: list[dict], milestone_block: str,
+                       sprint: tuple = None) -> str:
+    """Compose a full kanban.md for one target repo (frontmatter preserved + new body).
+
+    When `sprint` (label, start, end) is given, all platform repos are stamped with
+    that one shared sprint window — the migration runs on a single cadence.
+    """
     kanban_path = REPOS_LOCAL_DIR / repo / "kanban.md"
     existing = kanban_path.read_text(encoding="utf-8") if kanban_path.exists() else ""
 
@@ -272,6 +338,8 @@ def build_repo_content(repo: str, tasks: list[dict], milestone_block: str) -> st
             f"{repo}/kanban.md has no frontmatter to preserve — refusing to "
             f"generate without curated frontmatter (project/team/sprint)."
         )
+    if sprint:
+        fm_block = _override_sprint_frontmatter(fm_block, *sprint)
 
     # Status merge: this repo's own valid status for a task wins over the plan.
     own_status = existing_status_map(existing, project=repo)
@@ -305,7 +373,11 @@ def generate(reseed: bool = False) -> tuple[dict[str, str], dict[str, list[dict]
     plan_tasks = plan["tasks"]
     milestone_block = plan.get("milestone_block", "")
     buckets = partition(plan_tasks)
-    outputs = {r: build_repo_content(r, buckets[r], milestone_block) for r in TARGET_REPOS}
+    # One shared sprint window for all platform repos (global migration cadence).
+    sprint = active_sprint_window(plan, load_calendar(), date.today())
+    print(f"[INFO] Aligning platform repos to sprint {sprint[0]} ({sprint[1]} → {sprint[2]}).")
+    outputs = {r: build_repo_content(r, buckets[r], milestone_block, sprint=sprint)
+               for r in TARGET_REPOS}
     return outputs, buckets, plan_tasks
 
 
