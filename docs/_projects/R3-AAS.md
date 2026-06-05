@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot – digital tools for co-creation, dig
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-06-05T11:33:44.960632
+generated: 2026-06-05T12:30:06.842693
 ---
 
 # R3-AAS
@@ -35,7 +35,7 @@ generated: 2026-06-05T11:33:44.960632
 kanban
   Todo
     t4["Feature set pentru lansare (MVP)"]
-    t5["Ce este „Done" vs „Ready" pentru release"]
+    t5["Ce este „Done” vs „Ready” pentru release"]
     t8["Sesiune demo produse (intern)"]
     t9["Pregătire feature flags (ascundere features incomplete)"]
     t10["Clarificare value proposition (perspectivă tehnică)"]
