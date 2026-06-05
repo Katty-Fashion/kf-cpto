@@ -1,145 +1,41 @@
-generated_at: '2026-06-05T11:09:28Z'
-row_count: 220
+generated_at: '2026-06-05T11:23:40Z'
+row_count: 110
 rows:
 - project: R3-AAS
   sprint: S2
-  task: Pillar
-  assignee: Component
+  task: Deploy AAS în Cloud (hosting)
+  assignee: Răzvan Boița / Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
-  status: '|---'
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: '---'
-  assignee: '| WP1 — Digital Infrastructure'
+  task: Clarificare acces server R3 (Vangelis)
+  assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
   end: ''
-  status: 90%
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: T2.1 — Co-creation platform
-  assignee: Nuoform platform
+  task: Clarificare format date platforma R3
+  assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
   end: ''
-  status: '| T3.2 — Product Digital Twin'
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: Completed
-  assignee: '| T3.2 — Process Digital Twin'
+  task: Decizie Made2Flow (demo vs integrare reală)
+  assignee: Eduard Lazăr / Paul Stanciuc
   effort_days: 0.0
   start: ''
   end: ''
-  status: Implemented & validated
+  status: Decizie pending — P1
 - project: R3-AAS
   sprint: S2
-  task: T2.4 — Capacity Planner
-  assignee: LMS Scheduler Backend
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '| T2.4 — Capacity Planner'
-- project: R3-AAS
-  sprint: S2
-  task: Near completion
-  assignee: '| T2.4 — Capacity Planner'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In progress
-- project: R3-AAS
-  sprint: S2
-  task: T3.3 — IoT Monitoring
-  assignee: Sensors deployment
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '| T2.3 — Supply Chain Digital Twin'
-- project: R3-AAS
-  sprint: S2
-  task: KPI
-  assignee: Target
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: Scrap reduction
-  assignee: −20%
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: −35%
-- project: R3-AAS
-  sprint: S2
-  task: Production lead time reduction
-  assignee: −50%
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: −95%
-- project: R3-AAS
-  sprint: S2
-  task: '#'
-  assignee: Task
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Owner
-- project: R3-AAS
-  sprint: S2
-  task: '|---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| B1'
-  assignee: Deploy AAS în Cloud (hosting)
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Răzvan Boița / Eduard Lazăr
-- project: R3-AAS
-  sprint: S2
-  task: '| B2'
-  assignee: Clarificare acces server R3 (Vangelis)
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Paul Stanciuc
-- project: R3-AAS
-  sprint: S2
-  task: '| B3'
-  assignee: Clarificare format date platforma R3
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Alexandru Bejenari
-- project: R3-AAS
-  sprint: S2
-  task: '| B4'
-  assignee: Decizie Made2Flow (demo vs integrare reală)
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Eduard Lazăr / Paul Stanciuc
-- project: R3-AAS
-  sprint: S2
-  task: '|---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Feature set pentru lansare (MVP)'
+  task: Feature set pentru lansare (MVP)
   assignee: Eduard Lazăr / Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -147,7 +43,7 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Ce este „Done" vs „Ready" pentru release'
+  task: Ce este „Done" vs „Ready" pentru release
   assignee: Eduard Lazăr / Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -155,7 +51,7 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Decizie Made2Flow (demo vs integrare reală)'
+  task: Decizie Made2Flow (demo vs integrare reală)
   assignee: Eduard Lazăr / Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -163,111 +59,23 @@ rows:
   status: Decizie pending
 - project: R3-AAS
   sprint: S2
-  task: '### Evaluare produse existente'
-  assignee: Task
+  task: Review arhitectură
+  assignee: Răzvan Boița
   effort_days: 0.0
   start: ''
   end: ''
-  status: Prioritate
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: Note
-  assignee: '|---'
+  task: Identificare gaps / incomplete features
+  assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
   end: ''
-  status: '---'
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: '---'
-  assignee: '| Review arhitectură'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: P4
-- project: R3-AAS
-  sprint: S2
-  task: —
-  assignee: '| Identificare gaps / incomplete features'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: —
-- project: R3-AAS
-  sprint: S2
-  task: Gap Analysis trimis la Eduard pentru review
-  assignee: '### Organizare'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Owner
-- project: R3-AAS
-  sprint: S2
-  task: Status
-  assignee: Note
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Paul Stanciuc
-- project: R3-AAS
-  sprint: S2
-  task: ⏭ Next
-  assignee: Planificată
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Task
-- project: R3-AAS
-  sprint: S2
-  task: Prioritate
-  assignee: Status
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '|---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '| Pregătire feature flags (ascundere features incomplete)'
-- project: R3-AAS
-  sprint: S2
-  task: —
-  assignee: Todo
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '### Suport GTM'
-- project: R3-AAS
-  sprint: S2
-  task: Owner
-  assignee: Prioritate
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Note
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Clarificare value proposition (perspectivă tehnică)'
+  task: Sesiune demo produse (intern)
   assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -275,7 +83,23 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Validare integrare end-to-end (expunere API Nuoform)'
+  task: Pregătire feature flags (ascundere features incomplete)
+  assignee: Răzvan Boița
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Todo
+- project: R3-AAS
+  sprint: S2
+  task: Clarificare value proposition (perspectivă tehnică)
+  assignee: Paul Stanciuc
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Todo
+- project: R3-AAS
+  sprint: S2
+  task: Validare integrare end-to-end (expunere API Nuoform)
   assignee: Răzvan Boița
   effort_days: 0.0
   start: ''
@@ -283,15 +107,7 @@ rows:
   status: Done
 - project: R3-AAS
   sprint: S2
-  task: '|---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Arhitectură multi-tenant (in place)'
+  task: Arhitectură multi-tenant (in place)
   assignee: Eduard Modreanu
   effort_days: 0.0
   start: ''
@@ -299,7 +115,7 @@ rows:
   status: Done
 - project: R3-AAS
   sprint: S2
-  task: '| Separare date per client (in place)'
+  task: Separare date per client (in place)
   assignee: Eduard Modreanu
   effort_days: 0.0
   start: ''
@@ -307,576 +123,135 @@ rows:
   status: Done
 - project: R3-AAS
   sprint: S2
-  task: '### Clarificare'
-  assignee: Task
+  task: Flow sistem (UI → AAS → backend)
+  assignee: Răzvan Boița
   effort_days: 0.0
   start: ''
   end: ''
-  status: Prioritate
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: Note
-  assignee: '|---'
+  task: Clarificare acces server R3 (Vangelis)
+  assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
   end: ''
-  status: '---'
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: '---'
-  assignee: '| Flow sistem (UI → AAS → backend)'
+  task: Integrare între sisteme (Katty / LMS)
+  assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
   end: ''
-  status: —
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: Necesită clarificare
-  assignee: '| Clarificare acces server R3 (Vangelis)'
+  task: Multiple tipuri AAS → standardizare
+  assignee: Răzvan Boița
   effort_days: 0.0
   start: ''
   end: ''
-  status: —
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: Solicitare trimisă 06.03; fără răspuns de la Vangelis
-  assignee: '### Validare'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Owner
-- project: R3-AAS
-  sprint: S2
-  task: Status
-  assignee: Note
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Alexandru Bejenari
-- project: R3-AAS
-  sprint: S2
-  task: In Progress
-  assignee: Blocat acces server R3
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Task
-- project: R3-AAS
-  sprint: S2
-  task: Prioritate
-  assignee: Status
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '|---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '| Multiple tipuri AAS → standardizare'
-- project: R3-AAS
-  sprint: S2
-  task: —
-  assignee: In Progress
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '### Creare'
-- project: R3-AAS
-  sprint: S2
-  task: Owner
-  assignee: Prioritate
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Note
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Layout simplificat pilot (stații + flux + senzori)'
+  task: Layout simplificat pilot (stații + flux + senzori)
   assignee: Eduard Lazăr / Paul Stanciuc
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭ Next
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: Note
-  assignee: '|---'
+  task: Integrare LMS (AAS extern)
+  assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
-  end: ''
-  status: '---'
+  end: ~1 lună
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: '---'
-  assignee: '---'
+  task: Sketch → JSON → sistem
+  assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
-  end: ''
-  status: Alexandru Bejenari
+  end: —
+  status: Done
 - project: R3-AAS
   sprint: S2
-  task: In Progress
-  assignee: ~1 lună
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '| Sketch → JSON → sistem'
-- project: R3-AAS
-  sprint: S2
-  task: P2
-  assignee: Done
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Există în Co-creation
-- project: R3-AAS
-  sprint: S2
-  task: '|---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| LMS specs + credentials'
+  task: LMS specs + credentials
   assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Review
+  status: Review
 - project: R3-AAS
   sprint: S2
-  task: '### Finalizare'
-  assignee: Task
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Prioritate
-- project: R3-AAS
-  sprint: S2
-  task: Note
-  assignee: '|---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '| UI flow (parțial complet)'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: —
-- project: R3-AAS
-  sprint: S2
-  task: DOD de revizuit
-  assignee: '### Continuare'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Owner
-- project: R3-AAS
-  sprint: S2
-  task: Status
-  assignee: Note
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Alexandru Bejenari
-- project: R3-AAS
-  sprint: S2
-  task: ⏭ Next
-  assignee: Continuare după modificările lui Răzvan
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Task
-- project: R3-AAS
-  sprint: S2
-  task: Prioritate
-  assignee: Status
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '|---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '| Bug-uri identificate în sistem'
-- project: R3-AAS
-  sprint: S2
-  task: —
-  assignee: Todo
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '### Îmbunătățiri'
-- project: R3-AAS
-  sprint: S2
-  task: Owner
-  assignee: Prioritate
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Note
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Vizualizare date / UI'
+  task: UI flow (parțial complet)
   assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Review
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: '### Deploy'
-  assignee: Task
+  task: Backend alignment (după modificări Răzvan)
+  assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
   end: ''
-  status: Prioritate
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: Note
-  assignee: '|---'
+  task: Bug-uri identificate în sistem
+  assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
   end: ''
-  status: '---'
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '---'
-  assignee: '| Deploy AAS în Cloud (hosting)'
+  task: Vizualizare date / UI
+  assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
   end: ''
-  status: P2
+  status: Review
 - project: R3-AAS
   sprint: S2
-  task: Blocat de lipsă cont plătit Cloud; Eduard Lazăr deblochează; planificat vineri/luni
-  assignee: '### Clarificare'
+  task: Deploy AAS în Cloud (hosting)
+  assignee: Răzvan Boița / Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
-  status: Owner
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: Status
-  assignee: Note
+  task: Clarificare format date pentru platforma R3
+  assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
   end: ''
-  status: '---'
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: '---'
-  assignee: '---'
+  task: Instalare senzor 3 (poziție cutie/flux materiale) — T3.3
+  assignee: Eduard Lazăr / Julia
   effort_days: 0.0
   start: ''
   end: ''
-  status: Alexandru Bejenari
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: Blocat de parteneri
-  assignee: Vangelis/LMS nu au specificat formatul exact de date așteptat
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Eduard Lazăr / Julia
-- project: R3-AAS
-  sprint: S2
-  task: '|---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Board central Kanban – single source of truth'
+  task: Board central Kanban – single source of truth
   assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Setup
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: '### Aliniere'
-  assignee: Task
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Prioritate
-- project: R3-AAS
-  sprint: S2
-  task: Note
-  assignee: '|---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '| Task-uri ↔ Work Packages (WP mapping)'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: P3
-- project: R3-AAS
-  sprint: S2
-  task: De aliniat
-  assignee: '### Organizare & Standardizare'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Owner
-- project: R3-AAS
-  sprint: S2
-  task: Status
-  assignee: Note
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Paul Stanciuc
-- project: R3-AAS
-  sprint: S2
-  task: Todo
-  assignee: De standardizat
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Paul Stanciuc
-- project: R3-AAS
-  sprint: S2
-  task: Todo
-  assignee: De standardizat
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Task
-- project: R3-AAS
-  sprint: S2
-  task: Prioritate
-  assignee: Status
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '|---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '| Reprezentare Gantt (timeline / corelare temporală)'
-- project: R3-AAS
-  sprint: S2
-  task: —
-  assignee: Todo
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '### Automatizare'
-- project: R3-AAS
-  sprint: S2
-  task: Owner
-  assignee: Prioritate
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Note
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| GitHub Actions pentru sync task-uri'
-  assignee: Paul Stanciuc
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In Review
-- project: R3-AAS
-  sprint: S2
-  task: '| Generare automată status / reports'
-  assignee: Paul Stanciuc
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In Review
-- project: R3-AAS
-  sprint: S2
-  task: '|---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Pipeline CI/CD (necesar pentru GTM)'
-  assignee: Răzvan Boița
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In Review
-- project: R3-AAS
-  sprint: S2
-  task: '### Implementare'
-  assignee: Task
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Prioritate
-- project: R3-AAS
-  sprint: S2
-  task: Note
-  assignee: '|---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '| Feature flags'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: P7
-- project: R3-AAS
-  sprint: S2
-  task: Inexistente momentan; de verificat și implementat
-  assignee: '### Adăugare'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Owner
-- project: R3-AAS
-  sprint: S2
-  task: Status
-  assignee: Note
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Răzvan Boița
-- project: R3-AAS
-  sprint: S2
-  task: Todo
-  assignee: 'Opțiuni: container logs / Grafana+Loki; necesar logs + tracing pe API
-    calls'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Task
-- project: R3-AAS
-  sprint: S2
-  task: Prioritate
-  assignee: Status
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '|---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '| Code quality / stability înainte de release'
-- project: R3-AAS
-  sprint: S2
-  task: P7
-  assignee: Todo
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '### Pregătire'
-- project: R3-AAS
-  sprint: S2
-  task: Owner
-  assignee: Prioritate
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Note
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Suport tehnic post-launch'
+  task: Task-uri ↔ Work Packages (WP mapping)
   assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -884,15 +259,87 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '|---'
-  assignee: '---'
+  task: Naming convention pentru task-uri (namespace per proiect)
+  assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
   end: ''
-  status: '---'
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Acces VPN + onboarding corect'
+  task: Evitarea dublării task-urilor între tools
+  assignee: Paul Stanciuc
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Todo
+- project: R3-AAS
+  sprint: S2
+  task: Reprezentare Gantt (timeline / corelare temporală)
+  assignee: Paul Stanciuc
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Todo
+- project: R3-AAS
+  sprint: S2
+  task: GitHub Actions pentru sync task-uri
+  assignee: Paul Stanciuc
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Review
+- project: R3-AAS
+  sprint: S2
+  task: Generare automată status / reports
+  assignee: Paul Stanciuc
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Review
+- project: R3-AAS
+  sprint: S2
+  task: Pipeline CI/CD (necesar pentru GTM)
+  assignee: Răzvan Boița
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Review
+- project: R3-AAS
+  sprint: S2
+  task: Feature flags
+  assignee: Răzvan Boița
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Todo
+- project: R3-AAS
+  sprint: S2
+  task: Telemetrie (monitorizare)
+  assignee: Răzvan Boița
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Todo
+- project: R3-AAS
+  sprint: S2
+  task: Code quality / stability înainte de release
+  assignee: Răzvan Boița
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Todo
+- project: R3-AAS
+  sprint: S2
+  task: Suport tehnic post-launch
+  assignee: Paul Stanciuc
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Todo
+- project: R3-AAS
+  sprint: S2
+  task: Acces VPN + onboarding corect
   assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
@@ -900,7 +347,7 @@ rows:
   status: Done
 - project: R3-AAS
   sprint: S2
-  task: '| Acces corect la organizații (login flow issues)'
+  task: Acces corect la organizații (login flow issues)
   assignee: Eduard Modreanu
   effort_days: 0.0
   start: ''
@@ -908,7 +355,7 @@ rows:
   status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: '| Conectivitate sisteme externe'
+  task: Conectivitate sisteme externe
   assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
@@ -916,63 +363,47 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Testare demo produse (clienți + testeri interni)'
+  task: Testare demo produse (clienți + testeri interni)
   assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭ Next
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '|---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Interviuri tehnice full-stack'
+  task: Interviuri tehnice full-stack
   assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭ Next
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Evaluare competențe React + Node'
+  task: Evaluare competențe React + Node
   assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭ Next
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Evaluare team fit (non-toxic, colaborativ)'
+  task: Evaluare team fit (non-toxic, colaborativ)
   assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭ Next
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Selectare profil echilibrat (nu doar tech heavy)'
+  task: Selectare profil echilibrat (nu doar tech heavy)
   assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
-  status: ⏭ Next
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '|---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Sprint plan (tranziție către GTM)'
+  task: Sprint plan (tranziție către GTM)
   assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -980,7 +411,7 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Corelare Sprint tasks ↔ Work Packages'
+  task: Corelare Sprint tasks ↔ Work Packages
   assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -988,7 +419,7 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Task-uri cu timeline (start/end)'
+  task: Task-uri cu timeline (start/end)
   assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -996,7 +427,7 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Rapoarte săptămânale (nu daily)'
+  task: Rapoarte săptămânale (nu daily)
   assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -1004,7 +435,7 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Gantt / timeline pentru progres'
+  task: Gantt / timeline pentru progres
   assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -1012,15 +443,7 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '|---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '| Landing page (claritate produs)'
+  task: Landing page (claritate produs)
   assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
@@ -1028,7 +451,7 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Demo / prezentare produs'
+  task: Demo / prezentare produs
   assignee: Eduard Lazăr / Paul Stanciuc
   effort_days: 0.0
   start: ''
@@ -1036,7 +459,7 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Definire tehnică monetizare (SaaS readiness)'
+  task: Definire tehnică monetizare (SaaS readiness)
   assignee: Răzvan Boița
   effort_days: 0.0
   start: ''
@@ -1044,412 +467,108 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: '| Input pentru CRM / pipeline (structură tehnică)'
+  task: Input pentru CRM / pipeline (structură tehnică)
   assignee: Eduard Lazăr / Paul Stanciuc
   effort_days: 0.0
   start: ''
   end: ''
   status: Todo
-- project: R3-AAS
-  sprint: S2
-  task: Status
-  assignee: Note Stand-up
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
 - project: R3-AAS
   sprint: S2
   task: Review LMS API endpoints and AAS structure
   assignee: '@tech-lead'
   effort_days: 1.0
-  start: ''
-  end: ''
-  status: '2026-03-16'
+  start: '2026-03-16'
+  end: '2026-03-16'
+  status: Done
 - project: R3-AAS
   sprint: S2
-  task: Done
-  assignee: —
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '@tech-lead'
-- project: R3-AAS
-  sprint: S2
-  task: '2026-03-17'
-  assignee: '2026-03-17'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: —
+  task: Technical architecture alignment for Planner integration
+  assignee: '@tech-lead'
+  effort_days: 1.0
+  start: '2026-03-17'
+  end: '2026-03-17'
+  status: Done
 - project: R3-AAS
   sprint: S2
   task: Define integration pipeline (KF UI → LMS Scheduler → KF UI)
   assignee: '@tech-lead'
   effort_days: 1.0
-  start: ''
-  end: ''
-  status: '2026-03-18'
+  start: '2026-03-18'
+  end: '2026-03-18'
+  status: Done
 - project: R3-AAS
   sprint: S2
-  task: Done
-  assignee: —
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '@backend'
-- project: R3-AAS
-  sprint: S2
-  task: '2026-03-16'
-  assignee: '2026-03-18'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: —
+  task: Implement automatic AAS JSON export from KF platform
+  assignee: '@backend'
+  effort_days: 2.0
+  start: '2026-03-16'
+  end: '2026-03-18'
+  status: Done
 - project: R3-AAS
   sprint: S2
   task: Implement scheduling request endpoint (KF → LMS)
   assignee: '@backend'
   effort_days: 2.0
-  start: ''
-  end: ''
-  status: '2026-03-19'
+  start: '2026-03-19'
+  end: '2026-03-21'
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: In Progress
-  assignee: Blocat acces server R3
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '@backend'
-- project: R3-AAS
-  sprint: S2
-  task: '2026-03-22'
-  assignee: '2026-03-24'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: —
+  task: Implement scheduler response parser
+  assignee: '@backend'
+  effort_days: 2.0
+  start: '2026-03-22'
+  end: '2026-03-24'
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: Integrate scheduling results with planner UI
   assignee: '@frontend'
   effort_days: 3.0
-  start: ''
-  end: ''
-  status: '2026-03-19'
+  start: '2026-03-19'
+  end: '2026-03-24'
+  status: In Progress
 - project: R3-AAS
   sprint: S2
-  task: In Progress
-  assignee: Credențiale LMS primite; în testare
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '@frontend'
-- project: R3-AAS
-  sprint: S2
-  task: '2026-03-25'
-  assignee: '2026-03-27'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: 'In review: analytics + data export'
+  task: Implement planner visualization improvements (capacity / gaps)
+  assignee: '@frontend'
+  effort_days: 2.0
+  start: '2026-03-25'
+  end: '2026-03-27'
+  status: In Progress
 - project: R3-AAS
   sprint: S2
   task: Validate suitability constraints and scheduling logic
   assignee: '@backend'
   effort_days: 2.0
-  start: ''
-  end: ''
-  status: '2026-03-26'
+  start: '2026-03-26'
+  end: '2026-03-28'
+  status: Todo
 - project: R3-AAS
   sprint: S2
-  task: ⏭ Next
-  assignee: —
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '@tech-lead'
-- project: R3-AAS
-  sprint: S2
-  task: '2026-03-28'
-  assignee: '2026-03-28'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Blocat de integrare incompletă
+  task: Run first scheduling tests with real production data
+  assignee: '@tech-lead'
+  effort_days: 1.0
+  start: '2026-03-28'
+  end: '2026-03-28'
+  status: Todo
 - project: R3-AAS
   sprint: S2
   task: Debug integration issues with LMS team
   assignee: '@tech-lead'
   effort_days: 1.0
-  start: ''
-  end: ''
-  status: '2026-03-31'
-- project: R3-AAS
-  sprint: S2
-  task: ⏭ Next
-  assignee: —
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '@tech-lead'
-- project: R3-AAS
-  sprint: S2
-  task: '2026-04-03'
-  assignee: '2026-04-03'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: —
-- project: R3-AAS
-  sprint: S2
-  task: Taskuri active
-  assignee: Status
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: Arhitectură multi-tenant
-  assignee: Done
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Done
-- project: R3-AAS
-  sprint: S2
-  task: Integrare între sisteme (Katty/LMS) — supervizare
-  assignee: In Progress
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In Progress
-- project: R3-AAS
-  sprint: S2
-  task: Taskuri active
-  assignee: Status
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: Review arhitectură
-  assignee: In Progress
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Done
-- project: R3-AAS
-  sprint: S2
-  task: Standardizare AAS (multiple tipuri)
-  assignee: In Progress
-  effort_days: 0.0
-  start: ''
-  end: ''
+  start: '2026-03-31'
+  end: '2026-03-31'
   status: Todo
 - project: R3-AAS
   sprint: S2
-  task: Deploy AAS în Cloud
-  assignee: Blocat (lipsă cont plătit)
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In Review
-- project: R3-AAS
-  sprint: S2
-  task: Feature flags
-  assignee: Todo
-  effort_days: 0.0
-  start: ''
-  end: ''
+  task: Integration validation review
+  assignee: '@tech-lead'
+  effort_days: 0.5
+  start: '2026-04-03'
+  end: '2026-04-03'
   status: Todo
-- project: R3-AAS
-  sprint: S2
-  task: Taskuri active
-  assignee: Status
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: Gap analysis produs
-  assignee: In Progress (la Eduard pentru review)
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In Progress (~1 lună deadline)
-- project: R3-AAS
-  sprint: S2
-  task: LMS specs + credentials
-  assignee: In Review
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In Progress (DOD de revizuit)
-- project: R3-AAS
-  sprint: S2
-  task: Vizualizare date / analytics
-  assignee: In Review
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: ⏭ Next
-- project: R3-AAS
-  sprint: S2
-  task: Bug-uri + TDD
-  assignee: Todo
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Todo
-- project: R3-AAS
-  sprint: S2
-  task: Landing page
-  assignee: Todo
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Blocat de parteneri
-- project: R3-AAS
-  sprint: S2
-  task: Prioritate
-  assignee: Acțiune
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Status
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '---'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '---'
-- project: R3-AAS
-  sprint: S2
-  task: High
-  assignee: Deblocare cont Cloud pentru Deploy AAS
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Blocat
-- project: R3-AAS
-  sprint: S2
-  task: High
-  assignee: Răspuns Vangelis — acces server R3 + format date
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Blocat extern
-- project: R3-AAS
-  sprint: S2
-  task: High
-  assignee: Finalizare integrare KF ↔ LMS scheduler
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In Progress
-- project: R3-AAS
-  sprint: S2
-  task: High
-  assignee: Validare algoritm scheduling cu date reale
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: ⏭ Next
-- project: R3-AAS
-  sprint: S2
-  task: High
-  assignee: Interviuri tehnice full-stack (luni)
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: ⏭ Next
-- project: R3-AAS
-  sprint: S2
-  task: High
-  assignee: Decizie Made2Flow (demo vs integrare reală)
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Pending
-- project: R3-AAS
-  sprint: S2
-  task: Medium
-  assignee: Integrare date senzori cu digital twins
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: ⏭ Next
-- project: R3-AAS
-  sprint: S2
-  task: Medium
-  assignee: Extindere Process Digital Twin (schimb date)
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Todo
-- project: R3-AAS
-  sprint: S2
-  task: Medium
-  assignee: Workshop lansare (feature set + value prop)
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Todo (~1 săpt.)
-- project: R3-AAS
-  sprint: S2
-  task: Low
-  assignee: Pregătire demonstrație TRL7
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Todo
-- project: R3-AAS
-  sprint: S2
-  task: Milestone
-  assignee: Data
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '|---'
-- project: R3-AAS
-  sprint: S2
-  task: '---'
-  assignee: '| Integration testing start'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In Progress
-- project: R3-AAS
-  sprint: S2
-  task: Capacity planner integration
-  assignee: Iunie 2026 (M42)
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: '| Pilot validation'
-- project: R3-AAS
-  sprint: S2
-  task: Planificat
-  assignee: '| Project completion'
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Planificat
 - project: kf-be-platform
   sprint: S1
   task: Database schema v2 design + migrations (multi-tenant RLS)
