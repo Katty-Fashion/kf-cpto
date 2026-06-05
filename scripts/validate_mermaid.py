@@ -22,6 +22,10 @@ _GANTT_DIRECTIVES = ("title", "dateFormat", "axisFormat", "excludes",
                      "section", "todayMarker", "%%")
 _NODE_ID_RE = re.compile(r"^([^\s\[]+)\[")
 _SAFE_ID_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_]*$")
+_ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+_DURATION_RE = re.compile(r"^\d+(\.\d+)?[dhwmy]$")
+# Gantt metadata tokens that are tags, not dates (mermaid keywords).
+_GANTT_TAGS = {"done", "active", "crit", "milestone", "after"}
 
 
 def _check_block(dtype: str, body_lines: list) -> list:
@@ -42,11 +46,24 @@ def _check_block(dtype: str, body_lines: list) -> list:
         elif dtype == "gantt":
             if s.startswith(_GANTT_DIRECTIVES) or ":" not in s:
                 continue
-            title = s.split(":", 1)[0]
+            title, meta = s.split(":", 1)
             if not title.strip():
                 issues.append(f"gantt empty task title: {s[:80]}")
             if re.search(r'["\[\]]', title):
                 issues.append(f"gantt title has delimiter char: {s[:80]}")
+            # Metadata after ':' is comma-separated tags + date(s)/duration. Every
+            # non-tag, non-id token that looks date-ish must be a real ISO date or
+            # duration — this is what catches '—' / '-' / 'TBD' in a date cell.
+            tokens = [t.strip() for t in meta.split(",") if t.strip()]
+            for tok in tokens:
+                if tok in _GANTT_TAGS:
+                    continue
+                if _ISO_DATE_RE.match(tok) or _DURATION_RE.match(tok):
+                    continue
+                # a bare identifier (task id / 'after X') is allowed; flag the rest
+                if re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", tok):
+                    continue
+                issues.append(f"gantt invalid date/duration token {tok!r}: {s[:80]}")
         elif dtype == "pie":
             if s.count('"') not in (0, 2):
                 issues.append(f"pie row not 0/2 quotes: {s[:80]}")

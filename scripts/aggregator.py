@@ -43,6 +43,11 @@ from utils import (
 
 PROJECTS = load_projects()
 
+# A gantt date cell must be a real ISO date — repos use placeholders like "—",
+# "-", or "TBD" for unknown dates, which are invalid in the gantt date/duration
+# position and crash the diagram ("Syntax error in text").
+_ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
 
 def _status_legend() -> str:
     """Generate HTML status legend with colored pills."""
@@ -153,12 +158,13 @@ def generate_unified_calendar(data: dict) -> str:
     # Add sprint sections from project metadata
     for project, project_data in data.items():
         meta = project_data.get("meta", {})
-        if meta.get("sprint_start") and meta.get("sprint_end"):
+        s_start = str(meta.get("sprint_start", "")).strip()
+        s_end = str(meta.get("sprint_end", "")).strip()
+        if _ISO_DATE_RE.match(s_start) and _ISO_DATE_RE.match(s_end):
             sprint = meta.get("sprint", "Sprint")
             lines.append(f"    section {mermaid_gantt_label(project)}")
             lines.append(
-                f"    {mermaid_gantt_label(str(sprint))} :active, "
-                f"{meta['sprint_start']}, {meta['sprint_end']}"
+                f"    {mermaid_gantt_label(str(sprint))} :active, {s_start}, {s_end}"
             )
 
     lines.append("```")
@@ -383,8 +389,12 @@ def generate_project_page(project: str, project_data: dict) -> str:
                 if effort_d <= 0:
                     effort_d = 1
                 effort_str = f"{int(effort_d)}d"
-                t_start = task.get("start", "").strip() or cursor
-                t_end = task.get("end", "").strip()
+                # Only accept real ISO dates; placeholders ("—", "-", "TBD") fall
+                # back to the auto-schedule cursor / effort duration.
+                start_raw = task.get("start", "").strip()
+                end_raw = task.get("end", "").strip()
+                t_start = start_raw if _ISO_DATE_RE.match(start_raw) else cursor
+                t_end = end_raw if _ISO_DATE_RE.match(end_raw) else ""
                 label = mermaid_gantt_label(task["task"])
 
                 if task["status"] == "Done":
