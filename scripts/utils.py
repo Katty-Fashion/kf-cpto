@@ -513,6 +513,36 @@ def mermaid_label_safe(text: str) -> str:
     )
 
 
+def mermaid_node_id(text: str) -> str:
+    """Make a safe Mermaid flowchart/graph node id from arbitrary text.
+
+    Flowchart ids must be alphanumeric/underscore — a raw repo name like
+    `kf-be-platform` or `R3-AAS` (with hyphens) breaks `graph` parsing. Replace
+    every non-alphanumeric char with `_` and prefix a letter if it starts with a
+    digit. Deterministic, so the same project always maps to the same id (edges
+    line up with nodes).
+    """
+    if not text:
+        return "n_"
+    safe = re.sub(r"[^0-9A-Za-z_]", "_", text)
+    if safe[0].isdigit():
+        safe = "n_" + safe
+    return safe
+
+
+def mermaid_gantt_label(text: str) -> str:
+    """Make text safe to use as a Mermaid gantt task/section title (before the `:`).
+
+    The gantt grammar treats `:` as the title/metadata separator and newlines as
+    statement breaks, so those must go. Also neutralize the `"`/`[`/`]` label
+    delimiters (harmless in a title, but keeps every diagram type consistent).
+    """
+    if not text:
+        return text
+    t = mermaid_label_safe(text).replace(":", " ").replace(";", " ")
+    return re.sub(r"\s+", " ", t).strip()
+
+
 def _sanitize_task(task: dict[str, str]) -> dict[str, str]:
     """Strip emojis from the human-facing fields of a parsed task dict."""
     for key in ("task", "assignee", "status", "effort"):

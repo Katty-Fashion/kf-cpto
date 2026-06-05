@@ -64,6 +64,9 @@ jobs:
       - name: Aggregate Kanbans + Calendar
         run: python scripts/aggregator.py
 
+      - name: Validate Mermaid diagram syntax
+        run: python scripts/validate_mermaid.py
+
       - name: Commit unified docs
         run: |
           git config user.name "KF Bot"
