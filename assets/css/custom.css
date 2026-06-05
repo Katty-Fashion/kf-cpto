@@ -218,10 +218,12 @@ body {
   line-height: 1.4;
 }
 
-.status-pill--in-progress { background: #e53e3e; }
-.status-pill--review      { background: #ed8936; }
-.status-pill--todo        { background: #3182ce; }
-.status-pill--done        { background: #38a169; }
+/* Forest-harmonised status palette — tuned to the Mermaid `forest` theme
+   (greens + earthy warm accents) so the legend reads with the diagrams. */
+.status-pill--todo        { background: #8a9a7b; }  /* muted grey-green — queued */
+.status-pill--in-progress { background: #c2682d; }  /* terracotta — active (warm accent) */
+.status-pill--review      { background: #bf9b30; }  /* amber/gold — needs attention */
+.status-pill--done        { background: #3a7d44; }  /* forest green — complete */
 
 /* ===== Sync status (sidebar badge + dashboard banner) ===== */
 .sync-status {
