@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-06-05T14:53:18.988759
+generated: 2026-06-05T14:58:31.870014
 ---
 
 # KF Team — Unified Kanban
@@ -136,3 +136,22 @@ kanban
 | kf-be-platform | 8 | 2 | 0 | 0 | 10 |
 | kf-fe-platform | 9 | 1 | 0 | 0 | 10 |
 | kf-platform | 18 | 1 | 0 | 0 | 19 |
+
+## Sprint Timeline
+
+```mermaid
+gantt
+    title Current Sprint by Project
+    dateFormat YYYY-MM-DD
+    axisFormat %d %b
+    excludes weekends
+
+    section R3-AAS
+    S2 :active, 2026-03-16, 2026-04-03
+    section kf-be-platform
+    S1 :active, 2026-05-11, 2026-05-22
+    section kf-fe-platform
+    S1 :active, 2026-05-11, 2026-05-22
+    section kf-platform
+    S1 :active, 2026-05-25, 2026-06-07
+```
