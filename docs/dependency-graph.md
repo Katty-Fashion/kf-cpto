@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-06-05T12:43:47.089635
+generated: 2026-06-05T12:50:41.023245
 ---
 
 # KF Team — Dependency Graph
@@ -9,10 +9,10 @@ generated: 2026-06-05T12:43:47.089635
 
 ```mermaid
 graph LR
-    R3-AAS[R3 Aas]:::eu
-    kf-be-platform[Kf Be Platform]:::eu
-    kf-fe-platform[Kf Fe Platform]:::eu
-    kf-platform[Kf Platform]:::eu
+    R3_AAS["R3 Aas"]:::eu
+    kf_be_platform["Kf Be Platform"]:::eu
+    kf_fe_platform["Kf Fe Platform"]:::eu
+    kf_platform["Kf Platform"]:::eu
 
     classDef saas fill:#4CAF50,color:#fff
     classDef eu fill:#2196F3,color:#fff
