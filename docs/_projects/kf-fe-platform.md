@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-fe-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-06-04T13:14:52.240128
+generated: 2026-06-05T11:08:31.587308
 ---
 
 # kf-fe-platform
@@ -34,7 +34,17 @@ generated: 2026-06-04T13:14:52.240128
 ```mermaid
 kanban
   Todo
+    t2["Login flow + redirect handling"]
+    t3["Admin Console UI (Platform Admin operations)"]
+    t4["Overview refactor (dynamic widgets per rol)"]
+    t5["Models Page refactor (filtere per rol, search)"]
+    t6["Tech Pack layout (sidebar, tooltips, guide)"]
+    t7["Model Sheet fixes (imagini, reconciliere BOM)"]
+    t8["3D Model performance optimization (multi-mesh, asset pipeline)"]
+    t9["Garment Configurator B2C (embeddable) — T2.3 ALADIN"]
+    t10["i18n / l10n (EN + RO + customizable, RTL ready)"]
   In-Progress
+    t1["Design system & design tokens (Tailwind, primitives, Storybook)"]
   Review
   Done
 ```
@@ -43,19 +53,25 @@ kanban
 
 | Task | Assignee | Effort | Start | End | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| Project scope definition and requirements analysis | @ma.tech | 2d | 2026-05-11 | 2026-05-12 | In progress |
-| Refactor with generators | @ma.tech, @alexandru.bejenari | 8d | 2026-05-13 | 2026-05-22 | In progress |
-| Dockerize for general flow | @ma.tech | 1d | 2026-05-15 | 2026-05-16 | In progress |
-| Collaboration framework with sockets | @ma.tech, @alexandru.bejenari | 5d | 2026-05-15 | 2026-05-22 | In progress |
+| Design system & design tokens (Tailwind, primitives, Storybook) | @alexandru.bejenari | 10d | 2026-05-25 | 2026-06-21 | In Progress |
+| Login flow + redirect handling | @alexandru.bejenari | 5d | 2026-06-22 | 2026-07-05 | Todo |
+| Admin Console UI (Platform Admin operations) | @alexandru.bejenari | 10d | 2026-07-06 | 2026-07-26 | Todo |
+| Overview refactor (dynamic widgets per rol) | @alexandru.bejenari | 5d | 2026-07-13 | 2026-08-02 | Todo |
+| Models Page refactor (filtere per rol, search) | @alexandru.bejenari | 5d | 2026-08-03 | 2026-08-23 | Todo |
+| Tech Pack layout (sidebar, tooltips, guide) | @alexandru.bejenari | 5d | 2026-08-10 | 2026-08-30 | Todo |
+| Model Sheet fixes (imagini, reconciliere BOM) | @alexandru.bejenari | 2d | 2026-08-24 | 2026-09-06 | Todo |
+| 3D Model performance optimization (multi-mesh, asset pipeline) | @alexandru.bejenari | 5d | 2026-09-07 | 2026-09-27 | Todo |
+| Garment Configurator B2C (embeddable) — T2.3 ALADIN | @alexandru.bejenari | 10d | 2026-11-09 | 2026-11-29 | Todo |
+| i18n / l10n (EN + RO + customizable, RTL ready) | @alexandru.bejenari | 5d | 2026-11-16 | 2026-11-29 | Todo |
 
 ## LOE Summary
 
 | Metric | Value |
 | :--- | :--- |
-| Total Effort | 16.0d |
-| In Progress | 0d |
+| Total Effort | 62.0d |
+| In Progress | 10.0d |
 | Completed | 0d |
-| Remaining | 16.0d |
+| Remaining | 62.0d |
 
 ## Sprint Timeline
 
@@ -65,16 +81,24 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    Project scope definition and requirements analysis :2026-05-11, 2026-05-12
-    Refactor with generators :2026-05-13, 2026-05-22
-    Dockerize for general flow :2026-05-15, 2026-05-16
-    Collaboration framework with sockets :2026-05-15, 2026-05-22
+    Design system & design tokens (Tailwind, primitives, Storybook) :active, 2026-05-25, 2026-06-21
+    Login flow + redirect handling :2026-06-22, 2026-07-05
+    Admin Console UI (Platform Admin operations) :2026-07-06, 2026-07-26
+    Overview refactor (dynamic widgets per rol) :2026-07-13, 2026-08-02
+    Models Page refactor (filtere per rol, search) :2026-08-03, 2026-08-23
+    Tech Pack layout (sidebar, tooltips, guide) :2026-08-10, 2026-08-30
+    Model Sheet fixes (imagini, reconciliere BOM) :2026-08-24, 2026-09-06
+    3D Model performance optimization (multi-mesh, asset pipeline) :2026-09-07, 2026-09-27
+    Garment Configurator B2C (embeddable) — T2.3 ALADIN :2026-11-09, 2026-11-29
+    i18n / l10n (EN + RO + customizable, RTL ready) :2026-11-16, 2026-11-29
 ```
 
 ## Effort Distribution
 
 ```mermaid
 pie title Effort by Status
+    "Todo" : 52.0
+    "In Progress" : 10.0
 ```
 
 ## Links
