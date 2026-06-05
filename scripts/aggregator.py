@@ -35,6 +35,8 @@ from utils import (
     parse_effort_days,
     strip_emojis,
     mermaid_label_safe,
+    mermaid_node_id,
+    mermaid_gantt_label,
     update_sync_status,
     _is_separator_row,
 )
@@ -153,8 +155,11 @@ def generate_unified_calendar(data: dict) -> str:
         meta = project_data.get("meta", {})
         if meta.get("sprint_start") and meta.get("sprint_end"):
             sprint = meta.get("sprint", "Sprint")
-            lines.append(f"    section {project}")
-            lines.append(f"    {sprint} :active, {meta['sprint_start']}, {meta['sprint_end']}")
+            lines.append(f"    section {mermaid_gantt_label(project)}")
+            lines.append(
+                f"    {mermaid_gantt_label(str(sprint))} :active, "
+                f"{meta['sprint_start']}, {meta['sprint_end']}"
+            )
 
     lines.append("```")
 
@@ -380,7 +385,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
                 effort_str = f"{int(effort_d)}d"
                 t_start = task.get("start", "").strip() or cursor
                 t_end = task.get("end", "").strip()
-                label = task["task"].replace(":", " ")
+                label = mermaid_gantt_label(task["task"])
 
                 if task["status"] == "Done":
                     modifier = "done, "
@@ -463,8 +468,8 @@ def generate_dependency_graph(data: dict) -> str:
         meta = project_data.get("meta", {})
         proj_type = meta.get("type", "internal")
         style_class = TYPE_MERMAID_CLASS.get(proj_type, ":::internal")
-        label = project.replace("-", " ").title()
-        lines.append(f"    {project}[{label}]{style_class}")
+        label = mermaid_label_safe(project.replace("-", " ").title())
+        lines.append(f'    {mermaid_node_id(project)}["{label}"]{style_class}')
 
     # Add edges from depends_on
     has_edges = False
@@ -472,7 +477,7 @@ def generate_dependency_graph(data: dict) -> str:
         meta = project_data.get("meta", {})
         for dep in meta.get("depends_on", []):
             if dep in data:
-                lines.append(f"    {dep} --> {project}")
+                lines.append(f"    {mermaid_node_id(dep)} --> {mermaid_node_id(project)}")
                 has_edges = True
 
     lines.append("")

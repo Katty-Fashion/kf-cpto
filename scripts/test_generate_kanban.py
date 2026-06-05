@@ -16,7 +16,10 @@ if str(_SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS_DIR))
 
 import utils
-from utils import canonicalize_status, parse_kanban_tasks, mermaid_label_safe, TASK_STATUSES
+from utils import (
+    canonicalize_status, parse_kanban_tasks, mermaid_label_safe,
+    mermaid_node_id, mermaid_gantt_label, TASK_STATUSES,
+)
 import generate_kanban as gk
 
 PASS = 0
@@ -167,6 +170,16 @@ check("square brackets neutralized", mermaid_label_safe("a [x] b") == "a (x) b")
 check("newlines flattened", "\n" not in mermaid_label_safe("a\nb"))
 check("node label has exactly 2 delimiter quotes",
       f'task1["{mermaid_label_safe(chr(34)+"q"+chr(34))}"]'.count('"') == 2)
+
+print("mermaid_node_id / mermaid_gantt_label:")
+check("hyphens -> underscores", mermaid_node_id("kf-be-platform") == "kf_be_platform")
+check("leading digit kept safe (starts with letter)", mermaid_node_id("R3-AAS") == "R3_AAS")
+check("digit-start gets n_ prefix", mermaid_node_id("3d-thing") == "n_3d_thing")
+check("node id is a valid graph id", __import__("re").match(r"^[A-Za-z][A-Za-z0-9_]*$",
+      mermaid_node_id("ai-rise-options")) is not None)
+check("gantt label drops colon", ":" not in mermaid_gantt_label("a: b: c"))
+check("gantt label drops ASCII quotes", '"' not in mermaid_gantt_label('Ce „Done" vs „Ready"'))
+check("gantt label collapses whitespace", mermaid_gantt_label("a   b") == "a b")
 
 
 # ---------------------------------------------------------------------------
