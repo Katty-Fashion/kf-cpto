@@ -78,6 +78,34 @@ What it does:
 - Requires `KF_PAT` or `GITHUB_TOKEN` env var for GitHub API; warns and continues with
   empty [TIER-1] proposals when no token is set (graceful degradation)
 
+### [GENERATE] Generate distinct per-repo kanbans from the migration plan
+
+```
+python scripts/generate_kanban.py                  # dry-run preview (default, safe)
+python scripts/generate_kanban.py --reseed         # rebuild plan-of-record from kf-platform, then preview
+python scripts/generate_kanban.py --apply          # write + batch-confirm + commit + push
+python scripts/generate_kanban.py --apply --no-push   # write + commit locally, no push
+```
+
+What it does:
+- Reads the migration **plan-of-record** `docs/_data/migration_plan.yml`, seeding it
+  once from `kf-platform/kanban.md` (the curated 39-task plan) if absent or `--reseed`.
+- **Partitions by discipline** (encoded in the Assignee column) into three distinct repos —
+  exactly one repo per task, so the LOE intermediate sums with no double-counting:
+  - FE-only (`@<frontend>`) → `kf-fe-platform`
+  - BE-only (`@<backend>`) → `kf-be-platform`
+  - FE+BE (`@<frontend> + @<backend>`) → `kf-platform` (cross-stack umbrella)
+- Preserves each target repo's curated frontmatter verbatim; regenerates the task table
+  (full names, person-day effort, dates) + the milestone reference trailer.
+- **Status merge:** a target repo's own valid status for a task wins over the plan status,
+  so re-running never reverts statuses set by [RECONCILE]/[WRITE-BACK]. Generation owns the
+  skeleton; activity-sync owns status truth.
+- Idempotent (byte-compare gate); single batch confirmation; reuses `writeback.py`'s
+  conflict gate, KF_PAT push, and recovery manifest. `--apply` needs `KF_PAT` (unless `--no-push`).
+- Run the aggregator afterward to refresh `docs/_data/loe.yml` and the dashboard.
+
+Prerequisites: `repos-local/` populated ([BOOTSTRAP]); for `--apply` push, `KF_PAT` set.
+
 ---
 
 ## Script Locations (Phase 1 and 2)
@@ -87,6 +115,7 @@ What it does:
 | Bootstrap | `.claude/skills/activity-sync/bootstrap.py` | One-shot clone + seed |
 | Enumeration | `.claude/skills/activity-sync/repo_enum.py` | Fetch + parse all tracked repos |
 | Reconcile | `.claude/skills/activity-sync/reconcile.py` | Activity mining + dry-run reconciliation |
+| Generate | `scripts/generate_kanban.py` | Partition the migration plan-of-record into per-repo kanbans |
 
 See the Phase 3: Write-Back section below for `writeback.py`.
 
