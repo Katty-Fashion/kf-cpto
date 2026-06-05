@@ -112,11 +112,13 @@ STATUS_PRIORITY = {
 }
 
 # Status pill colors — single source for CSS and legend generation
+# Forest-harmonised status palette — mirrors docs/assets/css/custom.css so the
+# legend stays consistent with the Mermaid `forest` theme used by the diagrams.
 STATUS_COLORS = {
-    "In Progress": "#e53e3e",  # red
-    "Review": "#ed8936",       # orange
-    "Todo": "#3182ce",         # blue
-    "Done": "#38a169",         # green
+    "In Progress": "#c2682d",  # terracotta (warm accent)
+    "Review": "#bf9b30",       # amber/gold
+    "Todo": "#8a9a7b",         # muted grey-green
+    "Done": "#3a7d44",         # forest green
 }
 
 # Project type display names
