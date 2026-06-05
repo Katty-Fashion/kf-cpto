@@ -10,7 +10,7 @@ import re
 import yaml
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 # Single Point of Truth — org name used across all scripts
 ORG = "katty-fashion"
@@ -40,9 +40,66 @@ PROJECT_BRANCHES: dict[str, str] = {}
 # Valid task statuses (single source for all status references)
 TASK_STATUSES = ("Todo", "In Progress", "Review", "Done")
 
+# Case-folded aliases -> canonical TASK_STATUSES value. Lets the one canonical
+# parser self-heal common drift (lowercase "in progress", emoji-prefixed or
+# foreign-vocabulary statuses from repos like R3-AAS) instead of leaking invalid
+# strings into the kanban diagrams and the LOE intermediate. Unknown statuses are
+# left untouched and still warned about (see parse_kanban_tasks).
+_STATUS_CANON = {
+    "todo": "Todo",
+    "to do": "Todo",
+    "to-do": "Todo",
+    "backlog": "Todo",
+    "planned": "Todo",
+    "next": "Todo",
+    "not started": "Todo",
+    "in progress": "In Progress",
+    "in-progress": "In Progress",
+    "inprogress": "In Progress",
+    "in lucru": "In Progress",
+    "doing": "In Progress",
+    "wip": "In Progress",
+    "started": "In Progress",
+    "running": "In Progress",
+    "testing": "In Progress",
+    "near completion": "In Progress",
+    "in setup": "In Progress",
+    "blocat": "In Progress",
+    "blocat extern": "In Progress",
+    "blocat de parteneri": "In Progress",
+    "blocked": "In Progress",
+    "review": "Review",
+    "in review": "Review",
+    "in-review": "Review",
+    "code review": "Review",
+    "needs review": "Review",
+    "done": "Done",
+    "complete": "Done",
+    "completed": "Done",
+    "finished": "Done",
+    "closed": "Done",
+    "implemented": "Done",
+    "implemented & validated": "Done",
+}
+
 # Kanban table column layouts (4-col legacy, 6-col extended with dates)
 TASK_COLUMNS_4 = ("Task", "Assignee", "Effort", "Status")
 TASK_COLUMNS_6 = ("Task", "Assignee", "Effort", "Start", "End", "Status")
+
+# Header-cell label -> canonical task field. Drives header-driven column mapping
+# in parse_kanban_tasks so heterogeneous tables (e.g. an "Owner" column instead
+# of "Assignee", a "Deadline" instead of "End") parse correctly and non-task
+# tables (no "Task" column) are skipped entirely.
+_COLUMN_ALIASES = {
+    "task": "task",
+    "assignee": "assignee",
+    "owner": "assignee",
+    "effort": "effort",
+    "start": "start",
+    "end": "end",
+    "deadline": "end",
+    "status": "status",
+}
 
 # Map from kanban.md status to MermaidJS column name (hyphenated)
 STATUS_TO_MERMAID = {s: s.replace(" ", "-") for s in TASK_STATUSES}
@@ -143,59 +200,118 @@ def parse_kanban_frontmatter(content: str) -> dict[str, Any]:
     return {}
 
 
-def parse_kanban_tasks(content: str, project: str = "") -> list[dict[str, str]]:
-    """Extract tasks from kanban markdown table.
+def canonicalize_status(status: str) -> Optional[str]:
+    """Map a status string to its canonical TASK_STATUSES value, or None if unknown.
 
-    Supports both 4-column and 6-column formats:
-      4-col: | Task | Assignee | Effort | Status |
-      6-col: | Task | Assignee | Effort | Start | End | Status |
+    Case-folds and looks up _STATUS_CANON. Caller is responsible for stripping
+    emojis first (parse_kanban_tasks does). Returns None — not a default — so
+    callers can distinguish a recognized status from genuinely unknown input and
+    warn accordingly.
+    """
+    if not status:
+        return None
+    return _STATUS_CANON.get(status.strip().lower())
+
+
+def _is_table_row(line: str) -> bool:
+    """True if a line is a GFM pipe-table row (starts with '|' after trim)."""
+    return line.strip().startswith("|")
+
+
+def _is_separator_row(line: str) -> bool:
+    """True if a line is a GFM table header separator (e.g. '| :--- | :--- |')."""
+    s = line.strip()
+    return bool(s) and s.startswith("|") and set(s) <= set("|-: ") and "-" in s
+
+
+def _split_row(line: str) -> list[str]:
+    """Split a pipe-table row into trimmed cells, dropping the leading/trailing pipe."""
+    parts = line.strip().split("|")
+    if parts and parts[0].strip() == "":
+        parts = parts[1:]
+    if parts and parts[-1].strip() == "":
+        parts = parts[:-1]
+    return [p.strip() for p in parts]
+
+
+def _map_columns(header_cells: list[str]) -> dict[str, int]:
+    """Map a header row's cells to canonical field -> column index via _COLUMN_ALIASES.
+
+    First occurrence of each field wins. Unrecognized columns (Prioritate, Note,
+    Blocker, #, Pillar, Component, ...) are ignored.
+    """
+    colmap: dict[str, int] = {}
+    for idx, cell in enumerate(header_cells):
+        field = _COLUMN_ALIASES.get(cell.strip().lower())
+        if field and field not in colmap:
+            colmap[field] = idx
+    return colmap
+
+
+def _cell(cells: list[str], colmap: dict[str, int], field: str) -> str:
+    """Return the trimmed value for a mapped field, or '' if absent/out of range."""
+    idx = colmap.get(field)
+    if idx is None or idx >= len(cells):
+        return ""
+    return cells[idx]
+
+
+def parse_kanban_tasks(content: str, project: str = "") -> list[dict[str, str]]:
+    """Extract tasks from every well-formed task table in a kanban.md.
+
+    Header-driven (not position/count-driven): each table block is identified by a
+    header row immediately followed by a separator row, and its columns are mapped
+    by label via _COLUMN_ALIASES. This means:
+      - 4-col (| Task | Assignee | Effort | Status |) and 6-col
+        (| Task | Assignee | Effort | Start | End | Status |) both parse cleanly;
+      - alternative labels map too (Owner -> assignee, Deadline -> end);
+      - tables WITHOUT a Task column (e.g. a 'Pillar | Component | Status' summary)
+        are skipped entirely, so they never pollute the LOE intermediate;
+      - statuses are emoji-stripped and canonicalized (canonicalize_status), so
+        'In progress' / emoji-prefixed / foreign-vocabulary values self-heal.
 
     Returns:
         List of task dicts with keys: task, assignee, effort, start, end, status
     """
-    tasks = []
+    tasks: list[dict[str, str]] = []
+    lines = content.splitlines()
+    i, n = 0, len(lines)
 
-    # Detect table format: count pipes in the header row
-    header_match = re.search(r"^\|[^\n]+\|", content, re.MULTILINE)
-    if not header_match:
-        return tasks
-
-    pipe_count = header_match.group().count("|") - 1  # subtract leading pipe
-    is_6col = pipe_count >= 6
-
-    if is_6col:
-        pattern = r"\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|"
-    else:
-        pattern = r"\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|"
-
-    for match in re.finditer(pattern, content):
-        groups = match.groups()
-        first = groups[0].strip()
-
-        # Skip header row and separator row
-        if first in ("Task", ":---") or first.startswith(":"):
-            continue
-
-        if is_6col:
-            task_name, assignee, effort, start, end, status = (g.strip() for g in groups)
+    while i < n:
+        if _is_table_row(lines[i]) and i + 1 < n and _is_separator_row(lines[i + 1]):
+            colmap = _map_columns(_split_row(lines[i]))
+            i += 2  # consume header + separator
+            if "task" not in colmap:
+                # Not a task table — skip its data rows without emitting anything.
+                while i < n and _is_table_row(lines[i]):
+                    i += 1
+                continue
+            while i < n and _is_table_row(lines[i]):
+                cells = _split_row(lines[i])
+                task_name = _cell(cells, colmap, "task")
+                if task_name:
+                    raw_status = strip_emojis(_cell(cells, colmap, "status"))
+                    canon = canonicalize_status(raw_status)
+                    if canon is not None:
+                        status = canon
+                    else:
+                        status = raw_status
+                        if status:
+                            label = f" in {project}" if project else ""
+                            print(f"Warning: Unknown status '{status}'{label} for "
+                                  f"task '{task_name}'. Valid: {', '.join(TASK_STATUSES)}")
+                    tasks.append({
+                        "task": task_name,
+                        "assignee": _cell(cells, colmap, "assignee"),
+                        "effort": _cell(cells, colmap, "effort"),
+                        "start": _cell(cells, colmap, "start"),
+                        "end": _cell(cells, colmap, "end"),
+                        "status": status,
+                    })
+                i += 1
         else:
-            task_name, assignee, effort, status = (g.strip() for g in groups)
-            start, end = "", ""
+            i += 1
 
-        # Validate status
-        if status not in TASK_STATUSES:
-            label = f" in {project}" if project else ""
-            print(f"Warning: Unknown status '{status}'{label} for task '{task_name}'. "
-                  f"Valid: {', '.join(TASK_STATUSES)}")
-
-        tasks.append({
-            "task": task_name,
-            "assignee": assignee,
-            "effort": effort,
-            "start": start,
-            "end": end,
-            "status": status,
-        })
     return tasks
 
 
@@ -354,6 +470,8 @@ def _is_emoji(cp: int) -> bool:
         0x1F700 <= cp <= 0x1F9FF or  # Alchemical + Geometric + Supplemental
         0x1FA00 <= cp <= 0x1FA6F or  # Chess Symbols
         0x1FA70 <= cp <= 0x1FAFF or  # Symbols and Pictographs Extended-A
+        0x231A <= cp <= 0x231B or    # Watch / hourglass (⌚⌛)
+        0x23E9 <= cp <= 0x23FA or    # Media control emoji (⏩⏪⏭⏮⏯⏰…)
         0x2600 <= cp <= 0x26FF or    # Misc Symbols (includes ⚠ ✅ ⛔)
         0x2700 <= cp <= 0x27BF or    # Dingbats (includes ✔ ✗ ➡)
         0xFE00 <= cp <= 0xFE0F or    # Variation Selectors

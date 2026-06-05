@@ -501,6 +501,11 @@ def build_loe_rows(data: dict) -> list[dict]:
         meta = project_data["meta"]
         sprint = meta.get("sprint", "-")
         for task in project_data["tasks"]:
+            # Defensive: never emit a row for an empty task name. The header-driven
+            # parser already drops non-task tables, but a malformed row should not
+            # leak a blank LOE entry into the Sheet.
+            if not task.get("task", "").strip():
+                continue
             rows.append({
                 "project": project,
                 "sprint": sprint,
