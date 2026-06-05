@@ -1,0 +1,773 @@
+generated_at: '2026-06-05T12:43:47Z'
+projects:
+- project: R3-AAS
+  branch: main
+  edit_url: https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md
+  generated: false
+  simple_board: false
+  meta:
+    description: R3GROUP Katty Fashion pilot – digital tools for co-creation, digital
+      twins and technician capacity planning
+    type: eu-project
+    po: ''
+    lead: ''
+    sprint: S2
+    sprint_start: '2026-03-16'
+    sprint_end: '2026-04-03'
+    depends_on:
+    - ai-rise
+    tags:
+    - r3group
+    - digital-twin
+    - capacity-planner
+    - manufacturing
+    team:
+      CPTO: el.tech@katty-fashion.ro
+      Tech Lead: eduard.modreanu@katty-fashion.ro
+      Front-End: alexandru.bejenari@katty-fashion.ro
+      Back-End: razvan.boita@katty-fashion.ro
+      Product Owner: ps.tech@katty-fashion.ro
+  tasks:
+  - task: Deploy AAS în Cloud (hosting)
+    assignee: Răzvan Boița / Eduard Lazăr
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Clarificare acces server R3 (Vangelis)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Clarificare format date platforma R3
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Decizie Made2Flow (demo vs integrare reală)
+    assignee: Eduard Lazăr / Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Decizie pending — P1
+  - task: Feature set pentru lansare (MVP)
+    assignee: Eduard Lazăr / Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Ce este „Done" vs „Ready" pentru release
+    assignee: Eduard Lazăr / Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Decizie Made2Flow (demo vs integrare reală)
+    assignee: Eduard Lazăr / Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Decizie pending
+  - task: Review arhitectură
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Identificare gaps / incomplete features
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Sesiune demo produse (intern)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Pregătire feature flags (ascundere features incomplete)
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Clarificare value proposition (perspectivă tehnică)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Validare integrare end-to-end (expunere API Nuoform)
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Done
+  - task: Arhitectură multi-tenant (in place)
+    assignee: Eduard Modreanu
+    effort: ''
+    start: ''
+    end: ''
+    status: Done
+  - task: Separare date per client (in place)
+    assignee: Eduard Modreanu
+    effort: ''
+    start: ''
+    end: ''
+    status: Done
+  - task: Flow sistem (UI → AAS → backend)
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Clarificare acces server R3 (Vangelis)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Integrare între sisteme (Katty / LMS)
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Multiple tipuri AAS → standardizare
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Layout simplificat pilot (stații + flux + senzori)
+    assignee: Eduard Lazăr / Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Integrare LMS (AAS extern)
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ~1 lună
+    status: In Progress
+  - task: Sketch → JSON → sistem
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: —
+    status: Done
+  - task: LMS specs + credentials
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: Review
+  - task: UI flow (parțial complet)
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Backend alignment (după modificări Răzvan)
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Bug-uri identificate în sistem
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Vizualizare date / UI
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: Review
+  - task: Deploy AAS în Cloud (hosting)
+    assignee: Răzvan Boița / Eduard Lazăr
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Clarificare format date pentru platforma R3
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Instalare senzor 3 (poziție cutie/flux materiale) — T3.3
+    assignee: Eduard Lazăr / Julia
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Board central Kanban – single source of truth
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Task-uri ↔ Work Packages (WP mapping)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Naming convention pentru task-uri (namespace per proiect)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Evitarea dublării task-urilor între tools
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Reprezentare Gantt (timeline / corelare temporală)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: GitHub Actions pentru sync task-uri
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Review
+  - task: Generare automată status / reports
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Review
+  - task: Pipeline CI/CD (necesar pentru GTM)
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Review
+  - task: Feature flags
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Telemetrie (monitorizare)
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Code quality / stability înainte de release
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Suport tehnic post-launch
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Acces VPN + onboarding corect
+    assignee: Eduard Lazăr
+    effort: ''
+    start: ''
+    end: ''
+    status: Done
+  - task: Acces corect la organizații (login flow issues)
+    assignee: Eduard Modreanu
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: Conectivitate sisteme externe
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Testare demo produse (clienți + testeri interni)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Interviuri tehnice full-stack
+    assignee: Eduard Lazăr
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Evaluare competențe React + Node
+    assignee: Eduard Lazăr
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Evaluare team fit (non-toxic, colaborativ)
+    assignee: Eduard Lazăr
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Selectare profil echilibrat (nu doar tech heavy)
+    assignee: Eduard Lazăr
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Sprint plan (tranziție către GTM)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Corelare Sprint tasks ↔ Work Packages
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Task-uri cu timeline (start/end)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Rapoarte săptămânale (nu daily)
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Gantt / timeline pentru progres
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Landing page (claritate produs)
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Demo / prezentare produs
+    assignee: Eduard Lazăr / Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Definire tehnică monetizare (SaaS readiness)
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Input pentru CRM / pipeline (structură tehnică)
+    assignee: Eduard Lazăr / Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: Todo
+  - task: Review LMS API endpoints and AAS structure
+    assignee: '@tech-lead'
+    effort: 1d
+    start: '2026-03-16'
+    end: '2026-03-16'
+    status: Done
+  - task: Technical architecture alignment for Planner integration
+    assignee: '@tech-lead'
+    effort: 1d
+    start: '2026-03-17'
+    end: '2026-03-17'
+    status: Done
+  - task: Define integration pipeline (KF UI → LMS Scheduler → KF UI)
+    assignee: '@tech-lead'
+    effort: 1d
+    start: '2026-03-18'
+    end: '2026-03-18'
+    status: Done
+  - task: Implement automatic AAS JSON export from KF platform
+    assignee: '@backend'
+    effort: 2d
+    start: '2026-03-16'
+    end: '2026-03-18'
+    status: Done
+  - task: Implement scheduling request endpoint (KF → LMS)
+    assignee: '@backend'
+    effort: 2d
+    start: '2026-03-19'
+    end: '2026-03-21'
+    status: In Progress
+  - task: Implement scheduler response parser
+    assignee: '@backend'
+    effort: 2d
+    start: '2026-03-22'
+    end: '2026-03-24'
+    status: Todo
+  - task: Integrate scheduling results with planner UI
+    assignee: '@frontend'
+    effort: 3d
+    start: '2026-03-19'
+    end: '2026-03-24'
+    status: In Progress
+  - task: Implement planner visualization improvements (capacity / gaps)
+    assignee: '@frontend'
+    effort: 2d
+    start: '2026-03-25'
+    end: '2026-03-27'
+    status: In Progress
+  - task: Validate suitability constraints and scheduling logic
+    assignee: '@backend'
+    effort: 2d
+    start: '2026-03-26'
+    end: '2026-03-28'
+    status: Todo
+  - task: Run first scheduling tests with real production data
+    assignee: '@tech-lead'
+    effort: 1d
+    start: '2026-03-28'
+    end: '2026-03-28'
+    status: Todo
+  - task: Debug integration issues with LMS team
+    assignee: '@tech-lead'
+    effort: 1d
+    start: '2026-03-31'
+    end: '2026-03-31'
+    status: Todo
+  - task: Integration validation review
+    assignee: '@tech-lead'
+    effort: 0.5d
+    start: '2026-04-03'
+    end: '2026-04-03'
+    status: Todo
+- project: kf-be-platform
+  branch: main
+  edit_url: https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md
+  generated: true
+  simple_board: true
+  meta:
+    description: ''
+    type: eu-project
+    po: '@ma.tech'
+    lead: '@el.tech'
+    sprint: S1
+    sprint_start: '2026-05-11'
+    sprint_end: '2026-05-22'
+    depends_on:
+    - nuoform
+    tags:
+    - eu-project
+    - circular-textiles
+    - digital-platform
+    - microfactory
+    - dpp
+    - manufacturing
+    team:
+      frontend: alexandru.bejenari@katty-fashion.ro
+      backend: ma.tech@katty-fashion.ro
+      tech_lead: el.tech@katty-fashion.ro
+      product_owner: ma.tech@katty-fashion.ro
+  tasks:
+  - task: Database schema v2 design + migrations (multi-tenant RLS)
+    assignee: '@ma.tech'
+    effort: 10d
+    start: '2026-05-25'
+    end: '2026-06-21'
+    status: In Progress
+  - task: CI/CD pipeline (GitHub Actions / GitLab CI)
+    assignee: '@ma.tech'
+    effort: 2d
+    start: '2026-05-25'
+    end: '2026-06-07'
+    status: In Progress
+  - task: IDP setup (Keycloak/Auth0/logTo) + SMTP server
+    assignee: '@ma.tech'
+    effort: 5d
+    start: '2026-06-08'
+    end: '2026-06-28'
+    status: Todo
+  - task: RBAC system (scopes, claims, middleware)
+    assignee: '@ma.tech'
+    effort: 10d
+    start: '2026-06-08'
+    end: '2026-07-05'
+    status: Todo
+  - task: Tenant management (CRUD, provisioning, S3 prefix)
+    assignee: '@ma.tech'
+    effort: 10d
+    start: '2026-06-29'
+    end: '2026-07-19'
+    status: Todo
+  - task: EPCIS Export (JSON, PDF, GS1 standard, possibly signed)
+    assignee: '@ma.tech'
+    effort: 10d
+    start: '2026-10-19'
+    end: '2026-11-08'
+    status: Todo
+  - task: LLM Ecodesign full integration — WP4 T4.1
+    assignee: '@ma.tech'
+    effort: 10d
+    start: '2026-10-26'
+    end: '2026-11-15'
+    status: Todo
+  - task: IoT Adapter & Event Log (MQTT) — T2.5 ALADIN
+    assignee: '@ma.tech'
+    effort: 10d
+    start: '2026-11-02'
+    end: '2026-11-22'
+    status: Todo
+  - task: Notifications multi-channel (email, SMS, webhook, in-app)
+    assignee: '@ma.tech'
+    effort: 5d
+    start: '2026-11-23'
+    end: '2026-12-06'
+    status: Todo
+  - task: Data migration scripts KF → ALADIN (one-shot + rollback)
+    assignee: '@ma.tech'
+    effort: 5d
+    start: '2026-12-14'
+    end: '2026-12-27'
+    status: Todo
+- project: kf-fe-platform
+  branch: main
+  edit_url: https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md
+  generated: true
+  simple_board: true
+  meta:
+    description: ''
+    type: eu-project
+    po: '@ma.tech'
+    lead: '@el.tech'
+    sprint: S1
+    sprint_start: '2026-05-11'
+    sprint_end: '2026-05-22'
+    depends_on:
+    - nuoform
+    tags:
+    - eu-project
+    - circular-textiles
+    - digital-platform
+    - microfactory
+    - dpp
+    - manufacturing
+    team:
+      frontend: alexandru.bejenari@katty-fashion.ro
+      backend: ma.tech@katty-fashion.ro
+      tech_lead: el.tech@katty-fashion.ro
+      product_owner: ma.tech@katty-fashion.ro
+  tasks:
+  - task: Design system & design tokens (Tailwind, primitives, Storybook)
+    assignee: '@alexandru.bejenari'
+    effort: 10d
+    start: '2026-05-25'
+    end: '2026-06-21'
+    status: In Progress
+  - task: Login flow + redirect handling
+    assignee: '@alexandru.bejenari'
+    effort: 5d
+    start: '2026-06-22'
+    end: '2026-07-05'
+    status: Todo
+  - task: Admin Console UI (Platform Admin operations)
+    assignee: '@alexandru.bejenari'
+    effort: 10d
+    start: '2026-07-06'
+    end: '2026-07-26'
+    status: Todo
+  - task: Overview refactor (dynamic widgets per rol)
+    assignee: '@alexandru.bejenari'
+    effort: 5d
+    start: '2026-07-13'
+    end: '2026-08-02'
+    status: Todo
+  - task: Models Page refactor (filtere per rol, search)
+    assignee: '@alexandru.bejenari'
+    effort: 5d
+    start: '2026-08-03'
+    end: '2026-08-23'
+    status: Todo
+  - task: Tech Pack layout (sidebar, tooltips, guide)
+    assignee: '@alexandru.bejenari'
+    effort: 5d
+    start: '2026-08-10'
+    end: '2026-08-30'
+    status: Todo
+  - task: Model Sheet fixes (imagini, reconciliere BOM)
+    assignee: '@alexandru.bejenari'
+    effort: 2d
+    start: '2026-08-24'
+    end: '2026-09-06'
+    status: Todo
+  - task: 3D Model performance optimization (multi-mesh, asset pipeline)
+    assignee: '@alexandru.bejenari'
+    effort: 5d
+    start: '2026-09-07'
+    end: '2026-09-27'
+    status: Todo
+  - task: Garment Configurator B2C (embeddable) — T2.3 ALADIN
+    assignee: '@alexandru.bejenari'
+    effort: 10d
+    start: '2026-11-09'
+    end: '2026-11-29'
+    status: Todo
+  - task: i18n / l10n (EN + RO + customizable, RTL ready)
+    assignee: '@alexandru.bejenari'
+    effort: 5d
+    start: '2026-11-16'
+    end: '2026-11-29'
+    status: Todo
+- project: kf-platform
+  branch: master
+  edit_url: https://github.com/katty-fashion/kf-platform/edit/master/kanban.md
+  generated: true
+  simple_board: true
+  meta:
+    description: Infra platform for kf web based services
+    type: eu-project
+    po: '@ps.tech'
+    lead: '@el.tech'
+    sprint: S1
+    sprint_start: '2026-05-25'
+    sprint_end: '2026-06-07'
+    depends_on:
+    - nuoform
+    tags:
+    - eu-project
+    - circular-textiles
+    - digital-platform
+    - microfactory
+    - dpp
+    - manufacturing
+    team:
+      frontend: alexandru.bejenari@katty-fashion.ro
+      backend: ma.tech@katty-fashion.ro
+      tech_lead: el.tech@katty-fashion.ro
+  tasks:
+  - task: Project setup (repo, monorepo structure, conventions)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 2d
+    start: '2026-05-25'
+    end: '2026-06-07'
+    status: In Progress
+  - task: Collections fix + refactor (Kanban, season relations)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 10d
+    start: '2026-07-20'
+    end: '2026-08-16'
+    status: Todo
+  - task: BOM editor + LLM ecodesign hook (PDF export fix + stub)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 10d
+    start: '2026-08-17'
+    end: '2026-09-13'
+    status: Todo
+  - task: Sizing Table & QA Flow customizabil per tenant
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 5d
+    start: '2026-08-31'
+    end: '2026-09-20'
+    status: Todo
+  - task: Cost Breakdown & OCS clarification (Buyer approval workflow)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 5d
+    start: '2026-09-14'
+    end: '2026-10-04'
+    status: Todo
+  - task: Tech Process refactor (aliniere BE update)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 5d
+    start: '2026-09-21'
+    end: '2026-10-11'
+    status: Todo
+  - task: Inventory & Reception refactor (types, qty packaging, UOM)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 5d
+    start: '2026-09-28'
+    end: '2026-10-18'
+    status: Todo
+  - task: Orders refactor (Order Name, pricing, Buyer tracking portal)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 10d
+    start: '2026-08-24'
+    end: '2026-09-20'
+    status: Todo
+  - task: Planner (Calendar/Gantt/Kanban switch) — backend nou
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 20d
+    start: '2026-09-07'
+    end: '2026-10-11'
+    status: Todo
+  - task: Batches & Assignment (Operator assignment integrat)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 10d
+    start: '2026-09-21'
+    end: '2026-10-18'
+    status: Todo
+  - task: Operator View tablet (Timer, QR scan, defect flag, 3D viewer)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 20d
+    start: '2026-09-28'
+    end: '2026-10-25'
+    status: Todo
+  - task: QC Module (Inspection flow, defect logger)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 10d
+    start: '2026-10-05'
+    end: '2026-10-25'
+    status: Todo
+  - task: Reports & Cutting (camera integration, COCO export)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 5d
+    start: '2026-10-12'
+    end: '2026-10-25'
+    status: Todo
+  - task: DPP Module (data model, dashboard, validation) — T2.4 ALADIN
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 20d
+    start: '2026-09-21'
+    end: '2026-10-25'
+    status: Todo
+  - task: Public DPP / GS1 Digital Link / QR (no-auth endpoint)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 10d
+    start: '2026-10-12'
+    end: '2026-11-01'
+    status: Todo
+  - task: Auditor View (cross-tenant, elevated scope)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 5d
+    start: '2026-11-16'
+    end: '2026-11-29'
+    status: Todo
+  - task: Made2Flow dynamic JSONB schema
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 5d
+    start: '2026-11-30'
+    end: '2026-12-13'
+    status: Todo
+  - task: Migration testing (data + flow E2E)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 5d
+    start: '2026-12-07'
+    end: '2026-12-20'
+    status: Todo
+  - task: Final QA & production cutover (smoke tests, monitoring)
+    assignee: '@alexandru.bejenari + @ma.tech'
+    effort: 5d
+    start: '2026-12-21'
+    end: '2027-01-03'
+    status: Todo

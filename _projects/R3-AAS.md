@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot – digital tools for co-creation, dig
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-06-05T12:30:06.842693
+generated: 2026-06-05T12:43:47.089791
 ---
 
 # R3-AAS
@@ -24,7 +24,7 @@ generated: 2026-06-05T12:30:06.842693
 | Tags | r3group, digital-twin, capacity-planner, manufacturing |
 | Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
 
-## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md)
+## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=R3-AAS) <sup>·&nbsp;[raw](https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md)</sup>
 
 <div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
 <span class="status-pill status-pill--in-progress">In Progress</span>
@@ -285,7 +285,7 @@ pie title Effort by Status
 
 ## Links
 
-- [Edit Kanban](https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md)
+- [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=R3-AAS) ·&nbsp;[raw](https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md)
 - [Repository](https://github.com/katty-fashion/R3-AAS)
 - [Kanban Board](https://github.com/katty-fashion/R3-AAS/blob/main/kanban.md)
 

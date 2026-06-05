@@ -1,0 +1,75 @@
+---
+layout: default
+title: Kanban Builder
+permalink: /kanban-builder/
+---
+
+<h1>Kanban Builder</h1>
+<p>Edit a board with validated controls — no typos in status, effort, or dates —
+then <strong>copy</strong> the generated text and <strong>open the GitHub editor</strong>
+to paste &amp; commit. Nothing is saved automatically (this dashboard is a static site).</p>
+
+<p>
+  <label for="kb-project"><strong>Project</strong></label>
+  <select id="kb-project"></select>
+  <span id="kb-badge" class="kb-badge"></span>
+</p>
+
+<!-- Rich custom-layout boards: fall back to the raw editor -->
+<div id="kb-fallback" style="display:none">
+  <p class="kb-note">This board has a custom, multi-section layout, so the form can't
+  safely rebuild it without losing content. Edit it directly:</p>
+  <p><a id="kb-fallback-link" class="kb-btn" target="_blank" rel="noopener">Open raw GitHub editor →</a></p>
+</div>
+
+<div id="kb-editor" style="display:none">
+  <p id="kb-note" class="kb-note"></p>
+
+  <table id="kb-table">
+    <thead>
+      <tr>
+        <th>Task</th><th>Assignee</th><th>Effort</th>
+        <th>Start</th><th>End</th><th>Status</th><th></th>
+      </tr>
+    </thead>
+    <tbody id="kb-rows"></tbody>
+  </table>
+
+  <p>
+    <button id="kb-add" type="button" class="kb-btn secondary">+ Add task</button>
+  </p>
+
+  <p id="kb-warn" class="kb-warn"></p>
+
+  <h3>Generated output</h3>
+  <p>
+    <button id="kb-copy" type="button" class="kb-btn">Copy</button>
+    <a id="kb-open" class="kb-btn" target="_blank" rel="noopener">Open GitHub editor →</a>
+  </p>
+  <pre id="kb-output" class="kb-output"></pre>
+</div>
+
+<div id="kb-app"></div>
+
+<style>
+  #kb-table { width: 100%; font-size: 0.9rem; }
+  #kb-table th, #kb-table td { padding: 0.25rem; }
+  #kb-table input, #kb-table select { width: 100%; margin: 0; padding: 0.25rem; }
+  #kb-table input.kb-bad { border-color: #e53e3e; background: #fff5f5; }
+  .kb-rm { background: transparent; border: none; color: #e53e3e; cursor: pointer; padding: 0; }
+  .kb-badge { font-size: 0.8rem; color: #666; margin-left: 0.5rem; }
+  .kb-note { background: #f0f6ff; border-left: 3px solid #3182ce; padding: 0.5rem 0.75rem; }
+  .kb-warn { color: #b7791f; font-weight: 600; min-height: 1.2em; }
+  .kb-output { background: #1a202c; color: #e2e8f0; padding: 1rem; overflow-x: auto;
+               border-radius: 6px; white-space: pre; max-height: 28rem; }
+  .kb-btn { display: inline-block; }
+</style>
+
+<script>
+  window.KB_DATA = {
+    boards: {{ site.data.boards | jsonify }},
+    plan: {{ site.data.migration_plan | jsonify }}
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+<script src="{{ '/assets/js/kanban-builder.js' | relative_url }}"></script>
