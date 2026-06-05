@@ -9,6 +9,13 @@ on:
     - cron: '0 4 * * 1'    # Luni 04:00 UTC — refresh săptămânal
   workflow_dispatch:
 
+# Serialize runs: multiple repos dispatching at once previously raced on the
+# "Commit unified docs" push (non-fast-forward "cannot lock ref" failures).
+# Queue runs instead of cancelling — an in-progress Pages deploy must finish.
+concurrency:
+  group: kf-unified-sync
+  cancel-in-progress: false
+
 env:
   KF_ORG: katty-fashion
 
@@ -21,11 +28,11 @@ jobs:
       issues: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           token: ${{ secrets.KF_PAT }}
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
@@ -62,9 +69,14 @@ jobs:
           git config user.name "KF Bot"
           git config user.email "bot@katty-fashion.dev"
           git add docs/ || true
-          git diff --staged --quiet || \
+          if git diff --staged --quiet; then
+            echo "No doc changes to commit."
+          else
             git commit -m "chore: auto-update unified docs [skip ci]"
-          git push
+            # Concurrency guard makes a race unlikely, but rebase-retry on a
+            # late push (e.g. a human commit) instead of failing the run.
+            git push || (git pull --rebase --autostash origin master && git push)
+          fi
 
       - name: Deploy GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -92,7 +104,7 @@ jobs:
           git add docs/_data/sync_status.yml 2>/dev/null || true
           if ! git diff --staged --quiet; then
             git commit -m "chore: update sheets sync status [skip ci]"
-            git push || true
+            git push || (git pull --rebase --autostash origin master && git push) || true
           fi
 
       - name: Build summary

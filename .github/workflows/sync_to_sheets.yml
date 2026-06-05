@@ -5,6 +5,11 @@ on:
   schedule:
     - cron: '0 9 * * 1-5'  # Weekdays 09:00 UTC
 
+# Serialize runs of this workflow (avoids overlapping Sheet writes).
+concurrency:
+  group: kf-sheets-sync
+  cancel-in-progress: false
+
 env:
   KF_ORG: katty-fashion
 
@@ -13,11 +18,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           token: ${{ secrets.KF_PAT }}
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
@@ -32,10 +37,14 @@ jobs:
       - name: Clone discovered repos
         run: |
           mkdir -p repos
-          while IFS= read -r repo; do
-            [ -z "$repo" ] && continue
-            echo "Cloning $repo..."
-            git clone --depth=1 \
+          # discovered.txt is "name:branch" (parse the same way as aggregate.yml)
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            repo="${line%%:*}"
+            branch="${line#*:}"
+            [ "$branch" = "$repo" ] && branch="master"
+            echo "Cloning $repo (branch: $branch)..."
+            git clone --depth=1 -b "$branch" \
               https://${{ secrets.KF_PAT }}@github.com/${{ env.KF_ORG }}/${repo}.git \
               repos/${repo} || echo "Warning: Failed to clone ${repo}"
           done < repos/discovered.txt
