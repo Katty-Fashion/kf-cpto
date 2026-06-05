@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-06-05T11:33:44.959648
+generated: 2026-06-05T12:30:06.841632
 ---
 
 # KF Team — Unified Kanban
@@ -16,7 +16,7 @@ generated: 2026-06-05T11:33:44.959648
 kanban
   Todo
     task4["R3-AAS: Feature set pentru lansare (MVP)"]
-    task5["R3-AAS: Ce este „Done" vs „Ready" pentru release"]
+    task5["R3-AAS: Ce este „Done” vs „Ready” pentru release"]
     task8["R3-AAS: Sesiune demo produse (intern)"]
     task9["R3-AAS: Pregătire feature flags (ascundere features incomplete)"]
     task10["R3-AAS: Clarificare value proposition (perspectivă tehnică)"]
