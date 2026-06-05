@@ -183,6 +183,29 @@ check("gantt label collapses whitespace", mermaid_gantt_label("a   b") == "a b")
 
 
 # ---------------------------------------------------------------------------
+# Gantt invalid-date fallback (regression: R3-AAS '—' placeholder)
+# ---------------------------------------------------------------------------
+print("gantt invalid-date fallback:")
+import aggregator
+_pd = {
+    "meta": {"sprint": "S2", "sprint_start": "2026-03-16", "sprint_end": "2026-04-03",
+             "type": "eu-project", "description": "", "depends_on": [], "tags": []},
+    "tasks": [
+        {"task": "Sketch JSON", "assignee": "@x", "effort": "", "start": "", "end": "—", "status": "Done"},
+        {"task": "Real dated", "assignee": "@y", "effort": "2d", "start": "2026-03-16", "end": "2026-03-20", "status": "Todo"},
+    ],
+    "raw": "", "exists": True,
+}
+_page = aggregator.generate_project_page("demo", _pd)
+_gantt = _page.split("```mermaid")
+_gantt_lines = [l for blk in _gantt if blk.lstrip().startswith("gantt")
+                for l in blk.splitlines() if ":" in l and "dateFormat" not in l and "title" not in l]
+check("no '—' placeholder leaks into gantt date cell", all("—" not in l for l in _gantt_lines))
+check("invalid end falls back to duration", any(":done, 2026-03-16, 1d" in l for l in _gantt_lines))
+check("valid explicit dates preserved", any("2026-03-16, 2026-03-20" in l for l in _gantt_lines))
+
+
+# ---------------------------------------------------------------------------
 print()
 print(f"RESULTS: {PASS} passed, {FAIL} failed")
 sys.exit(1 if FAIL else 0)
