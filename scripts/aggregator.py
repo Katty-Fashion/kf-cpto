@@ -36,6 +36,7 @@ from utils import (
     strip_emojis,
     mermaid_label_safe,
     update_sync_status,
+    _is_separator_row,
 )
 
 PROJECTS = load_projects()
@@ -255,6 +256,9 @@ def generate_project_page(project: str, project_data: dict) -> str:
 
     branch = PROJECT_BRANCHES.get(project, "master")
     edit_url = EDIT_URL_TEMPLATE.format(repo=project, branch=branch)
+    # Guided Kanban Builder (validated form → correct kanban.md) with a raw-editor
+    # fallback. Liquid relative_url resolves the baseurl at Jekyll build time.
+    builder_link = "{{ '/kanban-builder/' | relative_url }}?project=" + project
 
     lines = [
         "---",
@@ -287,7 +291,10 @@ def generate_project_page(project: str, project_data: dict) -> str:
 
     # Generate Kanban diagram if tasks exist
     if tasks:
-        lines.append(f"## Current Sprint Kanban &nbsp; [Edit Kanban]({edit_url})")
+        lines.append(
+            f"## Current Sprint Kanban &nbsp; [Edit Kanban]({builder_link}) "
+            f"<sup>·&nbsp;[raw]({edit_url})</sup>"
+        )
         lines.append("")
         lines.append(_status_legend())
         lines.append("")
@@ -424,7 +431,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
     # Links
     lines.append("## Links")
     lines.append("")
-    lines.append(f"- [Edit Kanban]({edit_url})")
+    lines.append(f"- [Edit Kanban]({builder_link}) ·&nbsp;[raw]({edit_url})")
     lines.append(f"- [Repository](https://github.com/{ORG}/{project})")
     lines.append(f"- [Kanban Board](https://github.com/{ORG}/{project}/blob/{branch}/kanban.md)")
     lines.append("")
@@ -649,6 +656,77 @@ def write_gantt_yaml(rows: list[dict]) -> None:
     GANTT_DATA_FILE.write_text(yaml.safe_dump(payload, sort_keys=False, allow_unicode=True))
 
 
+def _generated_repos() -> set:
+    """Repos whose kanban.md is generated from the migration plan-of-record.
+
+    Read from docs/_data/migration_plan.yml (the source of the discipline split).
+    The Kanban Builder steers edits for these repos to the plan-of-record instead
+    of the generated kanban.md (which a regenerate would overwrite).
+    """
+    plan_path = DATA_DIR / "migration_plan.yml"
+    if not plan_path.exists():
+        return set()
+    try:
+        plan = yaml.safe_load(plan_path.read_text()) or {}
+    except yaml.YAMLError:
+        return set()
+    return {t.get("repo") for t in plan.get("tasks", []) if t.get("repo")}
+
+
+def write_boards_yaml(data: dict) -> None:
+    """Persist per-project meta + tasks for the client-side Kanban Builder page.
+
+    The builder (docs/kanban-builder.html) reads this via Jekyll `site.data.boards`
+    to seed its validated form — so the editor never has to retype existing data.
+    """
+    gen = _generated_repos()
+    projects = []
+    for project, project_data in data.items():
+        meta = project_data["meta"]
+        branch = PROJECT_BRANCHES.get(project, "master")
+        # A board is "simple" (safe to rebuild whole from frontmatter + one table)
+        # when its body has exactly one task table. Rich, multi-table boards
+        # (e.g. R3-AAS) would lose prose on a full rebuild — the builder falls
+        # back to the raw editor for those.
+        raw = project_data.get("raw", "")
+        table_count = sum(1 for ln in raw.splitlines() if _is_separator_row(ln))
+        projects.append({
+            "project": project,
+            "branch": branch,
+            "edit_url": EDIT_URL_TEMPLATE.format(repo=project, branch=branch),
+            "generated": project in gen,
+            "simple_board": table_count == 1,
+            "meta": {
+                "description": meta.get("description", ""),
+                "type": meta.get("type", "internal"),
+                "po": meta.get("po", ""),
+                "lead": meta.get("lead", ""),
+                "sprint": meta.get("sprint", "-"),
+                "sprint_start": str(meta.get("sprint_start", "")),
+                "sprint_end": str(meta.get("sprint_end", "")),
+                "depends_on": meta.get("depends_on", []) or [],
+                "tags": meta.get("tags", []) or [],
+                "team": meta.get("team", {}) or {},
+            },
+            "tasks": [
+                {
+                    "task": t["task"],
+                    "assignee": t["assignee"],
+                    "effort": t["effort"],
+                    "start": t.get("start", ""),
+                    "end": t.get("end", ""),
+                    "status": t["status"],
+                }
+                for t in project_data["tasks"]
+            ],
+        })
+    payload = {"generated_at": now_iso(), "projects": projects}
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    (DATA_DIR / "boards.yml").write_text(
+        yaml.safe_dump(payload, sort_keys=False, allow_unicode=True)
+    )
+
+
 def generate_project_pages(data: dict):
     """Generate individual project pages"""
     projects_dir = DOCS_DIR / "_projects"
@@ -690,6 +768,10 @@ def main():
 
     # Generate individual project pages
     generate_project_pages(data)
+
+    # Per-project board data for the client-side Kanban Builder page
+    write_boards_yaml(data)
+    print("Wrote board data: docs/_data/boards.yml")
 
     # Inject auto-blocks into every augmented Jekyll page (those declaring
     # `auto_blocks: [...]` in frontmatter). Idempotent — re-runs replace
