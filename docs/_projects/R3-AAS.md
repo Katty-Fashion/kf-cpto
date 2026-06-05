@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot – digital tools for co-creation, dig
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-06-05T12:50:41.023454
+generated: 2026-06-05T14:53:18.989734
 ---
 
 # R3-AAS
@@ -204,7 +204,7 @@ gantt
     Validare integrare end-to-end (expunere API Nuoform) :done, 2026-03-16, 1d
     Arhitectură multi-tenant (in place) :done, 2026-03-17, 1d
     Separare date per client (in place) :done, 2026-03-18, 1d
-    Sketch → JSON → sistem :done, 2026-03-19, —
+    Sketch → JSON → sistem :done, 2026-03-19, 1d
     Acces VPN + onboarding corect :done, 2026-03-20, 1d
     Review LMS API endpoints and AAS structure :done, 2026-03-16, 2026-03-16
     Technical architecture alignment for Planner integration :done, 2026-03-17, 2026-03-17
@@ -218,7 +218,7 @@ gantt
     Clarificare acces server R3 (Vangelis) :active, 2026-03-23, 1d
     Integrare între sisteme (Katty / LMS) :active, 2026-03-24, 1d
     Multiple tipuri AAS → standardizare :active, 2026-03-25, 1d
-    Integrare LMS (AAS extern) :active, 2026-03-26, ~1 lună
+    Integrare LMS (AAS extern) :active, 2026-03-26, 1d
     UI flow (parțial complet) :active, 2026-03-27, 1d
     Deploy AAS în Cloud (hosting) :active, 2026-03-28, 1d
     Clarificare format date pentru platforma R3 :active, 2026-03-29, 1d
