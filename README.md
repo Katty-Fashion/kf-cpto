@@ -7,11 +7,12 @@
 KF-CPTO is a centralized dashboard that **automatically discovers** and aggregates project management data from KF Team repositories. Any repo in the `katty-fashion` org with a `kanban.md` file is automatically included — no manual configuration required.
 
 - **Unified Kanban Board** — All project tasks in one view
-- **Sprint Calendar** — Visual timeline with Gantt charts
+- **Sprint Calendar & Migration Gantt** — Visual timelines with Mermaid Gantt charts
 - **LOE (Level of Effort) Reports** — Effort tracking by project and assignee
 - **Dependency Graph** — Obsidian-style directed graph showing inter-project dependencies
 - **Google Sheets Integration** — Automatic LOE sync for reporting
 - **GitHub Pages Deployment** — Live at `https://katty-fashion.github.io/kf-cpto/`
+- **Kanban Generator** — A local script that splits the migration plan-of-record into distinct per-repo `kanban.md` files by discipline (see [Generate Per-Repo Kanbans](#generate-per-repo-kanbans-from-the-migration-plan))
 - **Activity Sync Skill** — A local Claude skill that reconciles each repo's `kanban.md` against *real* git activity (merged PRs, active branches) and writes the corrections back (see below)
 
 ## Activity Sync — Keep the Board Honest
@@ -58,15 +59,56 @@ python .claude/skills/activity-sync/writeback.py      # add --dry-run to preview
 
 > Full reference (output formats, conflict recovery, env vars): [`.claude/skills/activity-sync/SKILL.md`](.claude/skills/activity-sync/SKILL.md)
 
+## Generate Per-Repo Kanbans from the Migration Plan
+
+The three platform repos — `kf-platform`, `kf-be-platform`, `kf-fe-platform` — share **one** migration plan. Rather than hand-maintaining three boards, `scripts/generate_kanban.py` keeps a single **plan-of-record** and splits it into distinct per-repo `kanban.md` files by discipline:
+
+| Discipline (Assignee) | Owning repo |
+| :--- | :--- |
+| FE-only (`@<frontend>`) | `kf-fe-platform` |
+| BE-only (`@<backend>`) | `kf-be-platform` |
+| FE + BE (`@<frontend> + @<backend>`) | `kf-platform` (cross-stack umbrella) |
+
+Every task lands in **exactly one** repo, so the LOE export sums cleanly with **no double-counting**.
+
+### The plan-of-record
+
+`docs/_data/migration_plan.yml` is the editable source of truth (seeded once from `kf-platform`'s curated board). **Edit this file** to change tasks, effort, dates, or assignees — then regenerate. Effort is true **person-days** (`Nd`), not calendar span.
+
+### Workflow
+
+```bash
+# 1. Edit the plan
+$EDITOR docs/_data/migration_plan.yml
+
+# 2. Preview the split — writes nothing
+python scripts/generate_kanban.py
+
+# 3. Apply — sync each clone to origin, regenerate, one batch confirm, commit + push
+python scripts/generate_kanban.py --apply --no-push   # commit locally, push via your SSH
+python scripts/generate_kanban.py --apply             # commit + push (needs KF_PAT)
+```
+
+The push fires each repo's `notify-kf-cpto.yml` dispatch → the dashboard + Sheet rebuild automatically.
+
+**Guarantees:**
+- **Only `kanban.md` is committed** — never unrelated files.
+- **Mindful of others.** Before regenerating, each clone is fast-forwarded to origin so our commit lands *on top* of everyone's work — never a force-push, never discarding others' commits. A repo whose `kanban.md` diverged on origin is logged `[CONFLICT]` and skipped.
+- **Status merge.** A repo's own valid status wins over the plan's, so regenerating never reverts statuses set by Activity Sync.
+- **Idempotent.** Re-running with no plan change writes nothing.
+- **First run only:** if `migration_plan.yml` is missing it is seeded from `kf-platform`; use `--reseed` to rebuild it from a full-plan `kf-platform` board.
+
+> Full reference: the `[GENERATE]` section of [`.claude/skills/activity-sync/SKILL.md`](.claude/skills/activity-sync/SKILL.md)
+
 ## How It Works
 
 ```mermaid
 graph TD
-    subgraph repos["Repo-uri Individuale"]
-        A["ai-rise/kanban.md<br/>MermaidJS Kanban"]
-        B["airegio/kanban.md<br/>MermaidJS Kanban"]
-        C["nuoform/kanban.md<br/>MermaidJS Kanban"]
-        D["waist-mgmt/kanban.md<br/>MermaidJS Kanban"]
+    subgraph repos["Tracked Project Repos"]
+        A["kf-platform/kanban.md<br/>MermaidJS Kanban"]
+        B["kf-fe-platform/kanban.md<br/>MermaidJS Kanban"]
+        C["kf-be-platform/kanban.md<br/>MermaidJS Kanban"]
+        D["R3-AAS/kanban.md<br/>MermaidJS Kanban"]
     end
 
     A -->|push trigger| GHA
@@ -164,16 +206,21 @@ sprint_start: 2026-03-02
 sprint_end: 2026-03-13
 depends_on: [nuoform]     # other project names this depends on
 tags: [frontend, mvp]     # free-form tags
+team:                     # optional — used by the kanban generator for assignee mapping
+  frontend: dev.fe@katty-fashion.ro
+  backend:  dev.be@katty-fashion.ro
 ---
 
 # Project Kanban
 
-| Task | Assignee | Effort | Status |
-| :--- | :--- | :--- | :--- |
-| Implement feature X | @developer | 3d | In Progress |
-| Code review for Y | @reviewer | 1d | Review |
-| Deploy to staging | @devops | 2d | Todo |
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Implement feature X | @developer | 3d | 2026-03-02 | 2026-03-04 | In Progress |
+| Code review for Y | @reviewer | 1d | 2026-03-05 | 2026-03-05 | Review |
+| Deploy to staging | @devops | 2d | | | Todo |
 ```
+
+The **6-column** form (with `Start`/`End`) is recommended — the dates drive the per-project Gantt. The legacy **4-column** form (`| Task | Assignee | Effort | Status |`) is still supported.
 
 ### Frontmatter Fields
 
@@ -189,15 +236,20 @@ tags: [frontend, mvp]     # free-form tags
 | `sprint_end` | Yes | Sprint end date (YYYY-MM-DD) |
 | `depends_on` | No | List of project names this depends on (powers the dependency graph) |
 | `tags` | No | Free-form tags for categorization |
+| `team` | No | `frontend` / `backend` / `tech_lead` emails — used by the kanban generator to derive assignees |
 
 ### Task Table
 
 | Column | Format | Valid Values |
 | :--- | :--- | :--- |
 | Task | Free text | Task description |
-| Assignee | `@username` | GitHub username with @ prefix |
-| Effort | `Nd` | Number + 'd' for days (e.g., `3d`, `0.5d`) |
-| Status | Exact match | `Todo`, `In Progress`, `Review`, `Done` |
+| Assignee | `@username` | One or more `@handles` (e.g. `@fe + @be`) |
+| Effort | `Nd` | Number + 'd' for **person-days** (e.g., `3d`, `0.5d`) |
+| Start | `YYYY-MM-DD` | Optional — start date (drives the Gantt) |
+| End | `YYYY-MM-DD` | Optional — end date (drives the Gantt) |
+| Status | Canonical | `Todo`, `In Progress`, `Review`, `Done` |
+
+**Parsing is forgiving.** The parser maps columns by **header name**, so an `Owner` column is read as Assignee and a `Deadline` column as End; tables without a `Task` column (e.g. summary tables) are skipped. Statuses are **canonicalized** — `In progress`, emoji-prefixed (`🔄 In Progress`), and common synonyms are normalized to the four canonical values; anything unrecognized is left as-is with a warning.
 
 ### Status Color Indicators
 
@@ -322,17 +374,28 @@ kf-cpto/
 │   ├── _includes/
 │   │   ├── sidebar.html       # Dynamic navigation (from projects collection)
 │   │   └── card.html          # Card component
+│   ├── _data/
+│   │   ├── calendar.yml        # Migration calendar config (hand-edited)
+│   │   ├── migration_plan.yml  # Migration plan-of-record (source for the generator)
+│   │   ├── gantt.yml           # Gantt rows parsed from migration-gantt.md (auto)
+│   │   ├── loe.yml             # Canonical LOE intermediate (auto)
+│   │   └── sync_status.yml     # Aggregator + Sheets health (auto)
 │   ├── index.md               # Dashboard homepage (dynamic project cards)
 │   ├── unified-kanban.md      # Aggregated kanban (auto-generated)
 │   ├── unified-calendar.md    # Sprint calendar (auto-generated)
+│   ├── migration-gantt.md     # Migration Gantt (prose + AUTO blocks)
 │   ├── loe-report.md          # LOE report (auto-generated)
 │   ├── dependency-graph.md    # Inter-project graph (auto-generated)
 │   └── _projects/             # Per-project pages (Jekyll collection, auto-generated)
 ├── scripts/
 │   ├── discover.py            # GitHub API repo discovery
 │   ├── aggregator.py          # Main aggregation + generation
+│   ├── generate_kanban.py     # Split the migration plan-of-record into per-repo kanbans
+│   ├── auto_blocks.py         # Render idempotent AUTO:* blocks in augmented pages
+│   ├── validate_auto_blocks.py # CI lint for AUTO markers
 │   ├── sheets_sync.py         # Google Sheets LOE sync
-│   └── utils.py               # Shared utilities
+│   ├── utils.py               # Shared utilities (canonical kanban parser)
+│   └── test_generate_kanban.py # Unit tests (parser, canonicalization, generator)
 ├── templates/                 # Starter templates for new project repos
 │   ├── kanban.md              # Kanban template with full frontmatter
 │   ├── REPO_README.md         # README template with architecture docs
@@ -346,11 +409,13 @@ kf-cpto/
 | Issue | Solution |
 | :--- | :--- |
 | Project not appearing on dashboard | Ensure `kanban.md` exists at repo root (not in a subdirectory) |
-| Tasks not parsing | Use exact status values: `Todo`, `In Progress`, `Review`, `Done` |
+| Task shows an odd status | Statuses are canonicalized; an unrecognized value is left as-is with a `Warning:` in the aggregator log — fix it to one of `Todo`, `In Progress`, `Review`, `Done` |
 | Effort not calculated | Format: `Nd` (e.g., `3d`, `1.5d`, `0.5d`) |
+| Generator logs `[CONFLICT]` for a repo | The local clone diverged or its `kanban.md` changed on origin — `git -C repos-local/<repo> status` and resolve, then re-run |
 | Dispatch not triggering | Verify event type is `kanban-updated` in notify workflow |
 | Sheets empty | Check `GSHEET_ID`, `GSHEET_CLIENT_EMAIL`, `GSHEET_PRIVATE_KEY` secrets are set |
 | Discovery finds no repos | Ensure `KF_PAT` has read access to org repos |
+| `aggregate.yml` run fails on "Commit unified docs" | Harmless push race when several repos dispatch at once — the next run commits the docs. (No `concurrency:` guard yet.) |
 
 ## Tools Under Evaluation
 
