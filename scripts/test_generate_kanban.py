@@ -183,6 +183,29 @@ check("gantt label collapses whitespace", mermaid_gantt_label("a   b") == "a b")
 
 
 # ---------------------------------------------------------------------------
+# Sprint cadence (platform alignment)
+# ---------------------------------------------------------------------------
+print("sprint cadence:")
+from datetime import date as _date
+_cal = {"start_date": "2026-05-04", "sprint_length_weeks": 2, "total_weeks": 32}
+check("sprint_bounds S1", gk.sprint_bounds(_cal, 1) == ("2026-05-04", "2026-05-15"))
+check("sprint_bounds S3", gk.sprint_bounds(_cal, 3) == ("2026-06-01", "2026-06-12"))
+check("current sprint for 2026-06-05 is S3", gk.current_sprint_n(_cal, _date(2026, 6, 5)) == 3)
+check("current sprint before start clamps to 1", gk.current_sprint_n(_cal, _date(2026, 1, 1)) == 1)
+check("active_sprint_window honors plan override",
+      gk.active_sprint_window({"active_sprint": "S5"}, _cal, _date(2026, 6, 5))
+      == ("S5", *gk.sprint_bounds(_cal, 5)))
+check("active_sprint_window falls back to date",
+      gk.active_sprint_window({}, _cal, _date(2026, 6, 5))[0] == "S3")
+_fm = "---\nproject: x\nsprint: S1\nsprint_start: 2026-05-11\nsprint_end: 2026-05-22\n---\n"
+_ovr = gk._override_sprint_frontmatter(_fm, "S3", "2026-06-01", "2026-06-12")
+check("override sets sprint label", "sprint: S3" in _ovr)
+check("override sets sprint_start", "sprint_start: 2026-06-01" in _ovr)
+check("override sets sprint_end", "sprint_end: 2026-06-12" in _ovr)
+check("override leaves other keys", "project: x" in _ovr)
+
+
+# ---------------------------------------------------------------------------
 # Gantt invalid-date fallback (regression: R3-AAS '—' placeholder)
 # ---------------------------------------------------------------------------
 print("gantt invalid-date fallback:")
