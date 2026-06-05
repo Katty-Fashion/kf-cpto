@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-be-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-06-05T12:30:06.851667
+generated: 2026-06-05T12:43:47.106812
 ---
 
 # kf-be-platform
@@ -24,7 +24,7 @@ generated: 2026-06-05T12:30:06.851667
 | Tags | eu-project, circular-textiles, digital-platform, microfactory, dpp, manufacturing |
 | Dependencies | [nuoform]({{ '/projects/nuoform/' | relative_url }}) |
 
-## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md)
+## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=kf-be-platform) <sup>·&nbsp;[raw](https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md)</sup>
 
 <div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
 <span class="status-pill status-pill--in-progress">In Progress</span>
@@ -103,7 +103,7 @@ pie title Effort by Status
 
 ## Links
 
-- [Edit Kanban](https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md)
+- [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=kf-be-platform) ·&nbsp;[raw](https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md)
 - [Repository](https://github.com/katty-fashion/kf-be-platform)
 - [Kanban Board](https://github.com/katty-fashion/kf-be-platform/blob/main/kanban.md)
 
