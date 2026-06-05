@@ -1,5 +1,5 @@
-generated_at: '2026-06-05T11:08:31Z'
-row_count: 240
+generated_at: '2026-06-05T11:09:28Z'
+row_count: 220
 rows:
 - project: R3-AAS
   sprint: S2
@@ -1620,99 +1620,11 @@ rows:
   status: In Progress
 - project: kf-platform
   sprint: S1
-  task: Design system & design tokens (Tailwind, primitives, Storybook)
-  assignee: '@alexandru.bejenari'
-  effort_days: 10.0
-  start: '2026-05-25'
-  end: '2026-06-21'
-  status: In Progress
-- project: kf-platform
-  sprint: S1
-  task: Database schema v2 design + migrations (multi-tenant RLS)
-  assignee: '@ma.tech'
-  effort_days: 10.0
-  start: '2026-05-25'
-  end: '2026-06-21'
-  status: In Progress
-- project: kf-platform
-  sprint: S1
-  task: CI/CD pipeline (GitHub Actions / GitLab CI)
-  assignee: '@ma.tech'
-  effort_days: 2.0
-  start: '2026-05-25'
-  end: '2026-06-07'
-  status: In Progress
-- project: kf-platform
-  sprint: S1
-  task: IDP setup (Keycloak/Auth0/logTo) + SMTP server
-  assignee: '@ma.tech'
-  effort_days: 5.0
-  start: '2026-06-08'
-  end: '2026-06-28'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: RBAC system (scopes, claims, middleware)
-  assignee: '@ma.tech'
-  effort_days: 10.0
-  start: '2026-06-08'
-  end: '2026-07-05'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: Login flow + redirect handling
-  assignee: '@alexandru.bejenari'
-  effort_days: 5.0
-  start: '2026-06-22'
-  end: '2026-07-05'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: Tenant management (CRUD, provisioning, S3 prefix)
-  assignee: '@ma.tech'
-  effort_days: 10.0
-  start: '2026-06-29'
-  end: '2026-07-19'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: Admin Console UI (Platform Admin operations)
-  assignee: '@alexandru.bejenari'
-  effort_days: 10.0
-  start: '2026-07-06'
-  end: '2026-07-26'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: Overview refactor (dynamic widgets per rol)
-  assignee: '@alexandru.bejenari'
-  effort_days: 5.0
-  start: '2026-07-13'
-  end: '2026-08-02'
-  status: Todo
-- project: kf-platform
-  sprint: S1
   task: Collections fix + refactor (Kanban, season relations)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
   start: '2026-07-20'
   end: '2026-08-16'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: Models Page refactor (filtere per rol, search)
-  assignee: '@alexandru.bejenari'
-  effort_days: 5.0
-  start: '2026-08-03'
-  end: '2026-08-23'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: Tech Pack layout (sidebar, tooltips, guide)
-  assignee: '@alexandru.bejenari'
-  effort_days: 5.0
-  start: '2026-08-10'
-  end: '2026-08-30'
   status: Todo
 - project: kf-platform
   sprint: S1
@@ -1724,27 +1636,11 @@ rows:
   status: Todo
 - project: kf-platform
   sprint: S1
-  task: Model Sheet fixes (imagini, reconciliere BOM)
-  assignee: '@alexandru.bejenari'
-  effort_days: 2.0
-  start: '2026-08-24'
-  end: '2026-09-06'
-  status: Todo
-- project: kf-platform
-  sprint: S1
   task: Sizing Table & QA Flow customizabil per tenant
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
   start: '2026-08-31'
   end: '2026-09-20'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: 3D Model performance optimization (multi-mesh, asset pipeline)
-  assignee: '@alexandru.bejenari'
-  effort_days: 5.0
-  start: '2026-09-07'
-  end: '2026-09-27'
   status: Todo
 - project: kf-platform
   sprint: S1
@@ -1836,59 +1732,11 @@ rows:
   status: Todo
 - project: kf-platform
   sprint: S1
-  task: EPCIS Export (JSON, PDF, GS1 standard, possibly signed)
-  assignee: '@ma.tech'
-  effort_days: 10.0
-  start: '2026-10-19'
-  end: '2026-11-08'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: LLM Ecodesign full integration — WP4 T4.1
-  assignee: '@ma.tech'
-  effort_days: 10.0
-  start: '2026-10-26'
-  end: '2026-11-15'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: IoT Adapter & Event Log (MQTT) — T2.5 ALADIN
-  assignee: '@ma.tech'
-  effort_days: 10.0
-  start: '2026-11-02'
-  end: '2026-11-22'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: Garment Configurator B2C (embeddable) — T2.3 ALADIN
-  assignee: '@alexandru.bejenari'
-  effort_days: 10.0
-  start: '2026-11-09'
-  end: '2026-11-29'
-  status: Todo
-- project: kf-platform
-  sprint: S1
   task: Auditor View (cross-tenant, elevated scope)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
   start: '2026-11-16'
   end: '2026-11-29'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: i18n / l10n (EN + RO + customizable, RTL ready)
-  assignee: '@alexandru.bejenari'
-  effort_days: 5.0
-  start: '2026-11-16'
-  end: '2026-11-29'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: Notifications multi-channel (email, SMS, webhook, in-app)
-  assignee: '@ma.tech'
-  effort_days: 5.0
-  start: '2026-11-23'
-  end: '2026-12-06'
   status: Todo
 - project: kf-platform
   sprint: S1
@@ -1905,14 +1753,6 @@ rows:
   effort_days: 5.0
   start: '2026-12-07'
   end: '2026-12-20'
-  status: Todo
-- project: kf-platform
-  sprint: S1
-  task: Data migration scripts KF → ALADIN (one-shot + rollback)
-  assignee: '@ma.tech'
-  effort_days: 5.0
-  start: '2026-12-14'
-  end: '2026-12-27'
   status: Todo
 - project: kf-platform
   sprint: S1
