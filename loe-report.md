@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-06-05T14:58:31.870566
+generated: 2026-06-05T14:59:36.358607
 ---
 
 # KF Team — Level of Effort Report
@@ -12,9 +12,9 @@ generated: 2026-06-05T14:58:31.870566
 | Project | Sprint | Total Effort | Completed | Remaining |
 | :--- | :--- | :---: | :---: | :---: |
 | R3-AAS | S2 | 18.5d | 5.0d | 13.5d |
-| kf-be-platform | S1 | 77.0d | 0d | 77.0d |
-| kf-fe-platform | S1 | 62.0d | 0d | 62.0d |
-| kf-platform | S1 | 167.0d | 0d | 167.0d |
+| kf-be-platform | S3 | 77.0d | 0d | 77.0d |
+| kf-fe-platform | S3 | 62.0d | 0d | 62.0d |
+| kf-platform | S3 | 167.0d | 0d | 167.0d |
 | **Total** | | **324.5d** | **5.0d** | **319.5d** |
 
 ## Effort by Assignee

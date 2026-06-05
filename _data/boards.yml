@@ -1,4 +1,4 @@
-generated_at: '2026-06-05T14:58:31Z'
+generated_at: '2026-06-05T14:59:36Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -464,9 +464,9 @@ projects:
     type: eu-project
     po: '@ma.tech'
     lead: '@el.tech'
-    sprint: S1
-    sprint_start: '2026-05-11'
-    sprint_end: '2026-05-22'
+    sprint: S3
+    sprint_start: '2026-06-01'
+    sprint_end: '2026-06-12'
     depends_on:
     - nuoform
     tags:
@@ -552,9 +552,9 @@ projects:
     type: eu-project
     po: '@ma.tech'
     lead: '@el.tech'
-    sprint: S1
-    sprint_start: '2026-05-11'
-    sprint_end: '2026-05-22'
+    sprint: S3
+    sprint_start: '2026-06-01'
+    sprint_end: '2026-06-12'
     depends_on:
     - nuoform
     tags:
@@ -640,9 +640,9 @@ projects:
     type: eu-project
     po: '@ps.tech'
     lead: '@el.tech'
-    sprint: S1
-    sprint_start: '2026-05-25'
-    sprint_end: '2026-06-07'
+    sprint: S3
+    sprint_start: '2026-06-01'
+    sprint_end: '2026-06-12'
     depends_on:
     - nuoform
     tags:

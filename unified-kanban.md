@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-06-05T14:58:31.870014
+generated: 2026-06-05T14:59:36.358027
 ---
 
 # KF Team — Unified Kanban
@@ -149,9 +149,9 @@ gantt
     section R3-AAS
     S2 :active, 2026-03-16, 2026-04-03
     section kf-be-platform
-    S1 :active, 2026-05-11, 2026-05-22
+    S3 :active, 2026-06-01, 2026-06-12
     section kf-fe-platform
-    S1 :active, 2026-05-11, 2026-05-22
+    S3 :active, 2026-06-01, 2026-06-12
     section kf-platform
-    S1 :active, 2026-05-25, 2026-06-07
+    S3 :active, 2026-06-01, 2026-06-12
 ```
