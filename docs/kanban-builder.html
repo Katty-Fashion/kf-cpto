@@ -5,15 +5,27 @@ permalink: /kanban-builder/
 ---
 
 <h1>Kanban Builder</h1>
-<p>Edit a board with validated controls — no typos in status, effort, or dates —
-then <strong>copy</strong> the generated text and <strong>open the GitHub editor</strong>
-to paste &amp; commit. Nothing is saved automatically (this dashboard is a static site).</p>
+<p>Edit a board with structured controls that can't produce invalid syntax, see a
+live preview of the exact <code>kanban.md</code> it will write, and validate every
+rule of the kanban DSL — then <strong>Copy &amp; open the GitHub editor</strong> to
+paste &amp; commit. (This dashboard is a static site, so the commit itself stays in
+GitHub.)</p>
 
 <p>
   <label for="kb-project"><strong>Project</strong></label>
   <select id="kb-project"></select>
   <span id="kb-badge" class="kb-badge"></span>
 </p>
+
+<details class="kb-ref">
+  <summary>Kanban DSL reference</summary>
+  <ul>
+    <li><strong>Status</strong> — one of <code>Todo</code>, <code>In Progress</code>, <code>Review</code>, <code>Done</code> (chosen from a dropdown here).</li>
+    <li><strong>Effort</strong> — <code>Nd</code>: a number then <code>d</code>, e.g. <code>3d</code>, <code>0.5d</code> (or empty).</li>
+    <li><strong>Start / End</strong> — <code>YYYY-MM-DD</code> (or empty). End must not precede Start.</li>
+    <li><strong>Task / Assignee</strong> — free text; a literal <code>|</code> is converted to <code>/</code> so it can't break the table.</li>
+  </ul>
+</details>
 
 <!-- Rich custom-layout boards: fall back to the raw editor -->
 <div id="kb-fallback" style="display:none">
@@ -25,26 +37,26 @@ to paste &amp; commit. Nothing is saved automatically (this dashboard is a stati
 <div id="kb-editor" style="display:none">
   <p id="kb-note" class="kb-note"></p>
 
+  <div id="kb-meta"></div>
+
+  <h3>Tasks</h3>
   <table id="kb-table">
     <thead>
-      <tr>
-        <th>Task</th><th>Assignee</th><th>Effort</th>
-        <th>Start</th><th>End</th><th>Status</th><th></th>
-      </tr>
+      <tr><th>Task</th><th>Assignee</th><th>Effort</th><th>Start</th><th>End</th><th>Status</th><th></th></tr>
     </thead>
     <tbody id="kb-rows"></tbody>
   </table>
+  <p><button id="kb-add" type="button" class="kb-btn secondary">+ Add task</button></p>
 
+  <div id="kb-validation" class="kb-validation"></div>
+
+  <h3>Generated <code>kanban.md</code> (preview)</h3>
   <p>
-    <button id="kb-add" type="button" class="kb-btn secondary">+ Add task</button>
+    <button id="kb-commit" type="button" class="kb-btn">Copy &amp; open GitHub editor →</button>
   </p>
-
-  <p id="kb-warn" class="kb-warn"></p>
-
-  <h3>Generated output</h3>
-  <p>
-    <button id="kb-copy" type="button" class="kb-btn">Copy</button>
-    <a id="kb-open" class="kb-btn" target="_blank" rel="noopener">Open GitHub editor →</a>
+  <p id="kb-handoff-hint" class="kb-note" style="display:none">
+    In the GitHub editor: select all (<kbd>Ctrl/Cmd</kbd>+<kbd>A</kbd>), paste
+    (<kbd>Ctrl/Cmd</kbd>+<kbd>V</kbd>), then <strong>Commit changes</strong>.
   </p>
   <pre id="kb-output" class="kb-output"></pre>
 </div>
@@ -52,17 +64,25 @@ to paste &amp; commit. Nothing is saved automatically (this dashboard is a stati
 <div id="kb-app"></div>
 
 <style>
+  .kb-ref { margin: 0.5rem 0 1rem; font-size: 0.9rem; }
+  .kb-ref code { font-size: 0.85em; }
   #kb-table { width: 100%; font-size: 0.9rem; }
   #kb-table th, #kb-table td { padding: 0.25rem; }
   #kb-table input, #kb-table select { width: 100%; margin: 0; padding: 0.25rem; }
-  #kb-table input.kb-bad { border-color: #e53e3e; background: #fff5f5; }
-  .kb-rm { background: transparent; border: none; color: #e53e3e; cursor: pointer; padding: 0; }
+  #kb-table input.kb-bad { border-color: #c2682d; background: #fdf3ec; }
+  .kb-meta-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr));
+                  gap: 0.5rem 1rem; }
+  .kb-meta-grid label { font-size: 0.85rem; }
+  .kb-rm { background: transparent; border: none; color: #c2682d; cursor: pointer; padding: 0; }
   .kb-badge { font-size: 0.8rem; color: #666; margin-left: 0.5rem; }
-  .kb-note { background: #f0f6ff; border-left: 3px solid #3182ce; padding: 0.5rem 0.75rem; }
-  .kb-warn { color: #b7791f; font-weight: 600; min-height: 1.2em; }
+  .kb-note { background: #eef5ee; border-left: 3px solid #3a7d44; padding: 0.5rem 0.75rem; }
+  .kb-validation { padding: 0.5rem 0.75rem; border-radius: 6px; margin: 0.75rem 0; }
+  .kb-validation.kb-valid { background: #eef5ee; border-left: 3px solid #3a7d44; color: #1e3a26; }
+  .kb-validation.kb-invalid { background: #fdf3ec; border-left: 3px solid #c2682d; color: #6b3410; }
+  .kb-validation ul { margin: 0.4rem 0 0; }
   .kb-output { background: #1a202c; color: #e2e8f0; padding: 1rem; overflow-x: auto;
                border-radius: 6px; white-space: pre; max-height: 28rem; }
-  .kb-btn { display: inline-block; }
+  #kb-commit[disabled] { opacity: 0.5; cursor: not-allowed; }
 </style>
 
 <script>
