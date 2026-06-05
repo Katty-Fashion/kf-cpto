@@ -494,6 +494,25 @@ def strip_emojis(text: str) -> str:
     return re.sub(r"  +", " ", cleaned).strip()
 
 
+def mermaid_label_safe(text: str) -> str:
+    """Make text safe to embed inside a Mermaid node label — e.g. `id["<text>"]`.
+
+    The node label is delimited by double quotes and square brackets, so a literal
+    `"` / `[` / `]` in the task text terminates the node early and breaks the whole
+    diagram with a "Syntax error in text". Replace those delimiters with faithful,
+    display-only stand-ins (typographic quote, parentheses) and flatten newlines.
+    """
+    if not text:
+        return text
+    return (
+        text.replace('"', "”")   # " -> ” (right double quotation mark)
+            .replace("[", "(")
+            .replace("]", ")")
+            .replace("\n", " ")
+            .strip()
+    )
+
+
 def _sanitize_task(task: dict[str, str]) -> dict[str, str]:
     """Strip emojis from the human-facing fields of a parsed task dict."""
     for key in ("task", "assignee", "status", "effort"):

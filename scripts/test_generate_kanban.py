@@ -16,7 +16,7 @@ if str(_SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS_DIR))
 
 import utils
-from utils import canonicalize_status, parse_kanban_tasks, TASK_STATUSES
+from utils import canonicalize_status, parse_kanban_tasks, mermaid_label_safe, TASK_STATUSES
 import generate_kanban as gk
 
 PASS = 0
@@ -154,6 +154,19 @@ SAMPLE = (
 m = gk.existing_status_map(SAMPLE)
 check("existing_status_map keeps canonicalized valid status", m.get("A") == "In Progress")
 check("existing_status_map drops unknown status", "B" not in m)
+
+
+# ---------------------------------------------------------------------------
+# mermaid_label_safe
+# ---------------------------------------------------------------------------
+print("mermaid_label_safe:")
+_lbl = mermaid_label_safe('Ce este „Done" vs „Ready" release')
+check("double-quotes replaced (no ASCII \" left)", '"' not in _lbl)
+check("typographic quote substituted", "”" in _lbl)
+check("square brackets neutralized", mermaid_label_safe("a [x] b") == "a (x) b")
+check("newlines flattened", "\n" not in mermaid_label_safe("a\nb"))
+check("node label has exactly 2 delimiter quotes",
+      f'task1["{mermaid_label_safe(chr(34)+"q"+chr(34))}"]'.count('"') == 2)
 
 
 # ---------------------------------------------------------------------------

@@ -34,6 +34,7 @@ from utils import (
     now_iso,
     parse_effort_days,
     strip_emojis,
+    mermaid_label_safe,
     update_sync_status,
 )
 
@@ -89,7 +90,7 @@ def generate_unified_kanban(data: dict) -> str:
     for status, tasks in statuses.items():
         lines.append(f"  {status}")
         for task in tasks:
-            task_label = f"{task['project']}: {task['task']}"
+            task_label = mermaid_label_safe(f"{task['project']}: {task['task']}")
             lines.append(f'    {task["id"]}["{task_label}"]')
 
     lines.append("```")
@@ -307,7 +308,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
         for status, status_tasks in statuses.items():
             lines.append(f"  {status}")
             for task in status_tasks:
-                lines.append(f'    {task["id"]}["{task["task"]}"]')
+                lines.append(f'    {task["id"]}["{mermaid_label_safe(task["task"])}"]')
 
         lines.append("```")
         lines.append("")
