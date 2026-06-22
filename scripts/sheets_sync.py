@@ -629,6 +629,55 @@ def sync_gantt_to_sheet(rows: list[list]) -> dict:
     return {"status": "ok", "row_count": data_rows}
 
 
+def sync_summary_to_sheet(rows: list[list]) -> dict:
+    """Write the cross-project portfolio summary to the Summary tab (clear + overwrite).
+
+    Design properties:
+      (1) Computed purely from docs/_data/loe.yml (via build_summary_rows); never
+          re-parses kanban.md — one-parser/one-canonical-intermediate rule preserved.
+      (2) Targets GSHEET_SUMMARY_ID — a SEPARATE spreadsheet from GSHEET_ID (default =
+          DEFAULT_SUMMARY_SHEET_ID, the R3Group sheet).
+      (3) The R3Group sheet MUST be shared (Editor) with the GSHEET_CLIENT_EMAIL service
+          account for CI writes to land.
+      (4) Guarded in main() inside its own try/except after the gantt sync, so a failure
+          here never affects the LOE/gantt sync, the sync_status.yml entry, or the exit code.
+
+    Mirrors sync_gantt_to_sheet: create-if-absent, clear, then overwrite.
+    Skips cleanly when GSHEET_SUMMARY_ID or credentials are absent.
+    """
+    started_at = time.monotonic()
+    data_rows = len(rows) - 1
+    sheet_id = os.environ.get("GSHEET_SUMMARY_ID", DEFAULT_SUMMARY_SHEET_ID)
+    if not sheet_id or not GOOGLE_API_AVAILABLE:
+        print(
+            f"Warning: {SUMMARY_TAB} sync skipped (no GSHEET_SUMMARY_ID/creds) — "
+            f"{data_rows} rows would go to the separate R3Group sheet"
+        )
+        return {"status": "skipped", "row_count": data_rows}
+    service = get_sheets_service()
+    if not service:
+        print(
+            f"Warning: {SUMMARY_TAB} sync skipped (no service) — "
+            f"{data_rows} rows would go to the separate R3Group sheet"
+        )
+        return {"status": "skipped", "row_count": data_rows}
+
+    # Ensure the tab exists, then clear and overwrite.
+    if _get_sheet_id(service, sheet_id, SUMMARY_TAB) is None:
+        service.spreadsheets().batchUpdate(
+            spreadsheetId=sheet_id,
+            body={"requests": [{"addSheet": {"properties": {"title": SUMMARY_TAB}}}]},
+        ).execute()
+        print(f"Created tab {SUMMARY_TAB}")
+    service.spreadsheets().values().clear(
+        spreadsheetId=sheet_id, range=f"{SUMMARY_TAB}!A1:Z10000"
+    ).execute()
+    write_with_retry(service, sheet_id, f"{SUMMARY_TAB}!A1", rows)
+    duration = round(time.monotonic() - started_at, 2)
+    print(f"Synced {data_rows} summary rows -> {SUMMARY_TAB} (R3Group sheet) in {duration}s")
+    return {"status": "ok", "row_count": data_rows}
+
+
 def main() -> int:
     """Main entry point. Returns 0 even on failure — the workflow proceeds."""
     print("KF Sheets Sync — Starting...")
@@ -647,6 +696,18 @@ def main() -> int:
             print(f"KF Gantt Sync — {gantt_result['status']} ({gantt_result['row_count']} rows)")
         except Exception as ge:  # noqa: BLE001
             print(f"Warning: Gantt_example sync failed (non-fatal): {ge}", file=sys.stderr)
+
+        # Additive: push cross-project summary to the Summary tab in the R3Group sheet.
+        # Guarded separately — a Summary failure never affects LOE/gantt or the exit code.
+        try:
+            payload = yaml.safe_load(LOE_DATA_FILE.read_text()) if LOE_DATA_FILE.exists() else {}
+            loe_rows = (payload or {}).get("rows", [])
+            summary_rows = build_summary_rows(loe_rows)
+            summary_result = sync_summary_to_sheet(summary_rows)
+            print(f"KF Summary Sync — {summary_result['status']} ({summary_result['row_count']} rows)")
+        except Exception as se:  # noqa: BLE001
+            print(f"Warning: Summary sync failed (non-fatal): {se}", file=sys.stderr)
+
         return 0
     except Exception as e:  # noqa: BLE001
         tb = traceback.format_exc()
