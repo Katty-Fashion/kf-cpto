@@ -96,6 +96,7 @@ jobs:
         run: python scripts/sheets_sync.py
         env:
           GSHEET_ID: ${{ secrets.GSHEET_ID }}
+          GSHEET_SUMMARY_ID: ${{ secrets.GSHEET_SUMMARY_ID }}
           GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
           GSHEET_PRIVATE_KEY: ${{ secrets.GSHEET_PRIVATE_KEY }}
           GH_TOKEN: ${{ secrets.KF_PAT }}

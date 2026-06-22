@@ -306,6 +306,7 @@ Installed in each project repo. Triggers on push to `kanban.md` and sends a `rep
 | `KF_PAT` | **Org** | Cross-repo dispatch + cloning (needed by kf-cpto and every project repo) |
 | `GOOGLE_CHAT_WEBHOOK` | **Org** | Dashboard update notifications |
 | `GSHEET_ID` | **Repo** (kf-cpto) | Google Sheet ID for LOE sync |
+| `GSHEET_SUMMARY_ID` | **Repo** (kf-cpto) | SEPARATE R3Group spreadsheet for the cross-project Summary tab; defaults to the R3Group sheet id when unset. The sheet must be shared (Editor) with `GSHEET_CLIENT_EMAIL`. |
 | `GSHEET_CLIENT_EMAIL` | **Repo** (kf-cpto) | Service account email |
 | `GSHEET_PRIVATE_KEY` | **Repo** (kf-cpto) | Service account private key |
 | `GITHUB_TOKEN` | **Auto** | Provided by GitHub Actions |
