@@ -21,6 +21,7 @@ Design properties:
 from __future__ import annotations
 
 import os
+import re
 import subprocess
 import sys
 import time
@@ -32,6 +33,8 @@ import yaml
 from utils import (
     GANTT_DATA_FILE,
     LOE_DATA_FILE,
+    TASK_STATUSES,
+    canonicalize_status,
     now_compact,
     now_iso,
     update_sync_status,
@@ -59,6 +62,181 @@ GANTT_HEADER = [
 BACKUP_PREFIX = "LOE_prev_"
 BACKUPS_TO_KEEP = 3
 MAX_WRITE_RETRIES = 3
+
+# Summary tab — writes to a SEPARATE spreadsheet (GSHEET_SUMMARY_ID, not GSHEET_ID).
+# NOTE: The R3Group sheet MUST be shared (Editor) with the GSHEET_CLIENT_EMAIL
+# service account for CI writes to land.
+DEFAULT_SUMMARY_SHEET_ID = "11hdbqxDl-9MVEEUovS_jpGJSe52TSy19"  # R3Group sheet
+SUMMARY_TAB = "Summary"
+SUMMARY_HEADER = [
+    "Project",
+    "Todo",
+    "In Progress",
+    "Review",
+    "Done",
+    "Other",
+    "Total",
+    "% Done",
+    "Total LOE (days)",
+    "Current Sprint",
+    "Window Start",
+    "Window End",
+    "Earliest Start",
+    "Latest End",
+    "Updated",
+]
+
+# Compiled regex for ISO 8601 date validation (YYYY-MM-DD only)
+_ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+# --------------------------------------------------------------------------- #
+# Summary rollup helpers (pure — no network, no env reads, no Sheets API)     #
+# --------------------------------------------------------------------------- #
+
+def _is_iso_date(s: str) -> bool:
+    """Return True iff s matches YYYY-MM-DD (strict ISO 8601 date format)."""
+    return bool(s and _ISO_DATE_RE.match(s))
+
+
+def build_summary_rows(loe_rows: list[dict]) -> list[list]:
+    """Compute a cross-project portfolio summary from raw loe.yml row dicts.
+
+    Returns a list[list]: header row + one sorted project row + PORTFOLIO TOTAL.
+
+    Design constraints (enforced here):
+      - Computed PURELY from the loe.yml row dicts passed in; never re-parses
+        kanban.md and never adds a second parser (one-parser/one-canonical-
+        intermediate project rule).
+      - Pure function: no network, no env reads, no Sheets API calls — fully
+        offline-testable.
+      - Status bucketing via utils.canonicalize_status(); unknown values land
+        in "Other" (counted in Total but not in any canonical column).
+      - effort_days is treated as float(r.get("effort_days") or 0.0).
+      - start/end values are included ONLY when they match YYYY-MM-DD; junk
+        values ('', '—', '~1 lună') are ignored in window computation.
+      - "% Done" = Done / Total * 100 rounded to 1 dp; 0.0 when Total == 0.
+      - "Current Sprint" = modal sprint string across the project's tasks.
+      - Project rows are sorted alphabetically by project name.
+      - Final row is labelled "PORTFOLIO TOTAL"; sprint/window cols left "".
+    """
+    # Accumulate per-project stats.
+    projects: dict[str, dict] = {}
+
+    for r in loe_rows:
+        proj = r.get("project") or ""
+        if not proj:
+            continue
+        if proj not in projects:
+            projects[proj] = {
+                "counts": {s: 0 for s in TASK_STATUSES},
+                "other": 0,
+                "total": 0,
+                "loe": 0.0,
+                "sprints": {},
+                "starts": [],
+                "ends": [],
+            }
+        p = projects[proj]
+
+        # Status bucketing.
+        raw_status = r.get("status") or ""
+        canonical = canonicalize_status(raw_status)
+        if canonical is not None:
+            p["counts"][canonical] += 1
+        else:
+            p["other"] += 1
+        p["total"] += 1
+
+        # LOE accumulation.
+        try:
+            p["loe"] += float(r.get("effort_days") or 0.0)
+        except (TypeError, ValueError):
+            pass
+
+        # Sprint modal tracking.
+        sprint = r.get("sprint") or ""
+        if sprint:
+            p["sprints"][sprint] = p["sprints"].get(sprint, 0) + 1
+
+        # ISO-only window tracking.
+        start = r.get("start") or ""
+        end = r.get("end") or ""
+        if _is_iso_date(start):
+            p["starts"].append(start)
+        if _is_iso_date(end):
+            p["ends"].append(end)
+
+    updated = now_iso()
+    rows: list[list] = [SUMMARY_HEADER]
+
+    # Portfolio accumulators.
+    portfolio_total = 0
+    portfolio_done = 0
+    portfolio_loe = 0.0
+
+    for proj_name in sorted(projects.keys()):
+        p = projects[proj_name]
+        total = p["total"]
+        done = p["counts"]["Done"]
+        pct_done = round(done / total * 100, 1) if total > 0 else 0.0
+        loe = round(p["loe"], 2)
+
+        # Modal sprint.
+        if p["sprints"]:
+            modal_sprint = max(p["sprints"], key=lambda k: p["sprints"][k])
+        else:
+            modal_sprint = ""
+
+        # ISO windows.
+        win_start = min(p["starts"]) if p["starts"] else ""
+        win_end = max(p["ends"]) if p["ends"] else ""
+        earliest = win_start  # window == earliest/latest when derived from all tasks
+        latest = win_end
+
+        rows.append([
+            proj_name,
+            p["counts"]["Todo"],
+            p["counts"]["In Progress"],
+            p["counts"]["Review"],
+            done,
+            p["other"],
+            total,
+            pct_done,
+            loe,
+            modal_sprint,
+            win_start,
+            win_end,
+            earliest,
+            latest,
+            updated,
+        ])
+
+        portfolio_total += total
+        portfolio_done += done
+        portfolio_loe += p["loe"]
+
+    # Grand total row.
+    portfolio_pct = round(portfolio_done / portfolio_total * 100, 1) if portfolio_total > 0 else 0.0
+    rows.append([
+        "PORTFOLIO TOTAL",
+        "",  # Todo — not summed separately; use Total/Done for the portfolio
+        "",
+        "",
+        "",
+        "",
+        portfolio_total,
+        portfolio_pct,
+        round(portfolio_loe, 2),
+        "",  # sprint — meaningless at portfolio level
+        "",  # Window Start
+        "",  # Window End
+        "",  # Earliest Start
+        "",  # Latest End
+        updated,
+    ])
+
+    return rows
 
 
 # --------------------------------------------------------------------------- #
