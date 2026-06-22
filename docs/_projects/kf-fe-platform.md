@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-fe-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-06-22T05:57:58.650071
+generated: 2026-06-22T12:37:19.068153
 ---
 
 # kf-fe-platform
@@ -19,8 +19,8 @@ generated: 2026-06-22T05:57:58.650071
 | Type | EU Project |
 | PO | @ma.tech |
 | Lead | @el.tech |
-| Current Sprint | S3 |
-| Sprint Period | 2026-06-01 to 2026-06-12 |
+| Current Sprint | S4 |
+| Sprint Period | 2026-06-15 to 2026-06-26 |
 | Tags | eu-project, circular-textiles, digital-platform, microfactory, dpp, manufacturing |
 | Dependencies | [nuoform]({{ '/projects/nuoform/' | relative_url }}) |
 
@@ -77,7 +77,7 @@ kanban
 
 ```mermaid
 gantt
-    title S3 — kf-fe-platform
+    title S4 — kf-fe-platform
     dateFormat YYYY-MM-DD
     excludes weekends
 

@@ -1,4 +1,4 @@
-generated_at: '2026-06-22T05:57:58Z'
+generated_at: '2026-06-22T12:37:19Z'
 row_count: 110
 rows:
 - project: R3-AAS
@@ -570,7 +570,7 @@ rows:
   end: '2026-04-03'
   status: Todo
 - project: kf-be-platform
-  sprint: S3
+  sprint: S4
   task: Database schema v2 design + migrations (multi-tenant RLS)
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -578,7 +578,7 @@ rows:
   end: '2026-06-21'
   status: In Progress
 - project: kf-be-platform
-  sprint: S3
+  sprint: S4
   task: CI/CD pipeline (GitHub Actions / GitLab CI)
   assignee: '@ma.tech'
   effort_days: 2.0
@@ -586,7 +586,7 @@ rows:
   end: '2026-06-07'
   status: In Progress
 - project: kf-be-platform
-  sprint: S3
+  sprint: S4
   task: IDP setup (Keycloak/Auth0/logTo) + SMTP server
   assignee: '@ma.tech'
   effort_days: 5.0
@@ -594,7 +594,7 @@ rows:
   end: '2026-06-28'
   status: Todo
 - project: kf-be-platform
-  sprint: S3
+  sprint: S4
   task: RBAC system (scopes, claims, middleware)
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -602,7 +602,7 @@ rows:
   end: '2026-07-05'
   status: Todo
 - project: kf-be-platform
-  sprint: S3
+  sprint: S4
   task: Tenant management (CRUD, provisioning, S3 prefix)
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -610,7 +610,7 @@ rows:
   end: '2026-07-19'
   status: Todo
 - project: kf-be-platform
-  sprint: S3
+  sprint: S4
   task: EPCIS Export (JSON, PDF, GS1 standard, possibly signed)
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -618,7 +618,7 @@ rows:
   end: '2026-11-08'
   status: Todo
 - project: kf-be-platform
-  sprint: S3
+  sprint: S4
   task: LLM Ecodesign full integration — WP4 T4.1
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -626,7 +626,7 @@ rows:
   end: '2026-11-15'
   status: Todo
 - project: kf-be-platform
-  sprint: S3
+  sprint: S4
   task: IoT Adapter & Event Log (MQTT) — T2.5 ALADIN
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -634,7 +634,7 @@ rows:
   end: '2026-11-22'
   status: Todo
 - project: kf-be-platform
-  sprint: S3
+  sprint: S4
   task: Notifications multi-channel (email, SMS, webhook, in-app)
   assignee: '@ma.tech'
   effort_days: 5.0
@@ -642,7 +642,7 @@ rows:
   end: '2026-12-06'
   status: Todo
 - project: kf-be-platform
-  sprint: S3
+  sprint: S4
   task: Data migration scripts KF → ALADIN (one-shot + rollback)
   assignee: '@ma.tech'
   effort_days: 5.0
@@ -650,7 +650,7 @@ rows:
   end: '2026-12-27'
   status: Todo
 - project: kf-fe-platform
-  sprint: S3
+  sprint: S4
   task: Design system & design tokens (Tailwind, primitives, Storybook)
   assignee: '@alexandru.bejenari'
   effort_days: 10.0
@@ -658,7 +658,7 @@ rows:
   end: '2026-06-21'
   status: In Progress
 - project: kf-fe-platform
-  sprint: S3
+  sprint: S4
   task: Login flow + redirect handling
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -666,7 +666,7 @@ rows:
   end: '2026-07-05'
   status: Todo
 - project: kf-fe-platform
-  sprint: S3
+  sprint: S4
   task: Admin Console UI (Platform Admin operations)
   assignee: '@alexandru.bejenari'
   effort_days: 10.0
@@ -674,7 +674,7 @@ rows:
   end: '2026-07-26'
   status: Todo
 - project: kf-fe-platform
-  sprint: S3
+  sprint: S4
   task: Overview refactor (dynamic widgets per rol)
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -682,7 +682,7 @@ rows:
   end: '2026-08-02'
   status: Todo
 - project: kf-fe-platform
-  sprint: S3
+  sprint: S4
   task: Models Page refactor (filtere per rol, search)
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -690,7 +690,7 @@ rows:
   end: '2026-08-23'
   status: Todo
 - project: kf-fe-platform
-  sprint: S3
+  sprint: S4
   task: Tech Pack layout (sidebar, tooltips, guide)
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -698,7 +698,7 @@ rows:
   end: '2026-08-30'
   status: Todo
 - project: kf-fe-platform
-  sprint: S3
+  sprint: S4
   task: Model Sheet fixes (imagini, reconciliere BOM)
   assignee: '@alexandru.bejenari'
   effort_days: 2.0
@@ -706,7 +706,7 @@ rows:
   end: '2026-09-06'
   status: Todo
 - project: kf-fe-platform
-  sprint: S3
+  sprint: S4
   task: 3D Model performance optimization (multi-mesh, asset pipeline)
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -714,7 +714,7 @@ rows:
   end: '2026-09-27'
   status: Todo
 - project: kf-fe-platform
-  sprint: S3
+  sprint: S4
   task: Garment Configurator B2C (embeddable) — T2.3 ALADIN
   assignee: '@alexandru.bejenari'
   effort_days: 10.0
@@ -722,7 +722,7 @@ rows:
   end: '2026-11-29'
   status: Todo
 - project: kf-fe-platform
-  sprint: S3
+  sprint: S4
   task: i18n / l10n (EN + RO + customizable, RTL ready)
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -730,7 +730,7 @@ rows:
   end: '2026-11-29'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Project setup (repo, monorepo structure, conventions)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 2.0
@@ -738,7 +738,7 @@ rows:
   end: '2026-06-07'
   status: In Progress
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Collections fix + refactor (Kanban, season relations)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -746,7 +746,7 @@ rows:
   end: '2026-08-16'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: BOM editor + LLM ecodesign hook (PDF export fix + stub)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -754,7 +754,7 @@ rows:
   end: '2026-09-13'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Sizing Table & QA Flow customizabil per tenant
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -762,7 +762,7 @@ rows:
   end: '2026-09-20'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Cost Breakdown & OCS clarification (Buyer approval workflow)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -770,7 +770,7 @@ rows:
   end: '2026-10-04'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Tech Process refactor (aliniere BE update)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -778,7 +778,7 @@ rows:
   end: '2026-10-11'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Inventory & Reception refactor (types, qty packaging, UOM)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -786,7 +786,7 @@ rows:
   end: '2026-10-18'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Orders refactor (Order Name, pricing, Buyer tracking portal)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -794,7 +794,7 @@ rows:
   end: '2026-09-20'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Planner (Calendar/Gantt/Kanban switch) — backend nou
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 20.0
@@ -802,7 +802,7 @@ rows:
   end: '2026-10-11'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Batches & Assignment (Operator assignment integrat)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -810,7 +810,7 @@ rows:
   end: '2026-10-18'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Operator View tablet (Timer, QR scan, defect flag, 3D viewer)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 20.0
@@ -818,7 +818,7 @@ rows:
   end: '2026-10-25'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: QC Module (Inspection flow, defect logger)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -826,7 +826,7 @@ rows:
   end: '2026-10-25'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Reports & Cutting (camera integration, COCO export)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -834,7 +834,7 @@ rows:
   end: '2026-10-25'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: DPP Module (data model, dashboard, validation) — T2.4 ALADIN
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 20.0
@@ -842,7 +842,7 @@ rows:
   end: '2026-10-25'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Public DPP / GS1 Digital Link / QR (no-auth endpoint)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -850,7 +850,7 @@ rows:
   end: '2026-11-01'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Auditor View (cross-tenant, elevated scope)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -858,7 +858,7 @@ rows:
   end: '2026-11-29'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Made2Flow dynamic JSONB schema
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -866,7 +866,7 @@ rows:
   end: '2026-12-13'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Migration testing (data + flow E2E)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -874,7 +874,7 @@ rows:
   end: '2026-12-20'
   status: Todo
 - project: kf-platform
-  sprint: S3
+  sprint: S4
   task: Final QA & production cutover (smoke tests, monitoring)
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
