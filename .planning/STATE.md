@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 Phase: 03 (write-back-diagram-sanitization) — EXECUTING
 Plan: 3 of 3
 Status: Phase complete — ready for verification
-Last activity: 2026-06-04
+Last activity: 2026-06-22 - Completed quick task 260622-jed: cross-project Summary tab for R3Group Sheet
 
 Progress: [██████████] 100%
 
@@ -93,6 +93,12 @@ None yet.
 ### Blockers/Concerns
 
 None yet.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260622-jed | Add automated cross-project Summary tab to R3Group Google Sheet in weekly Sheets pipeline | 2026-06-22 | 5284368 | [260622-jed-add-automated-cross-project-summary-tab-](./quick/260622-jed-add-automated-cross-project-summary-tab-/) |
 
 ## Deferred Items
 
