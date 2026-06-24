@@ -257,6 +257,61 @@ body {
   width: 100%;
 }
 
+/* ===== Unified Kanban Board ===== */
+.kanban-board {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0.75rem 0 1.5rem;
+  align-items: flex-start;
+}
+
+.kanban-col {
+  flex: 1 1 200px;
+  min-width: 200px;
+  background: var(--pico-card-background-color, #f6f8f5);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.kanban-col__head {
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.35rem;
+  border-top: 3px solid transparent;
+}
+
+.kanban-col--todo       .kanban-col__head { border-top-color: #8a9a7b; }
+.kanban-col--in-progress .kanban-col__head { border-top-color: #c2682d; }
+.kanban-col--review     .kanban-col__head { border-top-color: #bf9b30; }
+.kanban-col--done       .kanban-col__head { border-top-color: #3a7d44; }
+
+.kanban-col__count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  opacity: 0.6;
+  margin-left: 0.3rem;
+}
+
+.kanban-card {
+  display: block;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  padding: 0.5rem 0.65rem;
+  margin-bottom: 0.5rem;
+  color: #1f2a24;
+  text-decoration: none;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.kanban-card:hover {
+  background: #f0f3ee;
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
 /* ===== Responsive: Mobile ===== */
 @media (max-width: 768px) {
   .mobile-header {
