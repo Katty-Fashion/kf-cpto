@@ -10,6 +10,7 @@ Merges kanban.md files from all project repos and generates:
 """
 
 import html
+import json
 import re
 from datetime import datetime, timedelta
 
@@ -53,6 +54,25 @@ _ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 def _html_escape(s: str) -> str:
     """HTML-escape a string including quotes (safe for attribute and text contexts)."""
     return html.escape(s, quote=True)
+
+
+def _md_cell(value: str) -> str:
+    """Escape a free-text value for safe interpolation into a Markdown table cell.
+
+    Coerces to str, then applies (in order):
+    - `&` → `&amp;`  (ampersand first, before other replacements introduce &)
+    - `<` → `&lt;`
+    - `>` → `&gt;`
+    - `|` → `\\|`   (pipe is the Markdown column delimiter)
+    - `\\r` and `\\n` collapsed to a single space (no multi-line cells)
+    """
+    s = str(value)
+    s = s.replace("&", "&amp;")
+    s = s.replace("<", "&lt;")
+    s = s.replace(">", "&gt;")
+    s = s.replace("|", "\\|")
+    s = s.replace("\r", " ").replace("\n", " ")
+    return s
 
 
 def _render_kanban_board(statuses: dict, *, link_project: bool = True) -> str:
@@ -148,7 +168,7 @@ def generate_unified_kanban(data: dict) -> str:
                 counts[task["status"]] += 1
         total = sum(counts.values())
         count_cols = " | ".join(str(counts[s]) for s in TASK_STATUSES)
-        lines.append(f"| {project} | {count_cols} | {total} |")
+        lines.append(f"| {_md_cell(project)} | {count_cols} | {total} |")
 
     # Sprint Gantt — current sprint window per project (one bar each). Platform
     # repos share a cadence (see generate_kanban.py), so they line up here.
@@ -265,7 +285,7 @@ def generate_loe_report(data: dict) -> str:
                 project_completed += days
 
         remaining = project_total - project_completed
-        lines.append(f"| {project} | {sprint} | {project_total}d | {project_completed}d | {remaining}d |")
+        lines.append(f"| {_md_cell(project)} | {_md_cell(sprint)} | {project_total}d | {project_completed}d | {remaining}d |")
 
         total_effort += project_total
         total_completed += project_completed
@@ -294,7 +314,7 @@ def generate_loe_report(data: dict) -> str:
                 assignee_data[assignee]["in_progress"] += days
 
     for assignee, stats in sorted(assignee_data.items()):
-        lines.append(f"| {assignee} | {stats['total']}d | {stats['in_progress']}d | {stats['completed']}d |")
+        lines.append(f"| {_md_cell(assignee)} | {stats['total']}d | {stats['in_progress']}d | {stats['completed']}d |")
 
     return "\n".join(lines)
 
@@ -332,7 +352,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
     lines = [
         "---",
         f"title: {project}",
-        f"description: \"{description}\"",
+        f"description: {json.dumps(description)}",
         f"project: {project}",
         f"type: {type_key}",
         f"edit_url: \"{edit_url}\"",
@@ -341,19 +361,19 @@ def generate_project_page(project: str, project_data: dict) -> str:
         "",
         f"# {project}",
         "",
-        f"> {description}",
+        f"> {_md_cell(description)}",
         "",
         "## Status",
         "",
         "| Metric | Value |",
         "| :--- | :--- |",
         "| Status | Active |",
-        f"| Type | {type_display} |",
-        f"| PO | {po} |",
-        f"| Lead | {lead} |",
-        f"| Current Sprint | {sprint} |",
+        f"| Type | {_md_cell(type_display)} |",
+        f"| PO | {_md_cell(po)} |",
+        f"| Lead | {_md_cell(lead)} |",
+        f"| Current Sprint | {_md_cell(sprint)} |",
         f"| Sprint Period | {sprint_period} |",
-        f"| Tags | {', '.join(tags) if tags else '-'} |",
+        f"| Tags | {', '.join(_md_cell(t) for t in tags) if tags else '-'} |",
         f"| Dependencies | {deps_display} |",
         "",
     ]
@@ -386,13 +406,13 @@ def generate_project_page(project: str, project_data: dict) -> str:
             lines.append("| Task | Assignee | Effort | Start | End | Status |")
             lines.append("| :--- | :--- | :--- | :--- | :--- | :--- |")
             for task in tasks:
-                lines.append(f"| {task['task']} | {task['assignee']} | {task['effort']} "
-                             f"| {task.get('start', '')} | {task.get('end', '')} | {task['status']} |")
+                lines.append(f"| {_md_cell(task['task'])} | {_md_cell(task['assignee'])} | {task['effort']} "
+                             f"| {_md_cell(task.get('start', ''))} | {_md_cell(task.get('end', ''))} | {task['status']} |")
         else:
             lines.append("| Task | Assignee | Effort | Status |")
             lines.append("| :--- | :--- | :--- | :--- |")
             for task in tasks:
-                lines.append(f"| {task['task']} | {task['assignee']} | {task['effort']} | {task['status']} |")
+                lines.append(f"| {_md_cell(task['task'])} | {_md_cell(task['assignee'])} | {task['effort']} | {task['status']} |")
 
         lines.append("")
 
@@ -554,7 +574,7 @@ def generate_dependency_graph(data: dict) -> str:
     lines.append("| Color | Type |")
     lines.append("| :--- | :--- |")
     for type_key, display in TYPE_DISPLAY.items():
-        lines.append(f"| {legend_colors.get(type_key, '—')} | {display} |")
+        lines.append(f"| {legend_colors.get(type_key, '—')} | {_md_cell(display)} |")
 
     return "\n".join(lines)
 
