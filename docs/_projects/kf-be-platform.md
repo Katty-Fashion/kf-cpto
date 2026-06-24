@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-be-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-06-24T14:16:50.892906
+generated: 2026-06-24T14:45:54.246860
 ---
 
 # kf-be-platform
@@ -62,7 +62,7 @@ generated: 2026-06-24T14:16:50.892906
 | Tenant management (CRUD, provisioning, S3 prefix) | @ma.tech | 10d | 2026-06-29 | 2026-07-19 | Todo |
 | EPCIS Export (JSON, PDF, GS1 standard, possibly signed) | @ma.tech | 10d | 2026-10-19 | 2026-11-08 | Todo |
 | LLM Ecodesign full integration — WP4 T4.1 | @ma.tech | 10d | 2026-10-26 | 2026-11-15 | Todo |
-| IoT Adapter & Event Log (MQTT) — T2.5 ALADIN | @ma.tech | 10d | 2026-11-02 | 2026-11-22 | Todo |
+| IoT Adapter &amp; Event Log (MQTT) — T2.5 ALADIN | @ma.tech | 10d | 2026-11-02 | 2026-11-22 | Todo |
 | Notifications multi-channel (email, SMS, webhook, in-app) | @ma.tech | 5d | 2026-11-23 | 2026-12-06 | Todo |
 | Data migration scripts KF → ALADIN (one-shot + rollback) | @ma.tech | 5d | 2026-12-14 | 2026-12-27 | Todo |
 

@@ -1,10 +1,10 @@
 ---
 title: R3-AAS
-description: "R3GROUP Katty Fashion pilot – digital tools for co-creation, digital twins and technician capacity planning"
+description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, digital twins and technician capacity planning"
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-06-24T14:16:50.843476
+generated: 2026-06-24T14:45:54.194047
 ---
 
 # R3-AAS
