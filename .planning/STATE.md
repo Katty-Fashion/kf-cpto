@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 Phase: 03 (write-back-diagram-sanitization) — EXECUTING
 Plan: 3 of 3
 Status: Phase complete — ready for verification
-Last activity: 2026-06-22 - Completed quick task 260622-jed: cross-project Summary tab for R3Group Sheet
+Last activity: 2026-06-24 - Completed quick task 260624-eqy: HTML kanban board for unified view
 
 Progress: [██████████] 100%
 
@@ -99,6 +99,7 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260622-jed | Add automated cross-project Summary tab to R3Group Google Sheet in weekly Sheets pipeline | 2026-06-22 | 5284368 | [260622-jed-add-automated-cross-project-summary-tab-](./quick/260622-jed-add-automated-cross-project-summary-tab-/) |
+| 260624-eqy | Replace unified kanban Mermaid with HTML/CSS board; drop pills; link cards to project pages | 2026-06-24 | 7c88fa1 | [260624-eqy-replace-unified-kanban-mermaid-diagram-w](./quick/260624-eqy-replace-unified-kanban-mermaid-diagram-w/) |
 
 ## Deferred Items
 
