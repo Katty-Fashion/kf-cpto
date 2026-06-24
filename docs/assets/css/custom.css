@@ -200,31 +200,6 @@ body {
   height: auto;
 }
 
-/* ===== Status Pills ===== */
-.status-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0.75rem 0 1.5rem;
-}
-
-.status-pill {
-  display: inline-block;
-  padding: 0.2rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.4;
-}
-
-/* Forest-harmonised status palette — tuned to the Mermaid `forest` theme
-   (greens + earthy warm accents) so the legend reads with the diagrams. */
-.status-pill--todo        { background: #8a9a7b; }  /* muted grey-green — queued */
-.status-pill--in-progress { background: #c2682d; }  /* terracotta — active (warm accent) */
-.status-pill--review      { background: #bf9b30; }  /* amber/gold — needs attention */
-.status-pill--done        { background: #3a7d44; }  /* forest green — complete */
-
 /* ===== Sync status (sidebar badge + dashboard banner) ===== */
 .sync-status {
   margin: 0.75rem 0.5rem 0;
@@ -310,6 +285,15 @@ body {
 .kanban-card:hover {
   background: #f0f3ee;
   border-color: rgba(0, 0, 0, 0.22);
+}
+
+.kanban-card--static {
+  cursor: default;
+}
+
+.kanban-card--static:hover {
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
 /* ===== Responsive: Mobile ===== */

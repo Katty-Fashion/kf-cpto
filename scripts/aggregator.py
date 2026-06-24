@@ -50,15 +50,6 @@ PROJECTS = load_projects()
 _ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
-def _status_legend() -> str:
-    """Generate HTML status legend with colored pills."""
-    pills = []
-    for status in TASK_STATUSES:
-        css_class = f"status-pill--{status.lower().replace(' ', '-')}"
-        pills.append(f'<span class="status-pill {css_class}">{status}</span>')
-    return '<div class="status-legend">' + "\n".join(pills) + "</div>"
-
-
 def _html_escape(s: str) -> str:
     """HTML-escape a string including quotes (safe for attribute and text contexts)."""
     return html.escape(s, quote=True)
