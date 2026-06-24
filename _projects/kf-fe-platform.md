@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-fe-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-06-24T10:47:21.497424
+generated: 2026-06-24T14:16:50.893281
 ---
 
 # kf-fe-platform
@@ -26,28 +26,30 @@ generated: 2026-06-24T10:47:21.497424
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=kf-fe-platform) <sup>·&nbsp;[raw](https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md)</sup>
 
-<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
-<span class="status-pill status-pill--in-progress">In Progress</span>
-<span class="status-pill status-pill--review">Review</span>
-<span class="status-pill status-pill--done">Done</span></div>
-
-```mermaid
-kanban
-  Todo
-    t2["Login flow + redirect handling"]
-    t3["Admin Console UI (Platform Admin operations)"]
-    t4["Overview refactor (dynamic widgets per rol)"]
-    t5["Models Page refactor (filtere per rol, search)"]
-    t6["Tech Pack layout (sidebar, tooltips, guide)"]
-    t7["Model Sheet fixes (imagini, reconciliere BOM)"]
-    t8["3D Model performance optimization (multi-mesh, asset pipeline)"]
-    t9["Garment Configurator B2C (embeddable) — T2.3 ALADIN"]
-    t10["i18n / l10n (EN + RO + customizable, RTL ready)"]
-  In-Progress
-    t1["Design system & design tokens (Tailwind, primitives, Storybook)"]
-  Review
-  Done
-```
+<div class="kanban-board">
+  <div class="kanban-col kanban-col--todo">
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">9</span></div>
+    <div class="kanban-card kanban-card--static">Login flow + redirect handling</div>
+    <div class="kanban-card kanban-card--static">Admin Console UI (Platform Admin operations)</div>
+    <div class="kanban-card kanban-card--static">Overview refactor (dynamic widgets per rol)</div>
+    <div class="kanban-card kanban-card--static">Models Page refactor (filtere per rol, search)</div>
+    <div class="kanban-card kanban-card--static">Tech Pack layout (sidebar, tooltips, guide)</div>
+    <div class="kanban-card kanban-card--static">Model Sheet fixes (imagini, reconciliere BOM)</div>
+    <div class="kanban-card kanban-card--static">3D Model performance optimization (multi-mesh, asset pipeline)</div>
+    <div class="kanban-card kanban-card--static">Garment Configurator B2C (embeddable) — T2.3 ALADIN</div>
+    <div class="kanban-card kanban-card--static">i18n / l10n (EN + RO + customizable, RTL ready)</div>
+  </div>
+  <div class="kanban-col kanban-col--in-progress">
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">1</span></div>
+    <div class="kanban-card kanban-card--static">Design system &amp; design tokens (Tailwind, primitives, Storybook)</div>
+  </div>
+  <div class="kanban-col kanban-col--review">
+    <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
+  </div>
+  <div class="kanban-col kanban-col--done">
+    <div class="kanban-col__head">Done <span class="kanban-col__count">0</span></div>
+  </div>
+</div>
 
 ## Task Summary
 

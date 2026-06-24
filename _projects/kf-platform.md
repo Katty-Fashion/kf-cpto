@@ -4,7 +4,7 @@ description: "Infra platform for kf web based services"
 project: kf-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-platform/edit/master/kanban.md"
-generated: 2026-06-24T10:47:21.497701
+generated: 2026-06-24T14:16:50.893608
 ---
 
 # kf-platform
@@ -26,37 +26,39 @@ generated: 2026-06-24T10:47:21.497701
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=kf-platform) <sup>·&nbsp;[raw](https://github.com/katty-fashion/kf-platform/edit/master/kanban.md)</sup>
 
-<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
-<span class="status-pill status-pill--in-progress">In Progress</span>
-<span class="status-pill status-pill--review">Review</span>
-<span class="status-pill status-pill--done">Done</span></div>
-
-```mermaid
-kanban
-  Todo
-    t2["Collections fix + refactor (Kanban, season relations)"]
-    t3["BOM editor + LLM ecodesign hook (PDF export fix + stub)"]
-    t4["Sizing Table & QA Flow customizabil per tenant"]
-    t5["Cost Breakdown & OCS clarification (Buyer approval workflow)"]
-    t6["Tech Process refactor (aliniere BE update)"]
-    t7["Inventory & Reception refactor (types, qty packaging, UOM)"]
-    t8["Orders refactor (Order Name, pricing, Buyer tracking portal)"]
-    t9["Planner (Calendar/Gantt/Kanban switch) — backend nou"]
-    t10["Batches & Assignment (Operator assignment integrat)"]
-    t11["Operator View tablet (Timer, QR scan, defect flag, 3D viewer)"]
-    t12["QC Module (Inspection flow, defect logger)"]
-    t13["Reports & Cutting (camera integration, COCO export)"]
-    t14["DPP Module (data model, dashboard, validation) — T2.4 ALADIN"]
-    t15["Public DPP / GS1 Digital Link / QR (no-auth endpoint)"]
-    t16["Auditor View (cross-tenant, elevated scope)"]
-    t17["Made2Flow dynamic JSONB schema"]
-    t18["Migration testing (data + flow E2E)"]
-    t19["Final QA & production cutover (smoke tests, monitoring)"]
-  In-Progress
-    t1["Project setup (repo, monorepo structure, conventions)"]
-  Review
-  Done
-```
+<div class="kanban-board">
+  <div class="kanban-col kanban-col--todo">
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">18</span></div>
+    <div class="kanban-card kanban-card--static">Collections fix + refactor (Kanban, season relations)</div>
+    <div class="kanban-card kanban-card--static">BOM editor + LLM ecodesign hook (PDF export fix + stub)</div>
+    <div class="kanban-card kanban-card--static">Sizing Table &amp; QA Flow customizabil per tenant</div>
+    <div class="kanban-card kanban-card--static">Cost Breakdown &amp; OCS clarification (Buyer approval workflow)</div>
+    <div class="kanban-card kanban-card--static">Tech Process refactor (aliniere BE update)</div>
+    <div class="kanban-card kanban-card--static">Inventory &amp; Reception refactor (types, qty packaging, UOM)</div>
+    <div class="kanban-card kanban-card--static">Orders refactor (Order Name, pricing, Buyer tracking portal)</div>
+    <div class="kanban-card kanban-card--static">Planner (Calendar/Gantt/Kanban switch) — backend nou</div>
+    <div class="kanban-card kanban-card--static">Batches &amp; Assignment (Operator assignment integrat)</div>
+    <div class="kanban-card kanban-card--static">Operator View tablet (Timer, QR scan, defect flag, 3D viewer)</div>
+    <div class="kanban-card kanban-card--static">QC Module (Inspection flow, defect logger)</div>
+    <div class="kanban-card kanban-card--static">Reports &amp; Cutting (camera integration, COCO export)</div>
+    <div class="kanban-card kanban-card--static">DPP Module (data model, dashboard, validation) — T2.4 ALADIN</div>
+    <div class="kanban-card kanban-card--static">Public DPP / GS1 Digital Link / QR (no-auth endpoint)</div>
+    <div class="kanban-card kanban-card--static">Auditor View (cross-tenant, elevated scope)</div>
+    <div class="kanban-card kanban-card--static">Made2Flow dynamic JSONB schema</div>
+    <div class="kanban-card kanban-card--static">Migration testing (data + flow E2E)</div>
+    <div class="kanban-card kanban-card--static">Final QA &amp; production cutover (smoke tests, monitoring)</div>
+  </div>
+  <div class="kanban-col kanban-col--in-progress">
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">1</span></div>
+    <div class="kanban-card kanban-card--static">Project setup (repo, monorepo structure, conventions)</div>
+  </div>
+  <div class="kanban-col kanban-col--review">
+    <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
+  </div>
+  <div class="kanban-col kanban-col--done">
+    <div class="kanban-col__head">Done <span class="kanban-col__count">0</span></div>
+  </div>
+</div>
 
 ## Task Summary
 

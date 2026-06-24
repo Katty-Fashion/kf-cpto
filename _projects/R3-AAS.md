@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot – digital tools for co-creation, dig
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-06-24T10:47:21.479852
+generated: 2026-06-24T14:16:50.843476
 ---
 
 # R3-AAS
@@ -26,87 +26,89 @@ generated: 2026-06-24T10:47:21.479852
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=R3-AAS) <sup>·&nbsp;[raw](https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md)</sup>
 
-<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
-<span class="status-pill status-pill--in-progress">In Progress</span>
-<span class="status-pill status-pill--review">Review</span>
-<span class="status-pill status-pill--done">Done</span></div>
-
-```mermaid
-kanban
-  Todo
-    t4["Feature set pentru lansare (MVP)"]
-    t5["Ce este „Done” vs „Ready” pentru release"]
-    t8["Sesiune demo produse (intern)"]
-    t9["Pregătire feature flags (ascundere features incomplete)"]
-    t10["Clarificare value proposition (perspectivă tehnică)"]
-    t14["Flow sistem (UI → AAS → backend)"]
-    t18["Layout simplificat pilot (stații + flux + senzori)"]
-    t23["Backend alignment (după modificări Răzvan)"]
-    t24["Bug-uri identificate în sistem"]
-    t28["Instalare senzor 3 (poziție cutie/flux materiale) — T3.3"]
-    t30["Task-uri ↔ Work Packages (WP mapping)"]
-    t31["Naming convention pentru task-uri (namespace per proiect)"]
-    t32["Evitarea dublării task-urilor între tools"]
-    t33["Reprezentare Gantt (timeline / corelare temporală)"]
-    t37["Feature flags"]
-    t38["Telemetrie (monitorizare)"]
-    t39["Code quality / stability înainte de release"]
-    t40["Suport tehnic post-launch"]
-    t43["Conectivitate sisteme externe"]
-    t44["Testare demo produse (clienți + testeri interni)"]
-    t45["Interviuri tehnice full-stack"]
-    t46["Evaluare competențe React + Node"]
-    t47["Evaluare team fit (non-toxic, colaborativ)"]
-    t48["Selectare profil echilibrat (nu doar tech heavy)"]
-    t49["Sprint plan (tranziție către GTM)"]
-    t50["Corelare Sprint tasks ↔ Work Packages"]
-    t51["Task-uri cu timeline (start/end)"]
-    t52["Rapoarte săptămânale (nu daily)"]
-    t53["Gantt / timeline pentru progres"]
-    t54["Landing page (claritate produs)"]
-    t55["Demo / prezentare produs"]
-    t56["Definire tehnică monetizare (SaaS readiness)"]
-    t57["Input pentru CRM / pipeline (structură tehnică)"]
-    t63["Implement scheduler response parser"]
-    t66["Validate suitability constraints and scheduling logic"]
-    t67["Run first scheduling tests with real production data"]
-    t68["Debug integration issues with LMS team"]
-    t69["Integration validation review"]
-  In-Progress
-    t1["Deploy AAS în Cloud (hosting)"]
-    t2["Clarificare acces server R3 (Vangelis)"]
-    t3["Clarificare format date platforma R3"]
-    t6["Review arhitectură"]
-    t7["Identificare gaps / incomplete features"]
-    t15["Clarificare acces server R3 (Vangelis)"]
-    t16["Integrare între sisteme (Katty / LMS)"]
-    t17["Multiple tipuri AAS → standardizare"]
-    t19["Integrare LMS (AAS extern)"]
-    t22["UI flow (parțial complet)"]
-    t26["Deploy AAS în Cloud (hosting)"]
-    t27["Clarificare format date pentru platforma R3"]
-    t29["Board central Kanban – single source of truth"]
-    t42["Acces corect la organizații (login flow issues)"]
-    t62["Implement scheduling request endpoint (KF → LMS)"]
-    t64["Integrate scheduling results with planner UI"]
-    t65["Implement planner visualization improvements (capacity / gaps)"]
-  Review
-    t21["LMS specs + credentials"]
-    t25["Vizualizare date / UI"]
-    t34["GitHub Actions pentru sync task-uri"]
-    t35["Generare automată status / reports"]
-    t36["Pipeline CI/CD (necesar pentru GTM)"]
-  Done
-    t11["Validare integrare end-to-end (expunere API Nuoform)"]
-    t12["Arhitectură multi-tenant (in place)"]
-    t13["Separare date per client (in place)"]
-    t20["Sketch → JSON → sistem"]
-    t41["Acces VPN + onboarding corect"]
-    t58["Review LMS API endpoints and AAS structure"]
-    t59["Technical architecture alignment for Planner integration"]
-    t60["Define integration pipeline (KF UI → LMS Scheduler → KF UI)"]
-    t61["Implement automatic AAS JSON export from KF platform"]
-```
+<div class="kanban-board">
+  <div class="kanban-col kanban-col--todo">
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">38</span></div>
+    <div class="kanban-card kanban-card--static">Feature set pentru lansare (MVP)</div>
+    <div class="kanban-card kanban-card--static">Ce este „Done&quot; vs „Ready&quot; pentru release</div>
+    <div class="kanban-card kanban-card--static">Sesiune demo produse (intern)</div>
+    <div class="kanban-card kanban-card--static">Pregătire feature flags (ascundere features incomplete)</div>
+    <div class="kanban-card kanban-card--static">Clarificare value proposition (perspectivă tehnică)</div>
+    <div class="kanban-card kanban-card--static">Flow sistem (UI → AAS → backend)</div>
+    <div class="kanban-card kanban-card--static">Layout simplificat pilot (stații + flux + senzori)</div>
+    <div class="kanban-card kanban-card--static">Backend alignment (după modificări Răzvan)</div>
+    <div class="kanban-card kanban-card--static">Bug-uri identificate în sistem</div>
+    <div class="kanban-card kanban-card--static">Instalare senzor 3 (poziție cutie/flux materiale) — T3.3</div>
+    <div class="kanban-card kanban-card--static">Task-uri ↔ Work Packages (WP mapping)</div>
+    <div class="kanban-card kanban-card--static">Naming convention pentru task-uri (namespace per proiect)</div>
+    <div class="kanban-card kanban-card--static">Evitarea dublării task-urilor între tools</div>
+    <div class="kanban-card kanban-card--static">Reprezentare Gantt (timeline / corelare temporală)</div>
+    <div class="kanban-card kanban-card--static">Feature flags</div>
+    <div class="kanban-card kanban-card--static">Telemetrie (monitorizare)</div>
+    <div class="kanban-card kanban-card--static">Code quality / stability înainte de release</div>
+    <div class="kanban-card kanban-card--static">Suport tehnic post-launch</div>
+    <div class="kanban-card kanban-card--static">Conectivitate sisteme externe</div>
+    <div class="kanban-card kanban-card--static">Testare demo produse (clienți + testeri interni)</div>
+    <div class="kanban-card kanban-card--static">Interviuri tehnice full-stack</div>
+    <div class="kanban-card kanban-card--static">Evaluare competențe React + Node</div>
+    <div class="kanban-card kanban-card--static">Evaluare team fit (non-toxic, colaborativ)</div>
+    <div class="kanban-card kanban-card--static">Selectare profil echilibrat (nu doar tech heavy)</div>
+    <div class="kanban-card kanban-card--static">Sprint plan (tranziție către GTM)</div>
+    <div class="kanban-card kanban-card--static">Corelare Sprint tasks ↔ Work Packages</div>
+    <div class="kanban-card kanban-card--static">Task-uri cu timeline (start/end)</div>
+    <div class="kanban-card kanban-card--static">Rapoarte săptămânale (nu daily)</div>
+    <div class="kanban-card kanban-card--static">Gantt / timeline pentru progres</div>
+    <div class="kanban-card kanban-card--static">Landing page (claritate produs)</div>
+    <div class="kanban-card kanban-card--static">Demo / prezentare produs</div>
+    <div class="kanban-card kanban-card--static">Definire tehnică monetizare (SaaS readiness)</div>
+    <div class="kanban-card kanban-card--static">Input pentru CRM / pipeline (structură tehnică)</div>
+    <div class="kanban-card kanban-card--static">Implement scheduler response parser</div>
+    <div class="kanban-card kanban-card--static">Validate suitability constraints and scheduling logic</div>
+    <div class="kanban-card kanban-card--static">Run first scheduling tests with real production data</div>
+    <div class="kanban-card kanban-card--static">Debug integration issues with LMS team</div>
+    <div class="kanban-card kanban-card--static">Integration validation review</div>
+  </div>
+  <div class="kanban-col kanban-col--in-progress">
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">17</span></div>
+    <div class="kanban-card kanban-card--static">Deploy AAS în Cloud (hosting)</div>
+    <div class="kanban-card kanban-card--static">Clarificare acces server R3 (Vangelis)</div>
+    <div class="kanban-card kanban-card--static">Clarificare format date platforma R3</div>
+    <div class="kanban-card kanban-card--static">Review arhitectură</div>
+    <div class="kanban-card kanban-card--static">Identificare gaps / incomplete features</div>
+    <div class="kanban-card kanban-card--static">Clarificare acces server R3 (Vangelis)</div>
+    <div class="kanban-card kanban-card--static">Integrare între sisteme (Katty / LMS)</div>
+    <div class="kanban-card kanban-card--static">Multiple tipuri AAS → standardizare</div>
+    <div class="kanban-card kanban-card--static">Integrare LMS (AAS extern)</div>
+    <div class="kanban-card kanban-card--static">UI flow (parțial complet)</div>
+    <div class="kanban-card kanban-card--static">Deploy AAS în Cloud (hosting)</div>
+    <div class="kanban-card kanban-card--static">Clarificare format date pentru platforma R3</div>
+    <div class="kanban-card kanban-card--static">Board central Kanban – single source of truth</div>
+    <div class="kanban-card kanban-card--static">Acces corect la organizații (login flow issues)</div>
+    <div class="kanban-card kanban-card--static">Implement scheduling request endpoint (KF → LMS)</div>
+    <div class="kanban-card kanban-card--static">Integrate scheduling results with planner UI</div>
+    <div class="kanban-card kanban-card--static">Implement planner visualization improvements (capacity / gaps)</div>
+  </div>
+  <div class="kanban-col kanban-col--review">
+    <div class="kanban-col__head">Review <span class="kanban-col__count">5</span></div>
+    <div class="kanban-card kanban-card--static">LMS specs + credentials</div>
+    <div class="kanban-card kanban-card--static">Vizualizare date / UI</div>
+    <div class="kanban-card kanban-card--static">GitHub Actions pentru sync task-uri</div>
+    <div class="kanban-card kanban-card--static">Generare automată status / reports</div>
+    <div class="kanban-card kanban-card--static">Pipeline CI/CD (necesar pentru GTM)</div>
+  </div>
+  <div class="kanban-col kanban-col--done">
+    <div class="kanban-col__head">Done <span class="kanban-col__count">9</span></div>
+    <div class="kanban-card kanban-card--static">Validare integrare end-to-end (expunere API Nuoform)</div>
+    <div class="kanban-card kanban-card--static">Arhitectură multi-tenant (in place)</div>
+    <div class="kanban-card kanban-card--static">Separare date per client (in place)</div>
+    <div class="kanban-card kanban-card--static">Sketch → JSON → sistem</div>
+    <div class="kanban-card kanban-card--static">Acces VPN + onboarding corect</div>
+    <div class="kanban-card kanban-card--static">Review LMS API endpoints and AAS structure</div>
+    <div class="kanban-card kanban-card--static">Technical architecture alignment for Planner integration</div>
+    <div class="kanban-card kanban-card--static">Define integration pipeline (KF UI → LMS Scheduler → KF UI)</div>
+    <div class="kanban-card kanban-card--static">Implement automatic AAS JSON export from KF platform</div>
+  </div>
+</div>
 
 ## Task Summary
 
