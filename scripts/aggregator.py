@@ -64,12 +64,17 @@ def _html_escape(s: str) -> str:
     return html.escape(s, quote=True)
 
 
-def _render_kanban_board(statuses: dict) -> str:
+def _render_kanban_board(statuses: dict, *, link_project: bool = True) -> str:
     """Render an HTML/CSS column kanban board from the aggregated statuses dict.
 
     Receives a dict keyed by STATUS_TO_MERMAID names in TASK_STATUSES order
     (Todo, In-Progress, Review, Done). Each value is a list of task dicts
     carrying at least 'project' and 'task' keys.
+
+    When link_project=True (default, unified board): cards are <a> tags with a
+    relative_url link to the project page, prefixed "project: task".
+    When link_project=False (per-project board): cards are static <div> tags
+    with task text only — no href, no project prefix.
 
     Returns one HTML string built with the list + join convention. Cards emit
     Liquid relative_url literally so Jekyll resolves baseurl at build time.
@@ -85,15 +90,20 @@ def _render_kanban_board(statuses: dict) -> str:
             f'</div>'
         )
         for task in tasks:
-            project = task["project"]
-            escaped_project = _html_escape(project)
             escaped_task = _html_escape(task["task"])
-            href = "{{{{ '/projects/{proj}/' | relative_url }}}}".format(proj=project)
-            lines.append(
-                f'    <a class="kanban-card" href="{href}">'
-                f'{escaped_project}: {escaped_task}'
-                f'</a>'
-            )
+            if link_project:
+                project = task["project"]
+                escaped_project = _html_escape(project)
+                href = "{{{{ '/projects/{proj}/' | relative_url }}}}".format(proj=project)
+                lines.append(
+                    f'    <a class="kanban-card" href="{href}">'
+                    f'{escaped_project}: {escaped_task}'
+                    f'</a>'
+                )
+            else:
+                lines.append(
+                    f'    <div class="kanban-card kanban-card--static">{escaped_task}</div>'
+                )
         lines.append("  </div>")
     lines.append("</div>")
     return "\n".join(lines)
@@ -364,28 +374,17 @@ def generate_project_page(project: str, project_data: dict) -> str:
             f"<sup>·&nbsp;[raw]({edit_url})</sup>"
         )
         lines.append("")
-        lines.append(_status_legend())
-        lines.append("")
-        lines.append("```mermaid")
-        lines.append("kanban")
 
-        # Group tasks by status with counter for unique IDs
+        # Group tasks by status for the HTML board
         statuses = {STATUS_TO_MERMAID[s]: [] for s in TASK_STATUSES}
 
-        task_counter = 0
         for task in tasks:
             status = task["status"]
             mermaid_status = STATUS_TO_MERMAID.get(status)
             if mermaid_status and mermaid_status in statuses:
-                task_counter += 1
-                statuses[mermaid_status].append({**task, "id": f"t{task_counter}"})
+                statuses[mermaid_status].append({**task})
 
-        for status, status_tasks in statuses.items():
-            lines.append(f"  {status}")
-            for task in status_tasks:
-                lines.append(f'    {task["id"]}["{mermaid_label_safe(task["task"])}"]')
-
-        lines.append("```")
+        lines.append(_render_kanban_board(statuses, link_project=False))
         lines.append("")
 
         # Task summary table (6-col if any task has dates, 4-col otherwise)
