@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-be-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-06-24T10:47:21.497109
+generated: 2026-06-24T14:16:50.892906
 ---
 
 # kf-be-platform
@@ -26,28 +26,30 @@ generated: 2026-06-24T10:47:21.497109
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=kf-be-platform) <sup>·&nbsp;[raw](https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md)</sup>
 
-<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
-<span class="status-pill status-pill--in-progress">In Progress</span>
-<span class="status-pill status-pill--review">Review</span>
-<span class="status-pill status-pill--done">Done</span></div>
-
-```mermaid
-kanban
-  Todo
-    t3["IDP setup (Keycloak/Auth0/logTo) + SMTP server"]
-    t4["RBAC system (scopes, claims, middleware)"]
-    t5["Tenant management (CRUD, provisioning, S3 prefix)"]
-    t6["EPCIS Export (JSON, PDF, GS1 standard, possibly signed)"]
-    t7["LLM Ecodesign full integration — WP4 T4.1"]
-    t8["IoT Adapter & Event Log (MQTT) — T2.5 ALADIN"]
-    t9["Notifications multi-channel (email, SMS, webhook, in-app)"]
-    t10["Data migration scripts KF → ALADIN (one-shot + rollback)"]
-  In-Progress
-    t1["Database schema v2 design + migrations (multi-tenant RLS)"]
-    t2["CI/CD pipeline (GitHub Actions / GitLab CI)"]
-  Review
-  Done
-```
+<div class="kanban-board">
+  <div class="kanban-col kanban-col--todo">
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">8</span></div>
+    <div class="kanban-card kanban-card--static">IDP setup (Keycloak/Auth0/logTo) + SMTP server</div>
+    <div class="kanban-card kanban-card--static">RBAC system (scopes, claims, middleware)</div>
+    <div class="kanban-card kanban-card--static">Tenant management (CRUD, provisioning, S3 prefix)</div>
+    <div class="kanban-card kanban-card--static">EPCIS Export (JSON, PDF, GS1 standard, possibly signed)</div>
+    <div class="kanban-card kanban-card--static">LLM Ecodesign full integration — WP4 T4.1</div>
+    <div class="kanban-card kanban-card--static">IoT Adapter &amp; Event Log (MQTT) — T2.5 ALADIN</div>
+    <div class="kanban-card kanban-card--static">Notifications multi-channel (email, SMS, webhook, in-app)</div>
+    <div class="kanban-card kanban-card--static">Data migration scripts KF → ALADIN (one-shot + rollback)</div>
+  </div>
+  <div class="kanban-col kanban-col--in-progress">
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">2</span></div>
+    <div class="kanban-card kanban-card--static">Database schema v2 design + migrations (multi-tenant RLS)</div>
+    <div class="kanban-card kanban-card--static">CI/CD pipeline (GitHub Actions / GitLab CI)</div>
+  </div>
+  <div class="kanban-col kanban-col--review">
+    <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
+  </div>
+  <div class="kanban-col kanban-col--done">
+    <div class="kanban-col__head">Done <span class="kanban-col__count">0</span></div>
+  </div>
+</div>
 
 ## Task Summary
 
