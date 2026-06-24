@@ -66,7 +66,7 @@ MAX_WRITE_RETRIES = 3
 # Summary tab — writes to a SEPARATE spreadsheet (GSHEET_SUMMARY_ID, not GSHEET_ID).
 # NOTE: The R3Group sheet MUST be shared (Editor) with the GSHEET_CLIENT_EMAIL
 # service account for CI writes to land.
-DEFAULT_SUMMARY_SHEET_ID = "11hdbqxDl-9MVEEUovS_jpGJSe52TSy19"  # R3Group sheet
+DEFAULT_SUMMARY_SHEET_ID = "1jLa-1Kh49ewIuPErPmIzp2dBLoGxxEvn4Fz3z_cxAaY"  # R3Group sheet (native Google Sheet)
 SUMMARY_TAB = "Summary"
 SUMMARY_HEADER = [
     "Project",
