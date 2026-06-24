@@ -503,6 +503,9 @@ def mermaid_label_safe(text: str) -> str:
     `"` / `[` / `]` in the task text terminates the node early and breaks the whole
     diagram with a "Syntax error in text". Replace those delimiters with faithful,
     display-only stand-ins (typographic quote, parentheses) and flatten newlines.
+    Also neutralize `<`/`>` with angle-quote stand-ins so raw markup (e.g. a
+    `<script>` in a task title) can never reach the DOM — Mermaid runs with
+    securityLevel 'loose', which would otherwise pass HTML in labels through.
     """
     if not text:
         return text
@@ -510,6 +513,8 @@ def mermaid_label_safe(text: str) -> str:
         text.replace('"', "”")   # " -> ” (right double quotation mark)
             .replace("[", "(")
             .replace("]", ")")
+            .replace("<", "‹")   # < -> ‹ (single left angle quote) — defang markup
+            .replace(">", "›")   # > -> › (single right angle quote)
             .replace("\n", " ")
             .strip()
     )
