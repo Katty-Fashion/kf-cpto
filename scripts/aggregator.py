@@ -9,6 +9,7 @@ Merges kanban.md files from all project repos and generates:
 - docs/_projects/{project}.md (per-project pages — Jekyll collection)
 """
 
+import html
 import re
 from datetime import datetime, timedelta
 
@@ -58,6 +59,45 @@ def _status_legend() -> str:
     return '<div class="status-legend">' + "\n".join(pills) + "</div>"
 
 
+def _html_escape(s: str) -> str:
+    """HTML-escape a string including quotes (safe for attribute and text contexts)."""
+    return html.escape(s, quote=True)
+
+
+def _render_kanban_board(statuses: dict) -> str:
+    """Render an HTML/CSS column kanban board from the aggregated statuses dict.
+
+    Receives a dict keyed by STATUS_TO_MERMAID names in TASK_STATUSES order
+    (Todo, In-Progress, Review, Done). Each value is a list of task dicts
+    carrying at least 'project' and 'task' keys.
+
+    Returns one HTML string built with the list + join convention. Cards emit
+    Liquid relative_url literally so Jekyll resolves baseurl at build time.
+    """
+    lines = ['<div class="kanban-board">']
+    for status, tasks in statuses.items():
+        slug = status.lower()  # "In-Progress" -> "in-progress", "Todo" -> "todo"
+        label = status.replace("-", " ")  # "In-Progress" -> "In Progress"
+        lines.append(f'  <div class="kanban-col kanban-col--{slug}">')
+        lines.append(
+            f'    <div class="kanban-col__head">'
+            f'{label} <span class="kanban-col__count">{len(tasks)}</span>'
+            f'</div>'
+        )
+        for task in tasks:
+            project = task["project"]
+            escaped_project = _html_escape(project)
+            escaped_task = _html_escape(task["task"])
+            href = "{{{{ '/projects/{proj}/' | relative_url }}}}".format(proj=project)
+            lines.append(
+                f'    <a class="kanban-card" href="{href}">'
+                f'{escaped_project}: {escaped_task}'
+                f'</a>'
+            )
+        lines.append("  </div>")
+    lines.append("</div>")
+    return "\n".join(lines)
+
 
 def generate_unified_kanban(data: dict) -> str:
     """Generate unified kanban markdown"""
@@ -70,8 +110,6 @@ def generate_unified_kanban(data: dict) -> str:
         "# KF Team — Unified Kanban",
         "",
         "> Auto-generated from all project kanbans",
-        "",
-        _status_legend(),
         "",
     ]
 
@@ -91,17 +129,8 @@ def generate_unified_kanban(data: dict) -> str:
                     "id": f"task{task_counter}"
                 })
 
-    # Generate Mermaid kanban (simple format for GitHub compatibility)
-    lines.append("```mermaid")
-    lines.append("kanban")
-
-    for status, tasks in statuses.items():
-        lines.append(f"  {status}")
-        for task in tasks:
-            task_label = mermaid_label_safe(f"{task['project']}: {task['task']}")
-            lines.append(f'    {task["id"]}["{task_label}"]')
-
-    lines.append("```")
+    # Generate HTML kanban board (4 columns, linked cards, full-text wrap)
+    lines.append(_render_kanban_board(statuses))
     lines.append("")
 
     # Generate summary table
