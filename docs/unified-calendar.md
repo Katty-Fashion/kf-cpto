@@ -1,20 +1,18 @@
 ---
 title: Unified Calendar
-generated: 2026-06-24T14:45:54.193277
+generated: 2026-06-26T07:11:49.344943
 ---
 
 # KF Team — Unified Calendar
 
-> CPTO 50h Monthly Allocation
+> Effort by Project (person-days)
 
 ```mermaid
-pie title Alocarea Lunara 50 Ore — CPTO KF
-    "Sync & Ritm Echipa (Sprint, Retro, All Hands)" : 10
-    "Technical Health & Architecture" : 12
-    "Pre-Sales & Business Alignment" : 8
-    "Proiecte EU (AI-RISE, AIREGIO)" : 10
-    "SaaS Products (NuoForm, Waist Mgmt)" : 8
-    "Team Events & People" : 2
+pie title Effort by Project (person-days)
+    "kf-platform" : 167.0
+    "kf-be-platform" : 77.0
+    "kf-fe-platform" : 62.0
+    "R3-AAS" : 18.5
 ```
 
 ## Sprint Calendar

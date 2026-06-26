@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-fe-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-06-24T14:45:54.247280
+generated: 2026-06-26T07:11:49.354917
 ---
 
 # kf-fe-platform
@@ -22,7 +22,7 @@ generated: 2026-06-24T14:45:54.247280
 | Current Sprint | S4 |
 | Sprint Period | 2026-06-15 to 2026-06-26 |
 | Tags | eu-project, circular-textiles, digital-platform, microfactory, dpp, manufacturing |
-| Dependencies | [nuoform]({{ '/projects/nuoform/' | relative_url }}) |
+| Dependencies | [kf-platform]({{ '/projects/kf-platform/' | relative_url }}) |
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=kf-fe-platform) <sup>·&nbsp;[raw](https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md)</sup>
 
@@ -93,14 +93,6 @@ gantt
     3D Model performance optimization (multi-mesh, asset pipeline) :2026-09-07, 2026-09-27
     Garment Configurator B2C (embeddable) — T2.3 ALADIN :2026-11-09, 2026-11-29
     i18n / l10n (EN + RO + customizable, RTL ready) :2026-11-16, 2026-11-29
-```
-
-## Effort Distribution
-
-```mermaid
-pie title Effort by Status
-    "Todo" : 52.0
-    "In Progress" : 10.0
 ```
 
 ## Links

@@ -4,7 +4,7 @@ description: "Infra platform for kf web based services"
 project: kf-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-platform/edit/master/kanban.md"
-generated: 2026-06-24T14:45:54.247666
+generated: 2026-06-26T07:11:49.355313
 ---
 
 # kf-platform
@@ -22,7 +22,7 @@ generated: 2026-06-24T14:45:54.247666
 | Current Sprint | S4 |
 | Sprint Period | 2026-06-15 to 2026-06-26 |
 | Tags | eu-project, circular-textiles, digital-platform, microfactory, dpp, manufacturing |
-| Dependencies | [nuoform]({{ '/projects/nuoform/' | relative_url }}) |
+| Dependencies | None |
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=kf-platform) <sup>·&nbsp;[raw](https://github.com/katty-fashion/kf-platform/edit/master/kanban.md)</sup>
 
@@ -120,14 +120,6 @@ gantt
     Made2Flow dynamic JSONB schema :2026-11-30, 2026-12-13
     Migration testing (data + flow E2E) :2026-12-07, 2026-12-20
     Final QA & production cutover (smoke tests, monitoring) :2026-12-21, 2027-01-03
-```
-
-## Effort Distribution
-
-```mermaid
-pie title Effort by Status
-    "Todo" : 165.0
-    "In Progress" : 2.0
 ```
 
 ## Links
