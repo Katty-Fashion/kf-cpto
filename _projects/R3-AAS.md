@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-06-24T14:45:54.194047
+generated: 2026-06-26T07:11:49.345902
 ---
 
 # R3-AAS
@@ -274,15 +274,6 @@ gantt
     Integration validation review :2026-04-03, 2026-04-03
     Decizie Made2Flow (demo vs integrare reală) :2026-04-03, 1d
     Decizie Made2Flow (demo vs integrare reală) :2026-04-04, 1d
-```
-
-## Effort Distribution
-
-```mermaid
-pie title Effort by Status
-    "Todo" : 6.5
-    "In Progress" : 7.0
-    "Done" : 5.0
 ```
 
 ## Links

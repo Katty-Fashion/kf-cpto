@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-be-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-06-24T14:45:54.246860
+generated: 2026-06-26T07:11:49.354451
 ---
 
 # kf-be-platform
@@ -22,7 +22,7 @@ generated: 2026-06-24T14:45:54.246860
 | Current Sprint | S4 |
 | Sprint Period | 2026-06-15 to 2026-06-26 |
 | Tags | eu-project, circular-textiles, digital-platform, microfactory, dpp, manufacturing |
-| Dependencies | [nuoform]({{ '/projects/nuoform/' | relative_url }}) |
+| Dependencies | [kf-platform]({{ '/projects/kf-platform/' | relative_url }}), [R3-AAS]({{ '/projects/r3-aas/' | relative_url }}) |
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=kf-be-platform) <sup>·&nbsp;[raw](https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md)</sup>
 
@@ -93,14 +93,6 @@ gantt
     IoT Adapter & Event Log (MQTT) — T2.5 ALADIN :2026-11-02, 2026-11-22
     Notifications multi-channel (email, SMS, webhook, in-app) :2026-11-23, 2026-12-06
     Data migration scripts KF → ALADIN (one-shot + rollback) :2026-12-14, 2026-12-27
-```
-
-## Effort Distribution
-
-```mermaid
-pie title Effort by Status
-    "Todo" : 65.0
-    "In Progress" : 12.0
 ```
 
 ## Links
