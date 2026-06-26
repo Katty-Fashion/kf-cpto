@@ -108,7 +108,7 @@ We make a module "compatible" by holding it to three contracts. We hand these ov
 
 - Partners submit an **OpenAPI (Swagger)** spec for their backend.
 - We require every endpoint to accept an `X-Tenant-ID` header and an `Authorization` bearer token **we** issue.
-- Our gateway intercepts `/api/m/{module}/*`, **validates the JWT, confirms the tenant owns the module**, then proxies to the partner. No entitlement → `403`.
+- Our gateway intercepts `/api/m/{module}/*`, **validates the JWT, confirms the tenant owns the module**, then proxies to the partner. No entitlement → `403`. How these routes **compose into one surface** is §3.4.
 
 #### <span class="pill pill--data">DATA</span> Data Contract — isolated Postgres schema + SDK
 
@@ -116,7 +116,35 @@ We make a module "compatible" by holding it to three contracts. We hand these ov
 - For our core data (user profiles, tenant details), partners call our **Platform SDK** (secure REST/gRPC), never the DB directly.
 - GLB models stream from an **object store via signed URLs**; we keep only metadata (path, version, tenant) in Postgres.
 
-### 3.4 The Partner Kit we ship <span class="pill pill--new">NEW</span>
+### 3.4 API Composition — one surface, many modules <span class="pill pill--api">API</span>
+
+The three contracts let each partner build in isolation. **API composition is how we make those isolated backends look like one platform.** The gateway is our composition layer — we never expose a partner backend directly.
+
+- **One front door.** Everything answers under a single origin: `/api/core/*` is us, `/api/m/{module}/*` is each module. One auth model, one CORS policy, no module host ever leaks to the browser.
+- **Composed per tenant.** On every request we resolve the tenant's enabled modules and compose **only** those routes for them. A tenant without the Camunda module has no `/api/m/camunda/*` surface at all — it returns `403`, not a broken `404`.
+- **One catalog, versioned.** We aggregate every partner's submitted OpenAPI spec into a **single platform API catalog**, keyed to the module's pinned release tag. That catalog is our contract of record and what we publish to Wiki.JS.
+- **Server-side aggregation (BFF) where a view needs it.** When a screen needs our core data **plus** a module's data, we compose the response at the gateway rather than make the browser fan out to several backends.
+- **Composition runs both ways.** Outward, we compose module APIs into our public surface. Inward, modules compose with us through the **Platform SDK** (gRPC/REST) — never our database.
+
+```mermaid
+graph TD
+    FE["Next.js Frontend - one origin, one token"]
+    GW["API Gateway - composition layer: auth, tenant entitlements, OpenAPI catalog"]
+    CoreAPI["/api/core - ALADIN Core"]
+    ModA["/api/m/camunda - Camunda module"]
+    ModB["/api/m/viz - 3D GLB module"]
+    SDK["Platform SDK - gRPC/REST inward calls"]
+
+    FE -->|"single /api surface"| GW
+    GW -->|"/api/core"| CoreAPI
+    GW -->|"/api/m/camunda if entitled"| ModA
+    GW -->|"/api/m/viz if entitled"| ModB
+    ModA -.->|"reads our data"| SDK
+    ModB -.->|"reads our data"| SDK
+    SDK -.-> CoreAPI
+```
+
+### 3.5 The Partner Kit we ship <span class="pill pill--new">NEW</span>
 
 To get a partner productive on day one, we ship from our `aladin-platform-sdk` repo:
 
@@ -213,6 +241,8 @@ We give partners this before they write a line of code:
 | <span class="pill pill--data">DATA</span> | Concerns the data contract (DB/SDK) |
 | <span class="pill pill--warn">WARN</span> | Caution — an option we reject or a risk we watch |
 | <span class="pill pill--ok">OK</span> | Our recommended position |
+| **API composition** | Presenting many independent module backends as one platform API surface — namespaced, tenant-aware, catalogued — through our gateway |
+| **BFF** | Backend-for-Frontend — server-side aggregation that composes core + module data into one response so the browser doesn't fan out |
 | **Strangler Fig** | Incremental migration: the new system grows around the old one until we retire the old one, with no big-bang cutover |
 | **AOT** | Ahead-of-Time compilation — work done at build time instead of runtime (how Quarkus/Micronaut gain speed) |
 | **GraalVM native image** | Compiling a JVM app to a native binary for near-zero startup and tiny memory; requires no runtime reflection |
