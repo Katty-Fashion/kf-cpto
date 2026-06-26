@@ -76,9 +76,23 @@ jobs:
             echo "No doc changes to commit."
           else
             git commit -m "chore: auto-update unified docs [skip ci]"
-            # Concurrency guard makes a race unlikely, but rebase-retry on a
-            # late push (e.g. a human commit) instead of failing the run.
-            git push || (git pull --rebase --autostash origin master && git push)
+            # Concurrent runs (multiple repo dispatches in one batch) each
+            # regenerate docs/ and race on the push. A plain rebase conflicts on
+            # the regenerated files (loe.yml/boards.yml/gantt.yml differ by
+            # timestamp). Retry with a rebase that PREFERS this run's fresh
+            # output (-X theirs = the replayed commit during a rebase), so the
+            # latest run wins deterministically instead of failing the job.
+            n=0
+            until git push; do
+              n=$((n+1))
+              if [ "$n" -gt 5 ]; then
+                echo "::error::push failed after $n attempts"; exit 1
+              fi
+              echo "push rejected — rebasing onto latest (attempt $n)"
+              git fetch origin master
+              git rebase -X theirs origin/master || git rebase --abort
+              sleep $(( (RANDOM % 5) + 2 ))
+            done
           fi
 
       - name: Deploy GitHub Pages
@@ -105,10 +119,21 @@ jobs:
       - name: Persist sheets sync status
         if: always()
         run: |
+          set +e   # status persistence must never fail the run post-deploy
           git add docs/_data/sync_status.yml 2>/dev/null || true
           if ! git diff --staged --quiet; then
             git commit -m "chore: update sheets sync status [skip ci]"
-            git push || (git pull --rebase --autostash origin master && git push) || true
+            # Same concurrent-push hardening as "Commit unified docs", but kept
+            # non-fatal (trailing || true) — a status push race must never fail
+            # the run after Pages already deployed.
+            n=0
+            until git push; do
+              n=$((n+1))
+              [ "$n" -gt 5 ] && { echo "sheets-status push gave up after $n attempts"; break; }
+              git fetch origin master
+              git rebase -X theirs origin/master || git rebase --abort
+              sleep $(( (RANDOM % 5) + 2 ))
+            done || true
           fi
 
       - name: Build summary
