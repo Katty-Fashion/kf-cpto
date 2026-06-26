@@ -105,7 +105,7 @@ def _render_kanban_board(statuses: dict, *, link_project: bool = True) -> str:
             if link_project:
                 project = task["project"]
                 escaped_project = _html_escape(project)
-                href = "{{{{ '/projects/{proj}/' | relative_url }}}}".format(proj=project)
+                href = "{{{{ '/projects/{proj}/' | relative_url }}}}".format(proj=project.lower())
                 lines.append(
                     f'    <a class="kanban-card" href="{href}">'
                     f'{escaped_project}: {escaped_task}'
@@ -203,6 +203,14 @@ def generate_unified_kanban(data: dict) -> str:
 
 def generate_unified_calendar(data: dict) -> str:
     """Generate unified calendar markdown with Gantt chart"""
+    # Compute per-project effort totals for the pie chart
+    effort_pairs = []
+    for proj, proj_data in data.items():
+        total = sum(parse_effort_days(t["effort"]) for t in proj_data["tasks"])
+        if total > 0:
+            effort_pairs.append((proj, total))
+    effort_pairs.sort(key=lambda x: x[1], reverse=True)
+
     lines = [
         "---",
         "title: Unified Calendar",
@@ -211,18 +219,19 @@ def generate_unified_calendar(data: dict) -> str:
         "",
         "# KF Team — Unified Calendar",
         "",
-        "> CPTO 50h Monthly Allocation",
+        "> Effort by Project (person-days)",
         "",
-        "```mermaid",
-        "pie title Alocarea Lunara 50 Ore — CPTO KF",
-        '    "Sync & Ritm Echipa (Sprint, Retro, All Hands)" : 10',
-        '    "Technical Health & Architecture" : 12',
-        '    "Pre-Sales & Business Alignment" : 8',
-        '    "Proiecte EU (AI-RISE, AIREGIO)" : 10',
-        '    "SaaS Products (NuoForm, Waist Mgmt)" : 8',
-        '    "Team Events & People" : 2',
-        "```",
-        "",
+    ]
+
+    if effort_pairs:
+        lines.append("```mermaid")
+        lines.append("pie title Effort by Project (person-days)")
+        for proj, total in effort_pairs:
+            lines.append(f'    "{mermaid_label_safe(proj)}" : {total}')
+        lines.append("```")
+        lines.append("")
+
+    lines += [
         "## Sprint Calendar",
         "",
         "```mermaid",
@@ -292,29 +301,70 @@ def generate_loe_report(data: dict) -> str:
 
     lines.append(f"| **Total** | | **{total_effort}d** | **{total_completed}d** | **{total_effort - total_completed}d** |")
 
-    lines.append("")
-    lines.append("## Effort by Assignee")
-    lines.append("")
-    lines.append("| Assignee | Total Effort | In Progress | Completed |")
-    lines.append("| :--- | :---: | :---: | :---: |")
+    return "\n".join(lines)
 
-    # Aggregate by assignee
-    assignee_data = {}
+
+def generate_agile_sprints(data: dict) -> str:
+    """Generate Agile Sprints page with a sprint timeline gantt and summary table."""
+    lines = [
+        "---",
+        "title: Agile Sprints",
+        f"generated: {datetime.now().isoformat()}",
+        "---",
+        "",
+        "# KF Team — Agile Sprints",
+        "",
+        "## Sprint Timeline",
+        "",
+        "```mermaid",
+        "gantt",
+        "    title Sprint Timeline",
+        "    dateFormat YYYY-MM-DD",
+        "    axisFormat %d %b",
+        "    excludes weekends",
+        "",
+    ]
+
     for project, project_data in data.items():
-        for task in project_data["tasks"]:
-            assignee = task["assignee"]
-            if assignee not in assignee_data:
-                assignee_data[assignee] = {"total": 0, "in_progress": 0, "completed": 0}
+        meta = project_data.get("meta", {})
+        s_start = str(meta.get("sprint_start", "")).strip()
+        s_end = str(meta.get("sprint_end", "")).strip()
+        if _ISO_DATE_RE.match(s_start) and _ISO_DATE_RE.match(s_end):
+            sprint = str(meta.get("sprint", "Sprint"))
+            lines.append(f"    section {mermaid_gantt_label(project)}")
+            lines.append(f"    {mermaid_gantt_label(sprint)} :active, {s_start}, {s_end}")
 
-            days = parse_effort_days(task["effort"])
-            assignee_data[assignee]["total"] += days
-            if task["status"] == "Done":
-                assignee_data[assignee]["completed"] += days
-            elif task["status"] == "In Progress":
-                assignee_data[assignee]["in_progress"] += days
+    lines.append("```")
+    lines.append("")
 
-    for assignee, stats in sorted(assignee_data.items()):
-        lines.append(f"| {_md_cell(assignee)} | {stats['total']}d | {stats['in_progress']}d | {stats['completed']}d |")
+    # Sprint Summary table
+    lines.append("## Sprint Summary")
+    lines.append("")
+    lines.append("| Project | Sprint | Window | Total Effort | % Done |")
+    lines.append("| :--- | :--- | :--- | :---: | :---: |")
+
+    grand_total = 0.0
+    grand_done = 0.0
+
+    for project, project_data in data.items():
+        meta = project_data.get("meta", {})
+        tasks = project_data.get("tasks", [])
+        sprint = meta.get("sprint", "-")
+        s_start_raw = str(meta.get("sprint_start", "")).strip()
+        s_end_raw = str(meta.get("sprint_end", "")).strip()
+        window = f"{s_start_raw} → {s_end_raw}" if s_start_raw and s_end_raw else "-"
+        total_days = sum(parse_effort_days(t["effort"]) for t in tasks)
+        done_days = sum(parse_effort_days(t["effort"]) for t in tasks if t["status"] == "Done")
+        pct = round(done_days / total_days * 100, 1) if total_days else 0
+        grand_total += total_days
+        grand_done += done_days
+        lines.append(
+            f"| {_md_cell(project)} | {_md_cell(str(sprint))} | {_md_cell(window)}"
+            f" | {total_days}d | {pct}% |"
+        )
+
+    overall_pct = round(grand_done / grand_total * 100, 1) if grand_total else 0
+    lines.append(f"| **TOTAL** | | | **{grand_total}d** | **{overall_pct}%** |")
 
     return "\n".join(lines)
 
@@ -340,7 +390,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
     sprint_period = f"{sprint_start} to {sprint_end}" if sprint_start and sprint_end else "-"
 
     deps_display = ", ".join(
-        f"[{d}]({{{{ '/projects/{d}/' | relative_url }}}})" for d in depends_on
+        f"[{d}]({{{{ '/projects/{d.lower()}/' | relative_url }}}})" for d in depends_on
     ) if depends_on else "None"
 
     branch = PROJECT_BRANCHES.get(project, "master")
@@ -483,24 +533,6 @@ def generate_project_page(project: str, project_data: dict) -> str:
                 except ValueError:
                     pass
 
-            lines.append("```")
-            lines.append("")
-
-        # Effort distribution pie chart
-        effort_by_status = {}
-        for task in tasks:
-            days = parse_effort_days(task["effort"])
-            if days > 0:
-                effort_by_status[task["status"]] = effort_by_status.get(task["status"], 0) + days
-
-        if effort_by_status:
-            lines.append("## Effort Distribution")
-            lines.append("")
-            lines.append("```mermaid")
-            lines.append("pie title Effort by Status")
-            for status in TASK_STATUSES:
-                if status in effort_by_status:
-                    lines.append(f'    "{status}" : {effort_by_status[status]}')
             lines.append("```")
             lines.append("")
 
@@ -847,6 +879,9 @@ def main():
     graph_content = generate_dependency_graph(data)
     (DOCS_DIR / "dependency-graph.md").write_text(graph_content)
     print("Generated dependency-graph.md")
+
+    (DOCS_DIR / "agile-sprints.md").write_text(generate_agile_sprints(data))
+    print("Generated agile-sprints.md")
 
     # Generate individual project pages
     generate_project_pages(data)
