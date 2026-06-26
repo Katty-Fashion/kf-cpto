@@ -297,6 +297,40 @@ body {
 }
 
 /* ===== Responsive: Mobile ===== */
+/* ===== Pills (text badges, no emojis) ===== */
+.pill {
+  display: inline-block;
+  padding: 0.1em 0.55em;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: #fff;
+  background: #64748b;
+}
+.pill--new  { background: #2563eb; }
+.pill--rule { background: #475569; }
+.pill--moat { background: #7c3aed; }
+.pill--ui   { background: #0e7490; }
+.pill--api  { background: #c2410c; }
+.pill--data { background: #15803d; }
+.pill--warn { background: #b45309; }
+.pill--ok   { background: #38a169; }
+
+/* ===== Mermaid diagrams — rounded corners (forest theme set globally) ===== */
+.mermaid .node rect,
+.mermaid .node polygon,
+.mermaid .cluster rect,
+.mermaid .task,
+.mermaid rect.task {
+  rx: 8px;
+  ry: 8px;
+}
+
 @media (max-width: 768px) {
   .mobile-header {
     display: flex;
