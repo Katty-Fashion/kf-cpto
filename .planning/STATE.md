@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 Phase: 03 (write-back-diagram-sanitization) — EXECUTING
 Plan: 3 of 3
 Status: Phase complete — ready for verification
-Last activity: 2026-06-24 - Completed quick task 260624-loa: XSS hardening of generated dashboard output
+Last activity: 2026-06-26 - Completed quick task 260626-b6m: dashboard fixes + Agile Sprints page + dependency topology
 
 Progress: [██████████] 100%
 
@@ -102,6 +102,7 @@ None yet.
 | 260624-eqy | Replace unified kanban Mermaid with HTML/CSS board; drop pills; link cards to project pages | 2026-06-24 | 7c88fa1 | [260624-eqy-replace-unified-kanban-mermaid-diagram-w](./quick/260624-eqy-replace-unified-kanban-mermaid-diagram-w/) |
 | 260624-hu3 | HTML board on per-project pages; remove dead pill system; native R3Group sheet id | 2026-06-24 | 6c2f800 | [260624-hu3-apply-html-kanban-board-to-per-project-p](./quick/260624-hu3-apply-html-kanban-board-to-per-project-p/) |
 | 260624-loa | Escape free-text in generated markdown/frontmatter + defang mermaid labels (XSS hardening) | 2026-06-24 | 5272b9c | [260624-loa-escape-free-text-fields-task-assignee-sp](./quick/260624-loa-escape-free-text-fields-task-assignee-sp/) |
+| 260626-b6m | Dashboard fixes: lowercase project links (404), effort-per-project charts, drop Effort by Assignee, new Agile Sprints page; deps topology pushed | 2026-06-26 | ac31fd7 | [260626-b6m-dashboard-fixes-lowercase-project-links-](./quick/260626-b6m-dashboard-fixes-lowercase-project-links-/) |
 
 ## Deferred Items
 
