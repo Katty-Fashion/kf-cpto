@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-07-01T20:19:41.228363
+generated: 2026-07-01T20:24:41.051722
 ---
 
 # KF Team — Unified Kanban
@@ -9,7 +9,7 @@ generated: 2026-07-01T20:19:41.228363
 
 <div class="kanban-board">
   <div class="kanban-col kanban-col--todo">
-    <div class="kanban-col__head">Todo <span class="kanban-col__count">59</span></div>
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">60</span></div>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Feature set pentru lansare (MVP)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Ce este „Done&quot; vs „Ready&quot; pentru release</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Sesiune demo produse (intern)</a>
@@ -69,6 +69,7 @@ generated: 2026-07-01T20:19:41.228363
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT38.S3. Grant inventory rights migration</a>
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT78.S4. Order flow surface model attachments des</a>
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT85.S3. Costing persistence DEFERRED</a>
+    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT95.S5. Fix uat1 reservation updated at not null</a>
   </div>
   <div class="kanban-col kanban-col--in-progress">
     <div class="kanban-col__head">In Progress <span class="kanban-col__count">26</span></div>
@@ -108,7 +109,7 @@ generated: 2026-07-01T20:19:41.228363
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Pipeline CI/CD (necesar pentru GTM)</a>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">126</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">131</span></div>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Validare integrare end-to-end (expunere API Nuoform)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Arhitectură multi-tenant (in place)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Separare date per client (in place)</a>
@@ -235,6 +236,11 @@ generated: 2026-07-01T20:19:41.228363
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT80.S4. Fix dxf preview rotation rotate around d</a>
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT83.S4. Sizes admin page server side pagination</a>
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT84.S4. Fix phase 90 d 10 orderdetailpage tabs d</a>
+    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT86.S4. Adauga campul length pe componenta mater</a>
+    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT89.S4. Reception picker re enable add with quan</a>
+    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT93.S4. Enable minstack s3 persistence s3 persis</a>
+    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT94.S4. Ttl manual override reset affordance hov</a>
+    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: QT96.S5. Fix tenant header race in tenantselector</a>
   </div>
 </div>
 
@@ -245,7 +251,7 @@ generated: 2026-07-01T20:19:41.228363
 | R3-AAS | 38 | 17 | 5 | 9 | 69 |
 | kf-be-platform | 0 | 4 | 0 | 16 | 20 |
 | kf-fe-platform | 0 | 4 | 0 | 28 | 32 |
-| kf-platform | 21 | 1 | 0 | 73 | 95 |
+| kf-platform | 22 | 1 | 0 | 78 | 101 |
 
 ## Sprint Timeline
 

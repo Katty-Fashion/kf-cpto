@@ -1,5 +1,5 @@
-generated_at: '2026-07-01T20:19:41Z'
-row_count: 218
+generated_at: '2026-07-01T20:24:41Z'
+row_count: 224
 rows:
 - project: R3-AAS
   sprint: S2
@@ -1143,7 +1143,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-02'
-  end: '2026-06-02'
+  end: '2026-06-03'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1159,7 +1159,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-03'
-  end: '2026-06-03'
+  end: '2026-06-04'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1167,7 +1167,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-03'
-  end: '2026-06-03'
+  end: '2026-06-04'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1183,7 +1183,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-04'
-  end: '2026-06-04'
+  end: '2026-06-05'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1199,7 +1199,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-04'
-  end: '2026-06-04'
+  end: '2026-06-05'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1207,7 +1207,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-04'
-  end: '2026-06-04'
+  end: '2026-06-05'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1215,7 +1215,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-05'
-  end: '2026-06-05'
+  end: '2026-06-06'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1223,7 +1223,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-08'
-  end: '2026-06-08'
+  end: '2026-06-09'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1231,7 +1231,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-08'
-  end: '2026-06-08'
+  end: '2026-06-09'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1239,7 +1239,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-08'
-  end: '2026-06-08'
+  end: '2026-06-09'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1263,7 +1263,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-08'
-  end: '2026-06-08'
+  end: '2026-06-09'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1271,7 +1271,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-09'
-  end: '2026-06-09'
+  end: '2026-06-10'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1279,7 +1279,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-09'
-  end: '2026-06-09'
+  end: '2026-06-10'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1287,7 +1287,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-16'
-  end: '2026-06-16'
+  end: '2026-06-17'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1295,7 +1295,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-17'
-  end: '2026-06-17'
+  end: '2026-06-18'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1311,7 +1311,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-22'
-  end: '2026-06-22'
+  end: '2026-06-23'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1319,7 +1319,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-22'
-  end: '2026-06-22'
+  end: '2026-06-23'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1351,7 +1351,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-29'
-  end: '2026-06-29'
+  end: '2026-06-30'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1375,7 +1375,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-29'
-  end: '2026-06-29'
+  end: '2026-06-30'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1383,7 +1383,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-24'
-  end: '2026-06-24'
+  end: '2026-06-25'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1391,7 +1391,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-05'
-  end: '2026-06-05'
+  end: '2026-06-06'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1399,7 +1399,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-05'
-  end: '2026-06-05'
+  end: '2026-06-06'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1407,7 +1407,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-05'
-  end: '2026-06-05'
+  end: '2026-06-06'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1415,7 +1415,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-05'
-  end: '2026-06-05'
+  end: '2026-06-06'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1423,7 +1423,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-05'
-  end: '2026-06-05'
+  end: '2026-06-06'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1431,7 +1431,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-05'
-  end: '2026-06-05'
+  end: '2026-06-06'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1439,7 +1439,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-05'
-  end: '2026-06-05'
+  end: '2026-06-06'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1455,7 +1455,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-06'
-  end: '2026-06-06'
+  end: '2026-06-07'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1463,7 +1463,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-10'
-  end: '2026-06-10'
+  end: '2026-06-11'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1471,7 +1471,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-10'
-  end: '2026-06-10'
+  end: '2026-06-11'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1479,7 +1479,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-10'
-  end: '2026-06-10'
+  end: '2026-06-11'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1487,7 +1487,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-10'
-  end: '2026-06-10'
+  end: '2026-06-11'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1495,7 +1495,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-10'
-  end: '2026-06-10'
+  end: '2026-06-11'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1503,7 +1503,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-10'
-  end: '2026-06-10'
+  end: '2026-06-11'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1511,7 +1511,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-11'
-  end: '2026-06-11'
+  end: '2026-06-12'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1519,7 +1519,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-11'
-  end: '2026-06-11'
+  end: '2026-06-12'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1527,7 +1527,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-11'
-  end: '2026-06-11'
+  end: '2026-06-12'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1535,7 +1535,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-11'
-  end: '2026-06-11'
+  end: '2026-06-12'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1543,7 +1543,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-11'
-  end: '2026-06-11'
+  end: '2026-06-12'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1551,7 +1551,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-11'
-  end: '2026-06-11'
+  end: '2026-06-12'
   status: Todo
 - project: kf-platform
   sprint: S5
@@ -1559,7 +1559,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1567,7 +1567,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1575,7 +1575,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1583,7 +1583,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1591,7 +1591,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1599,7 +1599,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1607,7 +1607,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1615,7 +1615,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1623,7 +1623,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1631,7 +1631,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1639,7 +1639,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1647,7 +1647,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-12'
-  end: '2026-06-12'
+  end: '2026-06-13'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1655,7 +1655,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-17'
-  end: '2026-06-17'
+  end: '2026-06-18'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1663,7 +1663,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-17'
-  end: '2026-06-17'
+  end: '2026-06-18'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1671,7 +1671,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-17'
-  end: '2026-06-17'
+  end: '2026-06-18'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1679,7 +1679,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-18'
-  end: '2026-06-18'
+  end: '2026-06-19'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1687,7 +1687,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-22'
-  end: '2026-06-22'
+  end: '2026-06-23'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1695,7 +1695,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-22'
-  end: '2026-06-22'
+  end: '2026-06-23'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1703,7 +1703,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-22'
-  end: '2026-06-22'
+  end: '2026-06-23'
   status: Todo
 - project: kf-platform
   sprint: S5
@@ -1719,7 +1719,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-23'
-  end: '2026-06-23'
+  end: '2026-06-24'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1727,7 +1727,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-24'
-  end: '2026-06-24'
+  end: '2026-06-25'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1735,7 +1735,7 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-25'
-  end: '2026-06-25'
+  end: '2026-06-26'
   status: Done
 - project: kf-platform
   sprint: S5
@@ -1743,5 +1743,53 @@ rows:
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 1.0
   start: '2026-06-11'
-  end: '2026-06-11'
+  end: '2026-06-12'
   status: Todo
+- project: kf-platform
+  sprint: S5
+  task: QT86.S4. Adauga campul length pe componenta mater
+  assignee: '@alexandru.bejenari + @ma.tech'
+  effort_days: 1.0
+  start: '2026-06-15'
+  end: '2026-06-16'
+  status: Done
+- project: kf-platform
+  sprint: S5
+  task: QT89.S4. Reception picker re enable add with quan
+  assignee: '@alexandru.bejenari + @ma.tech'
+  effort_days: 1.0
+  start: '2026-06-15'
+  end: '2026-06-16'
+  status: Done
+- project: kf-platform
+  sprint: S5
+  task: QT93.S4. Enable minstack s3 persistence s3 persis
+  assignee: '@alexandru.bejenari + @ma.tech'
+  effort_days: 1.0
+  start: '2026-06-16'
+  end: '2026-06-17'
+  status: Done
+- project: kf-platform
+  sprint: S5
+  task: QT94.S4. Ttl manual override reset affordance hov
+  assignee: '@alexandru.bejenari + @ma.tech'
+  effort_days: 1.0
+  start: '2026-06-16'
+  end: '2026-06-17'
+  status: Done
+- project: kf-platform
+  sprint: S5
+  task: QT95.S5. Fix uat1 reservation updated at not null
+  assignee: '@alexandru.bejenari + @ma.tech'
+  effort_days: 1.0
+  start: '2026-06-30'
+  end: '2026-07-01'
+  status: Todo
+- project: kf-platform
+  sprint: S5
+  task: QT96.S5. Fix tenant header race in tenantselector
+  assignee: '@alexandru.bejenari + @ma.tech'
+  effort_days: 1.0
+  start: '2026-07-01'
+  end: '2026-07-02'
+  status: Done
