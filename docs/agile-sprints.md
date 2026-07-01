@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-06-29T05:42:25.463897
+generated: 2026-07-01T20:14:39.036518
 ---
 
 # KF Team — Agile Sprints
@@ -21,7 +21,7 @@ gantt
     section kf-fe-platform
     S4 :active, 2026-06-15, 2026-06-26
     section kf-platform
-    S4 :active, 2026-06-15, 2026-06-26
+    S5 :active, 2026-06-29, 2026-07-10
 ```
 
 ## Sprint Summary
@@ -31,5 +31,5 @@ gantt
 | R3-AAS | S2 | 2026-03-16 → 2026-04-03 | 18.5d | 27.0% |
 | kf-be-platform | S4 | 2026-06-15 → 2026-06-26 | 77.0d | 0.0% |
 | kf-fe-platform | S4 | 2026-06-15 → 2026-06-26 | 62.0d | 0.0% |
-| kf-platform | S4 | 2026-06-15 → 2026-06-26 | 167.0d | 0.0% |
-| **TOTAL** | | | **324.5d** | **1.5%** |
+| kf-platform | S5 | 2026-06-29 → 2026-07-10 | 257.0d | 33.9% |
+| **TOTAL** | | | **414.5d** | **22.2%** |
