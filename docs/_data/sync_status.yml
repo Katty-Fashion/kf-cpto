@@ -1,8 +1,8 @@
 aggregator:
-  last_run_at: '2026-07-01T20:19:41Z'
+  last_run_at: '2026-07-01T20:24:41Z'
   last_run_status: ok
   source_repo_count: 4
-  task_count: 218
+  task_count: 224
   errors: []
 sheets_export:
   last_run_at: '2026-07-01T20:19:55Z'

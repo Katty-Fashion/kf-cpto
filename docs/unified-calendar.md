@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-07-01T20:19:41.229462
+generated: 2026-07-01T20:24:41.052953
 ---
 
 # KF Team — Unified Calendar
@@ -9,7 +9,7 @@ generated: 2026-07-01T20:19:41.229462
 
 ```mermaid
 pie title Effort by Project (person-days)
-    "kf-platform" : 257.0
+    "kf-platform" : 263.0
     "kf-fe-platform" : 48.0
     "kf-be-platform" : 33.0
     "R3-AAS" : 18.5
