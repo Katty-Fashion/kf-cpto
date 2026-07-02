@@ -1,89 +1,36 @@
 ---
 title: tech_brainstorming
-description: "Short project description"
+description: "Tech brainstorming \u2014 ideas, spikes and evaluation notes"
 project: tech_brainstorming
-type: saas
+type: internal
 edit_url: "https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md"
-generated: 2026-06-04T14:03:45.677025
+generated: 2026-07-02T22:06:38.421583
 ---
 
 # tech_brainstorming
 
-> Short project description
+> Tech brainstorming — ideas, spikes and evaluation notes
 
 ## Status
 
 | Metric | Value |
 | :--- | :--- |
 | Status | Active |
-| Type | SaaS Product |
-| PO | @product-owner |
-| Lead | @tech-lead |
-| Current Sprint | S1 |
-| Sprint Period | 2026-03-02 to 2026-03-13 |
-| Tags | - |
+| Type | Internal |
+| PO | @el.tech |
+| Lead | @el.tech |
+| Current Sprint | S5 |
+| Sprint Period | 2026-06-29 to 2026-07-10 |
+| Tags | internal, ideation |
 | Dependencies | None |
 
-## Current Sprint Kanban &nbsp; [Edit Kanban](https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md)
+## Kanban
 
-<div class="status-legend"><span class="status-pill status-pill--todo">Todo</span>
-<span class="status-pill status-pill--in-progress">In Progress</span>
-<span class="status-pill status-pill--review">Review</span>
-<span class="status-pill status-pill--done">Done</span></div>
-
-```mermaid
-kanban
-  Todo
-    t3["Documentation"]
-  In-Progress
-    t2["Initial architecture"]
-  Review
-  Done
-    t1["Project setup"]
-```
-
-## Task Summary
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Project setup | @lead | 1d | 2026-03-03 | 2026-03-03 | Done |
-| Initial architecture | @tech-lead | 2d | 2026-03-04 | 2026-03-05 | In Progress |
-| Documentation | @developer | 1d |  |  | Todo |
-
-## LOE Summary
-
-| Metric | Value |
-| :--- | :--- |
-| Total Effort | 4.0d |
-| In Progress | 2.0d |
-| Completed | 1.0d |
-| Remaining | 3.0d |
-
-## Sprint Timeline
-
-```mermaid
-gantt
-    title S1 — tech_brainstorming
-    dateFormat YYYY-MM-DD
-    excludes weekends
-
-    Project setup :done, 2026-03-03, 2026-03-03
-    Initial architecture :active, 2026-03-04, 2026-03-05
-    Documentation :2026-03-06, 1d
-```
-
-## Effort Distribution
-
-```mermaid
-pie title Effort by Status
-    "Todo" : 1.0
-    "In Progress" : 2.0
-    "Done" : 1.0
-```
+*No tasks found in kanban.md*
 
 ## Links
 
-- [Edit Kanban](https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md)
+- [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=tech_brainstorming) ·&nbsp;[raw](https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md)
 - [Repository](https://github.com/katty-fashion/tech_brainstorming)
 - [Kanban Board](https://github.com/katty-fashion/tech_brainstorming/blob/main/kanban.md)
 

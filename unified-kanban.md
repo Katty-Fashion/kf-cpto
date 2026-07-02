@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-07-02T22:00:59.916981
+generated: 2026-07-02T22:06:38.375886
 ---
 
 # KF Team — Unified Kanban
@@ -148,9 +148,11 @@ generated: 2026-07-02T22:00:59.916981
 | Project | Todo | In Progress | Review | Done | Total |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | R3-AAS | 27 | 6 | 15 | 34 | 82 |
+| ai-rise-options | 0 | 0 | 0 | 0 | 0 |
 | kf-be-platform | 4 | 2 | 0 | 4 | 10 |
 | kf-fe-platform | 1 | 3 | 0 | 6 | 10 |
 | kf-platform | 7 | 7 | 0 | 5 | 19 |
+| tech_brainstorming | 0 | 0 | 0 | 0 | 0 |
 
 ## Sprint Timeline
 
@@ -167,6 +169,10 @@ gantt
     S4 :done, 2026-06-15, 2026-06-26
     S5 :active, 2026-06-29, 2026-07-10
     S6 :2026-07-13, 2026-07-24
+    section ai-rise-options
+    S4 :done, 2026-06-15, 2026-06-26
+    S5 :active, 2026-06-29, 2026-07-10
+    S6 :2026-07-13, 2026-07-24
     section kf-be-platform
     S4 :done, 2026-06-15, 2026-06-26
     S5 :active, 2026-06-29, 2026-07-10
@@ -176,6 +182,10 @@ gantt
     S5 :active, 2026-06-29, 2026-07-10
     S6 :2026-07-13, 2026-07-24
     section kf-platform
+    S4 :done, 2026-06-15, 2026-06-26
+    S5 :active, 2026-06-29, 2026-07-10
+    S6 :2026-07-13, 2026-07-24
+    section tech_brainstorming
     S4 :done, 2026-06-15, 2026-06-26
     S5 :active, 2026-06-29, 2026-07-10
     S6 :2026-07-13, 2026-07-24
