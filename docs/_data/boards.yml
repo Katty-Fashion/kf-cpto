@@ -1,4 +1,4 @@
-generated_at: '2026-07-02T20:35:32Z'
+generated_at: '2026-07-02T20:46:11Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -474,6 +474,54 @@ projects:
     start: '2026-04-03'
     end: '2026-04-03'
     status: Review
+  - task: 'M2F: finalise & confirm assumed KF-M2F shell structure'
+    assignee: Alexandru Bejenari / M2F
+    effort: 2d
+    start: '2026-06-29'
+    end: '2026-07-10'
+    status: In Progress
+  - task: Export R3 AAS shells → move to Netcompany-hosted R3 platform
+    assignee: Răzvan Boița
+    effort: 3d
+    start: '2026-07-13'
+    end: '2026-07-17'
+    status: Todo
+  - task: Share KF access for export to NetCompany
+    assignee: Eduard Lazăr
+    effort: 1d
+    start: '2026-07-13'
+    end: '2026-07-14'
+    status: Todo
+  - task: Share KF-M2F shell with M2F (so they build their own)
+    assignee: Răzvan Boița
+    effort: 1d
+    start: '2026-07-13'
+    end: '2026-07-14'
+    status: Todo
+  - task: Connect + test M2F V2 API from new Nuoform
+    assignee: Alexandru Bejenari
+    effort: 5d
+    start: '2026-07-20'
+    end: '2026-07-24'
+    status: Todo
+  - task: Re-point all connections to Netcompany-hosted R3 (go live)
+    assignee: Răzvan Boița
+    effort: 3d
+    start: '2026-07-27'
+    end: '2026-07-31'
+    status: Todo
+  - task: Pilot KF demo recordings (based on revised Nuoform)
+    assignee: Paul Stanciuc
+    effort: 3d
+    start: '2026-08-03'
+    end: '2026-08-05'
+    status: Todo
+  - task: State AI usage in R3 (declaration)
+    assignee: Eduard Lazăr
+    effort: 1d
+    start: '2026-07-16'
+    end: '2026-07-17'
+    status: Todo
 - project: kf-be-platform
   branch: main
   edit_url: https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md

@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-02T20:35:32.655901
+generated: 2026-07-02T20:46:11.428302
 ---
 
 # R3-AAS
@@ -28,7 +28,7 @@ generated: 2026-07-02T20:35:32.655901
 
 <div class="kanban-board">
   <div class="kanban-col kanban-col--todo">
-    <div class="kanban-col__head">Todo <span class="kanban-col__count">20</span></div>
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">27</span></div>
     <div class="kanban-card kanban-card--static">Feature set pentru lansare (MVP)</div>
     <div class="kanban-card kanban-card--static">Ce este „Done&quot; vs „Ready&quot; pentru release</div>
     <div class="kanban-card kanban-card--static">Decizie Made2Flow (demo vs integrare reală)</div>
@@ -49,14 +49,22 @@ generated: 2026-07-02T20:35:32.655901
     <div class="kanban-card kanban-card--static">Landing page (claritate produs)</div>
     <div class="kanban-card kanban-card--static">Definire tehnică monetizare (SaaS readiness)</div>
     <div class="kanban-card kanban-card--static">Input pentru CRM / pipeline (structură tehnică)</div>
+    <div class="kanban-card kanban-card--static">Export R3 AAS shells → move to Netcompany-hosted R3 platform</div>
+    <div class="kanban-card kanban-card--static">Share KF access for export to NetCompany</div>
+    <div class="kanban-card kanban-card--static">Share KF-M2F shell with M2F (so they build their own)</div>
+    <div class="kanban-card kanban-card--static">Connect + test M2F V2 API from new Nuoform</div>
+    <div class="kanban-card kanban-card--static">Re-point all connections to Netcompany-hosted R3 (go live)</div>
+    <div class="kanban-card kanban-card--static">Pilot KF demo recordings (based on revised Nuoform)</div>
+    <div class="kanban-card kanban-card--static">State AI usage in R3 (declaration)</div>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">5</span></div>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">6</span></div>
     <div class="kanban-card kanban-card--static">T2.3 — Supply Chain Digital Twin: risk modelling</div>
     <div class="kanban-card kanban-card--static">Sesiune demo produse (intern)</div>
     <div class="kanban-card kanban-card--static">Acces corect la organizații (login flow issues)</div>
     <div class="kanban-card kanban-card--static">Testare demo produse (clienți + testeri interni)</div>
     <div class="kanban-card kanban-card--static">Demo / prezentare produs</div>
+    <div class="kanban-card kanban-card--static">M2F: finalise &amp; confirm assumed KF-M2F shell structure</div>
   </div>
   <div class="kanban-col kanban-col--review">
     <div class="kanban-col__head">Review <span class="kanban-col__count">15</span></div>
@@ -193,22 +201,30 @@ generated: 2026-07-02T20:35:32.655901
 | Run first scheduling tests with real production data | @tech-lead | 1d | 2026-03-28 | 2026-03-28 | Review |
 | Debug integration issues with LMS team | @tech-lead | 1d | 2026-03-31 | 2026-03-31 | Review |
 | Integration validation review | @tech-lead | 0.5d | 2026-04-03 | 2026-04-03 | Review |
+| M2F: finalise &amp; confirm assumed KF-M2F shell structure | Alexandru Bejenari / M2F | 2d | 2026-06-29 | 2026-07-10 | In Progress |
+| Export R3 AAS shells → move to Netcompany-hosted R3 platform | Răzvan Boița | 3d | 2026-07-13 | 2026-07-17 | Todo |
+| Share KF access for export to NetCompany | Eduard Lazăr | 1d | 2026-07-13 | 2026-07-14 | Todo |
+| Share KF-M2F shell with M2F (so they build their own) | Răzvan Boița | 1d | 2026-07-13 | 2026-07-14 | Todo |
+| Connect + test M2F V2 API from new Nuoform | Alexandru Bejenari | 5d | 2026-07-20 | 2026-07-24 | Todo |
+| Re-point all connections to Netcompany-hosted R3 (go live) | Răzvan Boița | 3d | 2026-07-27 | 2026-07-31 | Todo |
+| Pilot KF demo recordings (based on revised Nuoform) | Paul Stanciuc | 3d | 2026-08-03 | 2026-08-05 | Todo |
+| State AI usage in R3 (declaration) | Eduard Lazăr | 1d | 2026-07-16 | 2026-07-17 | Todo |
 
 ## LOE Summary
 
 | Metric | Value |
 | :--- | :--- |
-| Total Effort | 33.5d |
-| In Progress | 0.0d |
+| Total Effort | 52.5d |
+| In Progress | 2.0d |
 | Completed | 0.0d |
-| Remaining | 33.5d |
+| Remaining | 52.5d |
 
 ## Effort — Planned vs Done
 
 ```mermaid
 pie showData title Effort — Planned vs Done (person-days)
     "Done" : 0.0
-    "Planned" : 33.5
+    "Planned" : 52.5
 ```
 
 ## Sprint Timeline
@@ -258,13 +274,14 @@ gantt
     Acces corect la organizații (login flow issues) :active, 2026-08-04, 1d
     Testare demo produse (clienți + testeri interni) :active, 2026-08-05, 1d
     Demo / prezentare produs :active, 2026-08-06, 1d
-    WP1 — AAS platform integration (digital infrastructure) :2026-08-07, 1d
-    T2.4 — Capacity Planner KF Planner UI :2026-08-08, 5d
-    T2.4 — Capacity Planner KF ↔ LMS Integration :2026-08-13, 10d
-    T3.3 — IoT Monitoring sensors deployment :2026-08-23, 5d
-    Integrare între sisteme (Katty / LMS) :2026-08-28, 1d
-    Integrare LMS (AAS extern) :2026-08-29, 1d
-    UI flow (parțial complet) :2026-08-30, 1d
+    M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
+    WP1 — AAS platform integration (digital infrastructure) :2026-07-01, 1d
+    T2.4 — Capacity Planner KF Planner UI :2026-07-02, 5d
+    T2.4 — Capacity Planner KF ↔ LMS Integration :2026-07-07, 10d
+    T3.3 — IoT Monitoring sensors deployment :2026-07-17, 5d
+    Integrare între sisteme (Katty / LMS) :2026-07-22, 1d
+    Integrare LMS (AAS extern) :2026-07-23, 1d
+    UI flow (parțial complet) :2026-07-24, 1d
     Implement scheduling request endpoint (KF → LMS) :crit, 2026-03-19, 2026-03-21
     Implement scheduler response parser :crit, 2026-03-22, 2026-03-24
     Integrate scheduling results with planner UI :crit, 2026-03-19, 2026-03-24
@@ -293,6 +310,13 @@ gantt
     Landing page (claritate produs) :crit, 2026-04-20, 1d
     Definire tehnică monetizare (SaaS readiness) :crit, 2026-04-21, 1d
     Input pentru CRM / pipeline (structură tehnică) :crit, 2026-04-22, 1d
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
+    Share KF access for export to NetCompany :2026-07-13, 2026-07-14
+    Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
+    Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
+    Re-point all connections to Netcompany-hosted R3 (go live) :2026-07-27, 2026-07-31
+    Pilot KF demo recordings (based on revised Nuoform) :2026-08-03, 2026-08-05
+    State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
