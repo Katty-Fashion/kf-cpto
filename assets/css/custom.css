@@ -341,11 +341,8 @@ body {
   ry: 8px;
 }
 
-/* ===== Gantt bar colours — RAG (Grey planned · Amber in-work · Red late · Green done) ===== */
-.mermaid rect.task   { fill: #9aa0a6 !important; stroke: #6b7280 !important; }   /* planned / grey */
-.mermaid rect.active { fill: #d97706 !important; stroke: #b45309 !important; }   /* in work / amber */
-.mermaid rect.crit   { fill: #dc2626 !important; stroke: #b91c1c !important; }   /* late / at risk / red */
-.mermaid rect.done   { fill: #16a34a !important; stroke: #15803d !important; }   /* done / green */
+/* Gantt bar colours (RAG) are set via mermaid themeVariables in _layouts/default.html
+   — external CSS is out-specified by mermaid's injected per-diagram <style>. */
 
 /* Gantt legend row under each timeline */
 .gantt-legend {

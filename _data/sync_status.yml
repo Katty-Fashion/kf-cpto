@@ -1,14 +1,14 @@
 aggregator:
-  last_run_at: '2026-07-02T10:23:10Z'
+  last_run_at: '2026-07-02T10:30:51Z'
   last_run_status: ok
   source_repo_count: 4
   task_count: 110
   errors: []
 sheets_export:
-  last_run_at: '2026-07-02T07:33:33Z'
+  last_run_at: '2026-07-02T10:23:16Z'
   last_run_status: ok
   row_count: 110
-  duration_seconds: 2.87
+  duration_seconds: 3.52
   last_error: null
   last_error_issue: null
   recent_failures: []
