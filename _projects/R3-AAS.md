@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-02T21:09:26.921319
+generated: 2026-07-02T21:15:34.996350
 ---
 
 # R3-AAS
@@ -17,7 +17,7 @@ generated: 2026-07-02T21:09:26.921319
 | :--- | :--- |
 | Status | Active |
 | Type | EU Project |
-| PO | @ps.tech |
+| PO | @el.tech |
 | Lead | @el.tech |
 | Current Sprint | S5 |
 | Sprint Period | 2026-06-29 to 2026-07-10 |
