@@ -40,6 +40,59 @@
 
   <script src="{{ '/assets/js/sidebar.js' | relative_url }}"></script>
 
+  <script>
+    // Render [LABEL] text pills as styled badges across every page.
+    // Whitelisted labels only, so task prefixes like [F1.S2.Name] and
+    // markdown links are left untouched. Skips code blocks, mermaid, links.
+    (function () {
+      var PILLS = {
+        WARN: 'warn', OK: 'ok', NEW: 'new', BLOCKER: 'blocker',
+        REFACTOR: 'refactor', 'REFACTOR+NEW': 'refactor', BUGFIX: 'bugfix',
+        INTEGRATION: 'integration', SETUP: 'setup', RULE: 'rule',
+        MOAT: 'moat', UI: 'ui', API: 'api', DATA: 'data'
+      };
+      var root = document.querySelector('.main-content') || document.body;
+      function pill(label) {
+        var s = document.createElement('span');
+        s.className = 'pill pill--' + PILLS[label];
+        s.textContent = label;
+        return s;
+      }
+      // 1) inline <code>[LABEL]</code> -> pill
+      root.querySelectorAll('code').forEach(function (c) {
+        if (c.closest('pre')) return;
+        var m = c.textContent.trim().match(/^\[([A-Z+]+)\]$/);
+        if (m && PILLS[m[1]]) c.replaceWith(pill(m[1]));
+      });
+      // 2) bare [LABEL] inside text nodes -> pill
+      var keys = Object.keys(PILLS).sort(function (a, b) { return b.length - a.length; });
+      var re = new RegExp('\\[(' + keys.map(function (k) { return k.replace('+', '\\+'); }).join('|') + ')\\]', 'g');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+        acceptNode: function (n) {
+          if (!n.nodeValue || n.nodeValue.indexOf('[') === -1) return NodeFilter.FILTER_REJECT;
+          var p = n.parentElement;
+          if (!p || p.closest('pre, code, a, .mermaid, .pill')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      var nodes = [], n;
+      while ((n = walker.nextNode())) nodes.push(n);
+      nodes.forEach(function (node) {
+        re.lastIndex = 0;
+        if (!re.test(node.nodeValue)) return;
+        re.lastIndex = 0;
+        var frag = document.createDocumentFragment(), last = 0, m;
+        while ((m = re.exec(node.nodeValue))) {
+          if (m.index > last) frag.appendChild(document.createTextNode(node.nodeValue.slice(last, m.index)));
+          frag.appendChild(pill(m[1]));
+          last = m.index + m[0].length;
+        }
+        if (last < node.nodeValue.length) frag.appendChild(document.createTextNode(node.nodeValue.slice(last)));
+        node.parentNode.replaceChild(frag, node);
+      });
+    })();
+  </script>
+
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 

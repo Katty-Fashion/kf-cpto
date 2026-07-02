@@ -525,12 +525,29 @@ def generate_project_page(project: str, project_data: dict) -> str:
                 t_end = end_raw if _ISO_DATE_RE.match(end_raw) else ""
                 label = mermaid_gantt_label(task["task"])
 
-                if task["status"] == "Done":
+                # RAG modifier: green done · amber in-work · red late/at-risk · grey planned
+                status = task["status"]
+
+                def _as_date(s):
+                    try:
+                        return datetime.strptime(s, "%Y-%m-%d").date()
+                    except (ValueError, TypeError):
+                        return None
+
+                today = datetime.now().date()
+                end_d = _as_date(t_end) or _as_date(end_raw)
+                start_d = _as_date(t_start) or _as_date(start_raw)
+                overdue = status != "Done" and end_d is not None and end_d < today
+                not_started = status == "Todo" and start_d is not None and start_d < today
+
+                if status == "Done":
                     modifier = "done, "
-                elif task["status"] == "In Progress":
-                    modifier = "active, "
+                elif overdue or not_started:
+                    modifier = "crit, "      # red — late / at risk
+                elif status == "In Progress":
+                    modifier = "active, "    # amber — in work / recoverable
                 else:
-                    modifier = ""
+                    modifier = ""            # grey — planned
 
                 if t_end:
                     lines.append(f"    {label} :{modifier}{t_start}, {t_end}")
@@ -545,6 +562,14 @@ def generate_project_page(project: str, project_data: dict) -> str:
                     pass
 
             lines.append("```")
+            lines.append("")
+            lines.append(
+                '<p class="gantt-legend">'
+                '<span class="pill pill--planned">Planned</span>'
+                '<span class="pill pill--active">In work</span>'
+                '<span class="pill pill--late">Late / At risk</span>'
+                '<span class="pill pill--done">Done</span></p>'
+            )
             lines.append("")
 
     else:

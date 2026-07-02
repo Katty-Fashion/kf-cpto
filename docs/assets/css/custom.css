@@ -320,6 +320,16 @@ body {
 .pill--data { background: #15803d; }
 .pill--warn { background: #b45309; }
 .pill--ok   { background: #38a169; }
+.pill--refactor    { background: #6d28d9; }
+.pill--bugfix      { background: #dc2626; }
+.pill--integration { background: #0d9488; }
+.pill--setup       { background: #475569; }
+.pill--blocker     { background: #b91c1c; }
+/* RAG status pills (used in the gantt legend) */
+.pill--planned { background: #6b7280; }
+.pill--active  { background: #d97706; }
+.pill--late    { background: #dc2626; }
+.pill--done    { background: #16a34a; }
 
 /* ===== Mermaid diagrams — rounded corners (forest theme set globally) ===== */
 .mermaid .node rect,
@@ -330,6 +340,23 @@ body {
   rx: 8px;
   ry: 8px;
 }
+
+/* ===== Gantt bar colours — RAG (Grey planned · Amber in-work · Red late · Green done) ===== */
+.mermaid rect.task   { fill: #9aa0a6 !important; stroke: #6b7280 !important; }   /* planned / grey */
+.mermaid rect.active { fill: #d97706 !important; stroke: #b45309 !important; }   /* in work / amber */
+.mermaid rect.crit   { fill: #dc2626 !important; stroke: #b91c1c !important; }   /* late / at risk / red */
+.mermaid rect.done   { fill: #16a34a !important; stroke: #15803d !important; }   /* done / green */
+
+/* Gantt legend row under each timeline */
+.gantt-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin: 0.25rem 0 1.25rem;
+  font-size: 0.72rem;
+}
+.gantt-legend .pill { cursor: default; }
 
 @media (max-width: 768px) {
   .mobile-header {
