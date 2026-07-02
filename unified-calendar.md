@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-07-02T20:35:32.640188
+generated: 2026-07-02T20:46:11.416808
 ---
 
 # KF Team — Unified Calendar
@@ -12,7 +12,7 @@ pie title Effort by Project (person-days)
     "kf-platform" : 167.0
     "kf-be-platform" : 77.0
     "kf-fe-platform" : 62.0
-    "R3-AAS" : 33.5
+    "R3-AAS" : 52.5
 ```
 
 ## Sprint Timeline
@@ -66,6 +66,14 @@ gantt
     Run first scheduling tests with real production data :crit, 2026-03-28, 2026-03-28
     Debug integration issues with LMS team :crit, 2026-03-31, 2026-03-31
     Integration validation review :crit, 2026-04-03, 2026-04-03
+    M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
+    Share KF access for export to NetCompany :2026-07-13, 2026-07-14
+    Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
+    State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
+    Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
+    Re-point all connections to Netcompany-hosted R3 (go live) :2026-07-27, 2026-07-31
+    Pilot KF demo recordings (based on revised Nuoform) :2026-08-03, 2026-08-05
     section kf-be-platform
     (F1.S2.DB Schema v2 + RLS) :done, 2026-05-25, 2026-06-21
     (F1.S2.CI/CD Pipeline) :crit, 2026-05-25, 2026-06-07
@@ -143,6 +151,8 @@ gantt
     axisFormat %d %b
     excludes weekends
 
+    section R3-AAS
+    M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
     section kf-be-platform
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
@@ -162,6 +172,12 @@ gantt
     axisFormat %d %b
     excludes weekends
 
+    section R3-AAS
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
+    Share KF access for export to NetCompany :2026-07-13, 2026-07-14
+    Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
+    Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
+    State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
     section kf-be-platform
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
     section kf-fe-platform

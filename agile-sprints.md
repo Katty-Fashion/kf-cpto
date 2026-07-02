@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-07-02T20:35:32.648447
+generated: 2026-07-02T20:46:11.422822
 ---
 
 # KF Team — Agile Sprints
@@ -67,6 +67,8 @@ gantt
     axisFormat %d %b
     excludes weekends
 
+    section R3-AAS
+    M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
     section kf-be-platform
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
@@ -86,6 +88,12 @@ gantt
     axisFormat %d %b
     excludes weekends
 
+    section R3-AAS
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
+    Share KF access for export to NetCompany :2026-07-13, 2026-07-14
+    Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
+    Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
+    State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
     section kf-be-platform
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
     section kf-fe-platform
@@ -101,8 +109,8 @@ gantt
 
 | Project | Sprint | Window | Total Effort | % Done |
 | :--- | :--- | :--- | :---: | :---: |
-| R3-AAS | S5 | 2026-06-29 → 2026-07-10 | 33.5d | 0.0% |
+| R3-AAS | S5 | 2026-06-29 → 2026-07-10 | 52.5d | 0.0% |
 | kf-be-platform | S5 | 2026-06-29 → 2026-07-10 | 77.0d | 45.5% |
 | kf-fe-platform | S5 | 2026-06-29 → 2026-07-10 | 62.0d | 59.7% |
 | kf-platform | S5 | 2026-06-29 → 2026-07-10 | 167.0d | 19.2% |
-| **TOTAL** | | | **339.5d** | **30.6%** |
+| **TOTAL** | | | **358.5d** | **29.0%** |
