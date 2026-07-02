@@ -105,13 +105,32 @@
       pre.replaceWith(div);
     });
 
-    // Pick mermaid theme light
-mermaid.initialize({
-  startOnLoad: false,
-  theme: 'forest',
-  securityLevel: 'loose'
-});
-mermaid.run();
+    // Gantt bar colours are driven through mermaid's own themeVariables so they
+    // can't be out-specified by mermaid's injected per-diagram <style>. These MUST
+    // match the RAG legend (.pill--planned/active/late/done in custom.css) and the
+    // done/active/crit modifiers the aggregator emits from each task's status.
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'forest',
+      securityLevel: 'loose',
+      themeVariables: {
+        taskBkgColor: '#9aa0a6',          // Planned (Todo) — grey
+        taskBorderColor: '#6b7280',
+        activeTaskBkgColor: '#d97706',    // In work (In Progress) — amber
+        activeTaskBorderColor: '#b45309',
+        doneTaskBkgColor: '#16a34a',      // Done — green
+        doneTaskBorderColor: '#15803d',
+        critBkgColor: '#dc2626',          // Late / At risk — red
+        critBorderColor: '#b91c1c',
+        taskTextColor: '#ffffff',
+        taskTextLightColor: '#ffffff',
+        taskTextDarkColor: '#ffffff',
+        taskTextOutsideColor: '#1f2937',
+        gridColor: '#d1d5db',
+        todayLineColor: '#dc2626'
+      }
+    });
+    mermaid.run();
   </script>
 </body>
 </html>
