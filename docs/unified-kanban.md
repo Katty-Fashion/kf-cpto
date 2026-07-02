@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-07-02T10:58:21.818886
+generated: 2026-07-02T11:49:00.297364
 ---
 
 # KF Team — Unified Kanban
@@ -9,9 +9,11 @@ generated: 2026-07-02T10:58:21.818886
 
 <div class="kanban-board">
   <div class="kanban-col kanban-col--todo">
-    <div class="kanban-col__head">Todo <span class="kanban-col__count">50</span></div>
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">52</span></div>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Decizie Made2Flow (demo vs integrare reală)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Feature set pentru lansare (MVP)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Ce este „Done&quot; vs „Ready&quot; pentru release</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Decizie Made2Flow (demo vs integrare reală)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Sesiune demo produse (intern)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Pregătire feature flags (ascundere features incomplete)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Clarificare value proposition (perspectivă tehnică)</a>
@@ -62,7 +64,12 @@ generated: 2026-07-02T10:58:21.818886
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F6.S17.Final QA &amp; Cutover]</a>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">29</span></div>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">34</span></div>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: WP1 — AAS platform integration (digital infrastructure)</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.4 — Capacity Planner: KF Planner UI</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.4 — Capacity Planner: KF ↔ LMS Integration</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T3.3 — IoT Monitoring: sensors deployment</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.3 — Supply Chain Digital Twin: risk modelling</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Deploy AAS în Cloud (hosting)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Clarificare acces server R3 (Vangelis)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Clarificare format date platforma R3</a>
@@ -102,7 +109,13 @@ generated: 2026-07-02T10:58:21.818886
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Pipeline CI/CD (necesar pentru GTM)</a>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">24</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">30</span></div>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.1 — Co-creation platform (Nuoform)</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T3.2 — Product Digital Twin (AAS model)</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T3.2 — Process Digital Twin (Tecnomatix simulation)</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.4 — Capacity Planner: LMS Scheduler Backend</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: AAS import/export tooling (aas_export.py, import-demo.sh)</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Order_3_Aas shell (8 submodels, cost + schedule)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Validare integrare end-to-end (expunere API Nuoform)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Arhitectură multi-tenant (in place)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Separare date per client (in place)</a>
@@ -134,7 +147,7 @@ generated: 2026-07-02T10:58:21.818886
 
 | Project | Todo | In Progress | Review | Done | Total |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| R3-AAS | 38 | 17 | 5 | 9 | 69 |
+| R3-AAS | 40 | 22 | 5 | 15 | 82 |
 | kf-be-platform | 4 | 2 | 0 | 4 | 10 |
 | kf-fe-platform | 1 | 3 | 0 | 6 | 10 |
 | kf-platform | 7 | 7 | 0 | 5 | 19 |
@@ -151,9 +164,9 @@ gantt
     excludes weekends
 
     section R3-AAS
-    S1 :done, 2026-03-02, 2026-03-20
-    S2 :done, 2026-03-16, 2026-04-03
-    S3 :done, 2026-03-30, 2026-04-17
+    S4 :done, 2026-06-15, 2026-06-26
+    S5 :active, 2026-06-29, 2026-07-10
+    S6 :2026-07-13, 2026-07-24
     section kf-be-platform
     S4 :done, 2026-06-15, 2026-06-26
     S5 :active, 2026-06-29, 2026-07-10
