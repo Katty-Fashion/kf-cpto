@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-02T07:29:57.530763
+generated: 2026-07-02T07:33:26.189416
 ---
 
 # R3-AAS
@@ -194,6 +194,14 @@ generated: 2026-07-02T07:29:57.530763
 | In Progress | 7.0d |
 | Completed | 5.0d |
 | Remaining | 13.5d |
+
+## Effort — Planned vs Done
+
+```mermaid
+pie showData title Effort — Planned vs Done (person-days)
+    "Done" : 5.0
+    "Planned" : 13.5
+```
 
 ## Sprint Timeline
 
