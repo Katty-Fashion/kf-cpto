@@ -317,6 +317,60 @@ def parse_kanban_tasks(content: str, project: str = "") -> list[dict[str, str]]:
     return tasks
 
 
+def enumerate_kanban_rows(content: str) -> list[dict[str, Any]]:
+    """Line-accurate enumeration of every parseable task row in a kanban.md.
+
+    Same table grammar as parse_kanban_tasks (same primitives: _is_table_row /
+    _split_row / _map_columns / canonicalize_status) — NOT a second parser.
+    Used by interactive tooling (kanban-groom) that must edit rows in place.
+
+    Returns one record per task row, in file order:
+        {n, line_no, section, header_line_no, header_cells, colmap, cells,
+         task, status, raw_status}
+    `line_no` is 0-based into content.splitlines(); `n` is the stable 1-based
+    row number shown to humans (same ordering parse_kanban_tasks emits).
+    """
+    rows: list[dict[str, Any]] = []
+    lines = content.splitlines()
+    section = ""
+    i, n = 0, len(lines)
+    while i < n:
+        stripped = lines[i].strip()
+        if stripped.startswith("#"):
+            section = stripped.lstrip("#").strip()
+        if _is_table_row(lines[i]) and i + 1 < n and _is_separator_row(lines[i + 1]):
+            header_line_no = i
+            header_cells = _split_row(lines[i])
+            colmap = _map_columns(header_cells)
+            i += 2
+            if "task" not in colmap:
+                while i < n and _is_table_row(lines[i]):
+                    i += 1
+                continue
+            while i < n and _is_table_row(lines[i]):
+                cells = _split_row(lines[i])
+                task_name = _cell(cells, colmap, "task")
+                if task_name:
+                    raw_status = strip_emojis(_cell(cells, colmap, "status"))
+                    canon = canonicalize_status(raw_status)
+                    rows.append({
+                        "n": len(rows) + 1,
+                        "line_no": i,
+                        "section": strip_emojis(section),
+                        "header_line_no": header_line_no,
+                        "header_cells": header_cells,
+                        "colmap": colmap,
+                        "cells": cells,
+                        "task": task_name,
+                        "status": canon if canon is not None else raw_status,
+                        "raw_status": raw_status,
+                    })
+                i += 1
+        else:
+            i += 1
+    return rows
+
+
 def normalize_frontmatter(meta: dict) -> dict:
     """Apply defaults to frontmatter, ensuring all expected keys exist.
 
