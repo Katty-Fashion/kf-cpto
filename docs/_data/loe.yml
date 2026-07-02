@@ -1,4 +1,4 @@
-generated_at: '2026-07-02T21:22:24Z'
+generated_at: '2026-07-02T21:28:48Z'
 row_count: 121
 rows:
 - project: R3-AAS
@@ -534,64 +534,64 @@ rows:
   task: Implement scheduling request endpoint (KF → LMS)
   assignee: '@backend'
   effort_days: 2.0
-  start: '2026-03-19'
-  end: '2026-03-21'
+  start: '2026-06-29'
+  end: '2026-07-10'
   status: Review
 - project: R3-AAS
   sprint: S5
   task: Implement scheduler response parser
   assignee: '@backend'
   effort_days: 2.0
-  start: '2026-03-22'
-  end: '2026-03-24'
+  start: '2026-06-29'
+  end: '2026-07-10'
   status: Review
 - project: R3-AAS
   sprint: S5
   task: Integrate scheduling results with planner UI
   assignee: '@frontend'
   effort_days: 3.0
-  start: '2026-03-19'
-  end: '2026-03-24'
+  start: '2026-06-29'
+  end: '2026-07-10'
   status: Review
 - project: R3-AAS
   sprint: S5
   task: Implement planner visualization improvements (capacity / gaps)
   assignee: '@frontend'
   effort_days: 2.0
-  start: '2026-03-25'
-  end: '2026-03-27'
+  start: '2026-06-29'
+  end: '2026-07-10'
   status: Review
 - project: R3-AAS
   sprint: S5
   task: Validate suitability constraints and scheduling logic
   assignee: '@backend'
   effort_days: 2.0
-  start: '2026-03-26'
-  end: '2026-03-28'
+  start: '2026-06-29'
+  end: '2026-07-10'
   status: Review
 - project: R3-AAS
   sprint: S5
   task: Run first scheduling tests with real production data
   assignee: '@tech-lead'
   effort_days: 1.0
-  start: '2026-03-28'
-  end: '2026-03-28'
+  start: '2026-06-29'
+  end: '2026-07-10'
   status: Review
 - project: R3-AAS
   sprint: S5
   task: Debug integration issues with LMS team
   assignee: '@tech-lead'
   effort_days: 1.0
-  start: '2026-03-31'
-  end: '2026-03-31'
+  start: '2026-06-29'
+  end: '2026-07-10'
   status: Review
 - project: R3-AAS
   sprint: S5
   task: Integration validation review
   assignee: '@tech-lead'
   effort_days: 0.5
-  start: '2026-04-03'
-  end: '2026-04-03'
+  start: '2026-06-29'
+  end: '2026-07-10'
   status: Review
 - project: R3-AAS
   sprint: S5

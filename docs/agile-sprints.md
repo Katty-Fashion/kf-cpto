@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-07-02T21:22:24.444009
+generated: 2026-07-02T21:28:48.564984
 ---
 
 # KF Team — Agile Sprints
@@ -68,6 +68,14 @@ gantt
     excludes weekends
 
     section R3-AAS
+    Implement scheduling request endpoint (KF → LMS) :2026-06-29, 2026-07-10
+    Implement scheduler response parser :2026-06-29, 2026-07-10
+    Integrate scheduling results with planner UI :2026-06-29, 2026-07-10
+    Implement planner visualization improvements (capacity / gaps) :2026-06-29, 2026-07-10
+    Validate suitability constraints and scheduling logic :2026-06-29, 2026-07-10
+    Run first scheduling tests with real production data :2026-06-29, 2026-07-10
+    Debug integration issues with LMS team :2026-06-29, 2026-07-10
+    Integration validation review :2026-06-29, 2026-07-10
     M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
     section kf-be-platform
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05

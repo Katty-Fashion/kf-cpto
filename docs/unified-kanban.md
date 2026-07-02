@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-07-02T21:22:24.408806
+generated: 2026-07-02T21:28:48.535020
 ---
 
 # KF Team — Unified Kanban
@@ -195,14 +195,14 @@ gantt
     excludes weekends
 
     section R3-AAS
-    Implement scheduling request endpoint (KF → LMS) :crit, 2026-03-19, 2026-03-21
-    Integrate scheduling results with planner UI :crit, 2026-03-19, 2026-03-24
-    Implement scheduler response parser :crit, 2026-03-22, 2026-03-24
-    Implement planner visualization improvements (capacity / gaps) :crit, 2026-03-25, 2026-03-27
-    Validate suitability constraints and scheduling logic :crit, 2026-03-26, 2026-03-28
-    Run first scheduling tests with real production data :crit, 2026-03-28, 2026-03-28
-    Debug integration issues with LMS team :crit, 2026-03-31, 2026-03-31
-    Integration validation review :crit, 2026-04-03, 2026-04-03
+    Implement scheduling request endpoint (KF → LMS) :2026-06-29, 2026-07-10
+    Implement scheduler response parser :2026-06-29, 2026-07-10
+    Integrate scheduling results with planner UI :2026-06-29, 2026-07-10
+    Implement planner visualization improvements (capacity / gaps) :2026-06-29, 2026-07-10
+    Validate suitability constraints and scheduling logic :2026-06-29, 2026-07-10
+    Run first scheduling tests with real production data :2026-06-29, 2026-07-10
+    Debug integration issues with LMS team :2026-06-29, 2026-07-10
+    Integration validation review :2026-06-29, 2026-07-10
     M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
     Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
     Share KF access for export to NetCompany :2026-07-13, 2026-07-14
@@ -289,6 +289,14 @@ gantt
     excludes weekends
 
     section R3-AAS
+    Implement scheduling request endpoint (KF → LMS) :2026-06-29, 2026-07-10
+    Implement scheduler response parser :2026-06-29, 2026-07-10
+    Integrate scheduling results with planner UI :2026-06-29, 2026-07-10
+    Implement planner visualization improvements (capacity / gaps) :2026-06-29, 2026-07-10
+    Validate suitability constraints and scheduling logic :2026-06-29, 2026-07-10
+    Run first scheduling tests with real production data :2026-06-29, 2026-07-10
+    Debug integration issues with LMS team :2026-06-29, 2026-07-10
+    Integration validation review :2026-06-29, 2026-07-10
     M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
     section kf-be-platform
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05

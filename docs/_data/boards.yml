@@ -1,4 +1,4 @@
-generated_at: '2026-07-02T21:22:24Z'
+generated_at: '2026-07-02T21:28:48Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -430,50 +430,50 @@ projects:
   - task: Implement scheduling request endpoint (KF → LMS)
     assignee: '@backend'
     effort: 2d
-    start: '2026-03-19'
-    end: '2026-03-21'
+    start: '2026-06-29'
+    end: '2026-07-10'
     status: Review
   - task: Implement scheduler response parser
     assignee: '@backend'
     effort: 2d
-    start: '2026-03-22'
-    end: '2026-03-24'
+    start: '2026-06-29'
+    end: '2026-07-10'
     status: Review
   - task: Integrate scheduling results with planner UI
     assignee: '@frontend'
     effort: 3d
-    start: '2026-03-19'
-    end: '2026-03-24'
+    start: '2026-06-29'
+    end: '2026-07-10'
     status: Review
   - task: Implement planner visualization improvements (capacity / gaps)
     assignee: '@frontend'
     effort: 2d
-    start: '2026-03-25'
-    end: '2026-03-27'
+    start: '2026-06-29'
+    end: '2026-07-10'
     status: Review
   - task: Validate suitability constraints and scheduling logic
     assignee: '@backend'
     effort: 2d
-    start: '2026-03-26'
-    end: '2026-03-28'
+    start: '2026-06-29'
+    end: '2026-07-10'
     status: Review
   - task: Run first scheduling tests with real production data
     assignee: '@tech-lead'
     effort: 1d
-    start: '2026-03-28'
-    end: '2026-03-28'
+    start: '2026-06-29'
+    end: '2026-07-10'
     status: Review
   - task: Debug integration issues with LMS team
     assignee: '@tech-lead'
     effort: 1d
-    start: '2026-03-31'
-    end: '2026-03-31'
+    start: '2026-06-29'
+    end: '2026-07-10'
     status: Review
   - task: Integration validation review
     assignee: '@tech-lead'
     effort: 0.5d
-    start: '2026-04-03'
-    end: '2026-04-03'
+    start: '2026-06-29'
+    end: '2026-07-10'
     status: Review
   - task: 'M2F: finalise & confirm assumed KF-M2F shell structure'
     assignee: Eduard Lazăr / M2F
