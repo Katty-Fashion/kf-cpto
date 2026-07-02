@@ -1,4 +1,4 @@
-generated_at: '2026-07-02T10:58:21Z'
+generated_at: '2026-07-02T11:49:00Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -9,11 +9,11 @@ projects:
     description: R3GROUP Katty Fashion pilot – digital tools for co-creation, digital
       twins and technician capacity planning
     type: eu-project
-    po: ''
-    lead: ''
-    sprint: S2
-    sprint_start: '2026-03-16'
-    sprint_end: '2026-04-03'
+    po: '@ps.tech'
+    lead: '@el.tech'
+    sprint: S5
+    sprint_start: '2026-06-29'
+    sprint_end: '2026-07-10'
     depends_on:
     - ai-rise
     tags:
@@ -21,13 +21,80 @@ projects:
     - digital-twin
     - capacity-planner
     - manufacturing
+    - aas
     team:
-      CPTO: el.tech@katty-fashion.ro
-      Tech Lead: eduard.modreanu@katty-fashion.ro
-      Front-End: alexandru.bejenari@katty-fashion.ro
-      Back-End: razvan.boita@katty-fashion.ro
-      Product Owner: ps.tech@katty-fashion.ro
+      cpto: el.tech@katty-fashion.ro
+      tech_lead: eduard.modreanu@katty-fashion.ro
+      frontend: alexandru.bejenari@katty-fashion.ro
+      backend: razvan.boita@katty-fashion.ro
+      product_owner: ps.tech@katty-fashion.ro
   tasks:
+  - task: WP1 — AAS platform integration (digital infrastructure)
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: T2.1 — Co-creation platform (Nuoform)
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: Done
+  - task: T3.2 — Product Digital Twin (AAS model)
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Done
+  - task: T3.2 — Process Digital Twin (Tecnomatix simulation)
+    assignee: Eduard Modreanu
+    effort: ''
+    start: ''
+    end: ''
+    status: Done
+  - task: 'T2.4 — Capacity Planner: LMS Scheduler Backend'
+    assignee: LMS
+    effort: ''
+    start: ''
+    end: ''
+    status: Done
+  - task: 'T2.4 — Capacity Planner: KF Planner UI'
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: 'T2.4 — Capacity Planner: KF ↔ LMS Integration'
+    assignee: Alexandru Bejenari
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: 'T3.3 — IoT Monitoring: sensors deployment'
+    assignee: Eduard Modreanu
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: 'T2.3 — Supply Chain Digital Twin: risk modelling'
+    assignee: Paul Stanciuc
+    effort: ''
+    start: ''
+    end: ''
+    status: In Progress
+  - task: AAS import/export tooling (aas_export.py, import-demo.sh)
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Done
+  - task: Order_3_Aas shell (8 submodels, cost + schedule)
+    assignee: Răzvan Boița
+    effort: ''
+    start: ''
+    end: ''
+    status: Done
   - task: Deploy AAS în Cloud (hosting)
     assignee: Răzvan Boița / Eduard Lazăr
     effort: ''
@@ -51,7 +118,7 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: Decizie pending — P1
+    status: Todo
   - task: Feature set pentru lansare (MVP)
     assignee: Eduard Lazăr / Paul Stanciuc
     effort: ''
@@ -69,7 +136,7 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: Decizie pending
+    status: Todo
   - task: Review arhitectură
     assignee: Răzvan Boița
     effort: ''

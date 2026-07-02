@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-07-02T10:58:21.848367
+generated: 2026-07-02T11:49:00.312825
 ---
 
 # KF Team — Unified Calendar
@@ -27,9 +27,9 @@ gantt
     excludes weekends
 
     section R3-AAS
-    S1 :done, 2026-03-02, 2026-03-20
-    S2 :done, 2026-03-16, 2026-04-03
-    S3 :done, 2026-03-30, 2026-04-17
+    S4 :done, 2026-06-15, 2026-06-26
+    S5 :active, 2026-06-29, 2026-07-10
+    S6 :2026-07-13, 2026-07-24
     section kf-be-platform
     S4 :done, 2026-06-15, 2026-06-26
     S5 :active, 2026-06-29, 2026-07-10

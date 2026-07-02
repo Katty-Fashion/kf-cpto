@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-02T10:58:21.864992
+generated: 2026-07-02T11:49:00.329079
 ---
 
 # R3-AAS
@@ -17,20 +17,22 @@ generated: 2026-07-02T10:58:21.864992
 | :--- | :--- |
 | Status | Active |
 | Type | EU Project |
-| PO | - |
-| Lead | - |
-| Current Sprint | S2 |
-| Sprint Period | 2026-03-16 to 2026-04-03 |
-| Tags | r3group, digital-twin, capacity-planner, manufacturing |
+| PO | @ps.tech |
+| Lead | @el.tech |
+| Current Sprint | S5 |
+| Sprint Period | 2026-06-29 to 2026-07-10 |
+| Tags | r3group, digital-twin, capacity-planner, manufacturing, aas |
 | Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=R3-AAS) <sup>·&nbsp;[raw](https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md)</sup>
 
 <div class="kanban-board">
   <div class="kanban-col kanban-col--todo">
-    <div class="kanban-col__head">Todo <span class="kanban-col__count">38</span></div>
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">40</span></div>
+    <div class="kanban-card kanban-card--static">Decizie Made2Flow (demo vs integrare reală)</div>
     <div class="kanban-card kanban-card--static">Feature set pentru lansare (MVP)</div>
     <div class="kanban-card kanban-card--static">Ce este „Done&quot; vs „Ready&quot; pentru release</div>
+    <div class="kanban-card kanban-card--static">Decizie Made2Flow (demo vs integrare reală)</div>
     <div class="kanban-card kanban-card--static">Sesiune demo produse (intern)</div>
     <div class="kanban-card kanban-card--static">Pregătire feature flags (ascundere features incomplete)</div>
     <div class="kanban-card kanban-card--static">Clarificare value proposition (perspectivă tehnică)</div>
@@ -69,7 +71,12 @@ generated: 2026-07-02T10:58:21.864992
     <div class="kanban-card kanban-card--static">Integration validation review</div>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">17</span></div>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">22</span></div>
+    <div class="kanban-card kanban-card--static">WP1 — AAS platform integration (digital infrastructure)</div>
+    <div class="kanban-card kanban-card--static">T2.4 — Capacity Planner: KF Planner UI</div>
+    <div class="kanban-card kanban-card--static">T2.4 — Capacity Planner: KF ↔ LMS Integration</div>
+    <div class="kanban-card kanban-card--static">T3.3 — IoT Monitoring: sensors deployment</div>
+    <div class="kanban-card kanban-card--static">T2.3 — Supply Chain Digital Twin: risk modelling</div>
     <div class="kanban-card kanban-card--static">Deploy AAS în Cloud (hosting)</div>
     <div class="kanban-card kanban-card--static">Clarificare acces server R3 (Vangelis)</div>
     <div class="kanban-card kanban-card--static">Clarificare format date platforma R3</div>
@@ -97,7 +104,13 @@ generated: 2026-07-02T10:58:21.864992
     <div class="kanban-card kanban-card--static">Pipeline CI/CD (necesar pentru GTM)</div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">9</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">15</span></div>
+    <div class="kanban-card kanban-card--static">T2.1 — Co-creation platform (Nuoform)</div>
+    <div class="kanban-card kanban-card--static">T3.2 — Product Digital Twin (AAS model)</div>
+    <div class="kanban-card kanban-card--static">T3.2 — Process Digital Twin (Tecnomatix simulation)</div>
+    <div class="kanban-card kanban-card--static">T2.4 — Capacity Planner: LMS Scheduler Backend</div>
+    <div class="kanban-card kanban-card--static">AAS import/export tooling (aas_export.py, import-demo.sh)</div>
+    <div class="kanban-card kanban-card--static">Order_3_Aas shell (8 submodels, cost + schedule)</div>
     <div class="kanban-card kanban-card--static">Validare integrare end-to-end (expunere API Nuoform)</div>
     <div class="kanban-card kanban-card--static">Arhitectură multi-tenant (in place)</div>
     <div class="kanban-card kanban-card--static">Separare date per client (in place)</div>
@@ -114,13 +127,24 @@ generated: 2026-07-02T10:58:21.864992
 
 | Task | Assignee | Effort | Start | End | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
+| WP1 — AAS platform integration (digital infrastructure) | Răzvan Boița |  |  |  | In Progress |
+| T2.1 — Co-creation platform (Nuoform) | Alexandru Bejenari |  |  |  | Done |
+| T3.2 — Product Digital Twin (AAS model) | Răzvan Boița |  |  |  | Done |
+| T3.2 — Process Digital Twin (Tecnomatix simulation) | Eduard Modreanu |  |  |  | Done |
+| T2.4 — Capacity Planner: LMS Scheduler Backend | LMS |  |  |  | Done |
+| T2.4 — Capacity Planner: KF Planner UI | Alexandru Bejenari |  |  |  | In Progress |
+| T2.4 — Capacity Planner: KF ↔ LMS Integration | Alexandru Bejenari |  |  |  | In Progress |
+| T3.3 — IoT Monitoring: sensors deployment | Eduard Modreanu |  |  |  | In Progress |
+| T2.3 — Supply Chain Digital Twin: risk modelling | Paul Stanciuc |  |  |  | In Progress |
+| AAS import/export tooling (aas_export.py, import-demo.sh) | Răzvan Boița |  |  |  | Done |
+| Order_3_Aas shell (8 submodels, cost + schedule) | Răzvan Boița |  |  |  | Done |
 | Deploy AAS în Cloud (hosting) | Răzvan Boița / Eduard Lazăr |  |  |  | In Progress |
 | Clarificare acces server R3 (Vangelis) | Paul Stanciuc |  |  |  | In Progress |
 | Clarificare format date platforma R3 | Alexandru Bejenari |  |  |  | In Progress |
-| Decizie Made2Flow (demo vs integrare reală) | Eduard Lazăr / Paul Stanciuc |  |  |  | Decizie pending — P1 |
+| Decizie Made2Flow (demo vs integrare reală) | Eduard Lazăr / Paul Stanciuc |  |  |  | Todo |
 | Feature set pentru lansare (MVP) | Eduard Lazăr / Paul Stanciuc |  |  |  | Todo |
 | Ce este „Done" vs „Ready" pentru release | Eduard Lazăr / Paul Stanciuc |  |  |  | Todo |
-| Decizie Made2Flow (demo vs integrare reală) | Eduard Lazăr / Paul Stanciuc |  |  |  | Decizie pending |
+| Decizie Made2Flow (demo vs integrare reală) | Eduard Lazăr / Paul Stanciuc |  |  |  | Todo |
 | Review arhitectură | Răzvan Boița |  |  |  | In Progress |
 | Identificare gaps / incomplete features | Alexandru Bejenari |  |  |  | In Progress |
 | Sesiune demo produse (intern) | Paul Stanciuc |  |  |  | Todo |
@@ -207,33 +231,44 @@ pie showData title Effort — Planned vs Done (person-days)
 
 ```mermaid
 gantt
-    title S2 — R3-AAS
+    title S5 — R3-AAS
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    Validare integrare end-to-end (expunere API Nuoform) :done, 2026-03-16, 1d
-    Arhitectură multi-tenant (in place) :done, 2026-03-17, 1d
-    Separare date per client (in place) :done, 2026-03-18, 1d
-    Sketch → JSON → sistem :done, 2026-03-19, 1d
-    Acces VPN + onboarding corect :done, 2026-03-20, 1d
+    T2.1 — Co-creation platform (Nuoform) :done, 2026-06-29, 1d
+    T3.2 — Product Digital Twin (AAS model) :done, 2026-06-30, 1d
+    T3.2 — Process Digital Twin (Tecnomatix simulation) :done, 2026-07-01, 1d
+    T2.4 — Capacity Planner LMS Scheduler Backend :done, 2026-07-02, 1d
+    AAS import/export tooling (aas_export.py, import-demo.sh) :done, 2026-07-03, 1d
+    Order_3_Aas shell (8 submodels, cost + schedule) :done, 2026-07-04, 1d
+    Validare integrare end-to-end (expunere API Nuoform) :done, 2026-07-05, 1d
+    Arhitectură multi-tenant (in place) :done, 2026-07-06, 1d
+    Separare date per client (in place) :done, 2026-07-07, 1d
+    Sketch → JSON → sistem :done, 2026-07-08, 1d
+    Acces VPN + onboarding corect :done, 2026-07-09, 1d
     Review LMS API endpoints and AAS structure :done, 2026-03-16, 2026-03-16
     Technical architecture alignment for Planner integration :done, 2026-03-17, 2026-03-17
     Define integration pipeline (KF UI → LMS Scheduler → KF UI) :done, 2026-03-18, 2026-03-18
     Implement automatic AAS JSON export from KF platform :done, 2026-03-16, 2026-03-18
-    Deploy AAS în Cloud (hosting) :active, 2026-03-18, 1d
-    Clarificare acces server R3 (Vangelis) :active, 2026-03-19, 1d
-    Clarificare format date platforma R3 :active, 2026-03-20, 1d
-    Review arhitectură :active, 2026-03-21, 1d
-    Identificare gaps / incomplete features :active, 2026-03-22, 1d
-    Clarificare acces server R3 (Vangelis) :active, 2026-03-23, 1d
-    Integrare între sisteme (Katty / LMS) :active, 2026-03-24, 1d
-    Multiple tipuri AAS → standardizare :active, 2026-03-25, 1d
-    Integrare LMS (AAS extern) :active, 2026-03-26, 1d
-    UI flow (parțial complet) :active, 2026-03-27, 1d
-    Deploy AAS în Cloud (hosting) :active, 2026-03-28, 1d
-    Clarificare format date pentru platforma R3 :active, 2026-03-29, 1d
-    Board central Kanban – single source of truth :active, 2026-03-30, 1d
-    Acces corect la organizații (login flow issues) :active, 2026-03-31, 1d
+    WP1 — AAS platform integration (digital infrastructure) :active, 2026-03-18, 1d
+    T2.4 — Capacity Planner KF Planner UI :active, 2026-03-19, 1d
+    T2.4 — Capacity Planner KF ↔ LMS Integration :active, 2026-03-20, 1d
+    T3.3 — IoT Monitoring sensors deployment :active, 2026-03-21, 1d
+    T2.3 — Supply Chain Digital Twin risk modelling :active, 2026-03-22, 1d
+    Deploy AAS în Cloud (hosting) :active, 2026-03-23, 1d
+    Clarificare acces server R3 (Vangelis) :active, 2026-03-24, 1d
+    Clarificare format date platforma R3 :active, 2026-03-25, 1d
+    Review arhitectură :active, 2026-03-26, 1d
+    Identificare gaps / incomplete features :active, 2026-03-27, 1d
+    Clarificare acces server R3 (Vangelis) :active, 2026-03-28, 1d
+    Integrare între sisteme (Katty / LMS) :active, 2026-03-29, 1d
+    Multiple tipuri AAS → standardizare :active, 2026-03-30, 1d
+    Integrare LMS (AAS extern) :active, 2026-03-31, 1d
+    UI flow (parțial complet) :active, 2026-04-01, 1d
+    Deploy AAS în Cloud (hosting) :active, 2026-04-02, 1d
+    Clarificare format date pentru platforma R3 :active, 2026-04-03, 1d
+    Board central Kanban – single source of truth :active, 2026-04-04, 1d
+    Acces corect la organizații (login flow issues) :active, 2026-04-05, 1d
     Implement scheduling request endpoint (KF → LMS) :crit, 2026-03-19, 2026-03-21
     Integrate scheduling results with planner UI :crit, 2026-03-19, 2026-03-24
     Implement planner visualization improvements (capacity / gaps) :crit, 2026-03-25, 2026-03-27
@@ -242,46 +277,46 @@ gantt
     GitHub Actions pentru sync task-uri :2026-03-29, 1d
     Generare automată status / reports :2026-03-30, 1d
     Pipeline CI/CD (necesar pentru GTM) :2026-03-31, 1d
-    Feature set pentru lansare (MVP) :crit, 2026-04-01, 1d
-    Ce este „Done” vs „Ready” pentru release :crit, 2026-04-02, 1d
-    Sesiune demo produse (intern) :crit, 2026-04-03, 1d
-    Pregătire feature flags (ascundere features incomplete) :crit, 2026-04-04, 1d
-    Clarificare value proposition (perspectivă tehnică) :crit, 2026-04-05, 1d
-    Flow sistem (UI → AAS → backend) :crit, 2026-04-06, 1d
-    Layout simplificat pilot (stații + flux + senzori) :crit, 2026-04-07, 1d
-    Backend alignment (după modificări Răzvan) :crit, 2026-04-08, 1d
-    Bug-uri identificate în sistem :crit, 2026-04-09, 1d
-    Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 :crit, 2026-04-10, 1d
-    Task-uri ↔ Work Packages (WP mapping) :crit, 2026-04-11, 1d
-    Naming convention pentru task-uri (namespace per proiect) :crit, 2026-04-12, 1d
-    Evitarea dublării task-urilor între tools :crit, 2026-04-13, 1d
-    Reprezentare Gantt (timeline / corelare temporală) :crit, 2026-04-14, 1d
-    Feature flags :crit, 2026-04-15, 1d
-    Telemetrie (monitorizare) :crit, 2026-04-16, 1d
-    Code quality / stability înainte de release :crit, 2026-04-17, 1d
-    Suport tehnic post-launch :crit, 2026-04-18, 1d
-    Conectivitate sisteme externe :crit, 2026-04-19, 1d
-    Testare demo produse (clienți + testeri interni) :crit, 2026-04-20, 1d
-    Interviuri tehnice full-stack :crit, 2026-04-21, 1d
-    Evaluare competențe React + Node :crit, 2026-04-22, 1d
-    Evaluare team fit (non-toxic, colaborativ) :crit, 2026-04-23, 1d
-    Selectare profil echilibrat (nu doar tech heavy) :crit, 2026-04-24, 1d
-    Sprint plan (tranziție către GTM) :crit, 2026-04-25, 1d
-    Corelare Sprint tasks ↔ Work Packages :crit, 2026-04-26, 1d
-    Task-uri cu timeline (start/end) :crit, 2026-04-27, 1d
-    Rapoarte săptămânale (nu daily) :crit, 2026-04-28, 1d
-    Gantt / timeline pentru progres :crit, 2026-04-29, 1d
-    Landing page (claritate produs) :crit, 2026-04-30, 1d
-    Demo / prezentare produs :crit, 2026-05-01, 1d
-    Definire tehnică monetizare (SaaS readiness) :crit, 2026-05-02, 1d
-    Input pentru CRM / pipeline (structură tehnică) :crit, 2026-05-03, 1d
+    Decizie Made2Flow (demo vs integrare reală) :crit, 2026-04-01, 1d
+    Feature set pentru lansare (MVP) :crit, 2026-04-02, 1d
+    Ce este „Done” vs „Ready” pentru release :crit, 2026-04-03, 1d
+    Decizie Made2Flow (demo vs integrare reală) :crit, 2026-04-04, 1d
+    Sesiune demo produse (intern) :crit, 2026-04-05, 1d
+    Pregătire feature flags (ascundere features incomplete) :crit, 2026-04-06, 1d
+    Clarificare value proposition (perspectivă tehnică) :crit, 2026-04-07, 1d
+    Flow sistem (UI → AAS → backend) :crit, 2026-04-08, 1d
+    Layout simplificat pilot (stații + flux + senzori) :crit, 2026-04-09, 1d
+    Backend alignment (după modificări Răzvan) :crit, 2026-04-10, 1d
+    Bug-uri identificate în sistem :crit, 2026-04-11, 1d
+    Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 :crit, 2026-04-12, 1d
+    Task-uri ↔ Work Packages (WP mapping) :crit, 2026-04-13, 1d
+    Naming convention pentru task-uri (namespace per proiect) :crit, 2026-04-14, 1d
+    Evitarea dublării task-urilor între tools :crit, 2026-04-15, 1d
+    Reprezentare Gantt (timeline / corelare temporală) :crit, 2026-04-16, 1d
+    Feature flags :crit, 2026-04-17, 1d
+    Telemetrie (monitorizare) :crit, 2026-04-18, 1d
+    Code quality / stability înainte de release :crit, 2026-04-19, 1d
+    Suport tehnic post-launch :crit, 2026-04-20, 1d
+    Conectivitate sisteme externe :crit, 2026-04-21, 1d
+    Testare demo produse (clienți + testeri interni) :crit, 2026-04-22, 1d
+    Interviuri tehnice full-stack :crit, 2026-04-23, 1d
+    Evaluare competențe React + Node :crit, 2026-04-24, 1d
+    Evaluare team fit (non-toxic, colaborativ) :crit, 2026-04-25, 1d
+    Selectare profil echilibrat (nu doar tech heavy) :crit, 2026-04-26, 1d
+    Sprint plan (tranziție către GTM) :crit, 2026-04-27, 1d
+    Corelare Sprint tasks ↔ Work Packages :crit, 2026-04-28, 1d
+    Task-uri cu timeline (start/end) :crit, 2026-04-29, 1d
+    Rapoarte săptămânale (nu daily) :crit, 2026-04-30, 1d
+    Gantt / timeline pentru progres :crit, 2026-05-01, 1d
+    Landing page (claritate produs) :crit, 2026-05-02, 1d
+    Demo / prezentare produs :crit, 2026-05-03, 1d
+    Definire tehnică monetizare (SaaS readiness) :crit, 2026-05-04, 1d
+    Input pentru CRM / pipeline (structură tehnică) :crit, 2026-05-05, 1d
     Implement scheduler response parser :crit, 2026-03-22, 2026-03-24
     Validate suitability constraints and scheduling logic :crit, 2026-03-26, 2026-03-28
     Run first scheduling tests with real production data :crit, 2026-03-28, 2026-03-28
     Debug integration issues with LMS team :crit, 2026-03-31, 2026-03-31
     Integration validation review :crit, 2026-04-03, 2026-04-03
-    Decizie Made2Flow (demo vs integrare reală) :2026-04-03, 1d
-    Decizie Made2Flow (demo vs integrare reală) :2026-04-04, 1d
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
