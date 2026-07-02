@@ -596,21 +596,42 @@ def generate_project_page(project: str, project_data: dict) -> str:
         lines.append(_render_kanban_board(statuses, link_project=False))
         lines.append("")
 
-        # Task summary table (6-col if any task has dates, 4-col otherwise)
+        # Task summary table (6-col if any task has dates, 4-col otherwise),
+        # grouped by the source section for multi-table boards so context reads
+        # at a glance instead of one undifferentiated list.
         has_dates = any(task.get("start") or task.get("end") for task in tasks)
+        sections = {t.get("section", "") for t in tasks}
+        grouped = len(sections) > 1
         lines.append("## Task Summary")
         lines.append("")
-        if has_dates:
-            lines.append("| Task | Assignee | Effort | Start | End | Status |")
-            lines.append("| :--- | :--- | :--- | :--- | :--- | :--- |")
-            for task in tasks:
-                lines.append(f"| {_md_cell(task['task'])} | {_md_cell(task['assignee'])} | {task['effort']} "
-                             f"| {_md_cell(task.get('start', ''))} | {_md_cell(task.get('end', ''))} | {task['status']} |")
+
+        def _emit_task_table(subset: list[dict]) -> None:
+            if has_dates:
+                lines.append("| Task | Assignee | Effort | Start | End | Status |")
+                lines.append("| :--- | :--- | :--- | :--- | :--- | :--- |")
+                for task in subset:
+                    lines.append(f"| {_md_cell(task['task'])} | {_md_cell(task['assignee'])} | {task['effort']} "
+                                 f"| {_md_cell(task.get('start', ''))} | {_md_cell(task.get('end', ''))} | {task['status']} |")
+            else:
+                lines.append("| Task | Assignee | Effort | Status |")
+                lines.append("| :--- | :--- | :--- | :--- |")
+                for task in subset:
+                    lines.append(f"| {_md_cell(task['task'])} | {_md_cell(task['assignee'])} | {task['effort']} | {task['status']} |")
+
+        if grouped:
+            seen: list[str] = []
+            for t in tasks:
+                sec = t.get("section", "")
+                if sec not in seen:
+                    seen.append(sec)
+            for sec in seen:
+                subset = [t for t in tasks if t.get("section", "") == sec]
+                lines.append(f"### {_md_cell(sec) if sec else 'Tasks'}")
+                lines.append("")
+                _emit_task_table(subset)
+                lines.append("")
         else:
-            lines.append("| Task | Assignee | Effort | Status |")
-            lines.append("| :--- | :--- | :--- | :--- |")
-            for task in tasks:
-                lines.append(f"| {_md_cell(task['task'])} | {_md_cell(task['assignee'])} | {task['effort']} | {task['status']} |")
+            _emit_task_table(tasks)
 
         lines.append("")
 
@@ -641,59 +662,49 @@ def generate_project_page(project: str, project_data: dict) -> str:
             lines.append("```")
             lines.append("")
 
-        # Sprint Gantt chart (only if sprint dates are available)
+        # Sprint Gantt chart — DATED tasks only. Undated tasks are counted, not
+        # charted: auto-scheduling them fabricated a misleading cascade of bars
+        # with invented dates.
         sprint_start = project_data.get("meta", {}).get("sprint_start")
         sprint_end = project_data.get("meta", {}).get("sprint_end")
         if sprint_start and sprint_end:
-            lines.append("## Sprint Timeline")
-            lines.append("")
-            lines.append("```mermaid")
-            lines.append("gantt")
-            lines.append(f"    title {sprint} — {project}")
-            lines.append("    dateFormat YYYY-MM-DD")
-            lines.append("    excludes weekends")
-            lines.append("")
-
-            # Schedule tasks: use explicit dates if available, else auto-schedule
-            cursor = str(sprint_start)
             status_order = ["Done", "In Progress", "Review", "Todo"]
-            sorted_tasks = sorted(tasks, key=lambda t: status_order.index(t["status"])
-                                  if t["status"] in status_order else 99)
+            dated = [t for t in tasks
+                     if _ISO_DATE_RE.match(t.get("start", "").strip())
+                     and _ISO_DATE_RE.match(t.get("end", "").strip())]
+            dated.sort(key=lambda t: (t["start"],
+                                      status_order.index(t["status"])
+                                      if t["status"] in status_order else 99))
+            undated_open = sum(1 for t in tasks
+                               if t not in dated and t["status"] != "Done")
 
-            for task in sorted_tasks:
-                effort_d = parse_effort_days(task["effort"])
-                if effort_d <= 0:
-                    effort_d = 1
-                effort_str = f"{int(effort_d)}d"
-                # Only accept real ISO dates; placeholders ("—", "-", "TBD") fall
-                # back to the auto-schedule cursor / effort duration.
-                start_raw = task.get("start", "").strip()
-                end_raw = task.get("end", "").strip()
-                t_start = start_raw if _ISO_DATE_RE.match(start_raw) else cursor
-                t_end = end_raw if _ISO_DATE_RE.match(end_raw) else ""
-                label = mermaid_gantt_label(task["task"])
-
-                # RAG modifier: green done · amber in-work · red late/at-risk · grey planned
-                modifier = rag_modifier(
-                    task["status"], t_start or start_raw, t_end or end_raw
-                )
-
-                if t_end:
-                    lines.append(f"    {label} :{modifier}{t_start}, {t_end}")
-                else:
-                    lines.append(f"    {label} :{modifier}{t_start}, {effort_str}")
-
-                # Advance cursor for next auto-scheduled task
-                try:
-                    start_dt = datetime.strptime(t_start, "%Y-%m-%d")
-                    cursor = (start_dt + timedelta(days=int(effort_d))).strftime("%Y-%m-%d")
-                except ValueError:
-                    pass
-
-            lines.append("```")
-            lines.append("")
-            lines.append(GANTT_LEGEND_HTML)
-            lines.append("")
+            if dated:
+                lines.append("## Sprint Timeline")
+                lines.append("")
+                lines.append("```mermaid")
+                lines.append("gantt")
+                lines.append(f"    title {sprint} — {project} (dated tasks)")
+                lines.append("    dateFormat YYYY-MM-DD")
+                lines.append("    excludes weekends")
+                lines.append("")
+                for task in dated:
+                    label = mermaid_gantt_label(task["task"])
+                    modifier = rag_modifier(task["status"], task["start"], task["end"])
+                    lines.append(f"    {label} :{modifier}{task['start'].strip()}, {task['end'].strip()}")
+                lines.append("```")
+                lines.append("")
+                lines.append(GANTT_LEGEND_HTML)
+                lines.append("")
+                if undated_open:
+                    lines.append(f"> {undated_open} open task(s) have no start/end dates and are "
+                                 f"not charted — add dates in kanban.md to plot them.")
+                    lines.append("")
+            elif undated_open:
+                lines.append("## Sprint Timeline")
+                lines.append("")
+                lines.append(f"> No dated tasks to chart — {undated_open} open task(s) lack "
+                             f"start/end dates. Add dates in kanban.md to get a timeline.")
+                lines.append("")
 
     else:
         lines.append("## Kanban")

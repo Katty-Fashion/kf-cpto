@@ -282,9 +282,16 @@ def parse_kanban_tasks(content: str, project: str = "") -> list[dict[str, str]]:
     """
     tasks: list[dict[str, str]] = []
     lines = content.splitlines()
+    section = ""
     i, n = 0, len(lines)
 
     while i < n:
+        stripped = lines[i].strip()
+        if stripped.startswith("#"):
+            # Nearest heading above a table = its section context (top-level ##
+            # or ###; whichever appeared last). Carried on each task for
+            # grouping in dashboard views.
+            section = strip_emojis(stripped.lstrip("#").strip())
         if _is_table_row(lines[i]) and i + 1 < n and _is_separator_row(lines[i + 1]):
             colmap = _map_columns(_split_row(lines[i]))
             i += 2  # consume header + separator
@@ -314,6 +321,7 @@ def parse_kanban_tasks(content: str, project: str = "") -> list[dict[str, str]]:
                         "start": _cell(cells, colmap, "start"),
                         "end": _cell(cells, colmap, "end"),
                         "status": status,
+                        "section": section,
                     })
                 i += 1
         else:
@@ -663,8 +671,8 @@ def rag_modifier(status: str, start_iso, end_iso, today=None) -> str:
     not_started = status == "Todo" and start is not None and start < today
     if overdue or not_started:
         return "crit, "
-    if status == "In Progress":
-        return "active, "
+    if status in ("In Progress", "Review"):
+        return "active, "  # both are live work — amber "In work"
     return ""
 
 

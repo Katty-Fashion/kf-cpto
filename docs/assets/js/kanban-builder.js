@@ -87,6 +87,41 @@
       buildTaskTable(tasks) + "\n";
   }
 
+  // Frontmatter-only mode (rich multi-section boards): validated fields ->
+  // a clean YAML block to paste over the file's existing frontmatter.
+  function validateMeta(meta) {
+    var e = [];
+    if (!dateValid(meta.sprint_start || "")) e.push("sprint_start must be YYYY-MM-DD (or empty)");
+    if (!dateValid(meta.sprint_end || "")) e.push("sprint_end must be YYYY-MM-DD (or empty)");
+    if (DATE_RE.test(meta.sprint_start || "") && DATE_RE.test(meta.sprint_end || "") &&
+        meta.sprint_end < meta.sprint_start) e.push("sprint_end is before sprint_start");
+    ["po", "lead"].forEach(function (k) {
+      var v = String(meta[k] || "").trim();
+      if (v && v[0] !== "@") e.push(k + " should be a handle starting with @ (e.g. @el.tech)");
+    });
+    if (meta.sprint && !/^S\d+$/.test(String(meta.sprint).trim()))
+      e.push("sprint should look like S5");
+    return e;
+  }
+
+  function buildFrontmatter(project, meta, dump, today) {
+    var fm = { project: project };
+    ["description", "type", "po", "lead", "sprint", "sprint_start",
+     "sprint_end"].forEach(function (k) {
+      var v = meta && meta[k];
+      if (v !== undefined && v !== null && v !== "") fm[k] = v;
+    });
+    fm.last_updated = today || new Date().toISOString().slice(0, 10);
+    ["depends_on", "tags", "team"].forEach(function (k) {
+      var v = meta && meta[k];
+      var empty = v === undefined || v === null ||
+        (Array.isArray(v) && v.length === 0) ||
+        (typeof v === "object" && !Array.isArray(v) && Object.keys(v).length === 0);
+      if (!empty) fm[k] = v;
+    });
+    return "---\n" + dump(fm, { lineWidth: -1 }).replace(/\n$/, "") + "\n---";
+  }
+
   function buildPlanYaml(plan, project, tasks, dump) {
     var next = JSON.parse(JSON.stringify(plan));
     var edited = tasks.map(function (t) {
@@ -113,6 +148,7 @@
         validateTask: validateTask, validateAll: validateAll,
         buildTaskTable: buildTaskTable, buildKanbanMd: buildKanbanMd,
         buildPlanYaml: buildPlanYaml, STATUSES: STATUSES,
+        validateMeta: validateMeta, buildFrontmatter: buildFrontmatter,
       };
     }
     return;
@@ -157,7 +193,7 @@
   function renderMeta() {
     var box = el("kb-meta");
     box.innerHTML = "";
-    if (state.mode !== "kanban") { box.style.display = "none"; return; }
+    if (state.mode !== "kanban" && state.mode !== "fm") { box.style.display = "none"; return; }
     box.style.display = "";
     box.appendChild(h("h3", { text: "Frontmatter" }));
     var grid = h("div", { class: "kb-meta-grid" });
@@ -237,22 +273,28 @@
 
   function refresh() {
     var board = state.board;
-    var problems = validateAll(state.tasks);
+    var isFm = state.mode === "fm";
+    var metaErrs = validateMeta(effectiveMeta());
+    var problems = isFm ? [] : validateAll(state.tasks);
     markFields();
 
-    // validation panel
+    // validation panel — meta errors count in every mode
     var panel = el("kb-validation");
-    if (problems.length) {
+    var errCount = problems.length + metaErrs.length;
+    if (errCount) {
       panel.className = "kb-validation kb-invalid";
-      panel.innerHTML = "<strong>" + problems.length + " row(s) need fixing:</strong>";
+      panel.innerHTML = "<strong>" + errCount + " issue(s) need fixing:</strong>";
       var ul = h("ul");
+      metaErrs.forEach(function (m) { ul.appendChild(h("li", { text: "Frontmatter: " + m })); });
       problems.forEach(function (p) {
         ul.appendChild(h("li", { text: "Row " + p.row + " (" + (p.task || "untitled") + "): " + p.errs.join("; ") }));
       });
       panel.appendChild(ul);
     } else {
       panel.className = "kb-validation kb-valid";
-      panel.textContent = "✓ Valid — " + state.tasks.length + " task(s) conform to the kanban DSL.";
+      panel.textContent = isFm
+        ? "✓ Valid frontmatter — clean YAML, no typos possible."
+        : "✓ Valid — " + state.tasks.length + " task(s) conform to the kanban DSL.";
     }
 
     // generated DSL preview + target
@@ -263,6 +305,12 @@
       note = "Generated board → edits the migration plan-of-record (kf-cpto · " +
         "docs/_data/migration_plan.yml). After committing, run " +
         "`python scripts/generate_kanban.py --apply` to split it back to the repos.";
+    } else if (isFm) {
+      out = buildFrontmatter(board.project, effectiveMeta(), jsyaml.dump);
+      target = board.edit_url;
+      note = "Multi-section board → this replaces ONLY the frontmatter. In the GitHub " +
+        "editor, select from the first '---' through the second '---' (inclusive), " +
+        "paste, and commit. Body sections stay untouched.";
     } else {
       out = buildKanbanMd(board.project, effectiveMeta(), state.tasks, jsyaml.dump);
       target = board.edit_url;
@@ -271,10 +319,10 @@
     el("kb-note").textContent = note;
     el("kb-output").textContent = out;
 
-    // hand-off button enabled only when valid
+    // hand-off button enabled only when valid (meta + task issues both gate)
     var btn = el("kb-commit");
-    btn.disabled = problems.length > 0;
-    btn.title = problems.length ? "Fix the validation errors first" : "";
+    btn.disabled = errCount > 0;
+    btn.title = errCount ? "Fix the validation errors first" : "";
     btn.onclick = function () {
       navigator.clipboard.writeText(out).then(function () {
         window.open(target, "_blank", "noopener");
@@ -297,17 +345,29 @@
     el("kb-fallback").style.display = "none";
     if (!board) return;
 
-    if (!board.generated && !board.simple_board) {
+    var rich = !board.generated && !board.simple_board;
+    state.mode = board.generated ? "plan" : (rich ? "fm" : "kanban");
+    state.tasks = rich ? [] : seedTasks(board);
+    state.meta = {}; // overrides only; base stays board.meta
+
+    // Rich boards: frontmatter editor only — task tables live in the body
+    // (edited via raw editor or the kanban-groom skill).
+    var taskUi = rich ? "none" : "";
+    el("kb-tasks-h3").style.display = taskUi;
+    el("kb-table").style.display = taskUi;
+    el("kb-add-p").style.display = taskUi;
+    el("kb-preview-h3").innerHTML = rich
+      ? "Generated <code>frontmatter</code> (preview)"
+      : "Generated <code>kanban.md</code> (preview)";
+    if (rich) {
       el("kb-fallback").style.display = "";
       el("kb-fallback-link").href = board.edit_url;
-      return;
     }
-    state.mode = board.generated ? "plan" : "kanban";
-    state.tasks = seedTasks(board);
-    state.meta = {}; // overrides only; base stays board.meta
+
     el("kb-editor").style.display = "";
     el("kb-badge").textContent = board.generated
-      ? "generated → plan-of-record" : "kanban.md";
+      ? "generated → plan-of-record"
+      : (rich ? "multi-section → frontmatter editor" : "kanban.md");
     renderMeta();
     renderRows();
     refresh();
