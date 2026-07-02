@@ -53,9 +53,25 @@ GitHub.)</p>
   <div id="kb-validation" class="kb-validation"></div>
 
   <h3 id="kb-preview-h3">Generated <code>kanban.md</code> (preview)</h3>
+
+  <details class="kb-ref" id="kb-token-box">
+    <summary><strong>Direct save</strong> — commit from this page (no copy-paste)</summary>
+    <p class="kb-note" style="margin-top:0.5rem">Paste a
+      <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">fine-grained
+      GitHub token</a> with <code>Contents: Read and write</code> on the katty-fashion
+      repos. It is used straight from your browser to the GitHub API — never sent
+      anywhere else — and stored in this browser only if you tick "remember".</p>
+    <p>
+      <input id="kb-token" type="password" placeholder="github_pat_…" style="width:60%">
+      <label style="font-size:0.85rem"><input id="kb-token-save" type="checkbox"> remember in this browser</label>
+    </p>
+  </details>
+
   <p>
-    <button id="kb-commit" type="button" class="kb-btn">Copy &amp; open GitHub editor →</button>
+    <button id="kb-save" type="button" class="kb-btn">Commit to GitHub →</button>
+    <button id="kb-commit" type="button" class="kb-btn secondary">or Copy &amp; open GitHub editor →</button>
   </p>
+  <p id="kb-save-result" class="kb-note" style="display:none"></p>
   <p id="kb-handoff-hint" class="kb-note" style="display:none">
     In the GitHub editor: select all (<kbd>Ctrl/Cmd</kbd>+<kbd>A</kbd>), paste
     (<kbd>Ctrl/Cmd</kbd>+<kbd>V</kbd>), then <strong>Commit changes</strong>.

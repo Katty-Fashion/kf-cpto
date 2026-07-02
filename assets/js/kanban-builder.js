@@ -157,8 +157,63 @@
   var jsyaml = window.jsyaml;
   var BOARDS = (window.KB_DATA && window.KB_DATA.boards) || { projects: [] };
   var PLAN = (window.KB_DATA && window.KB_DATA.plan) || null;
+  var ORG = "katty-fashion";
   var KF_CPTO_PLAN_EDIT =
     "https://github.com/katty-fashion/kf-cpto/edit/master/docs/_data/migration_plan.yml";
+  var TOKEN_KEY = "kb_gh_token";
+
+  // ---- GitHub Contents API (direct save — token stays in the browser) ------
+  function b64decodeUtf8(b64) {
+    var bin = atob(b64.replace(/\n/g, ""));
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder("utf-8").decode(bytes);
+  }
+  function b64encodeUtf8(str) {
+    var bytes = new TextEncoder().encode(str);
+    var bin = "";
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+  function ghFetch(token, method, url, body) {
+    return fetch(url, {
+      method: method,
+      headers: {
+        "Authorization": "Bearer " + token,
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    }).then(function (r) {
+      return r.json().then(function (j) {
+        if (!r.ok) {
+          var msg = (j && j.message) || ("HTTP " + r.status);
+          if (r.status === 401) msg = "Token rejected (401) — check it has Contents: Read and write.";
+          if (r.status === 404) msg = "Not found (404) — token may lack access to this repo.";
+          if (r.status === 409) msg = "Conflict (409) — file changed on GitHub; click Save again.";
+          throw new Error(msg);
+        }
+        return j;
+      });
+    });
+  }
+  function ghGetFile(token, repo, path, ref) {
+    return ghFetch(token, "GET",
+      "https://api.github.com/repos/" + ORG + "/" + repo + "/contents/" +
+      encodeURIComponent(path).replace(/%2F/g, "/") + "?ref=" + encodeURIComponent(ref));
+  }
+  function ghPutFile(token, repo, path, branch, content, sha, message) {
+    return ghFetch(token, "PUT",
+      "https://api.github.com/repos/" + ORG + "/" + repo + "/contents/" +
+      encodeURIComponent(path).replace(/%2F/g, "/"),
+      { message: message, content: b64encodeUtf8(content), sha: sha, branch: branch });
+  }
+  // Replace ONLY the leading frontmatter block, preserving the body verbatim.
+  var FM_BLOCK_RE = /^---\r?\n[\s\S]*?\r?\n---/;
+  function spliceFrontmatter(fileContent, fmBlock) {
+    if (!FM_BLOCK_RE.test(fileContent)) return fmBlock + "\n\n" + fileContent;
+    return fileContent.replace(FM_BLOCK_RE, fmBlock);
+  }
 
   var el = function (id) { return document.getElementById(id); };
   function h(tag, attrs, kids) {
@@ -319,7 +374,7 @@
     el("kb-note").textContent = note;
     el("kb-output").textContent = out;
 
-    // hand-off button enabled only when valid (meta + task issues both gate)
+    // hand-off + direct-save buttons enabled only when valid
     var btn = el("kb-commit");
     btn.disabled = errCount > 0;
     btn.title = errCount ? "Fix the validation errors first" : "";
@@ -329,6 +384,72 @@
         el("kb-handoff-hint").style.display = "";
       });
     };
+    var save = el("kb-save");
+    save.disabled = errCount > 0;
+    save.title = errCount ? "Fix the validation errors first" : "";
+    state.pendingOut = out;
+    save.onclick = doSave;
+  }
+
+  function saveResult(ok, html) {
+    var box = el("kb-save-result");
+    box.style.display = "";
+    box.style.borderLeftColor = ok ? "#3a7d44" : "#c2682d";
+    box.innerHTML = html;
+  }
+
+  function doSave() {
+    var token = el("kb-token").value.trim() ||
+      (window.localStorage && localStorage.getItem(TOKEN_KEY)) || "";
+    if (!token) {
+      el("kb-token-box").open = true;
+      saveResult(false, "Paste a GitHub token first (see <strong>Direct save</strong> above) — " +
+        "or use Copy &amp; open GitHub editor.");
+      return;
+    }
+    if (el("kb-token-save").checked && window.localStorage) {
+      localStorage.setItem(TOKEN_KEY, token);
+    }
+    var board = state.board;
+    var out = state.pendingOut;
+    var save = el("kb-save");
+    save.disabled = true;
+    saveResult(true, "Saving…");
+
+    var repo, path, branch, message, prepare;
+    if (state.mode === "plan") {
+      repo = "kf-cpto"; path = "docs/_data/migration_plan.yml"; branch = "master";
+      message = "chore(plan): update migration_plan.yml via kanban-builder";
+      prepare = function (file) { return out; };
+    } else if (state.mode === "fm") {
+      repo = board.project; path = "kanban.md"; branch = board.branch || "main";
+      message = "chore(kanban): frontmatter update via kanban-builder";
+      prepare = function (file) { return spliceFrontmatter(file, out); };
+    } else {
+      repo = board.project; path = "kanban.md"; branch = board.branch || "main";
+      message = "chore(kanban): update via kanban-builder";
+      prepare = function (file) { return out; };
+    }
+
+    ghGetFile(token, repo, path, branch)
+      .then(function (f) {
+        var current = b64decodeUtf8(f.content || "");
+        var next = prepare(current);
+        if (next === current) throw new Error("No changes — file already matches.");
+        return ghPutFile(token, repo, path, branch, next, f.sha, message);
+      })
+      .then(function (r) {
+        var url = r.commit && r.commit.html_url;
+        saveResult(true, "✓ Committed to <strong>" + repo + "</strong>" +
+          (url ? ' — <a href="' + url + '" target="_blank" rel="noopener">view commit</a>.' : ".") +
+          (state.mode === "plan"
+            ? " Run <code>python scripts/generate_kanban.py --apply</code> to split it to the boards."
+            : " The repo dispatch rebuilds the dashboard in ~1 min."));
+      })
+      .catch(function (e) {
+        saveResult(false, "✗ " + String(e.message || e));
+      })
+      .then(function () { save.disabled = false; });
   }
 
   function effectiveMeta() {
@@ -383,6 +504,12 @@
     el("kb-add").onclick = function () {
       state.tasks.push({ task: "", assignee: "", effort: "", start: "", end: "", status: "Todo" });
       renderRows(); refresh();
+    };
+    // Restore a remembered token (browser-local only); untick + clear removes it.
+    var saved = window.localStorage && localStorage.getItem(TOKEN_KEY);
+    if (saved) { el("kb-token").value = saved; el("kb-token-save").checked = true; }
+    el("kb-token-save").onchange = function () {
+      if (!this.checked && window.localStorage) localStorage.removeItem(TOKEN_KEY);
     };
     var q = new URLSearchParams(window.location.search).get("project");
     var initial = (q && boardFor(q)) ? q : (BOARDS.projects[0] && BOARDS.projects[0].project);
