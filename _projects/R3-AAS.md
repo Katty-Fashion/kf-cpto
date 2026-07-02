@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-02T21:22:24.451865
+generated: 2026-07-02T21:28:48.571910
 ---
 
 # R3-AAS
@@ -193,14 +193,14 @@ generated: 2026-07-02T21:22:24.451865
 | Demo / prezentare produs | Eduard Lazăr |  |  |  | In Progress |
 | Definire tehnică monetizare (SaaS readiness) | Mihai A. |  |  |  | Todo |
 | Input pentru CRM / pipeline (structură tehnică) | Eduard Lazăr |  |  |  | Todo |
-| Implement scheduling request endpoint (KF → LMS) | @backend | 2d | 2026-03-19 | 2026-03-21 | Review |
-| Implement scheduler response parser | @backend | 2d | 2026-03-22 | 2026-03-24 | Review |
-| Integrate scheduling results with planner UI | @frontend | 3d | 2026-03-19 | 2026-03-24 | Review |
-| Implement planner visualization improvements (capacity / gaps) | @frontend | 2d | 2026-03-25 | 2026-03-27 | Review |
-| Validate suitability constraints and scheduling logic | @backend | 2d | 2026-03-26 | 2026-03-28 | Review |
-| Run first scheduling tests with real production data | @tech-lead | 1d | 2026-03-28 | 2026-03-28 | Review |
-| Debug integration issues with LMS team | @tech-lead | 1d | 2026-03-31 | 2026-03-31 | Review |
-| Integration validation review | @tech-lead | 0.5d | 2026-04-03 | 2026-04-03 | Review |
+| Implement scheduling request endpoint (KF → LMS) | @backend | 2d | 2026-06-29 | 2026-07-10 | Review |
+| Implement scheduler response parser | @backend | 2d | 2026-06-29 | 2026-07-10 | Review |
+| Integrate scheduling results with planner UI | @frontend | 3d | 2026-06-29 | 2026-07-10 | Review |
+| Implement planner visualization improvements (capacity / gaps) | @frontend | 2d | 2026-06-29 | 2026-07-10 | Review |
+| Validate suitability constraints and scheduling logic | @backend | 2d | 2026-06-29 | 2026-07-10 | Review |
+| Run first scheduling tests with real production data | @tech-lead | 1d | 2026-06-29 | 2026-07-10 | Review |
+| Debug integration issues with LMS team | @tech-lead | 1d | 2026-06-29 | 2026-07-10 | Review |
+| Integration validation review | @tech-lead | 0.5d | 2026-06-29 | 2026-07-10 | Review |
 | M2F: finalise &amp; confirm assumed KF-M2F shell structure | Eduard Lazăr / M2F | 2d | 2026-06-29 | 2026-07-10 | In Progress |
 | Export R3 AAS shells → move to Netcompany-hosted R3 platform | Mihai A. | 3d | 2026-07-13 | 2026-07-17 | Todo |
 | Share KF access for export to NetCompany | Eduard Lazăr | 1d | 2026-07-13 | 2026-07-14 | Todo |
@@ -282,34 +282,34 @@ gantt
     Integrare între sisteme (Katty / LMS) :2026-07-22, 1d
     Integrare LMS (AAS extern) :2026-07-23, 1d
     UI flow (parțial complet) :2026-07-24, 1d
-    Implement scheduling request endpoint (KF → LMS) :crit, 2026-03-19, 2026-03-21
-    Implement scheduler response parser :crit, 2026-03-22, 2026-03-24
-    Integrate scheduling results with planner UI :crit, 2026-03-19, 2026-03-24
-    Implement planner visualization improvements (capacity / gaps) :crit, 2026-03-25, 2026-03-27
-    Validate suitability constraints and scheduling logic :crit, 2026-03-26, 2026-03-28
-    Run first scheduling tests with real production data :crit, 2026-03-28, 2026-03-28
-    Debug integration issues with LMS team :crit, 2026-03-31, 2026-03-31
-    Integration validation review :crit, 2026-04-03, 2026-04-03
-    Feature set pentru lansare (MVP) :crit, 2026-04-03, 1d
-    Ce este „Done” vs „Ready” pentru release :crit, 2026-04-04, 1d
-    Decizie Made2Flow (demo vs integrare reală) :crit, 2026-04-05, 1d
-    Pregătire feature flags (ascundere features incomplete) :crit, 2026-04-06, 1d
-    Clarificare value proposition (perspectivă tehnică) :crit, 2026-04-07, 1d
-    Backend alignment (după modificări Răzvan) :crit, 2026-04-08, 1d
-    Bug-uri identificate în sistem :crit, 2026-04-09, 1d
-    Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 :crit, 2026-04-10, 1d
-    Naming convention pentru task-uri (namespace per proiect) :crit, 2026-04-11, 1d
-    Evitarea dublării task-urilor între tools :crit, 2026-04-12, 1d
-    Feature flags :crit, 2026-04-13, 1d
-    Telemetrie (monitorizare) :crit, 2026-04-14, 1d
-    Code quality / stability înainte de release :crit, 2026-04-15, 1d
-    Suport tehnic post-launch :crit, 2026-04-16, 1d
-    Conectivitate sisteme externe :crit, 2026-04-17, 1d
-    Sprint plan (tranziție către GTM) :crit, 2026-04-18, 1d
-    Rapoarte săptămânale (nu daily) :crit, 2026-04-19, 1d
-    Landing page (claritate produs) :crit, 2026-04-20, 1d
-    Definire tehnică monetizare (SaaS readiness) :crit, 2026-04-21, 1d
-    Input pentru CRM / pipeline (structură tehnică) :crit, 2026-04-22, 1d
+    Implement scheduling request endpoint (KF → LMS) :2026-06-29, 2026-07-10
+    Implement scheduler response parser :2026-06-29, 2026-07-10
+    Integrate scheduling results with planner UI :2026-06-29, 2026-07-10
+    Implement planner visualization improvements (capacity / gaps) :2026-06-29, 2026-07-10
+    Validate suitability constraints and scheduling logic :2026-06-29, 2026-07-10
+    Run first scheduling tests with real production data :2026-06-29, 2026-07-10
+    Debug integration issues with LMS team :2026-06-29, 2026-07-10
+    Integration validation review :2026-06-29, 2026-07-10
+    Feature set pentru lansare (MVP) :crit, 2026-06-29, 1d
+    Ce este „Done” vs „Ready” pentru release :crit, 2026-06-30, 1d
+    Decizie Made2Flow (demo vs integrare reală) :crit, 2026-07-01, 1d
+    Pregătire feature flags (ascundere features incomplete) :2026-07-02, 1d
+    Clarificare value proposition (perspectivă tehnică) :2026-07-03, 1d
+    Backend alignment (după modificări Răzvan) :2026-07-04, 1d
+    Bug-uri identificate în sistem :2026-07-05, 1d
+    Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 :2026-07-06, 1d
+    Naming convention pentru task-uri (namespace per proiect) :2026-07-07, 1d
+    Evitarea dublării task-urilor între tools :2026-07-08, 1d
+    Feature flags :2026-07-09, 1d
+    Telemetrie (monitorizare) :2026-07-10, 1d
+    Code quality / stability înainte de release :2026-07-11, 1d
+    Suport tehnic post-launch :2026-07-12, 1d
+    Conectivitate sisteme externe :2026-07-13, 1d
+    Sprint plan (tranziție către GTM) :2026-07-14, 1d
+    Rapoarte săptămânale (nu daily) :2026-07-15, 1d
+    Landing page (claritate produs) :2026-07-16, 1d
+    Definire tehnică monetizare (SaaS readiness) :2026-07-17, 1d
+    Input pentru CRM / pipeline (structură tehnică) :2026-07-18, 1d
     Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
     Share KF access for export to NetCompany :2026-07-13, 2026-07-14
     Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14

@@ -27,11 +27,13 @@ GitHub.)</p>
   </ul>
 </details>
 
-<!-- Rich custom-layout boards: fall back to the raw editor -->
+<!-- Rich multi-section boards: structured frontmatter editing here; body edits
+     go through the raw editor or the kanban-groom skill (kf-cpto). -->
 <div id="kb-fallback" style="display:none">
-  <p class="kb-note">This board has a custom, multi-section layout, so the form can't
-  safely rebuild it without losing content. Edit it directly:</p>
-  <p><a id="kb-fallback-link" class="kb-btn" target="_blank" rel="noopener">Open raw GitHub editor →</a></p>
+  <p class="kb-note">Multi-section board: the form below edits the <strong>frontmatter</strong>
+  with validated fields (no hand-typed YAML). For body sections/tables use the
+  <a id="kb-fallback-link" target="_blank" rel="noopener">raw GitHub editor</a> or the
+  <code>kanban-groom</code> skill in kf-cpto (numbered list · set · delete · add).</p>
 </div>
 
 <div id="kb-editor" style="display:none">
@@ -39,18 +41,18 @@ GitHub.)</p>
 
   <div id="kb-meta"></div>
 
-  <h3>Tasks</h3>
+  <h3 id="kb-tasks-h3">Tasks</h3>
   <table id="kb-table">
     <thead>
       <tr><th>Task</th><th>Assignee</th><th>Effort</th><th>Start</th><th>End</th><th>Status</th><th></th></tr>
     </thead>
     <tbody id="kb-rows"></tbody>
   </table>
-  <p><button id="kb-add" type="button" class="kb-btn secondary">+ Add task</button></p>
+  <p id="kb-add-p"><button id="kb-add" type="button" class="kb-btn secondary">+ Add task</button></p>
 
   <div id="kb-validation" class="kb-validation"></div>
 
-  <h3>Generated <code>kanban.md</code> (preview)</h3>
+  <h3 id="kb-preview-h3">Generated <code>kanban.md</code> (preview)</h3>
   <p>
     <button id="kb-commit" type="button" class="kb-btn">Copy &amp; open GitHub editor →</button>
   </p>
