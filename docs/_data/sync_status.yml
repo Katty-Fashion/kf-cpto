@@ -5,10 +5,10 @@ aggregator:
   task_count: 121
   errors: []
 sheets_export:
-  last_run_at: '2026-07-02T20:46:23Z'
+  last_run_at: '2026-07-02T20:47:01Z'
   last_run_status: ok
   row_count: 121
-  duration_seconds: 4.17
+  duration_seconds: 2.58
   last_error: null
   last_error_issue: null
   recent_failures: []
