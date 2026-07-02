@@ -1,5 +1,5 @@
-generated_at: '2026-07-02T11:49:00Z'
-row_count: 121
+generated_at: '2026-07-02T13:59:39Z'
+row_count: 124
 rows:
 - project: R3-AAS
   sprint: S5
@@ -91,12 +91,36 @@ rows:
   status: Done
 - project: R3-AAS
   sprint: S5
+  task: 'Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise)'
+  assignee: Alexandru Bejenari
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Done
+- project: R3-AAS
+  sprint: S5
+  task: OAuth2 auth-server public + per-client provisioning
+  assignee: Răzvan Boița
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Done
+- project: R3-AAS
+  sprint: S5
+  task: ALADIN WP2 RunSheet service (nginx + Traefik routing)
+  assignee: Răzvan Boița
+  effort_days: 0.0
+  start: ''
+  end: ''
+  status: Done
+- project: R3-AAS
+  sprint: S5
   task: Deploy AAS în Cloud (hosting)
   assignee: Răzvan Boița / Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Clarificare acces server R3 (Vangelis)
@@ -152,7 +176,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Identificare gaps / incomplete features
@@ -160,7 +184,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Sesiune demo produse (intern)
@@ -168,7 +192,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: Pregătire feature flags (ascundere features incomplete)
@@ -216,7 +240,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Todo
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Clarificare acces server R3 (Vangelis)
@@ -240,7 +264,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Layout simplificat pilot (stații + flux + senzori)
@@ -248,7 +272,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Todo
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Integrare LMS (AAS extern)
@@ -272,7 +296,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Review
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: UI flow (parțial complet)
@@ -312,7 +336,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Clarificare format date pentru platforma R3
@@ -336,7 +360,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Task-uri ↔ Work Packages (WP mapping)
@@ -344,7 +368,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Todo
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Naming convention pentru task-uri (namespace per proiect)
@@ -368,7 +392,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: GitHub Actions pentru sync task-uri
@@ -376,7 +400,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Review
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Generare automată status / reports
@@ -384,7 +408,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Review
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Pipeline CI/CD (necesar pentru GTM)
@@ -456,7 +480,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: Interviuri tehnice full-stack
@@ -504,7 +528,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Todo
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Task-uri cu timeline (start/end)
@@ -512,7 +536,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: Rapoarte săptămânale (nu daily)
@@ -528,7 +552,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: Landing page (claritate produs)
@@ -608,7 +632,7 @@ rows:
   effort_days: 2.0
   start: '2026-03-22'
   end: '2026-03-24'
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: Integrate scheduling results with planner UI
