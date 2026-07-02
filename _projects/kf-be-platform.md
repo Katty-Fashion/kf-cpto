@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-be-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-07-02T21:28:48.573772
+generated: 2026-07-02T21:29:40.376174
 ---
 
 # kf-be-platform
@@ -87,19 +87,19 @@ pie showData title Effort — Planned vs Done (person-days)
 
 ```mermaid
 gantt
-    title S5 — kf-be-platform
+    title S5 — kf-be-platform (dated tasks)
     dateFormat YYYY-MM-DD
     excludes weekends
 
     (F1.S2.DB Schema v2 + RLS) :done, 2026-05-25, 2026-06-21
+    (F1.S2.CI/CD Pipeline) :crit, 2026-05-25, 2026-06-07
     (F2.S3.IDP + SMTP) :done, 2026-06-08, 2026-06-28
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
-    (F1.S2.CI/CD Pipeline) :crit, 2026-05-25, 2026-06-07
-    (F5.S15.Notifications) :active, 2026-11-23, 2026-12-06
     (F5.S13.EPCIS Export) :2026-10-19, 2026-11-08
     (F5.S13.LLM Ecodesign (WP4)) :2026-10-26, 2026-11-15
     (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
+    (F5.S15.Notifications) :active, 2026-11-23, 2026-12-06
     (F6.S17.Data Migration Scripts) :2026-12-14, 2026-12-27
 ```
 

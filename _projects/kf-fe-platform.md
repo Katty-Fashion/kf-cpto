@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-fe-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-07-02T21:28:48.574147
+generated: 2026-07-02T21:29:40.376500
 ---
 
 # kf-fe-platform
@@ -87,20 +87,20 @@ pie showData title Effort — Planned vs Done (person-days)
 
 ```mermaid
 gantt
-    title S5 — kf-fe-platform
+    title S5 — kf-fe-platform (dated tasks)
     dateFormat YYYY-MM-DD
     excludes weekends
 
     (F1.S2.Design System) :done, 2026-05-25, 2026-06-21
     (F1.S4.Login Flow) :done, 2026-06-22, 2026-07-05
     (F2.S5.Admin Console) :done, 2026-07-06, 2026-07-26
+    (F2.S6.Overview Refactor) :active, 2026-07-13, 2026-08-02
     (F3.S7.Models Page) :done, 2026-08-03, 2026-08-23
     (F3.S8.Tech Pack Layout) :done, 2026-08-10, 2026-08-30
     (F3.S9.Model Sheet Fixes) :done, 2026-08-24, 2026-09-06
-    (F2.S6.Overview Refactor) :active, 2026-07-13, 2026-08-02
     (F3.S10.3D Performance) :active, 2026-09-07, 2026-09-27
-    (F5.S15.i18n / l10n) :active, 2026-11-16, 2026-11-29
     (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
+    (F5.S15.i18n / l10n) :active, 2026-11-16, 2026-11-29
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
