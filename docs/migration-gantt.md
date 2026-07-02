@@ -1,7 +1,7 @@
 ---
 title: Migration Gantt
 layout: default
-auto_blocks: [meta-header, calendar]
+auto_blocks: [meta-header, calendar, migration-gantt]
 ---
 
 # Migration Gantt — KF → ALADIN Platform
@@ -153,72 +153,81 @@ Fazele se suprapun pentru a paraleliza munca FE/BE.
 
 ## 4. Mermaid Gantt
 
+> Gantt-ul de mai jos este regenerat automat din `docs/_data/migration_plan.yml`
+> (plan-of-record: nume task-uri `[F.S.Name]`, date, statusuri) și
+> `docs/_data/calendar.yml` (milestones). Barele sunt colorate RAG după status.
+> Pentru schimbări, editează acele fișiere — nu blocul de mai jos.
+
+<!-- AUTO:migration-gantt -->
+
 ```mermaid
 gantt
-    title KF → ALADIN Migration — 32 weeks (PW1 = CW19, PW32 = CW50, 2026)
+    title KF → ALADIN Migration — 32 weeks (statusuri live din migration_plan.yml)
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
 
-    section Faza 1 — Fundație
-    Project setup (BE+FE)            :f1a, 2026-05-04, 10d
-    Design system & tokens (FE)      :f1b, 2026-05-04, 20d
-    Database schema v2 (BE)          :f1c, 2026-05-04, 20d
-    CI/CD pipeline (BE)              :f1d, 2026-05-04, 10d
+    section Faza 1 — Fundatie & Infrastructure
+    (F1.S2.Project Setup) (FE+BE) :done, f1t1, 2026-05-25, 10d
+    (F1.S2.Design System) (FE) :done, f1t2, 2026-05-25, 20d
+    (F1.S2.DB Schema v2 + RLS) (BE) :done, f1t3, 2026-05-25, 20d
+    (F1.S2.CI/CD Pipeline) (BE) :crit, f1t4, 2026-05-25, 10d
+    (F1.S4.Login Flow) (FE) :done, f1t5, 2026-06-22, 10d
 
     section Faza 2 — Auth & Multi-tenancy
-    IDP setup & SMTP (BE)            :f2a, 2026-05-18, 15d
-    RBAC system (BE)                 :f2b, 2026-05-18, 20d
-    Login flow (FE)                  :f2c, 2026-06-01, 10d
-    Tenant management (BE)           :f2d, 2026-06-08, 15d
-    Admin Console (FE)               :f2e, 2026-06-15, 15d
+    (F2.S3.IDP + SMTP) (BE) :done, f2t1, 2026-06-08, 15d
+    (F2.S3.RBAC System) (BE) :done, f2t2, 2026-06-08, 20d
+    (F2.S5.Tenant Management) (BE) :done, f2t3, 2026-06-29, 15d
+    (F2.S5.Admin Console) (FE) :done, f2t4, 2026-07-06, 15d
+    (F2.S6.Overview Refactor) (FE) :active, f2t5, 2026-07-13, 15d
 
     section Faza 3 — Core Platform
-    Overview refactor (FE)              :f3a, 2026-06-22, 15d
-    Collections fix+refactor (FE+BE)    :f3b, 2026-06-29, 20d
-    Models Page refactor (FE)           :f3c, 2026-07-13, 15d
-    Tech Pack layout (FE)               :f3d, 2026-07-20, 15d
-    BOM editor + LLM hook (FE+BE)       :f3e, 2026-07-27, 20d
-    Model Sheet fixes (FE)              :f3f, 2026-08-03, 10d
-    Sizing & QA Flow (FE+BE)            :f3g, 2026-08-10, 15d
-    3D Model performance (FE)           :f3h, 2026-08-17, 15d
-    Cost Breakdown & OCS (FE+BE)        :f3i, 2026-08-24, 15d
-    Tech Process refactor (FE+BE)       :f3j, 2026-08-31, 15d
-    Inventory & Reception (FE+BE)       :f3k, 2026-09-07, 15d
+    (F3.S6.Collections Refactor) (FE+BE) :done, f3t1, 2026-07-20, 20d
+    (F3.S7.Models Page) (FE) :done, f3t2, 2026-08-03, 15d
+    (F3.S8.Tech Pack Layout) (FE) :done, f3t3, 2026-08-10, 15d
+    (F3.S8.BOM Editor) (FE+BE) :done, f3t4, 2026-08-17, 20d
+    (F3.S9.Model Sheet Fixes) (FE) :done, f3t5, 2026-08-24, 10d
+    (F3.S9.Sizing & QA Flow) (FE+BE) :done, f3t6, 2026-08-31, 15d
+    (F3.S10.3D Performance) (FE) :active, f3t7, 2026-09-07, 15d
+    (F3.S10.Cost Breakdown) (FE+BE) :active, f3t8, 2026-09-14, 15d
+    (F3.S11.Tech Process Refactor) (FE+BE) :active, f3t9, 2026-09-21, 15d
 
     section Faza 4 — Production & Operations
-    Orders refactor (FE+BE)                  :f4a, 2026-08-03, 20d
-    Planner Calendar/Gantt/Kanban (FE+BE)    :f4b, 2026-08-17, 25d
-    Batches & Assignment (FE+BE)             :f4c, 2026-08-31, 20d
-    Operator View tablet (FE+BE)             :f4d, 2026-09-07, 20d
-    QC Module (FE+BE)                        :f4e, 2026-09-14, 15d
-    Reports & Cutting (FE+BE)                :f4f, 2026-09-21, 10d
+    (F4.S9.Orders Refactor) (FE+BE) :active, f4t1, 2026-08-24, 20d
+    (F4.S10.Planner) (FE+BE) :active, f4t2, 2026-09-07, 25d
+    (F4.S11.Batches & Assignment) (FE+BE) :active, f4t3, 2026-09-21, 20d
+    (F4.S11.Inventory & Reception) (FE+BE) :done, f4t4, 2026-09-28, 15d
+    (F4.S11.Operator View) (FE+BE) :f4t5, 2026-09-28, 20d
+    (F4.S12.QC Module) (FE+BE) :active, f4t6, 2026-10-05, 15d
+    (F4.S12.Reports & Cutting) (FE+BE) :active, f4t7, 2026-10-12, 10d
 
     section Faza 5 — ALADIN Features Noi
-    DPP Module (FE+BE)                       :f5a, 2026-08-31, 25d
-    Public DPP / GS1 QR (FE+BE)              :f5b, 2026-09-21, 15d
-    EPCIS Export (BE)                        :f5c, 2026-09-28, 15d
-    LLM Ecodesign full (BE)                  :f5d, 2026-10-05, 15d
-    IoT Adapter & Events (BE)                :f5e, 2026-10-12, 15d
-    Garment Configurator B2C (FE)            :f5f, 2026-10-19, 15d
-    Auditor View (FE+BE)                     :f5g, 2026-10-26, 10d
+    (F5.S11.DPP Module (T2.4)) (FE+BE) :f5t1, 2026-09-21, 25d
+    (F5.S12.Public DPP / GS1) (FE+BE) :f5t2, 2026-10-12, 15d
+    (F5.S13.EPCIS Export) (BE) :f5t3, 2026-10-19, 15d
+    (F5.S13.LLM Ecodesign (WP4)) (BE) :f5t4, 2026-10-26, 15d
+    (F5.S14.IoT Adapter (T2.5)) (BE) :f5t5, 2026-11-02, 15d
+    (F5.S14.Garment Configurator (T2.3)) (FE) :f5t6, 2026-11-09, 15d
+    (F5.S15.Auditor View) (FE+BE) :f5t7, 2026-11-16, 10d
+    (F5.S15.i18n / l10n) (FE) :active, f5t8, 2026-11-16, 10d
+    (F5.S15.Notifications) (BE) :active, f5t9, 2026-11-23, 10d
+    (F5.S16.Made2Flow Schema) (FE+BE) :f5t10, 2026-11-30, 10d
 
     section Faza 6 — Polish & Cutover
-    i18n / l10n (FE)                         :f6a, 2026-10-26, 10d
-    Notifications multi-channel (BE)         :f6b, 2026-11-02, 10d
-    Made2Flow dynamic schema (FE+BE)         :f6c, 2026-11-09, 10d
-    Migration testing (FE+BE)                :f6d, 2026-11-16, 10d
-    Data migration scripts (BE)              :f6e, 2026-11-23, 10d
-    Final QA & cutover (FE+BE)               :f6f, 2026-11-30, 10d
+    (F6.S16.Migration Testing) (FE+BE) :f6t1, 2026-12-07, 10d
+    (F6.S17.Data Migration Scripts) (BE) :f6t2, 2026-12-14, 10d
+    (F6.S17.Final QA & Cutover) (FE+BE) :f6t3, 2026-12-21, 10d
 
     section Milestones
-    M1 Infrastructure ready          :milestone, m1, 2026-05-29, 0d
-    M2 Auth + Multi-tenancy live     :milestone, m2, 2026-07-03, 0d
-    M3 Tech Pack complet             :milestone, m3, 2026-08-21, 0d
-    M4 Production flow E2E           :milestone, m4, 2026-10-02, 0d
-    M5 ALADIN features beta          :milestone, m5, 2026-11-13, 0d
-    M6 Production cutover            :milestone, m6, 2026-12-11, 0d
+    M1 Infrastructure ready :milestone, m1, 2026-05-29, 0d
+    M2 Auth + Multi-tenancy live :milestone, m2, 2026-07-03, 0d
+    M3 Tech Pack complet :milestone, m3, 2026-08-21, 0d
+    M4 Production flow E2E :milestone, m4, 2026-10-02, 0d
+    M5 ALADIN features beta :milestone, m5, 2026-11-13, 0d
+    M6 Production cutover :milestone, m6, 2026-12-11, 0d
 ```
+
+<!-- /AUTO:migration-gantt -->
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
 
@@ -428,37 +437,7 @@ Fiecare sprint = 2 PW (10 zile lucrătoare). FE / BE listează task-urile **acti
 
 ---
 
-## 11. Recomandări finale
-
-### 12.1 Prioritizare strategică
-
-Dacă apar întârzieri și trebuie descoped, ordinea de descope recomandată:
-
-1. **Primul tăiat:** Garment Configurator B2C (poate veni post-cutover)
-2. **Apoi:** Auditor View cross-tenant (poate veni în iterație 2)
-3. **Apoi:** IoT Adapter (poate fi pilot cu o singură mașină)
-4. **Niciodată tăiat:** Auth, Multi-tenancy, Core Tech Pack, Orders, Operator View
-
-### 12.2 Quick wins în primele 4 săptămâni (S1-S2)
-
-Pentru morale și demo intern, încearcă să livrezi:
-- **PW2 / Fri 2026-05-15:** Login functional în noul setup (chiar fără RBAC complet)
-- **PW4 / Fri 2026-05-29:** Primul ecran nou (probabil Overview) accesibil pe staging
-- **PW6 / Fri 2026-06-12:** Multi-tenant working — creare tenant nou + login user
-
-### 12.3 Recomandare pentru a 3-a persoană (dacă se decide)
-
-Dacă bugetul permite, profilul ideal pentru a 3-a persoană ar fi:
-
-- **0.5 FTE Designer/UX** pentru fazele 3-5 (multe ecrane noi)
-- SAU **0.5 FTE Backend** pentru a echilibra încărcarea (în special faza 5 ALADIN)
-- SAU **0.5 FTE QA** pentru fazele 4-6 (testare extensivă)
-
-Recomandarea mea: **0.5 FTE Designer/UX** — multe decizii UI/UX rămân în aer (vezi open questions), iar un designer dedicat ar accelera enorm fazele 3-5.
-
----
-
-## 12. Gantt Chart — vizualizare timeline (ASCII)
+## 11. Gantt Chart — vizualizare timeline (ASCII)
 
 ```
 PW:  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32

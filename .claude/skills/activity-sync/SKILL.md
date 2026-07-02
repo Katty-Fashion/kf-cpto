@@ -71,6 +71,12 @@ What it does:
   - Reverted/unreachable merges produce no Done entry
 - Mines [TIER-2] signals via local git: active remote branches -> In Progress (Todo only)
   - Pure-local `git for-each-ref refs/remotes/origin/` — no API call for branch detection
+- Surfaces [TIER-3] context: any tracked repo may carry a GSD `.planning/` folder;
+  when `.planning/STATE.md` exists its milestone/phase/plan progress is printed as an
+  `[INFO]` line. Informational only (read-only invariant preserved) — mapping GSD
+  phase progress onto kanban task statuses is a judgment call applied via
+  `docs/_data/migration_plan.yml` + `scripts/generate_kanban.py --apply`, never
+  auto-proposed.
 - Forward-only: never downgrades a declared status (Done stays Done)
 - [TIER-1] Done wins over [TIER-2] In Progress for the same task (conflict resolution)
 - Prints a grouped change list to stdout — grouped by repo, task | old -> new | signal
@@ -158,6 +164,7 @@ When no changes are proposed (all declared statuses match activity):
 Pill legend:
 - `[TIER-1]` — merged PR or closed linked issue (verified via git reachability gate)
 - `[TIER-2]` — active remote branch (local git, no API)
+- `[TIER-3]` — `.planning/STATE.md` progress context (informational; no auto-proposal)
 
 ---
 

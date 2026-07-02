@@ -8,7 +8,7 @@ Common functions used by aggregator.py and sheets_sync.py
 import os
 import re
 import yaml
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Optional
 
@@ -548,6 +548,65 @@ def mermaid_gantt_label(text: str) -> str:
         return text
     t = mermaid_label_safe(text).replace(":", " ").replace(";", " ")
     return re.sub(r"\s+", " ", t).strip()
+
+
+# RAG gantt legend — must stay in sync with the mermaid themeVariables in
+# docs/_layouts/default.html and the .pill--planned/active/late/done CSS.
+GANTT_LEGEND_HTML = (
+    '<p class="gantt-legend">'
+    '<span class="pill pill--planned">Planned</span>'
+    '<span class="pill pill--active">In work</span>'
+    '<span class="pill pill--late">Late / At risk</span>'
+    '<span class="pill pill--done">Done</span></p>'
+)
+
+
+def iso_date(value) -> Optional["datetime.date"]:
+    """Parse an ISO date string; None for placeholders ('—', '-', 'TBD', '')."""
+    try:
+        return datetime.strptime(str(value).strip(), "%Y-%m-%d").date()
+    except (ValueError, TypeError):
+        return None
+
+
+def working_days_between(start_iso, end_iso) -> int:
+    """Inclusive count of working days (Mon-Fri) between two ISO dates.
+
+    Used to emit mermaid gantt durations for charts declaring
+    `excludes weekends`. Falls back to 1 on unparseable/inverted input.
+    """
+    start, end = iso_date(start_iso), iso_date(end_iso)
+    if start is None or end is None or end < start:
+        return 1
+    days = 0
+    d = start
+    while d <= end:
+        if d.weekday() < 5:
+            days += 1
+        d += timedelta(days=1)
+    return max(days, 1)
+
+
+def rag_modifier(status: str, start_iso, end_iso, today=None) -> str:
+    """RAG mermaid modifier for a task bar, matching the dashboard legend.
+
+    Done -> 'done, ' (green) · overdue or should-have-started -> 'crit, ' (red)
+    · In Progress -> 'active, ' (amber) · otherwise '' (grey Planned).
+    Single source of truth: kanban/plan status + dates. Keep in sync with
+    GANTT_LEGEND_HTML and the themeVariables in docs/_layouts/default.html.
+    """
+    if today is None:
+        today = datetime.now().date()
+    if status == "Done":
+        return "done, "
+    start, end = iso_date(start_iso), iso_date(end_iso)
+    overdue = end is not None and end < today
+    not_started = status == "Todo" and start is not None and start < today
+    if overdue or not_started:
+        return "crit, "
+    if status == "In Progress":
+        return "active, "
+    return ""
 
 
 def _sanitize_task(task: dict[str, str]) -> dict[str, str]:

@@ -100,6 +100,43 @@ The push fires each repo's `notify-kf-cpto.yml` dispatch → the dashboard + She
 
 > Full reference: the `[GENERATE]` section of [`.claude/skills/activity-sync/SKILL.md`](.claude/skills/activity-sync/SKILL.md)
 
+## Weekly Update Runbook — Refresh Statuses & Prep Reporting
+
+Run this once a week (or before any reporting review). It reconciles real activity into task statuses, regenerates the per-repo boards, and lets CI rebuild the dashboard + LOE Sheet.
+
+```bash
+export KF_PAT=your-token   # or: export KF_PAT="$(gh auth token)"
+
+# 1. REFRESH — fetch every tracked repo and read its declared state
+python .claude/skills/activity-sync/repo_enum.py
+
+# 2. MINE — preview activity-driven corrections (writes nothing)
+#    [TIER-1] merged PRs / closed issues → Done   [TIER-2] active branches → In Progress
+#    [TIER-3] any repo carrying a GSD .planning/ folder gets an [INFO] progress line
+#             (milestone · phases · plans · %) — use it to judge status upgrades
+python .claude/skills/activity-sync/reconcile.py --dry-run
+
+# 3. ALIGN — apply judgment to the plan-of-record
+#    Statuses live on the prefixed [F{faza}.S{sprint}.Name] tasks
+$EDITOR docs/_data/migration_plan.yml
+
+# 4. WRITE BACK — push reconciled statuses / regenerated boards (one batch confirm)
+python .claude/skills/activity-sync/writeback.py     # git-signal corrections, or:
+python scripts/generate_kanban.py --apply            # plan-of-record → 3 platform kanbans
+
+# 5. VERIFY LOCALLY (optional) — CI runs this anyway on push
+python scripts/aggregator.py
+(cd docs && LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll serve)
+```
+
+The pushed `kanban.md` files fire each repo's `notify-kf-cpto.yml` dispatch → `aggregate.yml` rebuilds everything: unified kanban/calendar (sprint cadence, full timeline, per-sprint views), per-project pages (Planned-vs-Done pie, RAG sprint gantt), the Migration Gantt (`AUTO:migration-gantt` rendered live from `migration_plan.yml`), `loe.yml`/`gantt.yml`, GitHub Pages, and the Google Sheet.
+
+**Reporting semantics (one story everywhere):**
+- **Task names** carry `[F{faza}.S{sprint}.ShortName]` prefixes — faza and sprint readable at a glance.
+- **Gantt bars are RAG by status:** grey Planned · amber In work · red Late/At-risk (past end date, or Todo past its start) · green Done. Legends render under every gantt; bar colours come from mermaid `themeVariables` in `docs/_layouts/default.html`.
+- **Pies are Planned-vs-Done** (person-days) — portfolio-wide on the index, per project on each page.
+- **Milestones** live in `docs/_data/calendar.yml`; the migration gantt and `gantt.yml` read them from there.
+
 ## How It Works
 
 ```mermaid

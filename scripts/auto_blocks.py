@@ -110,9 +110,98 @@ def render_meta_header(context: dict) -> str:
     )
 
 
+# Faza display names for the migration gantt sections (§3 of migration-gantt.md).
+_FAZA_NAMES = {
+    1: "Fundatie & Infrastructure",
+    2: "Auth & Multi-tenancy",
+    3: "Core Platform",
+    4: "Production & Operations",
+    5: "ALADIN Features Noi",
+    6: "Polish & Cutover",
+}
+
+# Discipline tag per plan repo — parse_migration_gantt() extracts the trailing
+# (FE/BE/FE+BE) into gantt.yml's discipline column.
+_REPO_DISCIPLINE = {
+    "kf-fe-platform": "FE",
+    "kf-be-platform": "BE",
+    "kf-platform": "FE+BE",
+}
+
+_FAZA_PREFIX_RE = re.compile(r"^\[F(\d+)\.")
+
+
+def render_migration_gantt(context: dict) -> str:
+    """Full migration mermaid gantt rendered from migration_plan.yml.
+
+    One story, one source: task names (with [F.S.Name] prefixes), dates and
+    statuses come from the plan-of-record, bars get RAG modifiers via
+    utils.rag_modifier, and milestones come from calendar.yml. The block is
+    parsed back by aggregator.parse_migration_gantt() into gantt.yml, so the
+    Sheets export stays in sync automatically.
+    """
+    from utils import mermaid_gantt_label, rag_modifier, working_days_between
+
+    plan = context.get("migration_plan") or {}
+    tasks = plan.get("tasks") or []
+    if not tasks:
+        return "_(auto-data: migration_plan.tasks missing in docs/_data/migration_plan.yml)_"
+
+    cal = context.get("calendar") or {}
+    total_weeks = int(cal.get("total_weeks", 32) or 32)
+
+    by_faza: dict[int, list[dict]] = {}
+    for t in tasks:
+        m = _FAZA_PREFIX_RE.match(str(t.get("task", "")))
+        faza = int(m.group(1)) if m else 0
+        by_faza.setdefault(faza, []).append(t)
+
+    lines = [
+        "",
+        "```mermaid",
+        "gantt",
+        f"    title KF → ALADIN Migration — {total_weeks} weeks (statusuri live din migration_plan.yml)",
+        "    dateFormat YYYY-MM-DD",
+        "    axisFormat %d %b",
+        "    excludes weekends",
+        "",
+    ]
+
+    for faza in sorted(by_faza):
+        name = _FAZA_NAMES.get(faza, "Alte task-uri")
+        lines.append(f"    section Faza {faza} — {name}" if faza else f"    section {name}")
+        ordered = sorted(by_faza[faza], key=lambda t: str(t.get("start", "")))
+        for i, t in enumerate(ordered, start=1):
+            disc = _REPO_DISCIPLINE.get(str(t.get("repo", "")), "")
+            label = mermaid_gantt_label(str(t.get("task", "")))
+            if disc:
+                label = f"{label} ({disc})"
+            modifier = rag_modifier(
+                str(t.get("status", "Todo")), t.get("start"), t.get("end")
+            )
+            dur = working_days_between(t.get("start"), t.get("end"))
+            lines.append(
+                f"    {label} :{modifier}f{faza}t{i}, {t.get('start')}, {dur}d"
+            )
+        lines.append("")
+
+    milestones = cal.get("milestones") or []
+    if milestones:
+        lines.append("    section Milestones")
+        for i, ms in enumerate(milestones, start=1):
+            label = mermaid_gantt_label(str(ms.get("name", f"M{i}")))
+            lines.append(
+                f"    {label} :milestone, m{i}, {ms.get('date')}, 0d"
+            )
+    lines.append("```")
+    lines.append("")
+    return "\n".join(lines)
+
+
 AUTO_BLOCK_RENDERERS: dict[str, Callable[[dict], str]] = {
     "calendar": render_calendar,
     "meta-header": render_meta_header,
+    "migration-gantt": render_migration_gantt,
 }
 
 

@@ -41,6 +41,10 @@ from utils import (
     mermaid_gantt_label,
     update_sync_status,
     _is_separator_row,
+    GANTT_LEGEND_HTML,
+    iso_date,
+    rag_modifier,
+    DATA_DIR,
 )
 
 PROJECTS = load_projects()
@@ -120,6 +124,207 @@ def _render_kanban_board(statuses: dict, *, link_project: bool = True) -> str:
     return "\n".join(lines)
 
 
+# ---------------------------------------------------------------------------
+# Shared gantt builders — sprint cadence, per-sprint views, full timeline.
+# Every gantt these emit uses RAG modifiers (utils.rag_modifier) and is
+# followed by the RAG legend so bars and legend always tell the same story.
+# ---------------------------------------------------------------------------
+
+_SPRINT_LABEL_RE = re.compile(r"^S(\d+)$")
+
+
+def _load_calendar() -> dict:
+    """Load docs/_data/calendar.yml (sprint cadence source of truth)."""
+    cal_file = DATA_DIR / "calendar.yml"
+    if not cal_file.exists():
+        return {}
+    try:
+        return yaml.safe_load(cal_file.read_text(encoding="utf-8")) or {}
+    except yaml.YAMLError:
+        return {}
+
+
+def _sprint_bounds(cal: dict, idx: int):
+    """(start, end) dates of sprint `idx` (1-based) from the calendar cadence."""
+    start0 = iso_date(str(cal.get("start_date", "")))
+    if start0 is None or idx < 1:
+        return None, None
+    weeks = int(cal.get("sprint_length_weeks", 2) or 2)
+    start = start0 + timedelta(weeks=(idx - 1) * weeks)
+    end = start + timedelta(days=weeks * 7 - 3)  # Mon week1 -> Fri last week
+    return start, end
+
+
+def _current_sprint_idx(cal: dict, today=None) -> int:
+    """1-based index of the sprint containing `today` on the shared cadence."""
+    start0 = iso_date(str(cal.get("start_date", "")))
+    if start0 is None:
+        return 1
+    if today is None:
+        today = datetime.now().date()
+    weeks = int(cal.get("sprint_length_weeks", 2) or 2)
+    return max(((today - start0).days // 7) // weeks + 1, 1)
+
+
+def _gantt_sprint_cadence(data: dict, today=None) -> list[str]:
+    """Previous / current / next sprint windows per project.
+
+    Windows derive from each project's declared sprint frontmatter (its
+    truth), stepped ±1 sprint on the shared cadence — so a project whose
+    declared sprint is stale shows up visibly out of step.
+    """
+    if today is None:
+        today = datetime.now().date()
+    cal = _load_calendar()
+    weeks = int(cal.get("sprint_length_weeks", 2) or 2)
+    step = timedelta(weeks=weeks)
+
+    rows = []
+    for project, project_data in data.items():
+        meta = project_data.get("meta", {})
+        s_start = iso_date(str(meta.get("sprint_start", "")).strip())
+        s_end = iso_date(str(meta.get("sprint_end", "")).strip())
+        if s_start is None or s_end is None:
+            continue
+        label = str(meta.get("sprint", "Sprint")).strip()
+        m = _SPRINT_LABEL_RE.match(label)
+        idx = int(m.group(1)) if m else None
+        rows.append((project, idx, s_start, s_end))
+
+    if not rows:
+        return []
+
+    lines = [
+        "## Sprint Timeline",
+        "",
+        "> Previous · current · next sprint per project (from each repo's declared sprint)",
+        "",
+        "```mermaid",
+        "gantt",
+        "    title Sprint Cadence — previous / current / next",
+        "    dateFormat YYYY-MM-DD",
+        "    axisFormat %d %b",
+        "    excludes weekends",
+        "",
+    ]
+    for project, idx, s_start, s_end in rows:
+        lines.append(f"    section {mermaid_gantt_label(project)}")
+        for offset in (-1, 0, 1):
+            w_start, w_end = s_start + step * offset, s_end + step * offset
+            name = f"S{idx + offset}" if idx is not None else ("prev", "current", "next")[offset + 1]
+            if w_end < today:
+                modifier = "done, "
+            elif w_start <= today <= w_end:
+                modifier = "active, "
+            else:
+                modifier = ""
+            lines.append(
+                f"    {mermaid_gantt_label(name)} :{modifier}{w_start.isoformat()}, {w_end.isoformat()}"
+            )
+    lines += ["```", "", GANTT_LEGEND_HTML, ""]
+    return lines
+
+
+def _dated_tasks(project_data: dict) -> list[dict]:
+    """Tasks with real ISO start+end dates (placeholders excluded)."""
+    out = []
+    for task in project_data.get("tasks", []):
+        start = str(task.get("start", "")).strip()
+        end = str(task.get("end", "")).strip()
+        if _ISO_DATE_RE.match(start) and _ISO_DATE_RE.match(end):
+            out.append(task)
+    return out
+
+
+def _gantt_full_timeline(data: dict, today=None) -> list[str]:
+    """One aggregated gantt of every dated task across all projects (RAG bars)."""
+    if today is None:
+        today = datetime.now().date()
+    sections = []
+    for project, project_data in data.items():
+        tasks = _dated_tasks(project_data)
+        if tasks:
+            sections.append((project, sorted(tasks, key=lambda t: t["start"])))
+    if not sections:
+        return []
+
+    lines = [
+        "## Full Timeline — All Projects",
+        "",
+        "> Every dated task across all tracked repos, coloured by status",
+        "",
+        "```mermaid",
+        "gantt",
+        "    title Aggregated Timeline — all projects (dated tasks)",
+        "    dateFormat YYYY-MM-DD",
+        "    axisFormat %d %b",
+        "    excludes weekends",
+        "",
+    ]
+    for project, tasks in sections:
+        lines.append(f"    section {mermaid_gantt_label(project)}")
+        for task in tasks:
+            modifier = rag_modifier(task["status"], task["start"], task["end"], today)
+            lines.append(
+                f"    {mermaid_gantt_label(task['task'])} :{modifier}{task['start']}, {task['end']}"
+            )
+    lines += ["```", "", GANTT_LEGEND_HTML, ""]
+    return lines
+
+
+def _gantt_sprint_views(data: dict, today=None) -> list[str]:
+    """Distinct gantts for the previous / current / next sprint windows.
+
+    Each shows the dated tasks (all projects) overlapping that window,
+    coloured by status.
+    """
+    if today is None:
+        today = datetime.now().date()
+    cal = _load_calendar()
+    cur = _current_sprint_idx(cal, today)
+
+    lines: list[str] = ["## Sprint Views — previous / current / next", ""]
+    emitted = False
+    for idx in (cur - 1, cur, cur + 1):
+        w_start, w_end = _sprint_bounds(cal, idx)
+        if w_start is None:
+            continue
+        overlapping = []
+        for project, project_data in data.items():
+            for task in _dated_tasks(project_data):
+                t_start, t_end = iso_date(task["start"]), iso_date(task["end"])
+                if t_start <= w_end and t_end >= w_start:
+                    overlapping.append((project, task))
+        tag = "previous" if idx < cur else ("current" if idx == cur else "next")
+        lines.append(f"### Sprint S{idx} ({tag}) — {w_start} → {w_end}")
+        lines.append("")
+        if not overlapping:
+            lines.append("_No dated tasks overlap this sprint window._")
+            lines.append("")
+            continue
+        emitted = True
+        lines += [
+            "```mermaid",
+            "gantt",
+            f"    title S{idx} ({tag}) — {w_start} → {w_end}",
+            "    dateFormat YYYY-MM-DD",
+            "    axisFormat %d %b",
+            "    excludes weekends",
+            "",
+        ]
+        current_section = None
+        for project, task in overlapping:
+            if project != current_section:
+                lines.append(f"    section {mermaid_gantt_label(project)}")
+                current_section = project
+            modifier = rag_modifier(task["status"], task["start"], task["end"], today)
+            lines.append(
+                f"    {mermaid_gantt_label(task['task'])} :{modifier}{task['start']}, {task['end']}"
+            )
+        lines += ["```", "", GANTT_LEGEND_HTML, ""]
+    return lines if emitted or len(lines) > 2 else []
+
+
 def generate_unified_kanban(data: dict) -> str:
     """Generate unified kanban markdown"""
     lines = [
@@ -170,33 +375,12 @@ def generate_unified_kanban(data: dict) -> str:
         count_cols = " | ".join(str(counts[s]) for s in TASK_STATUSES)
         lines.append(f"| {_md_cell(project)} | {count_cols} | {total} |")
 
-    # Sprint Gantt — current sprint window per project (one bar each). Platform
-    # repos share a cadence (see generate_kanban.py), so they line up here.
-    sprint_rows = []
-    for project, project_data in data.items():
-        meta = project_data.get("meta", {})
-        s_start = str(meta.get("sprint_start", "")).strip()
-        s_end = str(meta.get("sprint_end", "")).strip()
-        if _ISO_DATE_RE.match(s_start) and _ISO_DATE_RE.match(s_end):
-            sprint_rows.append((project, str(meta.get("sprint", "Sprint")), s_start, s_end))
-
-    if sprint_rows:
-        lines.append("")
-        lines.append("## Sprint Timeline")
-        lines.append("")
-        lines.append("```mermaid")
-        lines.append("gantt")
-        lines.append("    title Current Sprint by Project")
-        lines.append("    dateFormat YYYY-MM-DD")
-        lines.append("    axisFormat %d %b")
-        lines.append("    excludes weekends")
-        lines.append("")
-        for project, sprint, s_start, s_end in sprint_rows:
-            lines.append(f"    section {mermaid_gantt_label(project)}")
-            lines.append(
-                f"    {mermaid_gantt_label(sprint)} :active, {s_start}, {s_end}"
-            )
-        lines.append("```")
+    # Sprint cadence (prev/current/next per project), aggregated full timeline,
+    # and distinct per-sprint views — all RAG-coloured with legends.
+    lines.append("")
+    lines += _gantt_sprint_cadence(data)
+    lines += _gantt_full_timeline(data)
+    lines += _gantt_sprint_views(data)
 
     return "\n".join(lines)
 
@@ -231,30 +415,11 @@ def generate_unified_calendar(data: dict) -> str:
         lines.append("```")
         lines.append("")
 
-    lines += [
-        "## Sprint Calendar",
-        "",
-        "```mermaid",
-        "gantt",
-        "    title Calendar Lunar KF",
-        "    dateFormat YYYY-MM-DD",
-        "    excludes weekends",
-        "",
-    ]
-
-    # Add sprint sections from project metadata
-    for project, project_data in data.items():
-        meta = project_data.get("meta", {})
-        s_start = str(meta.get("sprint_start", "")).strip()
-        s_end = str(meta.get("sprint_end", "")).strip()
-        if _ISO_DATE_RE.match(s_start) and _ISO_DATE_RE.match(s_end):
-            sprint = meta.get("sprint", "Sprint")
-            lines.append(f"    section {mermaid_gantt_label(project)}")
-            lines.append(
-                f"    {mermaid_gantt_label(str(sprint))} :active, {s_start}, {s_end}"
-            )
-
-    lines.append("```")
+    # Sprint cadence (prev/current/next per project), aggregated full timeline,
+    # and distinct per-sprint views — all RAG-coloured with legends.
+    lines += _gantt_sprint_cadence(data)
+    lines += _gantt_full_timeline(data)
+    lines += _gantt_sprint_views(data)
 
     return "\n".join(lines)
 
@@ -314,28 +479,11 @@ def generate_agile_sprints(data: dict) -> str:
         "",
         "# KF Team — Agile Sprints",
         "",
-        "## Sprint Timeline",
-        "",
-        "```mermaid",
-        "gantt",
-        "    title Sprint Timeline",
-        "    dateFormat YYYY-MM-DD",
-        "    axisFormat %d %b",
-        "    excludes weekends",
-        "",
     ]
 
-    for project, project_data in data.items():
-        meta = project_data.get("meta", {})
-        s_start = str(meta.get("sprint_start", "")).strip()
-        s_end = str(meta.get("sprint_end", "")).strip()
-        if _ISO_DATE_RE.match(s_start) and _ISO_DATE_RE.match(s_end):
-            sprint = str(meta.get("sprint", "Sprint"))
-            lines.append(f"    section {mermaid_gantt_label(project)}")
-            lines.append(f"    {mermaid_gantt_label(sprint)} :active, {s_start}, {s_end}")
-
-    lines.append("```")
-    lines.append("")
+    # Sprint cadence (prev/current/next per project) + distinct per-sprint views
+    lines += _gantt_sprint_cadence(data)
+    lines += _gantt_sprint_views(data)
 
     # Sprint Summary table
     lines.append("## Sprint Summary")
@@ -526,28 +674,9 @@ def generate_project_page(project: str, project_data: dict) -> str:
                 label = mermaid_gantt_label(task["task"])
 
                 # RAG modifier: green done · amber in-work · red late/at-risk · grey planned
-                status = task["status"]
-
-                def _as_date(s):
-                    try:
-                        return datetime.strptime(s, "%Y-%m-%d").date()
-                    except (ValueError, TypeError):
-                        return None
-
-                today = datetime.now().date()
-                end_d = _as_date(t_end) or _as_date(end_raw)
-                start_d = _as_date(t_start) or _as_date(start_raw)
-                overdue = status != "Done" and end_d is not None and end_d < today
-                not_started = status == "Todo" and start_d is not None and start_d < today
-
-                if status == "Done":
-                    modifier = "done, "
-                elif overdue or not_started:
-                    modifier = "crit, "      # red — late / at risk
-                elif status == "In Progress":
-                    modifier = "active, "    # amber — in work / recoverable
-                else:
-                    modifier = ""            # grey — planned
+                modifier = rag_modifier(
+                    task["status"], t_start or start_raw, t_end or end_raw
+                )
 
                 if t_end:
                     lines.append(f"    {label} :{modifier}{t_start}, {t_end}")
@@ -563,13 +692,7 @@ def generate_project_page(project: str, project_data: dict) -> str:
 
             lines.append("```")
             lines.append("")
-            lines.append(
-                '<p class="gantt-legend">'
-                '<span class="pill pill--planned">Planned</span>'
-                '<span class="pill pill--active">In work</span>'
-                '<span class="pill pill--late">Late / At risk</span>'
-                '<span class="pill pill--done">Done</span></p>'
-            )
+            lines.append(GANTT_LEGEND_HTML)
             lines.append("")
 
     else:
@@ -768,10 +891,10 @@ def parse_migration_gantt(md_path=MIGRATION_GANTT_FILE) -> list[dict]:
             continue
         name = m.group("name").strip()
         attrs = [a.strip() for a in m.group("attrs").split(",")]
-        is_milestone = attrs and attrs[0] == "milestone"
-        if is_milestone:
-            attrs = attrs[1:]
-        # attrs now: [id, start-date, duration]
+        is_milestone = "milestone" in attrs[:2]
+        # Strip RAG/status modifier tokens (emitted by the auto-block renderer)
+        # and the milestone keyword so attrs reduce to [id, start-date, duration].
+        attrs = [a for a in attrs if a not in ("milestone", "done", "active", "crit")]
         if len(attrs) < 3:
             continue
         start_str, dur_str = attrs[1], attrs[2]

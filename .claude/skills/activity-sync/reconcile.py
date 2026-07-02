@@ -549,6 +549,44 @@ def _enum_records_fallback() -> list[dict]:
 # Phase-3 importable entry point
 # ---------------------------------------------------------------------------
 
+def _report_planning_state(record: dict) -> None:
+    """[TIER-3] Surface a repo's .planning/STATE.md progress as context.
+
+    Read-only informational signal (RECON-05 preserved): any tracked repo may
+    carry a GSD .planning/ folder whose STATE.md frontmatter records milestone
+    progress. That progress maps to kanban tasks by human judgment (via
+    docs/_data/migration_plan.yml), so it is printed for the operator rather
+    than converted into automatic proposals.
+    """
+    state_path = Path(record.get("local_path", "")) / ".planning" / "STATE.md"
+    if not state_path.exists():
+        return
+    try:
+        content = state_path.read_text(encoding="utf-8", errors="replace")
+    except OSError as exc:
+        print(f"[WARN] {record.get('name')}: unreadable .planning/STATE.md ({exc})")
+        return
+    m = re.match(r"^---\n(.*?)\n---", content, re.DOTALL)
+    summary = ""
+    if m:
+        import yaml as _yaml
+        try:
+            fm = _yaml.safe_load(m.group(1)) or {}
+            prog = fm.get("progress") or {}
+            summary = (
+                f"milestone {fm.get('milestone', '?')} · "
+                f"phases {prog.get('completed_phases', '?')}/{prog.get('total_phases', '?')} · "
+                f"plans {prog.get('completed_plans', '?')}/{prog.get('total_plans', '?')} · "
+                f"{prog.get('percent', '?')}%"
+            )
+        except _yaml.YAMLError:
+            summary = "frontmatter unparseable"
+    print(
+        f"[INFO] {record.get('name')}: .planning present — {summary or 'no progress frontmatter'} "
+        f"(TIER-3 context; align statuses via docs/_data/migration_plan.yml)"
+    )
+
+
 def run() -> list[Proposal]:
     """Enumerate all tracked repos, mine Tier-2 signals, render change list.
 
@@ -589,6 +627,7 @@ def run() -> list[Proposal]:
     all_proposals: list[Proposal] = []
 
     for record in records:
+        _report_planning_state(record)
         proposals = reconcile_repo(record, headers)
         all_proposals.extend(proposals)
 

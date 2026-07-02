@@ -10,6 +10,22 @@ start_date: 2026-05-04
 total_weeks: 32
 sprint_length_weeks: 2
 
+# Milestones — rendered into the AUTO:migration-gantt block and parsed back
+# into gantt.yml by the aggregator (Sheets export).
+milestones:
+  - name: M1 Infrastructure ready
+    date: 2026-05-29
+  - name: M2 Auth + Multi-tenancy live
+    date: 2026-07-03
+  - name: M3 Tech Pack complet
+    date: 2026-08-21
+  - name: M4 Production flow E2E
+    date: 2026-10-02
+  - name: M5 ALADIN features beta
+    date: 2026-11-13
+  - name: M6 Production cutover
+    date: 2026-12-11
+
 phases:
   - name: Faza 1
     start_pw: 1
