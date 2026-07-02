@@ -4,7 +4,7 @@ description: "Infra platform for kf web based services"
 project: kf-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-platform/edit/master/kanban.md"
-generated: 2026-07-02T07:33:26.209076
+generated: 2026-07-02T10:23:09.841070
 ---
 
 # kf-platform
@@ -129,6 +129,8 @@ gantt
     (F6.S16.Migration Testing) :2026-12-07, 2026-12-20
     (F6.S17.Final QA & Cutover) :2026-12-21, 2027-01-03
 ```
+
+<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
 
 ## Links
 

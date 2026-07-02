@@ -220,6 +220,8 @@ gantt
     M6 Production cutover            :milestone, m6, 2026-12-11, 0d
 ```
 
+<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
+
 ---
 
 ## 5. Faze detaliate (cu date Mon/Fri)

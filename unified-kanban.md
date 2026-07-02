@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-07-02T07:33:26.188242
+generated: 2026-07-02T10:23:09.828351
 ---
 
 # KF Team — Unified Kanban

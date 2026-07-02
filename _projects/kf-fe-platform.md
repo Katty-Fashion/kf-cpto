@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-fe-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-07-02T07:33:26.208804
+generated: 2026-07-02T10:23:09.840555
 ---
 
 # kf-fe-platform
@@ -102,6 +102,8 @@ gantt
     (F5.S15.i18n / l10n) :active, 2026-11-16, 2026-11-29
     (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
 ```
+
+<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
 
 ## Links
 
