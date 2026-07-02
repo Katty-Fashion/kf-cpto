@@ -1,4 +1,4 @@
-generated_at: '2026-07-02T21:09:26Z'
+generated_at: '2026-07-02T21:15:35Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -9,7 +9,7 @@ projects:
     description: R3GROUP Katty Fashion pilot – digital tools for co-creation, digital
       twins and technician capacity planning
     type: eu-project
-    po: '@ps.tech'
+    po: '@el.tech'
     lead: '@el.tech'
     sprint: S5
     sprint_start: '2026-06-29'
@@ -27,7 +27,8 @@ projects:
       tech_lead: eduard.modreanu@katty-fashion.ro
       frontend: alexandru.bejenari@katty-fashion.ro
       backend: ma.tech@katty-fashion.ro
-      product_owner: ps.tech@katty-fashion.ro
+      product_owner: el.tech@katty-fashion.ro
+      pmo_ramp_up: alexandru.bejenari@katty-fashion.ro
   tasks:
   - task: WP1 — AAS platform integration (digital infrastructure)
     assignee: Răzvan Boița
