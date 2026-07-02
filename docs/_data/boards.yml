@@ -1,4 +1,4 @@
-generated_at: '2026-07-02T21:15:35Z'
+generated_at: '2026-07-02T21:22:24Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -31,7 +31,7 @@ projects:
       pmo_ramp_up: alexandru.bejenari@katty-fashion.ro
   tasks:
   - task: WP1 — AAS platform integration (digital infrastructure)
-    assignee: Răzvan Boița
+    assignee: Mihai A.
     effort: —
     start: ''
     end: ''
@@ -79,7 +79,7 @@ projects:
     end: ''
     status: Review
   - task: 'T2.3 — Supply Chain Digital Twin: risk modelling'
-    assignee: Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: —
     start: ''
     end: ''
@@ -128,19 +128,19 @@ projects:
     end: ''
     status: Done
   - task: Feature set pentru lansare (MVP)
-    assignee: Eduard Lazăr / Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Todo
   - task: Ce este „Done" vs „Ready" pentru release
-    assignee: Eduard Lazăr / Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Todo
   - task: Decizie Made2Flow (demo vs integrare reală)
-    assignee: Eduard Lazăr / Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
@@ -158,19 +158,19 @@ projects:
     end: ''
     status: Done
   - task: Sesiune demo produse (intern)
-    assignee: Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: In Progress
   - task: Pregătire feature flags (ascundere features incomplete)
-    assignee: Răzvan Boița
+    assignee: Mihai A.
     effort: ''
     start: ''
     end: ''
     status: Todo
   - task: Clarificare value proposition (perspectivă tehnică)
-    assignee: Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
@@ -290,13 +290,13 @@ projects:
     end: ''
     status: Done
   - task: Naming convention pentru task-uri (namespace per proiect)
-    assignee: Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Todo
   - task: Evitarea dublării task-urilor între tools
-    assignee: Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
@@ -326,25 +326,25 @@ projects:
     end: ''
     status: Done
   - task: Feature flags
-    assignee: Răzvan Boița
+    assignee: Mihai A.
     effort: ''
     start: ''
     end: ''
     status: Todo
   - task: Telemetrie (monitorizare)
-    assignee: Răzvan Boița
+    assignee: Mihai A.
     effort: ''
     start: ''
     end: ''
     status: Todo
   - task: Code quality / stability înainte de release
-    assignee: Răzvan Boița
+    assignee: Mihai A.
     effort: ''
     start: ''
     end: ''
     status: Todo
   - task: Suport tehnic post-launch
-    assignee: Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
@@ -368,13 +368,13 @@ projects:
     end: ''
     status: Todo
   - task: Testare demo produse (clienți + testeri interni)
-    assignee: Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: In Progress
   - task: Sprint plan (tranziție către GTM)
-    assignee: Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
@@ -392,7 +392,7 @@ projects:
     end: ''
     status: Done
   - task: Rapoarte săptămânale (nu daily)
-    assignee: Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
@@ -410,19 +410,19 @@ projects:
     end: ''
     status: Todo
   - task: Demo / prezentare produs
-    assignee: Eduard Lazăr / Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: In Progress
   - task: Definire tehnică monetizare (SaaS readiness)
-    assignee: Răzvan Boița
+    assignee: Mihai A.
     effort: ''
     start: ''
     end: ''
     status: Todo
   - task: Input pentru CRM / pipeline (structură tehnică)
-    assignee: Eduard Lazăr / Paul Stanciuc
+    assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
