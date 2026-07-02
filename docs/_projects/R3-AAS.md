@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-02T20:46:53.216474
+generated: 2026-07-02T20:54:42.792615
 ---
 
 # R3-AAS
@@ -201,13 +201,13 @@ generated: 2026-07-02T20:46:53.216474
 | Run first scheduling tests with real production data | @tech-lead | 1d | 2026-03-28 | 2026-03-28 | Review |
 | Debug integration issues with LMS team | @tech-lead | 1d | 2026-03-31 | 2026-03-31 | Review |
 | Integration validation review | @tech-lead | 0.5d | 2026-04-03 | 2026-04-03 | Review |
-| M2F: finalise &amp; confirm assumed KF-M2F shell structure | Alexandru Bejenari / M2F | 2d | 2026-06-29 | 2026-07-10 | In Progress |
-| Export R3 AAS shells → move to Netcompany-hosted R3 platform | Răzvan Boița | 3d | 2026-07-13 | 2026-07-17 | Todo |
+| M2F: finalise &amp; confirm assumed KF-M2F shell structure | Eduard Lazăr / M2F | 2d | 2026-06-29 | 2026-07-10 | In Progress |
+| Export R3 AAS shells → move to Netcompany-hosted R3 platform | Mihai A. | 3d | 2026-07-13 | 2026-07-17 | Todo |
 | Share KF access for export to NetCompany | Eduard Lazăr | 1d | 2026-07-13 | 2026-07-14 | Todo |
-| Share KF-M2F shell with M2F (so they build their own) | Răzvan Boița | 1d | 2026-07-13 | 2026-07-14 | Todo |
+| Share KF-M2F shell with M2F (so they build their own) | Mihai A. | 1d | 2026-07-13 | 2026-07-14 | Todo |
 | Connect + test M2F V2 API from new Nuoform | Alexandru Bejenari | 5d | 2026-07-20 | 2026-07-24 | Todo |
-| Re-point all connections to Netcompany-hosted R3 (go live) | Răzvan Boița | 3d | 2026-07-27 | 2026-07-31 | Todo |
-| Pilot KF demo recordings (based on revised Nuoform) | Paul Stanciuc | 3d | 2026-08-03 | 2026-08-05 | Todo |
+| Re-point all connections to Netcompany-hosted R3 (go live) | Mihai A. | 3d | 2026-07-27 | 2026-07-31 | Todo |
+| Pilot KF demo recordings (based on revised Nuoform) | Eduard Lazăr | 3d | 2026-08-03 | 2026-08-05 | Todo |
 | State AI usage in R3 (declaration) | Eduard Lazăr | 1d | 2026-07-16 | 2026-07-17 | Todo |
 
 ## LOE Summary

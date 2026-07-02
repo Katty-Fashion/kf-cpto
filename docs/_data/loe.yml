@@ -1,4 +1,4 @@
-generated_at: '2026-07-02T20:46:53Z'
+generated_at: '2026-07-02T20:54:43Z'
 row_count: 121
 rows:
 - project: R3-AAS
@@ -596,7 +596,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: 'M2F: finalise & confirm assumed KF-M2F shell structure'
-  assignee: Alexandru Bejenari / M2F
+  assignee: Eduard Lazăr / M2F
   effort_days: 2.0
   start: '2026-06-29'
   end: '2026-07-10'
@@ -604,7 +604,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Export R3 AAS shells → move to Netcompany-hosted R3 platform
-  assignee: Răzvan Boița
+  assignee: Mihai A.
   effort_days: 3.0
   start: '2026-07-13'
   end: '2026-07-17'
@@ -620,7 +620,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Share KF-M2F shell with M2F (so they build their own)
-  assignee: Răzvan Boița
+  assignee: Mihai A.
   effort_days: 1.0
   start: '2026-07-13'
   end: '2026-07-14'
@@ -636,7 +636,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Re-point all connections to Netcompany-hosted R3 (go live)
-  assignee: Răzvan Boița
+  assignee: Mihai A.
   effort_days: 3.0
   start: '2026-07-27'
   end: '2026-07-31'
@@ -644,7 +644,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Pilot KF demo recordings (based on revised Nuoform)
-  assignee: Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 3.0
   start: '2026-08-03'
   end: '2026-08-05'
