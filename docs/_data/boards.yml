@@ -1,4 +1,4 @@
-generated_at: '2026-07-01T20:24:41Z'
+generated_at: '2026-07-02T07:29:06Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -482,126 +482,66 @@ projects:
       tech_lead: el.tech@katty-fashion.ro
       product_owner: ma.tech@katty-fashion.ro
   tasks:
-  - task: Project scope definition and requirements analysis
+  - task: '[F1.S2.DB Schema v2 + RLS]'
+    assignee: '@ma.tech'
+    effort: 10d
+    start: '2026-05-25'
+    end: '2026-06-21'
+    status: Done
+  - task: '[F1.S2.CI/CD Pipeline]'
     assignee: '@ma.tech'
     effort: 2d
-    start: '2026-05-11'
-    end: '2026-05-12'
+    start: '2026-05-25'
+    end: '2026-06-07'
     status: In Progress
-  - task: Refactor with generators
-    assignee: '@ma.tech'
-    effort: 8d
-    start: '2026-05-13'
-    end: '2026-05-22'
-    status: In Progress
-  - task: Dockerize for general flow
-    assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-05-15'
-    end: '2026-05-16'
-    status: In Progress
-  - task: Collaboration framework with sockets
+  - task: '[F2.S3.IDP + SMTP]'
     assignee: '@ma.tech'
     effort: 5d
-    start: '2026-05-15'
-    end: '2026-05-22'
-    status: In Progress
-  - task: QT1.S3. Add a dedicated super admin system role
-    assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-05'
-    status: Done
-  - task: QT3.S3. Versionize customer collection techproce
-    assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-05'
-    status: Done
-  - task: QT15.S3. Fix the platform wide rls tenant isolati
-    assignee: '@ma.tech'
-    effort: 2d
     start: '2026-06-08'
-    end: '2026-06-09'
+    end: '2026-06-28'
     status: Done
-  - task: QT18.S3. Add condition user with email superadmin
+  - task: '[F2.S3.RBAC System]'
     assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-10'
+    effort: 10d
+    start: '2026-06-08'
+    end: '2026-07-05'
     status: Done
-  - task: QT20.S3. Fix me bootstrap dead end jit provision
+  - task: '[F2.S5.Tenant Management]'
     assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-10'
+    effort: 10d
+    start: '2026-06-29'
+    end: '2026-07-19'
     status: Done
-  - task: QT21.S3. Fix cors 403 invalid cors request on pos
+  - task: '[F5.S13.EPCIS Export]'
     assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-10'
-    status: Done
-  - task: QT22.S3. Jackson 3 module for jsonnullable fix 50
+    effort: 10d
+    start: '2026-10-19'
+    end: '2026-11-08'
+    status: Todo
+  - task: '[F5.S13.LLM Ecodesign (WP4)]'
     assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-10'
-    status: Done
-  - task: QT23.S3. Fix collaboration join echo amplificatio
+    effort: 10d
+    start: '2026-10-26'
+    end: '2026-11-15'
+    status: Todo
+  - task: '[F5.S14.IoT Adapter (T2.5)]'
     assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-10'
-    status: Done
-  - task: QT25.S3. Fix presigned s3 upload urls blocked by
+    effort: 10d
+    start: '2026-11-02'
+    end: '2026-11-22'
+    status: Todo
+  - task: '[F5.S15.Notifications]'
     assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-10'
-    status: Done
-  - task: QT35.S3. Populate app user firstname lastname fro
+    effort: 5d
+    start: '2026-11-23'
+    end: '2026-12-06'
+    status: In Progress
+  - task: '[F6.S17.Data Migration Scripts]'
     assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-11'
-    status: Done
-  - task: QT60.S4. Fix size post 500 409 size measurements
-    assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-18'
-    end: '2026-06-18'
-    status: Done
-  - task: QT69.S4. File inline open
-    assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-21'
-    end: '2026-06-21'
-    status: Done
-  - task: QT70.S4. Model created updated filter
-    assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-21'
-    end: '2026-06-21'
-    status: Done
-  - task: QT71.S4. Bom created updated dates
-    assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-21'
-    end: '2026-06-21'
-    status: Done
-  - task: QT72.S4. Dxf consumption metrics
-    assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-22'
-    end: '2026-06-22'
-    status: Done
-  - task: QT75.S4. Model dxf interactive preview
-    assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-06-22'
-    end: '2026-06-22'
-    status: Done
+    effort: 5d
+    start: '2026-12-14'
+    end: '2026-12-27'
+    status: Todo
 - project: kf-fe-platform
   branch: main
   edit_url: https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md
@@ -630,198 +570,66 @@ projects:
       tech_lead: el.tech@katty-fashion.ro
       product_owner: ma.tech@katty-fashion.ro
   tasks:
-  - task: Project scope definition and requirements analysis
-    assignee: '@ma.tech'
-    effort: 2d
-    start: '2026-05-11'
-    end: '2026-05-12'
-    status: In Progress
-  - task: Refactor with generators
-    assignee: '@ma.tech, @alexandru.bejenari'
-    effort: 8d
-    start: '2026-05-13'
-    end: '2026-05-22'
-    status: In Progress
-  - task: Dockerize for general flow
-    assignee: '@ma.tech'
-    effort: 1d
-    start: '2026-05-15'
-    end: '2026-05-16'
-    status: In Progress
-  - task: Collaboration framework with sockets
-    assignee: '@ma.tech, @alexandru.bejenari'
+  - task: '[F1.S2.Design System]'
+    assignee: '@alexandru.bejenari'
+    effort: 10d
+    start: '2026-05-25'
+    end: '2026-06-21'
+    status: Done
+  - task: '[F1.S4.Login Flow]'
+    assignee: '@alexandru.bejenari'
     effort: 5d
-    start: '2026-05-15'
-    end: '2026-05-22'
+    start: '2026-06-22'
+    end: '2026-07-05'
+    status: Done
+  - task: '[F2.S5.Admin Console]'
+    assignee: '@alexandru.bejenari'
+    effort: 10d
+    start: '2026-07-06'
+    end: '2026-07-26'
+    status: Done
+  - task: '[F2.S6.Overview Refactor]'
+    assignee: '@alexandru.bejenari'
+    effort: 5d
+    start: '2026-07-13'
+    end: '2026-08-02'
     status: In Progress
-  - task: PH9.S3. Navigation & UX Polish
+  - task: '[F3.S7.Models Page]'
     assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-04'
-    end: '2026-06-04'
+    effort: 5d
+    start: '2026-08-03'
+    end: '2026-08-23'
     status: Done
-  - task: PH25.S4. General UI Fixes & Component Consolidation
+  - task: '[F3.S8.Tech Pack Layout]'
     assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-24'
-    end: '2026-06-24'
+    effort: 5d
+    start: '2026-08-10'
+    end: '2026-08-30'
     status: Done
-  - task: PH29.S5. PostHog Production Analytics
+  - task: '[F3.S9.Model Sheet Fixes]'
     assignee: '@alexandru.bejenari'
     effort: 2d
-    start: '2026-06-29'
-    end: '2026-06-30'
+    start: '2026-08-24'
+    end: '2026-09-06'
     status: Done
-  - task: PH90.S4. Global Upload Manager (#9)
+  - task: '[F3.S10.3D Performance]'
     assignee: '@alexandru.bejenari'
-    effort: 4d
-    start: '2026-06-22'
-    end: '2026-06-25'
-    status: Done
-  - task: QT9.S3. Create a playwright e2e spec e2e model s
+    effort: 5d
+    start: '2026-09-07'
+    end: '2026-09-27'
+    status: In Progress
+  - task: '[F5.S14.Garment Configurator (T2.3)]'
     assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-05'
-    status: Done
-  - task: QT13.S3. Rework create model flow modal create fo
+    effort: 10d
+    start: '2026-11-09'
+    end: '2026-11-29'
+    status: Todo
+  - task: '[F5.S15.i18n / l10n]'
     assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-08'
-    end: '2026-06-08'
-    status: Done
-  - task: QT14.S3. Add empty catalog empty state to sizewiz
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-08'
-    end: '2026-06-08'
-    status: Done
-  - task: QT24.S3. Smoother peer cursors raise broadcast ra
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-10'
-    status: Done
-  - task: QT32.S3. Technician internal external parity with
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-11'
-    status: Done
-  - task: QT33.S3. Orders add edit ux parity with models fl
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-11'
-    status: Done
-  - task: QT37.S3. Bom edit existing accessory per row edit
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-11'
-    status: Done
-  - task: QT39.S3. Inventory feature parity dedicated add p
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-11'
-    status: Done
-  - task: QT52.S4. Add react joyride per page demo tours sh
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-15'
-    end: '2026-06-15'
-    status: Done
-  - task: QT53.S4. Cross page demo journey tour orchestrato
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-15'
-    end: '2026-06-15'
-    status: Done
-  - task: QT54.S4. Rewrite admin roles rights editor from t
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-16'
-    end: '2026-06-16'
-    status: Done
-  - task: QT57.S4. Phase 19 follow up fe fixes rbac matrix
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-17'
-    end: '2026-06-17'
-    status: Done
-  - task: QT59.S4. Mobile friendly dashboard shell and feat
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-17'
-    end: '2026-06-17'
-    status: Done
-  - task: QT62.S4. Fix 3d viewer csp connect src blob dxf d
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-18'
-    end: '2026-06-18'
-    status: Done
-  - task: QT63.S4. Unblock uat fe build skip inline tsc esl
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-21'
-    end: '2026-06-21'
-    status: Done
-  - task: QT64.S4. Component create image gating design
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-21'
-    end: '2026-06-21'
-    status: Done
-  - task: QT65.S4. Collection select live update
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-21'
-    end: '2026-06-22'
-    status: Done
-  - task: QT66.S4. Bom ttl first render
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-21'
-    end: '2026-06-21'
-    status: Done
-  - task: QT67.S4. Model editor formatting
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-21'
-    end: '2026-06-21'
-    status: Done
-  - task: QT68.S4. Grading table sizes
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-21'
-    end: '2026-06-21'
-    status: Done
-  - task: QT73.S4. Seasons page
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-22'
-    end: '2026-06-22'
-    status: Done
-  - task: QT74.S4. Cutting dxf metadata panel
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-22'
-    end: '2026-06-22'
-    status: Done
-  - task: QT81.S4. Models pagination filter alignment
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-24'
-    end: '2026-06-24'
-    status: Done
-  - task: QT82.S4. Models detail first section image previe
-    assignee: '@alexandru.bejenari'
-    effort: 1d
-    start: '2026-06-24'
-    end: '2026-06-24'
-    status: Done
+    effort: 5d
+    start: '2026-11-16'
+    end: '2026-11-29'
+    status: In Progress
 - project: kf-platform
   branch: master
   edit_url: https://github.com/katty-fashion/kf-platform/edit/master/kanban.md
@@ -849,609 +657,117 @@ projects:
       backend: ma.tech@katty-fashion.ro
       tech_lead: el.tech@katty-fashion.ro
   tasks:
-  - task: M.Project setup (repo, monorepo structure, conventions)
+  - task: '[F1.S2.Project Setup]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 2d
     start: '2026-05-25'
     end: '2026-06-07'
-    status: In Progress
-  - task: M.Collections fix + refactor (Kanban, season relations)
+    status: Done
+  - task: '[F3.S6.Collections Refactor]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-07-20'
     end: '2026-08-16'
-    status: Todo
-  - task: M.BOM editor + LLM ecodesign hook (PDF export fix + stub)
+    status: Done
+  - task: '[F3.S8.BOM Editor]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-08-17'
     end: '2026-09-13'
-    status: Todo
-  - task: M.Sizing Table & QA Flow customizabil per tenant
+    status: Done
+  - task: '[F3.S9.Sizing & QA Flow]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-08-31'
     end: '2026-09-20'
-    status: Todo
-  - task: M.Cost Breakdown & OCS clarification (Buyer approval workflow)
+    status: Done
+  - task: '[F3.S10.Cost Breakdown]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-09-14'
     end: '2026-10-04'
-    status: Todo
-  - task: M.Tech Process refactor (aliniere BE update)
+    status: In Progress
+  - task: '[F3.S11.Tech Process Refactor]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-09-21'
     end: '2026-10-11'
-    status: Todo
-  - task: M.Inventory & Reception refactor (types, qty packaging, UOM)
+    status: In Progress
+  - task: '[F4.S11.Inventory & Reception]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-09-28'
     end: '2026-10-18'
-    status: Todo
-  - task: M.Orders refactor (Order Name, pricing, Buyer tracking portal)
+    status: Done
+  - task: '[F4.S9.Orders Refactor]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-08-24'
     end: '2026-09-20'
-    status: Todo
-  - task: M.Planner (Calendar/Gantt/Kanban switch) — backend nou
+    status: In Progress
+  - task: '[F4.S10.Planner]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 20d
     start: '2026-09-07'
     end: '2026-10-11'
-    status: Todo
-  - task: M.Batches & Assignment (Operator assignment integrat)
+    status: In Progress
+  - task: '[F4.S11.Batches & Assignment]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-09-21'
     end: '2026-10-18'
-    status: Todo
-  - task: M.Operator View tablet (Timer, QR scan, defect flag, 3D viewer)
+    status: In Progress
+  - task: '[F4.S11.Operator View]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 20d
     start: '2026-09-28'
     end: '2026-10-25'
     status: Todo
-  - task: M.QC Module (Inspection flow, defect logger)
+  - task: '[F4.S12.QC Module]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-10-05'
     end: '2026-10-25'
-    status: Todo
-  - task: M.Reports & Cutting (camera integration, COCO export)
+    status: In Progress
+  - task: '[F4.S12.Reports & Cutting]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-10-12'
     end: '2026-10-25'
-    status: Todo
-  - task: M.DPP Module (data model, dashboard, validation) — T2.4 ALADIN
+    status: In Progress
+  - task: '[F5.S11.DPP Module (T2.4)]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 20d
     start: '2026-09-21'
     end: '2026-10-25'
     status: Todo
-  - task: M.Public DPP / GS1 Digital Link / QR (no-auth endpoint)
+  - task: '[F5.S12.Public DPP / GS1]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-10-12'
     end: '2026-11-01'
     status: Todo
-  - task: M.Auditor View (cross-tenant, elevated scope)
+  - task: '[F5.S15.Auditor View]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-11-16'
     end: '2026-11-29'
     status: Todo
-  - task: M.Made2Flow dynamic JSONB schema
+  - task: '[F5.S16.Made2Flow Schema]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-11-30'
     end: '2026-12-13'
     status: Todo
-  - task: M.Migration testing (data + flow E2E)
+  - task: '[F6.S16.Migration Testing]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-12-07'
     end: '2026-12-20'
     status: Todo
-  - task: M.Final QA & production cutover (smoke tests, monitoring)
+  - task: '[F6.S17.Final QA & Cutover]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-12-21'
     end: '2027-01-03'
     status: Todo
-  - task: PH0.S3. Platform Hardening + DXF Spike
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-02'
-    end: '2026-06-03'
-    status: Done
-  - task: PH1.S3. Model & Version Core
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 2d
-    start: '2026-06-02'
-    end: '2026-06-03'
-    status: Done
-  - task: PH2.S3. BOM
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-03'
-    end: '2026-06-04'
-    status: Done
-  - task: PH3.S3. Sizing & Grading
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-03'
-    end: '2026-06-04'
-    status: Done
-  - task: PH4.S3. Costing + 3D + Documents
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 2d
-    start: '2026-06-03'
-    end: '2026-06-04'
-    status: Done
-  - task: PH5.S3. DXF / Consumption Norm Build
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-04'
-    end: '2026-06-05'
-    status: Done
-  - task: PH6.S3. Waste & Impact Assessment
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 2d
-    start: '2026-06-04'
-    end: '2026-06-05'
-    status: Done
-  - task: PH7.S3. Cutting Core
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-04'
-    end: '2026-06-05'
-    status: Done
-  - task: PH8.S3. Cutting Advanced
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-04'
-    end: '2026-06-05'
-    status: Done
-  - task: PH10.S3. Collaborative Tech-Pack Surface
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-06'
-    status: Done
-  - task: PH11.S3. Order Waste UX
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-08'
-    end: '2026-06-09'
-    status: Done
-  - task: PH12.S3. Order Layplan DXF Viewer
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-08'
-    end: '2026-06-09'
-    status: Done
-  - task: PH13.S3. Order AAS Export
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-08'
-    end: '2026-06-09'
-    status: Done
-  - task: PH14.S3. Order Documents & Search
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 2d
-    start: '2026-06-08'
-    end: '2026-06-09'
-    status: Done
-  - task: PH15.S4. QA Defect-Reports & Fabric Inspection Parity
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 2d
-    start: '2026-06-24'
-    end: '2026-06-25'
-    status: Done
-  - task: PH16.S3. Model Flow Fixes
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-08'
-    end: '2026-06-09'
-    status: Done
-  - task: PH17.S3. Multi-tenant RLS scoping
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-09'
-    end: '2026-06-10'
-    status: Done
-  - task: PH18.S3. Customer & Order Flow Fixes
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-09'
-    end: '2026-06-10'
-    status: Done
-  - task: PH19.S4. Tenant and Roles/Rights Management
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-16'
-    end: '2026-06-17'
-    status: Done
-  - task: PH20.S4. Sizes Restructure & Clothing-Type Dictionary
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-17'
-    end: '2026-06-18'
-    status: Done
-  - task: PH21.S5. Preferred Unit of Measure
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 4d
-    start: '2026-06-29'
-    end: '2026-07-10'
-    status: Done
-  - task: PH22.S4. Order Editing Core
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-22'
-    end: '2026-06-23'
-    status: Done
-  - task: PH23.S4. Order Satellites
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-22'
-    end: '2026-06-23'
-    status: Done
-  - task: PH24.S4. Customer Flag & Filtering
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 3d
-    start: '2026-06-22'
-    end: '2026-06-24'
-    status: Done
-  - task: PH26.S4. Auth, Rights & Read-Route Filtering Hardening
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 2d
-    start: '2026-06-25'
-    end: '2026-06-26'
-    status: Done
-  - task: PH27.S4. Collaborative Scaffolding
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-26'
-    end: '2026-06-28'
-    status: Done
-  - task: PH28.S5. Platform Management Hub
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-29'
-    end: '2026-06-30'
-    status: Done
-  - task: PH30.S5. Email Notification Core
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 2d
-    start: '2026-06-29'
-    end: '2026-06-30'
-    status: Done
-  - task: PH31.S5. In-App Channel & Extended Triggers
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 2d
-    start: '2026-06-30'
-    end: '2026-07-01'
-    status: Done
-  - task: PH32.S5. FE Translations & DB Dictionary
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-29'
-    end: '2026-06-30'
-    status: Done
-  - task: PH91.S4. Feedback Triage & GitHub Sync
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-24'
-    end: '2026-06-25'
-    status: Done
-  - task: QT2.S3. Fix model creation 422 no single tenant
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-06'
-    status: Done
-  - task: QT4.S3. Tenant aware role display in header card
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-06'
-    status: Done
-  - task: QT5.S3. Header role badges orange general app us
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-06'
-    status: Done
-  - task: QT6.S3. Clientgate rights based ui gating primit
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-06'
-    status: Done
-  - task: QT7.S3. Migrate admin gating to rights rightguar
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-06'
-    status: Done
-  - task: QT8.S3. Fix model edit collaboration fe ws url e
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-06'
-    status: Done
-  - task: QT10.S3. Role rights admin per tenant user role e
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-06'
-    status: Done
-  - task: QT11.S3. Fix 3 phase 10 issues orval numbered hoo
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-05'
-    end: '2026-06-06'
-    status: Done
-  - task: QT12.S3. Fix fe backend http errors proxy 502 js
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-06'
-    end: '2026-06-07'
-    status: Done
-  - task: QT16.S3. Generate architectural mermaid diagrams
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-11'
-    status: Done
-  - task: QT17.S3. R3 r2 r4 be test suite tooling fixes
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-11'
-    status: Done
-  - task: QT19.S3. Rights sync should bypass auth add to de
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-11'
-    status: Done
-  - task: QT26.S3. Unblock 3d viewer csp wasm unsafe eval r
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-11'
-    status: Done
-  - task: QT27.S3. Local hdri render fix
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-11'
-    status: Done
-  - task: QT28.S3. Parity color upload fix e2e on bom add f
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-10'
-    end: '2026-06-11'
-    status: Done
-  - task: QT29.S3. Order parity bundle 1 status transitions
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-12'
-    status: Done
-  - task: QT30.S3. Order parity bundle 2 entry picker per s
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-12'
-    status: Done
-  - task: QT31.S3. Order parity bundle 3 task cards subtask
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-12'
-    status: Done
-  - task: QT34.S3. Unguard file download route rights check
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-12'
-    status: Done
-  - task: QT36.S3. Uat feedback widget env toggled overlay
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-12'
-    status: Done
-  - task: QT38.S3. Grant inventory rights migration
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-12'
-    status: Todo
-  - task: QT40.S3. Front back parity doc
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT41.S3. Component form sheet to dialog
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT42.S3. Component form fields and units
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT43.S3. Generic presigned upload
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT44.S3. Pattern preview img
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT45.S3. Csp img src and lightbox
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT46.S3. Render component list
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT47.S3. Component per type fields
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT48.S3. Fix component edit toasts
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT49.S3. Component update applies all fields
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT50.S3. Component delete in use 409
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT51.S3. Components server pagination
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-12'
-    end: '2026-06-13'
-    status: Done
-  - task: QT55.S4. Fix outbox relay set tenantcontext from
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-17'
-    end: '2026-06-18'
-    status: Done
-  - task: QT56.S4. Bom components ajust ri la formularul de
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-17'
-    end: '2026-06-18'
-    status: Done
-  - task: QT58.S4. Order flow parity derive order costing f
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-17'
-    end: '2026-06-18'
-    status: Done
-  - task: QT61.S4. Re key dxf consumption norms and waste s
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-18'
-    end: '2026-06-19'
-    status: Done
-  - task: QT76.S4. Fix webgl renderer not available error i
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-22'
-    end: '2026-06-23'
-    status: Done
-  - task: QT77.S4. Add maximize fullscreen minimize toggle
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-22'
-    end: '2026-06-23'
-    status: Done
-  - task: QT78.S4. Order flow surface model attachments des
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-22'
-    end: '2026-06-23'
-    status: Todo
-  - task: QT79.S4. Dxf preview rotate fullscreen
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 2d
-    start: '2026-06-22'
-    end: '2026-06-23'
-    status: Done
-  - task: QT80.S4. Fix dxf preview rotation rotate around d
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-23'
-    end: '2026-06-24'
-    status: Done
-  - task: QT83.S4. Sizes admin page server side pagination
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-24'
-    end: '2026-06-25'
-    status: Done
-  - task: QT84.S4. Fix phase 90 d 10 orderdetailpage tabs d
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-25'
-    end: '2026-06-26'
-    status: Done
-  - task: QT85.S3. Costing persistence DEFERRED
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-11'
-    end: '2026-06-12'
-    status: Todo
-  - task: QT86.S4. Adauga campul length pe componenta mater
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-15'
-    end: '2026-06-16'
-    status: Done
-  - task: QT89.S4. Reception picker re enable add with quan
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-15'
-    end: '2026-06-16'
-    status: Done
-  - task: QT93.S4. Enable minstack s3 persistence s3 persis
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-16'
-    end: '2026-06-17'
-    status: Done
-  - task: QT94.S4. Ttl manual override reset affordance hov
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-16'
-    end: '2026-06-17'
-    status: Done
-  - task: QT95.S5. Fix uat1 reservation updated at not null
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-06-30'
-    end: '2026-07-01'
-    status: Todo
-  - task: QT96.S5. Fix tenant header race in tenantselector
-    assignee: '@alexandru.bejenari + @ma.tech'
-    effort: 1d
-    start: '2026-07-01'
-    end: '2026-07-02'
-    status: Done

@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-be-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-07-01T20:24:41.062798
+generated: 2026-07-02T07:29:06.052898
 ---
 
 # kf-be-platform
@@ -28,36 +28,26 @@ generated: 2026-07-01T20:24:41.062798
 
 <div class="kanban-board">
   <div class="kanban-col kanban-col--todo">
-    <div class="kanban-col__head">Todo <span class="kanban-col__count">0</span></div>
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">4</span></div>
+    <div class="kanban-card kanban-card--static">[F5.S13.EPCIS Export]</div>
+    <div class="kanban-card kanban-card--static">[F5.S13.LLM Ecodesign (WP4)]</div>
+    <div class="kanban-card kanban-card--static">[F5.S14.IoT Adapter (T2.5)]</div>
+    <div class="kanban-card kanban-card--static">[F6.S17.Data Migration Scripts]</div>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">4</span></div>
-    <div class="kanban-card kanban-card--static">Project scope definition and requirements analysis</div>
-    <div class="kanban-card kanban-card--static">Refactor with generators</div>
-    <div class="kanban-card kanban-card--static">Dockerize for general flow</div>
-    <div class="kanban-card kanban-card--static">Collaboration framework with sockets</div>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">2</span></div>
+    <div class="kanban-card kanban-card--static">[F1.S2.CI/CD Pipeline]</div>
+    <div class="kanban-card kanban-card--static">[F5.S15.Notifications]</div>
   </div>
   <div class="kanban-col kanban-col--review">
     <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">16</span></div>
-    <div class="kanban-card kanban-card--static">QT1.S3. Add a dedicated super admin system role</div>
-    <div class="kanban-card kanban-card--static">QT3.S3. Versionize customer collection techproce</div>
-    <div class="kanban-card kanban-card--static">QT15.S3. Fix the platform wide rls tenant isolati</div>
-    <div class="kanban-card kanban-card--static">QT18.S3. Add condition user with email superadmin</div>
-    <div class="kanban-card kanban-card--static">QT20.S3. Fix me bootstrap dead end jit provision</div>
-    <div class="kanban-card kanban-card--static">QT21.S3. Fix cors 403 invalid cors request on pos</div>
-    <div class="kanban-card kanban-card--static">QT22.S3. Jackson 3 module for jsonnullable fix 50</div>
-    <div class="kanban-card kanban-card--static">QT23.S3. Fix collaboration join echo amplificatio</div>
-    <div class="kanban-card kanban-card--static">QT25.S3. Fix presigned s3 upload urls blocked by</div>
-    <div class="kanban-card kanban-card--static">QT35.S3. Populate app user firstname lastname fro</div>
-    <div class="kanban-card kanban-card--static">QT60.S4. Fix size post 500 409 size measurements</div>
-    <div class="kanban-card kanban-card--static">QT69.S4. File inline open</div>
-    <div class="kanban-card kanban-card--static">QT70.S4. Model created updated filter</div>
-    <div class="kanban-card kanban-card--static">QT71.S4. Bom created updated dates</div>
-    <div class="kanban-card kanban-card--static">QT72.S4. Dxf consumption metrics</div>
-    <div class="kanban-card kanban-card--static">QT75.S4. Model dxf interactive preview</div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">4</span></div>
+    <div class="kanban-card kanban-card--static">[F1.S2.DB Schema v2 + RLS]</div>
+    <div class="kanban-card kanban-card--static">[F2.S3.IDP + SMTP]</div>
+    <div class="kanban-card kanban-card--static">[F2.S3.RBAC System]</div>
+    <div class="kanban-card kanban-card--static">[F2.S5.Tenant Management]</div>
   </div>
 </div>
 
@@ -65,35 +55,25 @@ generated: 2026-07-01T20:24:41.062798
 
 | Task | Assignee | Effort | Start | End | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| Project scope definition and requirements analysis | @ma.tech | 2d | 2026-05-11 | 2026-05-12 | In Progress |
-| Refactor with generators | @ma.tech | 8d | 2026-05-13 | 2026-05-22 | In Progress |
-| Dockerize for general flow | @ma.tech | 1d | 2026-05-15 | 2026-05-16 | In Progress |
-| Collaboration framework with sockets | @ma.tech | 5d | 2026-05-15 | 2026-05-22 | In Progress |
-| QT1.S3. Add a dedicated super admin system role | @ma.tech | 1d | 2026-06-05 | 2026-06-05 | Done |
-| QT3.S3. Versionize customer collection techproce | @ma.tech | 1d | 2026-06-05 | 2026-06-05 | Done |
-| QT15.S3. Fix the platform wide rls tenant isolati | @ma.tech | 2d | 2026-06-08 | 2026-06-09 | Done |
-| QT18.S3. Add condition user with email superadmin | @ma.tech | 1d | 2026-06-10 | 2026-06-10 | Done |
-| QT20.S3. Fix me bootstrap dead end jit provision | @ma.tech | 1d | 2026-06-10 | 2026-06-10 | Done |
-| QT21.S3. Fix cors 403 invalid cors request on pos | @ma.tech | 1d | 2026-06-10 | 2026-06-10 | Done |
-| QT22.S3. Jackson 3 module for jsonnullable fix 50 | @ma.tech | 1d | 2026-06-10 | 2026-06-10 | Done |
-| QT23.S3. Fix collaboration join echo amplificatio | @ma.tech | 1d | 2026-06-10 | 2026-06-10 | Done |
-| QT25.S3. Fix presigned s3 upload urls blocked by | @ma.tech | 1d | 2026-06-10 | 2026-06-10 | Done |
-| QT35.S3. Populate app user firstname lastname fro | @ma.tech | 1d | 2026-06-11 | 2026-06-11 | Done |
-| QT60.S4. Fix size post 500 409 size measurements | @ma.tech | 1d | 2026-06-18 | 2026-06-18 | Done |
-| QT69.S4. File inline open | @ma.tech | 1d | 2026-06-21 | 2026-06-21 | Done |
-| QT70.S4. Model created updated filter | @ma.tech | 1d | 2026-06-21 | 2026-06-21 | Done |
-| QT71.S4. Bom created updated dates | @ma.tech | 1d | 2026-06-21 | 2026-06-21 | Done |
-| QT72.S4. Dxf consumption metrics | @ma.tech | 1d | 2026-06-22 | 2026-06-22 | Done |
-| QT75.S4. Model dxf interactive preview | @ma.tech | 1d | 2026-06-22 | 2026-06-22 | Done |
+| [F1.S2.DB Schema v2 + RLS] | @ma.tech | 10d | 2026-05-25 | 2026-06-21 | Done |
+| [F1.S2.CI/CD Pipeline] | @ma.tech | 2d | 2026-05-25 | 2026-06-07 | In Progress |
+| [F2.S3.IDP + SMTP] | @ma.tech | 5d | 2026-06-08 | 2026-06-28 | Done |
+| [F2.S3.RBAC System] | @ma.tech | 10d | 2026-06-08 | 2026-07-05 | Done |
+| [F2.S5.Tenant Management] | @ma.tech | 10d | 2026-06-29 | 2026-07-19 | Done |
+| [F5.S13.EPCIS Export] | @ma.tech | 10d | 2026-10-19 | 2026-11-08 | Todo |
+| [F5.S13.LLM Ecodesign (WP4)] | @ma.tech | 10d | 2026-10-26 | 2026-11-15 | Todo |
+| [F5.S14.IoT Adapter (T2.5)] | @ma.tech | 10d | 2026-11-02 | 2026-11-22 | Todo |
+| [F5.S15.Notifications] | @ma.tech | 5d | 2026-11-23 | 2026-12-06 | In Progress |
+| [F6.S17.Data Migration Scripts] | @ma.tech | 5d | 2026-12-14 | 2026-12-27 | Todo |
 
 ## LOE Summary
 
 | Metric | Value |
 | :--- | :--- |
-| Total Effort | 33.0d |
-| In Progress | 16.0d |
-| Completed | 17.0d |
-| Remaining | 16.0d |
+| Total Effort | 77.0d |
+| In Progress | 7.0d |
+| Completed | 35.0d |
+| Remaining | 42.0d |
 
 ## Sprint Timeline
 
@@ -103,26 +83,16 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    QT1.S3. Add a dedicated super admin system role :done, 2026-06-05, 2026-06-05
-    QT3.S3. Versionize customer collection techproce :done, 2026-06-05, 2026-06-05
-    QT15.S3. Fix the platform wide rls tenant isolati :done, 2026-06-08, 2026-06-09
-    QT18.S3. Add condition user with email superadmin :done, 2026-06-10, 2026-06-10
-    QT20.S3. Fix me bootstrap dead end jit provision :done, 2026-06-10, 2026-06-10
-    QT21.S3. Fix cors 403 invalid cors request on pos :done, 2026-06-10, 2026-06-10
-    QT22.S3. Jackson 3 module for jsonnullable fix 50 :done, 2026-06-10, 2026-06-10
-    QT23.S3. Fix collaboration join echo amplificatio :done, 2026-06-10, 2026-06-10
-    QT25.S3. Fix presigned s3 upload urls blocked by :done, 2026-06-10, 2026-06-10
-    QT35.S3. Populate app user firstname lastname fro :done, 2026-06-11, 2026-06-11
-    QT60.S4. Fix size post 500 409 size measurements :done, 2026-06-18, 2026-06-18
-    QT69.S4. File inline open :done, 2026-06-21, 2026-06-21
-    QT70.S4. Model created updated filter :done, 2026-06-21, 2026-06-21
-    QT71.S4. Bom created updated dates :done, 2026-06-21, 2026-06-21
-    QT72.S4. Dxf consumption metrics :done, 2026-06-22, 2026-06-22
-    QT75.S4. Model dxf interactive preview :done, 2026-06-22, 2026-06-22
-    Project scope definition and requirements analysis :active, 2026-05-11, 2026-05-12
-    Refactor with generators :active, 2026-05-13, 2026-05-22
-    Dockerize for general flow :active, 2026-05-15, 2026-05-16
-    Collaboration framework with sockets :active, 2026-05-15, 2026-05-22
+    (F1.S2.DB Schema v2 + RLS) :done, 2026-05-25, 2026-06-21
+    (F2.S3.IDP + SMTP) :done, 2026-06-08, 2026-06-28
+    (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05
+    (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
+    (F1.S2.CI/CD Pipeline) :active, 2026-05-25, 2026-06-07
+    (F5.S15.Notifications) :active, 2026-11-23, 2026-12-06
+    (F5.S13.EPCIS Export) :2026-10-19, 2026-11-08
+    (F5.S13.LLM Ecodesign (WP4)) :2026-10-26, 2026-11-15
+    (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
+    (F6.S17.Data Migration Scripts) :2026-12-14, 2026-12-27
 ```
 
 ## Links
