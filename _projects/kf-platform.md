@@ -4,7 +4,7 @@ description: "Infra platform for kf web based services"
 project: kf-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-platform/edit/master/kanban.md"
-generated: 2026-07-02T07:29:57.566018
+generated: 2026-07-02T07:33:26.209076
 ---
 
 # kf-platform
@@ -92,6 +92,14 @@ generated: 2026-07-02T07:29:57.566018
 | In Progress | 65.0d |
 | Completed | 32.0d |
 | Remaining | 135.0d |
+
+## Effort — Planned vs Done
+
+```mermaid
+pie showData title Effort — Planned vs Done (person-days)
+    "Done" : 32.0
+    "Planned" : 135.0
+```
 
 ## Sprint Timeline
 

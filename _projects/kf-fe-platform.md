@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-fe-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-07-02T07:29:57.565616
+generated: 2026-07-02T07:33:26.208804
 ---
 
 # kf-fe-platform
@@ -74,6 +74,14 @@ generated: 2026-07-02T07:29:57.565616
 | In Progress | 15.0d |
 | Completed | 37.0d |
 | Remaining | 25.0d |
+
+## Effort — Planned vs Done
+
+```mermaid
+pie showData title Effort — Planned vs Done (person-days)
+    "Done" : 37.0
+    "Planned" : 25.0
+```
 
 ## Sprint Timeline
 

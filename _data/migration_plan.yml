@@ -1,282 +1,275 @@
 generated_at: '2026-06-05T10:37:39Z'
 source: kf-platform
-milestone_block: "<!-- ─────────────────────────────────────────────────────────────────────\n\
-  \     Milestones (din migration-gantt.md §6) — referință pentru tracking\n     ─────────────────────────────────────────────────────────────────────\n\
-  \     M1 — Infrastructure ready          → săpt 4  (2026-06-21)\n     M2 — Auth\
-  \ + Multi-tenancy live     → săpt 9  (2026-07-26)\n     M3 — Tech Pack complet \
-  \            → săpt 16 (2026-09-13)\n     M4 — Production flow E2E           → săpt\
-  \ 22 (2026-10-25)\n     M5 — ALADIN features beta          → săpt 28 (2026-12-06)\n\
-  \     M6 — Production cutover            → săpt 32 (2027-01-03)\n     ─────────────────────────────────────────────────────────────────────\
-  \ -->"
+milestone_block: "<!-- ─────────────────────────────────────────────────────────────────────\n     Milestones (din migration-gantt.md §6) — referință pentru tracking\n     ─────────────────────────────────────────────────────────────────────\n     M1 — Infrastructure ready          → săpt 4  (2026-06-21)\n     M2 — Auth + Multi-tenancy live     → săpt 9  (2026-07-26)\n     M3 — Tech Pack complet             → săpt 16 (2026-09-13)\n     M4 — Production flow E2E           → săpt 22 (2026-10-25)\n     M5 — ALADIN features beta          → săpt 28 (2026-12-06)\n     M6 — Production cutover            → săpt 32 (2027-01-03)\n     ───────────────────────────────────────────────────────────────────── -->"
 row_count: 39
 tasks:
-- task: Project setup (repo, monorepo structure, conventions)
+- task: '[F1.S2.Project Setup]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 2d
   start: '2026-05-25'
   end: '2026-06-07'
-  status: In Progress
+  status: Done
   repo: kf-platform
-- task: Design system & design tokens (Tailwind, primitives, Storybook)
+- task: '[F1.S2.Design System]'
   assignee: '@alexandru.bejenari'
   effort: 10d
   start: '2026-05-25'
   end: '2026-06-21'
-  status: In Progress
+  status: Done
   repo: kf-fe-platform
-- task: Database schema v2 design + migrations (multi-tenant RLS)
+- task: '[F1.S2.DB Schema v2 + RLS]'
   assignee: '@ma.tech'
   effort: 10d
   start: '2026-05-25'
   end: '2026-06-21'
-  status: In Progress
+  status: Done
   repo: kf-be-platform
-- task: CI/CD pipeline (GitHub Actions / GitLab CI)
+- task: '[F1.S2.CI/CD Pipeline]'
   assignee: '@ma.tech'
   effort: 2d
   start: '2026-05-25'
   end: '2026-06-07'
   status: In Progress
   repo: kf-be-platform
-- task: IDP setup (Keycloak/Auth0/logTo) + SMTP server
+- task: '[F2.S3.IDP + SMTP]'
   assignee: '@ma.tech'
   effort: 5d
   start: '2026-06-08'
   end: '2026-06-28'
-  status: Todo
+  status: Done
   repo: kf-be-platform
-- task: RBAC system (scopes, claims, middleware)
+- task: '[F2.S3.RBAC System]'
   assignee: '@ma.tech'
   effort: 10d
   start: '2026-06-08'
   end: '2026-07-05'
-  status: Todo
+  status: Done
   repo: kf-be-platform
-- task: Login flow + redirect handling
+- task: '[F1.S4.Login Flow]'
   assignee: '@alexandru.bejenari'
   effort: 5d
   start: '2026-06-22'
   end: '2026-07-05'
-  status: Todo
+  status: Done
   repo: kf-fe-platform
-- task: Tenant management (CRUD, provisioning, S3 prefix)
+- task: '[F2.S5.Tenant Management]'
   assignee: '@ma.tech'
   effort: 10d
   start: '2026-06-29'
   end: '2026-07-19'
-  status: Todo
+  status: Done
   repo: kf-be-platform
-- task: Admin Console UI (Platform Admin operations)
+- task: '[F2.S5.Admin Console]'
   assignee: '@alexandru.bejenari'
   effort: 10d
   start: '2026-07-06'
   end: '2026-07-26'
-  status: Todo
+  status: Done
   repo: kf-fe-platform
-- task: Overview refactor (dynamic widgets per rol)
+- task: '[F2.S6.Overview Refactor]'
   assignee: '@alexandru.bejenari'
   effort: 5d
   start: '2026-07-13'
   end: '2026-08-02'
-  status: Todo
+  status: In Progress
   repo: kf-fe-platform
-- task: Collections fix + refactor (Kanban, season relations)
+- task: '[F3.S6.Collections Refactor]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 10d
   start: '2026-07-20'
   end: '2026-08-16'
-  status: Todo
+  status: Done
   repo: kf-platform
-- task: Models Page refactor (filtere per rol, search)
+- task: '[F3.S7.Models Page]'
   assignee: '@alexandru.bejenari'
   effort: 5d
   start: '2026-08-03'
   end: '2026-08-23'
-  status: Todo
+  status: Done
   repo: kf-fe-platform
-- task: Tech Pack layout (sidebar, tooltips, guide)
+- task: '[F3.S8.Tech Pack Layout]'
   assignee: '@alexandru.bejenari'
   effort: 5d
   start: '2026-08-10'
   end: '2026-08-30'
-  status: Todo
+  status: Done
   repo: kf-fe-platform
-- task: BOM editor + LLM ecodesign hook (PDF export fix + stub)
+- task: '[F3.S8.BOM Editor]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 10d
   start: '2026-08-17'
   end: '2026-09-13'
-  status: Todo
+  status: Done
   repo: kf-platform
-- task: Model Sheet fixes (imagini, reconciliere BOM)
+- task: '[F3.S9.Model Sheet Fixes]'
   assignee: '@alexandru.bejenari'
   effort: 2d
   start: '2026-08-24'
   end: '2026-09-06'
-  status: Todo
+  status: Done
   repo: kf-fe-platform
-- task: Sizing Table & QA Flow customizabil per tenant
+- task: '[F3.S9.Sizing & QA Flow]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-08-31'
   end: '2026-09-20'
-  status: Todo
+  status: Done
   repo: kf-platform
-- task: 3D Model performance optimization (multi-mesh, asset pipeline)
+- task: '[F3.S10.3D Performance]'
   assignee: '@alexandru.bejenari'
   effort: 5d
   start: '2026-09-07'
   end: '2026-09-27'
-  status: Todo
+  status: In Progress
   repo: kf-fe-platform
-- task: Cost Breakdown & OCS clarification (Buyer approval workflow)
+- task: '[F3.S10.Cost Breakdown]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-09-14'
   end: '2026-10-04'
-  status: Todo
+  status: In Progress
   repo: kf-platform
-- task: Tech Process refactor (aliniere BE update)
+- task: '[F3.S11.Tech Process Refactor]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-09-21'
   end: '2026-10-11'
-  status: Todo
+  status: In Progress
   repo: kf-platform
-- task: Inventory & Reception refactor (types, qty packaging, UOM)
+- task: '[F4.S11.Inventory & Reception]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-09-28'
   end: '2026-10-18'
-  status: Todo
+  status: Done
   repo: kf-platform
-- task: Orders refactor (Order Name, pricing, Buyer tracking portal)
+- task: '[F4.S9.Orders Refactor]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 10d
   start: '2026-08-24'
   end: '2026-09-20'
-  status: Todo
+  status: In Progress
   repo: kf-platform
-- task: Planner (Calendar/Gantt/Kanban switch) — backend nou
+- task: '[F4.S10.Planner]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 20d
   start: '2026-09-07'
   end: '2026-10-11'
-  status: Todo
+  status: In Progress
   repo: kf-platform
-- task: Batches & Assignment (Operator assignment integrat)
+- task: '[F4.S11.Batches & Assignment]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 10d
   start: '2026-09-21'
   end: '2026-10-18'
-  status: Todo
+  status: In Progress
   repo: kf-platform
-- task: Operator View tablet (Timer, QR scan, defect flag, 3D viewer)
+- task: '[F4.S11.Operator View]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 20d
   start: '2026-09-28'
   end: '2026-10-25'
   status: Todo
   repo: kf-platform
-- task: QC Module (Inspection flow, defect logger)
+- task: '[F4.S12.QC Module]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 10d
   start: '2026-10-05'
   end: '2026-10-25'
-  status: Todo
+  status: In Progress
   repo: kf-platform
-- task: Reports & Cutting (camera integration, COCO export)
+- task: '[F4.S12.Reports & Cutting]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-10-12'
   end: '2026-10-25'
-  status: Todo
+  status: In Progress
   repo: kf-platform
-- task: DPP Module (data model, dashboard, validation) — T2.4 ALADIN
+- task: '[F5.S11.DPP Module (T2.4)]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 20d
   start: '2026-09-21'
   end: '2026-10-25'
   status: Todo
   repo: kf-platform
-- task: Public DPP / GS1 Digital Link / QR (no-auth endpoint)
+- task: '[F5.S12.Public DPP / GS1]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 10d
   start: '2026-10-12'
   end: '2026-11-01'
   status: Todo
   repo: kf-platform
-- task: EPCIS Export (JSON, PDF, GS1 standard, possibly signed)
+- task: '[F5.S13.EPCIS Export]'
   assignee: '@ma.tech'
   effort: 10d
   start: '2026-10-19'
   end: '2026-11-08'
   status: Todo
   repo: kf-be-platform
-- task: LLM Ecodesign full integration — WP4 T4.1
+- task: '[F5.S13.LLM Ecodesign (WP4)]'
   assignee: '@ma.tech'
   effort: 10d
   start: '2026-10-26'
   end: '2026-11-15'
   status: Todo
   repo: kf-be-platform
-- task: IoT Adapter & Event Log (MQTT) — T2.5 ALADIN
+- task: '[F5.S14.IoT Adapter (T2.5)]'
   assignee: '@ma.tech'
   effort: 10d
   start: '2026-11-02'
   end: '2026-11-22'
   status: Todo
   repo: kf-be-platform
-- task: Garment Configurator B2C (embeddable) — T2.3 ALADIN
+- task: '[F5.S14.Garment Configurator (T2.3)]'
   assignee: '@alexandru.bejenari'
   effort: 10d
   start: '2026-11-09'
   end: '2026-11-29'
   status: Todo
   repo: kf-fe-platform
-- task: Auditor View (cross-tenant, elevated scope)
+- task: '[F5.S15.Auditor View]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-11-16'
   end: '2026-11-29'
   status: Todo
   repo: kf-platform
-- task: i18n / l10n (EN + RO + customizable, RTL ready)
+- task: '[F5.S15.i18n / l10n]'
   assignee: '@alexandru.bejenari'
   effort: 5d
   start: '2026-11-16'
   end: '2026-11-29'
-  status: Todo
+  status: In Progress
   repo: kf-fe-platform
-- task: Notifications multi-channel (email, SMS, webhook, in-app)
+- task: '[F5.S15.Notifications]'
   assignee: '@ma.tech'
   effort: 5d
   start: '2026-11-23'
   end: '2026-12-06'
-  status: Todo
+  status: In Progress
   repo: kf-be-platform
-- task: Made2Flow dynamic JSONB schema
+- task: '[F5.S16.Made2Flow Schema]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-11-30'
   end: '2026-12-13'
   status: Todo
   repo: kf-platform
-- task: Migration testing (data + flow E2E)
+- task: '[F6.S16.Migration Testing]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-12-07'
   end: '2026-12-20'
   status: Todo
   repo: kf-platform
-- task: Data migration scripts KF → ALADIN (one-shot + rollback)
+- task: '[F6.S17.Data Migration Scripts]'
   assignee: '@ma.tech'
   effort: 5d
   start: '2026-12-14'
   end: '2026-12-27'
   status: Todo
   repo: kf-be-platform
-- task: Final QA & production cutover (smoke tests, monitoring)
+- task: '[F6.S17.Final QA & Cutover]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-12-21'
