@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-02T21:28:48.571910
+generated: 2026-07-02T21:29:40.375216
 ---
 
 # R3-AAS
@@ -125,6 +125,8 @@ generated: 2026-07-02T21:28:48.571910
 
 ## Task Summary
 
+### Status General M36 — Program Deliverables
+
 | Task | Assignee | Effort | Start | End | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | WP1 — AAS platform integration (digital infrastructure) | Mihai A. | — |  |  | Review |
@@ -141,58 +143,193 @@ generated: 2026-07-02T21:28:48.571910
 | Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise) | Alexandru Bejenari | — |  |  | Done |
 | OAuth2 auth-server public + per-client provisioning | Răzvan Boița | — |  |  | Done |
 | ALADIN WP2 RunSheet service (nginx + Traefik routing) | Răzvan Boița | — |  |  | Done |
+
+### BLOCKERE ACTIVE
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Clarificare acces server R3 (Vangelis) | Paul Stanciuc |  |  |  | Done |
 | Clarificare format date platforma R3 | Alexandru Bejenari |  |  |  | Done |
+
+### Definire
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Feature set pentru lansare (MVP) | Eduard Lazăr |  |  |  | Todo |
 | Ce este „Done" vs „Ready" pentru release | Eduard Lazăr |  |  |  | Todo |
 | Decizie Made2Flow (demo vs integrare reală) | Eduard Lazăr |  |  |  | Todo |
-| Review arhitectură | Răzvan Boița |  |  |  | Done |
-| Identificare gaps / incomplete features | Alexandru Bejenari |  |  |  | Done |
-| Sesiune demo produse (intern) | Eduard Lazăr |  |  |  | In Progress |
-| Pregătire feature flags (ascundere features incomplete) | Mihai A. |  |  |  | Todo |
-| Clarificare value proposition (perspectivă tehnică) | Eduard Lazăr |  |  |  | Todo |
-| Validare integrare end-to-end (expunere API Nuoform) | Răzvan Boița |  |  |  | Done |
 | Arhitectură multi-tenant (in place) | Eduard Modreanu |  |  |  | Done |
 | Separare date per client (in place) | Eduard Modreanu |  |  |  | Done |
+| Pipeline CI/CD (necesar pentru GTM) | Răzvan Boița |  |  |  | Done |
+
+### Evaluare produse existente
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Review arhitectură | Răzvan Boița |  |  |  | Done |
+| Identificare gaps / incomplete features | Alexandru Bejenari |  |  |  | Done |
+
+### Organizare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Sesiune demo produse (intern) | Eduard Lazăr |  |  |  | In Progress |
+
+### Implementare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Pregătire feature flags (ascundere features incomplete) | Mihai A. |  |  |  | Todo |
+| Reprezentare Gantt (timeline / corelare temporală) | Paul Stanciuc |  |  |  | Done |
+| Feature flags | Mihai A. |  |  |  | Todo |
+
+### Suport GTM
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Clarificare value proposition (perspectivă tehnică) | Eduard Lazăr |  |  |  | Todo |
+| Validare integrare end-to-end (expunere API Nuoform) | Răzvan Boița |  |  |  | Done |
+
+### Clarificare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Flow sistem (UI → AAS → backend) | Răzvan Boița |  |  |  | Done |
-| Integrare între sisteme (Katty / LMS) | Alexandru Bejenari |  |  |  | Review |
-| Multiple tipuri AAS → standardizare | Răzvan Boița |  |  |  | Done |
-| Layout simplificat pilot (stații + flux + senzori) | Eduard Lazăr / Paul Stanciuc |  |  |  | Done |
-| Integrare LMS (AAS extern) | Alexandru Bejenari |  |  | ~1 lună | Review |
-| Sketch → JSON → sistem | Alexandru Bejenari |  |  | — | Done |
-| LMS specs + credentials | Alexandru Bejenari |  |  |  | Done |
-| UI flow (parțial complet) | Alexandru Bejenari |  |  |  | Review |
-| Backend alignment (după modificări Răzvan) | Alexandru Bejenari |  |  |  | Todo |
-| Bug-uri identificate în sistem | Alexandru Bejenari |  |  |  | Todo |
-| Vizualizare date / UI | Alexandru Bejenari |  |  |  | Done |
-| Deploy AAS în Cloud (hosting) | Răzvan Boița / Eduard Lazăr |  |  |  | Done |
 | Clarificare format date pentru platforma R3 | Alexandru Bejenari |  |  |  | Done |
 | Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 | Eduard Lazăr / Julia |  |  |  | Todo |
+
+### Validare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Integrare între sisteme (Katty / LMS) | Alexandru Bejenari |  |  |  | Review |
+| Code quality / stability înainte de release | Mihai A. |  |  |  | Todo |
+
+### Analiză
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Multiple tipuri AAS → standardizare | Răzvan Boița |  |  |  | Done |
+
+### Creare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Layout simplificat pilot (stații + flux + senzori) | Eduard Lazăr / Paul Stanciuc |  |  |  | Done |
+
+### Integrare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Integrare LMS (AAS extern) | Alexandru Bejenari |  |  | ~1 lună | Review |
+| Sketch → JSON → sistem | Alexandru Bejenari |  |  | — | Done |
+
+### Verificare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| LMS specs + credentials | Alexandru Bejenari |  |  |  | Done |
+
+### Finalizare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| UI flow (parțial complet) | Alexandru Bejenari |  |  |  | Review |
+
+### Continuare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Backend alignment (după modificări Răzvan) | Alexandru Bejenari |  |  |  | Todo |
+
+### Fixuri
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Bug-uri identificate în sistem | Alexandru Bejenari |  |  |  | Todo |
+
+### Îmbunătățiri
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Vizualizare date / UI | Alexandru Bejenari |  |  |  | Done |
+
+### Deploy
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Deploy AAS în Cloud (hosting) | Răzvan Boița / Eduard Lazăr |  |  |  | Done |
+
+### Setup
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Board central Kanban – single source of truth | Paul Stanciuc |  |  |  | Done |
+
+### Aliniere
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Task-uri ↔ Work Packages (WP mapping) | Paul Stanciuc |  |  |  | Done |
+
+### Organizare &amp; Standardizare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Naming convention pentru task-uri (namespace per proiect) | Eduard Lazăr |  |  |  | Todo |
 | Evitarea dublării task-urilor între tools | Eduard Lazăr |  |  |  | Todo |
-| Reprezentare Gantt (timeline / corelare temporală) | Paul Stanciuc |  |  |  | Done |
+
+### Automatizare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | GitHub Actions pentru sync task-uri | Paul Stanciuc |  |  |  | Done |
 | Generare automată status / reports | Paul Stanciuc |  |  |  | Done |
-| Pipeline CI/CD (necesar pentru GTM) | Răzvan Boița |  |  |  | Done |
-| Feature flags | Mihai A. |  |  |  | Todo |
+
+### Adăugare
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Telemetrie (monitorizare) | Mihai A. |  |  |  | Todo |
-| Code quality / stability înainte de release | Mihai A. |  |  |  | Todo |
+
+### Pregătire
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Suport tehnic post-launch | Eduard Lazăr |  |  |  | Todo |
+
+### 6. Testing &amp; Access
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Acces VPN + onboarding corect | Eduard Lazăr |  |  |  | Done |
 | Acces corect la organizații (login flow issues) | Eduard Modreanu |  |  |  | In Progress |
 | Conectivitate sisteme externe | Alexandru Bejenari |  |  |  | Todo |
 | Testare demo produse (clienți + testeri interni) | Eduard Lazăr |  |  |  | In Progress |
+
+### 8. Reporting &amp; Planning
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Sprint plan (tranziție către GTM) | Eduard Lazăr |  |  |  | Todo |
 | Corelare Sprint tasks ↔ Work Packages | Paul Stanciuc |  |  |  | Done |
 | Task-uri cu timeline (start/end) | Paul Stanciuc |  |  |  | Done |
 | Rapoarte săptămânale (nu daily) | Eduard Lazăr |  |  |  | Todo |
 | Gantt / timeline pentru progres | Paul Stanciuc |  |  |  | Done |
+
+### 9. Product Support
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Landing page (claritate produs) | Alexandru Bejenari |  |  |  | Todo |
 | Demo / prezentare produs | Eduard Lazăr |  |  |  | In Progress |
 | Definire tehnică monetizare (SaaS readiness) | Mihai A. |  |  |  | Todo |
 | Input pentru CRM / pipeline (structură tehnică) | Eduard Lazăr |  |  |  | Todo |
+
+### Tasks — Sprint S2 (16 March → 03 April 2026)
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Implement scheduling request endpoint (KF → LMS) | @backend | 2d | 2026-06-29 | 2026-07-10 | Review |
 | Implement scheduler response parser | @backend | 2d | 2026-06-29 | 2026-07-10 | Review |
 | Integrate scheduling results with planner UI | @frontend | 3d | 2026-06-29 | 2026-07-10 | Review |
@@ -201,6 +338,11 @@ generated: 2026-07-02T21:28:48.571910
 | Run first scheduling tests with real production data | @tech-lead | 1d | 2026-06-29 | 2026-07-10 | Review |
 | Debug integration issues with LMS team | @tech-lead | 1d | 2026-06-29 | 2026-07-10 | Review |
 | Integration validation review | @tech-lead | 0.5d | 2026-06-29 | 2026-07-10 | Review |
+
+### 10. Outstanding — R3 Handover, M2F &amp; Pilot
+
+| Task | Assignee | Effort | Start | End | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | M2F: finalise &amp; confirm assumed KF-M2F shell structure | Eduard Lazăr / M2F | 2d | 2026-06-29 | 2026-07-10 | In Progress |
 | Export R3 AAS shells → move to Netcompany-hosted R3 platform | Mihai A. | 3d | 2026-07-13 | 2026-07-17 | Todo |
 | Share KF access for export to NetCompany | Eduard Lazăr | 1d | 2026-07-13 | 2026-07-14 | Todo |
@@ -209,6 +351,7 @@ generated: 2026-07-02T21:28:48.571910
 | Re-point all connections to Netcompany-hosted R3 (go live) | Mihai A. | 3d | 2026-07-27 | 2026-07-31 | Todo |
 | Pilot KF demo recordings (based on revised Nuoform) | Eduard Lazăr | 3d | 2026-08-03 | 2026-08-05 | Todo |
 | State AI usage in R3 (declaration) | Eduard Lazăr | 1d | 2026-07-16 | 2026-07-17 | Todo |
+
 
 ## LOE Summary
 
@@ -231,95 +374,31 @@ pie showData title Effort — Planned vs Done (person-days)
 
 ```mermaid
 gantt
-    title S5 — R3-AAS
+    title S5 — R3-AAS (dated tasks)
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    T2.1 — Co-creation platform (Nuoform) :done, 2026-06-29, 1d
-    T3.2 — Product Digital Twin (AAS model) :done, 2026-06-30, 1d
-    T3.2 — Process Digital Twin (Tecnomatix simulation) :done, 2026-07-01, 1d
-    T2.4 — Capacity Planner LMS Scheduler Backend :done, 2026-07-02, 1d
-    AAS import/export tooling (aas_export.py, import-demo.sh) :done, 2026-07-03, 1d
-    Order_3_Aas shell (8 submodels, cost + schedule) :done, 2026-07-04, 1d
-    Demo UI R3Group (Next 16 Design → Simulation → Shopfloor → Impact LMS re-optimise) :done, 2026-07-05, 1d
-    OAuth2 auth-server public + per-client provisioning :done, 2026-07-06, 1d
-    ALADIN WP2 RunSheet service (nginx + Traefik routing) :done, 2026-07-07, 1d
-    Clarificare acces server R3 (Vangelis) :done, 2026-07-08, 1d
-    Clarificare format date platforma R3 :done, 2026-07-09, 1d
-    Review arhitectură :done, 2026-07-10, 1d
-    Identificare gaps / incomplete features :done, 2026-07-11, 1d
-    Validare integrare end-to-end (expunere API Nuoform) :done, 2026-07-12, 1d
-    Arhitectură multi-tenant (in place) :done, 2026-07-13, 1d
-    Separare date per client (in place) :done, 2026-07-14, 1d
-    Flow sistem (UI → AAS → backend) :done, 2026-07-15, 1d
-    Multiple tipuri AAS → standardizare :done, 2026-07-16, 1d
-    Layout simplificat pilot (stații + flux + senzori) :done, 2026-07-17, 1d
-    Sketch → JSON → sistem :done, 2026-07-18, 1d
-    LMS specs + credentials :done, 2026-07-19, 1d
-    Vizualizare date / UI :done, 2026-07-20, 1d
-    Deploy AAS în Cloud (hosting) :done, 2026-07-21, 1d
-    Clarificare format date pentru platforma R3 :done, 2026-07-22, 1d
-    Board central Kanban – single source of truth :done, 2026-07-23, 1d
-    Task-uri ↔ Work Packages (WP mapping) :done, 2026-07-24, 1d
-    Reprezentare Gantt (timeline / corelare temporală) :done, 2026-07-25, 1d
-    GitHub Actions pentru sync task-uri :done, 2026-07-26, 1d
-    Generare automată status / reports :done, 2026-07-27, 1d
-    Pipeline CI/CD (necesar pentru GTM) :done, 2026-07-28, 1d
-    Acces VPN + onboarding corect :done, 2026-07-29, 1d
-    Corelare Sprint tasks ↔ Work Packages :done, 2026-07-30, 1d
-    Task-uri cu timeline (start/end) :done, 2026-07-31, 1d
-    Gantt / timeline pentru progres :done, 2026-08-01, 1d
-    T2.3 — Supply Chain Digital Twin risk modelling :active, 2026-08-02, 1d
-    Sesiune demo produse (intern) :active, 2026-08-03, 1d
-    Acces corect la organizații (login flow issues) :active, 2026-08-04, 1d
-    Testare demo produse (clienți + testeri interni) :active, 2026-08-05, 1d
-    Demo / prezentare produs :active, 2026-08-06, 1d
     M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
-    WP1 — AAS platform integration (digital infrastructure) :2026-07-01, 1d
-    T2.4 — Capacity Planner KF Planner UI :2026-07-02, 5d
-    T2.4 — Capacity Planner KF ↔ LMS Integration :2026-07-07, 10d
-    T3.3 — IoT Monitoring sensors deployment :2026-07-17, 5d
-    Integrare între sisteme (Katty / LMS) :2026-07-22, 1d
-    Integrare LMS (AAS extern) :2026-07-23, 1d
-    UI flow (parțial complet) :2026-07-24, 1d
-    Implement scheduling request endpoint (KF → LMS) :2026-06-29, 2026-07-10
-    Implement scheduler response parser :2026-06-29, 2026-07-10
-    Integrate scheduling results with planner UI :2026-06-29, 2026-07-10
-    Implement planner visualization improvements (capacity / gaps) :2026-06-29, 2026-07-10
-    Validate suitability constraints and scheduling logic :2026-06-29, 2026-07-10
-    Run first scheduling tests with real production data :2026-06-29, 2026-07-10
-    Debug integration issues with LMS team :2026-06-29, 2026-07-10
-    Integration validation review :2026-06-29, 2026-07-10
-    Feature set pentru lansare (MVP) :crit, 2026-06-29, 1d
-    Ce este „Done” vs „Ready” pentru release :crit, 2026-06-30, 1d
-    Decizie Made2Flow (demo vs integrare reală) :crit, 2026-07-01, 1d
-    Pregătire feature flags (ascundere features incomplete) :2026-07-02, 1d
-    Clarificare value proposition (perspectivă tehnică) :2026-07-03, 1d
-    Backend alignment (după modificări Răzvan) :2026-07-04, 1d
-    Bug-uri identificate în sistem :2026-07-05, 1d
-    Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 :2026-07-06, 1d
-    Naming convention pentru task-uri (namespace per proiect) :2026-07-07, 1d
-    Evitarea dublării task-urilor între tools :2026-07-08, 1d
-    Feature flags :2026-07-09, 1d
-    Telemetrie (monitorizare) :2026-07-10, 1d
-    Code quality / stability înainte de release :2026-07-11, 1d
-    Suport tehnic post-launch :2026-07-12, 1d
-    Conectivitate sisteme externe :2026-07-13, 1d
-    Sprint plan (tranziție către GTM) :2026-07-14, 1d
-    Rapoarte săptămânale (nu daily) :2026-07-15, 1d
-    Landing page (claritate produs) :2026-07-16, 1d
-    Definire tehnică monetizare (SaaS readiness) :2026-07-17, 1d
-    Input pentru CRM / pipeline (structură tehnică) :2026-07-18, 1d
+    Implement scheduling request endpoint (KF → LMS) :active, 2026-06-29, 2026-07-10
+    Implement scheduler response parser :active, 2026-06-29, 2026-07-10
+    Integrate scheduling results with planner UI :active, 2026-06-29, 2026-07-10
+    Implement planner visualization improvements (capacity / gaps) :active, 2026-06-29, 2026-07-10
+    Validate suitability constraints and scheduling logic :active, 2026-06-29, 2026-07-10
+    Run first scheduling tests with real production data :active, 2026-06-29, 2026-07-10
+    Debug integration issues with LMS team :active, 2026-06-29, 2026-07-10
+    Integration validation review :active, 2026-06-29, 2026-07-10
     Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
     Share KF access for export to NetCompany :2026-07-13, 2026-07-14
     Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
+    State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
     Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
     Re-point all connections to Netcompany-hosted R3 (go live) :2026-07-27, 2026-07-31
     Pilot KF demo recordings (based on revised Nuoform) :2026-08-03, 2026-08-05
-    State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
+
+> 32 open task(s) have no start/end dates and are not charted — add dates in kanban.md to plot them.
 
 ## Links
 
