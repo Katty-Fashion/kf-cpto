@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-02T07:33:26.189416
+generated: 2026-07-02T10:23:09.829994
 ---
 
 # R3-AAS
@@ -234,55 +234,57 @@ gantt
     Clarificare format date pentru platforma R3 :active, 2026-03-29, 1d
     Board central Kanban – single source of truth :active, 2026-03-30, 1d
     Acces corect la organizații (login flow issues) :active, 2026-03-31, 1d
-    Implement scheduling request endpoint (KF → LMS) :active, 2026-03-19, 2026-03-21
-    Integrate scheduling results with planner UI :active, 2026-03-19, 2026-03-24
-    Implement planner visualization improvements (capacity / gaps) :active, 2026-03-25, 2026-03-27
+    Implement scheduling request endpoint (KF → LMS) :crit, 2026-03-19, 2026-03-21
+    Integrate scheduling results with planner UI :crit, 2026-03-19, 2026-03-24
+    Implement planner visualization improvements (capacity / gaps) :crit, 2026-03-25, 2026-03-27
     LMS specs + credentials :2026-03-27, 1d
     Vizualizare date / UI :2026-03-28, 1d
     GitHub Actions pentru sync task-uri :2026-03-29, 1d
     Generare automată status / reports :2026-03-30, 1d
     Pipeline CI/CD (necesar pentru GTM) :2026-03-31, 1d
-    Feature set pentru lansare (MVP) :2026-04-01, 1d
-    Ce este „Done” vs „Ready” pentru release :2026-04-02, 1d
-    Sesiune demo produse (intern) :2026-04-03, 1d
-    Pregătire feature flags (ascundere features incomplete) :2026-04-04, 1d
-    Clarificare value proposition (perspectivă tehnică) :2026-04-05, 1d
-    Flow sistem (UI → AAS → backend) :2026-04-06, 1d
-    Layout simplificat pilot (stații + flux + senzori) :2026-04-07, 1d
-    Backend alignment (după modificări Răzvan) :2026-04-08, 1d
-    Bug-uri identificate în sistem :2026-04-09, 1d
-    Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 :2026-04-10, 1d
-    Task-uri ↔ Work Packages (WP mapping) :2026-04-11, 1d
-    Naming convention pentru task-uri (namespace per proiect) :2026-04-12, 1d
-    Evitarea dublării task-urilor între tools :2026-04-13, 1d
-    Reprezentare Gantt (timeline / corelare temporală) :2026-04-14, 1d
-    Feature flags :2026-04-15, 1d
-    Telemetrie (monitorizare) :2026-04-16, 1d
-    Code quality / stability înainte de release :2026-04-17, 1d
-    Suport tehnic post-launch :2026-04-18, 1d
-    Conectivitate sisteme externe :2026-04-19, 1d
-    Testare demo produse (clienți + testeri interni) :2026-04-20, 1d
-    Interviuri tehnice full-stack :2026-04-21, 1d
-    Evaluare competențe React + Node :2026-04-22, 1d
-    Evaluare team fit (non-toxic, colaborativ) :2026-04-23, 1d
-    Selectare profil echilibrat (nu doar tech heavy) :2026-04-24, 1d
-    Sprint plan (tranziție către GTM) :2026-04-25, 1d
-    Corelare Sprint tasks ↔ Work Packages :2026-04-26, 1d
-    Task-uri cu timeline (start/end) :2026-04-27, 1d
-    Rapoarte săptămânale (nu daily) :2026-04-28, 1d
-    Gantt / timeline pentru progres :2026-04-29, 1d
-    Landing page (claritate produs) :2026-04-30, 1d
-    Demo / prezentare produs :2026-05-01, 1d
-    Definire tehnică monetizare (SaaS readiness) :2026-05-02, 1d
-    Input pentru CRM / pipeline (structură tehnică) :2026-05-03, 1d
-    Implement scheduler response parser :2026-03-22, 2026-03-24
-    Validate suitability constraints and scheduling logic :2026-03-26, 2026-03-28
-    Run first scheduling tests with real production data :2026-03-28, 2026-03-28
-    Debug integration issues with LMS team :2026-03-31, 2026-03-31
-    Integration validation review :2026-04-03, 2026-04-03
+    Feature set pentru lansare (MVP) :crit, 2026-04-01, 1d
+    Ce este „Done” vs „Ready” pentru release :crit, 2026-04-02, 1d
+    Sesiune demo produse (intern) :crit, 2026-04-03, 1d
+    Pregătire feature flags (ascundere features incomplete) :crit, 2026-04-04, 1d
+    Clarificare value proposition (perspectivă tehnică) :crit, 2026-04-05, 1d
+    Flow sistem (UI → AAS → backend) :crit, 2026-04-06, 1d
+    Layout simplificat pilot (stații + flux + senzori) :crit, 2026-04-07, 1d
+    Backend alignment (după modificări Răzvan) :crit, 2026-04-08, 1d
+    Bug-uri identificate în sistem :crit, 2026-04-09, 1d
+    Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 :crit, 2026-04-10, 1d
+    Task-uri ↔ Work Packages (WP mapping) :crit, 2026-04-11, 1d
+    Naming convention pentru task-uri (namespace per proiect) :crit, 2026-04-12, 1d
+    Evitarea dublării task-urilor între tools :crit, 2026-04-13, 1d
+    Reprezentare Gantt (timeline / corelare temporală) :crit, 2026-04-14, 1d
+    Feature flags :crit, 2026-04-15, 1d
+    Telemetrie (monitorizare) :crit, 2026-04-16, 1d
+    Code quality / stability înainte de release :crit, 2026-04-17, 1d
+    Suport tehnic post-launch :crit, 2026-04-18, 1d
+    Conectivitate sisteme externe :crit, 2026-04-19, 1d
+    Testare demo produse (clienți + testeri interni) :crit, 2026-04-20, 1d
+    Interviuri tehnice full-stack :crit, 2026-04-21, 1d
+    Evaluare competențe React + Node :crit, 2026-04-22, 1d
+    Evaluare team fit (non-toxic, colaborativ) :crit, 2026-04-23, 1d
+    Selectare profil echilibrat (nu doar tech heavy) :crit, 2026-04-24, 1d
+    Sprint plan (tranziție către GTM) :crit, 2026-04-25, 1d
+    Corelare Sprint tasks ↔ Work Packages :crit, 2026-04-26, 1d
+    Task-uri cu timeline (start/end) :crit, 2026-04-27, 1d
+    Rapoarte săptămânale (nu daily) :crit, 2026-04-28, 1d
+    Gantt / timeline pentru progres :crit, 2026-04-29, 1d
+    Landing page (claritate produs) :crit, 2026-04-30, 1d
+    Demo / prezentare produs :crit, 2026-05-01, 1d
+    Definire tehnică monetizare (SaaS readiness) :crit, 2026-05-02, 1d
+    Input pentru CRM / pipeline (structură tehnică) :crit, 2026-05-03, 1d
+    Implement scheduler response parser :crit, 2026-03-22, 2026-03-24
+    Validate suitability constraints and scheduling logic :crit, 2026-03-26, 2026-03-28
+    Run first scheduling tests with real production data :crit, 2026-03-28, 2026-03-28
+    Debug integration issues with LMS team :crit, 2026-03-31, 2026-03-31
+    Integration validation review :crit, 2026-04-03, 2026-04-03
     Decizie Made2Flow (demo vs integrare reală) :2026-04-03, 1d
     Decizie Made2Flow (demo vs integrare reală) :2026-04-04, 1d
 ```
+
+<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
 
 ## Links
 
