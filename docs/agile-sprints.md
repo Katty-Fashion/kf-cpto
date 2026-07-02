@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-07-02T10:23:09.829679
+generated: 2026-07-02T10:30:51.271743
 ---
 
 # KF Team — Agile Sprints
