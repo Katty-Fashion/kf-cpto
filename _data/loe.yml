@@ -1,10 +1,10 @@
-generated_at: '2026-07-02T21:15:35Z'
+generated_at: '2026-07-02T21:22:24Z'
 row_count: 121
 rows:
 - project: R3-AAS
   sprint: S5
   task: WP1 — AAS platform integration (digital infrastructure)
-  assignee: Răzvan Boița
+  assignee: Mihai A.
   effort_days: 0.0
   start: ''
   end: ''
@@ -68,7 +68,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: 'T2.3 — Supply Chain Digital Twin: risk modelling'
-  assignee: Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -132,7 +132,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Feature set pentru lansare (MVP)
-  assignee: Eduard Lazăr / Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -140,7 +140,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Ce este „Done" vs „Ready" pentru release
-  assignee: Eduard Lazăr / Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -148,7 +148,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Decizie Made2Flow (demo vs integrare reală)
-  assignee: Eduard Lazăr / Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -172,7 +172,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Sesiune demo produse (intern)
-  assignee: Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -180,7 +180,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Pregătire feature flags (ascundere features incomplete)
-  assignee: Răzvan Boița
+  assignee: Mihai A.
   effort_days: 0.0
   start: ''
   end: ''
@@ -188,7 +188,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Clarificare value proposition (perspectivă tehnică)
-  assignee: Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -348,7 +348,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Naming convention pentru task-uri (namespace per proiect)
-  assignee: Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -356,7 +356,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Evitarea dublării task-urilor între tools
-  assignee: Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -396,7 +396,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Feature flags
-  assignee: Răzvan Boița
+  assignee: Mihai A.
   effort_days: 0.0
   start: ''
   end: ''
@@ -404,7 +404,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Telemetrie (monitorizare)
-  assignee: Răzvan Boița
+  assignee: Mihai A.
   effort_days: 0.0
   start: ''
   end: ''
@@ -412,7 +412,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Code quality / stability înainte de release
-  assignee: Răzvan Boița
+  assignee: Mihai A.
   effort_days: 0.0
   start: ''
   end: ''
@@ -420,7 +420,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Suport tehnic post-launch
-  assignee: Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -452,7 +452,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Testare demo produse (clienți + testeri interni)
-  assignee: Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -460,7 +460,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Sprint plan (tranziție către GTM)
-  assignee: Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -484,7 +484,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Rapoarte săptămânale (nu daily)
-  assignee: Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -508,7 +508,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Demo / prezentare produs
-  assignee: Eduard Lazăr / Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''
@@ -516,7 +516,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Definire tehnică monetizare (SaaS readiness)
-  assignee: Răzvan Boița
+  assignee: Mihai A.
   effort_days: 0.0
   start: ''
   end: ''
@@ -524,7 +524,7 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Input pentru CRM / pipeline (structură tehnică)
-  assignee: Eduard Lazăr / Paul Stanciuc
+  assignee: Eduard Lazăr
   effort_days: 0.0
   start: ''
   end: ''

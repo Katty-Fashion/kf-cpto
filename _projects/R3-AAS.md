@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-02T21:15:34.996350
+generated: 2026-07-02T21:22:24.451865
 ---
 
 # R3-AAS
@@ -127,7 +127,7 @@ generated: 2026-07-02T21:15:34.996350
 
 | Task | Assignee | Effort | Start | End | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| WP1 — AAS platform integration (digital infrastructure) | Răzvan Boița | — |  |  | Review |
+| WP1 — AAS platform integration (digital infrastructure) | Mihai A. | — |  |  | Review |
 | T2.1 — Co-creation platform (Nuoform) | Alexandru Bejenari | — |  |  | Done |
 | T3.2 — Product Digital Twin (AAS model) | Răzvan Boița | — |  |  | Done |
 | T3.2 — Process Digital Twin (Tecnomatix simulation) | Eduard Modreanu | — |  |  | Done |
@@ -135,7 +135,7 @@ generated: 2026-07-02T21:15:34.996350
 | T2.4 — Capacity Planner: KF Planner UI | Alexandru Bejenari | 5d |  |  | Review |
 | T2.4 — Capacity Planner: KF ↔ LMS Integration | Alexandru Bejenari | 10d |  |  | Review |
 | T3.3 — IoT Monitoring: sensors deployment | Eduard Modreanu | 5d |  |  | Review |
-| T2.3 — Supply Chain Digital Twin: risk modelling | Paul Stanciuc | — |  |  | In Progress |
+| T2.3 — Supply Chain Digital Twin: risk modelling | Eduard Lazăr | — |  |  | In Progress |
 | AAS import/export tooling (aas_export.py, import-demo.sh) | Răzvan Boița | — |  |  | Done |
 | Order_3_Aas shell (8 submodels, cost + schedule) | Răzvan Boița | — |  |  | Done |
 | Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise) | Alexandru Bejenari | — |  |  | Done |
@@ -143,14 +143,14 @@ generated: 2026-07-02T21:15:34.996350
 | ALADIN WP2 RunSheet service (nginx + Traefik routing) | Răzvan Boița | — |  |  | Done |
 | Clarificare acces server R3 (Vangelis) | Paul Stanciuc |  |  |  | Done |
 | Clarificare format date platforma R3 | Alexandru Bejenari |  |  |  | Done |
-| Feature set pentru lansare (MVP) | Eduard Lazăr / Paul Stanciuc |  |  |  | Todo |
-| Ce este „Done" vs „Ready" pentru release | Eduard Lazăr / Paul Stanciuc |  |  |  | Todo |
-| Decizie Made2Flow (demo vs integrare reală) | Eduard Lazăr / Paul Stanciuc |  |  |  | Todo |
+| Feature set pentru lansare (MVP) | Eduard Lazăr |  |  |  | Todo |
+| Ce este „Done" vs „Ready" pentru release | Eduard Lazăr |  |  |  | Todo |
+| Decizie Made2Flow (demo vs integrare reală) | Eduard Lazăr |  |  |  | Todo |
 | Review arhitectură | Răzvan Boița |  |  |  | Done |
 | Identificare gaps / incomplete features | Alexandru Bejenari |  |  |  | Done |
-| Sesiune demo produse (intern) | Paul Stanciuc |  |  |  | In Progress |
-| Pregătire feature flags (ascundere features incomplete) | Răzvan Boița |  |  |  | Todo |
-| Clarificare value proposition (perspectivă tehnică) | Paul Stanciuc |  |  |  | Todo |
+| Sesiune demo produse (intern) | Eduard Lazăr |  |  |  | In Progress |
+| Pregătire feature flags (ascundere features incomplete) | Mihai A. |  |  |  | Todo |
+| Clarificare value proposition (perspectivă tehnică) | Eduard Lazăr |  |  |  | Todo |
 | Validare integrare end-to-end (expunere API Nuoform) | Răzvan Boița |  |  |  | Done |
 | Arhitectură multi-tenant (in place) | Eduard Modreanu |  |  |  | Done |
 | Separare date per client (in place) | Eduard Modreanu |  |  |  | Done |
@@ -170,29 +170,29 @@ generated: 2026-07-02T21:15:34.996350
 | Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 | Eduard Lazăr / Julia |  |  |  | Todo |
 | Board central Kanban – single source of truth | Paul Stanciuc |  |  |  | Done |
 | Task-uri ↔ Work Packages (WP mapping) | Paul Stanciuc |  |  |  | Done |
-| Naming convention pentru task-uri (namespace per proiect) | Paul Stanciuc |  |  |  | Todo |
-| Evitarea dublării task-urilor între tools | Paul Stanciuc |  |  |  | Todo |
+| Naming convention pentru task-uri (namespace per proiect) | Eduard Lazăr |  |  |  | Todo |
+| Evitarea dublării task-urilor între tools | Eduard Lazăr |  |  |  | Todo |
 | Reprezentare Gantt (timeline / corelare temporală) | Paul Stanciuc |  |  |  | Done |
 | GitHub Actions pentru sync task-uri | Paul Stanciuc |  |  |  | Done |
 | Generare automată status / reports | Paul Stanciuc |  |  |  | Done |
 | Pipeline CI/CD (necesar pentru GTM) | Răzvan Boița |  |  |  | Done |
-| Feature flags | Răzvan Boița |  |  |  | Todo |
-| Telemetrie (monitorizare) | Răzvan Boița |  |  |  | Todo |
-| Code quality / stability înainte de release | Răzvan Boița |  |  |  | Todo |
-| Suport tehnic post-launch | Paul Stanciuc |  |  |  | Todo |
+| Feature flags | Mihai A. |  |  |  | Todo |
+| Telemetrie (monitorizare) | Mihai A. |  |  |  | Todo |
+| Code quality / stability înainte de release | Mihai A. |  |  |  | Todo |
+| Suport tehnic post-launch | Eduard Lazăr |  |  |  | Todo |
 | Acces VPN + onboarding corect | Eduard Lazăr |  |  |  | Done |
 | Acces corect la organizații (login flow issues) | Eduard Modreanu |  |  |  | In Progress |
 | Conectivitate sisteme externe | Alexandru Bejenari |  |  |  | Todo |
-| Testare demo produse (clienți + testeri interni) | Paul Stanciuc |  |  |  | In Progress |
-| Sprint plan (tranziție către GTM) | Paul Stanciuc |  |  |  | Todo |
+| Testare demo produse (clienți + testeri interni) | Eduard Lazăr |  |  |  | In Progress |
+| Sprint plan (tranziție către GTM) | Eduard Lazăr |  |  |  | Todo |
 | Corelare Sprint tasks ↔ Work Packages | Paul Stanciuc |  |  |  | Done |
 | Task-uri cu timeline (start/end) | Paul Stanciuc |  |  |  | Done |
-| Rapoarte săptămânale (nu daily) | Paul Stanciuc |  |  |  | Todo |
+| Rapoarte săptămânale (nu daily) | Eduard Lazăr |  |  |  | Todo |
 | Gantt / timeline pentru progres | Paul Stanciuc |  |  |  | Done |
 | Landing page (claritate produs) | Alexandru Bejenari |  |  |  | Todo |
-| Demo / prezentare produs | Eduard Lazăr / Paul Stanciuc |  |  |  | In Progress |
-| Definire tehnică monetizare (SaaS readiness) | Răzvan Boița |  |  |  | Todo |
-| Input pentru CRM / pipeline (structură tehnică) | Eduard Lazăr / Paul Stanciuc |  |  |  | Todo |
+| Demo / prezentare produs | Eduard Lazăr |  |  |  | In Progress |
+| Definire tehnică monetizare (SaaS readiness) | Mihai A. |  |  |  | Todo |
+| Input pentru CRM / pipeline (structură tehnică) | Eduard Lazăr |  |  |  | Todo |
 | Implement scheduling request endpoint (KF → LMS) | @backend | 2d | 2026-03-19 | 2026-03-21 | Review |
 | Implement scheduler response parser | @backend | 2d | 2026-03-22 | 2026-03-24 | Review |
 | Integrate scheduling results with planner UI | @frontend | 3d | 2026-03-19 | 2026-03-24 | Review |
