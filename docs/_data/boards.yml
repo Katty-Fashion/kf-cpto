@@ -1,4 +1,4 @@
-generated_at: '2026-07-02T20:56:17Z'
+generated_at: '2026-07-02T21:09:26Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -26,7 +26,7 @@ projects:
       cpto: el.tech@katty-fashion.ro
       tech_lead: eduard.modreanu@katty-fashion.ro
       frontend: alexandru.bejenari@katty-fashion.ro
-      backend: razvan.boita@katty-fashion.ro
+      backend: ma.tech@katty-fashion.ro
       product_owner: ps.tech@katty-fashion.ro
   tasks:
   - task: WP1 — AAS platform integration (digital infrastructure)
