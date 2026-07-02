@@ -176,6 +176,89 @@ def cmd_delete(repo: str, ns: list[int]) -> int:
     return 0
 
 
+_CANON_HEADER = "| Task | Owner | Effort | Start | End | Status | Note |"
+_CANON_SEP = "|---|---|---|---|---|---|---|"
+_CANON_FIELDS = ("task", "owner", "effort", "start", "end", "status", "note")
+
+
+def cmd_add(repo: str, assignments: list[str]) -> int:
+    """Append a task row under `section=...` (section + canonical table created if absent)."""
+    _guard_generated(repo)
+    path = _kanban_path(repo)
+    content = path.read_text(encoding="utf-8")
+    fields = {"status": "Todo"}
+    for a in assignments:
+        if "=" not in a:
+            sys.exit(f"[ERROR] bad assignment '{a}' — use field=value.")
+        k, v = a.split("=", 1)
+        fields[k.strip().lower()] = v
+    section = fields.pop("section", None)
+    if not section or not fields.get("task"):
+        sys.exit("[ERROR] usage: add <repo> section=<title> task=<name> [owner= effort= start= end= status= note=]")
+    if fields["status"] not in TASK_STATUSES:
+        canon = _STATUS_ALIASES.get(fields["status"].strip().lower())
+        if canon is None:
+            sys.exit(f"[ERROR] invalid status '{fields['status']}'. Valid: {', '.join(TASK_STATUSES)}")
+        fields["status"] = canon
+
+    lines = content.splitlines()
+    # locate the section header (any heading level, emoji-insensitive)
+    sec_idx = next((i for i, ln in enumerate(lines)
+                    if ln.strip().startswith("#")
+                    and strip_emojis(ln).lstrip("#").strip().lower() == strip_emojis(section).strip().lower()),
+                   None)
+    row = "| " + " | ".join(fields.get(f, "—") or "—" for f in _CANON_FIELDS) + " |"
+
+    if sec_idx is None:
+        # new section + canonical table at end of file
+        lines += ["", "---", "", f"## {section}", "", _CANON_HEADER, _CANON_SEP, row]
+        print(f"[DONE] created section '{section}' and added: {fields['task']}")
+    else:
+        # find the first table under the section; append after its last row
+        i = sec_idx + 1
+        table_end = None
+        while i < len(lines) and not lines[i].strip().startswith("#"):
+            if _is_table_row_local(lines[i]):
+                j = i
+                while j < len(lines) and _is_table_row_local(lines[j]):
+                    j += 1
+                table_end = j
+                break
+            i += 1
+        if table_end is None:
+            insert_at = sec_idx + 1
+            while insert_at < len(lines) and lines[insert_at].strip() == "":
+                insert_at += 1
+            lines[insert_at:insert_at] = [_CANON_HEADER, _CANON_SEP, row, ""]
+            print(f"[DONE] created table under '{section}' and added: {fields['task']}")
+        else:
+            # match the existing table's column layout
+            header = lines[table_end - 1]
+            existing_rows = enumerate_kanban_rows("\n".join(lines))
+            hdr_row = next((r for r in existing_rows if r["line_no"] < table_end and r["line_no"] > sec_idx), None)
+            if hdr_row is not None:
+                colmap = dict(hdr_row["colmap"])
+                for idx, label in enumerate(hdr_row["header_cells"]):
+                    colmap.setdefault(strip_emojis(label).strip().lower(), idx)
+                width = len(hdr_row["header_cells"])
+                cells = ["—"] * width
+                for f, v in fields.items():
+                    key = "assignee" if f == "owner" and "assignee" in colmap else f
+                    if key in colmap and colmap[key] < width:
+                        cells[colmap[key]] = v
+                row = "| " + " | ".join(cells) + " |"
+            lines.insert(table_end, row)
+            print(f"[DONE] added under '{section}': {fields['task']}")
+
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return 0
+
+
+def _is_table_row_local(line: str) -> bool:
+    s = line.strip()
+    return s.startswith("|") and s.endswith("|")
+
+
 def main(argv: list[str]) -> int:
     if len(argv) < 3:
         print(__doc__)
@@ -191,7 +274,9 @@ def main(argv: list[str]) -> int:
         if len(argv) < 4:
             sys.exit("[ERROR] usage: delete <repo> <n> [<n> ...]")
         return cmd_delete(repo, [int(x) for x in argv[3:]])
-    sys.exit(f"[ERROR] unknown command '{cmd}' (list | set | delete)")
+    if cmd == "add":
+        return cmd_add(repo, argv[3:])
+    sys.exit(f"[ERROR] unknown command '{cmd}' (list | set | delete | add)")
 
 
 if __name__ == "__main__":

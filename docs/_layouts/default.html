@@ -127,7 +127,13 @@
         taskTextDarkColor: '#ffffff',
         taskTextOutsideColor: '#1f2937',
         gridColor: '#d1d5db',
-        todayLineColor: '#dc2626'
+        todayLineColor: '#dc2626',
+        // Pie charts inherit taskTextDarkColor for legends by default — pin
+        // them to dark-on-light explicitly so labels stay readable.
+        pieTitleTextColor: '#1f2937',
+        pieLegendTextColor: '#1f2937',
+        pieSectionTextColor: '#1f2937',
+        pieSectionTextSize: '15px'
       }
     });
     mermaid.run();
