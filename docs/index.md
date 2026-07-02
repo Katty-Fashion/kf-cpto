@@ -69,16 +69,14 @@ gantt
 
 ---
 
-## CPTO Time Allocation
+## Portfolio Effort — Planned vs Done
+
+{% assign done = 0 %}{% assign planned = 0 %}{% for row in site.data.loe.rows %}{% if row.status == "Done" %}{% assign done = done | plus: row.effort_days %}{% else %}{% assign planned = planned | plus: row.effort_days %}{% endif %}{% endfor %}
 
 ```mermaid
-pie title Monthly 50h Allocation
-    "Sync & Team Rhythm" : 10
-    "Technical Health" : 12
-    "Pre-Sales" : 8
-    "EU Projects" : 10
-    "SaaS Products" : 8
-    "Team Events" : 2
+pie showData title Portfolio Effort — Planned vs Done (person-days)
+    "Done" : {{ done }}
+    "Planned" : {{ planned }}
 ```
 
 ---

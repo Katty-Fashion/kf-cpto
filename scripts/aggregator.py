@@ -482,6 +482,17 @@ def generate_project_page(project: str, project_data: dict) -> str:
         lines.append(f"| Remaining | {remaining}d |")
         lines.append("")
 
+        # Effort — Planned vs Done pie (rendered consistently on every project page)
+        if total_effort > 0:
+            lines.append("## Effort — Planned vs Done")
+            lines.append("")
+            lines.append("```mermaid")
+            lines.append("pie showData title Effort — Planned vs Done (person-days)")
+            lines.append(f'    "Done" : {completed}')
+            lines.append(f'    "Planned" : {remaining}')
+            lines.append("```")
+            lines.append("")
+
         # Sprint Gantt chart (only if sprint dates are available)
         sprint_start = project_data.get("meta", {}).get("sprint_start")
         sprint_end = project_data.get("meta", {}).get("sprint_end")
