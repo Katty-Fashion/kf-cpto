@@ -341,11 +341,26 @@ def build_repo_content(repo: str, tasks: list[dict], milestone_block: str,
     if sprint:
         fm_block = _override_sprint_frontmatter(fm_block, *sprint)
 
-    # Status merge: this repo's own valid status for a task wins over the plan.
+    # Status merge: FORWARD-ONLY (max rank of board vs plan). The board keeps
+    # any progress activity-sync recorded (a plan edit can never resurface a
+    # solved task), while a forward plan edit still advances the board.
+    # Mutates the shared plan-task dicts so the caller can sync the
+    # plan-of-record to the merged truth.
     own_status = existing_status_map(existing, project=repo)
-    merged = [{**t, "status": own_status.get(t["task"], t["status"])} for t in tasks]
+    for t in tasks:
+        own = own_status.get(t["task"])
+        if own is None:
+            continue
+        plan_rank = utils.STATUS_RANK.get(t["status"], -1)
+        own_rank = utils.STATUS_RANK.get(own, -1)
+        if plan_rank < own_rank:
+            print(f"[GUARD] {repo}: '{t['task']}' plan says '{t['status']}' but board "
+                  f"is '{own}' — keeping '{own}' (no downgrade).")
+            t["status"] = own
+        elif plan_rank > own_rank:
+            print(f"[INFO] {repo}: '{t['task']}' advances {own} -> {t['status']} (plan edit).")
 
-    return fm_block + "\n" + build_body(merged, milestone_block)
+    return fm_block + "\n" + build_body(tasks, milestone_block)
 
 
 def partition(plan_tasks: list[dict]) -> dict[str, list[dict]]:
@@ -361,7 +376,7 @@ def partition(plan_tasks: list[dict]) -> dict[str, list[dict]]:
     return buckets
 
 
-def generate(reseed: bool = False) -> tuple[dict[str, str], dict[str, list[dict]], list[dict]]:
+def generate(reseed: bool = False, sync_plan: bool = False) -> tuple[dict[str, str], dict[str, list[dict]], list[dict]]:
     """Build new kanban.md content for every target repo.
 
     Returns (outputs, buckets, plan_tasks):
@@ -376,8 +391,24 @@ def generate(reseed: bool = False) -> tuple[dict[str, str], dict[str, list[dict]
     # One shared sprint window for all platform repos (global migration cadence).
     sprint = active_sprint_window(plan, load_calendar(), date.today())
     print(f"[INFO] Aligning platform repos to sprint {sprint[0]} ({sprint[1]} → {sprint[2]}).")
+    pre_merge = [t["status"] for t in plan_tasks]
     outputs = {r: build_repo_content(r, buckets[r], milestone_block, sprint=sprint)
                for r in TARGET_REPOS}
+    # Forward-merge mutates plan-task statuses to the merged truth. Persist it
+    # so the plan-of-record never drifts behind the boards (stale plan statuses
+    # invite manual edits that would look like downgrades).
+    drift = sum(1 for old, t in zip(pre_merge, plan_tasks) if old != t["status"])
+    if drift:
+        if sync_plan:
+            plan["generated_at"] = now_iso()
+            PLAN_FILE.write_text(
+                yaml.safe_dump(plan, sort_keys=False, allow_unicode=True), encoding="utf-8"
+            )
+            print(f"[INFO] Plan-of-record synced to merged statuses ({drift} task(s)) — "
+                  f"commit {PLAN_FILE.relative_to(_REPO_ROOT)} in kf-cpto.")
+        else:
+            print(f"[INFO] Plan-of-record is behind the boards on {drift} task(s) — "
+                  f"--apply will sync migration_plan.yml to the merged truth.")
     return outputs, buckets, plan_tasks
 
 
@@ -556,7 +587,7 @@ def apply(push: bool, reseed: bool = False, sync: bool = True) -> list[dict]:
 
     # 2. Generate from the plan-of-record (reads the freshly-synced repo content).
     try:
-        outputs, _buckets, _plan = generate(reseed=reseed)
+        outputs, _buckets, _plan = generate(reseed=reseed, sync_plan=True)
     except (FileNotFoundError, ValueError) as exc:
         print(f"[ERROR] {exc}", file=sys.stderr)
         return []

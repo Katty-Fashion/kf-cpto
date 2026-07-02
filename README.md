@@ -102,7 +102,23 @@ The push fires each repo's `notify-kf-cpto.yml` dispatch → the dashboard + She
 
 ## Weekly Update Runbook — Refresh Statuses & Prep Reporting
 
-Run this once a week (or before any reporting review). It reconciles real activity into task statuses, regenerates the per-repo boards, and lets CI rebuild the dashboard + LOE Sheet.
+**How to launch:** in Claude Code (this repo), trigger the **`activity-sync`** skill — say
+`activity sync`, `reconcile task statuses`, or `write back kanban`. It runs the flow below
+end-to-end with one batch confirmation. For interactive board cleanup (rename / re-own /
+delete / add tasks by number), trigger **`kanban-groom`** — say `groom the kanban` or
+`list <repo> tasks`.
+
+**No-resurfacing guarantee:** every automated path is **forward-only** (`Todo → In Progress
+→ Review → Done`). A solved task can never reopen via a weekly run:
+- `reconcile.py` filters non-advancing proposals (RECON-07) and caps branch signals at
+  In Progress; `writeback.py` re-checks and drops any non-forward proposal (`[GUARD]`).
+- `generate_kanban.py` merges plan-vs-board by **max rank** — a plan edit can advance a
+  board but never downgrade it (`[GUARD]` logged) — and `--apply` syncs the merged truth
+  back into `migration_plan.yml` so the plan never drifts behind the boards.
+- Downgrades (deliberately reopening a task) are only possible interactively via
+  `kanban-groom` or a manual PR — never by automation.
+
+Run weekly (or before any reporting review):
 
 ```bash
 export KF_PAT=your-token   # or: export KF_PAT="$(gh auth token)"

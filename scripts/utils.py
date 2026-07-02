@@ -40,6 +40,11 @@ PROJECT_BRANCHES: dict[str, str] = {}
 # Valid task statuses (single source for all status references)
 TASK_STATUSES = ("Todo", "In Progress", "Review", "Done")
 
+# Forward-only ordering: automated flows may only move a task's status to a
+# HIGHER rank. Downgrades (a solved task resurfacing as open) happen only via
+# explicit interactive edits (kanban-groom / manual PR), never weekly updates.
+STATUS_RANK = {s: i for i, s in enumerate(TASK_STATUSES)}
+
 # Case-folded aliases -> canonical TASK_STATUSES value. Lets the one canonical
 # parser self-heal common drift (lowercase "in progress", emoji-prefixed or
 # foreign-vocabulary statuses from repos like R3-AAS) instead of leaking invalid

@@ -559,6 +559,19 @@ def run(proposals: list, dry_run: bool = False) -> list[dict]:
 
     print("Activity Sync — Write-Back — Starting...")
 
+    # Defensive forward-only gate (belt-and-braces over reconcile's RECON-07):
+    # a solved task must never resurface via an automated weekly run. Any
+    # non-advancing proposal is dropped loudly here, whatever produced it.
+    from reconcile import STATUS_RANK  # noqa: E402 — same skill, no cycle
+    guarded = []
+    for p in proposals:
+        if STATUS_RANK.get(p.new_status, -1) <= STATUS_RANK.get(p.old_status, -1):
+            print(f"[GUARD] {p.repo}: dropped non-forward proposal "
+                  f"'{p.task}' {p.old_status} -> {p.new_status}")
+            continue
+        guarded.append(p)
+    proposals = guarded
+
     if not proposals:
         print("[INFO] No changes proposed — nothing to write.")
         return []

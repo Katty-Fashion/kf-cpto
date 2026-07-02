@@ -103,9 +103,13 @@ What it does:
   - FE+BE (`@<frontend> + @<backend>`) → `kf-platform` (cross-stack umbrella)
 - Preserves each target repo's curated frontmatter verbatim; regenerates the task table
   (full names, person-day effort, dates) + the milestone reference trailer.
-- **Status merge:** a target repo's own valid status for a task wins over the plan status,
-  so re-running never reverts statuses set by [RECONCILE]/[WRITE-BACK]. Generation owns the
-  skeleton; activity-sync owns status truth.
+- **Status merge — FORWARD-ONLY (no resurfacing):** plan vs board resolves to the
+  **higher** rank (Todo < In Progress < Review < Done). A board's recorded progress can
+  never be downgraded by a plan edit (`[GUARD]` logged and the board status kept), while
+  a forward plan edit still advances the board. `--apply` then syncs the merged truth back
+  into `migration_plan.yml`, so the plan-of-record never drifts behind the boards.
+  Deliberate reopening of a task is an interactive act (kanban-groom / manual PR), never
+  an automated one.
 - Idempotent (byte-compare gate); single batch confirmation; reuses `writeback.py`'s
   conflict gate, KF_PAT push, and recovery manifest. `--apply` needs `KF_PAT` (unless `--no-push`).
 - Run the aggregator afterward to refresh `docs/_data/loe.yml` and the dashboard.
@@ -194,6 +198,9 @@ python .claude/skills/activity-sync/writeback.py [--dry-run]
 What it does:
 
 - Calls `reconcile.run()` to get the full list of proposed status changes
+- **[GUARD] forward-only gate:** re-validates every proposal and drops any that does not
+  strictly advance the status (belt-and-braces over reconcile's RECON-07) — a solved task
+  can never resurface through write-back, whatever produced the proposal
 - Groups proposals by repo and prints ONE [INFO] batch-confirm summary table
 - Reads a SINGLE `y/N` prompt before performing any write or push (zero per-repo prompts — matches the org-scan preference: confirm destructive ops once as a batch)
 - For each repo with proposals:
