@@ -1,5 +1,5 @@
-generated_at: '2026-07-02T20:04:45Z'
-row_count: 124
+generated_at: '2026-07-02T20:35:32Z'
+row_count: 113
 rows:
 - project: R3-AAS
   sprint: S5
@@ -8,7 +8,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: T2.1 — Co-creation platform (Nuoform)
@@ -45,26 +45,26 @@ rows:
   sprint: S5
   task: 'T2.4 — Capacity Planner: KF Planner UI'
   assignee: Alexandru Bejenari
-  effort_days: 0.0
+  effort_days: 5.0
   start: ''
   end: ''
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: 'T2.4 — Capacity Planner: KF ↔ LMS Integration'
   assignee: Alexandru Bejenari
-  effort_days: 0.0
+  effort_days: 10.0
   start: ''
   end: ''
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: 'T3.3 — IoT Monitoring: sensors deployment'
   assignee: Eduard Modreanu
-  effort_days: 0.0
+  effort_days: 5.0
   start: ''
   end: ''
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: 'T2.3 — Supply Chain Digital Twin: risk modelling'
@@ -115,20 +115,12 @@ rows:
   status: Done
 - project: R3-AAS
   sprint: S5
-  task: Deploy AAS în Cloud (hosting)
-  assignee: Răzvan Boița / Eduard Lazăr
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Done
-- project: R3-AAS
-  sprint: S5
   task: Clarificare acces server R3 (Vangelis)
   assignee: Paul Stanciuc
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Clarificare format date platforma R3
@@ -136,15 +128,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
-- project: R3-AAS
-  sprint: S5
-  task: Decizie Made2Flow (demo vs integrare reală)
-  assignee: Eduard Lazăr / Paul Stanciuc
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Todo
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Feature set pentru lansare (MVP)
@@ -243,20 +227,12 @@ rows:
   status: Done
 - project: R3-AAS
   sprint: S5
-  task: Clarificare acces server R3 (Vangelis)
-  assignee: Paul Stanciuc
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: In Progress
-- project: R3-AAS
-  sprint: S5
   task: Integrare între sisteme (Katty / LMS)
   assignee: Alexandru Bejenari
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: Multiple tipuri AAS → standardizare
@@ -280,7 +256,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ~1 lună
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: Sketch → JSON → sistem
@@ -304,7 +280,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: Backend alignment (după modificări Răzvan)
@@ -328,7 +304,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Review
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Deploy AAS în Cloud (hosting)
@@ -344,7 +320,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Instalare senzor 3 (poziție cutie/flux materiale) — T3.3
@@ -392,7 +368,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: GitHub Actions pentru sync task-uri
@@ -416,7 +392,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Review
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Feature flags
@@ -483,38 +459,6 @@ rows:
   status: In Progress
 - project: R3-AAS
   sprint: S5
-  task: Interviuri tehnice full-stack
-  assignee: Eduard Lazăr
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Todo
-- project: R3-AAS
-  sprint: S5
-  task: Evaluare competențe React + Node
-  assignee: Eduard Lazăr
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Todo
-- project: R3-AAS
-  sprint: S5
-  task: Evaluare team fit (non-toxic, colaborativ)
-  assignee: Eduard Lazăr
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Todo
-- project: R3-AAS
-  sprint: S5
-  task: Selectare profil echilibrat (nu doar tech heavy)
-  assignee: Eduard Lazăr
-  effort_days: 0.0
-  start: ''
-  end: ''
-  status: Todo
-- project: R3-AAS
-  sprint: S5
   task: Sprint plan (tranziție către GTM)
   assignee: Paul Stanciuc
   effort_days: 0.0
@@ -536,7 +480,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Rapoarte săptămânale (nu daily)
@@ -552,7 +496,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Landing page (claritate produs)
@@ -568,7 +512,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: Definire tehnică monetizare (SaaS readiness)
@@ -587,44 +531,12 @@ rows:
   status: Todo
 - project: R3-AAS
   sprint: S5
-  task: Review LMS API endpoints and AAS structure
-  assignee: '@tech-lead'
-  effort_days: 1.0
-  start: '2026-03-16'
-  end: '2026-03-16'
-  status: Done
-- project: R3-AAS
-  sprint: S5
-  task: Technical architecture alignment for Planner integration
-  assignee: '@tech-lead'
-  effort_days: 1.0
-  start: '2026-03-17'
-  end: '2026-03-17'
-  status: Done
-- project: R3-AAS
-  sprint: S5
-  task: Define integration pipeline (KF UI → LMS Scheduler → KF UI)
-  assignee: '@tech-lead'
-  effort_days: 1.0
-  start: '2026-03-18'
-  end: '2026-03-18'
-  status: Done
-- project: R3-AAS
-  sprint: S5
-  task: Implement automatic AAS JSON export from KF platform
-  assignee: '@backend'
-  effort_days: 2.0
-  start: '2026-03-16'
-  end: '2026-03-18'
-  status: Done
-- project: R3-AAS
-  sprint: S5
   task: Implement scheduling request endpoint (KF → LMS)
   assignee: '@backend'
   effort_days: 2.0
   start: '2026-03-19'
   end: '2026-03-21'
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: Implement scheduler response parser
@@ -632,7 +544,7 @@ rows:
   effort_days: 2.0
   start: '2026-03-22'
   end: '2026-03-24'
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: Integrate scheduling results with planner UI
@@ -640,7 +552,7 @@ rows:
   effort_days: 3.0
   start: '2026-03-19'
   end: '2026-03-24'
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: Implement planner visualization improvements (capacity / gaps)
@@ -648,7 +560,7 @@ rows:
   effort_days: 2.0
   start: '2026-03-25'
   end: '2026-03-27'
-  status: In Progress
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: Validate suitability constraints and scheduling logic
@@ -656,7 +568,7 @@ rows:
   effort_days: 2.0
   start: '2026-03-26'
   end: '2026-03-28'
-  status: Todo
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: Run first scheduling tests with real production data
@@ -664,7 +576,7 @@ rows:
   effort_days: 1.0
   start: '2026-03-28'
   end: '2026-03-28'
-  status: Todo
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: Debug integration issues with LMS team
@@ -672,7 +584,7 @@ rows:
   effort_days: 1.0
   start: '2026-03-31'
   end: '2026-03-31'
-  status: Todo
+  status: Review
 - project: R3-AAS
   sprint: S5
   task: Integration validation review
@@ -680,7 +592,7 @@ rows:
   effort_days: 0.5
   start: '2026-04-03'
   end: '2026-04-03'
-  status: Todo
+  status: Review
 - project: kf-be-platform
   sprint: S5
   task: '[F1.S2.DB Schema v2 + RLS]'

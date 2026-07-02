@@ -1,4 +1,4 @@
-generated_at: '2026-07-02T20:04:45Z'
+generated_at: '2026-07-02T20:35:32Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -31,92 +31,86 @@ projects:
   tasks:
   - task: WP1 — AAS platform integration (digital infrastructure)
     assignee: Răzvan Boița
-    effort: ''
+    effort: —
     start: ''
     end: ''
-    status: In Progress
+    status: Review
   - task: T2.1 — Co-creation platform (Nuoform)
     assignee: Alexandru Bejenari
-    effort: ''
+    effort: —
     start: ''
     end: ''
     status: Done
   - task: T3.2 — Product Digital Twin (AAS model)
     assignee: Răzvan Boița
-    effort: ''
+    effort: —
     start: ''
     end: ''
     status: Done
   - task: T3.2 — Process Digital Twin (Tecnomatix simulation)
     assignee: Eduard Modreanu
-    effort: ''
+    effort: —
     start: ''
     end: ''
     status: Done
   - task: 'T2.4 — Capacity Planner: LMS Scheduler Backend'
     assignee: LMS
-    effort: ''
+    effort: —
     start: ''
     end: ''
     status: Done
   - task: 'T2.4 — Capacity Planner: KF Planner UI'
     assignee: Alexandru Bejenari
-    effort: ''
+    effort: 5d
     start: ''
     end: ''
-    status: In Progress
+    status: Review
   - task: 'T2.4 — Capacity Planner: KF ↔ LMS Integration'
     assignee: Alexandru Bejenari
-    effort: ''
+    effort: 10d
     start: ''
     end: ''
-    status: In Progress
+    status: Review
   - task: 'T3.3 — IoT Monitoring: sensors deployment'
     assignee: Eduard Modreanu
-    effort: ''
+    effort: 5d
     start: ''
     end: ''
-    status: In Progress
+    status: Review
   - task: 'T2.3 — Supply Chain Digital Twin: risk modelling'
     assignee: Paul Stanciuc
-    effort: ''
+    effort: —
     start: ''
     end: ''
     status: In Progress
   - task: AAS import/export tooling (aas_export.py, import-demo.sh)
     assignee: Răzvan Boița
-    effort: ''
+    effort: —
     start: ''
     end: ''
     status: Done
   - task: Order_3_Aas shell (8 submodels, cost + schedule)
     assignee: Răzvan Boița
-    effort: ''
+    effort: —
     start: ''
     end: ''
     status: Done
   - task: 'Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS
       re-optimise)'
     assignee: Alexandru Bejenari
-    effort: ''
+    effort: —
     start: ''
     end: ''
     status: Done
   - task: OAuth2 auth-server public + per-client provisioning
     assignee: Răzvan Boița
-    effort: ''
+    effort: —
     start: ''
     end: ''
     status: Done
   - task: ALADIN WP2 RunSheet service (nginx + Traefik routing)
     assignee: Răzvan Boița
-    effort: ''
-    start: ''
-    end: ''
-    status: Done
-  - task: Deploy AAS în Cloud (hosting)
-    assignee: Răzvan Boița / Eduard Lazăr
-    effort: ''
+    effort: —
     start: ''
     end: ''
     status: Done
@@ -125,19 +119,13 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: In Progress
+    status: Done
   - task: Clarificare format date platforma R3
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
-    status: In Progress
-  - task: Decizie Made2Flow (demo vs integrare reală)
-    assignee: Eduard Lazăr / Paul Stanciuc
-    effort: ''
-    start: ''
-    end: ''
-    status: Todo
+    status: Done
   - task: Feature set pentru lansare (MVP)
     assignee: Eduard Lazăr / Paul Stanciuc
     effort: ''
@@ -210,18 +198,12 @@ projects:
     start: ''
     end: ''
     status: Done
-  - task: Clarificare acces server R3 (Vangelis)
-    assignee: Paul Stanciuc
-    effort: ''
-    start: ''
-    end: ''
-    status: In Progress
   - task: Integrare între sisteme (Katty / LMS)
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
-    status: In Progress
+    status: Review
   - task: Multiple tipuri AAS → standardizare
     assignee: Răzvan Boița
     effort: ''
@@ -239,7 +221,7 @@ projects:
     effort: ''
     start: ''
     end: ~1 lună
-    status: In Progress
+    status: Review
   - task: Sketch → JSON → sistem
     assignee: Alexandru Bejenari
     effort: ''
@@ -257,7 +239,7 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: In Progress
+    status: Review
   - task: Backend alignment (după modificări Răzvan)
     assignee: Alexandru Bejenari
     effort: ''
@@ -275,7 +257,7 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: Review
+    status: Done
   - task: Deploy AAS în Cloud (hosting)
     assignee: Răzvan Boița / Eduard Lazăr
     effort: ''
@@ -287,7 +269,7 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: In Progress
+    status: Done
   - task: Instalare senzor 3 (poziție cutie/flux materiale) — T3.3
     assignee: Eduard Lazăr / Julia
     effort: ''
@@ -323,7 +305,7 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: In Progress
+    status: Done
   - task: GitHub Actions pentru sync task-uri
     assignee: Paul Stanciuc
     effort: ''
@@ -341,7 +323,7 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: Review
+    status: Done
   - task: Feature flags
     assignee: Răzvan Boița
     effort: ''
@@ -390,30 +372,6 @@ projects:
     start: ''
     end: ''
     status: In Progress
-  - task: Interviuri tehnice full-stack
-    assignee: Eduard Lazăr
-    effort: ''
-    start: ''
-    end: ''
-    status: Todo
-  - task: Evaluare competențe React + Node
-    assignee: Eduard Lazăr
-    effort: ''
-    start: ''
-    end: ''
-    status: Todo
-  - task: Evaluare team fit (non-toxic, colaborativ)
-    assignee: Eduard Lazăr
-    effort: ''
-    start: ''
-    end: ''
-    status: Todo
-  - task: Selectare profil echilibrat (nu doar tech heavy)
-    assignee: Eduard Lazăr
-    effort: ''
-    start: ''
-    end: ''
-    status: Todo
   - task: Sprint plan (tranziție către GTM)
     assignee: Paul Stanciuc
     effort: ''
@@ -431,7 +389,7 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: In Progress
+    status: Done
   - task: Rapoarte săptămânale (nu daily)
     assignee: Paul Stanciuc
     effort: ''
@@ -443,7 +401,7 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: In Progress
+    status: Done
   - task: Landing page (claritate produs)
     assignee: Alexandru Bejenari
     effort: ''
@@ -455,7 +413,7 @@ projects:
     effort: ''
     start: ''
     end: ''
-    status: Todo
+    status: In Progress
   - task: Definire tehnică monetizare (SaaS readiness)
     assignee: Răzvan Boița
     effort: ''
@@ -468,78 +426,54 @@ projects:
     start: ''
     end: ''
     status: Todo
-  - task: Review LMS API endpoints and AAS structure
-    assignee: '@tech-lead'
-    effort: 1d
-    start: '2026-03-16'
-    end: '2026-03-16'
-    status: Done
-  - task: Technical architecture alignment for Planner integration
-    assignee: '@tech-lead'
-    effort: 1d
-    start: '2026-03-17'
-    end: '2026-03-17'
-    status: Done
-  - task: Define integration pipeline (KF UI → LMS Scheduler → KF UI)
-    assignee: '@tech-lead'
-    effort: 1d
-    start: '2026-03-18'
-    end: '2026-03-18'
-    status: Done
-  - task: Implement automatic AAS JSON export from KF platform
-    assignee: '@backend'
-    effort: 2d
-    start: '2026-03-16'
-    end: '2026-03-18'
-    status: Done
   - task: Implement scheduling request endpoint (KF → LMS)
     assignee: '@backend'
     effort: 2d
     start: '2026-03-19'
     end: '2026-03-21'
-    status: In Progress
+    status: Review
   - task: Implement scheduler response parser
     assignee: '@backend'
     effort: 2d
     start: '2026-03-22'
     end: '2026-03-24'
-    status: In Progress
+    status: Review
   - task: Integrate scheduling results with planner UI
     assignee: '@frontend'
     effort: 3d
     start: '2026-03-19'
     end: '2026-03-24'
-    status: In Progress
+    status: Review
   - task: Implement planner visualization improvements (capacity / gaps)
     assignee: '@frontend'
     effort: 2d
     start: '2026-03-25'
     end: '2026-03-27'
-    status: In Progress
+    status: Review
   - task: Validate suitability constraints and scheduling logic
     assignee: '@backend'
     effort: 2d
     start: '2026-03-26'
     end: '2026-03-28'
-    status: Todo
+    status: Review
   - task: Run first scheduling tests with real production data
     assignee: '@tech-lead'
     effort: 1d
     start: '2026-03-28'
     end: '2026-03-28'
-    status: Todo
+    status: Review
   - task: Debug integration issues with LMS team
     assignee: '@tech-lead'
     effort: 1d
     start: '2026-03-31'
     end: '2026-03-31'
-    status: Todo
+    status: Review
   - task: Integration validation review
     assignee: '@tech-lead'
     effort: 0.5d
     start: '2026-04-03'
     end: '2026-04-03'
-    status: Todo
+    status: Review
 - project: kf-be-platform
   branch: main
   edit_url: https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md

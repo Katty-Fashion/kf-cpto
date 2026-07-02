@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-07-02T20:04:45.331597
+generated: 2026-07-02T20:35:32.640188
 ---
 
 # KF Team — Unified Calendar
@@ -12,7 +12,7 @@ pie title Effort by Project (person-days)
     "kf-platform" : 167.0
     "kf-be-platform" : 77.0
     "kf-fe-platform" : 62.0
-    "R3-AAS" : 18.5
+    "R3-AAS" : 33.5
 ```
 
 ## Sprint Timeline
@@ -58,10 +58,6 @@ gantt
     excludes weekends
 
     section R3-AAS
-    Review LMS API endpoints and AAS structure :done, 2026-03-16, 2026-03-16
-    Implement automatic AAS JSON export from KF platform :done, 2026-03-16, 2026-03-18
-    Technical architecture alignment for Planner integration :done, 2026-03-17, 2026-03-17
-    Define integration pipeline (KF UI → LMS Scheduler → KF UI) :done, 2026-03-18, 2026-03-18
     Implement scheduling request endpoint (KF → LMS) :crit, 2026-03-19, 2026-03-21
     Integrate scheduling results with planner UI :crit, 2026-03-19, 2026-03-24
     Implement scheduler response parser :crit, 2026-03-22, 2026-03-24
