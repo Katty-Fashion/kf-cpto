@@ -1,4 +1,4 @@
-generated_at: '2026-07-02T22:00:59Z'
+generated_at: '2026-07-02T22:06:38Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -523,6 +523,26 @@ projects:
     start: '2026-07-16'
     end: '2026-07-17'
     status: Todo
+- project: ai-rise-options
+  branch: master
+  edit_url: https://github.com/katty-fashion/ai-rise-options/edit/master/kanban.md
+  generated: false
+  simple_board: true
+  meta:
+    description: AI-RISE options analysis — EU project exploration tracks
+    type: eu-project
+    po: '@el.tech'
+    lead: '@el.tech'
+    sprint: S5
+    sprint_start: '2026-06-29'
+    sprint_end: '2026-07-10'
+    depends_on: []
+    tags:
+    - eu-project
+    - ai-rise
+    - exploration
+    team: {}
+  tasks: []
 - project: kf-be-platform
   branch: main
   edit_url: https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md
@@ -840,3 +860,22 @@ projects:
     start: '2026-12-21'
     end: '2027-01-03'
     status: Todo
+- project: tech_brainstorming
+  branch: main
+  edit_url: https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md
+  generated: false
+  simple_board: true
+  meta:
+    description: Tech brainstorming — ideas, spikes and evaluation notes
+    type: internal
+    po: '@el.tech'
+    lead: '@el.tech'
+    sprint: S5
+    sprint_start: '2026-06-29'
+    sprint_end: '2026-07-10'
+    depends_on: []
+    tags:
+    - internal
+    - ideation
+    team: {}
+  tasks: []
