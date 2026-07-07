@@ -171,7 +171,7 @@ gantt
     (F1.S2.Project Setup) (FE+BE) :done, f1t1, 2026-05-25, 10d
     (F1.S2.Design System) (FE) :done, f1t2, 2026-05-25, 20d
     (F1.S2.DB Schema v2 + RLS) (BE) :done, f1t3, 2026-05-25, 20d
-    (F1.S2.CI/CD Pipeline) (BE) :crit, f1t4, 2026-05-25, 10d
+    (F1.S2.CI/CD Pipeline) (BE) :done, f1t4, 2026-05-25, 10d
     (F1.S4.Login Flow) (FE) :done, f1t5, 2026-06-22, 10d
 
     section Faza 2 — Auth & Multi-tenancy
@@ -179,7 +179,7 @@ gantt
     (F2.S3.RBAC System) (BE) :done, f2t2, 2026-06-08, 20d
     (F2.S5.Tenant Management) (BE) :done, f2t3, 2026-06-29, 15d
     (F2.S5.Admin Console) (FE) :done, f2t4, 2026-07-06, 15d
-    (F2.S6.Overview Refactor) (FE) :active, f2t5, 2026-07-13, 15d
+    (F2.S6.Overview Refactor) (FE) :done, f2t5, 2026-07-13, 15d
 
     section Faza 3 — Core Platform
     (F3.S6.Collections Refactor) (FE+BE) :done, f3t1, 2026-07-20, 20d
@@ -188,18 +188,18 @@ gantt
     (F3.S8.BOM Editor) (FE+BE) :done, f3t4, 2026-08-17, 20d
     (F3.S9.Model Sheet Fixes) (FE) :done, f3t5, 2026-08-24, 10d
     (F3.S9.Sizing & QA Flow) (FE+BE) :done, f3t6, 2026-08-31, 15d
-    (F3.S10.3D Performance) (FE) :active, f3t7, 2026-09-07, 15d
-    (F3.S10.Cost Breakdown) (FE+BE) :active, f3t8, 2026-09-14, 15d
-    (F3.S11.Tech Process Refactor) (FE+BE) :active, f3t9, 2026-09-21, 15d
+    (F3.S10.3D Performance) (FE) :done, f3t7, 2026-09-07, 15d
+    (F3.S10.Cost Breakdown) (FE+BE) :done, f3t8, 2026-09-14, 15d
+    (F3.S11.Tech Process Refactor) (FE+BE) :done, f3t9, 2026-09-21, 15d
 
     section Faza 4 — Production & Operations
-    (F4.S9.Orders Refactor) (FE+BE) :active, f4t1, 2026-08-24, 20d
-    (F4.S10.Planner) (FE+BE) :active, f4t2, 2026-09-07, 25d
-    (F4.S11.Batches & Assignment) (FE+BE) :active, f4t3, 2026-09-21, 20d
+    (F4.S9.Orders Refactor) (FE+BE) :done, f4t1, 2026-08-24, 20d
+    (F4.S10.Planner) (FE+BE) :done, f4t2, 2026-09-07, 25d
+    (F4.S11.Batches & Assignment) (FE+BE) :done, f4t3, 2026-09-21, 20d
     (F4.S11.Inventory & Reception) (FE+BE) :done, f4t4, 2026-09-28, 15d
     (F4.S11.Operator View) (FE+BE) :f4t5, 2026-09-28, 20d
-    (F4.S12.QC Module) (FE+BE) :active, f4t6, 2026-10-05, 15d
-    (F4.S12.Reports & Cutting) (FE+BE) :active, f4t7, 2026-10-12, 10d
+    (F4.S12.QC Module) (FE+BE) :done, f4t6, 2026-10-05, 15d
+    (F4.S12.Reports & Cutting) (FE+BE) :done, f4t7, 2026-10-12, 10d
 
     section Faza 5 — ALADIN Features Noi
     (F5.S11.DPP Module (T2.4)) (FE+BE) :f5t1, 2026-09-21, 25d
@@ -209,8 +209,8 @@ gantt
     (F5.S14.IoT Adapter (T2.5)) (BE) :f5t5, 2026-11-02, 15d
     (F5.S14.Garment Configurator (T2.3)) (FE) :f5t6, 2026-11-09, 15d
     (F5.S15.Auditor View) (FE+BE) :f5t7, 2026-11-16, 10d
-    (F5.S15.i18n / l10n) (FE) :active, f5t8, 2026-11-16, 10d
-    (F5.S15.Notifications) (BE) :active, f5t9, 2026-11-23, 10d
+    (F5.S15.i18n / l10n) (FE) :done, f5t8, 2026-11-16, 10d
+    (F5.S15.Notifications) (BE) :done, f5t9, 2026-11-23, 10d
     (F5.S16.Made2Flow Schema) (FE+BE) :f5t10, 2026-11-30, 10d
 
     section Faza 6 — Polish & Cutover
