@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-07-07T07:38:59.377527
+generated: 2026-07-07T08:58:45.640409
 ---
 
 # KF Team — Agile Sprints
@@ -114,7 +114,7 @@ gantt
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
     section kf-fe-platform
     (F2.S5.Admin Console) :done, 2026-07-06, 2026-07-26
-    (F2.S6.Overview Refactor) :active, 2026-07-13, 2026-08-02
+    (F2.S6.Overview Refactor) :done, 2026-07-13, 2026-08-02
     section kf-platform
     (F3.S6.Collections Refactor) :done, 2026-07-20, 2026-08-16
 ```
@@ -127,8 +127,8 @@ gantt
 | :--- | :--- | :--- | :---: | :---: |
 | R3-AAS | S5 | 2026-06-29 → 2026-07-10 | 52.5d | 3.8% |
 | ai-rise-options | S5 | 2026-06-29 → 2026-07-10 | 0d | 0% |
-| kf-be-platform | S5 | 2026-06-29 → 2026-07-10 | 77.0d | 45.5% |
-| kf-fe-platform | S5 | 2026-06-29 → 2026-07-10 | 62.0d | 59.7% |
-| kf-platform | S5 | 2026-06-29 → 2026-07-10 | 167.0d | 19.2% |
+| kf-be-platform | S5 | 2026-06-29 → 2026-07-10 | 77.0d | 54.5% |
+| kf-fe-platform | S5 | 2026-06-29 → 2026-07-10 | 62.0d | 83.9% |
+| kf-platform | S5 | 2026-06-29 → 2026-07-10 | 167.0d | 58.1% |
 | tech_brainstorming | S5 | 2026-06-29 → 2026-07-10 | 0d | 0% |
-| **TOTAL** | | | **358.5d** | **29.6%** |
+| **TOTAL** | | | **358.5d** | **53.8%** |

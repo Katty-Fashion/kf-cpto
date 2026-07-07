@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-be-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-07-07T07:38:59.386785
+generated: 2026-07-07T08:58:45.649559
 ---
 
 # kf-be-platform
@@ -35,19 +35,19 @@ generated: 2026-07-07T07:38:59.386785
     <div class="kanban-card kanban-card--static">[F6.S17.Data Migration Scripts]</div>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">2</span></div>
-    <div class="kanban-card kanban-card--static">[F1.S2.CI/CD Pipeline]</div>
-    <div class="kanban-card kanban-card--static">[F5.S15.Notifications]</div>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">0</span></div>
   </div>
   <div class="kanban-col kanban-col--review">
     <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">4</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">6</span></div>
     <div class="kanban-card kanban-card--static">[F1.S2.DB Schema v2 + RLS]</div>
+    <div class="kanban-card kanban-card--static">[F1.S2.CI/CD Pipeline]</div>
     <div class="kanban-card kanban-card--static">[F2.S3.IDP + SMTP]</div>
     <div class="kanban-card kanban-card--static">[F2.S3.RBAC System]</div>
     <div class="kanban-card kanban-card--static">[F2.S5.Tenant Management]</div>
+    <div class="kanban-card kanban-card--static">[F5.S15.Notifications]</div>
   </div>
 </div>
 
@@ -56,14 +56,14 @@ generated: 2026-07-07T07:38:59.386785
 | Task | Assignee | Effort | Start | End | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | [F1.S2.DB Schema v2 + RLS] | @ma.tech | 10d | 2026-05-25 | 2026-06-21 | Done |
-| [F1.S2.CI/CD Pipeline] | @ma.tech | 2d | 2026-05-25 | 2026-06-07 | In Progress |
+| [F1.S2.CI/CD Pipeline] | @ma.tech | 2d | 2026-05-25 | 2026-06-07 | Done |
 | [F2.S3.IDP + SMTP] | @ma.tech | 5d | 2026-06-08 | 2026-06-28 | Done |
 | [F2.S3.RBAC System] | @ma.tech | 10d | 2026-06-08 | 2026-07-05 | Done |
 | [F2.S5.Tenant Management] | @ma.tech | 10d | 2026-06-29 | 2026-07-19 | Done |
 | [F5.S13.EPCIS Export] | @ma.tech | 10d | 2026-10-19 | 2026-11-08 | Todo |
 | [F5.S13.LLM Ecodesign (WP4)] | @ma.tech | 10d | 2026-10-26 | 2026-11-15 | Todo |
 | [F5.S14.IoT Adapter (T2.5)] | @ma.tech | 10d | 2026-11-02 | 2026-11-22 | Todo |
-| [F5.S15.Notifications] | @ma.tech | 5d | 2026-11-23 | 2026-12-06 | In Progress |
+| [F5.S15.Notifications] | @ma.tech | 5d | 2026-11-23 | 2026-12-06 | Done |
 | [F6.S17.Data Migration Scripts] | @ma.tech | 5d | 2026-12-14 | 2026-12-27 | Todo |
 
 ## LOE Summary
@@ -71,16 +71,16 @@ generated: 2026-07-07T07:38:59.386785
 | Metric | Value |
 | :--- | :--- |
 | Total Effort | 77.0d |
-| In Progress | 7.0d |
-| Completed | 35.0d |
-| Remaining | 42.0d |
+| In Progress | 0d |
+| Completed | 42.0d |
+| Remaining | 35.0d |
 
 ## Effort — Planned vs Done
 
 ```mermaid
 pie showData title Effort — Planned vs Done (person-days)
-    "Done" : 35.0
-    "Planned" : 42.0
+    "Done" : 42.0
+    "Planned" : 35.0
 ```
 
 ## Sprint Timeline
@@ -92,14 +92,14 @@ gantt
     excludes weekends
 
     (F1.S2.DB Schema v2 + RLS) :done, 2026-05-25, 2026-06-21
-    (F1.S2.CI/CD Pipeline) :crit, 2026-05-25, 2026-06-07
+    (F1.S2.CI/CD Pipeline) :done, 2026-05-25, 2026-06-07
     (F2.S3.IDP + SMTP) :done, 2026-06-08, 2026-06-28
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
     (F5.S13.EPCIS Export) :2026-10-19, 2026-11-08
     (F5.S13.LLM Ecodesign (WP4)) :2026-10-26, 2026-11-15
     (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
-    (F5.S15.Notifications) :active, 2026-11-23, 2026-12-06
+    (F5.S15.Notifications) :done, 2026-11-23, 2026-12-06
     (F6.S17.Data Migration Scripts) :2026-12-14, 2026-12-27
 ```
 

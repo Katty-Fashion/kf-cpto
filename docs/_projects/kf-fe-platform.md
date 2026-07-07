@@ -4,7 +4,7 @@ description: "EU Project"
 project: kf-fe-platform
 type: eu-project
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-07-07T07:38:59.387152
+generated: 2026-07-07T08:58:45.649926
 ---
 
 # kf-fe-platform
@@ -32,22 +32,22 @@ generated: 2026-07-07T07:38:59.387152
     <div class="kanban-card kanban-card--static">[F5.S14.Garment Configurator (T2.3)]</div>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">3</span></div>
-    <div class="kanban-card kanban-card--static">[F2.S6.Overview Refactor]</div>
-    <div class="kanban-card kanban-card--static">[F3.S10.3D Performance]</div>
-    <div class="kanban-card kanban-card--static">[F5.S15.i18n / l10n]</div>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">0</span></div>
   </div>
   <div class="kanban-col kanban-col--review">
     <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">6</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">9</span></div>
     <div class="kanban-card kanban-card--static">[F1.S2.Design System]</div>
     <div class="kanban-card kanban-card--static">[F1.S4.Login Flow]</div>
     <div class="kanban-card kanban-card--static">[F2.S5.Admin Console]</div>
+    <div class="kanban-card kanban-card--static">[F2.S6.Overview Refactor]</div>
     <div class="kanban-card kanban-card--static">[F3.S7.Models Page]</div>
     <div class="kanban-card kanban-card--static">[F3.S8.Tech Pack Layout]</div>
     <div class="kanban-card kanban-card--static">[F3.S9.Model Sheet Fixes]</div>
+    <div class="kanban-card kanban-card--static">[F3.S10.3D Performance]</div>
+    <div class="kanban-card kanban-card--static">[F5.S15.i18n / l10n]</div>
   </div>
 </div>
 
@@ -58,29 +58,29 @@ generated: 2026-07-07T07:38:59.387152
 | [F1.S2.Design System] | @alexandru.bejenari | 10d | 2026-05-25 | 2026-06-21 | Done |
 | [F1.S4.Login Flow] | @alexandru.bejenari | 5d | 2026-06-22 | 2026-07-05 | Done |
 | [F2.S5.Admin Console] | @alexandru.bejenari | 10d | 2026-07-06 | 2026-07-26 | Done |
-| [F2.S6.Overview Refactor] | @alexandru.bejenari | 5d | 2026-07-13 | 2026-08-02 | In Progress |
+| [F2.S6.Overview Refactor] | @alexandru.bejenari | 5d | 2026-07-13 | 2026-08-02 | Done |
 | [F3.S7.Models Page] | @alexandru.bejenari | 5d | 2026-08-03 | 2026-08-23 | Done |
 | [F3.S8.Tech Pack Layout] | @alexandru.bejenari | 5d | 2026-08-10 | 2026-08-30 | Done |
 | [F3.S9.Model Sheet Fixes] | @alexandru.bejenari | 2d | 2026-08-24 | 2026-09-06 | Done |
-| [F3.S10.3D Performance] | @alexandru.bejenari | 5d | 2026-09-07 | 2026-09-27 | In Progress |
+| [F3.S10.3D Performance] | @alexandru.bejenari | 5d | 2026-09-07 | 2026-09-27 | Done |
 | [F5.S14.Garment Configurator (T2.3)] | @alexandru.bejenari | 10d | 2026-11-09 | 2026-11-29 | Todo |
-| [F5.S15.i18n / l10n] | @alexandru.bejenari | 5d | 2026-11-16 | 2026-11-29 | In Progress |
+| [F5.S15.i18n / l10n] | @alexandru.bejenari | 5d | 2026-11-16 | 2026-11-29 | Done |
 
 ## LOE Summary
 
 | Metric | Value |
 | :--- | :--- |
 | Total Effort | 62.0d |
-| In Progress | 15.0d |
-| Completed | 37.0d |
-| Remaining | 25.0d |
+| In Progress | 0d |
+| Completed | 52.0d |
+| Remaining | 10.0d |
 
 ## Effort — Planned vs Done
 
 ```mermaid
 pie showData title Effort — Planned vs Done (person-days)
-    "Done" : 37.0
-    "Planned" : 25.0
+    "Done" : 52.0
+    "Planned" : 10.0
 ```
 
 ## Sprint Timeline
@@ -94,13 +94,13 @@ gantt
     (F1.S2.Design System) :done, 2026-05-25, 2026-06-21
     (F1.S4.Login Flow) :done, 2026-06-22, 2026-07-05
     (F2.S5.Admin Console) :done, 2026-07-06, 2026-07-26
-    (F2.S6.Overview Refactor) :active, 2026-07-13, 2026-08-02
+    (F2.S6.Overview Refactor) :done, 2026-07-13, 2026-08-02
     (F3.S7.Models Page) :done, 2026-08-03, 2026-08-23
     (F3.S8.Tech Pack Layout) :done, 2026-08-10, 2026-08-30
     (F3.S9.Model Sheet Fixes) :done, 2026-08-24, 2026-09-06
-    (F3.S10.3D Performance) :active, 2026-09-07, 2026-09-27
+    (F3.S10.3D Performance) :done, 2026-09-07, 2026-09-27
     (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
-    (F5.S15.i18n / l10n) :active, 2026-11-16, 2026-11-29
+    (F5.S15.i18n / l10n) :done, 2026-11-16, 2026-11-29
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
