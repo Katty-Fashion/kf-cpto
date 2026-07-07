@@ -26,8 +26,8 @@ sprint: S5
 | Metric | Value |
 | :--- | :--- |
 | Total effort | 52d |
-| Done | 2d |
-| Remaining | 50d |
+| Done | 0d |
+| Remaining | 52d |
 
 > Effort is person-days (`Nd`) as declared in `kanban.md`.
 > See [/metrics/loe.md](/metrics/loe.md) for semantics.
@@ -38,20 +38,29 @@ sprint: S5
 | :--- | :--- | :--- | :--- |
 | WP1 — AAS platform integration (digital infrastructure) | Mihai A. | — | Review |
 | T2.1 — Co-creation platform (Nuoform) | Alexandru Bejenari | — | Done |
-| T3.2 — Product Digital Twin (AAS model) | Eduard L | — | Done |
-| T3.2 — Process Digital Twin (Tecnomatix simulation) | Eduard L | — | Done |
+| T3.2 — Product Digital Twin (AAS model) | Răzvan Boița | — | Done |
+| T3.2 — Process Digital Twin (Tecnomatix simulation) | Eduard Modreanu | — | Done |
 | T2.4 — Capacity Planner: LMS Scheduler Backend | LMS | — | Done |
 | T2.4 — Capacity Planner: KF Planner UI | Alexandru Bejenari | 5d | Review |
 | T2.4 — Capacity Planner: KF ↔ LMS Integration | Alexandru Bejenari | 10d | Review |
-| T3.3 — IoT Monitoring: sensors deployment | Eduard Lazar | 5d | Review |
-| T2.3 — Supply Chain Digital Twin: risk modelling | Eduard Lazar | — | In Progress |
-| AAS import/export tooling (aas_export.py, import-demo.sh) | Eduard L | — | Done |
-| Order_3_Aas shell (8 submodels, cost + schedule) | Eduard L | — | Done |
+| T3.3 — IoT Monitoring: sensors deployment | Eduard Modreanu | 5d | Review |
+| T2.3 — Supply Chain Digital Twin: risk modelling | Eduard Lazăr | — | In Progress |
+| AAS import/export tooling (aas_export.py, import-demo.sh) | Răzvan Boița | — | Done |
+| Order_3_Aas shell (8 submodels, cost + schedule) | Răzvan Boița | — | Done |
 | Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise) | Alexandru Bejenari | — | Done |
 | OAuth2 auth-server public + per-client provisioning | Răzvan Boița | — | Done |
 | ALADIN WP2 RunSheet service (nginx + Traefik routing) | Răzvan Boița | — | Done |
 | Clarificare acces server R3 (Vangelis) | Paul Stanciuc |  | Done |
 | Clarificare format date platforma R3 | Alexandru Bejenari |  | Done |
+| Feature set pentru lansare (MVP) | Eduard Lazăr |  | Todo |
+| Ce este „Done" vs „Ready" pentru release | Eduard Lazăr |  | Todo |
+| Decizie Made2Flow (demo vs integrare reală) | Eduard Lazăr |  | Todo |
+| Review arhitectură | Răzvan Boița |  | Done |
+| Identificare gaps / incomplete features | Alexandru Bejenari |  | Done |
+| Sesiune demo produse (intern) | Eduard Lazăr |  | In Progress |
+| Pregătire feature flags (ascundere features incomplete) | Mihai A. |  | Todo |
+| Clarificare value proposition (perspectivă tehnică) | Eduard Lazăr |  | Todo |
+| Validare integrare end-to-end (expunere API Nuoform) | Răzvan Boița |  | Done |
 | Arhitectură multi-tenant (in place) | Eduard Modreanu |  | Done |
 | Separare date per client (in place) | Eduard Modreanu |  | Done |
 | Flow sistem (UI → AAS → backend) | Răzvan Boița |  | Done |
@@ -81,7 +90,7 @@ sprint: S5
 | Code quality / stability înainte de release | Mihai A. |  | Todo |
 | Suport tehnic post-launch | Eduard Lazăr |  | Todo |
 | Acces VPN + onboarding corect | Eduard Lazăr |  | Done |
-| Acces corect la organizații (login flow issues) | Eduard Lazar |  | In Progress |
+| Acces corect la organizații (login flow issues) | Eduard Modreanu |  | In Progress |
 | Conectivitate sisteme externe | Alexandru Bejenari |  | Todo |
 | Testare demo produse (clienți + testeri interni) | Eduard Lazăr |  | In Progress |
 | Sprint plan (tranziție către GTM) | Eduard Lazăr |  | Todo |
@@ -102,13 +111,15 @@ sprint: S5
 | Debug integration issues with LMS team | @tech-lead | 1d | Review |
 | Integration validation review | @tech-lead | 0.5d | Review |
 | M2F: finalise & confirm assumed KF-M2F shell structure | Eduard Lazăr / M2F | 2d | In Progress |
-| Export R3 AAS shells → move to Netcompany-hosted R3 platform | Eduard Lazăr / Netcompany | 3d | In Progress |
-| Share KF access for export to NetCompany | Eduard Lazăr | 1d | Done |
-| Share KF-M2F shell with M2F (so they build their own) | Eduard Lazăr | 1d | Done |
-| Connect + test M2F V2 API from new Nuoform | Alexandru Bejenari | 5d | In Progress |
+| Export R3 AAS shells → move to Netcompany-hosted R3 platform | Mihai A. | 3d | Todo |
+| Share KF access for export to NetCompany | Eduard Lazăr | 1d | Todo |
+| Share KF-M2F shell with M2F (so they build their own) | Mihai A. | 1d | Todo |
+| Connect + test M2F V2 API from new Nuoform | Alexandru Bejenari | 5d | Todo |
 | Re-point all connections to Netcompany-hosted R3 (go live) | Mihai A. | 3d | Todo |
 | Pilot KF demo recordings (based on revised Nuoform) | Eduard Lazăr | 3d | Todo |
 | State AI usage in R3 (declaration) | Eduard Lazăr | 1d | Todo |
+
+See task concepts: [/tasks/r3-aas/index.md](/tasks/r3-aas/index.md)
 
 ## Dependencies
 

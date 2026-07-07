@@ -44,6 +44,8 @@ sprint: S5
 | [F5.S14.Garment Configurator (T2.3)] | @alexandru.bejenari | 10d | Todo |
 | [F5.S15.i18n / l10n] | @alexandru.bejenari | 5d | Done |
 
+See task concepts: [/tasks/kf-fe-platform/index.md](/tasks/kf-fe-platform/index.md)
+
 ## Dependencies
 
 - [kf-be-platform](/projects/kf-be-platform.md)
