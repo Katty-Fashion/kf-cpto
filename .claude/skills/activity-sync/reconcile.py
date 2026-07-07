@@ -20,6 +20,7 @@ Phase 3 entry point:
 """
 from __future__ import annotations
 
+import fnmatch
 import subprocess
 import sys
 import os
@@ -47,6 +48,16 @@ REPOS_LOCAL_DIR = _REPO_ROOT / "repos-local"
 GIT_TIMEOUT_SECONDS = 60
 HTTP_TIMEOUT_SECONDS = 30  # bound GitHub REST calls (mirrors GIT_TIMEOUT_SECONDS discipline)
 GITHUB_API = "https://api.github.com"
+
+# Integration-branch globs: short-name fnmatch patterns that identify branches used as
+# non-default merge targets (off-default integration branches).  The INTEGRATION-BRANCH
+# SET built at runtime = {default_branch} ∪ {branches matching any of these globs}.
+# The default branch is ALWAYS a member regardless of glob match.
+# Config lives here and only here — NO hardcoded repo or branch names in logic paths
+# (CLAUDE.md anti-pattern: no "kf-platform", no "claude-migration", no bare "uat" outside
+# this constant).  Add or remove patterns here to adjust what counts as an integration
+# branch across all tracked repos.
+INTEGRATION_BRANCH_GLOBS: list[str] = ["uat", "work", "*-migration"]
 
 # Closing-keyword regex: matches the 9 GitHub closing keywords followed by #N.
 # Same-repo only — cross-repo OWNER/REPO#N deliberately not matched (security:
@@ -324,6 +335,24 @@ def _list_remote_branches(repo_path: str, default_branch: str) -> list[str]:
     return sorted(branches)
 
 
+def _integration_branches(repo_path: str, default_branch: str) -> list[str]:
+    """Return the integration-branch set for a repo: default branch plus any locally-known
+    remote branches whose short name matches a glob in INTEGRATION_BRANCH_GLOBS.
+
+    The set is built by reusing _list_remote_branches (single source of remote-branch truth;
+    no second for-each-ref call).  _list_remote_branches already excludes HEAD and
+    default_branch, so we union the glob-matched extras onto {default_branch} explicitly.
+
+    Returns: [default_branch, ...sorted glob-matched branches...]  (default first, de-duped).
+    """
+    extras = [
+        name
+        for name in _list_remote_branches(repo_path, default_branch)
+        if any(fnmatch.fnmatch(name, g) for g in INTEGRATION_BRANCH_GLOBS)
+    ]
+    return [default_branch] + sorted(set(extras))
+
+
 # ---------------------------------------------------------------------------
 # Reconciliation engine
 # ---------------------------------------------------------------------------
@@ -360,23 +389,37 @@ def reconcile_repo(record: dict, headers: dict) -> list[Proposal]:
     if not tasks:
         return []
 
+    # Integration-branch set: default branch plus any branches matching INTEGRATION_BRANCH_GLOBS.
+    # Computed once; reused in both Tier-1 (any-branch reachability) and Tier-2 (exclusion).
+    integration_branches = _integration_branches(repo_path, default_branch)
+
     # Per-task candidate list: (proposed_status, tier, signal, url)
     proposals: dict[str, list] = {}
 
-    # --- Tier-1: merged PRs reachable from origin/<default> ---
+    # --- Tier-1: merged PRs reachable from any branch in the integration set ---
     # This block runs before Tier-2 so both feeds the same proposals dict.
     # Conflict resolution (most_advanced) then picks Done over In Progress.
+    # Tier-1 short-circuits on the first True from the integration set (any-branch semantics):
+    # a merge reached via an off-default integration branch (e.g. uat/*-migration) is Done,
+    # not In Progress. Conservative gate preserved: only True counts; False or None skips.
     merged_prs = _list_merged_prs(ORG, repo_name, headers)
     for pr in merged_prs:
         sha = pr.get("merge_commit_sha")
         if not sha:
             # Pitfall 1: merge_commit_sha absent — conservative skip (no git call)
             continue
-        # Reachability gate (RECON-08): covers force-push, rebase, revert-of-merge
-        # merge_commit_sha passed via arg-list _run_git; never shell-interpolated (T-02-07)
-        reachable = _is_merge_reachable(repo_path, sha, default_branch)
-        if reachable is not True:
-            # False (not ancestor) or None (git error) — skip conservatively
+        # Reachability gate (RECON-08): covers force-push, rebase, revert-of-merge.
+        # Iterate integration set; short-circuit on first True.
+        # merge_commit_sha and branch values flow via arg-list _run_git; never
+        # shell-interpolated (T-02-07).
+        reachable = False
+        for _ib in integration_branches:
+            _r = _is_merge_reachable(repo_path, sha, _ib)
+            if _r is True:
+                reachable = True
+                break
+        if not reachable:
+            # No integration branch confirmed reachability — skip conservatively
             continue
 
         # WR-03: read number defensively like every other field; one malformed
@@ -408,8 +451,17 @@ def reconcile_repo(record: dict, headers: dict) -> list[Proposal]:
                         )
 
     # --- Tier-2: active remote branches ---
-    # Pure-local git (no API); no commit enumeration (RECON-06)
-    remote_branches = _list_remote_branches(repo_path, default_branch)
+    # Pure-local git (no API); no commit enumeration (RECON-06).
+    # Filter out every branch in the integration set before the task-match loop:
+    # integration branches (default, uat, work, *-migration) are merge targets, not
+    # active-work signals — they must never demote finished work to In Progress.
+    # _list_remote_branches already excludes default_branch; we additionally exclude
+    # the glob-matched integration branches here.
+    _integration_set = set(integration_branches)
+    remote_branches = [
+        b for b in _list_remote_branches(repo_path, default_branch)
+        if b not in _integration_set
+    ]
     for branch in remote_branches:
         for task in tasks:
             if task_matches_signal(task["task"], branch):
