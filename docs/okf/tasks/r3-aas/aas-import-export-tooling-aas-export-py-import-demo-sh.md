@@ -2,7 +2,7 @@
 type: Task
 title: AAS import/export tooling (aas_export.py, import-demo.sh)
 status: Done
-assignee: Răzvan Boița
+assignee: Eduard L
 effort: 0d
 sprint: S5
 timestamp: 2026-07-02
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # AAS import/export tooling (aas_export.py, import-demo.sh)
 
-**Status:** Done | **Effort:** 0d | **Assignee:** Răzvan Boița
+**Status:** Done | **Effort:** 0d | **Assignee:** Eduard L
 
 ## Links
 

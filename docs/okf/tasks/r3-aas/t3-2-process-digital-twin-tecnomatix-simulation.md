@@ -2,7 +2,7 @@
 type: Task
 title: T3.2 — Process Digital Twin (Tecnomatix simulation)
 status: Done
-assignee: Eduard Modreanu
+assignee: Eduard L
 effort: 0d
 sprint: S5
 timestamp: 2026-07-02
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # T3.2 — Process Digital Twin (Tecnomatix simulation)
 
-**Status:** Done | **Effort:** 0d | **Assignee:** Eduard Modreanu
+**Status:** Done | **Effort:** 0d | **Assignee:** Eduard L
 
 ## Links
 
