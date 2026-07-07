@@ -162,12 +162,16 @@ graph TD
         B["kf-fe-platform/kanban.md<br/>MermaidJS Kanban"]
         C["kf-be-platform/kanban.md<br/>MermaidJS Kanban"]
         D["R3-AAS/kanban.md<br/>MermaidJS Kanban"]
+        E["ai-rise-options/kanban.md<br/>MermaidJS Kanban"]
+        F["tech_brainstorming/kanban.md<br/>MermaidJS Kanban"]
     end
 
     A -->|push trigger| GHA
     B -->|push trigger| GHA
     C -->|push trigger| GHA
     D -->|push trigger| GHA
+    E -->|push trigger| GHA
+    F -->|push trigger| GHA
 
     subgraph GHA["GitHub Actions"]
         DISC["discover.py<br/>GitHub API scan"]

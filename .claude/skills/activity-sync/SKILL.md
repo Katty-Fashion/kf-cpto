@@ -71,6 +71,13 @@ What it does:
   - Reverted/unreachable merges produce no Done entry
 - Mines [TIER-2] signals via local git: active remote branches -> In Progress (Todo only)
   - Pure-local `git for-each-ref refs/remotes/origin/` — no API call for branch detection
+- [NOTE] Both [TIER-1] Done reachability and [TIER-2] In Progress exclusion are evaluated
+  against an INTEGRATION-BRANCH SET (the repo's default branch plus any branches matching
+  `INTEGRATION_BRANCH_GLOBS`: `uat`, `work`, `*-migration`), not the default branch alone.
+  Work merged into an off-default integration branch is reported Done. Integration branches
+  never trigger a [TIER-2] In Progress signal — they are excluded from the active-branch scan
+  so finished work is not demoted. Config lives solely in `INTEGRATION_BRANCH_GLOBS` in
+  `reconcile.py` — no per-repo override map, no hardcoded repo or branch names in logic.
 - Surfaces [TIER-3] context: any tracked repo may carry a GSD `.planning/` folder;
   when `.planning/STATE.md` exists its milestone/phase/plan progress is printed as an
   `[INFO]` line. Informational only (read-only invariant preserved) — mapping GSD
