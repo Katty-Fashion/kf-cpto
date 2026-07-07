@@ -20,6 +20,12 @@
   var STATUSES = ["Todo", "In Progress", "Review", "Done"];
   var EFFORT_RE = /^\d+(\.\d+)?d$/;
   var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  var PLACEHOLDER_RE = /^(—|-|tbd|n\/a)$/i;  // "no value" tokens in curated boards
+  // Column-label -> canonical field (mirrors utils._COLUMN_ALIASES).
+  var COLUMN_ALIASES = {
+    task: "task", assignee: "assignee", owner: "assignee", effort: "effort",
+    start: "start", end: "end", deadline: "end", status: "status",
+  };
   // Editable frontmatter fields for simple direct repos (others preserved as-is).
   var META_FIELDS = [
     ["description", "text"], ["sprint", "text"],
@@ -33,8 +39,73 @@
   function mdCell(s) {
     return String(s == null ? "" : s).replace(/\r?\n/g, " ").replace(/\|/g, "/").trim();
   }
-  function effortValid(s) { return s === "" || EFFORT_RE.test(s); }
-  function dateValid(s) { return s === "" || DATE_RE.test(s); }
+  function effortValid(s) { return s === "" || PLACEHOLDER_RE.test(s) || EFFORT_RE.test(s); }
+  function dateValid(s) { return s === "" || PLACEHOLDER_RE.test(s) || DATE_RE.test(s); }
+
+  // ---- kanban table grammar (JS port of utils; for surgical body edits) ----
+  function isTableRow(line) { return line.trim().indexOf("|") === 0; }
+  function isSepRow(line) {
+    var s = line.trim();
+    return !!s && s.indexOf("|") === 0 && /^[|\-: ]+$/.test(s) && s.indexOf("-") >= 0;
+  }
+  function splitRow(line) {
+    var parts = line.trim().split("|");
+    if (parts.length && parts[0].trim() === "") parts = parts.slice(1);
+    if (parts.length && parts[parts.length - 1].trim() === "") parts = parts.slice(0, -1);
+    return parts.map(function (p) { return p.trim(); });
+  }
+  function mapColumns(headerCells) {
+    var cm = {};
+    headerCells.forEach(function (c, i) {
+      var f = COLUMN_ALIASES[c.trim().toLowerCase()];
+      if (f && !(f in cm)) cm[f] = i;
+    });
+    return cm;
+  }
+  // Enumerate every task row: {lineNo, colmap, cells, task}. Same grammar as
+  // utils.enumerate_kanban_rows so board.tasks (from the aggregator) line up.
+  function enumRows(content) {
+    var lines = content.split("\n"), rows = [], i = 0;
+    while (i < lines.length) {
+      if (isTableRow(lines[i]) && i + 1 < lines.length && isSepRow(lines[i + 1])) {
+        var colmap = mapColumns(splitRow(lines[i]));
+        i += 2;
+        if (!("task" in colmap)) { while (i < lines.length && isTableRow(lines[i])) i++; continue; }
+        while (i < lines.length && isTableRow(lines[i])) {
+          var cells = splitRow(lines[i]);
+          var name = colmap.task < cells.length ? cells[colmap.task] : "";
+          if (name) rows.push({ lineNo: i, colmap: colmap, cells: cells, task: name });
+          i++;
+        }
+      } else { i++; }
+    }
+    return rows;
+  }
+  // Surgically patch edited tasks into a file, preserving structure/prose.
+  // `edits` = [{orig, fields:{field:value}}]; matches by original task name in
+  // file order (occurrence-counted). Returns {content, unmatched:[names]}.
+  function patchTasks(content, edits) {
+    var lines = content.split("\n");
+    var live = enumRows(content);
+    var used = {}, unmatched = [];
+    edits.forEach(function (ed) {
+      var row = null;
+      for (var k = 0; k < live.length; k++) {
+        if (!used[live[k].lineNo] && live[k].task === ed.orig) { row = live[k]; break; }
+      }
+      if (!row) { unmatched.push(ed.orig); return; }
+      used[row.lineNo] = true;
+      var cells = row.cells.slice();
+      Object.keys(ed.fields).forEach(function (f) {
+        var idx = row.colmap[f];
+        if (idx === undefined) return;            // column absent — never invent one
+        while (cells.length <= idx) cells.push("");
+        cells[idx] = mdCell(ed.fields[f]);
+      });
+      lines[row.lineNo] = "| " + cells.join(" | ") + " |";
+    });
+    return { content: lines.join("\n"), unmatched: unmatched };
+  }
 
   // DSL validation — returns a list of {row, task, errs[]} for invalid rows.
   function validateTask(t) {
@@ -149,6 +220,7 @@
         buildTaskTable: buildTaskTable, buildKanbanMd: buildKanbanMd,
         buildPlanYaml: buildPlanYaml, STATUSES: STATUSES,
         validateMeta: validateMeta, buildFrontmatter: buildFrontmatter,
+        enumRows: enumRows, patchTasks: patchTasks, splitRow: splitRow,
       };
     }
     return;
@@ -233,9 +305,18 @@
   function boardFor(name) {
     return BOARDS.projects.filter(function (p) { return p.project === name; })[0];
   }
+  var ALL_FIELDS = ["task", "assignee", "effort", "start", "end", "status"];
   function cloneTask(t) {
-    return { task: t.task || "", assignee: t.assignee || "", effort: t.effort || "",
-      start: t.start || "", end: t.end || "", status: t.status || "Todo" };
+    // Editable copy that remembers its source identity + which columns its own
+    // table has, so a rich-board save can patch surgically (originals via _orig).
+    var fields = t.fields || ALL_FIELDS;
+    return {
+      task: t.task || "", assignee: t.assignee || "", effort: t.effort || "",
+      start: t.start || "", end: t.end || "", status: t.status || "Todo",
+      _orig: t.task || "", _fields: fields, _section: t.section || "",
+      _origValues: { task: t.task || "", assignee: t.assignee || "", effort: t.effort || "",
+        start: t.start || "", end: t.end || "", status: t.status || "Todo" },
+    };
   }
   function seedTasks(board) {
     if (board.generated && PLAN) {
@@ -274,28 +355,46 @@
   function renderRows() {
     var tbody = el("kb-rows");
     tbody.innerHTML = "";
+    var rich = state.mode === "fm";
+    // In rich mode dates render as text (values may be "—" or ISO, mixed).
+    var dateType = rich ? "text" : "date";
+    var lastSection = null;
     state.tasks.forEach(function (t, idx) {
+      if (rich && t._section !== lastSection) {
+        lastSection = t._section;
+        var htr = h("tr");
+        var htd = h("td", { class: "kb-section-row" });
+        htd.setAttribute("colspan", "7");
+        htd.textContent = t._section || "(no section)";
+        htr.appendChild(htd);
+        tbody.appendChild(htr);
+      }
       var tr = h("tr");
-      tr.appendChild(cellInput(t, "task", idx, "text"));
-      tr.appendChild(cellInput(t, "assignee", idx, "text"));
-      tr.appendChild(cellInput(t, "effort", idx, "text"));
-      tr.appendChild(cellInput(t, "start", idx, "date"));
-      tr.appendChild(cellInput(t, "end", idx, "date"));
+      tr.appendChild(cellInput(t, "task", idx, "text", rich));
+      tr.appendChild(cellInput(t, "assignee", idx, "text", rich));
+      tr.appendChild(cellInput(t, "effort", idx, "text", rich));
+      tr.appendChild(cellInput(t, "start", idx, dateType, rich));
+      tr.appendChild(cellInput(t, "end", idx, dateType, rich));
       tr.appendChild(statusCell(t, idx));
-      var rm = h("button", { class: "kb-rm", type: "button", text: "✕", title: "remove" });
-      rm.onclick = function () { state.tasks.splice(idx, 1); renderRows(); refresh(); };
-      var td = h("td"); td.appendChild(rm); tr.appendChild(td);
+      var td = h("td");
+      if (!rich) { // simple/plan boards: rows are freely addable/removable
+        var rm = h("button", { class: "kb-rm", type: "button", text: "✕", title: "remove" });
+        rm.onclick = function () { state.tasks.splice(idx, 1); renderRows(); refresh(); };
+        td.appendChild(rm);
+      }
+      tr.appendChild(td);
       tbody.appendChild(tr);
     });
   }
-  function cellInput(t, field, idx, type) {
+  function cellInput(t, field, idx, type, rich) {
     var td = h("td");
     var inp = h("input", { type: type, value: t[field] || "" });
     if (field === "effort") inp.placeholder = "3d";
-    inp.oninput = function () {
-      state.tasks[idx][field] = inp.value;
-      refresh();
-    };
+    // Rich boards: a field with no column in this task's own table can't be
+    // stored, so show it disabled rather than pretending it saves.
+    var available = !rich || (t._fields && t._fields.indexOf(field) >= 0);
+    if (!available) { inp.disabled = true; inp.title = "This task's table has no " + field + " column"; }
+    inp.oninput = function () { state.tasks[idx][field] = inp.value; refresh(); };
     td.appendChild(inp);
     return td;
   }
@@ -311,10 +410,14 @@
 
   // ---- live preview + validation ------------------------------------------
   function markFields() {
-    var rows = el("kb-rows").children;
+    // Task rows only (skip interspersed section-header rows in rich mode).
+    var taskRows = [];
+    Array.prototype.forEach.call(el("kb-rows").children, function (tr) {
+      if (tr.querySelector("input, select")) taskRows.push(tr);
+    });
     state.tasks.forEach(function (t, i) {
-      var tr = rows[i]; if (!tr) return;
-      var cells = tr.children; // task,assignee,effort,start,end,status,rm
+      var tr = taskRows[i]; if (!tr) return;
+      var cells = tr.children; // task,assignee,effort,start,end,status,(rm)
       function mark(ci, bad) {
         var inp = cells[ci] && cells[ci].firstChild;
         if (inp) inp.classList.toggle("kb-bad", !!bad);
@@ -326,11 +429,26 @@
     });
   }
 
+  // Which tasks changed vs their original file values (rich-board surgical save).
+  function computeEdits() {
+    var edits = [];
+    state.tasks.forEach(function (t) {
+      var changed = {};
+      (t._fields || ALL_FIELDS).forEach(function (f) {
+        var now = String(t[f] == null ? "" : t[f]);
+        var was = String((t._origValues && t._origValues[f]) || "");
+        if (now !== was) changed[f] = now;
+      });
+      if (Object.keys(changed).length) edits.push({ orig: t._orig, fields: changed, task: t.task });
+    });
+    return edits;
+  }
+
   function refresh() {
     var board = state.board;
     var isFm = state.mode === "fm";
     var metaErrs = validateMeta(effectiveMeta());
-    var problems = isFm ? [] : validateAll(state.tasks);
+    var problems = validateAll(state.tasks); // placeholder-tolerant; fm included
     markFields();
 
     // validation panel — meta errors count in every mode
@@ -348,7 +466,7 @@
     } else {
       panel.className = "kb-validation kb-valid";
       panel.textContent = isFm
-        ? "✓ Valid frontmatter — clean YAML, no typos possible."
+        ? "✓ Valid — edits map cleanly; existing tasks preserved."
         : "✓ Valid — " + state.tasks.length + " task(s) conform to the kanban DSL.";
     }
 
@@ -361,11 +479,22 @@
         "docs/_data/migration_plan.yml). After committing, run " +
         "`python scripts/generate_kanban.py --apply` to split it back to the repos.";
     } else if (isFm) {
-      out = buildFrontmatter(board.project, effectiveMeta(), jsyaml.dump);
+      var fmBlock = buildFrontmatter(board.project, effectiveMeta(), jsyaml.dump);
+      var edits = computeEdits();
+      state.pendingFm = fmBlock;
+      state.pendingEdits = edits;
+      var summary = edits.length
+        ? edits.map(function (e) {
+            return "• " + e.task + " → " + Object.keys(e.fields).map(function (f) {
+              return f + "=" + (e.fields[f] || "(empty)");
+            }).join(", ");
+          }).join("\n")
+        : "(no task edits yet — change any Status/Assignee/Effort/dates above)";
+      out = fmBlock + "\n\n--- task edits (patched in place, body preserved) ---\n" + summary;
       target = board.edit_url;
-      note = "Multi-section board → this replaces ONLY the frontmatter. In the GitHub " +
-        "editor, select from the first '---' through the second '---' (inclusive), " +
-        "paste, and commit. Body sections stay untouched.";
+      note = "Multi-section board → commits the frontmatter + your task edits, patched " +
+        "row-by-row into the live kanban.md. Sections, prose, and untouched rows are " +
+        "preserved exactly. Adding/removing rows: use the raw editor or kanban-groom.";
     } else {
       out = buildKanbanMd(board.project, effectiveMeta(), state.tasks, jsyaml.dump);
       target = board.edit_url;
@@ -378,8 +507,12 @@
     var btn = el("kb-commit");
     btn.disabled = errCount > 0;
     btn.title = errCount ? "Fix the validation errors first" : "";
+    // Copy fallback: full file for simple/plan; frontmatter block for rich
+    // (rich task edits need the surgical save — no meaningful paste form).
+    var copyText = isFm ? state.pendingFm : out;
+    btn.style.display = isFm ? "none" : "";  // rich edits go through direct save
     btn.onclick = function () {
-      navigator.clipboard.writeText(out).then(function () {
+      navigator.clipboard.writeText(copyText).then(function () {
         window.open(target, "_blank", "noopener");
         el("kb-handoff-hint").style.display = "";
       });
@@ -423,8 +556,20 @@
       prepare = function (file) { return out; };
     } else if (state.mode === "fm") {
       repo = board.project; path = "kanban.md"; branch = board.branch || "main";
-      message = "chore(kanban): frontmatter update via kanban-builder";
-      prepare = function (file) { return spliceFrontmatter(file, out); };
+      var n = (state.pendingEdits || []).length;
+      message = "chore(kanban): " + (n ? n + " task edit(s) + " : "") +
+        "frontmatter via kanban-builder";
+      prepare = function (file) {
+        // Surgical: patch edited rows in the live body, then splice frontmatter.
+        var res = patchTasks(file, state.pendingEdits || []);
+        if (res.unmatched.length) {
+          throw new Error("Couldn't locate " + res.unmatched.length +
+            " task(s) in the current file (it changed since load): " +
+            res.unmatched.slice(0, 3).join("; ") +
+            (res.unmatched.length > 3 ? "…" : "") + ". Reload the page and retry.");
+        }
+        return spliceFrontmatter(res.content, state.pendingFm);
+      };
     } else {
       repo = board.project; path = "kanban.md"; branch = board.branch || "main";
       message = "chore(kanban): update via kanban-builder";
@@ -468,17 +613,18 @@
 
     var rich = !board.generated && !board.simple_board;
     state.mode = board.generated ? "plan" : (rich ? "fm" : "kanban");
-    state.tasks = rich ? [] : seedTasks(board);
+    state.tasks = seedTasks(board);   // rich boards now show their real tasks too
     state.meta = {}; // overrides only; base stays board.meta
 
-    // Rich boards: frontmatter editor only — task tables live in the body
-    // (edited via raw editor or the kanban-groom skill).
-    var taskUi = rich ? "none" : "";
-    el("kb-tasks-h3").style.display = taskUi;
-    el("kb-table").style.display = taskUi;
-    el("kb-add-p").style.display = taskUi;
+    // Rich boards: edit existing tasks in place (grouped by section) + the
+    // frontmatter. Adding/removing rows and rebuilding the body stays with the
+    // raw editor / kanban-groom, since multi-section layout can't be inferred.
+    el("kb-tasks-h3").style.display = "";
+    el("kb-table").style.display = "";
+    el("kb-tasks-h3").textContent = rich ? "Tasks (edit in place)" : "Tasks";
+    el("kb-add-p").style.display = rich ? "none" : "";
     el("kb-preview-h3").innerHTML = rich
-      ? "Generated <code>frontmatter</code> (preview)"
+      ? "What will be committed (frontmatter + edited rows)"
       : "Generated <code>kanban.md</code> (preview)";
     if (rich) {
       el("kb-fallback").style.display = "";
@@ -488,7 +634,7 @@
     el("kb-editor").style.display = "";
     el("kb-badge").textContent = board.generated
       ? "generated → plan-of-record"
-      : (rich ? "multi-section → frontmatter editor" : "kanban.md");
+      : (rich ? "multi-section → edit tasks in place" : "kanban.md");
     renderMeta();
     renderRows();
     refresh();

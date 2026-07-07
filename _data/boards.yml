@@ -1,4 +1,4 @@
-generated_at: '2026-07-07T07:23:44Z'
+generated_at: '2026-07-07T07:38:59Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -36,66 +36,132 @@ projects:
     start: ''
     end: ''
     status: Review
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: T2.1 — Co-creation platform (Nuoform)
     assignee: Alexandru Bejenari
     effort: —
     start: ''
     end: ''
     status: Done
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: T3.2 — Product Digital Twin (AAS model)
     assignee: Eduard L
     effort: —
     start: ''
     end: ''
     status: Done
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: T3.2 — Process Digital Twin (Tecnomatix simulation)
     assignee: Eduard L
     effort: —
     start: ''
     end: ''
     status: Done
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: 'T2.4 — Capacity Planner: LMS Scheduler Backend'
     assignee: LMS
     effort: —
     start: ''
     end: ''
     status: Done
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: 'T2.4 — Capacity Planner: KF Planner UI'
     assignee: Alexandru Bejenari
     effort: 5d
     start: ''
     end: ''
     status: Review
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: 'T2.4 — Capacity Planner: KF ↔ LMS Integration'
     assignee: Alexandru Bejenari
     effort: 10d
     start: ''
     end: ''
     status: Review
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: 'T3.3 — IoT Monitoring: sensors deployment'
     assignee: Eduard Lazar
     effort: 5d
     start: ''
     end: ''
     status: Review
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: 'T2.3 — Supply Chain Digital Twin: risk modelling'
     assignee: Eduard Lazar
     effort: —
     start: ''
     end: ''
     status: In Progress
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: AAS import/export tooling (aas_export.py, import-demo.sh)
     assignee: Eduard L
     effort: —
     start: ''
     end: ''
     status: Done
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: Order_3_Aas shell (8 submodels, cost + schedule)
     assignee: Eduard L
     effort: —
     start: ''
     end: ''
     status: Done
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: 'Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS
       re-optimise)'
     assignee: Alexandru Bejenari
@@ -103,372 +169,735 @@ projects:
     start: ''
     end: ''
     status: Done
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: OAuth2 auth-server public + per-client provisioning
     assignee: Răzvan Boița
     effort: —
     start: ''
     end: ''
     status: Done
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: ALADIN WP2 RunSheet service (nginx + Traefik routing)
     assignee: Răzvan Boița
     effort: —
     start: ''
     end: ''
     status: Done
+    section: Status General M36 — Program Deliverables
+    fields:
+    - task
+    - assignee
+    - effort
+    - status
   - task: Clarificare acces server R3 (Vangelis)
     assignee: Paul Stanciuc
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: BLOCKERE ACTIVE
+    fields:
+    - task
+    - assignee
+    - status
   - task: Clarificare format date platforma R3
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: BLOCKERE ACTIVE
+    fields:
+    - task
+    - assignee
+    - status
   - task: Arhitectură multi-tenant (in place)
     assignee: Eduard Modreanu
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Definire
+    fields:
+    - task
+    - assignee
+    - status
   - task: Separare date per client (in place)
     assignee: Eduard Modreanu
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Definire
+    fields:
+    - task
+    - assignee
+    - status
   - task: Flow sistem (UI → AAS → backend)
     assignee: Răzvan Boița
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Clarificare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Integrare între sisteme (Katty / LMS)
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
     status: Review
+    section: Validare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Multiple tipuri AAS → standardizare
     assignee: Răzvan Boița
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Analiză
+    fields:
+    - task
+    - assignee
+    - status
   - task: Layout simplificat pilot (stații + flux + senzori)
     assignee: Eduard Lazăr / Paul Stanciuc
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Creare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Integrare LMS (AAS extern)
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ~1 lună
     status: Review
+    section: Integrare
+    fields:
+    - task
+    - assignee
+    - end
+    - status
   - task: Sketch → JSON → sistem
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: —
     status: Done
+    section: Integrare
+    fields:
+    - task
+    - assignee
+    - end
+    - status
   - task: LMS specs + credentials
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Verificare
+    fields:
+    - task
+    - assignee
+    - status
   - task: UI flow (parțial complet)
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
     status: Review
+    section: Finalizare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Backend alignment (după modificări Răzvan)
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: Continuare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Bug-uri identificate în sistem
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: Fixuri
+    fields:
+    - task
+    - assignee
+    - status
   - task: Vizualizare date / UI
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Îmbunătățiri
+    fields:
+    - task
+    - assignee
+    - status
   - task: Deploy AAS în Cloud (hosting)
     assignee: Răzvan Boița / Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Deploy
+    fields:
+    - task
+    - assignee
+    - status
   - task: Clarificare format date pentru platforma R3
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Clarificare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Instalare senzor 3 (poziție cutie/flux materiale) — T3.3
     assignee: Eduard Lazăr / Julia
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: Clarificare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Board central Kanban – single source of truth
     assignee: Paul Stanciuc
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Setup
+    fields:
+    - task
+    - assignee
+    - status
   - task: Task-uri ↔ Work Packages (WP mapping)
     assignee: Paul Stanciuc
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Aliniere
+    fields:
+    - task
+    - assignee
+    - status
   - task: Naming convention pentru task-uri (namespace per proiect)
     assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: Organizare & Standardizare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Evitarea dublării task-urilor între tools
     assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: Organizare & Standardizare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Reprezentare Gantt (timeline / corelare temporală)
     assignee: Paul Stanciuc
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Implementare
+    fields:
+    - task
+    - assignee
+    - status
   - task: GitHub Actions pentru sync task-uri
     assignee: Paul Stanciuc
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Automatizare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Generare automată status / reports
     assignee: Paul Stanciuc
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Automatizare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Pipeline CI/CD (necesar pentru GTM)
     assignee: Răzvan Boița
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: Definire
+    fields:
+    - task
+    - assignee
+    - status
   - task: Feature flags
     assignee: Mihai A.
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: Implementare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Telemetrie (monitorizare)
     assignee: Mihai A.
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: Adăugare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Code quality / stability înainte de release
     assignee: Mihai A.
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: Validare
+    fields:
+    - task
+    - assignee
+    - status
   - task: Suport tehnic post-launch
     assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: Pregătire
+    fields:
+    - task
+    - assignee
+    - status
   - task: Acces VPN + onboarding corect
     assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: 6. Testing & Access
+    fields:
+    - task
+    - assignee
+    - status
   - task: Acces corect la organizații (login flow issues)
     assignee: Eduard Lazar
     effort: ''
     start: ''
     end: ''
     status: In Progress
+    section: 6. Testing & Access
+    fields:
+    - task
+    - assignee
+    - status
   - task: Conectivitate sisteme externe
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: 6. Testing & Access
+    fields:
+    - task
+    - assignee
+    - status
   - task: Testare demo produse (clienți + testeri interni)
     assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: In Progress
+    section: 6. Testing & Access
+    fields:
+    - task
+    - assignee
+    - status
   - task: Sprint plan (tranziție către GTM)
     assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: 8. Reporting & Planning
+    fields:
+    - task
+    - assignee
+    - status
   - task: Corelare Sprint tasks ↔ Work Packages
     assignee: Paul Stanciuc
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: 8. Reporting & Planning
+    fields:
+    - task
+    - assignee
+    - status
   - task: Task-uri cu timeline (start/end)
     assignee: Paul Stanciuc
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: 8. Reporting & Planning
+    fields:
+    - task
+    - assignee
+    - status
   - task: Rapoarte săptămânale (nu daily)
     assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: 8. Reporting & Planning
+    fields:
+    - task
+    - assignee
+    - status
   - task: Gantt / timeline pentru progres
     assignee: Paul Stanciuc
     effort: ''
     start: ''
     end: ''
     status: Done
+    section: 8. Reporting & Planning
+    fields:
+    - task
+    - assignee
+    - status
   - task: Landing page (claritate produs)
     assignee: Alexandru Bejenari
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: 9. Product Support
+    fields:
+    - task
+    - assignee
+    - status
   - task: Demo / prezentare produs
     assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: In Progress
+    section: 9. Product Support
+    fields:
+    - task
+    - assignee
+    - status
   - task: Definire tehnică monetizare (SaaS readiness)
     assignee: Mihai A.
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: 9. Product Support
+    fields:
+    - task
+    - assignee
+    - status
   - task: Input pentru CRM / pipeline (structură tehnică)
     assignee: Eduard Lazăr
     effort: ''
     start: ''
     end: ''
     status: Todo
+    section: 9. Product Support
+    fields:
+    - task
+    - assignee
+    - status
   - task: Implement scheduling request endpoint (KF → LMS)
     assignee: '@backend'
     effort: 2d
     start: '2026-06-29'
     end: '2026-07-10'
     status: Review
+    section: Tasks — Sprint S2 (16 March → 03 April 2026)
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Implement scheduler response parser
     assignee: '@backend'
     effort: 2d
     start: '2026-06-29'
     end: '2026-07-10'
     status: Review
+    section: Tasks — Sprint S2 (16 March → 03 April 2026)
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Integrate scheduling results with planner UI
     assignee: '@frontend'
     effort: 3d
     start: '2026-06-29'
     end: '2026-07-10'
     status: Review
+    section: Tasks — Sprint S2 (16 March → 03 April 2026)
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Implement planner visualization improvements (capacity / gaps)
     assignee: '@frontend'
     effort: 2d
     start: '2026-06-29'
     end: '2026-07-10'
     status: Review
+    section: Tasks — Sprint S2 (16 March → 03 April 2026)
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Validate suitability constraints and scheduling logic
     assignee: '@backend'
     effort: 2d
     start: '2026-06-29'
     end: '2026-07-10'
     status: Review
+    section: Tasks — Sprint S2 (16 March → 03 April 2026)
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Run first scheduling tests with real production data
     assignee: '@tech-lead'
     effort: 1d
     start: '2026-06-29'
     end: '2026-07-10'
     status: Review
+    section: Tasks — Sprint S2 (16 March → 03 April 2026)
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Debug integration issues with LMS team
     assignee: '@tech-lead'
     effort: 1d
     start: '2026-06-29'
     end: '2026-07-10'
     status: Review
+    section: Tasks — Sprint S2 (16 March → 03 April 2026)
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Integration validation review
     assignee: '@tech-lead'
     effort: 0.5d
     start: '2026-06-29'
     end: '2026-07-10'
     status: Review
+    section: Tasks — Sprint S2 (16 March → 03 April 2026)
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: 'M2F: finalise & confirm assumed KF-M2F shell structure'
     assignee: Eduard Lazăr / M2F
     effort: 2d
     start: '2026-06-29'
     end: '2026-07-10'
     status: In Progress
+    section: 10. Outstanding — R3 Handover, M2F & Pilot
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Export R3 AAS shells → move to Netcompany-hosted R3 platform
     assignee: Eduard Lazăr / Netcompany
     effort: 3d
     start: '2026-07-13'
     end: '2026-07-17'
     status: In Progress
+    section: 10. Outstanding — R3 Handover, M2F & Pilot
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Share KF access for export to NetCompany
     assignee: Eduard Lazăr
     effort: 1d
     start: '2026-07-07'
     end: '2026-07-07'
     status: Done
+    section: 10. Outstanding — R3 Handover, M2F & Pilot
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Share KF-M2F shell with M2F (so they build their own)
     assignee: Eduard Lazăr
     effort: 1d
     start: '2026-07-13'
     end: '2026-07-14'
     status: Done
+    section: 10. Outstanding — R3 Handover, M2F & Pilot
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Connect + test M2F V2 API from new Nuoform
     assignee: Alexandru Bejenari
     effort: 5d
     start: '2026-07-20'
     end: '2026-07-24'
     status: In Progress
+    section: 10. Outstanding — R3 Handover, M2F & Pilot
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Re-point all connections to Netcompany-hosted R3 (go live)
     assignee: Mihai A.
     effort: 3d
     start: '2026-07-27'
     end: '2026-07-31'
     status: Todo
+    section: 10. Outstanding — R3 Handover, M2F & Pilot
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: Pilot KF demo recordings (based on revised Nuoform)
     assignee: Eduard Lazăr
     effort: 3d
     start: '2026-08-03'
     end: '2026-08-05'
     status: Todo
+    section: 10. Outstanding — R3 Handover, M2F & Pilot
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: State AI usage in R3 (declaration)
     assignee: Eduard Lazăr
     effort: 1d
     start: '2026-07-16'
     end: '2026-07-17'
     status: Todo
+    section: 10. Outstanding — R3 Handover, M2F & Pilot
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
 - project: ai-rise-options
   branch: master
   edit_url: https://github.com/katty-fashion/ai-rise-options/edit/master/kanban.md
@@ -523,60 +952,140 @@ projects:
     start: '2026-05-25'
     end: '2026-06-21'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F1.S2.CI/CD Pipeline]'
     assignee: '@ma.tech'
     effort: 2d
     start: '2026-05-25'
     end: '2026-06-07'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F2.S3.IDP + SMTP]'
     assignee: '@ma.tech'
     effort: 5d
     start: '2026-06-08'
     end: '2026-06-28'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F2.S3.RBAC System]'
     assignee: '@ma.tech'
     effort: 10d
     start: '2026-06-08'
     end: '2026-07-05'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F2.S5.Tenant Management]'
     assignee: '@ma.tech'
     effort: 10d
     start: '2026-06-29'
     end: '2026-07-19'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F5.S13.EPCIS Export]'
     assignee: '@ma.tech'
     effort: 10d
     start: '2026-10-19'
     end: '2026-11-08'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F5.S13.LLM Ecodesign (WP4)]'
     assignee: '@ma.tech'
     effort: 10d
     start: '2026-10-26'
     end: '2026-11-15'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F5.S14.IoT Adapter (T2.5)]'
     assignee: '@ma.tech'
     effort: 10d
     start: '2026-11-02'
     end: '2026-11-22'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F5.S15.Notifications]'
     assignee: '@ma.tech'
     effort: 5d
     start: '2026-11-23'
     end: '2026-12-06'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F6.S17.Data Migration Scripts]'
     assignee: '@ma.tech'
     effort: 5d
     start: '2026-12-14'
     end: '2026-12-27'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
 - project: kf-fe-platform
   branch: main
   edit_url: https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md
@@ -611,60 +1120,140 @@ projects:
     start: '2026-05-25'
     end: '2026-06-21'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F1.S4.Login Flow]'
     assignee: '@alexandru.bejenari'
     effort: 5d
     start: '2026-06-22'
     end: '2026-07-05'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F2.S5.Admin Console]'
     assignee: '@alexandru.bejenari'
     effort: 10d
     start: '2026-07-06'
     end: '2026-07-26'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F2.S6.Overview Refactor]'
     assignee: '@alexandru.bejenari'
     effort: 5d
     start: '2026-07-13'
     end: '2026-08-02'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F3.S7.Models Page]'
     assignee: '@alexandru.bejenari'
     effort: 5d
     start: '2026-08-03'
     end: '2026-08-23'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F3.S8.Tech Pack Layout]'
     assignee: '@alexandru.bejenari'
     effort: 5d
     start: '2026-08-10'
     end: '2026-08-30'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F3.S9.Model Sheet Fixes]'
     assignee: '@alexandru.bejenari'
     effort: 2d
     start: '2026-08-24'
     end: '2026-09-06'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F3.S10.3D Performance]'
     assignee: '@alexandru.bejenari'
     effort: 5d
     start: '2026-09-07'
     end: '2026-09-27'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F5.S14.Garment Configurator (T2.3)]'
     assignee: '@alexandru.bejenari'
     effort: 10d
     start: '2026-11-09'
     end: '2026-11-29'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F5.S15.i18n / l10n]'
     assignee: '@alexandru.bejenari'
     effort: 5d
     start: '2026-11-16'
     end: '2026-11-29'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
 - project: kf-platform
   branch: master
   edit_url: https://github.com/katty-fashion/kf-platform/edit/master/kanban.md
@@ -698,114 +1287,266 @@ projects:
     start: '2026-05-25'
     end: '2026-06-07'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F3.S6.Collections Refactor]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-07-20'
     end: '2026-08-16'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F3.S8.BOM Editor]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-08-17'
     end: '2026-09-13'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F3.S9.Sizing & QA Flow]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-08-31'
     end: '2026-09-20'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F3.S10.Cost Breakdown]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-09-14'
     end: '2026-10-04'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F3.S11.Tech Process Refactor]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-09-21'
     end: '2026-10-11'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F4.S11.Inventory & Reception]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-09-28'
     end: '2026-10-18'
     status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F4.S9.Orders Refactor]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-08-24'
     end: '2026-09-20'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F4.S10.Planner]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 20d
     start: '2026-09-07'
     end: '2026-10-11'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F4.S11.Batches & Assignment]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-09-21'
     end: '2026-10-18'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F4.S11.Operator View]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 20d
     start: '2026-09-28'
     end: '2026-10-25'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F4.S12.QC Module]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-10-05'
     end: '2026-10-25'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F4.S12.Reports & Cutting]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-10-12'
     end: '2026-10-25'
     status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F5.S11.DPP Module (T2.4)]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 20d
     start: '2026-09-21'
     end: '2026-10-25'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F5.S12.Public DPP / GS1]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 10d
     start: '2026-10-12'
     end: '2026-11-01'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F5.S15.Auditor View]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-11-16'
     end: '2026-11-29'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F5.S16.Made2Flow Schema]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-11-30'
     end: '2026-12-13'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F6.S16.Migration Testing]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-12-07'
     end: '2026-12-20'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
   - task: '[F6.S17.Final QA & Cutover]'
     assignee: '@alexandru.bejenari + @ma.tech'
     effort: 5d
     start: '2026-12-21'
     end: '2027-01-03'
     status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
 - project: tech_brainstorming
   branch: main
   edit_url: https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md
