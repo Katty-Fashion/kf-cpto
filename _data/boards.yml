@@ -1,4 +1,4 @@
-generated_at: '2026-07-07T16:42:35Z'
+generated_at: '2026-07-07T16:43:26Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -925,14 +925,13 @@ projects:
   simple_board: true
   meta:
     description: ''
-    type: eu-project
+    type: saas
     po: '@ma.tech'
     lead: '@el.tech'
     sprint: S5
     sprint_start: '2026-06-29'
     sprint_end: '2026-07-10'
     depends_on:
-    - kf-fe-platform
     - R3-AAS
     tags:
     - eu-project
