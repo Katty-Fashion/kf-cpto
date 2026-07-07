@@ -1,28 +1,28 @@
 ---
 title: kf-be-platform
-description: "EU Project"
+description: "SaaS Product"
 project: kf-be-platform
-type: eu-project
+type: saas
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-07-07T16:42:35.009087
+generated: 2026-07-07T16:43:26.809804
 ---
 
 # kf-be-platform
 
-> EU Project
+> SaaS Product
 
 ## Status
 
 | Metric | Value |
 | :--- | :--- |
 | Status | Active |
-| Type | EU Project |
+| Type | SaaS Product |
 | PO | @ma.tech |
 | Lead | @el.tech |
 | Current Sprint | S5 |
 | Sprint Period | 2026-06-29 to 2026-07-10 |
 | Tags | eu-project, circular-textiles, digital-platform, microfactory, dpp, manufacturing |
-| Dependencies | [kf-fe-platform]({{ '/projects/kf-fe-platform/' | relative_url }}), [R3-AAS]({{ '/projects/r3-aas/' | relative_url }}) |
+| Dependencies | [R3-AAS]({{ '/projects/r3-aas/' | relative_url }}) |
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=kf-be-platform) <sup>·&nbsp;[raw](https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md)</sup>
 

@@ -46,5 +46,4 @@ sprint: S5
 
 ## Dependencies
 
-- [kf-fe-platform](/projects/kf-fe-platform.md)
 - [R3-AAS](/projects/r3-aas.md)
