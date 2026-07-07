@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-07T06:48:05.749959
+generated: 2026-07-07T07:23:44.541653
 ---
 
 # R3-AAS
@@ -28,7 +28,7 @@ generated: 2026-07-07T06:48:05.749959
 
 <div class="kanban-board">
   <div class="kanban-col kanban-col--todo">
-    <div class="kanban-col__head">Todo <span class="kanban-col__count">22</span></div>
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">18</span></div>
     <div class="kanban-card kanban-card--static">Backend alignment (după modificări Răzvan)</div>
     <div class="kanban-card kanban-card--static">Bug-uri identificate în sistem</div>
     <div class="kanban-card kanban-card--static">Instalare senzor 3 (poziție cutie/flux materiale) — T3.3</div>
@@ -44,21 +44,19 @@ generated: 2026-07-07T06:48:05.749959
     <div class="kanban-card kanban-card--static">Landing page (claritate produs)</div>
     <div class="kanban-card kanban-card--static">Definire tehnică monetizare (SaaS readiness)</div>
     <div class="kanban-card kanban-card--static">Input pentru CRM / pipeline (structură tehnică)</div>
-    <div class="kanban-card kanban-card--static">Export R3 AAS shells → move to Netcompany-hosted R3 platform</div>
-    <div class="kanban-card kanban-card--static">Share KF access for export to NetCompany</div>
-    <div class="kanban-card kanban-card--static">Share KF-M2F shell with M2F (so they build their own)</div>
-    <div class="kanban-card kanban-card--static">Connect + test M2F V2 API from new Nuoform</div>
     <div class="kanban-card kanban-card--static">Re-point all connections to Netcompany-hosted R3 (go live)</div>
     <div class="kanban-card kanban-card--static">Pilot KF demo recordings (based on revised Nuoform)</div>
     <div class="kanban-card kanban-card--static">State AI usage in R3 (declaration)</div>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">5</span></div>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">7</span></div>
     <div class="kanban-card kanban-card--static">T2.3 — Supply Chain Digital Twin: risk modelling</div>
     <div class="kanban-card kanban-card--static">Acces corect la organizații (login flow issues)</div>
     <div class="kanban-card kanban-card--static">Testare demo produse (clienți + testeri interni)</div>
     <div class="kanban-card kanban-card--static">Demo / prezentare produs</div>
     <div class="kanban-card kanban-card--static">M2F: finalise &amp; confirm assumed KF-M2F shell structure</div>
+    <div class="kanban-card kanban-card--static">Export R3 AAS shells → move to Netcompany-hosted R3 platform</div>
+    <div class="kanban-card kanban-card--static">Connect + test M2F V2 API from new Nuoform</div>
   </div>
   <div class="kanban-col kanban-col--review">
     <div class="kanban-col__head">Review <span class="kanban-col__count">15</span></div>
@@ -79,7 +77,7 @@ generated: 2026-07-07T06:48:05.749959
     <div class="kanban-card kanban-card--static">Integration validation review</div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">31</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">33</span></div>
     <div class="kanban-card kanban-card--static">T2.1 — Co-creation platform (Nuoform)</div>
     <div class="kanban-card kanban-card--static">T3.2 — Product Digital Twin (AAS model)</div>
     <div class="kanban-card kanban-card--static">T3.2 — Process Digital Twin (Tecnomatix simulation)</div>
@@ -111,6 +109,8 @@ generated: 2026-07-07T06:48:05.749959
     <div class="kanban-card kanban-card--static">Corelare Sprint tasks ↔ Work Packages</div>
     <div class="kanban-card kanban-card--static">Task-uri cu timeline (start/end)</div>
     <div class="kanban-card kanban-card--static">Gantt / timeline pentru progres</div>
+    <div class="kanban-card kanban-card--static">Share KF access for export to NetCompany</div>
+    <div class="kanban-card kanban-card--static">Share KF-M2F shell with M2F (so they build their own)</div>
   </div>
 </div>
 
@@ -311,10 +311,10 @@ generated: 2026-07-07T06:48:05.749959
 | Task | Assignee | Effort | Start | End | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | M2F: finalise &amp; confirm assumed KF-M2F shell structure | Eduard Lazăr / M2F | 2d | 2026-06-29 | 2026-07-10 | In Progress |
-| Export R3 AAS shells → move to Netcompany-hosted R3 platform | Mihai A. | 3d | 2026-07-13 | 2026-07-17 | Todo |
-| Share KF access for export to NetCompany | Eduard Lazăr | 1d | 2026-07-13 | 2026-07-14 | Todo |
-| Share KF-M2F shell with M2F (so they build their own) | Mihai A. | 1d | 2026-07-13 | 2026-07-14 | Todo |
-| Connect + test M2F V2 API from new Nuoform | Alexandru Bejenari | 5d | 2026-07-20 | 2026-07-24 | Todo |
+| Export R3 AAS shells → move to Netcompany-hosted R3 platform | Eduard Lazăr / Netcompany | 3d | 2026-07-13 | 2026-07-17 | In Progress |
+| Share KF access for export to NetCompany | Eduard Lazăr | 1d | 2026-07-07 | 2026-07-07 | Done |
+| Share KF-M2F shell with M2F (so they build their own) | Eduard Lazăr | 1d | 2026-07-13 | 2026-07-14 | Done |
+| Connect + test M2F V2 API from new Nuoform | Alexandru Bejenari | 5d | 2026-07-20 | 2026-07-24 | In Progress |
 | Re-point all connections to Netcompany-hosted R3 (go live) | Mihai A. | 3d | 2026-07-27 | 2026-07-31 | Todo |
 | Pilot KF demo recordings (based on revised Nuoform) | Eduard Lazăr | 3d | 2026-08-03 | 2026-08-05 | Todo |
 | State AI usage in R3 (declaration) | Eduard Lazăr | 1d | 2026-07-16 | 2026-07-17 | Todo |
@@ -325,16 +325,16 @@ generated: 2026-07-07T06:48:05.749959
 | Metric | Value |
 | :--- | :--- |
 | Total Effort | 52.5d |
-| In Progress | 2.0d |
-| Completed | 0.0d |
-| Remaining | 52.5d |
+| In Progress | 10.0d |
+| Completed | 2.0d |
+| Remaining | 50.5d |
 
 ## Effort — Planned vs Done
 
 ```mermaid
 pie showData title Effort — Planned vs Done (person-days)
-    "Done" : 0.0
-    "Planned" : 52.5
+    "Done" : 2.0
+    "Planned" : 50.5
 ```
 
 ## Sprint Timeline
@@ -354,11 +354,11 @@ gantt
     Run first scheduling tests with real production data :active, 2026-06-29, 2026-07-10
     Debug integration issues with LMS team :active, 2026-06-29, 2026-07-10
     Integration validation review :active, 2026-06-29, 2026-07-10
-    Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
-    Share KF access for export to NetCompany :2026-07-13, 2026-07-14
-    Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
+    Share KF access for export to NetCompany :done, 2026-07-07, 2026-07-07
+    Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :active, 2026-07-13, 2026-07-17
     State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
-    Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
+    Connect + test M2F V2 API from new Nuoform :active, 2026-07-20, 2026-07-24
     Re-point all connections to Netcompany-hosted R3 (go live) :2026-07-27, 2026-07-31
     Pilot KF demo recordings (based on revised Nuoform) :2026-08-03, 2026-08-05
 ```

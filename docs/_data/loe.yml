@@ -1,4 +1,4 @@
-generated_at: '2026-07-07T06:48:05Z'
+generated_at: '2026-07-07T07:23:44Z'
 row_count: 112
 rows:
 - project: R3-AAS
@@ -532,27 +532,27 @@ rows:
 - project: R3-AAS
   sprint: S5
   task: Export R3 AAS shells → move to Netcompany-hosted R3 platform
-  assignee: Mihai A.
+  assignee: Eduard Lazăr / Netcompany
   effort_days: 3.0
   start: '2026-07-13'
   end: '2026-07-17'
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: Share KF access for export to NetCompany
   assignee: Eduard Lazăr
   effort_days: 1.0
-  start: '2026-07-13'
-  end: '2026-07-14'
-  status: Todo
+  start: '2026-07-07'
+  end: '2026-07-07'
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Share KF-M2F shell with M2F (so they build their own)
-  assignee: Mihai A.
+  assignee: Eduard Lazăr
   effort_days: 1.0
   start: '2026-07-13'
   end: '2026-07-14'
-  status: Todo
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: Connect + test M2F V2 API from new Nuoform
@@ -560,7 +560,7 @@ rows:
   effort_days: 5.0
   start: '2026-07-20'
   end: '2026-07-24'
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: Re-point all connections to Netcompany-hosted R3 (go live)
