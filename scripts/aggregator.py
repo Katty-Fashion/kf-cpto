@@ -44,6 +44,8 @@ from utils import (
     GANTT_LEGEND_HTML,
     iso_date,
     rag_modifier,
+    enumerate_kanban_rows,
+    _cell,
     DATA_DIR,
 )
 
@@ -992,16 +994,25 @@ def write_boards_yaml(data: dict) -> None:
                 "tags": meta.get("tags", []) or [],
                 "team": meta.get("team", {}) or {},
             },
+            # Enumerate rows (line-accurate, canonical grammar) so the builder
+            # can present EVERY existing task grouped by its section and knows
+            # which columns each task's own table actually has — enabling a
+            # surgical, structure-preserving save on multi-table boards.
             "tasks": [
                 {
-                    "task": t["task"],
-                    "assignee": t["assignee"],
-                    "effort": t["effort"],
-                    "start": t.get("start", ""),
-                    "end": t.get("end", ""),
-                    "status": t["status"],
+                    "task": r["task"],
+                    "assignee": _cell(r["cells"], r["colmap"], "assignee"),
+                    "effort": _cell(r["cells"], r["colmap"], "effort"),
+                    "start": _cell(r["cells"], r["colmap"], "start"),
+                    "end": _cell(r["cells"], r["colmap"], "end"),
+                    "status": r["status"],
+                    "section": r["section"],
+                    # canonical fields this task's table actually contains
+                    "fields": [f for f in ("task", "assignee", "effort",
+                                           "start", "end", "status")
+                               if f in r["colmap"]],
                 }
-                for t in project_data["tasks"]
+                for r in enumerate_kanban_rows(raw)
             ],
         })
     payload = {"generated_at": now_iso(), "projects": projects}
