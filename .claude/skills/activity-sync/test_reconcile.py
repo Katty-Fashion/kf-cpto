@@ -726,6 +726,88 @@ record_no_kanban_h = {
 check("kanban_exists=False with headers returns []", reconcile_repo(record_no_kanban_h, _EMPTY_HEADERS) == [])
 
 # ---------------------------------------------------------------------------
+# reconcile_repo: integration-branch set — new tests (Task 2)
+# ---------------------------------------------------------------------------
+
+print("--- reconcile_repo integration-branch set ---")
+
+
+class _FakeReachableByBranch:
+    """Context manager to stub _is_merge_reachable with a per-branch mapping.
+
+    Stubs reconcile._is_merge_reachable with lambda path, sha, branch: mapping.get(branch)
+    so tests can prove per-branch behavior (e.g. default=False, uat=True).
+    Follows the exact __enter__/__exit__ save-restore pattern of the existing fakes.
+    """
+    def __init__(self, mapping: dict):
+        self.mapping = mapping
+        self._orig = None
+
+    def __enter__(self):
+        self._orig = reconcile._is_merge_reachable
+        m = self.mapping
+        reconcile._is_merge_reachable = lambda path, sha, branch: m.get(branch)
+        return self
+
+    def __exit__(self, *args):
+        reconcile._is_merge_reachable = self._orig
+
+
+# Shared merged PR for integration-branch tests: title token-matches "Migrate platform"
+_pr_migrate = {
+    "number": 17,
+    "title": "Migrate platform to new stack",
+    "body": None,
+    "merge_commit_sha": "aabbccdd",
+    "merged_at": "2026-06-01T00:00:00Z",
+    "html_url": "https://github.com/test-org/kf-platform/pull/17",
+}
+
+# Test A — merge reachable ONLY via non-default integration branch -> Done
+# _FakeBranches(["claude-migration"]) -> *-migration matches -> integration set = {master, claude-migration}
+# _FakeReachableByBranch({"master": False, "claude-migration": True}) -> only uat-like branch is reachable
+_INTEG_RECORD = {
+    "name": "kf-platform",
+    "local_path": "/fake/kf-platform",
+    "branch": "master",
+    "kanban_exists": True,
+    "valid_task_count": 1,
+    "tasks": [{"task": "Migrate platform", "status": "Todo"}],
+}
+
+with _FakeMergedPRs([_pr_migrate]), \
+     _FakeReachableByBranch({"master": False, "claude-migration": True}), \
+     _FakeBranches(["claude-migration"]), \
+     _FakeGetIssue(None):
+    proposals_integ_done = reconcile_repo(_INTEG_RECORD, _EMPTY_HEADERS)
+
+check("Test A: non-default integration branch Done -> 1 proposal", len(proposals_integ_done) == 1)
+if proposals_integ_done:
+    check("Test A: new_status is Done", proposals_integ_done[0].new_status == "Done")
+    check("Test A: tier is 1", proposals_integ_done[0].tier == 1)
+
+# Test B — integration branch does NOT produce a Tier-2 In Progress demotion
+# claude-migration matches *-migration glob -> integration branch; no merged PR
+# The integration branch is excluded from the Tier-2 scan so result must be []
+with _FakeMergedPRs([]), \
+     _FakeBranches(["claude-migration"]):
+    proposals_integ_no_tier2 = reconcile_repo(_INTEG_RECORD, _EMPTY_HEADERS)
+
+check("Test B: integration branch excluded from Tier-2 -> no proposal", proposals_integ_no_tier2 == [])
+
+# Test C — plain feature branch (NOT matching integration globs) still surfaces as In Progress
+# "migrate-platform" does NOT match "uat", "work", or "*-migration" (no -migration suffix)
+# -> stays in the Tier-2 scan and token-matches "Migrate platform"
+with _FakeMergedPRs([]), \
+     _FakeBranches(["migrate-platform"]):
+    proposals_plain_branch = reconcile_repo(_INTEG_RECORD, _EMPTY_HEADERS)
+
+check("Test C: plain feature branch -> 1 proposal", len(proposals_plain_branch) == 1)
+if proposals_plain_branch:
+    check("Test C: new_status is In Progress", proposals_plain_branch[0].new_status == "In Progress")
+    check("Test C: tier is 2", proposals_plain_branch[0].tier == 2)
+
+# ---------------------------------------------------------------------------
 # Summary
 # ---------------------------------------------------------------------------
 
