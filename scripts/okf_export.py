@@ -13,6 +13,7 @@ OKF spec: https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 from typing import Any
@@ -685,6 +686,145 @@ def _gen_milestone_concept(ms: dict) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Graph JSON emitter — docs/_data/okf_graph.json
+# ---------------------------------------------------------------------------
+
+_GITHUB_BLOB_BASE = f"https://github.com/{ORG}/kf-cpto/blob/master/docs/okf"
+_DASHBOARD_BASE = "https://katty-fashion.github.io/kf-cpto"
+
+
+def emit_okf_graph_json(
+    all_project_data: dict[str, Any],
+    loe_rows: list[dict],
+    calendar_data: dict,
+    base_dir: Path,
+) -> tuple[int, int]:
+    """Emit docs/_data/okf_graph.json — a Cytoscape-ready node/edge graph.
+
+    Builds from the SAME in-memory relationships the OKF bundle uses.
+    Never re-parses kanban.md or any bundle files on disk.
+
+    Node types: Project, Task, Metric, Milestone.
+    Edge kinds:
+      - ``depends``: project -> project it depends on (same direction as the
+        Mermaid dep -> dependent graph).
+      - ``contains``: project -> each of its task concepts.
+
+    Output is fully deterministic: nodes sorted by id, edges sorted by
+    (source, target, kind).  No run-time timestamps in the JSON.
+
+    Args:
+        all_project_data: Output of utils.load_all_project_data()
+        loe_rows:         Output of aggregator.build_loe_rows()
+        calendar_data:    Loaded docs/_data/calendar.yml (dict)
+        base_dir:         docs/ directory (Path)
+
+    Returns:
+        Tuple of (node_count, edge_count).
+    """
+    nodes: list[dict[str, Any]] = []
+    edges: list[dict[str, str]] = []
+
+    # --- Project nodes & dependency edges -----------------------------------
+    for project, project_data in all_project_data.items():
+        proj_slug = _slug(project)
+        proj_id = f"/projects/{proj_slug}.md"
+        nodes.append({
+            "id": proj_id,
+            "label": project,
+            "type": "Project",
+            "status": None,
+            "url": f"{_DASHBOARD_BASE}/projects/{proj_slug}/",
+        })
+
+        meta = project_data.get("meta", {})
+        depends_on = [str(d) for d in (meta.get("depends_on") or [])]
+        for dep in depends_on:
+            dep_id = f"/projects/{_slug(dep)}.md"
+            edges.append({
+                "source": proj_id,
+                "target": dep_id,
+                "kind": "depends",
+            })
+
+    # --- Task nodes & contains edges ----------------------------------------
+    # Group rows by project to compute per-project slugs (collision-safe).
+    rows_by_project: dict[str, list[dict]] = {}
+    for row in loe_rows:
+        proj = str(row.get("project", "")).strip()
+        if proj:
+            rows_by_project.setdefault(proj, []).append(row)
+
+    for project, rows in rows_by_project.items():
+        proj_slug = _slug(project)
+        proj_id = f"/projects/{proj_slug}.md"
+        seen_slugs: dict[str, int] = {}
+        for idx, row in enumerate(rows):
+            task_name = str(row.get("task", "")).strip()
+            task_slug = _task_slug(task_name, seen_slugs, idx)
+            task_id = f"/tasks/{proj_slug}/{task_slug}.md"
+            task_status = str(row.get("status", "")).strip() or None
+            nodes.append({
+                "id": task_id,
+                "label": task_name,
+                "type": "Task",
+                "status": task_status,
+                "url": f"{_GITHUB_BLOB_BASE}/tasks/{proj_slug}/{task_slug}.md",
+            })
+            edges.append({
+                "source": proj_id,
+                "target": task_id,
+                "kind": "contains",
+            })
+
+    # --- Metric nodes --------------------------------------------------------
+    _metric_defs = [
+        ("loe", "Level of Effort", "metrics/loe.md"),
+        ("status-rag", "RAG Status Colours", "metrics/status-rag.md"),
+    ]
+    for metric_slug, metric_label, metric_rel in _metric_defs:
+        metric_id = f"/metrics/{metric_slug}.md"
+        nodes.append({
+            "id": metric_id,
+            "label": metric_label,
+            "type": "Metric",
+            "status": None,
+            "url": f"{_GITHUB_BLOB_BASE}/{metric_rel}",
+        })
+
+    # --- Milestone nodes -----------------------------------------------------
+    milestones = calendar_data.get("milestones", []) or []
+    for ms in milestones:
+        name = str(ms.get("name", ""))
+        if not name:
+            continue
+        ms_slug = _milestone_slug(name)
+        ms_id = f"/milestones/{ms_slug}.md"
+        nodes.append({
+            "id": ms_id,
+            "label": name,
+            "type": "Milestone",
+            "status": None,
+            "url": f"{_GITHUB_BLOB_BASE}/milestones/{ms_slug}.md",
+        })
+
+    # --- Sort for determinism ------------------------------------------------
+    nodes.sort(key=lambda n: n["id"])
+    edges.sort(key=lambda e: (e["source"], e["target"], e["kind"]))
+
+    graph: dict[str, Any] = {
+        "nodes": nodes,
+        "edges": edges,
+    }
+
+    out_path = base_dir / "_data" / "okf_graph.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(graph, indent=2, sort_keys=False), encoding="utf-8")
+
+    return len(nodes), len(edges)
+
+
+# ---------------------------------------------------------------------------
 # Public entry point
 # ---------------------------------------------------------------------------
 
@@ -800,5 +940,12 @@ def generate_okf_bundle(
             continue
         slug = _milestone_slug(name)
         write(f"milestones/{slug}.md", _gen_milestone_concept(ms))
+
+    # Emit Cytoscape graph JSON to docs/_data/ (consumed by okf-graph.md).
+    # Not counted in files_written (it's a JSON data file, not an OKF .md file).
+    node_count, edge_count = emit_okf_graph_json(
+        all_project_data, loe_rows, calendar_data, base_dir
+    )
+    print(f"Generated OKF graph JSON: {node_count} nodes, {edge_count} edges -> docs/_data/okf_graph.json")
 
     return files_written
