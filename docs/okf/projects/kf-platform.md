@@ -6,7 +6,6 @@ resource:
   - "https://github.com/katty-fashion/kf-platform"
   - "https://katty-fashion.github.io/kf-cpto/projects/kf-platform/"
 tags:
-  - eu-project
   - circular-textiles
   - digital-platform
   - microfactory

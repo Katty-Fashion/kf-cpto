@@ -4,7 +4,7 @@ description: "Infra platform for kf web based services"
 project: kf-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-platform/edit/master/kanban.md"
-generated: 2026-07-07T19:05:37.446574
+generated: 2026-07-07T20:06:50.905635
 ---
 
 # kf-platform
@@ -21,7 +21,7 @@ generated: 2026-07-07T19:05:37.446574
 | Lead | @el.tech |
 | Current Sprint | S5 |
 | Sprint Period | 2026-06-29 to 2026-07-10 |
-| Tags | eu-project, circular-textiles, digital-platform, microfactory, dpp, manufacturing |
+| Tags | circular-textiles, digital-platform, microfactory, dpp, manufacturing |
 | Dependencies | [kf-fe-platform]({{ '/projects/kf-fe-platform/' | relative_url }}), [kf-be-platform]({{ '/projects/kf-be-platform/' | relative_url }}) |
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=kf-platform) <sup>·&nbsp;[raw](https://github.com/katty-fashion/kf-platform/edit/master/kanban.md)</sup>

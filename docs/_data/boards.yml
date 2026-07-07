@@ -1,4 +1,4 @@
-generated_at: '2026-07-07T19:05:37Z'
+generated_at: '2026-07-07T20:06:50Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -934,7 +934,6 @@ projects:
     depends_on:
     - R3-AAS
     tags:
-    - eu-project
     - circular-textiles
     - digital-platform
     - microfactory
@@ -1102,7 +1101,6 @@ projects:
     depends_on:
     - kf-be-platform
     tags:
-    - eu-project
     - circular-textiles
     - digital-platform
     - microfactory
@@ -1271,7 +1269,6 @@ projects:
     - kf-fe-platform
     - kf-be-platform
     tags:
-    - eu-project
     - circular-textiles
     - digital-platform
     - microfactory
