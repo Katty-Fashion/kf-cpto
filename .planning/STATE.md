@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 Phase: 03 (write-back-diagram-sanitization) — EXECUTING
 Plan: 3 of 3
 Status: Phase complete — ready for verification
-Last activity: 2026-07-07 - Wired validate_okf into CI (non-blocking) + documented OKF bundle + process value in README (260707-ni6)
+Last activity: 2026-07-07 - Fixed dependency-graph topology (3 KF repos, deployed) + PRD A per-task OKF concepts (260707-ool, bundle now 145 files)
 
 Progress: [██████████] 100%
 
@@ -108,6 +108,8 @@ None yet.
 | align-1 | Weekly alignment: 12 migration-plan tasks In Progress→Done from kf-platform GSD delivery state (forward-only); pushed to kf-fe/kf-be/kf-platform, fired dashboard+Sheet rebuild | 2026-07-07 | 56ab0c2 | (plan-of-record edit; no quick dir) |
 | 260707-lrl | Additive OKF (Open Knowledge Format) v0.1 bundle emitter: scripts/okf_export.py generates docs/okf/ (19 concept files — projects w/ depends_on cross-links + GSD delivery bridge, LOE/RAG metric defs, milestones) from parsed data; validate_okf.py conformance gate; Jekyll-excluded; deterministic; no new dependency | 2026-07-07 | e5a3059 | [260707-lrl-add-additive-okf-open-knowledge-format-b](./quick/260707-lrl-add-additive-okf-open-knowledge-format-b/) |
 | 260707-ni6 | Wired validate_okf into aggregate.yml as a non-blocking CI step (continue-on-error, never blocks Pages); documented the OKF bundle + its process value ([REUSE]/[SINGLE-SOURCE]/[BRIDGE]/[PORTABLE] pills) in README | 2026-07-07 | 171b3c0 | [260707-ni6-wire-validate-okf-into-ci-non-blocking-d](./quick/260707-ni6-wire-validate-okf-into-ci-non-blocking-d/) |
+| dep-fix-1 | Fixed dependency-graph topology: 3 KF repos had placeholder frontmatter (type eu-project, depends_on [nuoform] — unresolved edges). Set type=saas + correct depends_on (R3-AAS←kf-be←kf-fe←kf-platform, kf-be←kf-platform); resolved a latent kf-fe↔kf-be cycle; pushed to 3 repos, rebuild deployed | 2026-07-07 | e229e27 | (tracked-repo kanban.md frontmatter; no quick dir) |
+| 260707-ool | PRD A: per-task OKF concepts — okf_export.py emits one type:Task file per loe row under docs/okf/tasks/{project}/ (cross-linked up to Project, stable collision-safe slugs, deterministic); bundle 19→145 files; validate_okf conformant | 2026-07-07 | 325ee81 | [260707-ool-prd-a-emit-per-task-okf-concept-files-ty](./quick/260707-ool-prd-a-emit-per-task-okf-concept-files-ty/) |
 
 ## Deferred Items
 
