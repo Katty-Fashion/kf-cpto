@@ -29,7 +29,7 @@ tasks:
   effort: 2d
   start: '2026-05-25'
   end: '2026-06-07'
-  status: In Progress
+  status: Done
   repo: kf-be-platform
 - task: '[F2.S3.IDP + SMTP]'
   assignee: '@ma.tech'
@@ -71,7 +71,7 @@ tasks:
   effort: 5d
   start: '2026-07-13'
   end: '2026-08-02'
-  status: In Progress
+  status: Done
   repo: kf-fe-platform
 - task: '[F3.S6.Collections Refactor]'
   assignee: '@alexandru.bejenari + @ma.tech'
@@ -120,21 +120,21 @@ tasks:
   effort: 5d
   start: '2026-09-07'
   end: '2026-09-27'
-  status: In Progress
+  status: Done
   repo: kf-fe-platform
 - task: '[F3.S10.Cost Breakdown]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-09-14'
   end: '2026-10-04'
-  status: In Progress
+  status: Done
   repo: kf-platform
 - task: '[F3.S11.Tech Process Refactor]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-09-21'
   end: '2026-10-11'
-  status: In Progress
+  status: Done
   repo: kf-platform
 - task: '[F4.S11.Inventory & Reception]'
   assignee: '@alexandru.bejenari + @ma.tech'
@@ -148,21 +148,21 @@ tasks:
   effort: 10d
   start: '2026-08-24'
   end: '2026-09-20'
-  status: In Progress
+  status: Done
   repo: kf-platform
 - task: '[F4.S10.Planner]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 20d
   start: '2026-09-07'
   end: '2026-10-11'
-  status: In Progress
+  status: Done
   repo: kf-platform
 - task: '[F4.S11.Batches & Assignment]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 10d
   start: '2026-09-21'
   end: '2026-10-18'
-  status: In Progress
+  status: Done
   repo: kf-platform
 - task: '[F4.S11.Operator View]'
   assignee: '@alexandru.bejenari + @ma.tech'
@@ -176,14 +176,14 @@ tasks:
   effort: 10d
   start: '2026-10-05'
   end: '2026-10-25'
-  status: In Progress
+  status: Done
   repo: kf-platform
 - task: '[F4.S12.Reports & Cutting]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort: 5d
   start: '2026-10-12'
   end: '2026-10-25'
-  status: In Progress
+  status: Done
   repo: kf-platform
 - task: '[F5.S11.DPP Module (T2.4)]'
   assignee: '@alexandru.bejenari + @ma.tech'
@@ -239,14 +239,14 @@ tasks:
   effort: 5d
   start: '2026-11-16'
   end: '2026-11-29'
-  status: In Progress
+  status: Done
   repo: kf-fe-platform
 - task: '[F5.S15.Notifications]'
   assignee: '@ma.tech'
   effort: 5d
   start: '2026-11-23'
   end: '2026-12-06'
-  status: In Progress
+  status: Done
   repo: kf-be-platform
 - task: '[F5.S16.Made2Flow Schema]'
   assignee: '@alexandru.bejenari + @ma.tech'
