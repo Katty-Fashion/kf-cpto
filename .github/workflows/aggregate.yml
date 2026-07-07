@@ -67,6 +67,12 @@ jobs:
       - name: Validate Mermaid diagram syntax
         run: python scripts/validate_mermaid.py
 
+      - name: Validate OKF bundle (non-blocking)
+        # OKF is a secondary, additive artifact. Surface conformance issues in
+        # the log without ever blocking the canonical Pages deploy.
+        continue-on-error: true
+        run: python scripts/validate_okf.py
+
       - name: Commit unified docs
         run: |
           git config user.name "KF Bot"
