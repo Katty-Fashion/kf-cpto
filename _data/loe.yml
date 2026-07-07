@@ -1,4 +1,4 @@
-generated_at: '2026-07-07T07:38:59Z'
+generated_at: '2026-07-07T08:58:45Z'
 row_count: 112
 rows:
 - project: R3-AAS
@@ -600,7 +600,7 @@ rows:
   effort_days: 2.0
   start: '2026-05-25'
   end: '2026-06-07'
-  status: In Progress
+  status: Done
 - project: kf-be-platform
   sprint: S5
   task: '[F2.S3.IDP + SMTP]'
@@ -656,7 +656,7 @@ rows:
   effort_days: 5.0
   start: '2026-11-23'
   end: '2026-12-06'
-  status: In Progress
+  status: Done
 - project: kf-be-platform
   sprint: S5
   task: '[F6.S17.Data Migration Scripts]'
@@ -696,7 +696,7 @@ rows:
   effort_days: 5.0
   start: '2026-07-13'
   end: '2026-08-02'
-  status: In Progress
+  status: Done
 - project: kf-fe-platform
   sprint: S5
   task: '[F3.S7.Models Page]'
@@ -728,7 +728,7 @@ rows:
   effort_days: 5.0
   start: '2026-09-07'
   end: '2026-09-27'
-  status: In Progress
+  status: Done
 - project: kf-fe-platform
   sprint: S5
   task: '[F5.S14.Garment Configurator (T2.3)]'
@@ -744,7 +744,7 @@ rows:
   effort_days: 5.0
   start: '2026-11-16'
   end: '2026-11-29'
-  status: In Progress
+  status: Done
 - project: kf-platform
   sprint: S5
   task: '[F1.S2.Project Setup]'
@@ -784,7 +784,7 @@ rows:
   effort_days: 5.0
   start: '2026-09-14'
   end: '2026-10-04'
-  status: In Progress
+  status: Done
 - project: kf-platform
   sprint: S5
   task: '[F3.S11.Tech Process Refactor]'
@@ -792,7 +792,7 @@ rows:
   effort_days: 5.0
   start: '2026-09-21'
   end: '2026-10-11'
-  status: In Progress
+  status: Done
 - project: kf-platform
   sprint: S5
   task: '[F4.S11.Inventory & Reception]'
@@ -808,7 +808,7 @@ rows:
   effort_days: 10.0
   start: '2026-08-24'
   end: '2026-09-20'
-  status: In Progress
+  status: Done
 - project: kf-platform
   sprint: S5
   task: '[F4.S10.Planner]'
@@ -816,7 +816,7 @@ rows:
   effort_days: 20.0
   start: '2026-09-07'
   end: '2026-10-11'
-  status: In Progress
+  status: Done
 - project: kf-platform
   sprint: S5
   task: '[F4.S11.Batches & Assignment]'
@@ -824,7 +824,7 @@ rows:
   effort_days: 10.0
   start: '2026-09-21'
   end: '2026-10-18'
-  status: In Progress
+  status: Done
 - project: kf-platform
   sprint: S5
   task: '[F4.S11.Operator View]'
@@ -840,7 +840,7 @@ rows:
   effort_days: 10.0
   start: '2026-10-05'
   end: '2026-10-25'
-  status: In Progress
+  status: Done
 - project: kf-platform
   sprint: S5
   task: '[F4.S12.Reports & Cutting]'
@@ -848,7 +848,7 @@ rows:
   effort_days: 5.0
   start: '2026-10-12'
   end: '2026-10-25'
-  status: In Progress
+  status: Done
 - project: kf-platform
   sprint: S5
   task: '[F5.S11.DPP Module (T2.4)]'

@@ -1,4 +1,4 @@
-generated_at: '2026-07-07T07:38:59Z'
+generated_at: '2026-07-07T08:58:45Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -965,7 +965,7 @@ projects:
     effort: 2d
     start: '2026-05-25'
     end: '2026-06-07'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1063,7 +1063,7 @@ projects:
     effort: 5d
     start: '2026-11-23'
     end: '2026-12-06'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1161,7 +1161,7 @@ projects:
     effort: 5d
     start: '2026-07-13'
     end: '2026-08-02'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1217,7 +1217,7 @@ projects:
     effort: 5d
     start: '2026-09-07'
     end: '2026-09-27'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1245,7 +1245,7 @@ projects:
     effort: 5d
     start: '2026-11-16'
     end: '2026-11-29'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1342,7 +1342,7 @@ projects:
     effort: 5d
     start: '2026-09-14'
     end: '2026-10-04'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1356,7 +1356,7 @@ projects:
     effort: 5d
     start: '2026-09-21'
     end: '2026-10-11'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1384,7 +1384,7 @@ projects:
     effort: 10d
     start: '2026-08-24'
     end: '2026-09-20'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1398,7 +1398,7 @@ projects:
     effort: 20d
     start: '2026-09-07'
     end: '2026-10-11'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1412,7 +1412,7 @@ projects:
     effort: 10d
     start: '2026-09-21'
     end: '2026-10-18'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1440,7 +1440,7 @@ projects:
     effort: 10d
     start: '2026-10-05'
     end: '2026-10-25'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
@@ -1454,7 +1454,7 @@ projects:
     effort: 5d
     start: '2026-10-12'
     end: '2026-10-25'
-    status: In Progress
+    status: Done
     section: Project Kanban
     fields:
     - task
