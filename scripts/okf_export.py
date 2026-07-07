@@ -41,6 +41,55 @@ def _milestone_slug(name: str) -> str:
     return s.strip("-")
 
 
+def _task_slug(task_name: str, seen: dict[str, int] | None = None, index: int = 0) -> str:
+    """Stable, deterministic, collision-safe slug for a task name.
+
+    Strips surrounding brackets (e.g. ``[F4.S12.QC Module]`` -> ``f4-s12-qc-module``),
+    lower-cases, replaces any run of non-alphanumeric characters with a single
+    hyphen, and trims leading/trailing hyphens.
+
+    De-duplicates WITHIN a project by appending ``-2``, ``-3``, … to later
+    collisions (deterministic by stable input order).  The ``seen`` dict is
+    mutated in-place — pass the same dict across all calls for one project.
+
+    An empty or degenerate result falls back to ``task-{index}``.
+
+    Args:
+        task_name: Raw task name string from loe_rows.
+        seen:      Mutable collision-tracking dict (slug -> next suffix).
+                   Pass ``{}`` for the first task in a project; reuse for all.
+        index:     Zero-based position of the task in the project's row list.
+
+    Returns:
+        A unique, stable slug string.
+    """
+    if seen is None:
+        seen = {}
+
+    # Strip surrounding square brackets (e.g. "[F4.S12.QC Module]")
+    s = re.sub(r"^\[|\]$", "", task_name.strip())
+    s = s.lower()
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    s = s.strip("-")
+
+    if not s:
+        s = f"task-{index}"
+
+    # De-duplicate: if slug already used, append -2, -3, …
+    if s not in seen:
+        seen[s] = 2  # next suffix for this base slug
+        return s
+
+    candidate = f"{s}-{seen[s]}"
+    seen[s] += 1
+    # Store the candidate as well so a triple-collision also gets a unique suffix
+    while candidate in seen:
+        candidate = f"{s}-{seen[s]}"
+        seen[s] += 1
+    seen[candidate] = 2
+    return candidate
+
+
 def _quote_scalar(value: str) -> str:
     """Return a YAML-safe single-line scalar representation.
 
@@ -125,7 +174,12 @@ def _project_loe(project: str, loe_rows: list[dict]) -> dict[str, float]:
 # File generators
 # ---------------------------------------------------------------------------
 
-def _gen_root_index(okf_dir: Path, all_project_data: dict, loe_rows: list[dict]) -> str:
+def _gen_root_index(
+    okf_dir: Path,
+    all_project_data: dict,
+    loe_rows: list[dict],
+    task_count: int = 0,
+) -> str:
     """docs/okf/index.md — root with progressive-disclosure links."""
     project_count = len(all_project_data)
     total_effort = sum(r.get("effort_days", 0) for r in loe_rows)
@@ -147,6 +201,7 @@ def _gen_root_index(okf_dir: Path, all_project_data: dict, loe_rows: list[dict])
         "## Sections",
         "",
         f"- [Projects](/projects/index.md) — {project_count} tracked repos",
+        f"- [Tasks](/tasks/index.md) — {task_count} task concepts",
         "- [Metrics](/metrics/index.md) — LOE and RAG status definitions",
         "- [Milestones](/milestones/index.md) — Migration calendar milestones",
         "- [log.md](/log.md) — Change history",
@@ -230,6 +285,7 @@ def _gen_project_concept(
     project_data: dict,
     loe_rows: list[dict],
     known_projects: set[str] | None = None,
+    has_task_concepts: bool = False,
 ) -> str:
     """docs/okf/projects/{slug}.md — OKF Project concept."""
     meta = project_data.get("meta", {})
@@ -329,6 +385,13 @@ def _gen_project_concept(
             status = str(t.get("status", ""))
             lines.append(f"| {task_name} | {assignee} | {effort} | {status} |")
         lines.append("")
+        # Down-link to addressable task concepts when they exist
+        if has_task_concepts:
+            task_slug = _slug(project)
+            lines.append(
+                f"See task concepts: [/tasks/{task_slug}/index.md](/tasks/{task_slug}/index.md)"
+            )
+            lines.append("")
 
     # Dependencies — only cross-link to projects that exist in this bundle.
     # Deps referencing repos outside the tracked set (e.g. 'nuoform' not yet
@@ -451,6 +514,122 @@ def _gen_status_rag_metric() -> str:
     return "\n".join(lines) + "\n"
 
 
+def _gen_task_concept(project: str, row: dict, project_meta: dict) -> str:
+    """docs/okf/tasks/{project_slug}/{task_slug}.md — OKF Task concept.
+
+    Uses the project's ``last_updated`` as the concept timestamp so the output
+    is deterministic across aggregator runs (never uses run time).
+
+    Args:
+        project:      Canonical project name (matches loe_rows ``project`` key).
+        row:          Single loe_rows entry for this task.
+        project_meta: ``project_data["meta"]`` dict for the owning project.
+
+    Returns:
+        Markdown string for the task concept file.
+    """
+    task_name = str(row.get("task", "")).strip()
+    status = str(row.get("status", "")).strip()
+    assignee = str(row.get("assignee", "")).strip()
+    effort_days = row.get("effort_days", 0)
+    sprint = str(row.get("sprint", "")).strip()
+
+    # Deterministic timestamp: project's last_updated, not run time
+    last_updated = str(project_meta.get("last_updated", "") or "").strip()
+    timestamp = last_updated if _ISO_DATE_RE.match(last_updated) else ""
+
+    # Effort as a readable string (e.g. "5d"); omit decimal for whole numbers
+    if isinstance(effort_days, float) and effort_days == int(effort_days):
+        effort_str = f"{int(effort_days)}d"
+    else:
+        effort_str = f"{effort_days}d"
+
+    # Resource: dashboard project page (canonical, always-available)
+    dashboard_url = f"https://katty-fashion.github.io/kf-cpto/projects/{_slug(project)}/"
+
+    fm_fields: dict[str, Any] = {
+        "type": "Task",
+        "title": task_name,
+        "status": status,
+        "assignee": assignee,
+        "effort": effort_str,
+        "sprint": sprint,
+    }
+    if timestamp:
+        fm_fields["timestamp"] = timestamp
+    fm_fields["resource"] = dashboard_url
+
+    project_slug = _slug(project)
+
+    lines = [
+        _frontmatter(fm_fields),
+        "",
+        f"# {task_name}",
+        "",
+        f"**Status:** {status} | **Effort:** {effort_str} | **Assignee:** {assignee}",
+        "",
+        "## Links",
+        "",
+        f"- [Project: {project}](/projects/{project_slug}.md)",
+        "- [LOE metric definition](/metrics/loe.md)",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def _gen_tasks_project_index(project: str, task_entries: list[tuple[str, str]]) -> str:
+    """docs/okf/tasks/{project_slug}/index.md — per-project task listing.
+
+    No frontmatter (index files are exempt from the ``type`` requirement).
+
+    Args:
+        project:      Canonical project name.
+        task_entries: Ordered list of (task_slug, task_title) for this project.
+
+    Returns:
+        Markdown string for the per-project task index file.
+    """
+    project_slug = _slug(project)
+    lines = [
+        f"# Tasks — {project}",
+        "",
+        f"> Task concepts for [{project}](/projects/{project_slug}.md).",
+        f"> Each file is an addressable OKF ``type: Task`` concept.",
+        "",
+    ]
+    for slug, title in task_entries:
+        lines.append(f"- [{title}](/tasks/{project_slug}/{slug}.md)")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _gen_tasks_root_index(project_task_counts: list[tuple[str, int]]) -> str:
+    """docs/okf/tasks/index.md — tasks grouped by project with counts.
+
+    No frontmatter (index file).
+
+    Args:
+        project_task_counts: Ordered list of (project_name, task_count).
+
+    Returns:
+        Markdown string for the root tasks index file.
+    """
+    total = sum(count for _, count in project_task_counts)
+    lines = [
+        "# Tasks",
+        "",
+        f"> {total} task concepts across {len(project_task_counts)} projects.",
+        "> Each concept is an addressable OKF node cross-linked to its project.",
+        "",
+    ]
+    for project, count in project_task_counts:
+        project_slug = _slug(project)
+        lines.append(
+            f"- [{project}](/tasks/{project_slug}/index.md) — {count} tasks"
+        )
+    lines.append("")
+    return "\n".join(lines)
+
+
 def _gen_milestones_index(milestones: list[dict]) -> str:
     """docs/okf/milestones/index.md — progressive-disclosure milestone list."""
     lines = [
@@ -536,8 +715,38 @@ def generate_okf_bundle(
         _write(okf_dir / rel, content)
         files_written += 1
 
+    # Pre-compute task data grouped by project so we know which projects have
+    # task concepts before generating project pages (needed for the down-link).
+    # Group loe_rows by project; preserve stable input order.
+    rows_by_project: dict[str, list[dict]] = {}
+    for row in loe_rows:
+        project = str(row.get("project", "")).strip()
+        if project:
+            rows_by_project.setdefault(project, []).append(row)
+
+    # Projects that have at least one loe row get task concept files.
+    projects_with_tasks: set[str] = {p for p, rows in rows_by_project.items() if rows}
+
+    # Build per-project slug → [(task_slug, task_title)] map (deterministic order).
+    project_task_entries: dict[str, list[tuple[str, str]]] = {}
+    for project, rows in rows_by_project.items():
+        if not rows:
+            continue
+        seen_slugs: dict[str, int] = {}
+        entries: list[tuple[str, str]] = []
+        for idx, row in enumerate(rows):
+            task_name = str(row.get("task", "")).strip()
+            slug = _task_slug(task_name, seen_slugs, idx)
+            entries.append((slug, task_name))
+        project_task_entries[project] = entries
+
+    # Total task concept count (for root index)
+    total_task_concepts = sum(
+        len(entries) for entries in project_task_entries.values()
+    )
+
     # Root
-    write("index.md", _gen_root_index(okf_dir, all_project_data, loe_rows))
+    write("index.md", _gen_root_index(okf_dir, all_project_data, loe_rows, total_task_concepts))
     write("log.md", _gen_log(all_project_data))
 
     # Projects section
@@ -545,10 +754,37 @@ def generate_okf_bundle(
     write("projects/index.md", _gen_projects_index(all_project_data))
     for project, project_data in all_project_data.items():
         slug = _slug(project)
+        has_task_concepts = project in projects_with_tasks
         write(
             f"projects/{slug}.md",
-            _gen_project_concept(project, project_data, loe_rows, known_projects),
+            _gen_project_concept(
+                project, project_data, loe_rows, known_projects, has_task_concepts
+            ),
         )
+
+    # Tasks section — one file per task, per-project index, root index.
+    # Only emit for projects that actually have loe_rows (skip 0-task repos).
+    project_task_counts: list[tuple[str, int]] = []
+    for project, entries in sorted(project_task_entries.items()):
+        project_slug = _slug(project)
+        meta = all_project_data.get(project, {}).get("meta", {})
+        project_task_counts.append((project, len(entries)))
+
+        # Per-task concept files
+        for (task_slug, task_name), row in zip(entries, rows_by_project[project]):
+            write(
+                f"tasks/{project_slug}/{task_slug}.md",
+                _gen_task_concept(project, row, meta),
+            )
+
+        # Per-project task index
+        write(
+            f"tasks/{project_slug}/index.md",
+            _gen_tasks_project_index(project, entries),
+        )
+
+    # Root tasks index
+    write("tasks/index.md", _gen_tasks_root_index(project_task_counts))
 
     # Metrics section
     write("metrics/index.md", _gen_metrics_index())
