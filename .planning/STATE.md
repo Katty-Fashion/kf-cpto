@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 Phase: 03 (write-back-diagram-sanitization) — EXECUTING
 Plan: 3 of 3
 Status: Phase complete — ready for verification
-Last activity: 2026-07-07 - Added additive OKF v0.1 bundle emitter (260707-lrl): docs/okf/ 19 concept files, no new dependency
+Last activity: 2026-07-07 - Wired validate_okf into CI (non-blocking) + documented OKF bundle + process value in README (260707-ni6)
 
 Progress: [██████████] 100%
 
@@ -107,6 +107,7 @@ None yet.
 | 260707-dno | activity-sync token resolution falls back to `gh auth token` (KF_PAT → GITHUB_TOKEN → gh CLI) so local runs aren't blind without a PAT; 113 tests pass | 2026-07-07 | 2fdc157 | [260707-dno-add-gh-cli-token-fallback-to-activity-sy](./quick/260707-dno-add-gh-cli-token-fallback-to-activity-sy/) |
 | align-1 | Weekly alignment: 12 migration-plan tasks In Progress→Done from kf-platform GSD delivery state (forward-only); pushed to kf-fe/kf-be/kf-platform, fired dashboard+Sheet rebuild | 2026-07-07 | 56ab0c2 | (plan-of-record edit; no quick dir) |
 | 260707-lrl | Additive OKF (Open Knowledge Format) v0.1 bundle emitter: scripts/okf_export.py generates docs/okf/ (19 concept files — projects w/ depends_on cross-links + GSD delivery bridge, LOE/RAG metric defs, milestones) from parsed data; validate_okf.py conformance gate; Jekyll-excluded; deterministic; no new dependency | 2026-07-07 | e5a3059 | [260707-lrl-add-additive-okf-open-knowledge-format-b](./quick/260707-lrl-add-additive-okf-open-knowledge-format-b/) |
+| 260707-ni6 | Wired validate_okf into aggregate.yml as a non-blocking CI step (continue-on-error, never blocks Pages); documented the OKF bundle + its process value ([REUSE]/[SINGLE-SOURCE]/[BRIDGE]/[PORTABLE] pills) in README | 2026-07-07 | 171b3c0 | [260707-ni6-wire-validate-okf-into-ci-non-blocking-d](./quick/260707-ni6-wire-validate-okf-into-ci-non-blocking-d/) |
 
 ## Deferred Items
 
