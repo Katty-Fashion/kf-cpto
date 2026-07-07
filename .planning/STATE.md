@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 Phase: 03 (write-back-diagram-sanitization) — EXECUTING
 Plan: 3 of 3
 Status: Phase complete — ready for verification
-Last activity: 2026-07-07 - Completed quick task 260707-cyc: integration-branch-set reconciler + README 6-repo diagram
+Last activity: 2026-07-07 - Weekly sync: gh-token fallback (260707-dno) + aligned 12 board tasks to kf-platform GSD delivery (pushed to 3 repos)
 
 Progress: [██████████] 100%
 
@@ -104,6 +104,8 @@ None yet.
 | 260624-loa | Escape free-text in generated markdown/frontmatter + defang mermaid labels (XSS hardening) | 2026-06-24 | 5272b9c | [260624-loa-escape-free-text-fields-task-assignee-sp](./quick/260624-loa-escape-free-text-fields-task-assignee-sp/) |
 | 260626-b6m | Dashboard fixes: lowercase project links (404), effort-per-project charts, drop Effort by Assignee, new Agile Sprints page; deps topology pushed | 2026-06-26 | ac31fd7 | [260626-b6m-dashboard-fixes-lowercase-project-links-](./quick/260626-b6m-dashboard-fixes-lowercase-project-links-/) |
 | 260707-cyc | Reconciler accounts for off-default integration branches (INTEGRATION_BRANCH_GLOBS set: uat/work/*-migration) so kf-platform claude-migration work reads Done not In Progress; README diagram fixed to all 6 tracked repos | 2026-07-07 | c0cda38 | [260707-cyc-make-activity-sync-account-for-off-defau](./quick/260707-cyc-make-activity-sync-account-for-off-defau/) |
+| 260707-dno | activity-sync token resolution falls back to `gh auth token` (KF_PAT → GITHUB_TOKEN → gh CLI) so local runs aren't blind without a PAT; 113 tests pass | 2026-07-07 | 2fdc157 | [260707-dno-add-gh-cli-token-fallback-to-activity-sy](./quick/260707-dno-add-gh-cli-token-fallback-to-activity-sy/) |
+| align-1 | Weekly alignment: 12 migration-plan tasks In Progress→Done from kf-platform GSD delivery state (forward-only); pushed to kf-fe/kf-be/kf-platform, fired dashboard+Sheet rebuild | 2026-07-07 | 56ab0c2 | (plan-of-record edit; no quick dir) |
 
 ## Deferred Items
 
