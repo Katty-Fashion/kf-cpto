@@ -56,3 +56,4 @@ exclude:
 - Gemfile.lock
 - README.md
 - kf-cpto.md
+- okf/

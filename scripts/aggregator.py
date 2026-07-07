@@ -17,6 +17,7 @@ from datetime import datetime, timedelta
 import yaml
 
 from auto_blocks import load_context, process_page
+from okf_export import generate_okf_bundle
 from utils import (
     DATA_DIR,
     DOCS_DIR,
@@ -1098,6 +1099,10 @@ def main():
     write_gantt_yaml(gantt_rows)
     print(f"Wrote canonical Gantt data: {len(gantt_rows)} rows -> {GANTT_DATA_FILE}")
 
+    # Generate OKF v0.1 bundle (additive — pure transform of already-parsed data)
+    okf_file_count = generate_okf_bundle(data, loe_rows, _load_calendar(), DOCS_DIR)
+    print(f"Generated OKF bundle: {okf_file_count} files -> docs/okf/")
+
     # Update aggregator section of sync_status (sheets_export section is written
     # later by sheets_sync.py — it stays as-is from the previous run until then)
     update_sync_status(
@@ -1106,6 +1111,7 @@ def main():
         last_run_status="ok",
         source_repo_count=len(data),
         task_count=len(loe_rows),
+        okf_file_count=okf_file_count,
         errors=[],
     )
 
