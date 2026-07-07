@@ -44,6 +44,8 @@ sprint: S5
 | [F5.S15.Notifications] | @ma.tech | 5d | Done |
 | [F6.S17.Data Migration Scripts] | @ma.tech | 5d | Todo |
 
+See task concepts: [/tasks/kf-be-platform/index.md](/tasks/kf-be-platform/index.md)
+
 ## Dependencies
 
 - [R3-AAS](/projects/r3-aas.md)

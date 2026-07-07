@@ -61,6 +61,8 @@ sprint: S5
 | [F6.S16.Migration Testing] | @alexandru.bejenari + @ma.tech | 5d | Todo |
 | [F6.S17.Final QA & Cutover] | @alexandru.bejenari + @ma.tech | 5d | Todo |
 
+See task concepts: [/tasks/kf-platform/index.md](/tasks/kf-platform/index.md)
+
 ## Dependencies
 
 - [kf-fe-platform](/projects/kf-fe-platform.md)

@@ -110,6 +110,8 @@ sprint: S5
 | Pilot KF demo recordings (based on revised Nuoform) | Eduard Lazăr | 3d | Todo |
 | State AI usage in R3 (declaration) | Eduard Lazăr | 1d | Todo |
 
+See task concepts: [/tasks/r3-aas/index.md](/tasks/r3-aas/index.md)
+
 ## Dependencies
 
 - ai-rise _(not in tracked repo set)_
