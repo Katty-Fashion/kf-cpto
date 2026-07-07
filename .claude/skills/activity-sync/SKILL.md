@@ -88,8 +88,9 @@ What it does:
 - [TIER-1] Done wins over [TIER-2] In Progress for the same task (conflict resolution)
 - Prints a grouped change list to stdout — grouped by repo, task | old -> new | signal
 - Writes nothing this phase (dry-run only; Phase 3 implements write-back)
-- Requires `KF_PAT` or `GITHUB_TOKEN` env var for GitHub API; warns and continues with
-  empty [TIER-1] proposals when no token is set (graceful degradation)
+- Resolves GitHub token as `KF_PAT` -> `GITHUB_TOKEN` -> `gh auth token` (gh CLI keyring);
+  warns and continues with empty [TIER-1] proposals when no source yields a token
+  (graceful degradation). A locally gh-authenticated developer needs no env var.
 
 ### [GENERATE] Generate distinct per-repo kanbans from the migration plan
 
@@ -274,8 +275,14 @@ To resolve a conflict: `git pull` in the affected `repos-local/<repo>` dir, then
 
 | Variable | Required | When read | Notes |
 |----------|----------|-----------|-------|
-| `KF_PAT` | Yes (live push) | Inside `run()` at push time, NOT at import time | GitHub PAT with `repo` scope; never logged or stored in manifest |
+| `KF_PAT` | Yes (live push, unless gh CLI is authenticated) | Inside `run()` at push time, NOT at import time | GitHub PAT with `repo` scope; never logged or stored in manifest |
 | `KF_PAT` | No (dry-run) | Never read in `--dry-run` mode | |
+| `GITHUB_TOKEN` | No | Push time only | Standard Actions token; used as fallback when `KF_PAT` is unset |
+
+[NOTE] Token resolution order — The skill resolves its GitHub token as
+`KF_PAT` -> `GITHUB_TOKEN` -> `gh auth token` (gh CLI keyring).
+A locally gh-authenticated developer (`gh auth login`) needs no env var and no
+plaintext PAT on disk. CI/org keeps using the `KF_PAT` secret unchanged.
 
 ### [IMPORTANT] SC-1 — Live push is human-validated UAT
 

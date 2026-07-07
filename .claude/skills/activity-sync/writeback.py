@@ -607,11 +607,17 @@ def run(proposals: list, dry_run: bool = False) -> list[dict]:
         print("[INFO] Batch write cancelled by operator.")
         return []
 
-    # Read KF_PAT at push time only (T-03-12: never at import time)
-    kf_pat = os.environ.get("KF_PAT", "")
+    # Read token at push time only (T-03-12: never at import time).
+    # Uses the same three-step resolver as reconcile._build_headers():
+    # KF_PAT -> GITHUB_TOKEN -> `gh auth token` (gh CLI keyring).
+    import reconcile as _reconcile  # noqa: E402 — deferred; avoid top-level circular import
+    kf_pat = _reconcile._resolve_github_token() or ""
     if not kf_pat:
-        print("[ERROR] KF_PAT environment variable is unset. Set KF_PAT to your GitHub PAT before pushing.")
-        raise RuntimeError("KF_PAT unset — cannot push to remote repos")
+        print(
+            "[ERROR] No GitHub token available (KF_PAT/GITHUB_TOKEN unset and"
+            " gh auth token failed). Authenticate gh or set KF_PAT before pushing."
+        )
+        raise RuntimeError("No GitHub token available — cannot push to remote repos")
 
     # Generate run ID (UTC timestamp)
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")

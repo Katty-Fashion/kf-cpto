@@ -23,6 +23,8 @@ if str(_SKILL_DIR) not in sys.path:
 # ---------------------------------------------------------------------------
 
 import reconcile
+import subprocess
+
 from reconcile import (
     task_matches_signal,
     is_advancement,
@@ -34,6 +36,8 @@ from reconcile import (
     _build_headers,
     _extract_issue_refs,
     _is_merge_reachable,
+    _gh_auth_token,
+    _resolve_github_token,
 )
 
 PASS = 0
@@ -434,12 +438,74 @@ class _EnvPatch:
                 os.environ[k] = orig
 
 
+class _FakeSubprocess:
+    """Context manager to monkeypatch reconcile.subprocess.run.
+
+    Follows the exact __enter__/__exit__ save-restore pattern of the existing
+    fakes in this file.  Accepts either a token string (simulated successful
+    `gh auth token` output) or None (simulated failure/unavailability).
+    When None, returncode is set to 1 so _gh_auth_token() returns None.
+
+    The `called` flag lets tests assert whether gh was actually consulted.
+    """
+    def __init__(self, token_or_none):
+        self._token = token_or_none
+        self._orig = None
+        self.called = False
+
+    def __enter__(self):
+        self._orig = reconcile.subprocess.run
+        token = self._token
+        ctx = self
+
+        def _fake_run(args, capture_output=False, text=False, timeout=None):
+            ctx.called = True
+            if token is not None:
+                return subprocess.CompletedProcess(args, 0, token + "\n", "")
+            # Simulate gh not authed or not installed
+            return subprocess.CompletedProcess(args, 1, "", "not logged in")
+
+        reconcile.subprocess.run = _fake_run
+        return self
+
+    def __exit__(self, *args):
+        reconcile.subprocess.run = self._orig
+
+
+class _FakeSubprocessRaises:
+    """Context manager to make reconcile.subprocess.run raise FileNotFoundError.
+
+    Models the case where gh is not installed.
+    Follows the exact __enter__/__exit__ save-restore pattern.
+    """
+    def __init__(self):
+        self._orig = None
+        self.called = False
+
+    def __enter__(self):
+        self._orig = reconcile.subprocess.run
+        ctx = self
+
+        def _fake_run(*args, **kwargs):
+            ctx.called = True
+            raise FileNotFoundError("gh: command not found")
+
+        reconcile.subprocess.run = _fake_run
+        return self
+
+    def __exit__(self, *args):
+        reconcile.subprocess.run = self._orig
+
+
 with _EnvPatch({"KF_PAT": None, "GITHUB_TOKEN": None}):
-    old_stdout = sys.stdout
-    sys.stdout = io.StringIO()
-    headers_no_token = _build_headers()
-    out = sys.stdout.getvalue()
-    sys.stdout = old_stdout
+    # Also stub subprocess.run so _gh_auth_token() returns None, ensuring
+    # no Authorization header and Warning is printed even when gh is installed locally.
+    with _FakeSubprocess(None):
+        old_stdout = sys.stdout
+        sys.stdout = io.StringIO()
+        headers_no_token = _build_headers()
+        out = sys.stdout.getvalue()
+        sys.stdout = old_stdout
 
 check(
     "_build_headers() without token includes Accept header",
@@ -806,6 +872,122 @@ check("Test C: plain feature branch -> 1 proposal", len(proposals_plain_branch) 
 if proposals_plain_branch:
     check("Test C: new_status is In Progress", proposals_plain_branch[0].new_status == "In Progress")
     check("Test C: tier is 2", proposals_plain_branch[0].tier == 2)
+
+# ---------------------------------------------------------------------------
+# _resolve_github_token / _gh_auth_token assertions
+# ---------------------------------------------------------------------------
+
+print("--- _resolve_github_token ---")
+
+# Test 1: KF_PAT set -> _resolve_github_token() returns KF_PAT; gh NOT consulted.
+with _EnvPatch({"KF_PAT": "my_kf_pat_value", "GITHUB_TOKEN": None}):
+    with _FakeSubprocess("gh_cli_token") as fake_gh:
+        result = _resolve_github_token()
+
+check(
+    "_resolve_github_token: KF_PAT set -> returns KF_PAT",
+    result == "my_kf_pat_value",
+)
+check(
+    "_resolve_github_token: KF_PAT set -> gh NOT consulted",
+    fake_gh.called is False,
+)
+
+# Test 2: GITHUB_TOKEN set (KF_PAT unset) -> _resolve_github_token() returns GITHUB_TOKEN; gh NOT consulted.
+with _EnvPatch({"KF_PAT": None, "GITHUB_TOKEN": "my_github_token"}):
+    with _FakeSubprocess("gh_cli_token") as fake_gh2:
+        result2 = _resolve_github_token()
+
+check(
+    "_resolve_github_token: GITHUB_TOKEN set -> returns GITHUB_TOKEN",
+    result2 == "my_github_token",
+)
+check(
+    "_resolve_github_token: GITHUB_TOKEN set -> gh NOT consulted",
+    fake_gh2.called is False,
+)
+
+# Test 3: Both env vars unset + gh returns a token -> returns gh CLI token.
+with _EnvPatch({"KF_PAT": None, "GITHUB_TOKEN": None}):
+    with _FakeSubprocess("gha_token_from_cli") as fake_gh3:
+        result3 = _resolve_github_token()
+
+check(
+    "_resolve_github_token: no env vars -> falls back to gh CLI token",
+    result3 == "gha_token_from_cli",
+)
+check(
+    "_resolve_github_token: no env vars -> gh WAS consulted",
+    fake_gh3.called is True,
+)
+
+# Test 4: Both env vars unset + gh unavailable (returns None from exit 1) -> returns None.
+with _EnvPatch({"KF_PAT": None, "GITHUB_TOKEN": None}):
+    with _FakeSubprocess(None) as fake_gh4:
+        result4 = _resolve_github_token()
+
+check(
+    "_resolve_github_token: env unset + gh exit 1 -> returns None",
+    result4 is None,
+)
+
+# Test 5: Both env vars unset + gh raises FileNotFoundError -> returns None.
+with _EnvPatch({"KF_PAT": None, "GITHUB_TOKEN": None}):
+    with _FakeSubprocessRaises() as fake_gh5:
+        result5 = _resolve_github_token()
+
+check(
+    "_resolve_github_token: env unset + FileNotFoundError -> returns None",
+    result5 is None,
+)
+
+# Test 6: _build_headers() with only gh CLI available -> includes Authorization header.
+with _EnvPatch({"KF_PAT": None, "GITHUB_TOKEN": None}):
+    with _FakeSubprocess("gha_headers_token"):
+        old_stdout = sys.stdout
+        sys.stdout = io.StringIO()
+        headers_gh_cli = _build_headers()
+        out_gh_cli = sys.stdout.getvalue()
+        sys.stdout = old_stdout
+
+check(
+    "_build_headers: gh CLI token -> Authorization header present",
+    "Authorization" in headers_gh_cli,
+)
+check(
+    "_build_headers: gh CLI token -> Bearer scheme",
+    headers_gh_cli.get("Authorization", "").startswith("Bearer "),
+)
+check(
+    "_build_headers: gh CLI token -> no Warning printed",
+    "Warning" not in out_gh_cli,
+)
+check(
+    "_build_headers: gh CLI token value never printed",
+    "gha_headers_token" not in out_gh_cli,
+)
+
+# Test 7: All sources exhausted -> _build_headers() omits Authorization but keeps Accept.
+with _EnvPatch({"KF_PAT": None, "GITHUB_TOKEN": None}):
+    with _FakeSubprocess(None):
+        old_stdout = sys.stdout
+        sys.stdout = io.StringIO()
+        headers_none = _build_headers()
+        out_none = sys.stdout.getvalue()
+        sys.stdout = old_stdout
+
+check(
+    "_build_headers: all sources exhausted -> no Authorization header",
+    "Authorization" not in headers_none,
+)
+check(
+    "_build_headers: all sources exhausted -> Accept header still present",
+    headers_none.get("Accept") == "application/vnd.github+json",
+)
+check(
+    "_build_headers: all sources exhausted -> Warning printed",
+    "Warning" in out_none,
+)
 
 # ---------------------------------------------------------------------------
 # Summary

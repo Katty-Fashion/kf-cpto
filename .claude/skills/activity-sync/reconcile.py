@@ -101,6 +101,51 @@ class Proposal:
 
 
 # ---------------------------------------------------------------------------
+# Private token resolution helpers
+# ---------------------------------------------------------------------------
+
+def _gh_auth_token() -> Optional[str]:
+    """Try to obtain a GitHub token from the gh CLI keyring.
+
+    Runs `gh auth token` via subprocess arg-list (never shell=True, T-02-01).
+    Returns stdout.strip() when gh is installed, authenticated, and exits 0.
+    Returns None when:
+    - gh is not installed (FileNotFoundError)
+    - gh exits non-zero (not logged in, token expired, etc.)
+    - subprocess raises any other OS-level error
+    - timeout (5 s) exceeded
+
+    NEVER prints the token value or stderr contents (T-02-05).
+    """
+    try:
+        result = subprocess.run(
+            ["gh", "auth", "token"],
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+    except (FileNotFoundError, subprocess.SubprocessError, OSError):
+        return None
+    if result.returncode == 0:
+        token = result.stdout.strip()
+        return token if token else None
+    return None
+
+
+def _resolve_github_token() -> Optional[str]:
+    """Resolve a GitHub token using a three-step priority chain.
+
+    1. KF_PAT environment variable (CI / org secret)
+    2. GITHUB_TOKEN environment variable (Actions default token)
+    3. `gh auth token` from the gh CLI keyring (local dev convenience)
+
+    Returns None when no token is available from any source.
+    NEVER prints the resolved token value (T-02-05).
+    """
+    return os.environ.get("KF_PAT") or os.environ.get("GITHUB_TOKEN") or _gh_auth_token()
+
+
+# ---------------------------------------------------------------------------
 # Private git helpers
 # ---------------------------------------------------------------------------
 
@@ -124,13 +169,19 @@ def _run_git(args: list[str], cwd: str | None = None, timeout: int = GIT_TIMEOUT
 def _build_headers() -> dict:
     """Build GitHub API request headers with optional Bearer auth.
 
-    Reads KF_PAT first, falls back to GITHUB_TOKEN — mirrors discover.py pattern.
-    Warns on missing token (unauthenticated rate limit: 60 req/hr).
-    NEVER prints the token value (T-02-05 Information Disclosure mitigation).
+    Resolves the GitHub token via a three-step priority chain:
+    KF_PAT -> GITHUB_TOKEN -> `gh auth token` (gh CLI keyring).
+    CI/org uses KF_PAT; local devs with an authenticated gh CLI need no env var.
+
+    Warns when no token is available from any source (unauthenticated rate limit:
+    60 req/hr). NEVER prints the token value (T-02-05 Information Disclosure mitigation).
     """
-    token = os.environ.get("KF_PAT") or os.environ.get("GITHUB_TOKEN")
+    token = _resolve_github_token()
     if not token:
-        print("Warning: No KF_PAT or GITHUB_TOKEN set. API rate limits will be very low.")
+        print(
+            "Warning: No KF_PAT/GITHUB_TOKEN set and `gh auth token` unavailable"
+            " — API rate limits will be very low."
+        )
     headers: dict = {"Accept": "application/vnd.github+json"}
     if token:
         headers["Authorization"] = f"Bearer {token}"
