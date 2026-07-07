@@ -114,4 +114,4 @@ See task concepts: [/tasks/r3-aas/index.md](/tasks/r3-aas/index.md)
 
 ## Dependencies
 
-- ai-rise _(not in tracked repo set)_
+- [ai-rise-options](/projects/ai-rise-options.md)

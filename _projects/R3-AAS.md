@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-07T20:06:50.903989
+generated: 2026-07-07T20:07:43.309376
 ---
 
 # R3-AAS
@@ -22,7 +22,7 @@ generated: 2026-07-07T20:06:50.903989
 | Current Sprint | S5 |
 | Sprint Period | 2026-06-29 to 2026-07-10 |
 | Tags | r3group, digital-twin, capacity-planner, manufacturing, aas |
-| Dependencies | [ai-rise]({{ '/projects/ai-rise/' | relative_url }}) |
+| Dependencies | [ai-rise-options]({{ '/projects/ai-rise-options/' | relative_url }}) |
 
 ## Current Sprint Kanban &nbsp; [Edit Kanban]({{ '/kanban-builder/' | relative_url }}?project=R3-AAS) <sup>·&nbsp;[raw](https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md)</sup>
 
