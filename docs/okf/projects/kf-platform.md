@@ -63,4 +63,5 @@ sprint: S5
 
 ## Dependencies
 
-- nuoform _(not in tracked repo set)_
+- [kf-fe-platform](/projects/kf-fe-platform.md)
+- [kf-be-platform](/projects/kf-be-platform.md)
