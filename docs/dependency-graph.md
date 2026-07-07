@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-07-07T20:06:50.895539
+generated: 2026-07-07T20:07:43.300967
 ---
 
 # KF Team — Dependency Graph
@@ -15,6 +15,7 @@ graph LR
     kf_fe_platform["Kf Fe Platform"]:::saas
     kf_platform["Kf Platform"]:::saas
     tech_brainstorming["Tech_Brainstorming"]:::internal
+    ai_rise_options --> R3_AAS
     R3_AAS --> kf_be_platform
     kf_be_platform --> kf_fe_platform
     kf_fe_platform --> kf_platform

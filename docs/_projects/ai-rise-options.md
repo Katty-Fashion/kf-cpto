@@ -4,7 +4,7 @@ description: "AI-RISE options analysis \u2014 EU project exploration tracks"
 project: ai-rise-options
 type: eu-project
 edit_url: "https://github.com/katty-fashion/ai-rise-options/edit/master/kanban.md"
-generated: 2026-07-07T20:06:50.904902
+generated: 2026-07-07T20:07:43.310280
 ---
 
 # ai-rise-options
