@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-07-07T16:00:20.574214
+generated: 2026-07-07T16:31:18.459119
 ---
 
 # KF Team — Dependency Graph
@@ -15,13 +15,13 @@ graph LR
     kf_fe_platform["Kf Fe Platform"]:::eu
     kf_platform["Kf Platform"]:::eu
     tech_brainstorming["Tech_Brainstorming"]:::internal
+    kf_fe_platform --> kf_be_platform
+    R3_AAS --> kf_be_platform
 
     classDef saas fill:#4CAF50,color:#fff
     classDef eu fill:#2196F3,color:#fff
     classDef internal fill:#FF9800,color:#fff
 ```
-
-*No inter-project dependencies declared yet. Add `depends_on` to your kanban.md frontmatter.*
 
 ## Legend
 
