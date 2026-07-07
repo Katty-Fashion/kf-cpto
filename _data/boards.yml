@@ -1,4 +1,4 @@
-generated_at: '2026-07-07T16:00:20Z'
+generated_at: '2026-07-07T16:31:18Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -932,7 +932,8 @@ projects:
     sprint_start: '2026-06-29'
     sprint_end: '2026-07-10'
     depends_on:
-    - nuoform
+    - kf-fe-platform
+    - R3-AAS
     tags:
     - eu-project
     - circular-textiles
