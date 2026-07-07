@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-07-07T06:48:05.732477
+generated: 2026-07-07T07:23:44.525114
 ---
 
 # KF Team — Unified Calendar
@@ -75,11 +75,11 @@ gantt
     Debug integration issues with LMS team :active, 2026-06-29, 2026-07-10
     Integration validation review :active, 2026-06-29, 2026-07-10
     M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
-    Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
-    Share KF access for export to NetCompany :2026-07-13, 2026-07-14
-    Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
+    Share KF access for export to NetCompany :done, 2026-07-07, 2026-07-07
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :active, 2026-07-13, 2026-07-17
+    Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
     State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
-    Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
+    Connect + test M2F V2 API from new Nuoform :active, 2026-07-20, 2026-07-24
     Re-point all connections to Netcompany-hosted R3 (go live) :2026-07-27, 2026-07-31
     Pilot KF demo recordings (based on revised Nuoform) :2026-08-03, 2026-08-05
     section kf-be-platform
@@ -169,6 +169,7 @@ gantt
     Debug integration issues with LMS team :active, 2026-06-29, 2026-07-10
     Integration validation review :active, 2026-06-29, 2026-07-10
     M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
+    Share KF access for export to NetCompany :done, 2026-07-07, 2026-07-07
     section kf-be-platform
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
@@ -189,10 +190,9 @@ gantt
     excludes weekends
 
     section R3-AAS
-    Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
-    Share KF access for export to NetCompany :2026-07-13, 2026-07-14
-    Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
-    Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :active, 2026-07-13, 2026-07-17
+    Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
+    Connect + test M2F V2 API from new Nuoform :active, 2026-07-20, 2026-07-24
     State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
     section kf-be-platform
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19

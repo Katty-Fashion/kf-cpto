@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-07-07T06:48:05.741616
+generated: 2026-07-07T07:23:44.533835
 ---
 
 # KF Team — Agile Sprints
@@ -85,6 +85,7 @@ gantt
     Debug integration issues with LMS team :active, 2026-06-29, 2026-07-10
     Integration validation review :active, 2026-06-29, 2026-07-10
     M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
+    Share KF access for export to NetCompany :done, 2026-07-07, 2026-07-07
     section kf-be-platform
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
@@ -105,10 +106,9 @@ gantt
     excludes weekends
 
     section R3-AAS
-    Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
-    Share KF access for export to NetCompany :2026-07-13, 2026-07-14
-    Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
-    Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :active, 2026-07-13, 2026-07-17
+    Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
+    Connect + test M2F V2 API from new Nuoform :active, 2026-07-20, 2026-07-24
     State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
     section kf-be-platform
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
@@ -125,10 +125,10 @@ gantt
 
 | Project | Sprint | Window | Total Effort | % Done |
 | :--- | :--- | :--- | :---: | :---: |
-| R3-AAS | S5 | 2026-06-29 → 2026-07-10 | 52.5d | 0.0% |
+| R3-AAS | S5 | 2026-06-29 → 2026-07-10 | 52.5d | 3.8% |
 | ai-rise-options | S5 | 2026-06-29 → 2026-07-10 | 0d | 0% |
 | kf-be-platform | S5 | 2026-06-29 → 2026-07-10 | 77.0d | 45.5% |
 | kf-fe-platform | S5 | 2026-06-29 → 2026-07-10 | 62.0d | 59.7% |
 | kf-platform | S5 | 2026-06-29 → 2026-07-10 | 167.0d | 19.2% |
 | tech_brainstorming | S5 | 2026-06-29 → 2026-07-10 | 0d | 0% |
-| **TOTAL** | | | **358.5d** | **29.0%** |
+| **TOTAL** | | | **358.5d** | **29.6%** |

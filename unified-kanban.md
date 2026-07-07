@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-07-07T06:48:05.705218
+generated: 2026-07-07T07:23:44.508832
 ---
 
 # KF Team — Unified Kanban
@@ -9,7 +9,7 @@ generated: 2026-07-07T06:48:05.705218
 
 <div class="kanban-board">
   <div class="kanban-col kanban-col--todo">
-    <div class="kanban-col__head">Todo <span class="kanban-col__count">34</span></div>
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">30</span></div>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Backend alignment (după modificări Răzvan)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Bug-uri identificate în sistem</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Instalare senzor 3 (poziție cutie/flux materiale) — T3.3</a>
@@ -25,10 +25,6 @@ generated: 2026-07-07T06:48:05.705218
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Landing page (claritate produs)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Definire tehnică monetizare (SaaS readiness)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Input pentru CRM / pipeline (structură tehnică)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Export R3 AAS shells → move to Netcompany-hosted R3 platform</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Share KF access for export to NetCompany</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Share KF-M2F shell with M2F (so they build their own)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Connect + test M2F V2 API from new Nuoform</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Re-point all connections to Netcompany-hosted R3 (go live)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Pilot KF demo recordings (based on revised Nuoform)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: State AI usage in R3 (declaration)</a>
@@ -46,12 +42,14 @@ generated: 2026-07-07T06:48:05.705218
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F6.S17.Final QA &amp; Cutover]</a>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">17</span></div>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">19</span></div>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.3 — Supply Chain Digital Twin: risk modelling</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Acces corect la organizații (login flow issues)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Testare demo produse (clienți + testeri interni)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Demo / prezentare produs</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: M2F: finalise &amp; confirm assumed KF-M2F shell structure</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Export R3 AAS shells → move to Netcompany-hosted R3 platform</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Connect + test M2F V2 API from new Nuoform</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F1.S2.CI/CD Pipeline]</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F5.S15.Notifications]</a>
     <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F2.S6.Overview Refactor]</a>
@@ -84,7 +82,7 @@ generated: 2026-07-07T06:48:05.705218
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Integration validation review</a>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">46</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">48</span></div>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.1 — Co-creation platform (Nuoform)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T3.2 — Product Digital Twin (AAS model)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T3.2 — Process Digital Twin (Tecnomatix simulation)</a>
@@ -116,6 +114,8 @@ generated: 2026-07-07T06:48:05.705218
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Corelare Sprint tasks ↔ Work Packages</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Task-uri cu timeline (start/end)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Gantt / timeline pentru progres</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Share KF access for export to NetCompany</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Share KF-M2F shell with M2F (so they build their own)</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F1.S2.DB Schema v2 + RLS]</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F2.S3.IDP + SMTP]</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F2.S3.RBAC System]</a>
@@ -138,7 +138,7 @@ generated: 2026-07-07T06:48:05.705218
 
 | Project | Todo | In Progress | Review | Done | Total |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| R3-AAS | 22 | 5 | 15 | 31 | 73 |
+| R3-AAS | 18 | 7 | 15 | 33 | 73 |
 | ai-rise-options | 0 | 0 | 0 | 0 | 0 |
 | kf-be-platform | 4 | 2 | 0 | 4 | 10 |
 | kf-fe-platform | 1 | 3 | 0 | 6 | 10 |
@@ -205,11 +205,11 @@ gantt
     Debug integration issues with LMS team :active, 2026-06-29, 2026-07-10
     Integration validation review :active, 2026-06-29, 2026-07-10
     M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
-    Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
-    Share KF access for export to NetCompany :2026-07-13, 2026-07-14
-    Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
+    Share KF access for export to NetCompany :done, 2026-07-07, 2026-07-07
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :active, 2026-07-13, 2026-07-17
+    Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
     State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
-    Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
+    Connect + test M2F V2 API from new Nuoform :active, 2026-07-20, 2026-07-24
     Re-point all connections to Netcompany-hosted R3 (go live) :2026-07-27, 2026-07-31
     Pilot KF demo recordings (based on revised Nuoform) :2026-08-03, 2026-08-05
     section kf-be-platform
@@ -299,6 +299,7 @@ gantt
     Debug integration issues with LMS team :active, 2026-06-29, 2026-07-10
     Integration validation review :active, 2026-06-29, 2026-07-10
     M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
+    Share KF access for export to NetCompany :done, 2026-07-07, 2026-07-07
     section kf-be-platform
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
@@ -319,10 +320,9 @@ gantt
     excludes weekends
 
     section R3-AAS
-    Export R3 AAS shells → move to Netcompany-hosted R3 platform :2026-07-13, 2026-07-17
-    Share KF access for export to NetCompany :2026-07-13, 2026-07-14
-    Share KF-M2F shell with M2F (so they build their own) :2026-07-13, 2026-07-14
-    Connect + test M2F V2 API from new Nuoform :2026-07-20, 2026-07-24
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :active, 2026-07-13, 2026-07-17
+    Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
+    Connect + test M2F V2 API from new Nuoform :active, 2026-07-20, 2026-07-24
     State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
     section kf-be-platform
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
