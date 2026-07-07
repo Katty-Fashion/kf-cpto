@@ -1,4 +1,4 @@
-generated_at: '2026-07-07T16:31:18Z'
+generated_at: '2026-07-07T16:42:35Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -1094,14 +1094,14 @@ projects:
   simple_board: true
   meta:
     description: ''
-    type: eu-project
+    type: saas
     po: '@ma.tech'
     lead: '@el.tech'
     sprint: S5
     sprint_start: '2026-06-29'
     sprint_end: '2026-07-10'
     depends_on:
-    - nuoform
+    - kf-be-platform
     tags:
     - eu-project
     - circular-textiles
@@ -1262,14 +1262,15 @@ projects:
   simple_board: true
   meta:
     description: Infra platform for kf web based services
-    type: eu-project
+    type: saas
     po: '@ps.tech'
     lead: '@el.tech'
     sprint: S5
     sprint_start: '2026-06-29'
     sprint_end: '2026-07-10'
     depends_on:
-    - nuoform
+    - kf-fe-platform
+    - kf-be-platform
     tags:
     - eu-project
     - circular-textiles
