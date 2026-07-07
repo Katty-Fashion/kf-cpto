@@ -1,4 +1,4 @@
-generated_at: '2026-07-06T05:32:10Z'
+generated_at: '2026-07-07T06:48:05Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -24,7 +24,7 @@ projects:
     - aas
     team:
       cpto: el.tech@katty-fashion.ro
-      tech_lead: eduard.modreanu@katty-fashion.ro
+      tech_lead: el.tech@katty-fashion.ro
       frontend: alexandru.bejenari@katty-fashion.ro
       backend: ma.tech@katty-fashion.ro
       product_owner: el.tech@katty-fashion.ro
@@ -43,13 +43,13 @@ projects:
     end: ''
     status: Done
   - task: T3.2 — Product Digital Twin (AAS model)
-    assignee: Răzvan Boița
+    assignee: Eduard L
     effort: —
     start: ''
     end: ''
     status: Done
   - task: T3.2 — Process Digital Twin (Tecnomatix simulation)
-    assignee: Eduard Modreanu
+    assignee: Eduard L
     effort: —
     start: ''
     end: ''
@@ -73,25 +73,25 @@ projects:
     end: ''
     status: Review
   - task: 'T3.3 — IoT Monitoring: sensors deployment'
-    assignee: Eduard Modreanu
+    assignee: Eduard Lazar
     effort: 5d
     start: ''
     end: ''
     status: Review
   - task: 'T2.3 — Supply Chain Digital Twin: risk modelling'
-    assignee: Eduard Lazăr
+    assignee: Eduard Lazar
     effort: —
     start: ''
     end: ''
     status: In Progress
   - task: AAS import/export tooling (aas_export.py, import-demo.sh)
-    assignee: Răzvan Boița
+    assignee: Eduard L
     effort: —
     start: ''
     end: ''
     status: Done
   - task: Order_3_Aas shell (8 submodels, cost + schedule)
-    assignee: Răzvan Boița
+    assignee: Eduard L
     effort: —
     start: ''
     end: ''
@@ -123,60 +123,6 @@ projects:
     status: Done
   - task: Clarificare format date platforma R3
     assignee: Alexandru Bejenari
-    effort: ''
-    start: ''
-    end: ''
-    status: Done
-  - task: Feature set pentru lansare (MVP)
-    assignee: Eduard Lazăr
-    effort: ''
-    start: ''
-    end: ''
-    status: Todo
-  - task: Ce este „Done" vs „Ready" pentru release
-    assignee: Eduard Lazăr
-    effort: ''
-    start: ''
-    end: ''
-    status: Todo
-  - task: Decizie Made2Flow (demo vs integrare reală)
-    assignee: Eduard Lazăr
-    effort: ''
-    start: ''
-    end: ''
-    status: Todo
-  - task: Review arhitectură
-    assignee: Răzvan Boița
-    effort: ''
-    start: ''
-    end: ''
-    status: Done
-  - task: Identificare gaps / incomplete features
-    assignee: Alexandru Bejenari
-    effort: ''
-    start: ''
-    end: ''
-    status: Done
-  - task: Sesiune demo produse (intern)
-    assignee: Eduard Lazăr
-    effort: ''
-    start: ''
-    end: ''
-    status: In Progress
-  - task: Pregătire feature flags (ascundere features incomplete)
-    assignee: Mihai A.
-    effort: ''
-    start: ''
-    end: ''
-    status: Todo
-  - task: Clarificare value proposition (perspectivă tehnică)
-    assignee: Eduard Lazăr
-    effort: ''
-    start: ''
-    end: ''
-    status: Todo
-  - task: Validare integrare end-to-end (expunere API Nuoform)
-    assignee: Răzvan Boița
     effort: ''
     start: ''
     end: ''
@@ -356,7 +302,7 @@ projects:
     end: ''
     status: Done
   - task: Acces corect la organizații (login flow issues)
-    assignee: Eduard Modreanu
+    assignee: Eduard Lazar
     effort: ''
     start: ''
     end: ''
