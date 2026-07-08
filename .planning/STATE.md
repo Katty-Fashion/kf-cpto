@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 Phase: 03 (write-back-diagram-sanitization) — EXECUTING
 Plan: 3 of 3
 Status: Phase complete — ready for verification
-Last activity: 2026-07-07 - PRD B: OKF Cytoscape knowledge-graph visualizer (260707-p3g, 135 nodes/126 edges) — completes dep-fix + A + B sequence
+Last activity: 2026-07-08 - OKF visualizer fcose upgrade (260708-d8j): projects as compound parents w/ nested task children + viz-type selector + repulsion/nesting sliders
 
 Progress: [██████████] 100%
 
@@ -109,6 +109,7 @@ None yet.
 | 260707-lrl | Additive OKF (Open Knowledge Format) v0.1 bundle emitter: scripts/okf_export.py generates docs/okf/ (19 concept files — projects w/ depends_on cross-links + GSD delivery bridge, LOE/RAG metric defs, milestones) from parsed data; validate_okf.py conformance gate; Jekyll-excluded; deterministic; no new dependency | 2026-07-07 | e5a3059 | [260707-lrl-add-additive-okf-open-knowledge-format-b](./quick/260707-lrl-add-additive-okf-open-knowledge-format-b/) |
 | 260707-ni6 | Wired validate_okf into aggregate.yml as a non-blocking CI step (continue-on-error, never blocks Pages); documented the OKF bundle + its process value ([REUSE]/[SINGLE-SOURCE]/[BRIDGE]/[PORTABLE] pills) in README | 2026-07-07 | 171b3c0 | [260707-ni6-wire-validate-okf-into-ci-non-blocking-d](./quick/260707-ni6-wire-validate-okf-into-ci-non-blocking-d/) |
 | dep-fix-1 | Fixed dependency-graph topology: 3 KF repos had placeholder frontmatter (type eu-project, depends_on [nuoform] — unresolved edges). Set type=saas + correct depends_on (R3-AAS←kf-be←kf-fe←kf-platform, kf-be←kf-platform); resolved a latent kf-fe↔kf-be cycle; pushed to 3 repos, rebuild deployed | 2026-07-07 | e229e27 | (tracked-repo kanban.md frontmatter; no quick dir) |
+| 260708-d8j | OKF visualizer fcose upgrade: task nodes carry `parent` (project id) → projects render as compound containers with nested task children; cytoscape-fcose CDN (nodeRepulsion/nestingFactor); viz-type selector (fcose/cose/concentric/breadthfirst/grid/circle) + live repulsion/nesting sliders + re-run; search/type-filter/click-info preserved | 2026-07-08 | d16469d | [260708-d8j-enhance-okf-visualizer-fcose-compound-no](./quick/260708-d8j-enhance-okf-visualizer-fcose-compound-no/) |
 | 260707-p3g | PRD B: OKF knowledge-graph visualizer — okf_export.py emits docs/_data/okf_graph.json (135 nodes/126 edges, deterministic); new docs/okf-graph.md renders it with Cytoscape.js (CDN, search/type-filter/status-coloured tasks/click-through); sidebar "Knowledge Graph" nav; jekyll build passes | 2026-07-07 | 4166415 | [260707-p3g-prd-b-okf-knowledge-graph-visualizer-pag](./quick/260707-p3g-prd-b-okf-knowledge-graph-visualizer-pag/) |
 | 260707-ool | PRD A: per-task OKF concepts — okf_export.py emits one type:Task file per loe row under docs/okf/tasks/{project}/ (cross-linked up to Project, stable collision-safe slugs, deterministic); bundle 19→145 files; validate_okf conformant | 2026-07-07 | 325ee81 | [260707-ool-prd-a-emit-per-task-okf-concept-files-ty](./quick/260707-ool-prd-a-emit-per-task-okf-concept-files-ty/) |
 
