@@ -769,6 +769,7 @@ def emit_okf_graph_json(
                 "label": task_name,
                 "type": "Task",
                 "status": task_status,
+                "parent": proj_id,
                 "url": f"{_GITHUB_BLOB_BASE}/tasks/{proj_slug}/{task_slug}.md",
             })
             edges.append({
