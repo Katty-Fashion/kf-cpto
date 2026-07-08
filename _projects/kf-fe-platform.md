@@ -4,7 +4,7 @@ description: "SaaS Product"
 project: kf-fe-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-07-08T08:39:22.670982
+generated: 2026-07-08T11:22:44.691807
 ---
 
 # kf-fe-platform
@@ -38,16 +38,9 @@ generated: 2026-07-08T08:39:22.670982
     <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">9</span></div>
-    <div class="kanban-card kanban-card--static">[F1.S2.Design System]</div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">2</span></div>
     <div class="kanban-card kanban-card--static">[F1.S4.Login Flow]</div>
     <div class="kanban-card kanban-card--static">[F2.S5.Admin Console]</div>
-    <div class="kanban-card kanban-card--static">[F2.S6.Overview Refactor]</div>
-    <div class="kanban-card kanban-card--static">[F3.S7.Models Page]</div>
-    <div class="kanban-card kanban-card--static">[F3.S8.Tech Pack Layout]</div>
-    <div class="kanban-card kanban-card--static">[F3.S9.Model Sheet Fixes]</div>
-    <div class="kanban-card kanban-card--static">[F3.S10.3D Performance]</div>
-    <div class="kanban-card kanban-card--static">[F5.S15.i18n / l10n]</div>
   </div>
 </div>
 

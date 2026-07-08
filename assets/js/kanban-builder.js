@@ -333,9 +333,10 @@
     box.style.display = "";
     box.appendChild(h("h3", { text: "Frontmatter" }));
     var grid = h("div", { class: "kb-meta-grid" });
+    var base = effectiveMeta(); // board.meta overlaid with edits — not the bare overrides
     META_FIELDS.forEach(function (f) {
       var key = f[0], type = f[1];
-      var val = state.meta[key];
+      var val = base[key];
       var shown = (type === "list") ? (Array.isArray(val) ? val.join(", ") : (val || "")) : (val || "");
       var lbl = h("label", { text: key });
       var inp = h("input", { type: type === "date" ? "date" : "text", value: shown });

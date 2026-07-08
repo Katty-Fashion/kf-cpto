@@ -7,9 +7,9 @@ description: Interactive OKF knowledge-graph — browse projects, tasks, metrics
 
 We track every project, task, metric and milestone as a node in our Open Knowledge Format bundle. This page renders those concepts and their relationships as an interactive graph — pan, zoom, search, filter by type, and click any node to follow it through to the source.
 
-**Node types:** Projects are compound containers; their tasks are nested inside. Metrics and Milestones are top-level nodes. Click any node to highlight its neighbourhood and open the info panel with an external link.
+**Node types:** Projects, Metrics and Milestones are hub nodes — always labelled, rendered larger. Tasks are smaller nodes connected to their project hub via `contains` edges. Task labels are hidden by default and appear on hover, click-highlight, or search match (labels-on-demand). Click any node to highlight its neighbourhood and open the info panel with an external link.
 
-**Edge kinds:** `depends` (project depends on another project) · `contains` edges are replaced by compound nesting.
+**Edge kinds:** `contains` edges (project → task) radiate from each project hub as thin grey lines. `depends` edges (project → project) are dashed blue cross-links.
 
 ---
 
@@ -34,7 +34,7 @@ We track every project, task, metric and milestone as a node in our Open Knowled
   <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;">
     Layout:
     <select id="okf-layout" style="padding:0.25rem 0.4rem;border:1px solid var(--pico-muted-border-color);border-radius:4px;font-size:0.85rem;">
-      <option value="fcose" selected>fcose (compound)</option>
+      <option value="fcose" selected>fcose</option>
       <option value="cose">cose</option>
       <option value="concentric">concentric</option>
       <option value="breadthfirst">breadthfirst</option>
@@ -47,12 +47,6 @@ We track every project, task, metric and milestone as a node in our Open Knowled
     <input id="okf-repulsion" type="range" min="500" max="20000" step="500" value="4500"
            style="width:100px;vertical-align:middle;">
     <span id="okf-repulsion-val" style="min-width:3em;text-align:right;">4500</span>
-  </label>
-  <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;">
-    Nesting factor:
-    <input id="okf-nesting" type="range" min="0" max="2" step="0.05" value="0.1"
-           style="width:80px;vertical-align:middle;">
-    <span id="okf-nesting-val" style="min-width:2.5em;text-align:right;">0.10</span>
   </label>
   <button id="okf-rerun" style="padding:0.25rem 0.75rem;font-size:0.85rem;border-radius:4px;cursor:pointer;">Re-run layout</button>
 </div>
@@ -133,15 +127,12 @@ We track every project, task, metric and milestone as a node in our Open Knowled
 
   (GRAPH.nodes || []).forEach(function (n) {
     var d = { id: n.id, label: n.label, type: n.type, status: n.status, url: n.url };
-    // Compound nesting: task nodes carry a parent field pointing to their project node.
-    if (n.parent) d.parent = n.parent;
+    // Constellation layout — task nodes are free-floating, connected via contains edges.
     elements.push({ group: 'nodes', data: d });
   });
 
   (GRAPH.edges || []).forEach(function (e, i) {
-    // Skip 'contains' edges — compound nesting replaces them visually.
-    // Only render 'depends' edges (project -> project cross-links).
-    if (e.kind === 'contains') return;
+    // Render all edges including 'contains' (project -> task) as real cytoscape edges.
     elements.push({
       group: 'edges',
       data: {
@@ -155,17 +146,13 @@ We track every project, task, metric and milestone as a node in our Open Knowled
 
   // ---- Layout helpers -------------------------------------------------------
   var repulsionSlider = document.getElementById('okf-repulsion');
-  var nestingSlider   = document.getElementById('okf-nesting');
   var repulsionVal    = document.getElementById('okf-repulsion-val');
-  var nestingVal      = document.getElementById('okf-nesting-val');
 
   function getRepulsion() { return parseInt(repulsionSlider.value, 10); }
-  function getNesting()   { return parseFloat(nestingSlider.value); }
 
   function buildLayoutOpts(name) {
     if (name === 'fcose') {
       var rep = getRepulsion();
-      var nest = getNesting();
       return {
         name: 'fcose',
         quality: 'default',
@@ -174,7 +161,6 @@ We track every project, task, metric and milestone as a node in our Open Knowled
         packComponents: true,
         nodeRepulsion: function () { return rep; },
         idealEdgeLength: function () { return 60; },
-        nestingFactor: nest,
         gravity: 0.25,
         numIter: 2500
       };
@@ -211,41 +197,45 @@ We track every project, task, metric and milestone as a node in our Open Knowled
     elements: elements,
     style: [
       {
-        // Compound (Project parent) container style
-        selector: 'node[type = "Project"]',
-        style: {
-          'background-color': 'rgba(37, 99, 235, 0.08)',
-          'border-color': '#2563eb',
-          'border-width': 2,
-          'label': 'data(label)',
-          'font-size': '10px',
-          'font-weight': 'bold',
-          'color': '#1e40af',
-          'text-valign': 'top',
-          'text-halign': 'center',
-          'text-margin-y': -4,
-          'padding': '12px',
-          'border-radius': '6px',
-          'text-wrap': 'ellipsis',
-          'text-max-width': '120px'
-        }
-      },
-      {
         selector: 'node',
         style: {
           'background-color': function (n) { return nodeColor(n); },
           'border-color':     function (n) { return nodeBorder(n); },
           'border-width': 2,
           'label': 'data(label)',
-          'font-size': '9px',
+          'font-size': '10px',
+          'font-weight': function (n) {
+            var t = n.data('type');
+            return (t === 'Project' || t === 'Metric' || t === 'Milestone') ? 'bold' : 'normal';
+          },
           'color': '#1f2937',
           'text-valign': 'bottom',
           'text-halign': 'center',
           'text-margin-y': 3,
-          'width': function (n) { return n.data('type') === 'Project' ? 28 : 18; },
-          'height': function (n) { return n.data('type') === 'Project' ? 28 : 18; },
+          'width': function (n) {
+            var t = n.data('type');
+            return (t === 'Project' || t === 'Metric' || t === 'Milestone') ? 30 : 14;
+          },
+          'height': function (n) {
+            var t = n.data('type');
+            return (t === 'Project' || t === 'Metric' || t === 'Milestone') ? 30 : 14;
+          },
           'text-wrap': 'ellipsis',
-          'text-max-width': '80px'
+          'text-max-width': '100px'
+        }
+      },
+      {
+        // Task labels are hidden by default — revealed via .show-label on hover/click/search.
+        selector: 'node[type = "Task"]',
+        style: {
+          'text-opacity': 0
+        }
+      },
+      {
+        // Reveal a task label when toggled by hover, click-highlight, or search.
+        selector: 'node.show-label',
+        style: {
+          'text-opacity': 1
         }
       },
       {
@@ -277,6 +267,17 @@ We track every project, task, metric and milestone as a node in our Open Knowled
         }
       },
       {
+        // contains edges — thin neutral grey radial lines from hub to task; minimal arrow.
+        selector: 'edge[kind = "contains"]',
+        style: {
+          'line-color': '#d1d5db',
+          'target-arrow-color': '#d1d5db',
+          'target-arrow-shape': 'none',
+          'opacity': 0.45,
+          'width': 0.8
+        }
+      },
+      {
         selector: 'edge[kind="depends"]',
         style: {
           'line-color': '#93c5fd',
@@ -300,9 +301,6 @@ We track every project, task, metric and milestone as a node in our Open Knowled
   repulsionSlider.addEventListener('input', function () {
     repulsionVal.textContent = this.value;
   });
-  nestingSlider.addEventListener('input', function () {
-    nestingVal.textContent = parseFloat(this.value).toFixed(2);
-  });
 
   function rerunLayout() {
     cy.layout(buildLayoutOpts(layoutSelect.value)).run();
@@ -310,6 +308,14 @@ We track every project, task, metric and milestone as a node in our Open Knowled
 
   layoutSelect.addEventListener('change', rerunLayout);
   document.getElementById('okf-rerun').addEventListener('click', rerunLayout);
+
+  // ---- Labels-on-demand: hover reveals task labels -------------------------
+  cy.on('mouseover', 'node[type = "Task"]', function (evt) {
+    evt.target.addClass('show-label');
+  });
+  cy.on('mouseout', 'node[type = "Task"]', function (evt) {
+    evt.target.removeClass('show-label');
+  });
 
   // ---- Type-filter checkboxes ----------------------------------------------
   var filterIds = {
@@ -351,6 +357,8 @@ We track every project, task, metric and milestone as a node in our Open Knowled
     var q = this.value.trim().toLowerCase();
     if (!q) {
       cy.elements().removeClass('search-dim');
+      // Remove search-revealed labels from task nodes not otherwise shown.
+      cy.nodes('[type = "Task"]').removeClass('show-label');
       return;
     }
     cy.nodes().forEach(function (n) {
@@ -359,6 +367,10 @@ We track every project, task, metric and milestone as a node in our Open Knowled
         n.addClass('search-dim');
       } else {
         n.removeClass('search-dim');
+        // Reveal task labels that match the search query.
+        if (n.data('type') === 'Task') {
+          n.addClass('show-label');
+        }
       }
     });
     cy.edges().removeClass('search-dim');
@@ -378,6 +390,11 @@ We track every project, task, metric and milestone as a node in our Open Knowled
     cy.elements().not(neighbourhood).addClass('faded');
     neighbourhood.removeClass('faded');
     node.addClass('highlighted');
+
+    // Reveal labels for task nodes in the highlighted neighbourhood.
+    neighbourhood.nodes('[type = "Task"]').addClass('show-label');
+    // Hide task labels outside the neighbourhood (unless already hovered — mouseout manages those).
+    cy.nodes('[type = "Task"]').not(neighbourhood).removeClass('show-label');
 
     // Info panel
     var label  = node.data('label') || node.id();
@@ -403,6 +420,8 @@ We track every project, task, metric and milestone as a node in our Open Knowled
   cy.on('tap', function (evt) {
     if (evt.target === cy) {
       cy.elements().removeClass('faded highlighted');
+      // Clear click-revealed task labels on background tap.
+      cy.nodes('[type = "Task"]').removeClass('show-label');
       infoPanel.style.display = 'none';
     }
   });

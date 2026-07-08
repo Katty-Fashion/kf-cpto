@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-08T08:39:22.670148
+generated: 2026-07-08T11:22:44.689697
 ---
 
 # R3-AAS
@@ -56,18 +56,8 @@ generated: 2026-07-08T08:39:22.670148
     <div class="kanban-card kanban-card--static">Integration validation review</div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">11</span></div>
-    <div class="kanban-card kanban-card--static">T2.1 — Co-creation platform (Nuoform)</div>
-    <div class="kanban-card kanban-card--static">T3.2 — Product Digital Twin (AAS model)</div>
-    <div class="kanban-card kanban-card--static">T3.2 — Process Digital Twin (Tecnomatix simulation)</div>
-    <div class="kanban-card kanban-card--static">T2.4 — Capacity Planner: LMS Scheduler Backend</div>
-    <div class="kanban-card kanban-card--static">AAS import/export tooling (aas_export.py, import-demo.sh)</div>
-    <div class="kanban-card kanban-card--static">Order_3_Aas shell (8 submodels, cost + schedule)</div>
-    <div class="kanban-card kanban-card--static">Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise)</div>
-    <div class="kanban-card kanban-card--static">OAuth2 auth-server public + per-client provisioning</div>
-    <div class="kanban-card kanban-card--static">ALADIN WP2 RunSheet service (nginx + Traefik routing)</div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">1</span></div>
     <div class="kanban-card kanban-card--static">Share KF access for export to NetCompany</div>
-    <div class="kanban-card kanban-card--static">Share KF-M2F shell with M2F (so they build their own)</div>
   </div>
 </div>
 
