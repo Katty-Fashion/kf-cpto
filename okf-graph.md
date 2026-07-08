@@ -7,9 +7,9 @@ description: Interactive OKF knowledge-graph — browse projects, tasks, metrics
 
 We track every project, task, metric and milestone as a node in our Open Knowledge Format bundle. This page renders those concepts and their relationships as an interactive graph — pan, zoom, search, filter by type, and click any node to follow it through to the source.
 
-**Node types:** Projects link to the dashboard project page; Tasks, Metrics and Milestones link to their OKF concept file on GitHub.
+**Node types:** Projects are compound containers; their tasks are nested inside. Metrics and Milestones are top-level nodes. Click any node to highlight its neighbourhood and open the info panel with an external link.
 
-**Edge kinds:** `depends` (project depends on another project) · `contains` (project owns a task concept).
+**Edge kinds:** `depends` (project depends on another project) · `contains` edges are replaced by compound nesting.
 
 ---
 
@@ -28,6 +28,33 @@ We track every project, task, metric and milestone as a node in our Open Knowled
   <label style="display:flex;align-items:center;gap:0.3rem;font-size:0.85rem;">
     <input type="checkbox" id="okf-filter-milestone" checked> <span class="okf-legend okf-legend--milestone"></span> Milestone
   </label>
+</div>
+
+<div class="okf-graph-controls" style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;margin-bottom:0.75rem;padding:0.5rem 0.75rem;background:var(--pico-card-background-color);border:1px solid var(--pico-muted-border-color);border-radius:6px;">
+  <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;">
+    Layout:
+    <select id="okf-layout" style="padding:0.25rem 0.4rem;border:1px solid var(--pico-muted-border-color);border-radius:4px;font-size:0.85rem;">
+      <option value="fcose" selected>fcose (compound)</option>
+      <option value="cose">cose</option>
+      <option value="concentric">concentric</option>
+      <option value="breadthfirst">breadthfirst</option>
+      <option value="grid">grid</option>
+      <option value="circle">circle</option>
+    </select>
+  </label>
+  <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;">
+    Node repulsion:
+    <input id="okf-repulsion" type="range" min="500" max="20000" step="500" value="4500"
+           style="width:100px;vertical-align:middle;">
+    <span id="okf-repulsion-val" style="min-width:3em;text-align:right;">4500</span>
+  </label>
+  <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;">
+    Nesting factor:
+    <input id="okf-nesting" type="range" min="0" max="2" step="0.05" value="0.1"
+           style="width:80px;vertical-align:middle;">
+    <span id="okf-nesting-val" style="min-width:2.5em;text-align:right;">0.10</span>
+  </label>
+  <button id="okf-rerun" style="padding:0.25rem 0.75rem;font-size:0.85rem;border-radius:4px;cursor:pointer;">Re-run layout</button>
 </div>
 
 <div id="okf-cy" style="width:100%;height:70vh;border:1px solid var(--pico-muted-border-color);border-radius:6px;background:#fafaf9;"></div>
@@ -53,8 +80,17 @@ We track every project, task, metric and milestone as a node in our Open Knowled
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/cytoscape@3.30.2/dist/cytoscape.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/layout-base/layout-base.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cose-base/cose-base.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-fcose/cytoscape-fcose.js"></script>
 <script>
 (function () {
+  // Register fcose extension — plain-script UMD mode auto-registers; defensive call for safety.
+  try {
+    if (typeof cytoscapeFcose !== 'undefined') cytoscape.use(cytoscapeFcose);
+    else if (typeof fcose !== 'undefined') cytoscape.use(fcose);
+  } catch (e) { /* already registered */ }
+
   // Raw graph data injected by Jekyll at build time.
   var GRAPH = {{ site.data.okf_graph | jsonify }};
 
@@ -96,13 +132,16 @@ We track every project, task, metric and milestone as a node in our Open Knowled
   var elements = [];
 
   (GRAPH.nodes || []).forEach(function (n) {
-    elements.push({
-      group: 'nodes',
-      data: { id: n.id, label: n.label, type: n.type, status: n.status, url: n.url }
-    });
+    var d = { id: n.id, label: n.label, type: n.type, status: n.status, url: n.url };
+    // Compound nesting: task nodes carry a parent field pointing to their project node.
+    if (n.parent) d.parent = n.parent;
+    elements.push({ group: 'nodes', data: d });
   });
 
   (GRAPH.edges || []).forEach(function (e, i) {
+    // Skip 'contains' edges — compound nesting replaces them visually.
+    // Only render 'depends' edges (project -> project cross-links).
+    if (e.kind === 'contains') return;
     elements.push({
       group: 'edges',
       data: {
@@ -114,11 +153,83 @@ We track every project, task, metric and milestone as a node in our Open Knowled
     });
   });
 
+  // ---- Layout helpers -------------------------------------------------------
+  var repulsionSlider = document.getElementById('okf-repulsion');
+  var nestingSlider   = document.getElementById('okf-nesting');
+  var repulsionVal    = document.getElementById('okf-repulsion-val');
+  var nestingVal      = document.getElementById('okf-nesting-val');
+
+  function getRepulsion() { return parseInt(repulsionSlider.value, 10); }
+  function getNesting()   { return parseFloat(nestingSlider.value); }
+
+  function buildLayoutOpts(name) {
+    if (name === 'fcose') {
+      var rep = getRepulsion();
+      var nest = getNesting();
+      return {
+        name: 'fcose',
+        quality: 'default',
+        animate: true,
+        randomize: true,
+        packComponents: true,
+        nodeRepulsion: function () { return rep; },
+        idealEdgeLength: function () { return 60; },
+        nestingFactor: nest,
+        gravity: 0.25,
+        numIter: 2500
+      };
+    }
+    if (name === 'cose') {
+      var rep2 = getRepulsion();
+      return {
+        name: 'cose',
+        animate: true,
+        nodeRepulsion: function () { return rep2; },
+        idealEdgeLength: 60,
+        gravity: 25,
+        numIter: 1000
+      };
+    }
+    if (name === 'concentric') {
+      return { name: 'concentric', animate: true, padding: 30, minNodeSpacing: 20 };
+    }
+    if (name === 'breadthfirst') {
+      return { name: 'breadthfirst', directed: true, padding: 30, spacingFactor: 1.25, avoidOverlap: true, animate: true };
+    }
+    if (name === 'grid') {
+      return { name: 'grid', padding: 30, avoidOverlap: true, animate: true };
+    }
+    if (name === 'circle') {
+      return { name: 'circle', padding: 30, animate: true };
+    }
+    return { name: name };
+  }
+
   // ---- Initialise Cytoscape ------------------------------------------------
   var cy = cytoscape({
     container: document.getElementById('okf-cy'),
     elements: elements,
     style: [
+      {
+        // Compound (Project parent) container style
+        selector: 'node[type = "Project"]',
+        style: {
+          'background-color': 'rgba(37, 99, 235, 0.08)',
+          'border-color': '#2563eb',
+          'border-width': 2,
+          'label': 'data(label)',
+          'font-size': '10px',
+          'font-weight': 'bold',
+          'color': '#1e40af',
+          'text-valign': 'top',
+          'text-halign': 'center',
+          'text-margin-y': -4,
+          'padding': '12px',
+          'border-radius': '6px',
+          'text-wrap': 'ellipsis',
+          'text-max-width': '120px'
+        }
+      },
       {
         selector: 'node',
         style: {
@@ -178,16 +289,27 @@ We track every project, task, metric and milestone as a node in our Open Knowled
         style: { opacity: 0.05 }
       }
     ],
-    layout: {
-      name: 'breadthfirst',
-      directed: true,
-      padding: 30,
-      spacingFactor: 1.25,
-      avoidOverlap: true
-    },
+    layout: buildLayoutOpts('fcose'),
     minZoom: 0.15,
     maxZoom: 4
   });
+
+  // ---- Layout controls -----------------------------------------------------
+  var layoutSelect = document.getElementById('okf-layout');
+
+  repulsionSlider.addEventListener('input', function () {
+    repulsionVal.textContent = this.value;
+  });
+  nestingSlider.addEventListener('input', function () {
+    nestingVal.textContent = parseFloat(this.value).toFixed(2);
+  });
+
+  function rerunLayout() {
+    cy.layout(buildLayoutOpts(layoutSelect.value)).run();
+  }
+
+  layoutSelect.addEventListener('change', rerunLayout);
+  document.getElementById('okf-rerun').addEventListener('click', rerunLayout);
 
   // ---- Type-filter checkboxes ----------------------------------------------
   var filterIds = {

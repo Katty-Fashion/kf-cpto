@@ -103,6 +103,7 @@
       "label": "[F1.S2.CI/CD Pipeline]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-be-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-be-platform/f1-s2-ci-cd-pipeline.md"
     },
     {
@@ -110,6 +111,7 @@
       "label": "[F1.S2.DB Schema v2 + RLS]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-be-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-be-platform/f1-s2-db-schema-v2-rls.md"
     },
     {
@@ -117,6 +119,7 @@
       "label": "[F2.S3.IDP + SMTP]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-be-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-be-platform/f2-s3-idp-smtp.md"
     },
     {
@@ -124,6 +127,7 @@
       "label": "[F2.S3.RBAC System]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-be-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-be-platform/f2-s3-rbac-system.md"
     },
     {
@@ -131,6 +135,7 @@
       "label": "[F2.S5.Tenant Management]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-be-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-be-platform/f2-s5-tenant-management.md"
     },
     {
@@ -138,6 +143,7 @@
       "label": "[F5.S13.EPCIS Export]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-be-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-be-platform/f5-s13-epcis-export.md"
     },
     {
@@ -145,6 +151,7 @@
       "label": "[F5.S13.LLM Ecodesign (WP4)]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-be-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-be-platform/f5-s13-llm-ecodesign-wp4.md"
     },
     {
@@ -152,6 +159,7 @@
       "label": "[F5.S14.IoT Adapter (T2.5)]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-be-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-be-platform/f5-s14-iot-adapter-t2-5.md"
     },
     {
@@ -159,6 +167,7 @@
       "label": "[F5.S15.Notifications]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-be-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-be-platform/f5-s15-notifications.md"
     },
     {
@@ -166,6 +175,7 @@
       "label": "[F6.S17.Data Migration Scripts]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-be-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-be-platform/f6-s17-data-migration-scripts.md"
     },
     {
@@ -173,6 +183,7 @@
       "label": "[F1.S2.Design System]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-fe-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-fe-platform/f1-s2-design-system.md"
     },
     {
@@ -180,6 +191,7 @@
       "label": "[F1.S4.Login Flow]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-fe-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-fe-platform/f1-s4-login-flow.md"
     },
     {
@@ -187,6 +199,7 @@
       "label": "[F2.S5.Admin Console]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-fe-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-fe-platform/f2-s5-admin-console.md"
     },
     {
@@ -194,6 +207,7 @@
       "label": "[F2.S6.Overview Refactor]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-fe-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-fe-platform/f2-s6-overview-refactor.md"
     },
     {
@@ -201,6 +215,7 @@
       "label": "[F3.S10.3D Performance]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-fe-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-fe-platform/f3-s10-3d-performance.md"
     },
     {
@@ -208,6 +223,7 @@
       "label": "[F3.S7.Models Page]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-fe-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-fe-platform/f3-s7-models-page.md"
     },
     {
@@ -215,6 +231,7 @@
       "label": "[F3.S8.Tech Pack Layout]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-fe-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-fe-platform/f3-s8-tech-pack-layout.md"
     },
     {
@@ -222,6 +239,7 @@
       "label": "[F3.S9.Model Sheet Fixes]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-fe-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-fe-platform/f3-s9-model-sheet-fixes.md"
     },
     {
@@ -229,6 +247,7 @@
       "label": "[F5.S14.Garment Configurator (T2.3)]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-fe-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-fe-platform/f5-s14-garment-configurator-t2-3.md"
     },
     {
@@ -236,6 +255,7 @@
       "label": "[F5.S15.i18n / l10n]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-fe-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-fe-platform/f5-s15-i18n-l10n.md"
     },
     {
@@ -243,6 +263,7 @@
       "label": "[F1.S2.Project Setup]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f1-s2-project-setup.md"
     },
     {
@@ -250,6 +271,7 @@
       "label": "[F3.S10.Cost Breakdown]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f3-s10-cost-breakdown.md"
     },
     {
@@ -257,6 +279,7 @@
       "label": "[F3.S11.Tech Process Refactor]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f3-s11-tech-process-refactor.md"
     },
     {
@@ -264,6 +287,7 @@
       "label": "[F3.S6.Collections Refactor]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f3-s6-collections-refactor.md"
     },
     {
@@ -271,6 +295,7 @@
       "label": "[F3.S8.BOM Editor]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f3-s8-bom-editor.md"
     },
     {
@@ -278,6 +303,7 @@
       "label": "[F3.S9.Sizing & QA Flow]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f3-s9-sizing-qa-flow.md"
     },
     {
@@ -285,6 +311,7 @@
       "label": "[F4.S10.Planner]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f4-s10-planner.md"
     },
     {
@@ -292,6 +319,7 @@
       "label": "[F4.S11.Batches & Assignment]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f4-s11-batches-assignment.md"
     },
     {
@@ -299,6 +327,7 @@
       "label": "[F4.S11.Inventory & Reception]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f4-s11-inventory-reception.md"
     },
     {
@@ -306,6 +335,7 @@
       "label": "[F4.S11.Operator View]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f4-s11-operator-view.md"
     },
     {
@@ -313,6 +343,7 @@
       "label": "[F4.S12.QC Module]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f4-s12-qc-module.md"
     },
     {
@@ -320,6 +351,7 @@
       "label": "[F4.S12.Reports & Cutting]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f4-s12-reports-cutting.md"
     },
     {
@@ -327,6 +359,7 @@
       "label": "[F4.S9.Orders Refactor]",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f4-s9-orders-refactor.md"
     },
     {
@@ -334,6 +367,7 @@
       "label": "[F5.S11.DPP Module (T2.4)]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f5-s11-dpp-module-t2-4.md"
     },
     {
@@ -341,6 +375,7 @@
       "label": "[F5.S12.Public DPP / GS1]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f5-s12-public-dpp-gs1.md"
     },
     {
@@ -348,6 +383,7 @@
       "label": "[F5.S15.Auditor View]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f5-s15-auditor-view.md"
     },
     {
@@ -355,6 +391,7 @@
       "label": "[F5.S16.Made2Flow Schema]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f5-s16-made2flow-schema.md"
     },
     {
@@ -362,6 +399,7 @@
       "label": "[F6.S16.Migration Testing]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f6-s16-migration-testing.md"
     },
     {
@@ -369,6 +407,7 @@
       "label": "[F6.S17.Final QA & Cutover]",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/kf-platform.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/kf-platform/f6-s17-final-qa-cutover.md"
     },
     {
@@ -376,6 +415,7 @@
       "label": "AAS import/export tooling (aas_export.py, import-demo.sh)",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/aas-import-export-tooling-aas-export-py-import-demo-sh.md"
     },
     {
@@ -383,6 +423,7 @@
       "label": "ALADIN WP2 RunSheet service (nginx + Traefik routing)",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/aladin-wp2-runsheet-service-nginx-traefik-routing.md"
     },
     {
@@ -390,6 +431,7 @@
       "label": "Connect + test M2F V2 API from new Nuoform",
       "type": "Task",
       "status": "In Progress",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/connect-test-m2f-v2-api-from-new-nuoform.md"
     },
     {
@@ -397,6 +439,7 @@
       "label": "Debug integration issues with LMS team",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/debug-integration-issues-with-lms-team.md"
     },
     {
@@ -404,6 +447,7 @@
       "label": "Demo UI R3Group (Next 16: Design \u2192 Simulation \u2192 Shopfloor \u2192 Impact; LMS re-optimise)",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/demo-ui-r3group-next-16-design-simulation-shopfloor-impact-lms-re-optimise.md"
     },
     {
@@ -411,6 +455,7 @@
       "label": "Export R3 AAS shells \u2192 move to Netcompany-hosted R3 platform",
       "type": "Task",
       "status": "In Progress",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/export-r3-aas-shells-move-to-netcompany-hosted-r3-platform.md"
     },
     {
@@ -418,6 +463,7 @@
       "label": "Implement planner visualization improvements (capacity / gaps)",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/implement-planner-visualization-improvements-capacity-gaps.md"
     },
     {
@@ -425,6 +471,7 @@
       "label": "Implement scheduler response parser",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/implement-scheduler-response-parser.md"
     },
     {
@@ -432,6 +479,7 @@
       "label": "Implement scheduling request endpoint (KF \u2192 LMS)",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/implement-scheduling-request-endpoint-kf-lms.md"
     },
     {
@@ -439,6 +487,7 @@
       "label": "Integrate scheduling results with planner UI",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/integrate-scheduling-results-with-planner-ui.md"
     },
     {
@@ -446,6 +495,7 @@
       "label": "Integration validation review",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/integration-validation-review.md"
     },
     {
@@ -453,6 +503,7 @@
       "label": "M2F: finalise & confirm assumed KF-M2F shell structure",
       "type": "Task",
       "status": "In Progress",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/m2f-finalise-confirm-assumed-kf-m2f-shell-structure.md"
     },
     {
@@ -460,6 +511,7 @@
       "label": "OAuth2 auth-server public + per-client provisioning",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/oauth2-auth-server-public-per-client-provisioning.md"
     },
     {
@@ -467,6 +519,7 @@
       "label": "Order_3_Aas shell (8 submodels, cost + schedule)",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/order-3-aas-shell-8-submodels-cost-schedule.md"
     },
     {
@@ -474,6 +527,7 @@
       "label": "Pilot KF demo recordings (based on revised Nuoform)",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/pilot-kf-demo-recordings-based-on-revised-nuoform.md"
     },
     {
@@ -481,6 +535,7 @@
       "label": "Re-point all connections to Netcompany-hosted R3 (go live)",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/re-point-all-connections-to-netcompany-hosted-r3-go-live.md"
     },
     {
@@ -488,6 +543,7 @@
       "label": "Run first scheduling tests with real production data",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/run-first-scheduling-tests-with-real-production-data.md"
     },
     {
@@ -495,6 +551,7 @@
       "label": "Share KF access for export to NetCompany",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/share-kf-access-for-export-to-netcompany.md"
     },
     {
@@ -502,6 +559,7 @@
       "label": "Share KF-M2F shell with M2F (so they build their own)",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/share-kf-m2f-shell-with-m2f-so-they-build-their-own.md"
     },
     {
@@ -509,6 +567,7 @@
       "label": "State AI usage in R3 (declaration)",
       "type": "Task",
       "status": "Todo",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/state-ai-usage-in-r3-declaration.md"
     },
     {
@@ -516,6 +575,7 @@
       "label": "T2.1 \u2014 Co-creation platform (Nuoform)",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t2-1-co-creation-platform-nuoform.md"
     },
     {
@@ -523,6 +583,7 @@
       "label": "T2.3 \u2014 Supply Chain Digital Twin: risk modelling",
       "type": "Task",
       "status": "In Progress",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t2-3-supply-chain-digital-twin-risk-modelling.md"
     },
     {
@@ -530,6 +591,7 @@
       "label": "T2.4 \u2014 Capacity Planner: KF \u2194 LMS Integration",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t2-4-capacity-planner-kf-lms-integration.md"
     },
     {
@@ -537,6 +599,7 @@
       "label": "T2.4 \u2014 Capacity Planner: KF Planner UI",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t2-4-capacity-planner-kf-planner-ui.md"
     },
     {
@@ -544,6 +607,7 @@
       "label": "T2.4 \u2014 Capacity Planner: LMS Scheduler Backend",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t2-4-capacity-planner-lms-scheduler-backend.md"
     },
     {
@@ -551,6 +615,7 @@
       "label": "T3.2 \u2014 Process Digital Twin (Tecnomatix simulation)",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t3-2-process-digital-twin-tecnomatix-simulation.md"
     },
     {
@@ -558,6 +623,7 @@
       "label": "T3.2 \u2014 Product Digital Twin (AAS model)",
       "type": "Task",
       "status": "Done",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t3-2-product-digital-twin-aas-model.md"
     },
     {
@@ -565,6 +631,7 @@
       "label": "T3.3 \u2014 IoT Monitoring: sensors deployment",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t3-3-iot-monitoring-sensors-deployment.md"
     },
     {
@@ -572,6 +639,7 @@
       "label": "Validate suitability constraints and scheduling logic",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/validate-suitability-constraints-and-scheduling-logic.md"
     },
     {
@@ -579,6 +647,7 @@
       "label": "WP1 \u2014 AAS platform integration (digital infrastructure)",
       "type": "Task",
       "status": "Review",
+      "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/wp1-aas-platform-integration-digital-infrastructure.md"
     }
   ],
