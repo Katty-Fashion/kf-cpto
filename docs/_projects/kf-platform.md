@@ -4,7 +4,7 @@ description: "Infra platform for kf web based services"
 project: kf-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-platform/edit/master/kanban.md"
-generated: 2026-07-08T08:39:22.671171
+generated: 2026-07-08T11:22:44.692489
 ---
 
 # kf-platform
@@ -44,19 +44,7 @@ generated: 2026-07-08T08:39:22.671171
     <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">12</span></div>
-    <div class="kanban-card kanban-card--static">[F1.S2.Project Setup]</div>
-    <div class="kanban-card kanban-card--static">[F3.S6.Collections Refactor]</div>
-    <div class="kanban-card kanban-card--static">[F3.S8.BOM Editor]</div>
-    <div class="kanban-card kanban-card--static">[F3.S9.Sizing &amp; QA Flow]</div>
-    <div class="kanban-card kanban-card--static">[F3.S10.Cost Breakdown]</div>
-    <div class="kanban-card kanban-card--static">[F3.S11.Tech Process Refactor]</div>
-    <div class="kanban-card kanban-card--static">[F4.S11.Inventory &amp; Reception]</div>
-    <div class="kanban-card kanban-card--static">[F4.S9.Orders Refactor]</div>
-    <div class="kanban-card kanban-card--static">[F4.S10.Planner]</div>
-    <div class="kanban-card kanban-card--static">[F4.S11.Batches &amp; Assignment]</div>
-    <div class="kanban-card kanban-card--static">[F4.S12.QC Module]</div>
-    <div class="kanban-card kanban-card--static">[F4.S12.Reports &amp; Cutting]</div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">0</span></div>
   </div>
 </div>
 

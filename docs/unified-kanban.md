@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-07-08T08:39:22.596306
+generated: 2026-07-08T11:22:44.651051
 ---
 
 # KF Team — Unified Kanban
@@ -49,45 +49,12 @@ generated: 2026-07-08T08:39:22.596306
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Integration validation review</a>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">38</span></div>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.1 — Co-creation platform (Nuoform)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T3.2 — Product Digital Twin (AAS model)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T3.2 — Process Digital Twin (Tecnomatix simulation)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.4 — Capacity Planner: LMS Scheduler Backend</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: AAS import/export tooling (aas_export.py, import-demo.sh)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Order_3_Aas shell (8 submodels, cost + schedule)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: OAuth2 auth-server public + per-client provisioning</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: ALADIN WP2 RunSheet service (nginx + Traefik routing)</a>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">5</span></div>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Share KF access for export to NetCompany</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Share KF-M2F shell with M2F (so they build their own)</a>
-    <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F1.S2.DB Schema v2 + RLS]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F1.S2.CI/CD Pipeline]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F2.S3.IDP + SMTP]</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F2.S3.RBAC System]</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F2.S5.Tenant Management]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F5.S15.Notifications]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F1.S2.Design System]</a>
     <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F1.S4.Login Flow]</a>
     <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F2.S5.Admin Console]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F2.S6.Overview Refactor]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F3.S7.Models Page]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F3.S8.Tech Pack Layout]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F3.S9.Model Sheet Fixes]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F3.S10.3D Performance]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F5.S15.i18n / l10n]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F1.S2.Project Setup]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F3.S6.Collections Refactor]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F3.S8.BOM Editor]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F3.S9.Sizing &amp; QA Flow]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F3.S10.Cost Breakdown]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F3.S11.Tech Process Refactor]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F4.S11.Inventory &amp; Reception]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F4.S9.Orders Refactor]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F4.S10.Planner]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F4.S11.Batches &amp; Assignment]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F4.S12.QC Module]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F4.S12.Reports &amp; Cutting]</a>
   </div>
 </div>
 

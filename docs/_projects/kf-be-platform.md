@@ -4,7 +4,7 @@ description: "SaaS Product"
 project: kf-be-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-07-08T08:39:22.670752
+generated: 2026-07-08T11:22:44.691111
 ---
 
 # kf-be-platform
@@ -41,13 +41,9 @@ generated: 2026-07-08T08:39:22.670752
     <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">6</span></div>
-    <div class="kanban-card kanban-card--static">[F1.S2.DB Schema v2 + RLS]</div>
-    <div class="kanban-card kanban-card--static">[F1.S2.CI/CD Pipeline]</div>
-    <div class="kanban-card kanban-card--static">[F2.S3.IDP + SMTP]</div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">2</span></div>
     <div class="kanban-card kanban-card--static">[F2.S3.RBAC System]</div>
     <div class="kanban-card kanban-card--static">[F2.S5.Tenant Management]</div>
-    <div class="kanban-card kanban-card--static">[F5.S15.Notifications]</div>
   </div>
 </div>
 
