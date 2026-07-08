@@ -328,6 +328,29 @@ def _gantt_sprint_views(data: dict, today=None) -> list[str]:
     return lines if emitted or len(lines) > 2 else []
 
 
+def _board_task_visible(task: dict, sprint_start, sprint_end) -> bool:
+    """Return True if the task should appear on the kanban board.
+
+    Active tasks (status != "Done") are always visible.
+    Done tasks are only visible when they are dated within the project's
+    current sprint window [sprint_start, sprint_end].  If either the sprint
+    dates or the task dates are absent/unparseable, the Done task is hidden.
+    """
+    if str(task.get("status", "")).strip() != "Done":
+        return True
+    ss = iso_date(sprint_start)
+    se = iso_date(sprint_end)
+    if ss is None or se is None:
+        return False
+    ts = iso_date(task.get("start"))
+    te = iso_date(task.get("end"))
+    a = ts or te
+    b = te or ts
+    if a is None:
+        return False
+    return a <= se and b >= ss
+
+
 def generate_unified_kanban(data: dict) -> str:
     """Generate unified kanban markdown"""
     lines = [
@@ -347,7 +370,12 @@ def generate_unified_kanban(data: dict) -> str:
 
     task_counter = 0
     for project, project_data in data.items():
+        proj_meta = project_data.get("meta", {})
+        proj_sprint_start = proj_meta.get("sprint_start")
+        proj_sprint_end = proj_meta.get("sprint_end")
         for task in project_data["tasks"]:
+            if not _board_task_visible(task, proj_sprint_start, proj_sprint_end):
+                continue
             status = task["status"]
             mermaid_status = STATUS_TO_MERMAID.get(status)
             if mermaid_status and mermaid_status in statuses:
@@ -587,10 +615,13 @@ def generate_project_page(project: str, project_data: dict) -> str:
         )
         lines.append("")
 
-        # Group tasks by status for the HTML board
+        # Group tasks by status for the HTML board — apply board-visibility filter
+        # so only active tasks (non-Done) and sprint-dated Done tasks appear.
         statuses = {STATUS_TO_MERMAID[s]: [] for s in TASK_STATUSES}
 
         for task in tasks:
+            if not _board_task_visible(task, sprint_start, sprint_end):
+                continue
             status = task["status"]
             mermaid_status = STATUS_TO_MERMAID.get(status)
             if mermaid_status and mermaid_status in statuses:
