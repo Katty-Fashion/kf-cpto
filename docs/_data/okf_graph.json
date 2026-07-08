@@ -419,100 +419,12 @@
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/aas-import-export-tooling-aas-export-py-import-demo-sh.md"
     },
     {
-      "id": "/tasks/r3-aas/acces-corect-la-organiza-ii-login-flow-issues.md",
-      "label": "Acces corect la organiza\u021bii (login flow issues)",
-      "type": "Task",
-      "status": "In Progress",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/acces-corect-la-organiza-ii-login-flow-issues.md"
-    },
-    {
-      "id": "/tasks/r3-aas/acces-vpn-onboarding-corect.md",
-      "label": "Acces VPN + onboarding corect",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/acces-vpn-onboarding-corect.md"
-    },
-    {
       "id": "/tasks/r3-aas/aladin-wp2-runsheet-service-nginx-traefik-routing.md",
       "label": "ALADIN WP2 RunSheet service (nginx + Traefik routing)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/aladin-wp2-runsheet-service-nginx-traefik-routing.md"
-    },
-    {
-      "id": "/tasks/r3-aas/arhitectur-multi-tenant-in-place.md",
-      "label": "Arhitectur\u0103 multi-tenant (in place)",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/arhitectur-multi-tenant-in-place.md"
-    },
-    {
-      "id": "/tasks/r3-aas/backend-alignment-dup-modific-ri-r-zvan.md",
-      "label": "Backend alignment (dup\u0103 modific\u0103ri R\u0103zvan)",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/backend-alignment-dup-modific-ri-r-zvan.md"
-    },
-    {
-      "id": "/tasks/r3-aas/board-central-kanban-single-source-of-truth.md",
-      "label": "Board central Kanban \u2013 single source of truth",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/board-central-kanban-single-source-of-truth.md"
-    },
-    {
-      "id": "/tasks/r3-aas/bug-uri-identificate-n-sistem.md",
-      "label": "Bug-uri identificate \u00een sistem",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/bug-uri-identificate-n-sistem.md"
-    },
-    {
-      "id": "/tasks/r3-aas/clarificare-acces-server-r3-vangelis.md",
-      "label": "Clarificare acces server R3 (Vangelis)",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/clarificare-acces-server-r3-vangelis.md"
-    },
-    {
-      "id": "/tasks/r3-aas/clarificare-format-date-pentru-platforma-r3.md",
-      "label": "Clarificare format date pentru platforma R3",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/clarificare-format-date-pentru-platforma-r3.md"
-    },
-    {
-      "id": "/tasks/r3-aas/clarificare-format-date-platforma-r3.md",
-      "label": "Clarificare format date platforma R3",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/clarificare-format-date-platforma-r3.md"
-    },
-    {
-      "id": "/tasks/r3-aas/code-quality-stability-nainte-de-release.md",
-      "label": "Code quality / stability \u00eenainte de release",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/code-quality-stability-nainte-de-release.md"
-    },
-    {
-      "id": "/tasks/r3-aas/conectivitate-sisteme-externe.md",
-      "label": "Conectivitate sisteme externe",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/conectivitate-sisteme-externe.md"
     },
     {
       "id": "/tasks/r3-aas/connect-test-m2f-v2-api-from-new-nuoform.md",
@@ -523,36 +435,12 @@
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/connect-test-m2f-v2-api-from-new-nuoform.md"
     },
     {
-      "id": "/tasks/r3-aas/corelare-sprint-tasks-work-packages.md",
-      "label": "Corelare Sprint tasks \u2194 Work Packages",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/corelare-sprint-tasks-work-packages.md"
-    },
-    {
       "id": "/tasks/r3-aas/debug-integration-issues-with-lms-team.md",
       "label": "Debug integration issues with LMS team",
       "type": "Task",
       "status": "Review",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/debug-integration-issues-with-lms-team.md"
-    },
-    {
-      "id": "/tasks/r3-aas/definire-tehnic-monetizare-saas-readiness.md",
-      "label": "Definire tehnic\u0103 monetizare (SaaS readiness)",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/definire-tehnic-monetizare-saas-readiness.md"
-    },
-    {
-      "id": "/tasks/r3-aas/demo-prezentare-produs.md",
-      "label": "Demo / prezentare produs",
-      "type": "Task",
-      "status": "In Progress",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/demo-prezentare-produs.md"
     },
     {
       "id": "/tasks/r3-aas/demo-ui-r3group-next-16-design-simulation-shopfloor-impact-lms-re-optimise.md",
@@ -563,68 +451,12 @@
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/demo-ui-r3group-next-16-design-simulation-shopfloor-impact-lms-re-optimise.md"
     },
     {
-      "id": "/tasks/r3-aas/deploy-aas-n-cloud-hosting.md",
-      "label": "Deploy AAS \u00een Cloud (hosting)",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/deploy-aas-n-cloud-hosting.md"
-    },
-    {
-      "id": "/tasks/r3-aas/evitarea-dubl-rii-task-urilor-ntre-tools.md",
-      "label": "Evitarea dubl\u0103rii task-urilor \u00eentre tools",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/evitarea-dubl-rii-task-urilor-ntre-tools.md"
-    },
-    {
       "id": "/tasks/r3-aas/export-r3-aas-shells-move-to-netcompany-hosted-r3-platform.md",
       "label": "Export R3 AAS shells \u2192 move to Netcompany-hosted R3 platform",
       "type": "Task",
       "status": "In Progress",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/export-r3-aas-shells-move-to-netcompany-hosted-r3-platform.md"
-    },
-    {
-      "id": "/tasks/r3-aas/feature-flags.md",
-      "label": "Feature flags",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/feature-flags.md"
-    },
-    {
-      "id": "/tasks/r3-aas/flow-sistem-ui-aas-backend.md",
-      "label": "Flow sistem (UI \u2192 AAS \u2192 backend)",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/flow-sistem-ui-aas-backend.md"
-    },
-    {
-      "id": "/tasks/r3-aas/gantt-timeline-pentru-progres.md",
-      "label": "Gantt / timeline pentru progres",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/gantt-timeline-pentru-progres.md"
-    },
-    {
-      "id": "/tasks/r3-aas/generare-automat-status-reports.md",
-      "label": "Generare automat\u0103 status / reports",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/generare-automat-status-reports.md"
-    },
-    {
-      "id": "/tasks/r3-aas/github-actions-pentru-sync-task-uri.md",
-      "label": "GitHub Actions pentru sync task-uri",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/github-actions-pentru-sync-task-uri.md"
     },
     {
       "id": "/tasks/r3-aas/implement-planner-visualization-improvements-capacity-gaps.md",
@@ -651,38 +483,6 @@
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/implement-scheduling-request-endpoint-kf-lms.md"
     },
     {
-      "id": "/tasks/r3-aas/input-pentru-crm-pipeline-structur-tehnic.md",
-      "label": "Input pentru CRM / pipeline (structur\u0103 tehnic\u0103)",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/input-pentru-crm-pipeline-structur-tehnic.md"
-    },
-    {
-      "id": "/tasks/r3-aas/instalare-senzor-3-pozi-ie-cutie-flux-materiale-t3-3.md",
-      "label": "Instalare senzor 3 (pozi\u021bie cutie/flux materiale) \u2014 T3.3",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/instalare-senzor-3-pozi-ie-cutie-flux-materiale-t3-3.md"
-    },
-    {
-      "id": "/tasks/r3-aas/integrare-lms-aas-extern.md",
-      "label": "Integrare LMS (AAS extern)",
-      "type": "Task",
-      "status": "Review",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/integrare-lms-aas-extern.md"
-    },
-    {
-      "id": "/tasks/r3-aas/integrare-ntre-sisteme-katty-lms.md",
-      "label": "Integrare \u00eentre sisteme (Katty / LMS)",
-      "type": "Task",
-      "status": "Review",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/integrare-ntre-sisteme-katty-lms.md"
-    },
-    {
       "id": "/tasks/r3-aas/integrate-scheduling-results-with-planner-ui.md",
       "label": "Integrate scheduling results with planner UI",
       "type": "Task",
@@ -699,52 +499,12 @@
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/integration-validation-review.md"
     },
     {
-      "id": "/tasks/r3-aas/landing-page-claritate-produs.md",
-      "label": "Landing page (claritate produs)",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/landing-page-claritate-produs.md"
-    },
-    {
-      "id": "/tasks/r3-aas/layout-simplificat-pilot-sta-ii-flux-senzori.md",
-      "label": "Layout simplificat pilot (sta\u021bii + flux + senzori)",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/layout-simplificat-pilot-sta-ii-flux-senzori.md"
-    },
-    {
-      "id": "/tasks/r3-aas/lms-specs-credentials.md",
-      "label": "LMS specs + credentials",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/lms-specs-credentials.md"
-    },
-    {
       "id": "/tasks/r3-aas/m2f-finalise-confirm-assumed-kf-m2f-shell-structure.md",
       "label": "M2F: finalise & confirm assumed KF-M2F shell structure",
       "type": "Task",
       "status": "In Progress",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/m2f-finalise-confirm-assumed-kf-m2f-shell-structure.md"
-    },
-    {
-      "id": "/tasks/r3-aas/multiple-tipuri-aas-standardizare.md",
-      "label": "Multiple tipuri AAS \u2192 standardizare",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/multiple-tipuri-aas-standardizare.md"
-    },
-    {
-      "id": "/tasks/r3-aas/naming-convention-pentru-task-uri-namespace-per-proiect.md",
-      "label": "Naming convention pentru task-uri (namespace per proiect)",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/naming-convention-pentru-task-uri-namespace-per-proiect.md"
     },
     {
       "id": "/tasks/r3-aas/oauth2-auth-server-public-per-client-provisioning.md",
@@ -771,22 +531,6 @@
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/pilot-kf-demo-recordings-based-on-revised-nuoform.md"
     },
     {
-      "id": "/tasks/r3-aas/pipeline-ci-cd-necesar-pentru-gtm.md",
-      "label": "Pipeline CI/CD (necesar pentru GTM)",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/pipeline-ci-cd-necesar-pentru-gtm.md"
-    },
-    {
-      "id": "/tasks/r3-aas/rapoarte-s-pt-m-nale-nu-daily.md",
-      "label": "Rapoarte s\u0103pt\u0103m\u00e2nale (nu daily)",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/rapoarte-s-pt-m-nale-nu-daily.md"
-    },
-    {
       "id": "/tasks/r3-aas/re-point-all-connections-to-netcompany-hosted-r3-go-live.md",
       "label": "Re-point all connections to Netcompany-hosted R3 (go live)",
       "type": "Task",
@@ -795,28 +539,12 @@
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/re-point-all-connections-to-netcompany-hosted-r3-go-live.md"
     },
     {
-      "id": "/tasks/r3-aas/reprezentare-gantt-timeline-corelare-temporal.md",
-      "label": "Reprezentare Gantt (timeline / corelare temporal\u0103)",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/reprezentare-gantt-timeline-corelare-temporal.md"
-    },
-    {
       "id": "/tasks/r3-aas/run-first-scheduling-tests-with-real-production-data.md",
       "label": "Run first scheduling tests with real production data",
       "type": "Task",
       "status": "Review",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/run-first-scheduling-tests-with-real-production-data.md"
-    },
-    {
-      "id": "/tasks/r3-aas/separare-date-per-client-in-place.md",
-      "label": "Separare date per client (in place)",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/separare-date-per-client-in-place.md"
     },
     {
       "id": "/tasks/r3-aas/share-kf-access-for-export-to-netcompany.md",
@@ -835,36 +563,12 @@
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/share-kf-m2f-shell-with-m2f-so-they-build-their-own.md"
     },
     {
-      "id": "/tasks/r3-aas/sketch-json-sistem.md",
-      "label": "Sketch \u2192 JSON \u2192 sistem",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/sketch-json-sistem.md"
-    },
-    {
-      "id": "/tasks/r3-aas/sprint-plan-tranzi-ie-c-tre-gtm.md",
-      "label": "Sprint plan (tranzi\u021bie c\u0103tre GTM)",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/sprint-plan-tranzi-ie-c-tre-gtm.md"
-    },
-    {
       "id": "/tasks/r3-aas/state-ai-usage-in-r3-declaration.md",
       "label": "State AI usage in R3 (declaration)",
       "type": "Task",
       "status": "Todo",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/state-ai-usage-in-r3-declaration.md"
-    },
-    {
-      "id": "/tasks/r3-aas/suport-tehnic-post-launch.md",
-      "label": "Suport tehnic post-launch",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/suport-tehnic-post-launch.md"
     },
     {
       "id": "/tasks/r3-aas/t2-1-co-creation-platform-nuoform.md",
@@ -931,60 +635,12 @@
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t3-3-iot-monitoring-sensors-deployment.md"
     },
     {
-      "id": "/tasks/r3-aas/task-uri-cu-timeline-start-end.md",
-      "label": "Task-uri cu timeline (start/end)",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/task-uri-cu-timeline-start-end.md"
-    },
-    {
-      "id": "/tasks/r3-aas/task-uri-work-packages-wp-mapping.md",
-      "label": "Task-uri \u2194 Work Packages (WP mapping)",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/task-uri-work-packages-wp-mapping.md"
-    },
-    {
-      "id": "/tasks/r3-aas/telemetrie-monitorizare.md",
-      "label": "Telemetrie (monitorizare)",
-      "type": "Task",
-      "status": "Todo",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/telemetrie-monitorizare.md"
-    },
-    {
-      "id": "/tasks/r3-aas/testare-demo-produse-clien-i-testeri-interni.md",
-      "label": "Testare demo produse (clien\u021bi + testeri interni)",
-      "type": "Task",
-      "status": "In Progress",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/testare-demo-produse-clien-i-testeri-interni.md"
-    },
-    {
-      "id": "/tasks/r3-aas/ui-flow-par-ial-complet.md",
-      "label": "UI flow (par\u021bial complet)",
-      "type": "Task",
-      "status": "Review",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/ui-flow-par-ial-complet.md"
-    },
-    {
       "id": "/tasks/r3-aas/validate-suitability-constraints-and-scheduling-logic.md",
       "label": "Validate suitability constraints and scheduling logic",
       "type": "Task",
       "status": "Review",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/validate-suitability-constraints-and-scheduling-logic.md"
-    },
-    {
-      "id": "/tasks/r3-aas/vizualizare-date-ui.md",
-      "label": "Vizualizare date / UI",
-      "type": "Task",
-      "status": "Done",
-      "parent": "/projects/r3-aas.md",
-      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/vizualizare-date-ui.md"
     },
     {
       "id": "/tasks/r3-aas/wp1-aas-platform-integration-digital-infrastructure.md",
@@ -1223,62 +879,7 @@
     },
     {
       "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/acces-corect-la-organiza-ii-login-flow-issues.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/acces-vpn-onboarding-corect.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
       "target": "/tasks/r3-aas/aladin-wp2-runsheet-service-nginx-traefik-routing.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/arhitectur-multi-tenant-in-place.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/backend-alignment-dup-modific-ri-r-zvan.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/board-central-kanban-single-source-of-truth.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/bug-uri-identificate-n-sistem.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/clarificare-acces-server-r3-vangelis.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/clarificare-format-date-pentru-platforma-r3.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/clarificare-format-date-platforma-r3.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/code-quality-stability-nainte-de-release.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/conectivitate-sisteme-externe.md",
       "kind": "contains"
     },
     {
@@ -1288,22 +889,7 @@
     },
     {
       "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/corelare-sprint-tasks-work-packages.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
       "target": "/tasks/r3-aas/debug-integration-issues-with-lms-team.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/definire-tehnic-monetizare-saas-readiness.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/demo-prezentare-produs.md",
       "kind": "contains"
     },
     {
@@ -1313,42 +899,7 @@
     },
     {
       "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/deploy-aas-n-cloud-hosting.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/evitarea-dubl-rii-task-urilor-ntre-tools.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
       "target": "/tasks/r3-aas/export-r3-aas-shells-move-to-netcompany-hosted-r3-platform.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/feature-flags.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/flow-sistem-ui-aas-backend.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/gantt-timeline-pentru-progres.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/generare-automat-status-reports.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/github-actions-pentru-sync-task-uri.md",
       "kind": "contains"
     },
     {
@@ -1368,26 +919,6 @@
     },
     {
       "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/input-pentru-crm-pipeline-structur-tehnic.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/instalare-senzor-3-pozi-ie-cutie-flux-materiale-t3-3.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/integrare-lms-aas-extern.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/integrare-ntre-sisteme-katty-lms.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
       "target": "/tasks/r3-aas/integrate-scheduling-results-with-planner-ui.md",
       "kind": "contains"
     },
@@ -1398,32 +929,7 @@
     },
     {
       "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/landing-page-claritate-produs.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/layout-simplificat-pilot-sta-ii-flux-senzori.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/lms-specs-credentials.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
       "target": "/tasks/r3-aas/m2f-finalise-confirm-assumed-kf-m2f-shell-structure.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/multiple-tipuri-aas-standardizare.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/naming-convention-pentru-task-uri-namespace-per-proiect.md",
       "kind": "contains"
     },
     {
@@ -1443,32 +949,12 @@
     },
     {
       "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/pipeline-ci-cd-necesar-pentru-gtm.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/rapoarte-s-pt-m-nale-nu-daily.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
       "target": "/tasks/r3-aas/re-point-all-connections-to-netcompany-hosted-r3-go-live.md",
       "kind": "contains"
     },
     {
       "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/reprezentare-gantt-timeline-corelare-temporal.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
       "target": "/tasks/r3-aas/run-first-scheduling-tests-with-real-production-data.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/separare-date-per-client-in-place.md",
       "kind": "contains"
     },
     {
@@ -1483,22 +969,7 @@
     },
     {
       "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/sketch-json-sistem.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/sprint-plan-tranzi-ie-c-tre-gtm.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
       "target": "/tasks/r3-aas/state-ai-usage-in-r3-declaration.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/suport-tehnic-post-launch.md",
       "kind": "contains"
     },
     {
@@ -1543,37 +1014,7 @@
     },
     {
       "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/task-uri-cu-timeline-start-end.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/task-uri-work-packages-wp-mapping.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/telemetrie-monitorizare.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/testare-demo-produse-clien-i-testeri-interni.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/ui-flow-par-ial-complet.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
       "target": "/tasks/r3-aas/validate-suitability-constraints-and-scheduling-logic.md",
-      "kind": "contains"
-    },
-    {
-      "source": "/projects/r3-aas.md",
-      "target": "/tasks/r3-aas/vizualizare-date-ui.md",
       "kind": "contains"
     },
     {
