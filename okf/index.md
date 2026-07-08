@@ -12,7 +12,7 @@ re-parse individual repo files; consume this bundle instead.
 ## Sections
 
 - [Projects](/projects/index.md) — 6 tracked repos
-- [Tasks](/tasks/index.md) — 112 task concepts
+- [Tasks](/tasks/index.md) — 69 task concepts
 - [Metrics](/metrics/index.md) — LOE and RAG status definitions
 - [Milestones](/milestones/index.md) — Migration calendar milestones
 - [log.md](/log.md) — Change history

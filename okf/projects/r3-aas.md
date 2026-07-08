@@ -50,49 +50,6 @@ sprint: S5
 | Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise) | Alexandru Bejenari | — | Done |
 | OAuth2 auth-server public + per-client provisioning | Răzvan Boița | — | Done |
 | ALADIN WP2 RunSheet service (nginx + Traefik routing) | Răzvan Boița | — | Done |
-| Clarificare acces server R3 (Vangelis) | Paul Stanciuc |  | Done |
-| Clarificare format date platforma R3 | Alexandru Bejenari |  | Done |
-| Arhitectură multi-tenant (in place) | Eduard Modreanu |  | Done |
-| Separare date per client (in place) | Eduard Modreanu |  | Done |
-| Flow sistem (UI → AAS → backend) | Răzvan Boița |  | Done |
-| Integrare între sisteme (Katty / LMS) | Alexandru Bejenari |  | Review |
-| Multiple tipuri AAS → standardizare | Răzvan Boița |  | Done |
-| Layout simplificat pilot (stații + flux + senzori) | Eduard Lazăr / Paul Stanciuc |  | Done |
-| Integrare LMS (AAS extern) | Alexandru Bejenari |  | Review |
-| Sketch → JSON → sistem | Alexandru Bejenari |  | Done |
-| LMS specs + credentials | Alexandru Bejenari |  | Done |
-| UI flow (parțial complet) | Alexandru Bejenari |  | Review |
-| Backend alignment (după modificări Răzvan) | Alexandru Bejenari |  | Todo |
-| Bug-uri identificate în sistem | Alexandru Bejenari |  | Todo |
-| Vizualizare date / UI | Alexandru Bejenari |  | Done |
-| Deploy AAS în Cloud (hosting) | Răzvan Boița / Eduard Lazăr |  | Done |
-| Clarificare format date pentru platforma R3 | Alexandru Bejenari |  | Done |
-| Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 | Eduard Lazăr / Julia |  | Todo |
-| Board central Kanban – single source of truth | Paul Stanciuc |  | Done |
-| Task-uri ↔ Work Packages (WP mapping) | Paul Stanciuc |  | Done |
-| Naming convention pentru task-uri (namespace per proiect) | Eduard Lazăr |  | Todo |
-| Evitarea dublării task-urilor între tools | Eduard Lazăr |  | Todo |
-| Reprezentare Gantt (timeline / corelare temporală) | Paul Stanciuc |  | Done |
-| GitHub Actions pentru sync task-uri | Paul Stanciuc |  | Done |
-| Generare automată status / reports | Paul Stanciuc |  | Done |
-| Pipeline CI/CD (necesar pentru GTM) | Răzvan Boița |  | Done |
-| Feature flags | Mihai A. |  | Todo |
-| Telemetrie (monitorizare) | Mihai A. |  | Todo |
-| Code quality / stability înainte de release | Mihai A. |  | Todo |
-| Suport tehnic post-launch | Eduard Lazăr |  | Todo |
-| Acces VPN + onboarding corect | Eduard Lazăr |  | Done |
-| Acces corect la organizații (login flow issues) | Eduard Lazar |  | In Progress |
-| Conectivitate sisteme externe | Alexandru Bejenari |  | Todo |
-| Testare demo produse (clienți + testeri interni) | Eduard Lazăr |  | In Progress |
-| Sprint plan (tranziție către GTM) | Eduard Lazăr |  | Todo |
-| Corelare Sprint tasks ↔ Work Packages | Paul Stanciuc |  | Done |
-| Task-uri cu timeline (start/end) | Paul Stanciuc |  | Done |
-| Rapoarte săptămânale (nu daily) | Eduard Lazăr |  | Todo |
-| Gantt / timeline pentru progres | Paul Stanciuc |  | Done |
-| Landing page (claritate produs) | Alexandru Bejenari |  | Todo |
-| Demo / prezentare produs | Eduard Lazăr |  | In Progress |
-| Definire tehnică monetizare (SaaS readiness) | Mihai A. |  | Todo |
-| Input pentru CRM / pipeline (structură tehnică) | Eduard Lazăr |  | Todo |
 | Implement scheduling request endpoint (KF → LMS) | @backend | 2d | Review |
 | Implement scheduler response parser | @backend | 2d | Review |
 | Integrate scheduling results with planner UI | @frontend | 3d | Review |

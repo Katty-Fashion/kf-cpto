@@ -4,7 +4,7 @@ description: "Infra platform for kf web based services"
 project: kf-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-platform/edit/master/kanban.md"
-generated: 2026-07-07T20:07:43.310995
+generated: 2026-07-08T08:36:30.992420
 ---
 
 # kf-platform
