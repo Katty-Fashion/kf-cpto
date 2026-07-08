@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-07T20:07:43.309376
+generated: 2026-07-08T08:36:30.991079
 ---
 
 # R3-AAS
@@ -28,45 +28,24 @@ generated: 2026-07-07T20:07:43.309376
 
 <div class="kanban-board">
   <div class="kanban-col kanban-col--todo">
-    <div class="kanban-col__head">Todo <span class="kanban-col__count">18</span></div>
-    <div class="kanban-card kanban-card--static">Backend alignment (după modificări Răzvan)</div>
-    <div class="kanban-card kanban-card--static">Bug-uri identificate în sistem</div>
-    <div class="kanban-card kanban-card--static">Instalare senzor 3 (poziție cutie/flux materiale) — T3.3</div>
-    <div class="kanban-card kanban-card--static">Naming convention pentru task-uri (namespace per proiect)</div>
-    <div class="kanban-card kanban-card--static">Evitarea dublării task-urilor între tools</div>
-    <div class="kanban-card kanban-card--static">Feature flags</div>
-    <div class="kanban-card kanban-card--static">Telemetrie (monitorizare)</div>
-    <div class="kanban-card kanban-card--static">Code quality / stability înainte de release</div>
-    <div class="kanban-card kanban-card--static">Suport tehnic post-launch</div>
-    <div class="kanban-card kanban-card--static">Conectivitate sisteme externe</div>
-    <div class="kanban-card kanban-card--static">Sprint plan (tranziție către GTM)</div>
-    <div class="kanban-card kanban-card--static">Rapoarte săptămânale (nu daily)</div>
-    <div class="kanban-card kanban-card--static">Landing page (claritate produs)</div>
-    <div class="kanban-card kanban-card--static">Definire tehnică monetizare (SaaS readiness)</div>
-    <div class="kanban-card kanban-card--static">Input pentru CRM / pipeline (structură tehnică)</div>
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">3</span></div>
     <div class="kanban-card kanban-card--static">Re-point all connections to Netcompany-hosted R3 (go live)</div>
     <div class="kanban-card kanban-card--static">Pilot KF demo recordings (based on revised Nuoform)</div>
     <div class="kanban-card kanban-card--static">State AI usage in R3 (declaration)</div>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">7</span></div>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">4</span></div>
     <div class="kanban-card kanban-card--static">T2.3 — Supply Chain Digital Twin: risk modelling</div>
-    <div class="kanban-card kanban-card--static">Acces corect la organizații (login flow issues)</div>
-    <div class="kanban-card kanban-card--static">Testare demo produse (clienți + testeri interni)</div>
-    <div class="kanban-card kanban-card--static">Demo / prezentare produs</div>
     <div class="kanban-card kanban-card--static">M2F: finalise &amp; confirm assumed KF-M2F shell structure</div>
     <div class="kanban-card kanban-card--static">Export R3 AAS shells → move to Netcompany-hosted R3 platform</div>
     <div class="kanban-card kanban-card--static">Connect + test M2F V2 API from new Nuoform</div>
   </div>
   <div class="kanban-col kanban-col--review">
-    <div class="kanban-col__head">Review <span class="kanban-col__count">15</span></div>
+    <div class="kanban-col__head">Review <span class="kanban-col__count">12</span></div>
     <div class="kanban-card kanban-card--static">WP1 — AAS platform integration (digital infrastructure)</div>
     <div class="kanban-card kanban-card--static">T2.4 — Capacity Planner: KF Planner UI</div>
     <div class="kanban-card kanban-card--static">T2.4 — Capacity Planner: KF ↔ LMS Integration</div>
     <div class="kanban-card kanban-card--static">T3.3 — IoT Monitoring: sensors deployment</div>
-    <div class="kanban-card kanban-card--static">Integrare între sisteme (Katty / LMS)</div>
-    <div class="kanban-card kanban-card--static">Integrare LMS (AAS extern)</div>
-    <div class="kanban-card kanban-card--static">UI flow (parțial complet)</div>
     <div class="kanban-card kanban-card--static">Implement scheduling request endpoint (KF → LMS)</div>
     <div class="kanban-card kanban-card--static">Implement scheduler response parser</div>
     <div class="kanban-card kanban-card--static">Integrate scheduling results with planner UI</div>
@@ -77,7 +56,7 @@ generated: 2026-07-07T20:07:43.309376
     <div class="kanban-card kanban-card--static">Integration validation review</div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">33</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">11</span></div>
     <div class="kanban-card kanban-card--static">T2.1 — Co-creation platform (Nuoform)</div>
     <div class="kanban-card kanban-card--static">T3.2 — Product Digital Twin (AAS model)</div>
     <div class="kanban-card kanban-card--static">T3.2 — Process Digital Twin (Tecnomatix simulation)</div>
@@ -87,28 +66,6 @@ generated: 2026-07-07T20:07:43.309376
     <div class="kanban-card kanban-card--static">Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise)</div>
     <div class="kanban-card kanban-card--static">OAuth2 auth-server public + per-client provisioning</div>
     <div class="kanban-card kanban-card--static">ALADIN WP2 RunSheet service (nginx + Traefik routing)</div>
-    <div class="kanban-card kanban-card--static">Clarificare acces server R3 (Vangelis)</div>
-    <div class="kanban-card kanban-card--static">Clarificare format date platforma R3</div>
-    <div class="kanban-card kanban-card--static">Arhitectură multi-tenant (in place)</div>
-    <div class="kanban-card kanban-card--static">Separare date per client (in place)</div>
-    <div class="kanban-card kanban-card--static">Flow sistem (UI → AAS → backend)</div>
-    <div class="kanban-card kanban-card--static">Multiple tipuri AAS → standardizare</div>
-    <div class="kanban-card kanban-card--static">Layout simplificat pilot (stații + flux + senzori)</div>
-    <div class="kanban-card kanban-card--static">Sketch → JSON → sistem</div>
-    <div class="kanban-card kanban-card--static">LMS specs + credentials</div>
-    <div class="kanban-card kanban-card--static">Vizualizare date / UI</div>
-    <div class="kanban-card kanban-card--static">Deploy AAS în Cloud (hosting)</div>
-    <div class="kanban-card kanban-card--static">Clarificare format date pentru platforma R3</div>
-    <div class="kanban-card kanban-card--static">Board central Kanban – single source of truth</div>
-    <div class="kanban-card kanban-card--static">Task-uri ↔ Work Packages (WP mapping)</div>
-    <div class="kanban-card kanban-card--static">Reprezentare Gantt (timeline / corelare temporală)</div>
-    <div class="kanban-card kanban-card--static">GitHub Actions pentru sync task-uri</div>
-    <div class="kanban-card kanban-card--static">Generare automată status / reports</div>
-    <div class="kanban-card kanban-card--static">Pipeline CI/CD (necesar pentru GTM)</div>
-    <div class="kanban-card kanban-card--static">Acces VPN + onboarding corect</div>
-    <div class="kanban-card kanban-card--static">Corelare Sprint tasks ↔ Work Packages</div>
-    <div class="kanban-card kanban-card--static">Task-uri cu timeline (start/end)</div>
-    <div class="kanban-card kanban-card--static">Gantt / timeline pentru progres</div>
     <div class="kanban-card kanban-card--static">Share KF access for export to NetCompany</div>
     <div class="kanban-card kanban-card--static">Share KF-M2F shell with M2F (so they build their own)</div>
   </div>
@@ -134,164 +91,6 @@ generated: 2026-07-07T20:07:43.309376
 | Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise) | Alexandru Bejenari | — |  |  | Done |
 | OAuth2 auth-server public + per-client provisioning | Răzvan Boița | — |  |  | Done |
 | ALADIN WP2 RunSheet service (nginx + Traefik routing) | Răzvan Boița | — |  |  | Done |
-
-### BLOCKERE ACTIVE
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Clarificare acces server R3 (Vangelis) | Paul Stanciuc |  |  |  | Done |
-| Clarificare format date platforma R3 | Alexandru Bejenari |  |  |  | Done |
-
-### Definire
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Arhitectură multi-tenant (in place) | Eduard Modreanu |  |  |  | Done |
-| Separare date per client (in place) | Eduard Modreanu |  |  |  | Done |
-| Pipeline CI/CD (necesar pentru GTM) | Răzvan Boița |  |  |  | Done |
-
-### Clarificare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Flow sistem (UI → AAS → backend) | Răzvan Boița |  |  |  | Done |
-| Clarificare format date pentru platforma R3 | Alexandru Bejenari |  |  |  | Done |
-| Instalare senzor 3 (poziție cutie/flux materiale) — T3.3 | Eduard Lazăr / Julia |  |  |  | Todo |
-
-### Validare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Integrare între sisteme (Katty / LMS) | Alexandru Bejenari |  |  |  | Review |
-| Code quality / stability înainte de release | Mihai A. |  |  |  | Todo |
-
-### Analiză
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Multiple tipuri AAS → standardizare | Răzvan Boița |  |  |  | Done |
-
-### Creare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Layout simplificat pilot (stații + flux + senzori) | Eduard Lazăr / Paul Stanciuc |  |  |  | Done |
-
-### Integrare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Integrare LMS (AAS extern) | Alexandru Bejenari |  |  | ~1 lună | Review |
-| Sketch → JSON → sistem | Alexandru Bejenari |  |  | — | Done |
-
-### Verificare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| LMS specs + credentials | Alexandru Bejenari |  |  |  | Done |
-
-### Finalizare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| UI flow (parțial complet) | Alexandru Bejenari |  |  |  | Review |
-
-### Continuare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Backend alignment (după modificări Răzvan) | Alexandru Bejenari |  |  |  | Todo |
-
-### Fixuri
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Bug-uri identificate în sistem | Alexandru Bejenari |  |  |  | Todo |
-
-### Îmbunătățiri
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Vizualizare date / UI | Alexandru Bejenari |  |  |  | Done |
-
-### Deploy
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Deploy AAS în Cloud (hosting) | Răzvan Boița / Eduard Lazăr |  |  |  | Done |
-
-### Setup
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Board central Kanban – single source of truth | Paul Stanciuc |  |  |  | Done |
-
-### Aliniere
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Task-uri ↔ Work Packages (WP mapping) | Paul Stanciuc |  |  |  | Done |
-
-### Organizare &amp; Standardizare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Naming convention pentru task-uri (namespace per proiect) | Eduard Lazăr |  |  |  | Todo |
-| Evitarea dublării task-urilor între tools | Eduard Lazăr |  |  |  | Todo |
-
-### Implementare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Reprezentare Gantt (timeline / corelare temporală) | Paul Stanciuc |  |  |  | Done |
-| Feature flags | Mihai A. |  |  |  | Todo |
-
-### Automatizare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| GitHub Actions pentru sync task-uri | Paul Stanciuc |  |  |  | Done |
-| Generare automată status / reports | Paul Stanciuc |  |  |  | Done |
-
-### Adăugare
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Telemetrie (monitorizare) | Mihai A. |  |  |  | Todo |
-
-### Pregătire
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Suport tehnic post-launch | Eduard Lazăr |  |  |  | Todo |
-
-### 6. Testing &amp; Access
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Acces VPN + onboarding corect | Eduard Lazăr |  |  |  | Done |
-| Acces corect la organizații (login flow issues) | Eduard Lazar |  |  |  | In Progress |
-| Conectivitate sisteme externe | Alexandru Bejenari |  |  |  | Todo |
-| Testare demo produse (clienți + testeri interni) | Eduard Lazăr |  |  |  | In Progress |
-
-### 8. Reporting &amp; Planning
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Sprint plan (tranziție către GTM) | Eduard Lazăr |  |  |  | Todo |
-| Corelare Sprint tasks ↔ Work Packages | Paul Stanciuc |  |  |  | Done |
-| Task-uri cu timeline (start/end) | Paul Stanciuc |  |  |  | Done |
-| Rapoarte săptămânale (nu daily) | Eduard Lazăr |  |  |  | Todo |
-| Gantt / timeline pentru progres | Paul Stanciuc |  |  |  | Done |
-
-### 9. Product Support
-
-| Task | Assignee | Effort | Start | End | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Landing page (claritate produs) | Alexandru Bejenari |  |  |  | Todo |
-| Demo / prezentare produs | Eduard Lazăr |  |  |  | In Progress |
-| Definire tehnică monetizare (SaaS readiness) | Mihai A. |  |  |  | Todo |
-| Input pentru CRM / pipeline (structură tehnică) | Eduard Lazăr |  |  |  | Todo |
 
 ### Tasks — Sprint S2 (16 March → 03 April 2026)
 
@@ -365,7 +164,7 @@ gantt
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
 
-> 26 open task(s) have no start/end dates and are not charted — add dates in kanban.md to plot them.
+> 5 open task(s) have no start/end dates and are not charted — add dates in kanban.md to plot them.
 
 ## Links
 
