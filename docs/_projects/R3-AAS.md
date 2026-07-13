@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-10T12:08:06.936777
+generated: 2026-07-13T05:14:46.679407
 ---
 
 # R3-AAS
@@ -134,15 +134,15 @@ gantt
     dateFormat YYYY-MM-DD
     excludes weekends
 
-    M2F finalise & confirm assumed KF-M2F shell structure :active, 2026-06-29, 2026-07-10
-    Implement scheduling request endpoint (KF → LMS) :active, 2026-06-29, 2026-07-10
-    Implement scheduler response parser :active, 2026-06-29, 2026-07-10
-    Integrate scheduling results with planner UI :active, 2026-06-29, 2026-07-10
-    Implement planner visualization improvements (capacity / gaps) :active, 2026-06-29, 2026-07-10
-    Validate suitability constraints and scheduling logic :active, 2026-06-29, 2026-07-10
-    Run first scheduling tests with real production data :active, 2026-06-29, 2026-07-10
-    Debug integration issues with LMS team :active, 2026-06-29, 2026-07-10
-    Integration validation review :active, 2026-06-29, 2026-07-10
+    M2F finalise & confirm assumed KF-M2F shell structure :crit, 2026-06-29, 2026-07-10
+    Implement scheduling request endpoint (KF → LMS) :crit, 2026-06-29, 2026-07-10
+    Implement scheduler response parser :crit, 2026-06-29, 2026-07-10
+    Integrate scheduling results with planner UI :crit, 2026-06-29, 2026-07-10
+    Implement planner visualization improvements (capacity / gaps) :crit, 2026-06-29, 2026-07-10
+    Validate suitability constraints and scheduling logic :crit, 2026-06-29, 2026-07-10
+    Run first scheduling tests with real production data :crit, 2026-06-29, 2026-07-10
+    Debug integration issues with LMS team :crit, 2026-06-29, 2026-07-10
+    Integration validation review :crit, 2026-06-29, 2026-07-10
     Share KF access for export to NetCompany :done, 2026-07-07, 2026-07-07
     Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
     Export R3 AAS shells → move to Netcompany-hosted R3 platform :active, 2026-07-13, 2026-07-17
