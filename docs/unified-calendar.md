@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-07-13T05:14:46.664446
+generated: 2026-07-20T05:18:04.131309
 ---
 
 # KF Team — Unified Calendar
@@ -76,9 +76,9 @@ gantt
     Integration validation review :crit, 2026-06-29, 2026-07-10
     M2F finalise & confirm assumed KF-M2F shell structure :crit, 2026-06-29, 2026-07-10
     Share KF access for export to NetCompany :done, 2026-07-07, 2026-07-07
-    Export R3 AAS shells → move to Netcompany-hosted R3 platform :active, 2026-07-13, 2026-07-17
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :crit, 2026-07-13, 2026-07-17
     Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
-    State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
+    State AI usage in R3 (declaration) :crit, 2026-07-16, 2026-07-17
     Connect + test M2F V2 API from new Nuoform :active, 2026-07-20, 2026-07-24
     Re-point all connections to Netcompany-hosted R3 (go live) :2026-07-27, 2026-07-31
     Pilot KF demo recordings (based on revised Nuoform) :2026-08-03, 2026-08-05
@@ -170,10 +170,10 @@ gantt
     excludes weekends
 
     section R3-AAS
-    Export R3 AAS shells → move to Netcompany-hosted R3 platform :active, 2026-07-13, 2026-07-17
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :crit, 2026-07-13, 2026-07-17
     Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
     Connect + test M2F V2 API from new Nuoform :active, 2026-07-20, 2026-07-24
-    State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
+    State AI usage in R3 (declaration) :crit, 2026-07-16, 2026-07-17
     section kf-be-platform
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
     section kf-fe-platform
