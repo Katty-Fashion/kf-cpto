@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-07-13T05:14:46.672289
+generated: 2026-07-20T05:18:04.139858
 ---
 
 # KF Team — Agile Sprints
@@ -86,10 +86,10 @@ gantt
     excludes weekends
 
     section R3-AAS
-    Export R3 AAS shells → move to Netcompany-hosted R3 platform :active, 2026-07-13, 2026-07-17
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :crit, 2026-07-13, 2026-07-17
     Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
     Connect + test M2F V2 API from new Nuoform :active, 2026-07-20, 2026-07-24
-    State AI usage in R3 (declaration) :2026-07-16, 2026-07-17
+    State AI usage in R3 (declaration) :crit, 2026-07-16, 2026-07-17
     section kf-be-platform
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
     section kf-fe-platform
