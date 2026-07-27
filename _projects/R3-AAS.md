@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-22T21:03:59.697536
+generated: 2026-07-27T05:22:00.741638
 ---
 
 # R3-AAS
@@ -147,7 +147,7 @@ gantt
     Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
     Export R3 AAS shells → move to Netcompany-hosted R3 platform :crit, 2026-07-13, 2026-07-17
     State AI usage in R3 (declaration) :crit, 2026-07-16, 2026-07-17
-    Connect + test M2F V2 API from new Nuoform :active, 2026-07-20, 2026-07-24
+    Connect + test M2F V2 API from new Nuoform :crit, 2026-07-20, 2026-07-24
     Re-point all connections to Netcompany-hosted R3 (go live) :2026-07-27, 2026-07-31
     Pilot KF demo recordings (based on revised Nuoform) :2026-08-03, 2026-08-05
 ```
