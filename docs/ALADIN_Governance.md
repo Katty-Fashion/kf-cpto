@@ -1,12 +1,12 @@
 ---
-title: ALADIN Governance (Internal)
+title: ALADIN Governance
 layout: default
-published: false
+permalink: /governance.html
 ---
 
 # ALADIN Governance
 
-> **Scope —** This is how we run ALADIN: how we collaborate, how we let partners plug modules into our platform without ever putting our core at risk, and how we move off Spring Boot on our terms.
+> **Scope —** This is how we run ALADIN: how we collaborate, how we let partners plug modules into our platform without ever putting our core at risk.
 > **Status —** This is our governance contract. We build to it; the implementation phases follow it. Nothing here is wired yet.
 
 We tag this page with **pills** instead of icons. Every pill is defined in the [Glossary](#7-glossary).
@@ -159,58 +159,7 @@ To get a partner productive on day one, we ship from our `aladin-platform-sdk` r
 
 ---
 
-## 4. Framework Migration — Our Safe, Moated Path from Spring Boot
-
-### 4.1 Our verdict <span class="pill pill--ok">OK</span>
-
-> **We keep the core on the JVM. We retain Spring Boot now and migrate it on a Strangler Fig schedule toward Quarkus or Micronaut. We isolate every module at the network and UI level. We reach for Go / GoAkt only for niche, high-concurrency modules — never for the core.**
-
-Because we separate modules over HTTP/gRPC (§3), our core's framework choice is **decoupled from every module's**. That's exactly what makes this safe: we can swap our core framework underneath without partners noticing, and they can run whatever stack they like.
-
-### 4.2 How we read the field
-
-| Framework | Best fit | Key advantage | Major trade-off |
-|---|---|---|---|
-| **Spring Boot** | Large enterprise systems; our core today | Massive ecosystem, easiest hiring, native Camunda starters | Higher baseline memory; "magic" runtime reflection |
-| **Quarkus** | Kubernetes, containerized modules | Live coding, great dev UX, build-time augmentation, stable GraalVM native | Steep build-time config; topology frozen at build time |
-| **Micronaut** | Serverless (FaaS), IoT, memory-constrained | Minimal runtime memory, compile-time safety, seamless GraalVM native | Smaller third-party plugin market |
-| **Helidon** | Standards-pure microservices | Oracle / Java SE alignment, MicroProfile | Smaller community footprint |
-| **GoAkt** (Go) | High-concurrency event streams, real-time telemetry, distributed actors | Millions of lightweight actors, native context propagation, tiny memory | Language + paradigm shift; steep curve from Spring; off-JVM |
-
-> **On Dropwizard / Vert.x —** Dropwizard suits us if we ever want to drop framework "magic" (Jetty + Jersey, no surprises); Vert.x suits bare-metal, event-driven, maximum-throughput reactive work. We treat both as *module* stacks, not core-migration targets.
-
-### 4.3 Why network isolation enables our migration
-
-- **Total framework freedom** — our core could be Quarkus while a Camunda module stays Spring Boot and a telemetry feed is Go. No shared stack required.
-- **Blast-radius isolation** — a memory leak in the 3D module never touches our multi-tenant core.
-- **GraalVM native path preserved** — since we never load partner JARs into our core, we keep it eligible for native compilation (near-zero startup, sub-64MB memory) whenever we want it.
-- **No fragile class-loader code** — we skip months of `URLClassLoader` work and its security holes entirely.
-
-### 4.4 Our Strangler Fig target
-
-```mermaid
-graph TD
-    Client["Next.js Frontend - dynamic module mounts"]
-    GW["API Gateway - routing moat"]
-    CoreNow["Core today: Spring Boot"]
-    CoreNext["Core paved path: Quarkus / Micronaut"]
-    ModJVM["Module: Spring Boot - Camunda"]
-    ModGo["Module: Go / GoAkt - real-time telemetry"]
-    ModNode["Module: Node - 3D viz backend"]
-
-    Client --> GW
-    GW --> CoreNow
-    CoreNow -.->|"we migrate, partners feel nothing"| CoreNext
-    GW --> ModJVM
-    GW --> ModGo
-    GW --> ModNode
-```
-
-<span class="pill pill--warn">WARN</span> We do **not** migrate our core to Go/GoAkt now: we're fluent in Java, our data layer is Postgres, and Camunda is JVM-first. A language change buys us friction and nothing for the plug-and-play mission.
-
----
-
-## 5. The rules we hand partners <span class="pill pill--rule">RULE</span>
+## 4. The rules we hand partners <span class="pill pill--rule">RULE</span>
 
 We give partners this before they write a line of code:
 
@@ -223,7 +172,7 @@ We give partners this before they write a line of code:
 
 ---
 
-## 6. What this page is not
+## 5. What this page is not
 
 - This is **governance, not code** — we don't implement the gateway, registry, or migration here.
 - ALADIN stays a platform-wide initiative, not a tracked repo; we keep this governance under **Views**, not under a single project page.
@@ -231,7 +180,7 @@ We give partners this before they write a line of code:
 
 ---
 
-## 7. Glossary
+## 6. Glossary
 
 | Pill / Term | Meaning |
 |---|---|
@@ -245,9 +194,6 @@ We give partners this before they write a line of code:
 | <span class="pill pill--ok">OK</span> | Our recommended position |
 | **API composition** | Presenting many independent module backends as one platform API surface — namespaced, tenant-aware, catalogued — through our gateway |
 | **BFF** | Backend-for-Frontend — server-side aggregation that composes core + module data into one response so the browser doesn't fan out |
-| **Strangler Fig** | Incremental migration: the new system grows around the old one until we retire the old one, with no big-bang cutover |
-| **AOT** | Ahead-of-Time compilation — work done at build time instead of runtime (how Quarkus/Micronaut gain speed) |
-| **GraalVM native image** | Compiling a JVM app to a native binary for near-zero startup and tiny memory; requires no runtime reflection |
 | **Module Federation** | Webpack technique to load independently-built JS bundles at runtime (one way to ship partner UIs) |
 | **Sidecar** | A module deployed as its own process/container alongside our core rather than inside it |
 | **Reverse proxy** | Our gateway forwarding `/api/m/{module}/*` traffic to the right partner container after auth checks |
