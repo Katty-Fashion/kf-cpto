@@ -4,7 +4,7 @@ description: "Tech brainstorming \u2014 ideas, spikes and evaluation notes"
 project: tech_brainstorming
 type: internal
 edit_url: "https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md"
-generated: 2026-07-27T05:22:00.744081
+generated: 2026-07-29T18:37:31.006075
 ---
 
 # tech_brainstorming

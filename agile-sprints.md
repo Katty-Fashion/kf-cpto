@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-07-27T05:22:00.734754
+generated: 2026-07-29T18:37:30.996673
 ---
 
 # KF Team — Agile Sprints
@@ -81,7 +81,7 @@ gantt
     excludes weekends
 
     section R3-AAS
-    Re-point all connections to Netcompany-hosted R3 (go live) :2026-07-27, 2026-07-31
+    Re-point all connections to Netcompany-hosted R3 (go live) :crit, 2026-07-27, 2026-07-31
     Pilot KF demo recordings (based on revised Nuoform) :2026-08-03, 2026-08-05
     section kf-fe-platform
     (F2.S6.Overview Refactor) :done, 2026-07-13, 2026-08-02
