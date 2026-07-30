@@ -4,7 +4,7 @@ description: "SaaS Product"
 project: kf-be-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-07-29T18:37:31.004490
+generated: 2026-07-30T18:20:47.360670
 ---
 
 # kf-be-platform
