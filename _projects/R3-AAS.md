@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-07-29T18:37:31.003538
+generated: 2026-07-30T18:20:47.359571
 ---
 
 # R3-AAS

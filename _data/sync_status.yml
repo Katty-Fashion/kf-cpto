@@ -1,16 +1,16 @@
 aggregator:
-  last_run_at: '2026-07-29T18:37:31Z'
+  last_run_at: '2026-07-30T18:20:47Z'
   last_run_status: ok
   source_repo_count: 6
   task_count: 69
   errors: []
   okf_file_count: 93
 sheets_export:
-  last_run_at: '2026-07-27T05:23:08Z'
-  last_run_status: failed
+  last_run_at: '2026-07-29T18:37:41Z'
+  last_run_status: ok
   row_count: 69
-  duration_seconds: 4.03
-  last_error: The read operation timed out
+  duration_seconds: 4.59
+  last_error: null
   last_error_issue: null
   recent_failures:
   - at: '2026-07-27T05:23:08Z'
