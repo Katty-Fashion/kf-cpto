@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-08-03T05:18:00.776756
+generated: 2026-08-10T04:35:15.010781
 ---
 
 # R3-AAS
@@ -149,7 +149,7 @@ gantt
     State AI usage in R3 (declaration) :crit, 2026-07-16, 2026-07-17
     Connect + test M2F V2 API from new Nuoform :crit, 2026-07-20, 2026-07-24
     Re-point all connections to Netcompany-hosted R3 (go live) :crit, 2026-07-27, 2026-07-31
-    Pilot KF demo recordings (based on revised Nuoform) :2026-08-03, 2026-08-05
+    Pilot KF demo recordings (based on revised Nuoform) :crit, 2026-08-03, 2026-08-05
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
