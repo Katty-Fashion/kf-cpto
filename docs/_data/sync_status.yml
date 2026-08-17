@@ -6,10 +6,10 @@ aggregator:
   errors: []
   okf_file_count: 93
 sheets_export:
-  last_run_at: '2026-08-10T04:35:23Z'
+  last_run_at: '2026-08-17T04:18:16Z'
   last_run_status: ok
   row_count: 69
-  duration_seconds: 3.19
+  duration_seconds: 3.46
   last_error: null
   last_error_issue: null
   recent_failures:
