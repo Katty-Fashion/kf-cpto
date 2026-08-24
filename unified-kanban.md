@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-08-17T04:18:08.945486
+generated: 2026-08-24T04:19:12.821273
 ---
 
 # KF Team — Unified Kanban
@@ -184,32 +184,11 @@ gantt
 
 ## Sprint Views — previous / current / next
 
-### Sprint S7 (previous) — 2026-07-27 → 2026-08-07
+### Sprint S8 (previous) — 2026-08-10 → 2026-08-21
 
 ```mermaid
 gantt
-    title S7 (previous) — 2026-07-27 → 2026-08-07
-    dateFormat YYYY-MM-DD
-    axisFormat %d %b
-    excludes weekends
-
-    section R3-AAS
-    Re-point all connections to Netcompany-hosted R3 (go live) :crit, 2026-07-27, 2026-07-31
-    Pilot KF demo recordings (based on revised Nuoform) :crit, 2026-08-03, 2026-08-05
-    section kf-fe-platform
-    (F2.S6.Overview Refactor) :done, 2026-07-13, 2026-08-02
-    (F3.S7.Models Page) :done, 2026-08-03, 2026-08-23
-    section kf-platform
-    (F3.S6.Collections Refactor) :done, 2026-07-20, 2026-08-16
-```
-
-<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
-
-### Sprint S8 (current) — 2026-08-10 → 2026-08-21
-
-```mermaid
-gantt
-    title S8 (current) — 2026-08-10 → 2026-08-21
+    title S8 (previous) — 2026-08-10 → 2026-08-21
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
@@ -224,11 +203,11 @@ gantt
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
 
-### Sprint S9 (next) — 2026-08-24 → 2026-09-04
+### Sprint S9 (current) — 2026-08-24 → 2026-09-04
 
 ```mermaid
 gantt
-    title S9 (next) — 2026-08-24 → 2026-09-04
+    title S9 (current) — 2026-08-24 → 2026-09-04
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
@@ -240,6 +219,27 @@ gantt
     (F3.S8.BOM Editor) :done, 2026-08-17, 2026-09-13
     (F3.S9.Sizing & QA Flow) :done, 2026-08-31, 2026-09-20
     (F4.S9.Orders Refactor) :done, 2026-08-24, 2026-09-20
+```
+
+<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
+
+### Sprint S10 (next) — 2026-09-07 → 2026-09-18
+
+```mermaid
+gantt
+    title S10 (next) — 2026-09-07 → 2026-09-18
+    dateFormat YYYY-MM-DD
+    axisFormat %d %b
+    excludes weekends
+
+    section kf-fe-platform
+    (F3.S10.3D Performance) :done, 2026-09-07, 2026-09-27
+    section kf-platform
+    (F3.S8.BOM Editor) :done, 2026-08-17, 2026-09-13
+    (F3.S9.Sizing & QA Flow) :done, 2026-08-31, 2026-09-20
+    (F3.S10.Cost Breakdown) :done, 2026-09-14, 2026-10-04
+    (F4.S9.Orders Refactor) :done, 2026-08-24, 2026-09-20
+    (F4.S10.Planner) :done, 2026-09-07, 2026-10-11
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
