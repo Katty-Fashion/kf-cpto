@@ -1,7 +1,7 @@
 ---
 type: Task
 title: "T2.4 — Capacity Planner: KF Planner UI"
-status: Review
+status: Done
 assignee: Alexandru Bejenari
 effort: 5d
 sprint: S5
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # T2.4 — Capacity Planner: KF Planner UI
 
-**Status:** Review | **Effort:** 5d | **Assignee:** Alexandru Bejenari
+**Status:** Done | **Effort:** 5d | **Assignee:** Alexandru Bejenari
 
 ## Links
 

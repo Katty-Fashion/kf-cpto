@@ -1,7 +1,7 @@
 ---
 type: Task
 title: State AI usage in R3 (declaration)
-status: Todo
+status: In Progress
 assignee: Eduard Lazăr
 effort: 1d
 sprint: S5
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # State AI usage in R3 (declaration)
 
-**Status:** Todo | **Effort:** 1d | **Assignee:** Eduard Lazăr
+**Status:** In Progress | **Effort:** 1d | **Assignee:** Eduard Lazăr
 
 ## Links
 
