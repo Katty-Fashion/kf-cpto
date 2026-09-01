@@ -1,7 +1,7 @@
 ---
 type: Task
 title: Pilot KF demo recordings (based on revised Nuoform)
-status: Todo
+status: In Progress
 assignee: Eduard Lazăr
 effort: 3d
 sprint: S5
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # Pilot KF demo recordings (based on revised Nuoform)
 
-**Status:** Todo | **Effort:** 3d | **Assignee:** Eduard Lazăr
+**Status:** In Progress | **Effort:** 3d | **Assignee:** Eduard Lazăr
 
 ## Links
 

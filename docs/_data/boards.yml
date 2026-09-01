@@ -1,4 +1,4 @@
-generated_at: '2026-08-31T04:19:55Z'
+generated_at: '2026-09-01T14:53:57Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -95,7 +95,7 @@ projects:
     effort: 5d
     start: ''
     end: ''
-    status: Review
+    status: Done
     section: Status General M36 — Program Deliverables
     fields:
     - task
@@ -107,7 +107,7 @@ projects:
     effort: 10d
     start: ''
     end: ''
-    status: Review
+    status: Done
     section: Status General M36 — Program Deliverables
     fields:
     - task
@@ -119,7 +119,7 @@ projects:
     effort: 5d
     start: ''
     end: ''
-    status: Review
+    status: Done
     section: Status General M36 — Program Deliverables
     fields:
     - task
@@ -131,7 +131,7 @@ projects:
     effort: —
     start: ''
     end: ''
-    status: In Progress
+    status: Done
     section: Status General M36 — Program Deliverables
     fields:
     - task
@@ -386,7 +386,7 @@ projects:
     effort: 3d
     start: '2026-07-27'
     end: '2026-07-31'
-    status: Todo
+    status: In Progress
     section: 10. Outstanding — R3 Handover, M2F & Pilot
     fields:
     - task
@@ -400,7 +400,7 @@ projects:
     effort: 3d
     start: '2026-08-03'
     end: '2026-08-05'
-    status: Todo
+    status: In Progress
     section: 10. Outstanding — R3 Handover, M2F & Pilot
     fields:
     - task
@@ -414,7 +414,7 @@ projects:
     effort: 1d
     start: '2026-07-16'
     end: '2026-07-17'
-    status: Todo
+    status: In Progress
     section: 10. Outstanding — R3 Handover, M2F & Pilot
     fields:
     - task

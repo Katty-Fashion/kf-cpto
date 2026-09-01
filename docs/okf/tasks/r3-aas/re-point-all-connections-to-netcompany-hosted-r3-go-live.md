@@ -1,7 +1,7 @@
 ---
 type: Task
 title: Re-point all connections to Netcompany-hosted R3 (go live)
-status: Todo
+status: In Progress
 assignee: Mihai A.
 effort: 3d
 sprint: S5
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # Re-point all connections to Netcompany-hosted R3 (go live)
 
-**Status:** Todo | **Effort:** 3d | **Assignee:** Mihai A.
+**Status:** In Progress | **Effort:** 3d | **Assignee:** Mihai A.
 
 ## Links
 

@@ -1,4 +1,4 @@
-generated_at: '2026-08-31T04:19:56Z'
+generated_at: '2026-09-01T14:53:57Z'
 row_count: 69
 rows:
 - project: R3-AAS
@@ -48,7 +48,7 @@ rows:
   effort_days: 5.0
   start: ''
   end: ''
-  status: Review
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: 'T2.4 — Capacity Planner: KF ↔ LMS Integration'
@@ -56,7 +56,7 @@ rows:
   effort_days: 10.0
   start: ''
   end: ''
-  status: Review
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: 'T3.3 — IoT Monitoring: sensors deployment'
@@ -64,7 +64,7 @@ rows:
   effort_days: 5.0
   start: ''
   end: ''
-  status: Review
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: 'T2.3 — Supply Chain Digital Twin: risk modelling'
@@ -72,7 +72,7 @@ rows:
   effort_days: 0.0
   start: ''
   end: ''
-  status: In Progress
+  status: Done
 - project: R3-AAS
   sprint: S5
   task: AAS import/export tooling (aas_export.py, import-demo.sh)
@@ -224,7 +224,7 @@ rows:
   effort_days: 3.0
   start: '2026-07-27'
   end: '2026-07-31'
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: Pilot KF demo recordings (based on revised Nuoform)
@@ -232,7 +232,7 @@ rows:
   effort_days: 3.0
   start: '2026-08-03'
   end: '2026-08-05'
-  status: Todo
+  status: In Progress
 - project: R3-AAS
   sprint: S5
   task: State AI usage in R3 (declaration)
@@ -240,7 +240,7 @@ rows:
   effort_days: 1.0
   start: '2026-07-16'
   end: '2026-07-17'
-  status: Todo
+  status: In Progress
 - project: kf-be-platform
   sprint: S5
   task: '[F1.S2.DB Schema v2 + RLS]'

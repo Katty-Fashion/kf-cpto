@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-08-31T04:19:55.719339
+generated: 2026-09-01T14:53:57.210894
 ---
 
 # KF Team — Unified Kanban
@@ -9,10 +9,7 @@ generated: 2026-08-31T04:19:55.719339
 
 <div class="kanban-board">
   <div class="kanban-col kanban-col--todo">
-    <div class="kanban-col__head">Todo <span class="kanban-col__count">15</span></div>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Re-point all connections to Netcompany-hosted R3 (go live)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Pilot KF demo recordings (based on revised Nuoform)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: State AI usage in R3 (declaration)</a>
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">12</span></div>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F5.S13.EPCIS Export]</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F5.S13.LLM Ecodesign (WP4)]</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F5.S14.IoT Adapter (T2.5)]</a>
@@ -27,18 +24,17 @@ generated: 2026-08-31T04:19:55.719339
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F6.S17.Final QA &amp; Cutover]</a>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">4</span></div>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.3 — Supply Chain Digital Twin: risk modelling</a>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">6</span></div>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: M2F: finalise &amp; confirm assumed KF-M2F shell structure</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Export R3 AAS shells → move to Netcompany-hosted R3 platform</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Connect + test M2F V2 API from new Nuoform</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Re-point all connections to Netcompany-hosted R3 (go live)</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Pilot KF demo recordings (based on revised Nuoform)</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: State AI usage in R3 (declaration)</a>
   </div>
   <div class="kanban-col kanban-col--review">
-    <div class="kanban-col__head">Review <span class="kanban-col__count">12</span></div>
+    <div class="kanban-col__head">Review <span class="kanban-col__count">9</span></div>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: WP1 — AAS platform integration (digital infrastructure)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.4 — Capacity Planner: KF Planner UI</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T2.4 — Capacity Planner: KF ↔ LMS Integration</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: T3.3 — IoT Monitoring: sensors deployment</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Implement scheduling request endpoint (KF → LMS)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Implement scheduler response parser</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Integrate scheduling results with planner UI</a>
@@ -62,7 +58,7 @@ generated: 2026-08-31T04:19:55.719339
 
 | Project | Todo | In Progress | Review | Done | Total |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| R3-AAS | 3 | 4 | 12 | 11 | 30 |
+| R3-AAS | 0 | 6 | 9 | 15 | 30 |
 | ai-rise-options | 0 | 0 | 0 | 0 | 0 |
 | kf-be-platform | 4 | 0 | 0 | 6 | 10 |
 | kf-fe-platform | 1 | 0 | 0 | 9 | 10 |

@@ -526,7 +526,7 @@
       "id": "/tasks/r3-aas/pilot-kf-demo-recordings-based-on-revised-nuoform.md",
       "label": "Pilot KF demo recordings (based on revised Nuoform)",
       "type": "Task",
-      "status": "Todo",
+      "status": "In Progress",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/pilot-kf-demo-recordings-based-on-revised-nuoform.md"
     },
@@ -534,7 +534,7 @@
       "id": "/tasks/r3-aas/re-point-all-connections-to-netcompany-hosted-r3-go-live.md",
       "label": "Re-point all connections to Netcompany-hosted R3 (go live)",
       "type": "Task",
-      "status": "Todo",
+      "status": "In Progress",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/re-point-all-connections-to-netcompany-hosted-r3-go-live.md"
     },
@@ -566,7 +566,7 @@
       "id": "/tasks/r3-aas/state-ai-usage-in-r3-declaration.md",
       "label": "State AI usage in R3 (declaration)",
       "type": "Task",
-      "status": "Todo",
+      "status": "In Progress",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/state-ai-usage-in-r3-declaration.md"
     },
@@ -582,7 +582,7 @@
       "id": "/tasks/r3-aas/t2-3-supply-chain-digital-twin-risk-modelling.md",
       "label": "T2.3 \u2014 Supply Chain Digital Twin: risk modelling",
       "type": "Task",
-      "status": "In Progress",
+      "status": "Done",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t2-3-supply-chain-digital-twin-risk-modelling.md"
     },
@@ -590,7 +590,7 @@
       "id": "/tasks/r3-aas/t2-4-capacity-planner-kf-lms-integration.md",
       "label": "T2.4 \u2014 Capacity Planner: KF \u2194 LMS Integration",
       "type": "Task",
-      "status": "Review",
+      "status": "Done",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t2-4-capacity-planner-kf-lms-integration.md"
     },
@@ -598,7 +598,7 @@
       "id": "/tasks/r3-aas/t2-4-capacity-planner-kf-planner-ui.md",
       "label": "T2.4 \u2014 Capacity Planner: KF Planner UI",
       "type": "Task",
-      "status": "Review",
+      "status": "Done",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t2-4-capacity-planner-kf-planner-ui.md"
     },
@@ -630,7 +630,7 @@
       "id": "/tasks/r3-aas/t3-3-iot-monitoring-sensors-deployment.md",
       "label": "T3.3 \u2014 IoT Monitoring: sensors deployment",
       "type": "Task",
-      "status": "Review",
+      "status": "Done",
       "parent": "/projects/r3-aas.md",
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/r3-aas/t3-3-iot-monitoring-sensors-deployment.md"
     },

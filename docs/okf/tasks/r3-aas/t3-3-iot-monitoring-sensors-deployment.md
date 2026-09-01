@@ -1,7 +1,7 @@
 ---
 type: Task
 title: "T3.3 — IoT Monitoring: sensors deployment"
-status: Review
+status: Done
 assignee: Eduard Lazar
 effort: 5d
 sprint: S5
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # T3.3 — IoT Monitoring: sensors deployment
 
-**Status:** Review | **Effort:** 5d | **Assignee:** Eduard Lazar
+**Status:** Done | **Effort:** 5d | **Assignee:** Eduard Lazar
 
 ## Links
 

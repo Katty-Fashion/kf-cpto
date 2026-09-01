@@ -26,8 +26,8 @@ sprint: S5
 | Metric | Value |
 | :--- | :--- |
 | Total effort | 52d |
-| Done | 2d |
-| Remaining | 50d |
+| Done | 22d |
+| Remaining | 30d |
 
 > Effort is person-days (`Nd`) as declared in `kanban.md`.
 > See [/metrics/loe.md](/metrics/loe.md) for semantics.
@@ -41,10 +41,10 @@ sprint: S5
 | T3.2 — Product Digital Twin (AAS model) | Eduard L | — | Done |
 | T3.2 — Process Digital Twin (Tecnomatix simulation) | Eduard L | — | Done |
 | T2.4 — Capacity Planner: LMS Scheduler Backend | LMS | — | Done |
-| T2.4 — Capacity Planner: KF Planner UI | Alexandru Bejenari | 5d | Review |
-| T2.4 — Capacity Planner: KF ↔ LMS Integration | Alexandru Bejenari | 10d | Review |
-| T3.3 — IoT Monitoring: sensors deployment | Eduard Lazar | 5d | Review |
-| T2.3 — Supply Chain Digital Twin: risk modelling | Eduard Lazar | — | In Progress |
+| T2.4 — Capacity Planner: KF Planner UI | Alexandru Bejenari | 5d | Done |
+| T2.4 — Capacity Planner: KF ↔ LMS Integration | Alexandru Bejenari | 10d | Done |
+| T3.3 — IoT Monitoring: sensors deployment | Eduard Lazar | 5d | Done |
+| T2.3 — Supply Chain Digital Twin: risk modelling | Eduard Lazar | — | Done |
 | AAS import/export tooling (aas_export.py, import-demo.sh) | Eduard L | — | Done |
 | Order_3_Aas shell (8 submodels, cost + schedule) | Eduard L | — | Done |
 | Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise) | Alexandru Bejenari | — | Done |
@@ -63,9 +63,9 @@ sprint: S5
 | Share KF access for export to NetCompany | Eduard Lazăr | 1d | Done |
 | Share KF-M2F shell with M2F (so they build their own) | Eduard Lazăr | 1d | Done |
 | Connect + test M2F V2 API from new Nuoform | Alexandru Bejenari | 5d | In Progress |
-| Re-point all connections to Netcompany-hosted R3 (go live) | Mihai A. | 3d | Todo |
-| Pilot KF demo recordings (based on revised Nuoform) | Eduard Lazăr | 3d | Todo |
-| State AI usage in R3 (declaration) | Eduard Lazăr | 1d | Todo |
+| Re-point all connections to Netcompany-hosted R3 (go live) | Mihai A. | 3d | In Progress |
+| Pilot KF demo recordings (based on revised Nuoform) | Eduard Lazăr | 3d | In Progress |
+| State AI usage in R3 (declaration) | Eduard Lazăr | 1d | In Progress |
 
 See task concepts: [/tasks/r3-aas/index.md](/tasks/r3-aas/index.md)
 
