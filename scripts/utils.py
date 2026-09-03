@@ -636,6 +636,28 @@ def iso_date(value) -> Optional["datetime.date"]:
         return None
 
 
+def sprint_bounds(cal: dict, idx: int):
+    """(start, end) dates of sprint `idx` (1-based) from the calendar cadence."""
+    start0 = iso_date(str(cal.get("start_date", "")))
+    if start0 is None or idx < 1:
+        return None, None
+    weeks = int(cal.get("sprint_length_weeks", 2) or 2)
+    start = start0 + timedelta(weeks=(idx - 1) * weeks)
+    end = start + timedelta(days=weeks * 7 - 3)  # Mon week1 -> Fri last week
+    return start, end
+
+
+def current_sprint_idx(cal: dict, today=None) -> int:
+    """1-based index of the sprint containing `today` on the shared cadence."""
+    start0 = iso_date(str(cal.get("start_date", "")))
+    if start0 is None:
+        return 1
+    if today is None:
+        today = datetime.now().date()
+    weeks = int(cal.get("sprint_length_weeks", 2) or 2)
+    return max(((today - start0).days // 7) // weeks + 1, 1)
+
+
 def working_days_between(start_iso, end_iso) -> int:
     """Inclusive count of working days (Mon-Fri) between two ISO dates.
 

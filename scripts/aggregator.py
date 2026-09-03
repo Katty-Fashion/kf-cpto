@@ -48,6 +48,8 @@ from utils import (
     enumerate_kanban_rows,
     _cell,
     DATA_DIR,
+    sprint_bounds,
+    current_sprint_idx,
 )
 
 PROJECTS = load_projects()
@@ -145,28 +147,6 @@ def _load_calendar() -> dict:
         return yaml.safe_load(cal_file.read_text(encoding="utf-8")) or {}
     except yaml.YAMLError:
         return {}
-
-
-def _sprint_bounds(cal: dict, idx: int):
-    """(start, end) dates of sprint `idx` (1-based) from the calendar cadence."""
-    start0 = iso_date(str(cal.get("start_date", "")))
-    if start0 is None or idx < 1:
-        return None, None
-    weeks = int(cal.get("sprint_length_weeks", 2) or 2)
-    start = start0 + timedelta(weeks=(idx - 1) * weeks)
-    end = start + timedelta(days=weeks * 7 - 3)  # Mon week1 -> Fri last week
-    return start, end
-
-
-def _current_sprint_idx(cal: dict, today=None) -> int:
-    """1-based index of the sprint containing `today` on the shared cadence."""
-    start0 = iso_date(str(cal.get("start_date", "")))
-    if start0 is None:
-        return 1
-    if today is None:
-        today = datetime.now().date()
-    weeks = int(cal.get("sprint_length_weeks", 2) or 2)
-    return max(((today - start0).days // 7) // weeks + 1, 1)
 
 
 def _gantt_sprint_cadence(data: dict, today=None) -> list[str]:
@@ -284,12 +264,12 @@ def _gantt_sprint_views(data: dict, today=None) -> list[str]:
     if today is None:
         today = datetime.now().date()
     cal = _load_calendar()
-    cur = _current_sprint_idx(cal, today)
+    cur = current_sprint_idx(cal, today)
 
     lines: list[str] = ["## Sprint Views — previous / current / next", ""]
     emitted = False
     for idx in (cur - 1, cur, cur + 1):
-        w_start, w_end = _sprint_bounds(cal, idx)
+        w_start, w_end = sprint_bounds(cal, idx)
         if w_start is None:
             continue
         overlapping = []
