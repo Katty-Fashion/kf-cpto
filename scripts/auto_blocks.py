@@ -22,6 +22,11 @@ result back. Prose outside the markers is preserved verbatim.
 Adding a new block: implement a renderer function, register it in
 AUTO_BLOCK_RENDERERS. Renderers must be deterministic for a given context
 (no timestamps inside generated content — those live in sync_status.yml).
+`render_current_sprint` is the one exception worth calling out: it is
+deterministic for a given (context, calendar date) pair, but intentionally
+advances as the calendar date advances — that's the feature (the dashboard
+should always show the sprint window containing "today"), not a timestamp
+leak. Do not embed a run timestamp in any renderer's output.
 """
 
 from __future__ import annotations
@@ -198,10 +203,51 @@ def render_migration_gantt(context: dict) -> str:
     return "\n".join(lines)
 
 
+def render_current_sprint(context: dict) -> str:
+    """Fenced mermaid gantt for the sprint window containing today.
+
+    Sourced entirely from docs/_data/calendar.yml via the shared cadence math
+    in utils (sprint_bounds/current_sprint_idx) — no local date arithmetic.
+    Matches the previous hand-written "Current Sprint Overview" block style:
+    title Sprint Calendar / section Scrum / Planning, Active, Demo + Retro.
+    """
+    from utils import current_sprint_idx, sprint_bounds, working_days_between
+
+    cal = context.get("calendar") or {}
+    if not cal.get("start_date"):
+        return "_(auto-data: calendar.start_date not configured in docs/_data/calendar.yml)_"
+
+    idx = current_sprint_idx(cal)
+    start, end = sprint_bounds(cal, idx)
+    if start is None or end is None:
+        return "_(auto-data: calendar.start_date not configured in docs/_data/calendar.yml)_"
+
+    active_start = start + timedelta(days=1)
+    active_dur = working_days_between(active_start.isoformat(), end.isoformat())
+
+    lines = [
+        "",
+        "```mermaid",
+        "gantt",
+        "    title Sprint Calendar",
+        "    dateFormat YYYY-MM-DD",
+        "    excludes weekends",
+        "",
+        "    section Scrum",
+        f"    Sprint S{idx} Planning        :crit, {start.isoformat()}, 1d",
+        f"    Sprint S{idx} Active          :active, {active_start.isoformat()}, {active_dur}d",
+        f"    Sprint S{idx} Demo + Retro    :crit, {end.isoformat()}, 1d",
+        "```",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 AUTO_BLOCK_RENDERERS: dict[str, Callable[[dict], str]] = {
     "calendar": render_calendar,
     "meta-header": render_meta_header,
     "migration-gantt": render_migration_gantt,
+    "current-sprint": render_current_sprint,
 }
 
 

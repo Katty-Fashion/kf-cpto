@@ -1,6 +1,7 @@
 ---
 title: KF Team Dashboard
 layout: default
+auto_blocks: [current-sprint]
 ---
 
 # KF Team — Project Dashboard
@@ -55,17 +56,9 @@ layout: default
 
 ## Current Sprint Overview
 
-```mermaid
-gantt
-    title Sprint Calendar
-    dateFormat YYYY-MM-DD
-    excludes weekends
-
-    section Scrum
-    Sprint 3 Planning        :crit, 2026-03-02, 1d
-    Sprint 3 Active          :active, 2026-03-03, 9d
-    Sprint 3 Demo + Retro    :crit, 2026-03-13, 1d
-```
+<!-- AUTO:current-sprint -->
+_(auto-data: current-sprint not yet generated — run the aggregator)_
+<!-- /AUTO:current-sprint -->
 
 ---
 
