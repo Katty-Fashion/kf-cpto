@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 Phase: 03 (write-back-diagram-sanitization) — EXECUTING
 Plan: 3 of 3
 Status: Phase complete — ready for verification
-Last activity: 2026-07-08 - Completed quick task 260708-etg: reworked OKF knowledge-graph visualizer from compound-box nesting to a force-directed constellation (real contains edges, labels-on-demand, nesting slider removed) — user-approved via Jekyll preview (a9373d3). Prior: uniform board filter (260708-erm).
+Last activity: 2026-09-03 - Completed quick task 260903-jl9: wired docs/index.md's hardcoded sprint gantt into a self-updating AUTO block (current-sprint renderer). Prior: OKF constellation visualizer (260708-etg).
 
 Progress: [██████████] 100%
 
@@ -100,6 +100,7 @@ None yet.
 |---|-------------|------|--------|-----------|
 | 260622-jed | Add automated cross-project Summary tab to R3Group Google Sheet in weekly Sheets pipeline | 2026-06-22 | 5284368 | [260622-jed-add-automated-cross-project-summary-tab-](./quick/260622-jed-add-automated-cross-project-summary-tab-/) |
 | 260624-eqy | Replace unified kanban Mermaid with HTML/CSS board; drop pills; link cards to project pages | 2026-06-24 | 7c88fa1 | [260624-eqy-replace-unified-kanban-mermaid-diagram-w](./quick/260624-eqy-replace-unified-kanban-mermaid-diagram-w/) |
+| 260903-jl9 | Wire docs/index.md's hardcoded "Sprint 3"/March-2026 gantt into the AUTO-block system: lifted sprint-cadence math (`sprint_bounds`/`current_sprint_idx`) from aggregator.py into utils.py; added `current-sprint` renderer to auto_blocks.py; converted index.md to an augmented page — now self-updates every aggregator run (verified S9, 2026-08-24 → 09-04) | 2026-09-03 | b703901 | [260903-jl9-wire-docs-index-md-current-sprint-overvi](./quick/260903-jl9-wire-docs-index-md-current-sprint-overvi/) |
 | 260624-hu3 | HTML board on per-project pages; remove dead pill system; native R3Group sheet id | 2026-06-24 | 6c2f800 | [260624-hu3-apply-html-kanban-board-to-per-project-p](./quick/260624-hu3-apply-html-kanban-board-to-per-project-p/) |
 | 260624-loa | Escape free-text in generated markdown/frontmatter + defang mermaid labels (XSS hardening) | 2026-06-24 | 5272b9c | [260624-loa-escape-free-text-fields-task-assignee-sp](./quick/260624-loa-escape-free-text-fields-task-assignee-sp/) |
 | 260626-b6m | Dashboard fixes: lowercase project links (404), effort-per-project charts, drop Effort by Assignee, new Agile Sprints page; deps topology pushed | 2026-06-26 | ac31fd7 | [260626-b6m-dashboard-fixes-lowercase-project-links-](./quick/260626-b6m-dashboard-fixes-lowercase-project-links-/) |
