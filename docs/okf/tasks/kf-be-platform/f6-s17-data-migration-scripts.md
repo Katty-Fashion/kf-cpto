@@ -4,7 +4,7 @@ title: "[F6.S17.Data Migration Scripts]"
 status: Todo
 assignee: "@ma.tech"
 effort: 5d
-sprint: S5
+sprint: S9
 resource: "https://katty-fashion.github.io/kf-cpto/projects/kf-be-platform/"
 ---
 

@@ -4,7 +4,7 @@ description: "Infra platform for kf web based services"
 project: kf-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-platform/edit/master/kanban.md"
-generated: 2026-09-01T14:53:57.269971
+generated: 2026-09-03T12:50:43.015693
 ---
 
 # kf-platform
@@ -19,8 +19,8 @@ generated: 2026-09-01T14:53:57.269971
 | Type | SaaS Product |
 | PO | @ps.tech |
 | Lead | @el.tech |
-| Current Sprint | S5 |
-| Sprint Period | 2026-06-29 to 2026-07-10 |
+| Current Sprint | S9 |
+| Sprint Period | 2026-08-24 to 2026-09-04 |
 | Tags | circular-textiles, digital-platform, microfactory, dpp, manufacturing |
 | Dependencies | [kf-fe-platform]({{ '/projects/kf-fe-platform/' | relative_url }}), [kf-be-platform]({{ '/projects/kf-be-platform/' | relative_url }}) |
 
@@ -44,7 +44,10 @@ generated: 2026-09-01T14:53:57.269971
     <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">0</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">3</span></div>
+    <div class="kanban-card kanban-card--static">[F3.S8.BOM Editor]</div>
+    <div class="kanban-card kanban-card--static">[F3.S9.Sizing &amp; QA Flow]</div>
+    <div class="kanban-card kanban-card--static">[F4.S9.Orders Refactor]</div>
   </div>
 </div>
 
@@ -93,7 +96,7 @@ pie showData title Effort — Planned vs Done (person-days)
 
 ```mermaid
 gantt
-    title S5 — kf-platform (dated tasks)
+    title S9 — kf-platform (dated tasks)
     dateFormat YYYY-MM-DD
     excludes weekends
 

@@ -4,7 +4,7 @@ title: "[F3.S10.Cost Breakdown]"
 status: Done
 assignee: "@alexandru.bejenari + @ma.tech"
 effort: 5d
-sprint: S5
+sprint: S9
 resource: "https://katty-fashion.github.io/kf-cpto/projects/kf-platform/"
 ---
 

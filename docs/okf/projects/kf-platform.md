@@ -13,7 +13,7 @@ tags:
   - manufacturing
 po: "@ps.tech"
 lead: "@el.tech"
-sprint: S5
+sprint: S9
 ---
 
 # kf-platform

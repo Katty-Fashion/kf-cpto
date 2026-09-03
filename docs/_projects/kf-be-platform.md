@@ -4,7 +4,7 @@ description: "SaaS Product"
 project: kf-be-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-09-01T14:53:57.269041
+generated: 2026-09-03T12:50:43.014812
 ---
 
 # kf-be-platform
@@ -19,8 +19,8 @@ generated: 2026-09-01T14:53:57.269041
 | Type | SaaS Product |
 | PO | @ma.tech |
 | Lead | @el.tech |
-| Current Sprint | S5 |
-| Sprint Period | 2026-06-29 to 2026-07-10 |
+| Current Sprint | S9 |
+| Sprint Period | 2026-08-24 to 2026-09-04 |
 | Tags | circular-textiles, digital-platform, microfactory, dpp, manufacturing |
 | Dependencies | [R3-AAS]({{ '/projects/r3-aas/' | relative_url }}) |
 
@@ -41,9 +41,7 @@ generated: 2026-09-01T14:53:57.269041
     <div class="kanban-col__head">Review <span class="kanban-col__count">0</span></div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">2</span></div>
-    <div class="kanban-card kanban-card--static">[F2.S3.RBAC System]</div>
-    <div class="kanban-card kanban-card--static">[F2.S5.Tenant Management]</div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">0</span></div>
   </div>
 </div>
 
@@ -83,7 +81,7 @@ pie showData title Effort — Planned vs Done (person-days)
 
 ```mermaid
 gantt
-    title S5 — kf-be-platform (dated tasks)
+    title S9 — kf-be-platform (dated tasks)
     dateFormat YYYY-MM-DD
     excludes weekends
 

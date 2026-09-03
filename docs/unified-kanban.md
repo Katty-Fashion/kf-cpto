@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-09-01T14:53:57.210894
+generated: 2026-09-03T12:50:42.984854
 ---
 
 # KF Team — Unified Kanban
@@ -45,12 +45,13 @@ generated: 2026-09-01T14:53:57.210894
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Integration validation review</a>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">5</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">6</span></div>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Share KF access for export to NetCompany</a>
-    <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F2.S3.RBAC System]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F2.S5.Tenant Management]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F1.S4.Login Flow]</a>
-    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F2.S5.Admin Console]</a>
+    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F3.S8.Tech Pack Layout]</a>
+    <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F3.S9.Model Sheet Fixes]</a>
+    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F3.S8.BOM Editor]</a>
+    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F3.S9.Sizing &amp; QA Flow]</a>
+    <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F4.S9.Orders Refactor]</a>
   </div>
 </div>
 
@@ -85,17 +86,17 @@ gantt
     S5 :done, 2026-06-29, 2026-07-10
     S6 :done, 2026-07-13, 2026-07-24
     section kf-be-platform
-    S4 :done, 2026-06-15, 2026-06-26
-    S5 :done, 2026-06-29, 2026-07-10
-    S6 :done, 2026-07-13, 2026-07-24
+    S8 :done, 2026-08-10, 2026-08-21
+    S9 :active, 2026-08-24, 2026-09-04
+    S10 :2026-09-07, 2026-09-18
     section kf-fe-platform
-    S4 :done, 2026-06-15, 2026-06-26
-    S5 :done, 2026-06-29, 2026-07-10
-    S6 :done, 2026-07-13, 2026-07-24
+    S8 :done, 2026-08-10, 2026-08-21
+    S9 :active, 2026-08-24, 2026-09-04
+    S10 :2026-09-07, 2026-09-18
     section kf-platform
-    S4 :done, 2026-06-15, 2026-06-26
-    S5 :done, 2026-06-29, 2026-07-10
-    S6 :done, 2026-07-13, 2026-07-24
+    S8 :done, 2026-08-10, 2026-08-21
+    S9 :active, 2026-08-24, 2026-09-04
+    S10 :2026-09-07, 2026-09-18
     section tech_brainstorming
     S4 :done, 2026-06-15, 2026-06-26
     S5 :done, 2026-06-29, 2026-07-10
