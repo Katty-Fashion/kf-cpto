@@ -4,7 +4,7 @@ description: "Tech brainstorming \u2014 ideas, spikes and evaluation notes"
 project: tech_brainstorming
 type: internal
 edit_url: "https://github.com/katty-fashion/tech_brainstorming/edit/main/kanban.md"
-generated: 2026-09-03T12:51:34.256089
+generated: 2026-09-03T13:06:29.555547
 ---
 
 # tech_brainstorming
@@ -19,8 +19,8 @@ generated: 2026-09-03T12:51:34.256089
 | Type | Internal |
 | PO | @el.tech |
 | Lead | @el.tech |
-| Current Sprint | S5 |
-| Sprint Period | 2026-06-29 to 2026-07-10 |
+| Current Sprint | S9 |
+| Sprint Period | 2026-08-24 to 2026-09-04 |
 | Tags | internal, ideation |
 | Dependencies | None |
 

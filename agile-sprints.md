@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-09-03T12:51:34.245345
+generated: 2026-09-03T13:06:29.546567
 ---
 
 # KF Team — Agile Sprints
@@ -17,13 +17,13 @@ gantt
     excludes weekends
 
     section R3-AAS
-    S4 :done, 2026-06-15, 2026-06-26
-    S5 :done, 2026-06-29, 2026-07-10
-    S6 :done, 2026-07-13, 2026-07-24
+    S8 :done, 2026-08-10, 2026-08-21
+    S9 :active, 2026-08-24, 2026-09-04
+    S10 :2026-09-07, 2026-09-18
     section ai-rise-options
-    S4 :done, 2026-06-15, 2026-06-26
-    S5 :done, 2026-06-29, 2026-07-10
-    S6 :done, 2026-07-13, 2026-07-24
+    S8 :done, 2026-08-10, 2026-08-21
+    S9 :active, 2026-08-24, 2026-09-04
+    S10 :2026-09-07, 2026-09-18
     section kf-be-platform
     S8 :done, 2026-08-10, 2026-08-21
     S9 :active, 2026-08-24, 2026-09-04
@@ -37,9 +37,9 @@ gantt
     S9 :active, 2026-08-24, 2026-09-04
     S10 :2026-09-07, 2026-09-18
     section tech_brainstorming
-    S4 :done, 2026-06-15, 2026-06-26
-    S5 :done, 2026-06-29, 2026-07-10
-    S6 :done, 2026-07-13, 2026-07-24
+    S8 :done, 2026-08-10, 2026-08-21
+    S9 :active, 2026-08-24, 2026-09-04
+    S10 :2026-09-07, 2026-09-18
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
@@ -110,10 +110,10 @@ gantt
 
 | Project | Sprint | Window | Total Effort | % Done |
 | :--- | :--- | :--- | :---: | :---: |
-| R3-AAS | S5 | 2026-06-29 → 2026-07-10 | 52.5d | 41.9% |
-| ai-rise-options | S5 | 2026-06-29 → 2026-07-10 | 0d | 0% |
+| R3-AAS | S9 | 2026-08-24 → 2026-09-04 | 52.5d | 41.9% |
+| ai-rise-options | S9 | 2026-08-24 → 2026-09-04 | 0d | 0% |
 | kf-be-platform | S9 | 2026-08-24 → 2026-09-04 | 77.0d | 54.5% |
 | kf-fe-platform | S9 | 2026-08-24 → 2026-09-04 | 62.0d | 83.9% |
 | kf-platform | S9 | 2026-08-24 → 2026-09-04 | 167.0d | 58.1% |
-| tech_brainstorming | S5 | 2026-06-29 → 2026-07-10 | 0d | 0% |
+| tech_brainstorming | S9 | 2026-08-24 → 2026-09-04 | 0d | 0% |
 | **TOTAL** | | | **358.5d** | **59.4%** |

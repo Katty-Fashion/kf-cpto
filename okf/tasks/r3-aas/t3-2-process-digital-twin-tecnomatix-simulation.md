@@ -4,7 +4,7 @@ title: T3.2 — Process Digital Twin (Tecnomatix simulation)
 status: Done
 assignee: Eduard L
 effort: 0d
-sprint: S5
+sprint: S9
 timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---

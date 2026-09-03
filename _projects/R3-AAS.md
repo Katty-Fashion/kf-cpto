@@ -4,7 +4,7 @@ description: "R3GROUP Katty Fashion pilot \u2013 digital tools for co-creation, 
 project: R3-AAS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/R3-AAS/edit/main/kanban.md"
-generated: 2026-09-03T12:51:34.253283
+generated: 2026-09-03T13:06:29.553274
 ---
 
 # R3-AAS
@@ -19,8 +19,8 @@ generated: 2026-09-03T12:51:34.253283
 | Type | EU Project |
 | PO | @el.tech |
 | Lead | @el.tech |
-| Current Sprint | S5 |
-| Sprint Period | 2026-06-29 to 2026-07-10 |
+| Current Sprint | S9 |
+| Sprint Period | 2026-08-24 to 2026-09-04 |
 | Tags | r3group, digital-twin, capacity-planner, manufacturing, aas |
 | Dependencies | [ai-rise-options]({{ '/projects/ai-rise-options/' | relative_url }}) |
 
@@ -52,8 +52,7 @@ generated: 2026-09-03T12:51:34.253283
     <div class="kanban-card kanban-card--static">Integration validation review</div>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">1</span></div>
-    <div class="kanban-card kanban-card--static">Share KF access for export to NetCompany</div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">0</span></div>
   </div>
 </div>
 
@@ -126,7 +125,7 @@ pie showData title Effort — Planned vs Done (person-days)
 
 ```mermaid
 gantt
-    title S5 — R3-AAS (dated tasks)
+    title S9 — R3-AAS (dated tasks)
     dateFormat YYYY-MM-DD
     excludes weekends
 

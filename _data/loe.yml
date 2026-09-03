@@ -1,8 +1,8 @@
-generated_at: '2026-09-03T12:51:34Z'
+generated_at: '2026-09-03T13:06:29Z'
 row_count: 69
 rows:
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: WP1 — AAS platform integration (digital infrastructure)
   assignee: Mihai A.
   effort_days: 0.0
@@ -10,7 +10,7 @@ rows:
   end: ''
   status: Review
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: T2.1 — Co-creation platform (Nuoform)
   assignee: Alexandru Bejenari
   effort_days: 0.0
@@ -18,7 +18,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: T3.2 — Product Digital Twin (AAS model)
   assignee: Eduard L
   effort_days: 0.0
@@ -26,7 +26,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: T3.2 — Process Digital Twin (Tecnomatix simulation)
   assignee: Eduard L
   effort_days: 0.0
@@ -34,7 +34,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: 'T2.4 — Capacity Planner: LMS Scheduler Backend'
   assignee: LMS
   effort_days: 0.0
@@ -42,7 +42,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: 'T2.4 — Capacity Planner: KF Planner UI'
   assignee: Alexandru Bejenari
   effort_days: 5.0
@@ -50,7 +50,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: 'T2.4 — Capacity Planner: KF ↔ LMS Integration'
   assignee: Alexandru Bejenari
   effort_days: 10.0
@@ -58,7 +58,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: 'T3.3 — IoT Monitoring: sensors deployment'
   assignee: Eduard Lazar
   effort_days: 5.0
@@ -66,7 +66,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: 'T2.3 — Supply Chain Digital Twin: risk modelling'
   assignee: Eduard Lazar
   effort_days: 0.0
@@ -74,7 +74,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: AAS import/export tooling (aas_export.py, import-demo.sh)
   assignee: Eduard L
   effort_days: 0.0
@@ -82,7 +82,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Order_3_Aas shell (8 submodels, cost + schedule)
   assignee: Eduard L
   effort_days: 0.0
@@ -90,7 +90,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: 'Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS re-optimise)'
   assignee: Alexandru Bejenari
   effort_days: 0.0
@@ -98,7 +98,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: OAuth2 auth-server public + per-client provisioning
   assignee: Răzvan Boița
   effort_days: 0.0
@@ -106,7 +106,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: ALADIN WP2 RunSheet service (nginx + Traefik routing)
   assignee: Răzvan Boița
   effort_days: 0.0
@@ -114,7 +114,7 @@ rows:
   end: ''
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Implement scheduling request endpoint (KF → LMS)
   assignee: '@backend'
   effort_days: 2.0
@@ -122,7 +122,7 @@ rows:
   end: '2026-07-10'
   status: Review
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Implement scheduler response parser
   assignee: '@backend'
   effort_days: 2.0
@@ -130,7 +130,7 @@ rows:
   end: '2026-07-10'
   status: Review
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Integrate scheduling results with planner UI
   assignee: '@frontend'
   effort_days: 3.0
@@ -138,7 +138,7 @@ rows:
   end: '2026-07-10'
   status: Review
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Implement planner visualization improvements (capacity / gaps)
   assignee: '@frontend'
   effort_days: 2.0
@@ -146,7 +146,7 @@ rows:
   end: '2026-07-10'
   status: Review
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Validate suitability constraints and scheduling logic
   assignee: '@backend'
   effort_days: 2.0
@@ -154,7 +154,7 @@ rows:
   end: '2026-07-10'
   status: Review
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Run first scheduling tests with real production data
   assignee: '@tech-lead'
   effort_days: 1.0
@@ -162,7 +162,7 @@ rows:
   end: '2026-07-10'
   status: Review
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Debug integration issues with LMS team
   assignee: '@tech-lead'
   effort_days: 1.0
@@ -170,7 +170,7 @@ rows:
   end: '2026-07-10'
   status: Review
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Integration validation review
   assignee: '@tech-lead'
   effort_days: 0.5
@@ -178,7 +178,7 @@ rows:
   end: '2026-07-10'
   status: Review
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: 'M2F: finalise & confirm assumed KF-M2F shell structure'
   assignee: Eduard Lazăr / M2F
   effort_days: 2.0
@@ -186,7 +186,7 @@ rows:
   end: '2026-07-10'
   status: In Progress
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Export R3 AAS shells → move to Netcompany-hosted R3 platform
   assignee: Eduard Lazăr / Netcompany
   effort_days: 3.0
@@ -194,7 +194,7 @@ rows:
   end: '2026-07-17'
   status: In Progress
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Share KF access for export to NetCompany
   assignee: Eduard Lazăr
   effort_days: 1.0
@@ -202,7 +202,7 @@ rows:
   end: '2026-07-07'
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Share KF-M2F shell with M2F (so they build their own)
   assignee: Eduard Lazăr
   effort_days: 1.0
@@ -210,7 +210,7 @@ rows:
   end: '2026-07-14'
   status: Done
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Connect + test M2F V2 API from new Nuoform
   assignee: Alexandru Bejenari
   effort_days: 5.0
@@ -218,7 +218,7 @@ rows:
   end: '2026-07-24'
   status: In Progress
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Re-point all connections to Netcompany-hosted R3 (go live)
   assignee: Mihai A.
   effort_days: 3.0
@@ -226,7 +226,7 @@ rows:
   end: '2026-07-31'
   status: In Progress
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: Pilot KF demo recordings (based on revised Nuoform)
   assignee: Eduard Lazăr
   effort_days: 3.0
@@ -234,7 +234,7 @@ rows:
   end: '2026-08-05'
   status: In Progress
 - project: R3-AAS
-  sprint: S5
+  sprint: S9
   task: State AI usage in R3 (declaration)
   assignee: Eduard Lazăr
   effort_days: 1.0

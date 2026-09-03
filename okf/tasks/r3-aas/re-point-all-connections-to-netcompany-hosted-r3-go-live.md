@@ -4,7 +4,7 @@ title: Re-point all connections to Netcompany-hosted R3 (go live)
 status: In Progress
 assignee: Mihai A.
 effort: 3d
-sprint: S5
+sprint: S9
 timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---

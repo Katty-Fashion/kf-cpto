@@ -4,7 +4,7 @@ title: "T2.4 — Capacity Planner: KF Planner UI"
 status: Done
 assignee: Alexandru Bejenari
 effort: 5d
-sprint: S5
+sprint: S9
 timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---

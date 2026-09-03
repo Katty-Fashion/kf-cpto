@@ -12,7 +12,7 @@ tags:
 timestamp: 2026-07-02
 po: "@el.tech"
 lead: "@el.tech"
-sprint: S5
+sprint: S9
 ---
 
 # ai-rise-options
