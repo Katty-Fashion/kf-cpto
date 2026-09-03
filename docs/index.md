@@ -57,7 +57,19 @@ auto_blocks: [current-sprint]
 ## Current Sprint Overview
 
 <!-- AUTO:current-sprint -->
-_(auto-data: current-sprint not yet generated — run the aggregator)_
+
+```mermaid
+gantt
+    title Sprint Calendar
+    dateFormat YYYY-MM-DD
+    excludes weekends
+
+    section Scrum
+    Sprint S9 Planning        :crit, 2026-08-24, 1d
+    Sprint S9 Active          :active, 2026-08-25, 9d
+    Sprint S9 Demo + Retro    :crit, 2026-09-04, 1d
+```
+
 <!-- /AUTO:current-sprint -->
 
 ---
