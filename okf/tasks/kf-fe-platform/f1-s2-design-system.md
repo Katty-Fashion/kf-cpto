@@ -4,7 +4,7 @@ title: "[F1.S2.Design System]"
 status: Done
 assignee: "@alexandru.bejenari"
 effort: 10d
-sprint: S5
+sprint: S9
 resource: "https://katty-fashion.github.io/kf-cpto/projects/kf-fe-platform/"
 ---
 

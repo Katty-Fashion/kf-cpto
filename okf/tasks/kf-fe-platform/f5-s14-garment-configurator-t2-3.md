@@ -4,7 +4,7 @@ title: "[F5.S14.Garment Configurator (T2.3)]"
 status: Todo
 assignee: "@alexandru.bejenari"
 effort: 10d
-sprint: S5
+sprint: S9
 resource: "https://katty-fashion.github.io/kf-cpto/projects/kf-fe-platform/"
 ---
 

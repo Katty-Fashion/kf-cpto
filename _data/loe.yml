@@ -1,4 +1,4 @@
-generated_at: '2026-09-01T14:53:57Z'
+generated_at: '2026-09-03T12:50:43Z'
 row_count: 69
 rows:
 - project: R3-AAS
@@ -242,7 +242,7 @@ rows:
   end: '2026-07-17'
   status: In Progress
 - project: kf-be-platform
-  sprint: S5
+  sprint: S9
   task: '[F1.S2.DB Schema v2 + RLS]'
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -250,7 +250,7 @@ rows:
   end: '2026-06-21'
   status: Done
 - project: kf-be-platform
-  sprint: S5
+  sprint: S9
   task: '[F1.S2.CI/CD Pipeline]'
   assignee: '@ma.tech'
   effort_days: 2.0
@@ -258,7 +258,7 @@ rows:
   end: '2026-06-07'
   status: Done
 - project: kf-be-platform
-  sprint: S5
+  sprint: S9
   task: '[F2.S3.IDP + SMTP]'
   assignee: '@ma.tech'
   effort_days: 5.0
@@ -266,7 +266,7 @@ rows:
   end: '2026-06-28'
   status: Done
 - project: kf-be-platform
-  sprint: S5
+  sprint: S9
   task: '[F2.S3.RBAC System]'
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -274,7 +274,7 @@ rows:
   end: '2026-07-05'
   status: Done
 - project: kf-be-platform
-  sprint: S5
+  sprint: S9
   task: '[F2.S5.Tenant Management]'
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -282,7 +282,7 @@ rows:
   end: '2026-07-19'
   status: Done
 - project: kf-be-platform
-  sprint: S5
+  sprint: S9
   task: '[F5.S13.EPCIS Export]'
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -290,7 +290,7 @@ rows:
   end: '2026-11-08'
   status: Todo
 - project: kf-be-platform
-  sprint: S5
+  sprint: S9
   task: '[F5.S13.LLM Ecodesign (WP4)]'
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -298,7 +298,7 @@ rows:
   end: '2026-11-15'
   status: Todo
 - project: kf-be-platform
-  sprint: S5
+  sprint: S9
   task: '[F5.S14.IoT Adapter (T2.5)]'
   assignee: '@ma.tech'
   effort_days: 10.0
@@ -306,7 +306,7 @@ rows:
   end: '2026-11-22'
   status: Todo
 - project: kf-be-platform
-  sprint: S5
+  sprint: S9
   task: '[F5.S15.Notifications]'
   assignee: '@ma.tech'
   effort_days: 5.0
@@ -314,7 +314,7 @@ rows:
   end: '2026-12-06'
   status: Done
 - project: kf-be-platform
-  sprint: S5
+  sprint: S9
   task: '[F6.S17.Data Migration Scripts]'
   assignee: '@ma.tech'
   effort_days: 5.0
@@ -322,7 +322,7 @@ rows:
   end: '2026-12-27'
   status: Todo
 - project: kf-fe-platform
-  sprint: S5
+  sprint: S9
   task: '[F1.S2.Design System]'
   assignee: '@alexandru.bejenari'
   effort_days: 10.0
@@ -330,7 +330,7 @@ rows:
   end: '2026-06-21'
   status: Done
 - project: kf-fe-platform
-  sprint: S5
+  sprint: S9
   task: '[F1.S4.Login Flow]'
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -338,7 +338,7 @@ rows:
   end: '2026-07-05'
   status: Done
 - project: kf-fe-platform
-  sprint: S5
+  sprint: S9
   task: '[F2.S5.Admin Console]'
   assignee: '@alexandru.bejenari'
   effort_days: 10.0
@@ -346,7 +346,7 @@ rows:
   end: '2026-07-26'
   status: Done
 - project: kf-fe-platform
-  sprint: S5
+  sprint: S9
   task: '[F2.S6.Overview Refactor]'
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -354,7 +354,7 @@ rows:
   end: '2026-08-02'
   status: Done
 - project: kf-fe-platform
-  sprint: S5
+  sprint: S9
   task: '[F3.S7.Models Page]'
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -362,7 +362,7 @@ rows:
   end: '2026-08-23'
   status: Done
 - project: kf-fe-platform
-  sprint: S5
+  sprint: S9
   task: '[F3.S8.Tech Pack Layout]'
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -370,7 +370,7 @@ rows:
   end: '2026-08-30'
   status: Done
 - project: kf-fe-platform
-  sprint: S5
+  sprint: S9
   task: '[F3.S9.Model Sheet Fixes]'
   assignee: '@alexandru.bejenari'
   effort_days: 2.0
@@ -378,7 +378,7 @@ rows:
   end: '2026-09-06'
   status: Done
 - project: kf-fe-platform
-  sprint: S5
+  sprint: S9
   task: '[F3.S10.3D Performance]'
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -386,7 +386,7 @@ rows:
   end: '2026-09-27'
   status: Done
 - project: kf-fe-platform
-  sprint: S5
+  sprint: S9
   task: '[F5.S14.Garment Configurator (T2.3)]'
   assignee: '@alexandru.bejenari'
   effort_days: 10.0
@@ -394,7 +394,7 @@ rows:
   end: '2026-11-29'
   status: Todo
 - project: kf-fe-platform
-  sprint: S5
+  sprint: S9
   task: '[F5.S15.i18n / l10n]'
   assignee: '@alexandru.bejenari'
   effort_days: 5.0
@@ -402,7 +402,7 @@ rows:
   end: '2026-11-29'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F1.S2.Project Setup]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 2.0
@@ -410,7 +410,7 @@ rows:
   end: '2026-06-07'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F3.S6.Collections Refactor]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -418,7 +418,7 @@ rows:
   end: '2026-08-16'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F3.S8.BOM Editor]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -426,7 +426,7 @@ rows:
   end: '2026-09-13'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F3.S9.Sizing & QA Flow]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -434,7 +434,7 @@ rows:
   end: '2026-09-20'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F3.S10.Cost Breakdown]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -442,7 +442,7 @@ rows:
   end: '2026-10-04'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F3.S11.Tech Process Refactor]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -450,7 +450,7 @@ rows:
   end: '2026-10-11'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F4.S11.Inventory & Reception]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -458,7 +458,7 @@ rows:
   end: '2026-10-18'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F4.S9.Orders Refactor]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -466,7 +466,7 @@ rows:
   end: '2026-09-20'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F4.S10.Planner]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 20.0
@@ -474,7 +474,7 @@ rows:
   end: '2026-10-11'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F4.S11.Batches & Assignment]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -482,7 +482,7 @@ rows:
   end: '2026-10-18'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F4.S11.Operator View]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 20.0
@@ -490,7 +490,7 @@ rows:
   end: '2026-10-25'
   status: Todo
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F4.S12.QC Module]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -498,7 +498,7 @@ rows:
   end: '2026-10-25'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F4.S12.Reports & Cutting]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -506,7 +506,7 @@ rows:
   end: '2026-10-25'
   status: Done
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F5.S11.DPP Module (T2.4)]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 20.0
@@ -514,7 +514,7 @@ rows:
   end: '2026-10-25'
   status: Todo
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F5.S12.Public DPP / GS1]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 10.0
@@ -522,7 +522,7 @@ rows:
   end: '2026-11-01'
   status: Todo
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F5.S15.Auditor View]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -530,7 +530,7 @@ rows:
   end: '2026-11-29'
   status: Todo
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F5.S16.Made2Flow Schema]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -538,7 +538,7 @@ rows:
   end: '2026-12-13'
   status: Todo
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F6.S16.Migration Testing]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0
@@ -546,7 +546,7 @@ rows:
   end: '2026-12-20'
   status: Todo
 - project: kf-platform
-  sprint: S5
+  sprint: S9
   task: '[F6.S17.Final QA & Cutover]'
   assignee: '@alexandru.bejenari + @ma.tech'
   effort_days: 5.0

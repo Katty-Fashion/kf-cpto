@@ -4,7 +4,7 @@ title: "[F5.S15.Notifications]"
 status: Done
 assignee: "@ma.tech"
 effort: 5d
-sprint: S5
+sprint: S9
 resource: "https://katty-fashion.github.io/kf-cpto/projects/kf-be-platform/"
 ---
 

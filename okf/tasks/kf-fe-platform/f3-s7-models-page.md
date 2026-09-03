@@ -4,7 +4,7 @@ title: "[F3.S7.Models Page]"
 status: Done
 assignee: "@alexandru.bejenari"
 effort: 5d
-sprint: S5
+sprint: S9
 resource: "https://katty-fashion.github.io/kf-cpto/projects/kf-fe-platform/"
 ---
 
