@@ -1,4 +1,4 @@
-generated_at: '2026-09-03T12:51:34Z'
+generated_at: '2026-09-03T13:06:29Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -11,9 +11,9 @@ projects:
     type: eu-project
     po: '@el.tech'
     lead: '@el.tech'
-    sprint: S5
-    sprint_start: '2026-06-29'
-    sprint_end: '2026-07-10'
+    sprint: S9
+    sprint_start: '2026-08-24'
+    sprint_end: '2026-09-04'
     depends_on:
     - ai-rise-options
     tags:
@@ -433,9 +433,9 @@ projects:
     type: eu-project
     po: '@el.tech'
     lead: '@el.tech'
-    sprint: S5
-    sprint_start: '2026-06-29'
-    sprint_end: '2026-07-10'
+    sprint: S9
+    sprint_start: '2026-08-24'
+    sprint_end: '2026-09-04'
     depends_on: []
     tags:
     - eu-project
@@ -1080,9 +1080,9 @@ projects:
     type: internal
     po: '@el.tech'
     lead: '@el.tech'
-    sprint: S5
-    sprint_start: '2026-06-29'
-    sprint_end: '2026-07-10'
+    sprint: S9
+    sprint_start: '2026-08-24'
+    sprint_end: '2026-09-04'
     depends_on: []
     tags:
     - internal

@@ -4,7 +4,7 @@ title: Connect + test M2F V2 API from new Nuoform
 status: In Progress
 assignee: Alexandru Bejenari
 effort: 5d
-sprint: S5
+sprint: S9
 timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---

@@ -4,7 +4,7 @@ title: WP1 — AAS platform integration (digital infrastructure)
 status: Review
 assignee: Mihai A.
 effort: 0d
-sprint: S5
+sprint: S9
 timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---

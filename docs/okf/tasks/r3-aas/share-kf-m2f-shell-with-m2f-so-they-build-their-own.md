@@ -4,7 +4,7 @@ title: Share KF-M2F shell with M2F (so they build their own)
 status: Done
 assignee: Eduard Lazăr
 effort: 1d
-sprint: S5
+sprint: S9
 timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---

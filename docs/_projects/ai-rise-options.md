@@ -4,7 +4,7 @@ description: "AI-RISE options analysis \u2014 EU project exploration tracks"
 project: ai-rise-options
 type: eu-project
 edit_url: "https://github.com/katty-fashion/ai-rise-options/edit/master/kanban.md"
-generated: 2026-09-03T12:51:34.254247
+generated: 2026-09-03T13:06:29.554075
 ---
 
 # ai-rise-options
@@ -19,8 +19,8 @@ generated: 2026-09-03T12:51:34.254247
 | Type | EU Project |
 | PO | @el.tech |
 | Lead | @el.tech |
-| Current Sprint | S5 |
-| Sprint Period | 2026-06-29 to 2026-07-10 |
+| Current Sprint | S9 |
+| Sprint Period | 2026-08-24 to 2026-09-04 |
 | Tags | eu-project, ai-rise, exploration |
 | Dependencies | None |
 

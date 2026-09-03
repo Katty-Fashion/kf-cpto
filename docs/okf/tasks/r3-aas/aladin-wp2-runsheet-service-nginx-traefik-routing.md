@@ -4,7 +4,7 @@ title: ALADIN WP2 RunSheet service (nginx + Traefik routing)
 status: Done
 assignee: Răzvan Boița
 effort: 0d
-sprint: S5
+sprint: S9
 timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---
