@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-09-03T13:17:45.931995
+generated: 2026-09-07T04:19:29.717459
 ---
 
 # KF Team — Unified Kanban
@@ -78,28 +78,28 @@ gantt
 
     section R3-AAS
     S8 :done, 2026-08-10, 2026-08-21
-    S9 :active, 2026-08-24, 2026-09-04
-    S10 :2026-09-07, 2026-09-18
+    S9 :done, 2026-08-24, 2026-09-04
+    S10 :active, 2026-09-07, 2026-09-18
     section ai-rise-options
     S8 :done, 2026-08-10, 2026-08-21
-    S9 :active, 2026-08-24, 2026-09-04
-    S10 :2026-09-07, 2026-09-18
+    S9 :done, 2026-08-24, 2026-09-04
+    S10 :active, 2026-09-07, 2026-09-18
     section kf-be-platform
     S8 :done, 2026-08-10, 2026-08-21
-    S9 :active, 2026-08-24, 2026-09-04
-    S10 :2026-09-07, 2026-09-18
+    S9 :done, 2026-08-24, 2026-09-04
+    S10 :active, 2026-09-07, 2026-09-18
     section kf-fe-platform
     S8 :done, 2026-08-10, 2026-08-21
-    S9 :active, 2026-08-24, 2026-09-04
-    S10 :2026-09-07, 2026-09-18
+    S9 :done, 2026-08-24, 2026-09-04
+    S10 :active, 2026-09-07, 2026-09-18
     section kf-platform
     S8 :done, 2026-08-10, 2026-08-21
-    S9 :active, 2026-08-24, 2026-09-04
-    S10 :2026-09-07, 2026-09-18
+    S9 :done, 2026-08-24, 2026-09-04
+    S10 :active, 2026-09-07, 2026-09-18
     section tech_brainstorming
     S8 :done, 2026-08-10, 2026-08-21
-    S9 :active, 2026-08-24, 2026-09-04
-    S10 :2026-09-07, 2026-09-18
+    S9 :done, 2026-08-24, 2026-09-04
+    S10 :active, 2026-09-07, 2026-09-18
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
@@ -180,30 +180,11 @@ gantt
 
 ## Sprint Views — previous / current / next
 
-### Sprint S8 (previous) — 2026-08-10 → 2026-08-21
+### Sprint S9 (previous) — 2026-08-24 → 2026-09-04
 
 ```mermaid
 gantt
-    title S8 (previous) — 2026-08-10 → 2026-08-21
-    dateFormat YYYY-MM-DD
-    axisFormat %d %b
-    excludes weekends
-
-    section kf-fe-platform
-    (F3.S7.Models Page) :done, 2026-08-03, 2026-08-23
-    (F3.S8.Tech Pack Layout) :done, 2026-08-10, 2026-08-30
-    section kf-platform
-    (F3.S6.Collections Refactor) :done, 2026-07-20, 2026-08-16
-    (F3.S8.BOM Editor) :done, 2026-08-17, 2026-09-13
-```
-
-<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
-
-### Sprint S9 (current) — 2026-08-24 → 2026-09-04
-
-```mermaid
-gantt
-    title S9 (current) — 2026-08-24 → 2026-09-04
+    title S9 (previous) — 2026-08-24 → 2026-09-04
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
@@ -219,11 +200,11 @@ gantt
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
 
-### Sprint S10 (next) — 2026-09-07 → 2026-09-18
+### Sprint S10 (current) — 2026-09-07 → 2026-09-18
 
 ```mermaid
 gantt
-    title S10 (next) — 2026-09-07 → 2026-09-18
+    title S10 (current) — 2026-09-07 → 2026-09-18
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
@@ -236,6 +217,29 @@ gantt
     (F3.S10.Cost Breakdown) :done, 2026-09-14, 2026-10-04
     (F4.S9.Orders Refactor) :done, 2026-08-24, 2026-09-20
     (F4.S10.Planner) :done, 2026-09-07, 2026-10-11
+```
+
+<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
+
+### Sprint S11 (next) — 2026-09-21 → 2026-10-02
+
+```mermaid
+gantt
+    title S11 (next) — 2026-09-21 → 2026-10-02
+    dateFormat YYYY-MM-DD
+    axisFormat %d %b
+    excludes weekends
+
+    section kf-fe-platform
+    (F3.S10.3D Performance) :done, 2026-09-07, 2026-09-27
+    section kf-platform
+    (F3.S10.Cost Breakdown) :done, 2026-09-14, 2026-10-04
+    (F3.S11.Tech Process Refactor) :done, 2026-09-21, 2026-10-11
+    (F4.S11.Inventory & Reception) :done, 2026-09-28, 2026-10-18
+    (F4.S10.Planner) :done, 2026-09-07, 2026-10-11
+    (F4.S11.Batches & Assignment) :done, 2026-09-21, 2026-10-18
+    (F4.S11.Operator View) :2026-09-28, 2026-10-25
+    (F5.S11.DPP Module (T2.4)) :2026-09-21, 2026-10-25
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
