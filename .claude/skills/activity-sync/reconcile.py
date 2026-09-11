@@ -38,7 +38,7 @@ _SCRIPTS_DIR = _REPO_ROOT / "scripts"
 if str(_SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS_DIR))
 
-from utils import ORG, TASK_STATUSES  # noqa: E402
+from utils import ORG, TASK_STATUSES, parse_refs  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Module-level constants (SCREAMING_SNAKE_CASE per CLAUDE.md)
@@ -241,6 +241,54 @@ def _list_merged_prs(org: str, repo: str, headers: dict) -> list[dict]:
     return prs
 
 
+def _list_open_prs(org: str, repo: str, headers: dict) -> list[dict]:
+    """Return all open PRs for a repo (paginated, state=open).
+
+    Same pagination shape and [WARN]/break conventions as _list_merged_prs.
+    No merged_at filter — every returned PR is open by construction of the
+    state=open query. Called only when a repo has at least one task with a
+    non-empty Refs cell (T-gq5-06: bounded API surface).
+    """
+    prs: list[dict] = []
+    page = 1
+    while True:
+        try:
+            resp = requests.get(
+                f"{GITHUB_API}/repos/{org}/{repo}/pulls",
+                headers=headers,
+                params={"state": "open", "per_page": 100, "page": page},
+                timeout=HTTP_TIMEOUT_SECONDS,
+            )
+        except requests.RequestException as exc:
+            print(
+                f"[WARN] Open-PR list for {repo} errored on page {page} ({exc}); "
+                f"results may be incomplete — ref resolution for this repo is partial."
+            )
+            break
+        if resp.status_code != 200:
+            remaining = resp.headers.get("X-RateLimit-Remaining", "?")
+            if resp.status_code == 403 and str(remaining) == "0":
+                print(
+                    f"[WARN] Open-PR list for {repo} hit GitHub rate limit at page {page}; "
+                    f"results may be incomplete — ref resolution for this repo is partial."
+                )
+            else:
+                print(f"Warning: Open-PR list for {repo} failed: {resp.status_code}")
+            break
+        batch = resp.json()
+        if not batch:
+            break
+        prs.extend(batch)
+        page += 1
+        remaining = resp.headers.get("X-RateLimit-Remaining", "?")
+        if str(remaining).isdigit() and int(remaining) < 100:
+            print(
+                f"[WARN] GitHub rate limit low: {remaining} remaining "
+                f"(reached page {page - 1} for {repo}; further pages may truncate results)"
+            )
+    return prs
+
+
 def _extract_issue_refs(body: Optional[str]) -> list[int]:
     """Extract same-repo issue numbers from PR body using GitHub closing keywords.
 
@@ -405,6 +453,53 @@ def _integration_branches(repo_path: str, default_branch: str) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
+# Explicit-reference resolution — Refs column definition-of-done
+# ---------------------------------------------------------------------------
+
+def _classify_ref(
+    num: int,
+    merged_by_number: dict,
+    open_by_number: dict,
+    org: str,
+    repo_name: str,
+    headers: dict,
+    task_name: str,
+) -> tuple[str, Optional[dict]]:
+    """Classify a single '#N' ref against known merged/open PRs, falling back to
+    a direct issue lookup.
+
+    Returns one of:
+        ("merged", pr)      — num is a merged, reachability-gated PR
+        ("open", pr_or_obj) — num is an open PR
+        ("closed", issue)   — num is a closed issue (not a PR)
+        ("unresolved", None) — 404/error, or a closed-unmerged PR (never treated
+                                as a closed issue — T-gq5-02)
+
+    Prints [WARN] on unresolved refs.
+    """
+    if num in merged_by_number:
+        return ("merged", merged_by_number[num])
+    if num in open_by_number:
+        return ("open", open_by_number[num])
+    issue = _get_issue(org, repo_name, num, headers)
+    if issue is None:
+        print(f"[WARN] {repo_name}: ref #{num} on task '{task_name}' could not be resolved")
+        return ("unresolved", None)
+    if "pull_request" in issue:
+        # A PR that is neither merged (per merged_by_number) nor open: it's a
+        # closed-unmerged PR. Never treat as a closed issue (T-gq5-02).
+        print(f"[WARN] {repo_name}: ref #{num} on task '{task_name}' could not be resolved")
+        return ("unresolved", None)
+    state = issue.get("state")
+    if state == "closed":
+        return ("closed", issue)
+    if state == "open":
+        return ("open", issue)
+    print(f"[WARN] {repo_name}: ref #{num} on task '{task_name}' could not be resolved")
+    return ("unresolved", None)
+
+
+# ---------------------------------------------------------------------------
 # Reconciliation engine
 # ---------------------------------------------------------------------------
 
@@ -440,6 +535,13 @@ def reconcile_repo(record: dict, headers: dict) -> list[Proposal]:
     if not tasks:
         return []
 
+    # Explicit-reference definition-of-done (REFS-01/02): a task's Refs cell
+    # ("#N" PR/issue numbers) names its own evidence, independent of whether
+    # its title token-matches PR/branch text. task_refs maps task name -> list
+    # of ints parsed via the one canonical parser (utils.parse_refs).
+    task_refs = {t["task"]: parse_refs(t.get("refs", "")) for t in tasks}
+    has_refs = any(task_refs.values())
+
     # Integration-branch set: default branch plus any branches matching INTEGRATION_BRANCH_GLOBS.
     # Computed once; reused in both Tier-1 (any-branch reachability) and Tier-2 (exclusion).
     integration_branches = _integration_branches(repo_path, default_branch)
@@ -454,6 +556,10 @@ def reconcile_repo(record: dict, headers: dict) -> list[Proposal]:
     # a merge reached via an off-default integration branch (e.g. uat/*-migration) is Done,
     # not In Progress. Conservative gate preserved: only True counts; False or None skips.
     merged_prs = _list_merged_prs(ORG, repo_name, headers)
+    # Populated only for PRs that pass the reachability gate below — reused by
+    # explicit-reference resolution (_classify_ref) so a ref never bypasses the
+    # same reachability sweep token-matching already goes through (T-gq5-03).
+    merged_by_number: dict = {}
     for pr in merged_prs:
         sha = pr.get("merge_commit_sha")
         if not sha:
@@ -478,6 +584,7 @@ def reconcile_repo(record: dict, headers: dict) -> list[Proposal]:
         pr_number = pr.get("number")
         if pr_number is None:
             continue
+        merged_by_number[pr_number] = pr
         # Match PR title to task tokens (T-02-06: normalized plaintext, no eval)
         pr_title = pr.get("title", "")
         pr_url = pr.get("html_url")
@@ -501,6 +608,16 @@ def reconcile_repo(record: dict, headers: dict) -> list[Proposal]:
                             ("Done", 1, issue_signal, issue_url)
                         )
 
+    # --- Explicit-reference resolution: open-PR lookup (T-gq5-06 bounded call) ---
+    # Only fires when at least one task in this repo carries a non-empty Refs
+    # cell; a repo with no refs makes zero extra API calls.
+    open_by_number: dict = {}
+    if has_refs:
+        for pr in _list_open_prs(ORG, repo_name, headers):
+            num = pr.get("number")
+            if num is not None:
+                open_by_number[num] = pr
+
     # --- Tier-2: active remote branches ---
     # Pure-local git (no API); no commit enumeration (RECON-06).
     # Filter out every branch in the integration set before the task-match loop:
@@ -519,6 +636,50 @@ def reconcile_repo(record: dict, headers: dict) -> list[Proposal]:
                 proposals.setdefault(task["task"], []).append(
                     ("In Progress", 2, f"branch origin/{branch} exists", None)
                 )
+
+    # --- Explicit references: task's own definition of done (REFS-01/02) ---
+    # Refs are the task's OWN evidence, independent of title/branch token
+    # matching. Feeds the same proposals dict; conflict resolution below picks
+    # most_advanced exactly as it already does for Tier-1 vs Tier-2.
+    for task in tasks:
+        task_name = task["task"]
+        refs = task_refs.get(task_name, [])
+        if not refs:
+            continue
+        classified = [
+            (num,) + _classify_ref(num, merged_by_number, open_by_number, ORG, repo_name, headers, task_name)
+            for num in refs
+        ]
+        resolved = [(num, kind, obj) for num, kind, obj in classified if kind in ("merged", "closed")]
+        open_refs = [(num, kind, obj) for num, kind, obj in classified if kind == "open"]
+        unresolved_nums = [num for num, kind, obj in classified if kind == "unresolved"]
+
+        if resolved and not open_refs and not unresolved_nums:
+            # All refs resolved (merged or closed) -> Done
+            if len(resolved) == 1:
+                num, kind, obj = resolved[0]
+                if kind == "merged":
+                    signal = f"PR #{num}: {obj.get('title', '')} (merged, ref)"
+                else:
+                    signal = f"issue #{num} closed (ref)"
+                url = obj.get("html_url")
+            else:
+                signal = f"PR #{', #'.join(str(n) for n, _, _ in resolved)} merged (ref)"
+                url = resolved[0][2].get("html_url")
+            proposals.setdefault(task_name, []).append(("Done", 1, signal, url))
+        elif open_refs or (resolved and unresolved_nums):
+            # At least one open ref, or some resolved with others unresolved -> In Progress
+            if open_refs:
+                n = open_refs[0][0]
+                signal = f"PR #{n} open (ref)"
+                url = resolved[0][2].get("html_url") if resolved else open_refs[0][2].get("html_url")
+            else:
+                m = resolved[0][0]
+                u = unresolved_nums[0]
+                signal = f"PR #{m} merged, #{u} outstanding (ref)"
+                url = resolved[0][2].get("html_url")
+            proposals.setdefault(task_name, []).append(("In Progress", 2, signal, url))
+        # else: nothing resolved and nothing open -> append nothing (no evidence at all).
 
     # --- Conflict resolution + forward-only filter ---
     result: list[Proposal] = []

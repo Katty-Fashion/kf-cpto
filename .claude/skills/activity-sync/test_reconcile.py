@@ -25,6 +25,10 @@ if str(_SKILL_DIR) not in sys.path:
 import reconcile
 import subprocess
 
+# reconcile.py inserts scripts/ onto sys.path at import time (above), so this
+# resolves the ONE canonical parser (scripts/utils.py) — no local refs parser.
+from utils import parse_refs, parse_kanban_tasks
+
 from reconcile import (
     task_matches_signal,
     is_advancement,
@@ -988,6 +992,193 @@ check(
     "_build_headers: all sources exhausted -> Warning printed",
     "Warning" in out_none,
 )
+
+# ---------------------------------------------------------------------------
+# parse_refs (canonical parser, scripts/utils.py)
+# ---------------------------------------------------------------------------
+
+print("--- parse_refs ---")
+check("parse_refs('#3, #40 PR #85') == [3, 40, 85]", parse_refs("#3, #40 PR #85") == [3, 40, 85])
+check("parse_refs('#7 #7') == [7] (unique)", parse_refs("#7 #7") == [7])
+check("parse_refs('') == []", parse_refs("") == [])
+check("parse_refs('—') == []", parse_refs("—") == [])
+check("parse_refs('none') == []", parse_refs("none") == [])
+
+print("--- parse_kanban_tasks: refs column ---")
+_tasks_with_refs = parse_kanban_tasks(
+    "| Task | Status | Refs |\n|---|---|---|\n| A | Todo | #3, #40 |\n"
+)
+check("table WITH Refs header emits raw refs cell", _tasks_with_refs[0]["refs"] == "#3, #40")
+_tasks_no_refs = parse_kanban_tasks("| Task | Status |\n|---|---|\n| A | Todo |\n")
+check("table with NO refs column emits refs == ''", _tasks_no_refs[0]["refs"] == "")
+
+# ---------------------------------------------------------------------------
+# reconcile_repo: explicit-reference matching (REFS-01/02)
+# ---------------------------------------------------------------------------
+
+print("--- reconcile_repo explicit refs ---")
+
+
+class _FakeOpenPRs:
+    """Context manager to stub _list_open_prs."""
+    def __init__(self, prs: list):
+        self.prs = prs
+        self._orig = None
+
+    def __enter__(self):
+        self._orig = reconcile._list_open_prs
+        prs = self.prs
+        reconcile._list_open_prs = lambda org, repo, headers: prs
+        return self
+
+    def __exit__(self, *args):
+        reconcile._list_open_prs = self._orig
+
+
+class _SpyOpenPRs:
+    """Context manager to stub _list_open_prs while recording call count."""
+    def __init__(self, prs: list):
+        self.prs = prs
+        self.call_count = 0
+        self._orig = None
+
+    def __enter__(self):
+        self._orig = reconcile._list_open_prs
+
+        def _spy(org, repo, headers):
+            self.call_count += 1
+            return self.prs
+        reconcile._list_open_prs = _spy
+        return self
+
+    def __exit__(self, *args):
+        reconcile._list_open_prs = self._orig
+
+
+# Both refs merged and reachable -> one Done proposal, tier 1, signal has "(ref)"
+_refs_pr_10 = {
+    "number": 10, "title": "Unrelated commit message", "body": None,
+    "merge_commit_sha": "sha10", "merged_at": "2026-01-01T00:00:00Z",
+    "html_url": "https://github.com/test-org/some-repo/pull/10",
+}
+_refs_pr_11 = {
+    "number": 11, "title": "Another unrelated commit", "body": None,
+    "merge_commit_sha": "sha11", "merged_at": "2026-01-01T00:00:00Z",
+    "html_url": "https://github.com/test-org/some-repo/pull/11",
+}
+_record_refs_done = {
+    "name": "some-repo", "local_path": "/fake/some-repo", "branch": "main",
+    "kanban_exists": True, "valid_task_count": 1,
+    "tasks": [{"task": "Ingest pilot data", "status": "Todo", "refs": "#10, #11"}],
+}
+with _FakeMergedPRs([_refs_pr_10, _refs_pr_11]), _FakeIsReachable(True), \
+     _FakeBranches([]), _FakeGetIssue(None), _FakeOpenPRs([]):
+    proposals_refs_done = reconcile_repo(_record_refs_done, _EMPTY_HEADERS)
+
+check("refs #10+#11 both merged/reachable -> 1 proposal", len(proposals_refs_done) == 1)
+if proposals_refs_done:
+    check("refs Done proposal new_status is Done", proposals_refs_done[0].new_status == "Done")
+    check("refs Done proposal tier is 1", proposals_refs_done[0].tier == 1)
+    check("refs Done proposal signal contains (ref)", "(ref)" in proposals_refs_done[0].signal)
+
+# refs #12 is an open PR -> In Progress, tier 2
+_record_refs_open = {
+    "name": "some-repo", "local_path": "/fake/some-repo", "branch": "main",
+    "kanban_exists": True, "valid_task_count": 1,
+    "tasks": [{"task": "Ingest sensor data", "status": "Todo", "refs": "#12"}],
+}
+_refs_pr_12_open = {
+    "number": 12, "title": "wip: sensor ingest", "html_url": "https://github.com/test-org/some-repo/pull/12",
+}
+with _FakeMergedPRs([]), _FakeIsReachable(True), _FakeBranches([]), \
+     _FakeGetIssue(None), _FakeOpenPRs([_refs_pr_12_open]):
+    proposals_refs_open = reconcile_repo(_record_refs_open, _EMPTY_HEADERS)
+
+check("refs #12 open PR -> 1 proposal", len(proposals_refs_open) == 1)
+if proposals_refs_open:
+    check("refs open proposal new_status is In Progress", proposals_refs_open[0].new_status == "In Progress")
+    check("refs open proposal tier is 2", proposals_refs_open[0].tier == 2)
+    check("refs open proposal signal contains (ref)", "(ref)" in proposals_refs_open[0].signal)
+
+# refs #10 merged + #99 unresolvable -> In Progress, tier 2
+_record_refs_mixed = {
+    "name": "some-repo", "local_path": "/fake/some-repo", "branch": "main",
+    "kanban_exists": True, "valid_task_count": 1,
+    "tasks": [{"task": "Ingest mixed data", "status": "Todo", "refs": "#10, #99"}],
+}
+with _FakeMergedPRs([_refs_pr_10]), _FakeIsReachable(True), _FakeBranches([]), \
+     _FakeGetIssue(None), _FakeOpenPRs([]):
+    proposals_refs_mixed = reconcile_repo(_record_refs_mixed, _EMPTY_HEADERS)
+
+check("refs #10 merged + #99 unresolvable -> 1 proposal", len(proposals_refs_mixed) == 1)
+if proposals_refs_mixed:
+    check("refs mixed proposal new_status is In Progress", proposals_refs_mixed[0].new_status == "In Progress")
+    check("refs mixed proposal tier is 2", proposals_refs_mixed[0].tier == 2)
+    check("refs mixed proposal signal contains (ref)", "(ref)" in proposals_refs_mixed[0].signal)
+
+# refs #10 where _is_merge_reachable returns False -> #10 NOT resolved (no Done)
+_issue_10_is_a_pr = {
+    "number": 10, "state": "closed", "pull_request": {"merged_at": None},
+    "html_url": "https://github.com/test-org/some-repo/pull/10",
+}
+_record_refs_unreachable = {
+    "name": "some-repo", "local_path": "/fake/some-repo", "branch": "main",
+    "kanban_exists": True, "valid_task_count": 1,
+    "tasks": [{"task": "Ingest unreachable data", "status": "Todo", "refs": "#10"}],
+}
+with _FakeMergedPRs([_refs_pr_10]), _FakeIsReachable(False), _FakeBranches([]), \
+     _FakeGetIssue(_issue_10_is_a_pr), _FakeOpenPRs([]):
+    proposals_refs_unreachable = reconcile_repo(_record_refs_unreachable, _EMPTY_HEADERS)
+
+check(
+    "refs #10 unreachable -> no Done proposal for that task",
+    all(p.new_status != "Done" for p in proposals_refs_unreachable),
+)
+
+# A task with a refs cell but no matching evidence anywhere -> no Proposal
+_record_refs_nothing = {
+    "name": "some-repo", "local_path": "/fake/some-repo", "branch": "main",
+    "kanban_exists": True, "valid_task_count": 1,
+    "tasks": [{"task": "Ingest phantom data", "status": "Todo", "refs": "#123"}],
+}
+with _FakeMergedPRs([]), _FakeIsReachable(True), _FakeBranches([]), \
+     _FakeGetIssue(None), _FakeOpenPRs([]):
+    proposals_refs_nothing = reconcile_repo(_record_refs_nothing, _EMPTY_HEADERS)
+
+check("refs cell with no matching evidence anywhere -> no Proposal", proposals_refs_nothing == [])
+
+# Token matching still yields the same Done proposal when a refs column exists but is empty
+_record_refs_empty_col = {
+    "name": "some-repo", "local_path": "/fake/some-repo", "branch": "main",
+    "kanban_exists": True, "valid_task_count": 1,
+    "tasks": [{"task": "Setup authentication", "status": "Todo", "refs": ""}],
+}
+with _FakeMergedPRs([_pr_matching]), _FakeIsReachable(True), _FakeBranches([]), \
+     _FakeGetIssue(None), _SpyOpenPRs([]) as _spy_empty_col:
+    proposals_refs_empty_col = reconcile_repo(_record_refs_empty_col, _EMPTY_HEADERS)
+
+check("token match still produces Done proposal with empty Refs column", len(proposals_refs_empty_col) == 1)
+if proposals_refs_empty_col:
+    check("token match Done proposal unaffected by empty refs", proposals_refs_empty_col[0].new_status == "Done")
+    check("token match signal has no (ref) suffix", "(ref)" not in proposals_refs_empty_col[0].signal)
+check("empty Refs column -> _list_open_prs never called", _spy_empty_col.call_count == 0)
+
+# A repo where every task's refs cell is empty (or absent) -> _list_open_prs never called
+_record_no_refs_anywhere = {
+    "name": "some-repo", "local_path": "/fake/some-repo", "branch": "main",
+    "kanban_exists": True, "valid_task_count": 1,
+    "tasks": [{"task": "Setup authentication", "status": "Todo"}],
+}
+with _FakeMergedPRs([]), _FakeIsReachable(True), _FakeBranches([]), \
+     _FakeGetIssue(None), _SpyOpenPRs([]) as _spy_no_refs:
+    reconcile_repo(_record_no_refs_anywhere, _EMPTY_HEADERS)
+check("repo with no refs anywhere -> _list_open_prs never called", _spy_no_refs.call_count == 0)
+
+# Sanity: a repo WITH refs DOES call _list_open_prs (proves the spy is meaningful)
+with _FakeMergedPRs([]), _FakeIsReachable(True), _FakeBranches([]), \
+     _FakeGetIssue(None), _SpyOpenPRs([]) as _spy_with_refs:
+    reconcile_repo(_record_refs_nothing, _EMPTY_HEADERS)
+check("repo WITH refs -> _list_open_prs IS called", _spy_with_refs.call_count >= 1)
 
 # ---------------------------------------------------------------------------
 # Summary

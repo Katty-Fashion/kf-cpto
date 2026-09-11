@@ -104,6 +104,11 @@ _COLUMN_ALIASES = {
     "end": "end",
     "deadline": "end",
     "status": "status",
+    "refs": "refs",
+    "ref": "refs",
+    "pr": "refs",
+    "prs": "refs",
+    "github": "refs",
 }
 
 # Map from kanban.md status to MermaidJS column name (hyphenated)
@@ -278,7 +283,7 @@ def parse_kanban_tasks(content: str, project: str = "") -> list[dict[str, str]]:
         'In progress' / emoji-prefixed / foreign-vocabulary values self-heal.
 
     Returns:
-        List of task dicts with keys: task, assignee, effort, start, end, status
+        List of task dicts with keys: task, assignee, effort, start, end, status, refs
     """
     tasks: list[dict[str, str]] = []
     lines = content.splitlines()
@@ -322,6 +327,7 @@ def parse_kanban_tasks(content: str, project: str = "") -> list[dict[str, str]]:
                         "end": _cell(cells, colmap, "end"),
                         "status": status,
                         "section": section,
+                        "refs": _cell(cells, colmap, "refs"),
                     })
                 i += 1
         else:
@@ -404,6 +410,25 @@ def normalize_frontmatter(meta: dict) -> dict:
     if isinstance(result["tags"], str):
         result["tags"] = [result["tags"]]
     return result
+
+
+# Extracts bare "#N" reference numbers from a Refs cell (PR or issue numbers).
+_REF_RE = re.compile(r"#(\d+)")
+
+
+def parse_refs(text: str) -> list[int]:
+    """Parse a Refs cell into a list of unique GitHub PR/issue numbers.
+
+    Unique, first-seen order. E.g. "#3, #40 PR #85" -> [3, 40, 85].
+
+    Args:
+        text: Raw Refs cell string (may be "", "—", "none", or contain
+            free-form prose alongside "#N" tokens).
+
+    Returns:
+        List of int reference numbers, unique and in first-seen order.
+    """
+    return list(dict.fromkeys(int(m) for m in _REF_RE.findall(text or "")))
 
 
 def parse_effort_days(effort: str) -> float:
