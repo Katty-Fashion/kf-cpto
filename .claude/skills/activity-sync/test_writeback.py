@@ -677,6 +677,107 @@ check(
 )
 
 # ---------------------------------------------------------------------------
+# apply_status_change: 5-col table with a trailing Note column
+# (header-driven addressing — the old parts[-2] scheme would have overwritten
+# this Note cell instead of Status; see gq5-04)
+# ---------------------------------------------------------------------------
+
+print("--- apply_status_change: 5-col with Note (header-driven) ---")
+
+_BODY_5COL_NOTE = (
+    "| Task | Owner | Effort | Status | Note |\n"
+    "| :--- | :--- | :--- | :--- | :--- |\n"
+    "| Pilot ingest | @lead | 3d | Todo | see PR #85 for context |\n"
+    "| Reporting | @dev | 2d | In Progress | blocked on data |\n"
+)
+
+_note_before = [l for l in _BODY_5COL_NOTE.splitlines() if "Pilot ingest" in l][0].split("|")[-2]
+new_body5, changed5 = apply_status_change(_BODY_5COL_NOTE, "Pilot ingest", "Done")
+_note_after = [l for l in new_body5.splitlines() if "Pilot ingest" in l][0].split("|")[-2]
+
+check("5-col: apply_status_change returns changed=True", changed5 is True)
+check(
+    "5-col: Status cell updated to Done",
+    "| Pilot ingest | @lead | 3d | Done | see PR #85 for context |" in new_body5,
+)
+check("5-col: Note cell byte-identical before/after", _note_before == _note_after)
+check(
+    "5-col: other row unchanged",
+    "| Reporting | @dev | 2d | In Progress | blocked on data |" in new_body5,
+)
+
+# Idempotent: same status on a 5-col table returns (body, False) unchanged
+_same5_body, _same5_changed = apply_status_change(_BODY_5COL_NOTE, "Reporting", "In Progress")
+check("5-col: same status returns changed=False", _same5_changed is False)
+check("5-col: same status body unchanged", _same5_body == _BODY_5COL_NOTE)
+
+# ---------------------------------------------------------------------------
+# apply_status_change: 7-col table (Start/End + trailing "Note Stand-up")
+# ---------------------------------------------------------------------------
+
+print("--- apply_status_change: 7-col with Note Stand-up ---")
+
+_BODY_7COL_NOTE = (
+    "| Task | Assignee | Effort | Start | End | Status | Note Stand-up |\n"
+    "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n"
+    "| Migrate schema | @tech-lead | 4d | 2026-03-01 | 2026-03-05 | Review | waiting on DBA sign-off |\n"
+)
+
+_standup_before = [l for l in _BODY_7COL_NOTE.splitlines() if "Migrate schema" in l][0].split("|")[-2]
+new_body7, changed7 = apply_status_change(_BODY_7COL_NOTE, "Migrate schema", "Done")
+_standup_after = [l for l in new_body7.splitlines() if "Migrate schema" in l][0].split("|")[-2]
+
+check("7-col: apply_status_change returns changed=True", changed7 is True)
+check(
+    "7-col: Status cell updated to Done",
+    "| Migrate schema | @tech-lead | 4d | 2026-03-01 | 2026-03-05 | Done | waiting on DBA sign-off |" in new_body7,
+)
+check("7-col: Note Stand-up cell byte-identical before/after", _standup_before == _standup_after)
+
+# ---------------------------------------------------------------------------
+# apply_status_change: separator rows are never modified
+# ---------------------------------------------------------------------------
+
+print("--- apply_status_change: separator rows untouched ---")
+
+
+def _sep_lines(body: str) -> list:
+    return [l for l in body.splitlines() if l.strip() and set(l.strip()) <= set("|-: ")]
+
+
+check(
+    "5-col: separator row byte-identical after write",
+    _sep_lines(_BODY_5COL_NOTE) == _sep_lines(new_body5),
+)
+check(
+    "7-col: separator row byte-identical after write",
+    _sep_lines(_BODY_7COL_NOTE) == _sep_lines(new_body7),
+)
+
+# ---------------------------------------------------------------------------
+# apply_status_change: table with no Status column -> [WARN] + changed=False
+# ---------------------------------------------------------------------------
+
+print("--- apply_status_change: table with no Status column ---")
+
+_BODY_NO_STATUS = (
+    "| Task | Owner | Effort |\n"
+    "| :--- | :--- | :--- |\n"
+    "| Untracked task | @lead | 1d |\n"
+)
+
+old_stdout_nostat = sys.stdout
+sys.stdout = io.StringIO()
+_nostat_body, _nostat_changed = apply_status_change(_BODY_NO_STATUS, "Untracked task", "Done")
+_nostat_warn = sys.stdout.getvalue()
+sys.stdout = old_stdout_nostat
+
+check("no-Status-column: returns changed=False", _nostat_changed is False)
+check("no-Status-column: body unchanged", _nostat_body == _BODY_NO_STATUS)
+check("no-Status-column: prints [WARN]", "[WARN]" in _nostat_warn)
+check("no-Status-column: [WARN] mentions no Status column", "no Status column" in _nostat_warn)
+
+# ---------------------------------------------------------------------------
 # _content_changed
 # ---------------------------------------------------------------------------
 

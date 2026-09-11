@@ -52,7 +52,7 @@ if str(_SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS_DIR))
 
 from sanitize import sanitize_body  # noqa: E402
-from utils import ORG, TASK_STATUSES  # noqa: E402
+from utils import ORG, TASK_STATUSES, _map_columns, _split_row, _is_separator_row  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Module constants (SCREAMING_SNAKE_CASE per CLAUDE.md)
@@ -860,17 +860,26 @@ def apply_status_change(
 ) -> tuple[str, bool]:
     """Replace the Status cell for the first row whose Task cell matches task_name.
 
-    Operates on the raw body_str (pre-sanitize). Works for both 4-col and 6-col
-    tables because Status is always the last data column (parts[-2] of a row that
-    ends with a trailing '|'). Rows without a trailing '|' are malformed GFM for
-    this addressing scheme and are skipped with a [WARN] (CR-02) rather than
-    corrupting the Effort cell.
+    Operates on the raw body_str (pre-sanitize). Header-driven (not position/
+    count-driven): the Status column index is located per-table via the ONE
+    canonical column-mapping primitives (utils._map_columns / utils._split_row —
+    the same ones scripts/utils.py's parse_kanban_tasks and enumerate_kanban_rows
+    use). This correctly addresses 4-col and 6-col tables, and ALSO 5-col
+    (`| Task | Owner | Effort | Status | Note |`) and 7-col (`| Task | Assignee |
+    Effort | Start | End | Status | Note Stand-up |`) tables — the previous
+    `parts[-2]` addressing assumed Status was always the second-to-last column,
+    which corrupted a trailing Note cell on R3-AAS's non-4/6-col tables.
+
+    Rows under a header row with no Status column are skipped with a [WARN]
+    rather than writing into an arbitrary cell.
 
     Rules:
     - Only the FIRST matching row is updated (forward-only, one match per Proposal).
     - If current status already equals new_status, returns (body_str, False) unchanged.
     - If task_name appears on multiple rows, updates only the first and prints [WARN].
     - If task_name is not found, returns (body_str, False) unchanged.
+    - Rows without a trailing '|' are malformed GFM for this addressing scheme and
+      are skipped with a [WARN] (CR-02) rather than corrupting an adjacent cell.
 
     Args:
         body_str:   Body portion of kanban.md (everything after closing '---').
@@ -894,23 +903,46 @@ def apply_status_change(
     new_lines: list[str] = []
     changed = False
     match_count = 0
+    status_idx: int | None = None  # Status column index for the CURRENT table
 
-    for line in lines:
+    n = len(lines)
+    idx = 0
+    while idx < n:
+        line = lines[idx]
         stripped = line.rstrip("\n")
 
         # Only process pipe-table rows
         if not stripped.startswith("|"):
             new_lines.append(line)
+            idx += 1
             continue
 
-        # CR-02: Status is addressed as parts[-2], which is only the Status cell
-        # when the row ends with a trailing '|'. GFM permits trailing-pipe-less
-        # rows; for those parts[-2] is the Effort cell and we would overwrite the
-        # wrong column while leaving the real status untouched (silent data loss).
-        # Require a well-formed row (starts AND ends with '|'); skip otherwise.
+        # Header detection: current line is a pipe row and the NEXT line is a
+        # separator row. Map its columns, emit both lines verbatim (the
+        # separator row is NEVER modified), and move on.
+        next_line = lines[idx + 1] if idx + 1 < n else ""
+        if _is_separator_row(next_line):
+            colmap = _map_columns(_split_row(line))
+            status_idx = colmap.get("status")
+            new_lines.append(line)
+            idx += 1
+            new_lines.append(lines[idx])
+            idx += 1
+            continue
+
+        # Defensive: a stray separator row not consumed above is never modified.
+        if _is_separator_row(line):
+            new_lines.append(line)
+            idx += 1
+            continue
+
+        # CR-02: require a well-formed row (starts AND ends with '|'). GFM
+        # permits trailing-pipe-less rows; addressing by index on those would
+        # silently write into the wrong cell.
         if not stripped.endswith("|"):
             print(f"[WARN] Skipping malformed (no trailing pipe) row: {stripped!r}")
             new_lines.append(line)
+            idx += 1
             continue
 
         parts = stripped.split("|")
@@ -918,11 +950,13 @@ def apply_status_change(
         # Need at least | task | ... | status | => 4 separator parts minimum
         if len(parts) < 4:
             new_lines.append(line)
+            idx += 1
             continue
 
         task_cell = parts[1].strip()
         if task_cell != task_name:
             new_lines.append(line)
+            idx += 1
             continue
 
         # Matching row found
@@ -935,20 +969,43 @@ def apply_status_change(
                 f"(match #{match_count}). Only the first occurrence is updated."
             )
             new_lines.append(line)
+            idx += 1
+            continue
+
+        if status_idx is None:
+            # No header context (or the current table has no Status column) —
+            # never guess a column index; skip rather than corrupt a cell.
+            print(
+                f"[WARN] Skipping row for task '{task_name}' — its table has no Status column"
+            )
+            new_lines.append(line)
+            idx += 1
+            continue
+
+        # parts[0] is the empty string before the leading pipe, so cell index i
+        # of _split_row()'s output maps to parts[i + 1] here.
+        if status_idx + 1 >= len(parts):
+            print(
+                f"[WARN] Skipping row for task '{task_name}' — row too short for its Status column"
+            )
+            new_lines.append(line)
+            idx += 1
             continue
 
         # First match: check if status already equals target
-        old_status = parts[-2].strip()
+        old_status = parts[status_idx + 1].strip()
         if old_status == new_status:
             # No change needed — idempotent skip
             new_lines.append(line)
+            idx += 1
             continue
 
-        # Apply the replacement: parts[-2] is the last data cell (Status column)
-        parts[-2] = f" {new_status} "
+        # Apply the replacement at the header-mapped Status cell.
+        parts[status_idx + 1] = f" {new_status} "
         eol = "\n" if line.endswith("\n") else ""
         new_lines.append("|".join(parts) + eol)
         changed = True
+        idx += 1
 
     return "".join(new_lines), changed
 
