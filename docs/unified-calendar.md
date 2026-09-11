@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-09-11T12:35:29.731527
+generated: 2026-09-11T12:38:08.312147
 ---
 
 # KF Team — Unified Calendar
@@ -66,22 +66,22 @@ gantt
     excludes weekends
 
     section R3-AAS
-    Implement scheduling request endpoint KF → LMS :done, 2026-06-29, 2026-07-10
+    Implement scheduling request endpoint (KF → LMS) :done, 2026-06-29, 2026-07-10
     Implement scheduler response parser :done, 2026-06-29, 2026-07-10
     Integrate scheduling results with planner UI :done, 2026-06-29, 2026-07-10
-    Implement planner visualization improvements capacity / gaps :crit, 2026-06-29, 2026-07-10
+    Implement planner visualization improvements (capacity / gaps) :crit, 2026-06-29, 2026-07-10
     Validate suitability constraints and scheduling logic :crit, 2026-06-29, 2026-07-10
     Run first scheduling tests with real production data :done, 2026-06-29, 2026-07-10
     Debug integration issues with LMS team :done, 2026-06-29, 2026-07-10
     Integration validation review :done, 2026-06-29, 2026-07-10
-    M2F - finalise & confirm assumed KF-M2F shell structure :done, 2026-06-29, 2026-07-10
+    M2F finalise & confirm assumed KF-M2F shell structure :done, 2026-06-29, 2026-07-10
     Share KF access for export to NetCompany :done, 2026-07-07, 2026-07-07
     Export R3 AAS shells → move to Netcompany-hosted R3 platform :done, 2026-07-13, 2026-07-17
-    Share KF-M2F shell with M2F so they build their own :done, 2026-07-13, 2026-07-14
-    State AI usage in R3 declaration :crit, 2026-07-16, 2026-07-17
+    Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
+    State AI usage in R3 (declaration) :crit, 2026-07-16, 2026-07-17
     Connect + test M2F V2 API from new Nuoform :done, 2026-07-20, 2026-07-24
-    Re-point all connections to Netcompany-hosted R3 go live :done, 2026-07-27, 2026-07-31
-    Pilot KF demo recordings based on revised Nuoform :crit, 2026-08-03, 2026-08-05
+    Re-point all connections to Netcompany-hosted R3 (go live) :done, 2026-07-27, 2026-07-31
+    Pilot KF demo recordings (based on revised Nuoform) :crit, 2026-08-03, 2026-08-05
     section kf-be-platform
     (F1.S2.DB Schema v2 + RLS) :done, 2026-05-25, 2026-06-21
     (F1.S2.CI/CD Pipeline) :done, 2026-05-25, 2026-06-07

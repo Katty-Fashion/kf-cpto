@@ -1,4 +1,4 @@
-generated_at: '2026-09-11T12:35:29Z'
+generated_at: '2026-09-11T12:38:08Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -30,7 +30,7 @@ projects:
       product_owner: el.tech@katty-fashion.ro
       pmo_ramp_up: alexandru.bejenari@katty-fashion.ro
   tasks:
-  - task: WP1 — AAS platform integration digital infrastructure
+  - task: WP1 — AAS platform integration (digital infrastructure)
     assignee: Mihai A.
     effort: —
     start: ''
@@ -42,7 +42,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: T2.1 — Co-creation platform Nuoform
+  - task: T2.1 — Co-creation platform (Nuoform)
     assignee: Alexandru Bejenari
     effort: —
     start: ''
@@ -54,7 +54,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: T3.2 — Product Digital Twin AAS model
+  - task: T3.2 — Product Digital Twin (AAS model)
     assignee: Eduard L
     effort: —
     start: ''
@@ -66,7 +66,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: T3.2 — Process Digital Twin Tecnomatix simulation
+  - task: T3.2 — Process Digital Twin (Tecnomatix simulation)
     assignee: Eduard L
     effort: —
     start: ''
@@ -78,7 +78,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: T2.4 — Capacity Planner - LMS Scheduler Backend
+  - task: 'T2.4 — Capacity Planner: LMS Scheduler Backend'
     assignee: LMS
     effort: —
     start: ''
@@ -90,7 +90,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: T2.4 — Capacity Planner - KF Planner UI
+  - task: 'T2.4 — Capacity Planner: KF Planner UI'
     assignee: Alexandru Bejenari
     effort: 5d
     start: ''
@@ -102,7 +102,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: T2.4 — Capacity Planner - KF ↔ LMS Integration
+  - task: 'T2.4 — Capacity Planner: KF ↔ LMS Integration'
     assignee: Alexandru Bejenari
     effort: 10d
     start: ''
@@ -114,7 +114,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: T3.3 — IoT Monitoring - sensors deployment
+  - task: 'T3.3 — IoT Monitoring: sensors deployment'
     assignee: Eduard Lazar
     effort: 5d
     start: ''
@@ -126,7 +126,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: T2.3 — Supply Chain Digital Twin - risk modelling
+  - task: 'T2.3 — Supply Chain Digital Twin: risk modelling'
     assignee: Eduard Lazar
     effort: —
     start: ''
@@ -138,7 +138,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: AAS import/export tooling aas_export.py, import-demo.sh
+  - task: AAS import/export tooling (aas_export.py, import-demo.sh)
     assignee: Eduard L
     effort: —
     start: ''
@@ -150,7 +150,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: Order_3_Aas shell 8 submodels, cost + schedule
+  - task: Order_3_Aas shell (8 submodels, cost + schedule)
     assignee: Eduard L
     effort: —
     start: ''
@@ -162,8 +162,8 @@ projects:
     - assignee
     - effort
     - status
-  - task: Demo UI R3Group Next 16 - Design → Simulation → Shopfloor → Impact, LMS
-      re-optimise
+  - task: 'Demo UI R3Group (Next 16: Design → Simulation → Shopfloor → Impact; LMS
+      re-optimise)'
     assignee: Alexandru Bejenari
     effort: —
     start: ''
@@ -187,7 +187,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: ALADIN WP2 RunSheet service nginx + Traefik routing
+  - task: ALADIN WP2 RunSheet service (nginx + Traefik routing)
     assignee: Răzvan Boița
     effort: —
     start: ''
@@ -199,7 +199,7 @@ projects:
     - assignee
     - effort
     - status
-  - task: Implement scheduling request endpoint KF → LMS
+  - task: Implement scheduling request endpoint (KF → LMS)
     assignee: '@backend'
     effort: 2d
     start: '2026-06-29'
@@ -241,7 +241,7 @@ projects:
     - start
     - end
     - status
-  - task: Implement planner visualization improvements capacity / gaps
+  - task: Implement planner visualization improvements (capacity / gaps)
     assignee: '@frontend'
     effort: 2d
     start: '2026-06-29'
@@ -311,7 +311,7 @@ projects:
     - start
     - end
     - status
-  - task: M2F - finalise & confirm assumed KF-M2F shell structure
+  - task: 'M2F: finalise & confirm assumed KF-M2F shell structure'
     assignee: Eduard Lazăr / M2F
     effort: 2d
     start: '2026-06-29'
@@ -353,7 +353,7 @@ projects:
     - start
     - end
     - status
-  - task: Share KF-M2F shell with M2F so they build their own
+  - task: Share KF-M2F shell with M2F (so they build their own)
     assignee: Eduard Lazăr
     effort: 1d
     start: '2026-07-13'
@@ -381,7 +381,7 @@ projects:
     - start
     - end
     - status
-  - task: Re-point all connections to Netcompany-hosted R3 go live
+  - task: Re-point all connections to Netcompany-hosted R3 (go live)
     assignee: Mihai A.
     effort: 3d
     start: '2026-07-27'
@@ -395,7 +395,7 @@ projects:
     - start
     - end
     - status
-  - task: Pilot KF demo recordings based on revised Nuoform
+  - task: Pilot KF demo recordings (based on revised Nuoform)
     assignee: Eduard Lazăr
     effort: 3d
     start: '2026-08-03'
@@ -409,7 +409,7 @@ projects:
     - start
     - end
     - status
-  - task: State AI usage in R3 declaration
+  - task: State AI usage in R3 (declaration)
     assignee: Eduard Lazăr
     effort: 1d
     start: '2026-07-16'

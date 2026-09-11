@@ -1,6 +1,6 @@
 ---
 type: Task
-title: T2.3 — Supply Chain Digital Twin - risk modelling
+title: "T2.3 — Supply Chain Digital Twin: risk modelling"
 status: Done
 assignee: Eduard Lazar
 effort: 0d
@@ -9,7 +9,7 @@ timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---
 
-# T2.3 — Supply Chain Digital Twin - risk modelling
+# T2.3 — Supply Chain Digital Twin: risk modelling
 
 **Status:** Done | **Effort:** 0d | **Assignee:** Eduard Lazar
 

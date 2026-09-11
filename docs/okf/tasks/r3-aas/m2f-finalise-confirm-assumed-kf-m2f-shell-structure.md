@@ -1,6 +1,6 @@
 ---
 type: Task
-title: M2F - finalise & confirm assumed KF-M2F shell structure
+title: "M2F: finalise & confirm assumed KF-M2F shell structure"
 status: Done
 assignee: Eduard Lazăr / M2F
 effort: 2d
@@ -9,7 +9,7 @@ timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---
 
-# M2F - finalise & confirm assumed KF-M2F shell structure
+# M2F: finalise & confirm assumed KF-M2F shell structure
 
 **Status:** Done | **Effort:** 2d | **Assignee:** Eduard Lazăr / M2F
 

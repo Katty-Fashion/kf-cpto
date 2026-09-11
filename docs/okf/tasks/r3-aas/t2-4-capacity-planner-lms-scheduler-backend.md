@@ -1,6 +1,6 @@
 ---
 type: Task
-title: T2.4 — Capacity Planner - LMS Scheduler Backend
+title: "T2.4 — Capacity Planner: LMS Scheduler Backend"
 status: Done
 assignee: LMS
 effort: 0d
@@ -9,7 +9,7 @@ timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---
 
-# T2.4 — Capacity Planner - LMS Scheduler Backend
+# T2.4 — Capacity Planner: LMS Scheduler Backend
 
 **Status:** Done | **Effort:** 0d | **Assignee:** LMS
 
