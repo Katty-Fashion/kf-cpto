@@ -22,8 +22,8 @@ re-parse individual repo files; consume this bundle instead.
 | Metric | Value |
 | :--- | :--- |
 | Total declared effort | 358d |
-| Done | 213d |
-| Remaining | 146d |
+| Done | 236d |
+| Remaining | 123d |
 
 > **Effort semantics:** `Nd` = person-days as declared in each `kanban.md`.
 > See [/metrics/loe.md](/metrics/loe.md) for the full definition and the

@@ -1,7 +1,7 @@
 ---
 type: Task
 title: Integration validation review
-status: Review
+status: Done
 assignee: "@tech-lead"
 effort: 0.5d
 sprint: S9
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # Integration validation review
 
-**Status:** Review | **Effort:** 0.5d | **Assignee:** @tech-lead
+**Status:** Done | **Effort:** 0.5d | **Assignee:** @tech-lead
 
 ## Links
 

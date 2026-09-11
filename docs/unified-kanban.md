@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-09-07T04:19:29.717459
+generated: 2026-09-11T12:35:29.707180
 ---
 
 # KF Team — Unified Kanban
@@ -24,25 +24,15 @@ generated: 2026-09-07T04:19:29.717459
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F6.S17.Final QA &amp; Cutover]</a>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">6</span></div>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: M2F: finalise &amp; confirm assumed KF-M2F shell structure</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Export R3 AAS shells → move to Netcompany-hosted R3 platform</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Connect + test M2F V2 API from new Nuoform</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Re-point all connections to Netcompany-hosted R3 (go live)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Pilot KF demo recordings (based on revised Nuoform)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: State AI usage in R3 (declaration)</a>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">2</span></div>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Pilot KF demo recordings based on revised Nuoform</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: State AI usage in R3 declaration</a>
   </div>
   <div class="kanban-col kanban-col--review">
-    <div class="kanban-col__head">Review <span class="kanban-col__count">9</span></div>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: WP1 — AAS platform integration (digital infrastructure)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Implement scheduling request endpoint (KF → LMS)</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Implement scheduler response parser</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Integrate scheduling results with planner UI</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Implement planner visualization improvements (capacity / gaps)</a>
+    <div class="kanban-col__head">Review <span class="kanban-col__count">3</span></div>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: WP1 — AAS platform integration digital infrastructure</a>
+    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Implement planner visualization improvements capacity / gaps</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Validate suitability constraints and scheduling logic</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Run first scheduling tests with real production data</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Debug integration issues with LMS team</a>
-    <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Integration validation review</a>
   </div>
   <div class="kanban-col kanban-col--done">
     <div class="kanban-col__head">Done <span class="kanban-col__count">5</span></div>
@@ -58,7 +48,7 @@ generated: 2026-09-07T04:19:29.717459
 
 | Project | Todo | In Progress | Review | Done | Total |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| R3-AAS | 0 | 6 | 9 | 15 | 30 |
+| R3-AAS | 0 | 2 | 3 | 25 | 30 |
 | ai-rise-options | 0 | 0 | 0 | 0 | 0 |
 | kf-be-platform | 4 | 0 | 0 | 6 | 10 |
 | kf-fe-platform | 1 | 0 | 0 | 9 | 10 |
@@ -116,22 +106,22 @@ gantt
     excludes weekends
 
     section R3-AAS
-    Implement scheduling request endpoint (KF → LMS) :crit, 2026-06-29, 2026-07-10
-    Implement scheduler response parser :crit, 2026-06-29, 2026-07-10
-    Integrate scheduling results with planner UI :crit, 2026-06-29, 2026-07-10
-    Implement planner visualization improvements (capacity / gaps) :crit, 2026-06-29, 2026-07-10
+    Implement scheduling request endpoint KF → LMS :done, 2026-06-29, 2026-07-10
+    Implement scheduler response parser :done, 2026-06-29, 2026-07-10
+    Integrate scheduling results with planner UI :done, 2026-06-29, 2026-07-10
+    Implement planner visualization improvements capacity / gaps :crit, 2026-06-29, 2026-07-10
     Validate suitability constraints and scheduling logic :crit, 2026-06-29, 2026-07-10
-    Run first scheduling tests with real production data :crit, 2026-06-29, 2026-07-10
-    Debug integration issues with LMS team :crit, 2026-06-29, 2026-07-10
-    Integration validation review :crit, 2026-06-29, 2026-07-10
-    M2F finalise & confirm assumed KF-M2F shell structure :crit, 2026-06-29, 2026-07-10
+    Run first scheduling tests with real production data :done, 2026-06-29, 2026-07-10
+    Debug integration issues with LMS team :done, 2026-06-29, 2026-07-10
+    Integration validation review :done, 2026-06-29, 2026-07-10
+    M2F - finalise & confirm assumed KF-M2F shell structure :done, 2026-06-29, 2026-07-10
     Share KF access for export to NetCompany :done, 2026-07-07, 2026-07-07
-    Export R3 AAS shells → move to Netcompany-hosted R3 platform :crit, 2026-07-13, 2026-07-17
-    Share KF-M2F shell with M2F (so they build their own) :done, 2026-07-13, 2026-07-14
-    State AI usage in R3 (declaration) :crit, 2026-07-16, 2026-07-17
-    Connect + test M2F V2 API from new Nuoform :crit, 2026-07-20, 2026-07-24
-    Re-point all connections to Netcompany-hosted R3 (go live) :crit, 2026-07-27, 2026-07-31
-    Pilot KF demo recordings (based on revised Nuoform) :crit, 2026-08-03, 2026-08-05
+    Export R3 AAS shells → move to Netcompany-hosted R3 platform :done, 2026-07-13, 2026-07-17
+    Share KF-M2F shell with M2F so they build their own :done, 2026-07-13, 2026-07-14
+    State AI usage in R3 declaration :crit, 2026-07-16, 2026-07-17
+    Connect + test M2F V2 API from new Nuoform :done, 2026-07-20, 2026-07-24
+    Re-point all connections to Netcompany-hosted R3 go live :done, 2026-07-27, 2026-07-31
+    Pilot KF demo recordings based on revised Nuoform :crit, 2026-08-03, 2026-08-05
     section kf-be-platform
     (F1.S2.DB Schema v2 + RLS) :done, 2026-05-25, 2026-06-21
     (F1.S2.CI/CD Pipeline) :done, 2026-05-25, 2026-06-07

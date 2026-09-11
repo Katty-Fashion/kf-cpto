@@ -1,7 +1,7 @@
 ---
 type: Task
 title: Integrate scheduling results with planner UI
-status: Review
+status: Done
 assignee: "@frontend"
 effort: 3d
 sprint: S9
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # Integrate scheduling results with planner UI
 
-**Status:** Review | **Effort:** 3d | **Assignee:** @frontend
+**Status:** Done | **Effort:** 3d | **Assignee:** @frontend
 
 ## Links
 

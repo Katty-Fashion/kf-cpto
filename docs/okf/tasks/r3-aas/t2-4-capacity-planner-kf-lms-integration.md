@@ -1,6 +1,6 @@
 ---
 type: Task
-title: "T2.4 — Capacity Planner: KF ↔ LMS Integration"
+title: T2.4 — Capacity Planner - KF ↔ LMS Integration
 status: Done
 assignee: Alexandru Bejenari
 effort: 10d
@@ -9,7 +9,7 @@ timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---
 
-# T2.4 — Capacity Planner: KF ↔ LMS Integration
+# T2.4 — Capacity Planner - KF ↔ LMS Integration
 
 **Status:** Done | **Effort:** 10d | **Assignee:** Alexandru Bejenari
 

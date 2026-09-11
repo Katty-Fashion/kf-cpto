@@ -1,7 +1,7 @@
 ---
 type: Task
 title: Connect + test M2F V2 API from new Nuoform
-status: In Progress
+status: Done
 assignee: Alexandru Bejenari
 effort: 5d
 sprint: S9
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # Connect + test M2F V2 API from new Nuoform
 
-**Status:** In Progress | **Effort:** 5d | **Assignee:** Alexandru Bejenari
+**Status:** Done | **Effort:** 5d | **Assignee:** Alexandru Bejenari
 
 ## Links
 

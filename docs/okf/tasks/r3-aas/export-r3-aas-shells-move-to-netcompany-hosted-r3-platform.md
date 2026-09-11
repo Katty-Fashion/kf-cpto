@@ -1,7 +1,7 @@
 ---
 type: Task
 title: Export R3 AAS shells → move to Netcompany-hosted R3 platform
-status: In Progress
+status: Done
 assignee: Eduard Lazăr / Netcompany
 effort: 3d
 sprint: S9
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # Export R3 AAS shells → move to Netcompany-hosted R3 platform
 
-**Status:** In Progress | **Effort:** 3d | **Assignee:** Eduard Lazăr / Netcompany
+**Status:** Done | **Effort:** 3d | **Assignee:** Eduard Lazăr / Netcompany
 
 ## Links
 
