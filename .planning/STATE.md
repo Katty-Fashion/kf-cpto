@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-06-04)
 Phase: 03 (write-back-diagram-sanitization) — EXECUTING
 Plan: 3 of 3
 Status: Phase complete — ready for verification
-Last activity: 2026-09-03 - Completed quick task 260903-jl9: wired docs/index.md's hardcoded sprint gantt into a self-updating AUTO block (current-sprint renderer). Prior: OKF constellation visualizer (260708-etg).
+Last activity: 2026-09-11 - Completed quick task 260911-gq5: explicit GitHub Refs matching in activity-sync + header-driven write-back Status fix. Prior: 260903-jl9 (current-sprint AUTO block).
 
 Progress: [██████████] 100%
 
@@ -107,6 +107,7 @@ None yet.
 | 260707-cyc | Reconciler accounts for off-default integration branches (INTEGRATION_BRANCH_GLOBS set: uat/work/*-migration) so kf-platform claude-migration work reads Done not In Progress; README diagram fixed to all 6 tracked repos | 2026-07-07 | c0cda38 | [260707-cyc-make-activity-sync-account-for-off-defau](./quick/260707-cyc-make-activity-sync-account-for-off-defau/) |
 | 260707-dno | activity-sync token resolution falls back to `gh auth token` (KF_PAT → GITHUB_TOKEN → gh CLI) so local runs aren't blind without a PAT; 113 tests pass | 2026-07-07 | 2fdc157 | [260707-dno-add-gh-cli-token-fallback-to-activity-sy](./quick/260707-dno-add-gh-cli-token-fallback-to-activity-sy/) |
 | align-1 | Weekly alignment: 12 migration-plan tasks In Progress→Done from kf-platform GSD delivery state (forward-only); pushed to kf-fe/kf-be/kf-platform, fired dashboard+Sheet rebuild | 2026-07-07 | 56ab0c2 | (plan-of-record edit; no quick dir) |
+| 260911-gq5 | activity-sync resolves explicit GitHub refs from a kanban `Refs` column (`#N` PR/issue numbers; definition-of-done semantics) so hand-maintained boards (R3-AAS) derive status from GitHub; write-back Status cell now header-driven (was parts[-2], corrupted Note column); groom shows Refs + [NO-REFS]; 346 tests pass | 2026-09-11 | 0494f3e | [260911-gq5-add-explicit-github-refs-matching-to-act](./quick/260911-gq5-add-explicit-github-refs-matching-to-act/) |
 | 260707-lrl | Additive OKF (Open Knowledge Format) v0.1 bundle emitter: scripts/okf_export.py generates docs/okf/ (19 concept files — projects w/ depends_on cross-links + GSD delivery bridge, LOE/RAG metric defs, milestones) from parsed data; validate_okf.py conformance gate; Jekyll-excluded; deterministic; no new dependency | 2026-07-07 | e5a3059 | [260707-lrl-add-additive-okf-open-knowledge-format-b](./quick/260707-lrl-add-additive-okf-open-knowledge-format-b/) |
 | 260707-ni6 | Wired validate_okf into aggregate.yml as a non-blocking CI step (continue-on-error, never blocks Pages); documented the OKF bundle + its process value ([REUSE]/[SINGLE-SOURCE]/[BRIDGE]/[PORTABLE] pills) in README | 2026-07-07 | 171b3c0 | [260707-ni6-wire-validate-okf-into-ci-non-blocking-d](./quick/260707-ni6-wire-validate-okf-into-ci-non-blocking-d/) |
 | dep-fix-1 | Fixed dependency-graph topology: 3 KF repos had placeholder frontmatter (type eu-project, depends_on [nuoform] — unresolved edges). Set type=saas + correct depends_on (R3-AAS←kf-be←kf-fe←kf-platform, kf-be←kf-platform); resolved a latent kf-fe↔kf-be cycle; pushed to 3 repos, rebuild deployed | 2026-07-07 | e229e27 | (tracked-repo kanban.md frontmatter; no quick dir) |
