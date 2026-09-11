@@ -58,19 +58,29 @@ def _guard_generated(repo: str) -> None:
         )
 
 
+def _cell_of(row: dict, field: str) -> str:
+    """Defensively read a mapped column's cell value, or '' if absent/out of range."""
+    colmap = row["colmap"]
+    idx = colmap.get(field)
+    if idx is None or idx >= len(row["cells"]):
+        return ""
+    return row["cells"][idx]
+
+
 def _flags(row: dict, name_counts: dict[str, int]) -> str:
     flags = []
     if row["status"] not in TASK_STATUSES:
         flags.append("[BAD-STATUS]")
     if name_counts.get(row["task"], 0) > 1:
         flags.append("[DUP]")
-    colmap = row["colmap"]
-    effort = row["cells"][colmap["effort"]] if "effort" in colmap and colmap["effort"] < len(row["cells"]) else ""
+    effort = _cell_of(row, "effort")
     if not effort or parse_effort_days(effort) <= 0:
         flags.append("[NO-EFFORT]")
-    start = row["cells"][colmap["start"]] if "start" in colmap and colmap["start"] < len(row["cells"]) else ""
+    start = _cell_of(row, "start")
     if not start.strip("—- "):
         flags.append("[NO-DATES]")
+    if row["status"] in ("In Progress", "Review") and not _cell_of(row, "refs").strip("—- "):
+        flags.append("[NO-REFS]")
     return " ".join(flags)
 
 
@@ -94,14 +104,19 @@ def cmd_list(repo: str) -> int:
         counts[r["status"]] = counts.get(r["status"], 0) + 1
     summary = " · ".join(f"{counts.get(s, 0)} {s}" for s in TASK_STATUSES)
     bad = sum(1 for r in rows if r["status"] not in TASK_STATUSES)
+    no_refs = sum(
+        1 for r in rows
+        if r["status"] in ("In Progress", "Review") and not _cell_of(r, "refs").strip("—- ")
+    )
     print(f"[INFO] {repo}: {len(rows)} tasks — {summary}"
-          + (f" · {bad} BAD-STATUS" if bad else ""))
+          + (f" · {bad} BAD-STATUS" if bad else "")
+          + (f" · {no_refs} NO-REFS" if no_refs else ""))
     print()
-    print("| # | Section | Task | Status | Flags |")
-    print("|---:|---|---|---|---|")
+    print("| # | Section | Task | Status | Refs | Flags |")
+    print("|---:|---|---|---|---|---|")
     for r in rows:
         print(f"| {r['n']} | {_clip(r['section'], 38)} | {_clip(r['task'], 62)} "
-              f"| {r['status']} | {_flags(r, name_counts)} |")
+              f"| {r['status']} | {_clip(_cell_of(r, 'refs'), 16)} | {_flags(r, name_counts)} |")
     return 0
 
 

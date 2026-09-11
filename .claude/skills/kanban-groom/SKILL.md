@@ -23,26 +23,37 @@ python .claude/skills/kanban-groom/groom.py delete <repo> <n> [<n> ...]
 `list` prints a one-line status summary, then one row per parseable task:
 
 ```
-| # | Section | Task | Status | Flags |
+| # | Section | Task | Status | Refs | Flags |
 ```
+
+The `Refs` column shows the task's raw `Refs` cell (`#N` PR/issue numbers, or
+`—` when absent) — the definition-of-done source consumed by activity-sync's
+explicit-reference matching (see the `activity-sync` SKILL.md `[REFS]` section)
+for repos whose PR titles never token-match task names (e.g. R3-AAS).
 
 Hygiene flags:
 - `[BAD-STATUS]` — status not in Todo / In Progress / Review / Done
 - `[DUP]` — same task name appears in more than one table (e.g. blockers + section)
 - `[NO-EFFORT]` — no `Nd` effort → the task never counts in LOE person-days
 - `[NO-DATES]` — no start date → the task never lands on a Gantt
+- `[NO-REFS]` — status is In Progress or Review but the Refs cell is empty →
+  activity-sync has no explicit evidence to resolve this task's status from
 
 Present the table to the user and invite feedback ("delete 12", "mark 5 done",
-"set effort 3d on 7", "rename 9 to ..."). Lead with the summary counts.
+"set effort 3d on 7", "rename 9 to ...", "set refs #3, #40 on 15"). Lead with
+the summary counts.
 
 ## [SET] / [DELETE] Applying feedback
 
 - Map the user's words to commands: "mark 5 done" → `set <repo> 5 status=Done`;
   "give 7 three days effort" → `set <repo> 7 effort=3d`; "drop 3 and 12" →
-  `delete <repo> 3 12`.
+  `delete <repo> 3 12`; "link 15 to PR 3 and PR 40" →
+  `set <repo> 15 refs="#3, #40"`, e.g.
+  `python .claude/skills/kanban-groom/groom.py set R3-AAS 15 refs="#3, #40"`.
 - `set` accepts canonical fields (task, assignee/owner, effort, start, end,
-  status) **plus any literal header label** of that row's own table (note,
-  prioritate, blocker, ...). Status values are validated and canonicalized.
+  status, refs) **plus any literal header label** of that row's own table
+  (note, prioritate, blocker, ...). Status values are validated and
+  canonicalized.
 - **Numbers shift after a delete** — always re-run `list` and show the fresh
   table before applying further edits.
 - Batch the user's whole instruction list first, apply, then re-`list` once.

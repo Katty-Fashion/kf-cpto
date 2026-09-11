@@ -92,6 +92,40 @@ What it does:
   warns and continues with empty [TIER-1] proposals when no source yields a token
   (graceful degradation). A locally gh-authenticated developer needs no env var.
 
+#### [REFS] Explicit references
+
+Why it exists: some tracked repos (e.g. R3-AAS) use conventional-commit PR titles
+that never contain kanban task names, so `task_matches_signal` (token matching)
+never fires and every status there stays hand-maintained. An optional `Refs`
+column lets a task name its own evidence directly.
+
+- Optional `Refs` column holding `#N` PR or issue numbers, comma- or
+  space-separated (e.g. `#3, #40`). Canonical-parser aliases: `Refs`, `Ref`,
+  `PR`, `PRs`, `GitHub` all map to the same field (`scripts/utils.py` —
+  one-parser constraint).
+- Definition-of-done semantics — a task's Refs are its OWN evidence,
+  independent of title/branch token matching:
+  - all refs resolved (merged PR or closed issue) -> Done `[TIER-1]`
+  - any open PR ref, or some refs resolved with others unresolved
+    -> In Progress `[TIER-2]`
+  - nothing resolved and nothing open -> no proposal
+  - forward-only and the Tier-2 cap still apply unchanged
+- A closed-but-unmerged PR ref counts as unresolved — it is NEVER read as a
+  closed issue (GitHub's REST API returns PRs from the issues endpoint too;
+  the reconciler guards on the `pull_request` key).
+- The open-PR API call (`_list_open_prs`) fires ONLY when at least one task
+  in that repo carries a non-empty Refs cell — a repo with no refs anywhere
+  makes zero extra API calls.
+- Unresolvable refs (404, or a closed-unmerged PR) print:
+  `[WARN] {repo}: ref #N on task '...' could not be resolved`
+
+Example table:
+
+| Task | Owner | Effort | Status | Refs | Note |
+|------|-------|--------|--------|------|------|
+| Pilot data ingestion | @lead | 3d | Todo | #85 | — |
+| Reporting dashboard | @dev | 2d | In Progress | #90, #92 | #92 still open |
+
 ### [GENERATE] Generate distinct per-repo kanbans from the migration plan
 
 ```
@@ -163,6 +197,7 @@ Task                                          Old          New  Signal
 Setup authentication                         Todo ->        Done  [TIER-1] PR #42: Setup authentication flow (merged)
 Add product catalog                          Todo ->        Done  [TIER-1] issue #7 closed (via PR #12)
 Migrate legacy API                           Todo ->  In Progress  [TIER-2] branch origin/migrate-legacy-api exists
+Pilot data ingestion                         Todo ->        Done  [TIER-1] PR #85: feat(pilot): ingest run (merged, ref)
 
 Activity Sync — Reconcile — Done!
 ```
@@ -177,6 +212,8 @@ Pill legend:
 - `[TIER-1]` — merged PR or closed linked issue (verified via git reachability gate)
 - `[TIER-2]` — active remote branch (local git, no API)
 - `[TIER-3]` — `.planning/STATE.md` progress context (informational; no auto-proposal)
+- `[REFS]` — a signal whose text ends in `(ref)` came from explicit-reference
+  matching (the task's own `Refs` column), not from title/branch token matching
 
 ---
 
