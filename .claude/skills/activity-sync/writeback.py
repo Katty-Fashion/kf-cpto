@@ -748,9 +748,6 @@ def main() -> int:
         return 1
 
 
-if __name__ == "__main__":
-    sys.exit(main())
-
 
 # ---------------------------------------------------------------------------
 # Frontmatter round-trip (ruamel.yaml, WB-01)
@@ -1030,3 +1027,7 @@ def _content_changed(kanban_path: str, proposed: str) -> bool:
     """
     current = Path(kanban_path).read_bytes()
     return current != proposed.encode("utf-8")
+
+
+if __name__ == "__main__":
+    sys.exit(main())
