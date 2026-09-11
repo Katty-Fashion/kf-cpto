@@ -1,6 +1,6 @@
 ---
 type: Task
-title: Implement scheduling request endpoint KF → LMS
+title: Implement scheduling request endpoint (KF → LMS)
 status: Done
 assignee: "@backend"
 effort: 2d
@@ -9,7 +9,7 @@ timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---
 
-# Implement scheduling request endpoint KF → LMS
+# Implement scheduling request endpoint (KF → LMS)
 
 **Status:** Done | **Effort:** 2d | **Assignee:** @backend
 

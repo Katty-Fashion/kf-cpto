@@ -412,7 +412,7 @@
     },
     {
       "id": "/tasks/r3-aas/aas-import-export-tooling-aas-export-py-import-demo-sh.md",
-      "label": "AAS import/export tooling aas_export.py, import-demo.sh",
+      "label": "AAS import/export tooling (aas_export.py, import-demo.sh)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -420,7 +420,7 @@
     },
     {
       "id": "/tasks/r3-aas/aladin-wp2-runsheet-service-nginx-traefik-routing.md",
-      "label": "ALADIN WP2 RunSheet service nginx + Traefik routing",
+      "label": "ALADIN WP2 RunSheet service (nginx + Traefik routing)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -444,7 +444,7 @@
     },
     {
       "id": "/tasks/r3-aas/demo-ui-r3group-next-16-design-simulation-shopfloor-impact-lms-re-optimise.md",
-      "label": "Demo UI R3Group Next 16 - Design \u2192 Simulation \u2192 Shopfloor \u2192 Impact, LMS re-optimise",
+      "label": "Demo UI R3Group (Next 16: Design \u2192 Simulation \u2192 Shopfloor \u2192 Impact; LMS re-optimise)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -460,7 +460,7 @@
     },
     {
       "id": "/tasks/r3-aas/implement-planner-visualization-improvements-capacity-gaps.md",
-      "label": "Implement planner visualization improvements capacity / gaps",
+      "label": "Implement planner visualization improvements (capacity / gaps)",
       "type": "Task",
       "status": "Review",
       "parent": "/projects/r3-aas.md",
@@ -476,7 +476,7 @@
     },
     {
       "id": "/tasks/r3-aas/implement-scheduling-request-endpoint-kf-lms.md",
-      "label": "Implement scheduling request endpoint KF \u2192 LMS",
+      "label": "Implement scheduling request endpoint (KF \u2192 LMS)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -500,7 +500,7 @@
     },
     {
       "id": "/tasks/r3-aas/m2f-finalise-confirm-assumed-kf-m2f-shell-structure.md",
-      "label": "M2F - finalise & confirm assumed KF-M2F shell structure",
+      "label": "M2F: finalise & confirm assumed KF-M2F shell structure",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -516,7 +516,7 @@
     },
     {
       "id": "/tasks/r3-aas/order-3-aas-shell-8-submodels-cost-schedule.md",
-      "label": "Order_3_Aas shell 8 submodels, cost + schedule",
+      "label": "Order_3_Aas shell (8 submodels, cost + schedule)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -524,7 +524,7 @@
     },
     {
       "id": "/tasks/r3-aas/pilot-kf-demo-recordings-based-on-revised-nuoform.md",
-      "label": "Pilot KF demo recordings based on revised Nuoform",
+      "label": "Pilot KF demo recordings (based on revised Nuoform)",
       "type": "Task",
       "status": "In Progress",
       "parent": "/projects/r3-aas.md",
@@ -532,7 +532,7 @@
     },
     {
       "id": "/tasks/r3-aas/re-point-all-connections-to-netcompany-hosted-r3-go-live.md",
-      "label": "Re-point all connections to Netcompany-hosted R3 go live",
+      "label": "Re-point all connections to Netcompany-hosted R3 (go live)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -556,7 +556,7 @@
     },
     {
       "id": "/tasks/r3-aas/share-kf-m2f-shell-with-m2f-so-they-build-their-own.md",
-      "label": "Share KF-M2F shell with M2F so they build their own",
+      "label": "Share KF-M2F shell with M2F (so they build their own)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -564,7 +564,7 @@
     },
     {
       "id": "/tasks/r3-aas/state-ai-usage-in-r3-declaration.md",
-      "label": "State AI usage in R3 declaration",
+      "label": "State AI usage in R3 (declaration)",
       "type": "Task",
       "status": "In Progress",
       "parent": "/projects/r3-aas.md",
@@ -572,7 +572,7 @@
     },
     {
       "id": "/tasks/r3-aas/t2-1-co-creation-platform-nuoform.md",
-      "label": "T2.1 \u2014 Co-creation platform Nuoform",
+      "label": "T2.1 \u2014 Co-creation platform (Nuoform)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -580,7 +580,7 @@
     },
     {
       "id": "/tasks/r3-aas/t2-3-supply-chain-digital-twin-risk-modelling.md",
-      "label": "T2.3 \u2014 Supply Chain Digital Twin - risk modelling",
+      "label": "T2.3 \u2014 Supply Chain Digital Twin: risk modelling",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -588,7 +588,7 @@
     },
     {
       "id": "/tasks/r3-aas/t2-4-capacity-planner-kf-lms-integration.md",
-      "label": "T2.4 \u2014 Capacity Planner - KF \u2194 LMS Integration",
+      "label": "T2.4 \u2014 Capacity Planner: KF \u2194 LMS Integration",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -596,7 +596,7 @@
     },
     {
       "id": "/tasks/r3-aas/t2-4-capacity-planner-kf-planner-ui.md",
-      "label": "T2.4 \u2014 Capacity Planner - KF Planner UI",
+      "label": "T2.4 \u2014 Capacity Planner: KF Planner UI",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -604,7 +604,7 @@
     },
     {
       "id": "/tasks/r3-aas/t2-4-capacity-planner-lms-scheduler-backend.md",
-      "label": "T2.4 \u2014 Capacity Planner - LMS Scheduler Backend",
+      "label": "T2.4 \u2014 Capacity Planner: LMS Scheduler Backend",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -612,7 +612,7 @@
     },
     {
       "id": "/tasks/r3-aas/t3-2-process-digital-twin-tecnomatix-simulation.md",
-      "label": "T3.2 \u2014 Process Digital Twin Tecnomatix simulation",
+      "label": "T3.2 \u2014 Process Digital Twin (Tecnomatix simulation)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -620,7 +620,7 @@
     },
     {
       "id": "/tasks/r3-aas/t3-2-product-digital-twin-aas-model.md",
-      "label": "T3.2 \u2014 Product Digital Twin AAS model",
+      "label": "T3.2 \u2014 Product Digital Twin (AAS model)",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -628,7 +628,7 @@
     },
     {
       "id": "/tasks/r3-aas/t3-3-iot-monitoring-sensors-deployment.md",
-      "label": "T3.3 \u2014 IoT Monitoring - sensors deployment",
+      "label": "T3.3 \u2014 IoT Monitoring: sensors deployment",
       "type": "Task",
       "status": "Done",
       "parent": "/projects/r3-aas.md",
@@ -644,7 +644,7 @@
     },
     {
       "id": "/tasks/r3-aas/wp1-aas-platform-integration-digital-infrastructure.md",
-      "label": "WP1 \u2014 AAS platform integration digital infrastructure",
+      "label": "WP1 \u2014 AAS platform integration (digital infrastructure)",
       "type": "Task",
       "status": "Review",
       "parent": "/projects/r3-aas.md",

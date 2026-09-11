@@ -1,6 +1,6 @@
 ---
 type: Task
-title: Re-point all connections to Netcompany-hosted R3 go live
+title: Re-point all connections to Netcompany-hosted R3 (go live)
 status: Done
 assignee: Mihai A.
 effort: 3d
@@ -9,7 +9,7 @@ timestamp: 2026-07-02
 resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 ---
 
-# Re-point all connections to Netcompany-hosted R3 go live
+# Re-point all connections to Netcompany-hosted R3 (go live)
 
 **Status:** Done | **Effort:** 3d | **Assignee:** Mihai A.
 
