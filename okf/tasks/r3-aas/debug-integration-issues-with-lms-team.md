@@ -1,7 +1,7 @@
 ---
 type: Task
 title: Debug integration issues with LMS team
-status: Review
+status: Done
 assignee: "@tech-lead"
 effort: 1d
 sprint: S9
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # Debug integration issues with LMS team
 
-**Status:** Review | **Effort:** 1d | **Assignee:** @tech-lead
+**Status:** Done | **Effort:** 1d | **Assignee:** @tech-lead
 
 ## Links
 

@@ -1,7 +1,7 @@
 ---
 type: Task
 title: Implement scheduler response parser
-status: Review
+status: Done
 assignee: "@backend"
 effort: 2d
 sprint: S9
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # Implement scheduler response parser
 
-**Status:** Review | **Effort:** 2d | **Assignee:** @backend
+**Status:** Done | **Effort:** 2d | **Assignee:** @backend
 
 ## Links
 

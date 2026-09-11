@@ -1,7 +1,7 @@
 ---
 type: Task
 title: Run first scheduling tests with real production data
-status: Review
+status: Done
 assignee: "@tech-lead"
 effort: 1d
 sprint: S9
@@ -11,7 +11,7 @@ resource: "https://katty-fashion.github.io/kf-cpto/projects/r3-aas/"
 
 # Run first scheduling tests with real production data
 
-**Status:** Review | **Effort:** 1d | **Assignee:** @tech-lead
+**Status:** Done | **Effort:** 1d | **Assignee:** @tech-lead
 
 ## Links
 
