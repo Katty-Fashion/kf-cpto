@@ -809,6 +809,9 @@ def roundtrip_frontmatter(fm_str: str) -> str:
 
     yaml = YAML()
     yaml.preserve_quotes = True
+    # ruamel wraps scalars at 80 columns by default, which re-flows long
+    # description strings on every write-back; keep long lines as authored.
+    yaml.width = 4096
     data = yaml.load(fm_str)
     # CR-03 / WR-04: a None result means the block was effectively empty (e.g.
     # only comments). Preserve raw text rather than emitting 'null'. A non-mapping

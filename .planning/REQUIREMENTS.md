@@ -45,6 +45,7 @@ Requirements for this milestone. Each maps to a roadmap phase.
 ### Diagram Robustness (DIAG)
 
 - [x] **DIAG-01**: Mermaid-breaking characters (emojis and `: ( ) " # ; { } |`) are sanitized from task content on ingest, before write
+  - [REVISED 2026-09-11, quick-260911-gq5] Write-back now sanitizes only `|` and emoji. Mermaid escaping moved to the aggregator (`mermaid_gantt_label` / `mermaid_label_safe`, quick-260624-loa); stripping punctuation in tracked repos rewrote source task text and destroyed `#N` Refs anchors on the first live run.
 - [x] **DIAG-02**: Sanitization is scoped to the task table only — AUTO-block markers and Romanian diacritics (ă/â/î/ș/ț) are preserved
 - [x] **DIAG-03**: Dashboard diagrams (gantt, kanban, pie, dependency graph) render without breaking after a skill run
 

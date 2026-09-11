@@ -251,6 +251,9 @@ What it does:
 - For each repo with proposals:
   - Runs `_is_behind_origin()` (git fetch + rev-list) before writing — aborts that repo with `[CONFLICT]` if local is behind origin; continues with remaining repos
   - Applies `apply_status_change()` THEN `sanitize_body()` on the kanban.md body
+    ([NOTE] the sanitizer only substitutes `|` and strips emoji; task text,
+    punctuation and `#N` Refs are preserved verbatim — Mermaid escaping happens
+    in the aggregator at render time, never in the tracked repo)
   - Byte-compares proposed content to current file — skips write+commit+push if identical (idempotency gate SC-4)
   - Commits with `chore(kanban): reconcile task statuses from repo activity` and pushes using HTTPS+KF_PAT (SSH URL restored in `finally`)
 - Writes a per-run JSON recovery manifest to `.claude/skills/activity-sync/manifests/{run_id}.json` recording each repo's outcome (`succeeded` / `failed` / `conflict` / `skipped`), pushed sha, and error

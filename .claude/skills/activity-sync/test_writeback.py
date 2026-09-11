@@ -70,44 +70,44 @@ def check(name: str, condition: bool) -> None:
 print("--- sanitize_cell: substitution map ---")
 
 check(
-    "colon -> ' -'",
-    sanitize_cell("Deploy: prod") == "Deploy - prod",
+    "colon preserved (Mermaid escaping is the aggregator's job)",
+    sanitize_cell("Deploy: prod") == "Deploy: prod",
 )
 check(
-    "colon + space collapse",
-    sanitize_cell("Deploy: prod (v2)") == "Deploy - prod v2",
+    "colon + parens preserved",
+    sanitize_cell("Deploy: prod (v2)") == "Deploy: prod (v2)",
 )
 check(
-    "double-quote -> single-quote",
-    sanitize_cell('Fix "bug"') == "Fix 'bug'",
+    "double-quote preserved",
+    sanitize_cell('Fix "bug"') == 'Fix "bug"',
 )
 check(
     "pipe -> slash",
     sanitize_cell("A | B") == "A / B",
 )
 check(
-    "semicolon -> comma",
-    sanitize_cell("urgent; now") == "urgent, now",
+    "semicolon preserved",
+    sanitize_cell("urgent; now") == "urgent; now",
 )
 check(
-    "hash dropped",
-    sanitize_cell("Fix #42") == "Fix 42",
+    "hash preserved (Refs anchors)",
+    sanitize_cell("Fix #42") == "Fix #42",
 )
 check(
-    "parens dropped",
-    sanitize_cell("Deploy (v2)") == "Deploy v2",
+    "parens preserved",
+    sanitize_cell("Deploy (v2)") == "Deploy (v2)",
 )
 check(
-    "braces dropped",
-    sanitize_cell("Config {env}") == "Config env",
+    "braces preserved",
+    sanitize_cell("Config {env}") == "Config {env}",
 )
 check(
-    "combined: colon + parens + double-space collapse",
-    sanitize_cell("Deploy: prod (v2)") == "Deploy - prod v2",
+    "refs cell preserved verbatim",
+    sanitize_cell("#3, #8, #40") == "#3, #8, #40",
 )
 check(
-    "combined: quote + hash + pipe + semicolon",
-    sanitize_cell('Fix "bug" #42 | urgent; now') == "Fix 'bug' 42 / urgent, now",
+    "combined: only the pipe is substituted",
+    sanitize_cell('Fix "bug" #42 | urgent; now') == 'Fix "bug" #42 / urgent; now',
 )
 check(
     "strip leading/trailing whitespace",
@@ -160,8 +160,8 @@ check(
     sanitize_cell("Done ✅") == "Done",
 )
 check(
-    "emoji + break char combined",
-    sanitize_cell("Ship 🚀: prod (v2)") == "Ship - prod v2",
+    "emoji stripped, punctuation kept",
+    sanitize_cell("Ship 🚀: prod (v2)") == "Ship : prod (v2)",
 )
 check(
     "warning emoji stripped",
@@ -221,10 +221,10 @@ check(
     separator_row in sanitized_body,
 )
 
-# Data row must be sanitized
+# Data row text must be preserved (no Mermaid substitution on source text)
 check(
-    "data row sanitized (colon replaced)",
-    "Deploy - prod v2" in sanitized_body,
+    "data row text preserved verbatim",
+    "| Deploy: prod (v2) | @lead | 1d | Todo |" in sanitized_body,
 )
 check(
     "data row status cell preserved",
@@ -276,17 +276,18 @@ for _sep in (
     _sep_body = (
         "| Task | Assignee | Effort | Status |\n"
         f"{_sep}\n"
-        "| Deploy: prod (v2) | @lead | 1d | Todo |\n"
+        "| Deploy: prod (v2) 🚀 | @lead | 1d | Todo |\n"
     )
     _sep_out = sanitize_body(_sep_body)
     check(
         f"separator preserved byte-identical: {_sep!r}",
         f"{_sep}\n" in _sep_out,
     )
-    # Data row must still be sanitized even with a non-':---' separator
+    # Data row must still reach the sanitizer (emoji stripped) even with a
+    # non-':---' separator, while its punctuation is preserved verbatim.
     check(
         f"data row still sanitized with separator {_sep!r}",
-        "Deploy - prod v2" in _sep_out,
+        "| Deploy: prod (v2) | @lead | 1d | Todo |" in _sep_out,
     )
 
 # ---------------------------------------------------------------------------
@@ -1650,9 +1651,9 @@ try:
         _wb6._push_with_auth = _real_p9
 
     _updated9 = (_w9 / "kanban.md").read_text(encoding="utf-8")
-    # Status was updated AND task name was sanitized AFTER status replacement
+    # Status was updated AND the task name (with ':' and parens) was preserved verbatim
     check("_write_repo: break-task status updated + sanitized", _result9["outcome"] == "succeeded")
-    check("_write_repo: task name sanitized (colon replaced)", "Deploy - prod v2" in _updated9)
+    check("_write_repo: task name preserved verbatim (no Mermaid substitution)", "| Deploy: prod (v2) |" in _updated9 and "| Done |" in _updated9)
     check("_write_repo: status is Done after sanitize pass", "| Done |" in _updated9)
 finally:
     shutil.rmtree(_t9)

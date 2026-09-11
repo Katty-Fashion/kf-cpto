@@ -2,12 +2,16 @@
 """
 Activity Sync — Sanitizer
 
-Pure Mermaid/table break-character sanitization. No git, no I/O, no sys.path
+Pure pipe-table structure sanitization. No git, no I/O, no sys.path
 injection — this module is a pure library consumed by writeback.py.
 
-Applies readable substitutions for characters that break Mermaid diagrams or
-pipe-table structure (DIAG-01/02/03). Romanian diacritics are preserved verbatim;
-emoji codepoints are stripped silently.
+Substitutes only the character that breaks pipe-table structure ('|') and strips
+emoji codepoints (no-emoji convention). Everything else in a cell — including
+Mermaid-sensitive characters such as ':' '(' ')' '#' ';' '"' — is preserved
+verbatim: kanban.md is the tracked repo's source of truth, and Mermaid escaping
+is the aggregator's job (utils.mermaid_gantt_label / mermaid_label_safe), so the
+write-back must never rewrite task text. '#' in particular carries the Refs
+column ('#N' PR/issue anchors). Romanian diacritics are preserved verbatim.
 
 Usage (imported by writeback.py):
     from sanitize import sanitize_cell, sanitize_body
@@ -20,23 +24,13 @@ import re
 # Module constants (SCREAMING_SNAKE_CASE per CLAUDE.md)
 # ---------------------------------------------------------------------------
 
-# Readable substitution map for Mermaid/table break characters.
-# Choices:
-#   : -> ' -'  (colon breaks Mermaid labels; space-dash is readable)
-#   " -> '     (double-quote breaks Mermaid string literals)
+# Substitution map for characters that break pipe-table structure.
 #   | -> /     (pipe breaks markdown table columns)
-#   ; -> ,     (semicolon breaks Mermaid syntax)
-#   ( ) { } # -> '' (dropped; these break Mermaid node/edge syntax)
+# Mermaid-sensitive characters (: " ; ( ) { } #) are deliberately NOT mapped:
+# the aggregator escapes labels at render time, and stripping them here would
+# rewrite tracked source text (and destroy '#N' Refs anchors) on every write-back.
 _BREAK_MAP: dict[str, str] = {
-    ":": " -",
-    '"': "'",
     "|": "/",
-    ";": ",",
-    "(": "",
-    ")": "",
-    "{": "",
-    "}": "",
-    "#": "",
 }
 
 # Header/separator cell markers — rows containing these are skipped by sanitize_body.
@@ -104,10 +98,11 @@ def _is_emoji(cp: int) -> bool:
 # ---------------------------------------------------------------------------
 
 def sanitize_cell(text: str) -> str:
-    """Apply break-char substitution + emoji strip to a single cell value.
+    """Apply pipe substitution + emoji strip to a single cell value.
 
-    Readable substitutions only (per _BREAK_MAP). Emoji codepoints are dropped
-    silently. Romanian diacritics (ă/â/î/ș/ț) pass through unchanged.
+    Only '|' is substituted (per _BREAK_MAP). Emoji codepoints are dropped
+    silently. All other text, including Mermaid-sensitive punctuation and
+    Romanian diacritics (ă/â/î/ș/ț), passes through unchanged.
 
     Multiple consecutive spaces collapsed to one; leading/trailing whitespace
     stripped. Idempotent: sanitize_cell(sanitize_cell(x)) == sanitize_cell(x).
@@ -116,7 +111,7 @@ def sanitize_cell(text: str) -> str:
         text: Raw cell text extracted from a markdown pipe-table row.
 
     Returns:
-        Sanitized cell text safe for Mermaid diagrams and pipe-table structure.
+        Cell text safe for pipe-table structure; other characters untouched.
     """
     result: list[str] = []
     for c in text:
