@@ -65,9 +65,9 @@ gantt
     excludes weekends
 
     section Scrum
-    Sprint S10 Planning        :crit, 2026-09-07, 1d
-    Sprint S10 Active          :active, 2026-09-08, 9d
-    Sprint S10 Demo + Retro    :crit, 2026-09-18, 1d
+    Sprint S11 Planning        :crit, 2026-09-21, 1d
+    Sprint S11 Active          :active, 2026-09-22, 9d
+    Sprint S11 Demo + Retro    :crit, 2026-10-02, 1d
 ```
 
 <!-- /AUTO:current-sprint -->
