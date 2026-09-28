@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-09-21T04:20:21.300710
+generated: 2026-09-28T04:20:58.335187
 ---
 
 # KF Team — Agile Sprints
@@ -85,7 +85,7 @@ gantt
     (F4.S10.Planner) :done, 2026-09-07, 2026-10-11
     (F4.S11.Batches & Assignment) :done, 2026-09-21, 2026-10-18
     (F4.S11.Operator View) :2026-09-28, 2026-10-25
-    (F5.S11.DPP Module (T2.4)) :2026-09-21, 2026-10-25
+    (F5.S11.DPP Module (T2.4)) :crit, 2026-09-21, 2026-10-25
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
@@ -107,7 +107,7 @@ gantt
     (F4.S11.Operator View) :2026-09-28, 2026-10-25
     (F4.S12.QC Module) :done, 2026-10-05, 2026-10-25
     (F4.S12.Reports & Cutting) :done, 2026-10-12, 2026-10-25
-    (F5.S11.DPP Module (T2.4)) :2026-09-21, 2026-10-25
+    (F5.S11.DPP Module (T2.4)) :crit, 2026-09-21, 2026-10-25
     (F5.S12.Public DPP / GS1) :2026-10-12, 2026-11-01
 ```
 
