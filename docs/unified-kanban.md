@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-09-28T04:20:58.310948
+generated: 2026-10-05T04:24:41.831906
 ---
 
 # KF Team — Unified Kanban
@@ -156,7 +156,7 @@ gantt
     (F4.S11.Batches & Assignment) :done, 2026-09-21, 2026-10-18
     (F5.S11.DPP Module (T2.4)) :crit, 2026-09-21, 2026-10-25
     (F4.S11.Inventory & Reception) :done, 2026-09-28, 2026-10-18
-    (F4.S11.Operator View) :2026-09-28, 2026-10-25
+    (F4.S11.Operator View) :crit, 2026-09-28, 2026-10-25
     (F4.S12.QC Module) :done, 2026-10-05, 2026-10-25
     (F4.S12.Reports & Cutting) :done, 2026-10-12, 2026-10-25
     (F5.S12.Public DPP / GS1) :2026-10-12, 2026-11-01
@@ -170,32 +170,11 @@ gantt
 
 ## Sprint Views — previous / current / next
 
-### Sprint S10 (previous) — 2026-09-07 → 2026-09-18
+### Sprint S11 (previous) — 2026-09-21 → 2026-10-02
 
 ```mermaid
 gantt
-    title S10 (previous) — 2026-09-07 → 2026-09-18
-    dateFormat YYYY-MM-DD
-    axisFormat %d %b
-    excludes weekends
-
-    section kf-fe-platform
-    (F3.S10.3D Performance) :done, 2026-09-07, 2026-09-27
-    section kf-platform
-    (F3.S8.BOM Editor) :done, 2026-08-17, 2026-09-13
-    (F3.S9.Sizing & QA Flow) :done, 2026-08-31, 2026-09-20
-    (F3.S10.Cost Breakdown) :done, 2026-09-14, 2026-10-04
-    (F4.S9.Orders Refactor) :done, 2026-08-24, 2026-09-20
-    (F4.S10.Planner) :done, 2026-09-07, 2026-10-11
-```
-
-<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
-
-### Sprint S11 (current) — 2026-09-21 → 2026-10-02
-
-```mermaid
-gantt
-    title S11 (current) — 2026-09-21 → 2026-10-02
+    title S11 (previous) — 2026-09-21 → 2026-10-02
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
@@ -208,17 +187,17 @@ gantt
     (F4.S11.Inventory & Reception) :done, 2026-09-28, 2026-10-18
     (F4.S10.Planner) :done, 2026-09-07, 2026-10-11
     (F4.S11.Batches & Assignment) :done, 2026-09-21, 2026-10-18
-    (F4.S11.Operator View) :2026-09-28, 2026-10-25
+    (F4.S11.Operator View) :crit, 2026-09-28, 2026-10-25
     (F5.S11.DPP Module (T2.4)) :crit, 2026-09-21, 2026-10-25
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
 
-### Sprint S12 (next) — 2026-10-05 → 2026-10-16
+### Sprint S12 (current) — 2026-10-05 → 2026-10-16
 
 ```mermaid
 gantt
-    title S12 (next) — 2026-10-05 → 2026-10-16
+    title S12 (current) — 2026-10-05 → 2026-10-16
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
@@ -228,7 +207,29 @@ gantt
     (F4.S11.Inventory & Reception) :done, 2026-09-28, 2026-10-18
     (F4.S10.Planner) :done, 2026-09-07, 2026-10-11
     (F4.S11.Batches & Assignment) :done, 2026-09-21, 2026-10-18
-    (F4.S11.Operator View) :2026-09-28, 2026-10-25
+    (F4.S11.Operator View) :crit, 2026-09-28, 2026-10-25
+    (F4.S12.QC Module) :done, 2026-10-05, 2026-10-25
+    (F4.S12.Reports & Cutting) :done, 2026-10-12, 2026-10-25
+    (F5.S11.DPP Module (T2.4)) :crit, 2026-09-21, 2026-10-25
+    (F5.S12.Public DPP / GS1) :2026-10-12, 2026-11-01
+```
+
+<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
+
+### Sprint S13 (next) — 2026-10-19 → 2026-10-30
+
+```mermaid
+gantt
+    title S13 (next) — 2026-10-19 → 2026-10-30
+    dateFormat YYYY-MM-DD
+    axisFormat %d %b
+    excludes weekends
+
+    section kf-be-platform
+    (F5.S13.EPCIS Export) :2026-10-19, 2026-11-08
+    (F5.S13.LLM Ecodesign (WP4)) :2026-10-26, 2026-11-15
+    section kf-platform
+    (F4.S11.Operator View) :crit, 2026-09-28, 2026-10-25
     (F4.S12.QC Module) :done, 2026-10-05, 2026-10-25
     (F4.S12.Reports & Cutting) :done, 2026-10-12, 2026-10-25
     (F5.S11.DPP Module (T2.4)) :crit, 2026-09-21, 2026-10-25
