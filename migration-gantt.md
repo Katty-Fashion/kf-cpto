@@ -197,7 +197,7 @@ gantt
     (F4.S10.Planner) (FE+BE) :done, f4t2, 2026-09-07, 25d
     (F4.S11.Batches & Assignment) (FE+BE) :done, f4t3, 2026-09-21, 20d
     (F4.S11.Inventory & Reception) (FE+BE) :done, f4t4, 2026-09-28, 15d
-    (F4.S11.Operator View) (FE+BE) :f4t5, 2026-09-28, 20d
+    (F4.S11.Operator View) (FE+BE) :crit, f4t5, 2026-09-28, 20d
     (F4.S12.QC Module) (FE+BE) :done, f4t6, 2026-10-05, 15d
     (F4.S12.Reports & Cutting) (FE+BE) :done, f4t7, 2026-10-12, 10d
 
