@@ -4,7 +4,7 @@ description: "Infra platform for kf web based services"
 project: kf-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-platform/edit/master/kanban.md"
-generated: 2026-10-12T04:26:18.261487
+generated: 2026-10-19T04:18:53.263295
 ---
 
 # kf-platform
@@ -114,7 +114,7 @@ gantt
     (F4.S11.Operator View) :crit, 2026-09-28, 2026-10-25
     (F4.S12.QC Module) :done, 2026-10-05, 2026-10-25
     (F4.S12.Reports & Cutting) :done, 2026-10-12, 2026-10-25
-    (F5.S12.Public DPP / GS1) :2026-10-12, 2026-11-01
+    (F5.S12.Public DPP / GS1) :crit, 2026-10-12, 2026-11-01
     (F5.S15.Auditor View) :2026-11-16, 2026-11-29
     (F5.S16.Made2Flow Schema) :2026-11-30, 2026-12-13
     (F6.S16.Migration Testing) :2026-12-07, 2026-12-20
