@@ -203,7 +203,7 @@ gantt
 
     section Faza 5 — ALADIN Features Noi
     (F5.S11.DPP Module (T2.4)) (FE+BE) :crit, f5t1, 2026-09-21, 25d
-    (F5.S12.Public DPP / GS1) (FE+BE) :f5t2, 2026-10-12, 15d
+    (F5.S12.Public DPP / GS1) (FE+BE) :crit, f5t2, 2026-10-12, 15d
     (F5.S13.EPCIS Export) (BE) :f5t3, 2026-10-19, 15d
     (F5.S13.LLM Ecodesign (WP4)) (BE) :f5t4, 2026-10-26, 15d
     (F5.S14.IoT Adapter (T2.5)) (BE) :f5t5, 2026-11-02, 15d
