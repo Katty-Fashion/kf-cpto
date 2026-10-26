@@ -51,6 +51,7 @@ TRACKED_REPOS = [
     {"name": "3D-ODIN-ELAIS",      "branch": "master"},
     {"name": "kf-wiki",            "branch": "master"},
     {"name": "AIRise-ai-fabric-inspection", "branch": "main"},
+    {"name": "tui-bridge",         "branch": "master"},
 ]
 
 
