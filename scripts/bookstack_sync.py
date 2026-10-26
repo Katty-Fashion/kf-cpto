@@ -249,12 +249,59 @@ def render_png(block: str) -> bytes | None:
 
 
 # --------------------------------------------------------------------------- #
+# Diagram check: the wiki's own Mermaid, headless                              #
+# --------------------------------------------------------------------------- #
+
+_CHECK_HTML = """<!doctype html><meta charset=utf-8><pre id=out>PENDING</pre>
+<script src="%s"></script>
+<script>
+(async () => {
+  const blocks = %s, res = [];
+  mermaid.initialize({startOnLoad: false, securityLevel: 'strict', suppressErrorRendering: true, theme: 'forest'});
+  for (let i = 0; i < blocks.length; i++) {
+    try { await mermaid.render('d' + i, blocks[i][1]); res.push([blocks[i][0], 'ok', '']); }
+    catch (e) { res.push([blocks[i][0], 'FAIL', String(e.message || e).slice(0, 200)]); }
+  }
+  document.getElementById('out').textContent = 'RESULT' + JSON.stringify(res);
+})();
+</script>"""
+
+
+def check_diagrams(base_url: str, blocks: list[tuple[str, str]]) -> bool:
+    """Render each block with the wiki's own mermaid.min.js and the wiki's init options."""
+    if not blocks:
+        print("[INFO] no diagrams to check")
+        return True
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    lib = CACHE_DIR / "wiki-mermaid.min.js"
+    req = urllib.request.Request(f"{base_url}/kf-js/mermaid.min.js?v=11.4.1", headers={"User-Agent": USER_AGENT})
+    lib.write_bytes(urllib.request.urlopen(req, timeout=120).read())
+    page = CACHE_DIR / "check.html"
+    page.write_text(_CHECK_HTML % (lib.as_uri(), json.dumps(blocks)))
+    out = subprocess.run(
+        [CHROME, "--headless=new", "--disable-gpu", "--no-sandbox", "--allow-file-access-from-files",
+         "--virtual-time-budget=120000", "--dump-dom", page.as_uri()],
+        capture_output=True, text=True, timeout=240).stdout
+    m = re.search(r"RESULT(\[.*?\])</pre>", html.unescape(out), re.S)
+    if not m:
+        print("[ERROR] diagram check did not complete")
+        return False
+    results = json.loads(m.group(1))
+    bad = [r for r in results if r[1] != "ok"]
+    for name, status, err in results:
+        print(f"  [{status}] {name}" + (f": {err}" if err else ""))
+    print(f"[CHECK] {len(results) - len(bad)}/{len(results)} diagrams render with the wiki's Mermaid")
+    return not bad
+
+
+# --------------------------------------------------------------------------- #
 # Sync                                                                         #
 # --------------------------------------------------------------------------- #
 
 class Sync:
-    def __init__(self, api: BookStack, apply: bool):
-        self.api, self.apply = api, apply
+    def __init__(self, api: BookStack, apply: bool, diagrams: str = "live"):
+        self.api, self.apply, self.diagrams = api, apply, diagrams
+        self.blocks: list[tuple[str, str]] = []  # (page name, mermaid source) for --check-diagrams
         self.tally = {"create": 0, "update": 0, "skip": 0, "conflict": 0}
         self.manifest = {
             "run_id": datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),
@@ -315,7 +362,9 @@ class Sync:
 
     def sync_page(self, book: dict | None, chapter: dict | None, name: str, markdown: str) -> None:
         blocks = _MERMAID_RE.findall(markdown)
-        src_hash = sha(markdown)
+        self.blocks += [(name, b) for b in blocks]
+        # live mode keeps the ```mermaid fences (the wiki renders them); png mode keeps the old hash
+        src_hash = sha(markdown) if (self.diagrams == "png" or not blocks) else sha(markdown + "|live")
         if chapter and chapter["id"] is None:
             existing = None
         elif chapter:
@@ -349,7 +398,7 @@ class Sync:
             page_id = self.api.call("POST", "pages", payload)["id"]
             self.manifest["created"]["pages"].append({"id": page_id, "name": name})
         final = markdown
-        for n, block in enumerate(blocks, 1):
+        for n, block in enumerate(blocks if self.diagrams == "png" else [], 1):
             png = render_png(block)
             if png:
                 img_id, url = self.api.upload_image(page_id, f"{name}-{n}.png", png)
@@ -466,6 +515,10 @@ def main() -> int:
     ap.add_argument("--apply", action="store_true", help="perform writes (default: dry-run)")
     ap.add_argument("--rollback", metavar="RUN_ID", help='undo a run from its manifest ("latest" = newest open run)')
     ap.add_argument("--rollback-list", action="store_true", help="list rollback manifests")
+    ap.add_argument("--diagrams", choices=["live", "png"], default="live",
+                    help="live: publish ```mermaid blocks (wiki renders them); png: pre-render images")
+    ap.add_argument("--check-diagrams", action="store_true",
+                    help="render every diagram with the wiki's own mermaid.min.js in headless Chrome; no writes")
     ap.add_argument("--create-shelves", action="store_true", help="create the shelf if it does not exist yet")
     ap.add_argument("--force", action="store_true", help="rollback even pages edited in BookStack since the sync")
     args = ap.parse_args()
@@ -495,7 +548,7 @@ def main() -> int:
 
     api = BookStack(load_env())
     shelf = Sync(api, args.apply).find("shelves", args.shelf, name=args.shelf)
-    sync = Sync(api, args.apply)
+    sync = Sync(api, args.apply and not args.check_diagrams, args.diagrams)
     if not shelf:
         if not args.create_shelves:
             print(f"[ERROR] shelf '{args.shelf}' does not exist in BookStack (use --create-shelves)")
@@ -509,6 +562,8 @@ def main() -> int:
         _run(sync, args, cfg, repos, loe_rows, activity, act_by_repo, shelf)
     finally:
         sync.save_manifest()
+    if args.check_diagrams:
+        return 0 if check_diagrams(api.base, sync.blocks) else 1
 
     print(f"[TALLY] {sync.tally['create']} create / {sync.tally['update']} update / "
           f"{sync.tally['skip']} skip / {sync.tally['conflict']} conflict")
