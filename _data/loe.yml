@@ -1,4 +1,4 @@
-generated_at: '2026-10-26T11:44:46Z'
+generated_at: '2026-10-26T18:01:02Z'
 row_count: 79
 rows:
 - project: R3-AAS
@@ -557,7 +557,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 7.9
+  effort_days: 8.1
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -573,7 +573,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 2.0
+  effort_days: 2.2
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -581,7 +581,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 0.9
+  effort_days: 1.1
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -589,7 +589,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 0.3
+  effort_days: 0.5
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -597,7 +597,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 2.5
+  effort_days: 2.7
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -605,7 +605,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 6.0
+  effort_days: 7.2
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -613,7 +613,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 0.8
+  effort_days: 1.0
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -621,7 +621,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 1.2
+  effort_days: 1.4
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
