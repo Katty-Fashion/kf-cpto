@@ -1,0 +1,28 @@
+# Which repos publish into which BookStack shelf (consumed by scripts/bookstack_sync.py).
+# Shelf names must match BookStack exactly; the "26NN." prefix is the wiki's numbering convention.
+shelves:
+  "2601. KF-Platform":
+    repos:
+      - kf-platform
+      - kf-be-platform
+      - kf-fe-platform
+      - kf-platform-modules
+      - kf-modular-demo
+      - kf-clo3d-plugin
+      - kf-infra-base
+      - kf-idp-stack
+      - kf-vault
+    org_pages:            # charts rendered from existing dashboard pages
+      - {name: "Migration Gantt", source: migration-gantt.md, block: 0}
+      - {name: "Dependencies", source: dependency-graph.md, block: 0}
+  "2602. R3Group":
+    repos: [R3-AAS]
+  "2603. AiRise":
+    repos: [ai-rise-options, AIRise-ai-fabric-inspection]
+  # Own shelves (created with --create-shelves):
+  "2606. ODIN-ELAIS":
+    description: "ODIN apparel 3D co-creation (ELAIS) - delivery dashboard"
+    repos: [3D-ODIN-ELAIS]
+  "2607. KF-Wiki":
+    description: "KF-WIKI - delivery dashboard"
+    repos: [kf-wiki]

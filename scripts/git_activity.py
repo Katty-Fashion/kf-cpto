@@ -81,8 +81,56 @@ def repo_effort(log: str) -> dict:
             added = int(parts[0]) if parts[0].isdigit() else 0  # '-' = binary
             days[key][1] += 1
             days[key][2] += added
-    hours = sum(day_hours(c, f, a) for c, f, a in days.values())
-    return {"commits": commits, "person_days": round(hours / HOURS_PER_DAY, 1)}
+    monthly: dict = defaultdict(float)
+    hours = 0.0
+    for (_, day), (c, f, a) in days.items():
+        h = day_hours(c, f, a)
+        hours += h
+        monthly[day[:7]] += h
+    return {
+        "commits": commits,
+        "person_days": round(hours / HOURS_PER_DAY, 1),
+        "monthly": {m: round(h / HOURS_PER_DAY, 1) for m, h in sorted(monthly.items())},
+    }
+
+
+def _default_branch(repo: Path) -> str:
+    ref = subprocess.run(["git", "symbolic-ref", "--short", "refs/remotes/origin/HEAD"],
+                         cwd=repo, capture_output=True, text=True).stdout.strip()
+    if ref:
+        return ref.split("/", 1)[-1]
+    for cand in ("main", "master"):
+        if subprocess.run(["git", "rev-parse", "--verify", "-q", f"origin/{cand}"],
+                          cwd=repo, capture_output=True).returncode == 0:
+            return cand
+    return ""
+
+
+def repo_branches(repo: Path, since: str) -> list:
+    """In-flight branches: remote branches ahead of default with a push since `since`.
+
+    Team-level facts only (branch name, commits ahead, last push date) — no authors.
+    """
+    default = _default_branch(repo)
+    out = subprocess.run(
+        ["git", "for-each-ref", "--format=%(refname:short)|%(committerdate:short)", "refs/remotes/origin"],
+        cwd=repo, capture_output=True, text=True).stdout
+    branches = []
+    for line in out.splitlines():
+        ref, _, last = line.partition("|")
+        name = ref.split("/", 1)[-1]
+        if name in ("HEAD", default) or last < since:
+            continue
+        ahead = subprocess.run(["git", "rev-list", "--count", f"origin/{default}..{ref}"],
+                               cwd=repo, capture_output=True, text=True).stdout.strip()
+        if ahead.isdigit() and int(ahead) > 0:
+            branches.append({"name": name, "ahead": int(ahead), "last_push": last})
+    return sorted(branches, key=lambda b: b["last_push"], reverse=True)
+
+
+def last_commit_date(repo: Path) -> str:
+    return subprocess.run(["git", "log", "--remotes", "-1", "--format=%cs"],
+                          cwd=repo, capture_output=True, text=True).stdout.strip()
 
 
 def main() -> int:
@@ -101,7 +149,11 @@ def main() -> int:
             continue
         stats = repo_effort(_git_log(path, args.since, args.until))
         if stats["commits"]:
-            repos.append({"repo": path.name, **stats})
+            repos.append({
+                "repo": path.name, **stats,
+                "last_commit": last_commit_date(path),
+                "branches": repo_branches(path, args.since),
+            })
             print(f"[INFO] {path.name}: {stats['commits']} commits, {stats['person_days']} person-days")
 
     payload = {

@@ -49,6 +49,9 @@ check("bot commits are not counted", res["commits"] == 2)
 # one contributor-day: 1 + 0.25*2 + 500/500 + 0.03*3 = 2.59h -> 0.3 person-days
 check("excluded paths and bots do not inflate churn", res["person_days"] == 0.3)
 
+check("monthly effort is reported and sums to the total",
+      set(res["monthly"]) == {"2026-10"} and abs(sum(res["monthly"].values()) - res["person_days"]) < 0.11)
+
 big = "\n".join([f"@@{EPOCH}|Dev One"] + [f"9999\t0\tsrc/f{i}.py" for i in range(50)])
 check("one contributor-day is capped at one person-day",
       git_activity.repo_effort(big)["person_days"] == 1.0)
