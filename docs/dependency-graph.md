@@ -29,12 +29,6 @@ graph LR
     kf_be_platform --> kf_fe_platform
     kf_fe_platform --> kf_platform
     kf_be_platform --> kf_platform
-    kf_infra_base --> kf_idp_stack
-    kf_infra_base --> kf_vault
-    kf_infra_base --> kf_wiki
-    kf_platform --> kf_platform_modules
-    kf_platform_modules --> kf_modular_demo
-    kf_platform --> kf_clo3d_plugin
 
     classDef saas fill:#4CAF50,color:#fff
     classDef eu fill:#2196F3,color:#fff
