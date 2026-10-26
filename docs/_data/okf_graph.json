@@ -71,6 +71,13 @@
       "url": "https://katty-fashion.github.io/kf-cpto/projects/ai-rise-options/"
     },
     {
+      "id": "/projects/airise-ai-fabric-inspection.md",
+      "label": "AIRise-ai-fabric-inspection",
+      "type": "Project",
+      "status": null,
+      "url": "https://katty-fashion.github.io/kf-cpto/projects/airise-ai-fabric-inspection/"
+    },
+    {
       "id": "/projects/kf-be-platform.md",
       "label": "kf-be-platform",
       "type": "Project",
@@ -153,6 +160,182 @@
       "type": "Project",
       "status": null,
       "url": "https://katty-fashion.github.io/kf-cpto/projects/tech_brainstorming/"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/backend-fastapi-playback-api-plan-b-endpoints-for-defect-results-annotations.md",
+      "label": "Backend: FastAPI playback API (Plan B) \u2014 endpoints for defect results + annotations",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/backend-fastapi-playback-api-plan-b-endpoints-for-defect-results-annotations.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/backend-postgresql-supabase-schema-for-defect-events-and-annotations.md",
+      "label": "Backend: PostgreSQL/Supabase schema for defect events and annotations",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/backend-postgresql-supabase-schema-for-defect-events-and-annotations.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/blocker-audit-dataset-existent-evaluare-volum-i-calitate-imagini-defecte-reale-disponibile.md",
+      "label": "[BLOCKER] Audit dataset existent \u2014 evaluare volum \u0219i calitate imagini defecte reale disponibile",
+      "type": "Task",
+      "status": "In Progress",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/blocker-audit-dataset-existent-evaluare-volum-i-calitate-imagini-defecte-reale-disponibile.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/blocker-strategie-generare-date-sintetice-prioritizare-gan-augmentare-pentru-suplimentare-dataset.md",
+      "label": "[BLOCKER] Strategie generare date sintetice \u2014 prioritizare GAN/augmentare pentru suplimentare dataset",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/blocker-strategie-generare-date-sintetice-prioritizare-gan-augmentare-pentru-suplimentare-dataset.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/create-architecture-diagrams-and-technical-documentation.md",
+      "label": "Create architecture diagrams and technical documentation",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/create-architecture-diagrams-and-technical-documentation.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/define-cnn-yolo-model-architecture-for-fabric-defect-detection.md",
+      "label": "Define CNN/YOLO model architecture for fabric defect detection",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/define-cnn-yolo-model-architecture-for-fabric-defect-detection.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/define-defect-taxonomy-and-annotation-schema-damage-hole-knot-line-oil-stain-stain-wrinkle.md",
+      "label": "Define defect taxonomy and annotation schema (Damage, Hole, Knot, Line, Oil Stain, Stain, Wrinkle)",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/define-defect-taxonomy-and-annotation-schema-damage-hole-knot-line-oil-stain-stain-wrinkle.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/define-elk-stack-monitoring-model-prediction-logs-feedback-loop.md",
+      "label": "Define ELK stack monitoring: model prediction logs + feedback loop",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/define-elk-stack-monitoring-model-prediction-logs-feedback-loop.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/define-model-retraining-pipeline-target-retraining-within-48h-of-new-data.md",
+      "label": "Define model retraining pipeline (target: retraining within 48h of new data)",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/define-model-retraining-pipeline-target-retraining-within-48h-of-new-data.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/define-s3-storage-strategy-minio-on-premise-active-cloudflare-r2-archive.md",
+      "label": "Define S3 storage strategy: MinIO on-premise (active) + Cloudflare R2 (archive)",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/define-s3-storage-strategy-minio-on-premise-active-cloudflare-r2-archive.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/define-streaming-architecture-plan-b-async-playback-selectat-ca-variant-recomandat.md",
+      "label": "Define streaming architecture \u2014 Plan B (Async Playback) selectat ca variant\u0103 recomandat\u0103",
+      "type": "Task",
+      "status": "In Progress",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/define-streaming-architecture-plan-b-async-playback-selectat-ca-variant-recomandat.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/define-system-architecture-edge-jetson-cloud-minio-nifi-spark.md",
+      "label": "Define system architecture: edge (Jetson) + cloud (MinIO/NiFi/Spark)",
+      "type": "Task",
+      "status": "In Progress",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/define-system-architecture-edge-jetson-cloud-minio-nifi-spark.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/design-data-ingestion-pipeline-apache-nifi-minio-on-premise.md",
+      "label": "Design data ingestion pipeline: Apache NiFi + MinIO on-premise",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/design-data-ingestion-pipeline-apache-nifi-minio-on-premise.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/design-data-preprocessing-pipeline-apache-spark-augmentation-strategy.md",
+      "label": "Design data preprocessing pipeline: Apache Spark + augmentation strategy",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/design-data-preprocessing-pipeline-apache-spark-augmentation-strategy.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/frontend-playbackannotator-ui-defect-review-and-validation-interface.md",
+      "label": "Frontend: PlaybackAnnotator UI \u2014 defect review and validation interface",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/frontend-playbackannotator-ui-defect-review-and-validation-interface.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/frontend-textileviewer-component-live-webrtc-defect-stream-view.md",
+      "label": "Frontend: TextileViewer component \u2014 live WebRTC defect stream view",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/frontend-textileviewer-component-live-webrtc-defect-stream-view.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/integrate-model-explainability-grad-cam-shap-pentru-vizualizare-decizii-ai.md",
+      "label": "Integrate model explainability: Grad-CAM + SHAP pentru vizualizare decizii AI",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/integrate-model-explainability-grad-cam-shap-pentru-vizualizare-decizii-ai.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/jetson-setup-yolo-multiprocess-detector-4x-parallel-100-fps-target.md",
+      "label": "Jetson setup: YOLO multiprocess detector (4x parallel, 100+ FPS target)",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/jetson-setup-yolo-multiprocess-detector-4x-parallel-100-fps-target.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/prepare-dissemination-content-linkedin-technical-deep-dive-post-mid-implementation.md",
+      "label": "Prepare dissemination content: LinkedIn technical deep-dive post (mid-implementation)",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/prepare-dissemination-content-linkedin-technical-deep-dive-post-mid-implementation.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/prepare-kpi-tracking-dashboard-f1-70-80-inferen-1000ms-de-euri-20.md",
+      "label": "Prepare KPI tracking dashboard (F1 \u226570-80%, inferen\u021b\u0103 \u22641000ms, de\u0219euri -20%)",
+      "type": "Task",
+      "status": "Todo",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/prepare-kpi-tracking-dashboard-f1-70-80-inferen-1000ms-de-euri-20.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/project-scope-definition-airise-initialisation-report-review.md",
+      "label": "Project scope definition & AIRISE initialisation report review",
+      "type": "Task",
+      "status": "Done",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/project-scope-definition-airise-initialisation-report-review.md"
+    },
+    {
+      "id": "/tasks/airise-ai-fabric-inspection/setup-repository-structure-and-kf-cpto-kanban-integration.md",
+      "label": "Setup repository structure and KF-CPTO kanban integration",
+      "type": "Task",
+      "status": "Done",
+      "parent": "/projects/airise-ai-fabric-inspection.md",
+      "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/tasks/airise-ai-fabric-inspection/setup-repository-structure-and-kf-cpto-kanban-integration.md"
     },
     {
       "id": "/tasks/kf-be-platform/f1-s2-ci-cd-pipeline.md",
@@ -708,6 +891,116 @@
     }
   ],
   "edges": [
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/backend-fastapi-playback-api-plan-b-endpoints-for-defect-results-annotations.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/backend-postgresql-supabase-schema-for-defect-events-and-annotations.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/blocker-audit-dataset-existent-evaluare-volum-i-calitate-imagini-defecte-reale-disponibile.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/blocker-strategie-generare-date-sintetice-prioritizare-gan-augmentare-pentru-suplimentare-dataset.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/create-architecture-diagrams-and-technical-documentation.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/define-cnn-yolo-model-architecture-for-fabric-defect-detection.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/define-defect-taxonomy-and-annotation-schema-damage-hole-knot-line-oil-stain-stain-wrinkle.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/define-elk-stack-monitoring-model-prediction-logs-feedback-loop.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/define-model-retraining-pipeline-target-retraining-within-48h-of-new-data.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/define-s3-storage-strategy-minio-on-premise-active-cloudflare-r2-archive.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/define-streaming-architecture-plan-b-async-playback-selectat-ca-variant-recomandat.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/define-system-architecture-edge-jetson-cloud-minio-nifi-spark.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/design-data-ingestion-pipeline-apache-nifi-minio-on-premise.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/design-data-preprocessing-pipeline-apache-spark-augmentation-strategy.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/frontend-playbackannotator-ui-defect-review-and-validation-interface.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/frontend-textileviewer-component-live-webrtc-defect-stream-view.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/integrate-model-explainability-grad-cam-shap-pentru-vizualizare-decizii-ai.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/jetson-setup-yolo-multiprocess-detector-4x-parallel-100-fps-target.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/prepare-dissemination-content-linkedin-technical-deep-dive-post-mid-implementation.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/prepare-kpi-tracking-dashboard-f1-70-80-inferen-1000ms-de-euri-20.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/project-scope-definition-airise-initialisation-report-review.md",
+      "kind": "contains"
+    },
+    {
+      "source": "/projects/airise-ai-fabric-inspection.md",
+      "target": "/tasks/airise-ai-fabric-inspection/setup-repository-structure-and-kf-cpto-kanban-integration.md",
+      "kind": "contains"
+    },
     {
       "source": "/projects/kf-be-platform.md",
       "target": "/projects/r3-aas.md",

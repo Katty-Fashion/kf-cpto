@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-10-26T01:04:25.057034
+generated: 2026-10-26T17:57:27.246462
 ---
 
 # KF Team — Level of Effort Report
@@ -25,4 +25,5 @@ generated: 2026-10-26T01:04:25.057034
 | kf-modular-demo | S13 | 0d | 0d | 0d |
 | kf-clo3d-plugin | S13 | 0d | 0d | 0d |
 | 3D-ODIN-ELAIS | S13 | 0d | 0d | 0d |
-| **Total** | | **358.5d** | **235.5d** | **123.0d** |
+| AIRise-ai-fabric-inspection | S1 | 38.0d | 2.0d | 36.0d |
+| **Total** | | **396.5d** | **237.5d** | **159.0d** |

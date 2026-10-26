@@ -1,5 +1,5 @@
-generated_at: '2026-10-26T01:04:25Z'
-row_count: 79
+generated_at: '2026-10-26T17:57:28Z'
+row_count: 101
 rows:
 - project: R3-AAS
   sprint: S9
@@ -553,11 +553,192 @@ rows:
   start: '2026-12-21'
   end: '2027-01-03'
   status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: Project scope definition & AIRISE initialisation report review
+  assignee: '@ps.tech'
+  effort_days: 1.0
+  start: '2026-03-09'
+  end: '2026-03-09'
+  status: Done
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: Setup repository structure and KF-CPTO kanban integration
+  assignee: '@alexandru.bejenari'
+  effort_days: 1.0
+  start: '2026-03-09'
+  end: '2026-03-09'
+  status: Done
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Define system architecture: edge (Jetson) + cloud (MinIO/NiFi/Spark)'
+  assignee: '@el.tech'
+  effort_days: 3.0
+  start: '2026-03-09'
+  end: '2026-03-11'
+  status: In Progress
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: Define streaming architecture — Plan B (Async Playback) selectat ca variantă
+    recomandată
+  assignee: '@el.tech'
+  effort_days: 1.0
+  start: '2026-03-10'
+  end: '2026-03-10'
+  status: In Progress
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: '[BLOCKER] Audit dataset existent — evaluare volum și calitate imagini defecte
+    reale disponibile'
+  assignee: '@ps.tech'
+  effort_days: 1.0
+  start: '2026-03-11'
+  end: '2026-03-11'
+  status: In Progress
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: '[BLOCKER] Strategie generare date sintetice — prioritizare GAN/augmentare
+    pentru suplimentare dataset'
+  assignee: '@el.tech'
+  effort_days: 2.0
+  start: '2026-03-12'
+  end: '2026-03-13'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Design data ingestion pipeline: Apache NiFi + MinIO on-premise'
+  assignee: '@razvan.boita'
+  effort_days: 2.0
+  start: '2026-03-11'
+  end: '2026-03-12'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Design data preprocessing pipeline: Apache Spark + augmentation strategy'
+  assignee: '@razvan.boita'
+  effort_days: 2.0
+  start: '2026-03-13'
+  end: '2026-03-14'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: Define defect taxonomy and annotation schema (Damage, Hole, Knot, Line, Oil
+    Stain, Stain, Wrinkle)
+  assignee: '@ps.tech'
+  effort_days: 1.0
+  start: '2026-03-13'
+  end: '2026-03-13'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: Define CNN/YOLO model architecture for fabric defect detection
+  assignee: '@el.tech'
+  effort_days: 3.0
+  start: '2026-03-13'
+  end: '2026-03-17'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Integrate model explainability: Grad-CAM + SHAP pentru vizualizare decizii
+    AI'
+  assignee: '@el.tech'
+  effort_days: 2.0
+  start: '2026-03-17'
+  end: '2026-03-18'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Backend: FastAPI playback API (Plan B) — endpoints for defect results + annotations'
+  assignee: '@razvan.boita'
+  effort_days: 3.0
+  start: '2026-03-16'
+  end: '2026-03-18'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Backend: PostgreSQL/Supabase schema for defect events and annotations'
+  assignee: '@razvan.boita'
+  effort_days: 2.0
+  start: '2026-03-19'
+  end: '2026-03-20'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Frontend: PlaybackAnnotator UI — defect review and validation interface'
+  assignee: '@alexandru.bejenari'
+  effort_days: 3.0
+  start: '2026-03-16'
+  end: '2026-03-18'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Frontend: TextileViewer component — live WebRTC defect stream view'
+  assignee: '@alexandru.bejenari'
+  effort_days: 2.0
+  start: '2026-03-19'
+  end: '2026-03-20'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Jetson setup: YOLO multiprocess detector (4x parallel, 100+ FPS target)'
+  assignee: '@el.tech'
+  effort_days: 2.0
+  start: '2026-03-19'
+  end: '2026-03-20'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Define S3 storage strategy: MinIO on-premise (active) + Cloudflare R2 (archive)'
+  assignee: '@razvan.boita'
+  effort_days: 1.0
+  start: '2026-03-20'
+  end: '2026-03-20'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Define ELK stack monitoring: model prediction logs + feedback loop'
+  assignee: '@el.tech'
+  effort_days: 1.0
+  start: '2026-03-20'
+  end: '2026-03-20'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: Create architecture diagrams and technical documentation
+  assignee: '@alexandru.bejenari'
+  effort_days: 1.0
+  start: '2026-03-20'
+  end: '2026-03-20'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: Prepare KPI tracking dashboard (F1 ≥70-80%, inferență ≤1000ms, deșeuri -20%)
+  assignee: '@ps.tech'
+  effort_days: 1.0
+  start: '2026-03-21'
+  end: '2026-03-21'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Define model retraining pipeline (target: retraining within 48h of new data)'
+  assignee: '@el.tech'
+  effort_days: 2.0
+  start: '2026-03-23'
+  end: '2026-03-24'
+  status: Todo
+- project: AIRise-ai-fabric-inspection
+  sprint: S1
+  task: 'Prepare dissemination content: LinkedIn technical deep-dive post (mid-implementation)'
+  assignee: '@ps.tech'
+  effort_days: 1.0
+  start: '2026-03-25'
+  end: '2026-03-25'
+  status: Todo
 - project: 3D-ODIN-ELAIS
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 7.9
+  effort_days: 8.1
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -573,7 +754,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 2.0
+  effort_days: 2.2
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -581,7 +762,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 0.9
+  effort_days: 1.1
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -589,7 +770,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 0.3
+  effort_days: 0.5
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -597,7 +778,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 2.5
+  effort_days: 2.7
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -605,7 +786,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 6.0
+  effort_days: 7.2
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -613,7 +794,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 0.8
+  effort_days: 1.0
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity
@@ -621,7 +802,7 @@ rows:
   sprint: Activity
   task: Git activity 2026-07-25..2026-10-26 (conservative floor)
   assignee: Team
-  effort_days: 1.2
+  effort_days: 1.4
   start: '2026-07-25'
   end: '2026-10-26'
   status: Activity

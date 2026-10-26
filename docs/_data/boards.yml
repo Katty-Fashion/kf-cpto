@@ -1,4 +1,4 @@
-generated_at: '2026-10-26T01:04:25Z'
+generated_at: '2026-10-26T17:57:27Z'
 projects:
 - project: R3-AAS
   branch: main
@@ -1257,3 +1257,356 @@ projects:
     - apparel
     team: {}
   tasks: []
+- project: AIRise-ai-fabric-inspection
+  branch: main
+  edit_url: https://github.com/katty-fashion/AIRise-ai-fabric-inspection/edit/main/kanban.md
+  generated: false
+  simple_board: true
+  meta:
+    description: AIFR-AI – AI-powered fabric defect detection system for Katty Fashion.
+      CNN/YOLO-based real-time quality inspection on Jetson edge devices, integrated
+      with MinIO/NiFi/Spark infrastructure. EU Horizon Europe – AIRISE Open Call 1.
+    type: eu-project
+    po: '@ps.tech'
+    lead: '@el.tech'
+    sprint: S1
+    sprint_start: '2026-03-09'
+    sprint_end: '2026-03-20'
+    depends_on: []
+    tags:
+    - eu-project
+    - ai
+    - computer-vision
+    - yolo
+    - cnn
+    - textile
+    - defect-detection
+    - jetson
+    - edge-ai
+    - minio
+    - fastapi
+    - nextjs
+    - synthetic-data
+    - grad-cam
+    - shap
+    team:
+      frontend: alexandru.bejenari@katty-fashion.ro
+      backend: razvan.boita@katty-fashion.ro
+      tech_lead: el.tech@katty-fashion.ro
+      product_owner: ps.tech@katty-fashion.ro
+  tasks:
+  - task: Project scope definition & AIRISE initialisation report review
+    assignee: '@ps.tech'
+    effort: 1d
+    start: '2026-03-09'
+    end: '2026-03-09'
+    status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: Setup repository structure and KF-CPTO kanban integration
+    assignee: '@alexandru.bejenari'
+    effort: 1d
+    start: '2026-03-09'
+    end: '2026-03-09'
+    status: Done
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Define system architecture: edge (Jetson) + cloud (MinIO/NiFi/Spark)'
+    assignee: '@el.tech'
+    effort: 3d
+    start: '2026-03-09'
+    end: '2026-03-11'
+    status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: Define streaming architecture — Plan B (Async Playback) selectat ca variantă
+      recomandată
+    assignee: '@el.tech'
+    effort: 1d
+    start: '2026-03-10'
+    end: '2026-03-10'
+    status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: ⚠️ [BLOCKER] Audit dataset existent — evaluare volum și calitate imagini
+      defecte reale disponibile
+    assignee: '@ps.tech'
+    effort: 1d
+    start: '2026-03-11'
+    end: '2026-03-11'
+    status: In Progress
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: ⚠️ [BLOCKER] Strategie generare date sintetice — prioritizare GAN/augmentare
+      pentru suplimentare dataset
+    assignee: '@el.tech'
+    effort: 2d
+    start: '2026-03-12'
+    end: '2026-03-13'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Design data ingestion pipeline: Apache NiFi + MinIO on-premise'
+    assignee: '@razvan.boita'
+    effort: 2d
+    start: '2026-03-11'
+    end: '2026-03-12'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Design data preprocessing pipeline: Apache Spark + augmentation strategy'
+    assignee: '@razvan.boita'
+    effort: 2d
+    start: '2026-03-13'
+    end: '2026-03-14'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: Define defect taxonomy and annotation schema (Damage, Hole, Knot, Line,
+      Oil Stain, Stain, Wrinkle)
+    assignee: '@ps.tech'
+    effort: 1d
+    start: '2026-03-13'
+    end: '2026-03-13'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: Define CNN/YOLO model architecture for fabric defect detection
+    assignee: '@el.tech'
+    effort: 3d
+    start: '2026-03-13'
+    end: '2026-03-17'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Integrate model explainability: Grad-CAM + SHAP pentru vizualizare decizii
+      AI'
+    assignee: '@el.tech'
+    effort: 2d
+    start: '2026-03-17'
+    end: '2026-03-18'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Backend: FastAPI playback API (Plan B) — endpoints for defect results +
+      annotations'
+    assignee: '@razvan.boita'
+    effort: 3d
+    start: '2026-03-16'
+    end: '2026-03-18'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Backend: PostgreSQL/Supabase schema for defect events and annotations'
+    assignee: '@razvan.boita'
+    effort: 2d
+    start: '2026-03-19'
+    end: '2026-03-20'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Frontend: PlaybackAnnotator UI — defect review and validation interface'
+    assignee: '@alexandru.bejenari'
+    effort: 3d
+    start: '2026-03-16'
+    end: '2026-03-18'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Frontend: TextileViewer component — live WebRTC defect stream view'
+    assignee: '@alexandru.bejenari'
+    effort: 2d
+    start: '2026-03-19'
+    end: '2026-03-20'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Jetson setup: YOLO multiprocess detector (4x parallel, 100+ FPS target)'
+    assignee: '@el.tech'
+    effort: 2d
+    start: '2026-03-19'
+    end: '2026-03-20'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Define S3 storage strategy: MinIO on-premise (active) + Cloudflare R2 (archive)'
+    assignee: '@razvan.boita'
+    effort: 1d
+    start: '2026-03-20'
+    end: '2026-03-20'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Define ELK stack monitoring: model prediction logs + feedback loop'
+    assignee: '@el.tech'
+    effort: 1d
+    start: '2026-03-20'
+    end: '2026-03-20'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: Create architecture diagrams and technical documentation
+    assignee: '@alexandru.bejenari'
+    effort: 1d
+    start: '2026-03-20'
+    end: '2026-03-20'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: Prepare KPI tracking dashboard (F1 ≥70-80%, inferență ≤1000ms, deșeuri -20%)
+    assignee: '@ps.tech'
+    effort: 1d
+    start: '2026-03-21'
+    end: '2026-03-21'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Define model retraining pipeline (target: retraining within 48h of new
+      data)'
+    assignee: '@el.tech'
+    effort: 2d
+    start: '2026-03-23'
+    end: '2026-03-24'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status
+  - task: 'Prepare dissemination content: LinkedIn technical deep-dive post (mid-implementation)'
+    assignee: '@ps.tech'
+    effort: 1d
+    start: '2026-03-25'
+    end: '2026-03-25'
+    status: Todo
+    section: Project Kanban
+    fields:
+    - task
+    - assignee
+    - effort
+    - start
+    - end
+    - status

@@ -1,47 +1,216 @@
-generated_at: '2026-10-25T21:49:00Z'
+generated_at: '2026-10-26T16:58:11Z'
 since: '2026-07-25'
 until: '2026-10-26'
 method: 'conservative floor: churn estimate, 8h/contributor/day cap, docs excluded'
 repos:
 - repo: 3D-ODIN-ELAIS
-  commits: 29
-  person_days: 7.9
+  commits: 30
+  person_days: 8.1
+  monthly:
+    2026-09: 6.1
+    2026-10: 2.0
+  last_commit: '2026-10-26'
+  branches: []
 - repo: R3-AAS
-  commits: 162
-  person_days: 18.0
+  commits: 163
+  person_days: 18.2
+  monthly:
+    2026-07: 4.5
+    2026-08: 1.7
+    2026-09: 7.1
+    2026-10: 5.0
+  last_commit: '2026-10-13'
+  branches:
+  - name: feat/m2f-product-input-honours-contract
+    ahead: 1
+    last_push: '2026-09-10'
+  - name: fix/blazer-home-card
+    ahead: 2
+    last_push: '2026-09-10'
+  - name: feat/cep-demo-ui
+    ahead: 3
+    last_push: '2026-09-09'
+  - name: fix/deploy-verification-and-caddy-reload
+    ahead: 1
+    last_push: '2026-08-13'
 - repo: ai-rise-options
   commits: 1
   person_days: 0.2
+  monthly:
+    2026-09: 0.2
+  last_commit: '2026-09-03'
+  branches: []
 - repo: kf-be-platform
   commits: 1984
   person_days: 60.3
+  monthly:
+    2026-07: 5.1
+    2026-08: 20.2
+    2026-09: 14.4
+    2026-10: 20.6
+  last_commit: '2026-10-24'
+  branches:
+  - name: work-v2
+    ahead: 1981
+    last_push: '2026-10-24'
+  - name: uat
+    ahead: 1111
+    last_push: '2026-10-13'
+  - name: work
+    ahead: 1101
+    last_push: '2026-10-13'
+  - name: full-odin-test
+    ahead: 1058
+    last_push: '2026-10-08'
+  - name: order-flow-v2
+    ahead: 938
+    last_push: '2026-10-05'
+  - name: phase-105-factory-view
+    ahead: 971
+    last_push: '2026-10-05'
+  - name: clo3D-plugin-v2
+    ahead: 820
+    last_push: '2026-09-10'
+  - name: clo3D-plugin
+    ahead: 678
+    last_push: '2026-09-01'
+  - name: gsd/mf-51-54
+    ahead: 305
+    last_push: '2026-08-04'
 - repo: kf-clo3d-plugin
-  commits: 28
-  person_days: 2.0
+  commits: 29
+  person_days: 2.2
+  monthly:
+    2026-08: 1.4
+    2026-09: 0.7
+    2026-10: 0.2
+  last_commit: '2026-10-26'
+  branches: []
 - repo: kf-fe-platform
   commits: 1541
   person_days: 56.2
+  monthly:
+    2026-07: 5.1
+    2026-08: 16.9
+    2026-09: 14.1
+    2026-10: 20.1
+  last_commit: '2026-10-23'
+  branches:
+  - name: work-v2
+    ahead: 1570
+    last_push: '2026-10-23'
+  - name: uat
+    ahead: 1120
+    last_push: '2026-10-13'
+  - name: work
+    ahead: 1110
+    last_push: '2026-10-13'
+  - name: full-odin-test
+    ahead: 1067
+    last_push: '2026-10-08'
+  - name: order-flow-v2
+    ahead: 889
+    last_push: '2026-10-05'
+  - name: phase-105-factory-view
+    ahead: 921
+    last_push: '2026-10-05'
+  - name: feat/68-order-flow-prototype
+    ahead: 834
+    last_push: '2026-09-16'
+  - name: clo3D-plugin-v2
+    ahead: 750
+    last_push: '2026-09-10'
+  - name: clo3D-plugin
+    ahead: 627
+    last_push: '2026-09-01'
+  - name: papillon-bleu-feature
+    ahead: 569
+    last_push: '2026-08-19'
+  - name: gsd/mf-51-54
+    ahead: 384
+    last_push: '2026-08-04'
 - repo: kf-idp-stack
-  commits: 4
-  person_days: 0.9
+  commits: 5
+  person_days: 1.1
+  monthly:
+    2026-08: 0.9
+    2026-10: 0.2
+  last_commit: '2026-10-26'
+  branches: []
 - repo: kf-infra-base
-  commits: 2
-  person_days: 0.3
+  commits: 3
+  person_days: 0.5
+  monthly:
+    2026-08: 0.3
+    2026-10: 0.2
+  last_commit: '2026-10-26'
+  branches: []
 - repo: kf-modular-demo
-  commits: 20
-  person_days: 2.5
+  commits: 21
+  person_days: 2.7
+  monthly:
+    2026-10: 2.7
+  last_commit: '2026-10-26'
+  branches: []
 - repo: kf-platform
   commits: 3169
   person_days: 67.1
+  monthly:
+    2026-07: 6.1
+    2026-08: 22.7
+    2026-09: 18.5
+    2026-10: 19.8
+  last_commit: '2026-10-24'
+  branches:
+  - name: work-v2
+    ahead: 3475
+    last_push: '2026-10-24'
+  - name: uat
+    ahead: 2715
+    last_push: '2026-10-13'
+  - name: work
+    ahead: 2699
+    last_push: '2026-10-13'
+  - name: clo3D-plugin
+    ahead: 1762
+    last_push: '2026-09-01'
+  - name: gsd/mf-51-54
+    ahead: 855
+    last_push: '2026-08-04'
 - repo: kf-platform-modules
-  commits: 164
-  person_days: 6.0
+  commits: 171
+  person_days: 7.2
+  monthly:
+    2026-09: 0.2
+    2026-10: 7.0
+  last_commit: '2026-10-26'
+  branches:
+  - name: work-v2
+    ahead: 183
+    last_push: '2026-10-26'
+  - name: uat
+    ahead: 37
+    last_push: '2026-10-21'
 - repo: kf-vault
-  commits: 6
-  person_days: 0.8
+  commits: 7
+  person_days: 1.0
+  monthly:
+    2026-09: 0.8
+    2026-10: 0.2
+  last_commit: '2026-10-26'
+  branches: []
 - repo: kf-wiki
-  commits: 10
-  person_days: 1.2
+  commits: 11
+  person_days: 1.4
+  monthly:
+    2026-09: 0.8
+    2026-10: 0.6
+  last_commit: '2026-10-26'
+  branches: []
 - repo: tech_brainstorming
   commits: 1
   person_days: 0.2
+  monthly:
+    2026-09: 0.2
+  last_commit: '2026-09-03'
+  branches: []

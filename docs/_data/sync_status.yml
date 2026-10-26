@@ -1,10 +1,10 @@
 aggregator:
-  last_run_at: '2026-10-26T01:04:26Z'
+  last_run_at: '2026-10-26T17:57:28Z'
   last_run_status: ok
-  source_repo_count: 14
-  task_count: 69
+  source_repo_count: 15
+  task_count: 91
   errors: []
-  okf_file_count: 101
+  okf_file_count: 125
 sheets_export:
   last_run_at: '2026-10-19T04:19:00Z'
   last_run_status: ok

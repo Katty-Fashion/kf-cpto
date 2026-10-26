@@ -1,6 +1,6 @@
 ---
 title: Unified Kanban
-generated: 2026-10-26T01:04:25.012500
+generated: 2026-10-26T17:57:27.185920
 ---
 
 # KF Team — Unified Kanban
@@ -9,7 +9,7 @@ generated: 2026-10-26T01:04:25.012500
 
 <div class="kanban-board">
   <div class="kanban-col kanban-col--todo">
-    <div class="kanban-col__head">Todo <span class="kanban-col__count">12</span></div>
+    <div class="kanban-col__head">Todo <span class="kanban-col__count">29</span></div>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F5.S13.EPCIS Export]</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F5.S13.LLM Ecodesign (WP4)]</a>
     <a class="kanban-card" href="{{ '/projects/kf-be-platform/' | relative_url }}">kf-be-platform: [F5.S14.IoT Adapter (T2.5)]</a>
@@ -22,11 +22,31 @@ generated: 2026-10-26T01:04:25.012500
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F5.S16.Made2Flow Schema]</a>
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F6.S16.Migration Testing]</a>
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F6.S17.Final QA &amp; Cutover]</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: [BLOCKER] Strategie generare date sintetice — prioritizare GAN/augmentare pentru suplimentare dataset</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Design data ingestion pipeline: Apache NiFi + MinIO on-premise</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Design data preprocessing pipeline: Apache Spark + augmentation strategy</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Define defect taxonomy and annotation schema (Damage, Hole, Knot, Line, Oil Stain, Stain, Wrinkle)</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Define CNN/YOLO model architecture for fabric defect detection</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Integrate model explainability: Grad-CAM + SHAP pentru vizualizare decizii AI</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Backend: FastAPI playback API (Plan B) — endpoints for defect results + annotations</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Backend: PostgreSQL/Supabase schema for defect events and annotations</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Frontend: PlaybackAnnotator UI — defect review and validation interface</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Frontend: TextileViewer component — live WebRTC defect stream view</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Jetson setup: YOLO multiprocess detector (4x parallel, 100+ FPS target)</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Define S3 storage strategy: MinIO on-premise (active) + Cloudflare R2 (archive)</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Define ELK stack monitoring: model prediction logs + feedback loop</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Create architecture diagrams and technical documentation</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Prepare KPI tracking dashboard (F1 ≥70-80%, inferență ≤1000ms, deșeuri -20%)</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Define model retraining pipeline (target: retraining within 48h of new data)</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Prepare dissemination content: LinkedIn technical deep-dive post (mid-implementation)</a>
   </div>
   <div class="kanban-col kanban-col--in-progress">
-    <div class="kanban-col__head">In Progress <span class="kanban-col__count">2</span></div>
+    <div class="kanban-col__head">In Progress <span class="kanban-col__count">5</span></div>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Pilot KF demo recordings (based on revised Nuoform)</a>
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: State AI usage in R3 (declaration)</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Define system architecture: edge (Jetson) + cloud (MinIO/NiFi/Spark)</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Define streaming architecture — Plan B (Async Playback) selectat ca variantă recomandată</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: [BLOCKER] Audit dataset existent — evaluare volum și calitate imagini defecte reale disponibile</a>
   </div>
   <div class="kanban-col kanban-col--review">
     <div class="kanban-col__head">Review <span class="kanban-col__count">3</span></div>
@@ -35,12 +55,14 @@ generated: 2026-10-26T01:04:25.012500
     <a class="kanban-card" href="{{ '/projects/r3-aas/' | relative_url }}">R3-AAS: Validate suitability constraints and scheduling logic</a>
   </div>
   <div class="kanban-col kanban-col--done">
-    <div class="kanban-col__head">Done <span class="kanban-col__count">5</span></div>
+    <div class="kanban-col__head">Done <span class="kanban-col__count">7</span></div>
     <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F3.S8.Tech Pack Layout]</a>
     <a class="kanban-card" href="{{ '/projects/kf-fe-platform/' | relative_url }}">kf-fe-platform: [F3.S9.Model Sheet Fixes]</a>
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F3.S8.BOM Editor]</a>
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F3.S9.Sizing &amp; QA Flow]</a>
     <a class="kanban-card" href="{{ '/projects/kf-platform/' | relative_url }}">kf-platform: [F4.S9.Orders Refactor]</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Project scope definition &amp; AIRISE initialisation report review</a>
+    <a class="kanban-card" href="{{ '/projects/airise-ai-fabric-inspection/' | relative_url }}">AIRise-ai-fabric-inspection: Setup repository structure and KF-CPTO kanban integration</a>
   </div>
 </div>
 
@@ -62,6 +84,7 @@ generated: 2026-10-26T01:04:25.012500
 | kf-modular-demo | 0 | 0 | 0 | 0 | 0 |
 | kf-clo3d-plugin | 0 | 0 | 0 | 0 | 0 |
 | 3D-ODIN-ELAIS | 0 | 0 | 0 | 0 | 0 |
+| AIRise-ai-fabric-inspection | 17 | 3 | 0 | 2 | 22 |
 
 ## Sprint Timeline
 
@@ -130,6 +153,10 @@ gantt
     S12 :done, 2026-10-05, 2026-10-16
     S13 :active, 2026-10-19, 2026-10-30
     S14 :2026-11-02, 2026-11-13
+    section AIRise-ai-fabric-inspection
+    S0 :done, 2026-02-23, 2026-03-06
+    S1 :done, 2026-03-09, 2026-03-20
+    S2 :done, 2026-03-23, 2026-04-03
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
@@ -204,6 +231,29 @@ gantt
     (F5.S16.Made2Flow Schema) :2026-11-30, 2026-12-13
     (F6.S16.Migration Testing) :2026-12-07, 2026-12-20
     (F6.S17.Final QA & Cutover) :2026-12-21, 2027-01-03
+    section AIRise-ai-fabric-inspection
+    Project scope definition & AIRISE initialisation report review :done, 2026-03-09, 2026-03-09
+    Setup repository structure and KF-CPTO kanban integration :done, 2026-03-09, 2026-03-09
+    Define system architecture edge (Jetson) + cloud (MinIO/NiFi/Spark) :crit, 2026-03-09, 2026-03-11
+    Define streaming architecture — Plan B (Async Playback) selectat ca variantă recomandată :crit, 2026-03-10, 2026-03-10
+    (BLOCKER) Audit dataset existent — evaluare volum și calitate imagini defecte reale disponibile :crit, 2026-03-11, 2026-03-11
+    Design data ingestion pipeline Apache NiFi + MinIO on-premise :crit, 2026-03-11, 2026-03-12
+    (BLOCKER) Strategie generare date sintetice — prioritizare GAN/augmentare pentru suplimentare dataset :crit, 2026-03-12, 2026-03-13
+    Design data preprocessing pipeline Apache Spark + augmentation strategy :crit, 2026-03-13, 2026-03-14
+    Define defect taxonomy and annotation schema (Damage, Hole, Knot, Line, Oil Stain, Stain, Wrinkle) :crit, 2026-03-13, 2026-03-13
+    Define CNN/YOLO model architecture for fabric defect detection :crit, 2026-03-13, 2026-03-17
+    Backend FastAPI playback API (Plan B) — endpoints for defect results + annotations :crit, 2026-03-16, 2026-03-18
+    Frontend PlaybackAnnotator UI — defect review and validation interface :crit, 2026-03-16, 2026-03-18
+    Integrate model explainability Grad-CAM + SHAP pentru vizualizare decizii AI :crit, 2026-03-17, 2026-03-18
+    Backend PostgreSQL/Supabase schema for defect events and annotations :crit, 2026-03-19, 2026-03-20
+    Frontend TextileViewer component — live WebRTC defect stream view :crit, 2026-03-19, 2026-03-20
+    Jetson setup YOLO multiprocess detector (4x parallel, 100+ FPS target) :crit, 2026-03-19, 2026-03-20
+    Define S3 storage strategy MinIO on-premise (active) + Cloudflare R2 (archive) :crit, 2026-03-20, 2026-03-20
+    Define ELK stack monitoring model prediction logs + feedback loop :crit, 2026-03-20, 2026-03-20
+    Create architecture diagrams and technical documentation :crit, 2026-03-20, 2026-03-20
+    Prepare KPI tracking dashboard (F1 ≥70-80%, inferență ≤1000ms, deșeuri -20%) :crit, 2026-03-21, 2026-03-21
+    Define model retraining pipeline (target retraining within 48h of new data) :crit, 2026-03-23, 2026-03-24
+    Prepare dissemination content LinkedIn technical deep-dive post (mid-implementation) :crit, 2026-03-25, 2026-03-25
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>

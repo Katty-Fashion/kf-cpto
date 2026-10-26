@@ -11,8 +11,8 @@ re-parse individual repo files; consume this bundle instead.
 
 ## Sections
 
-- [Projects](/projects/index.md) — 14 tracked repos
-- [Tasks](/tasks/index.md) — 69 task concepts
+- [Projects](/projects/index.md) — 15 tracked repos
+- [Tasks](/tasks/index.md) — 91 task concepts
 - [Metrics](/metrics/index.md) — LOE and RAG status definitions
 - [Milestones](/milestones/index.md) — Migration calendar milestones
 - [log.md](/log.md) — Change history
@@ -21,9 +21,9 @@ re-parse individual repo files; consume this bundle instead.
 
 | Metric | Value |
 | :--- | :--- |
-| Total declared effort | 358d |
-| Done | 236d |
-| Remaining | 123d |
+| Total declared effort | 396d |
+| Done | 238d |
+| Remaining | 159d |
 
 > **Effort semantics:** `Nd` = person-days as declared in each `kanban.md`.
 > See [/metrics/loe.md](/metrics/loe.md) for the full definition and the

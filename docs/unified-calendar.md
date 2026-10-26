@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-10-26T01:04:25.037009
+generated: 2026-10-26T17:57:27.220528
 ---
 
 # KF Team — Unified Calendar
@@ -13,6 +13,7 @@ pie title Effort by Project (person-days)
     "kf-be-platform" : 77.0
     "kf-fe-platform" : 62.0
     "R3-AAS" : 52.5
+    "AIRise-ai-fabric-inspection" : 38.0
 ```
 
 ## Sprint Timeline
@@ -82,6 +83,10 @@ gantt
     S12 :done, 2026-10-05, 2026-10-16
     S13 :active, 2026-10-19, 2026-10-30
     S14 :2026-11-02, 2026-11-13
+    section AIRise-ai-fabric-inspection
+    S0 :done, 2026-02-23, 2026-03-06
+    S1 :done, 2026-03-09, 2026-03-20
+    S2 :done, 2026-03-23, 2026-04-03
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
@@ -156,6 +161,29 @@ gantt
     (F5.S16.Made2Flow Schema) :2026-11-30, 2026-12-13
     (F6.S16.Migration Testing) :2026-12-07, 2026-12-20
     (F6.S17.Final QA & Cutover) :2026-12-21, 2027-01-03
+    section AIRise-ai-fabric-inspection
+    Project scope definition & AIRISE initialisation report review :done, 2026-03-09, 2026-03-09
+    Setup repository structure and KF-CPTO kanban integration :done, 2026-03-09, 2026-03-09
+    Define system architecture edge (Jetson) + cloud (MinIO/NiFi/Spark) :crit, 2026-03-09, 2026-03-11
+    Define streaming architecture — Plan B (Async Playback) selectat ca variantă recomandată :crit, 2026-03-10, 2026-03-10
+    (BLOCKER) Audit dataset existent — evaluare volum și calitate imagini defecte reale disponibile :crit, 2026-03-11, 2026-03-11
+    Design data ingestion pipeline Apache NiFi + MinIO on-premise :crit, 2026-03-11, 2026-03-12
+    (BLOCKER) Strategie generare date sintetice — prioritizare GAN/augmentare pentru suplimentare dataset :crit, 2026-03-12, 2026-03-13
+    Design data preprocessing pipeline Apache Spark + augmentation strategy :crit, 2026-03-13, 2026-03-14
+    Define defect taxonomy and annotation schema (Damage, Hole, Knot, Line, Oil Stain, Stain, Wrinkle) :crit, 2026-03-13, 2026-03-13
+    Define CNN/YOLO model architecture for fabric defect detection :crit, 2026-03-13, 2026-03-17
+    Backend FastAPI playback API (Plan B) — endpoints for defect results + annotations :crit, 2026-03-16, 2026-03-18
+    Frontend PlaybackAnnotator UI — defect review and validation interface :crit, 2026-03-16, 2026-03-18
+    Integrate model explainability Grad-CAM + SHAP pentru vizualizare decizii AI :crit, 2026-03-17, 2026-03-18
+    Backend PostgreSQL/Supabase schema for defect events and annotations :crit, 2026-03-19, 2026-03-20
+    Frontend TextileViewer component — live WebRTC defect stream view :crit, 2026-03-19, 2026-03-20
+    Jetson setup YOLO multiprocess detector (4x parallel, 100+ FPS target) :crit, 2026-03-19, 2026-03-20
+    Define S3 storage strategy MinIO on-premise (active) + Cloudflare R2 (archive) :crit, 2026-03-20, 2026-03-20
+    Define ELK stack monitoring model prediction logs + feedback loop :crit, 2026-03-20, 2026-03-20
+    Create architecture diagrams and technical documentation :crit, 2026-03-20, 2026-03-20
+    Prepare KPI tracking dashboard (F1 ≥70-80%, inferență ≤1000ms, deșeuri -20%) :crit, 2026-03-21, 2026-03-21
+    Define model retraining pipeline (target retraining within 48h of new data) :crit, 2026-03-23, 2026-03-24
+    Prepare dissemination content LinkedIn technical deep-dive post (mid-implementation) :crit, 2026-03-25, 2026-03-25
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>

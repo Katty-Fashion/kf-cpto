@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-10-26T01:04:25.057483
+generated: 2026-10-26T17:57:27.247033
 ---
 
 # KF Team — Dependency Graph
@@ -23,6 +23,7 @@ graph LR
     kf_modular_demo["Kf Modular Demo"]:::saas
     kf_clo3d_plugin["Kf Clo3D Plugin"]:::saas
     n_3D_ODIN_ELAIS["3D Odin Elais"]:::eu
+    AIRise_ai_fabric_inspection["Airise Ai Fabric Inspection"]:::eu
     ai_rise_options --> R3_AAS
     R3_AAS --> kf_be_platform
     kf_be_platform --> kf_fe_platform

@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-10-26T01:04:25.058046
+generated: 2026-10-26T17:57:27.247675
 ---
 
 # KF Team — Agile Sprints
@@ -72,6 +72,10 @@ gantt
     S12 :done, 2026-10-05, 2026-10-16
     S13 :active, 2026-10-19, 2026-10-30
     S14 :2026-11-02, 2026-11-13
+    section AIRise-ai-fabric-inspection
+    S0 :done, 2026-02-23, 2026-03-06
+    S1 :done, 2026-03-09, 2026-03-20
+    S2 :done, 2026-03-23, 2026-04-03
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
@@ -160,4 +164,5 @@ gantt
 | kf-modular-demo | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
 | kf-clo3d-plugin | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
 | 3D-ODIN-ELAIS | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
-| **TOTAL** | | | **358.5d** | **65.7%** |
+| AIRise-ai-fabric-inspection | S1 | 2026-03-09 → 2026-03-20 | 38.0d | 5.3% |
+| **TOTAL** | | | **396.5d** | **59.9%** |
