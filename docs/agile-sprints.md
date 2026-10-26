@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-10-26T01:04:25.058046
+generated: 2026-10-26T01:22:30.567550
 ---
 
 # KF Team — Agile Sprints
@@ -40,38 +40,6 @@ gantt
     S8 :done, 2026-08-10, 2026-08-21
     S9 :done, 2026-08-24, 2026-09-04
     S10 :done, 2026-09-07, 2026-09-18
-    section kf-infra-base
-    S12 :done, 2026-10-05, 2026-10-16
-    S13 :active, 2026-10-19, 2026-10-30
-    S14 :2026-11-02, 2026-11-13
-    section kf-idp-stack
-    S12 :done, 2026-10-05, 2026-10-16
-    S13 :active, 2026-10-19, 2026-10-30
-    S14 :2026-11-02, 2026-11-13
-    section kf-vault
-    S12 :done, 2026-10-05, 2026-10-16
-    S13 :active, 2026-10-19, 2026-10-30
-    S14 :2026-11-02, 2026-11-13
-    section kf-wiki
-    S12 :done, 2026-10-05, 2026-10-16
-    S13 :active, 2026-10-19, 2026-10-30
-    S14 :2026-11-02, 2026-11-13
-    section kf-platform-modules
-    S12 :done, 2026-10-05, 2026-10-16
-    S13 :active, 2026-10-19, 2026-10-30
-    S14 :2026-11-02, 2026-11-13
-    section kf-modular-demo
-    S12 :done, 2026-10-05, 2026-10-16
-    S13 :active, 2026-10-19, 2026-10-30
-    S14 :2026-11-02, 2026-11-13
-    section kf-clo3d-plugin
-    S12 :done, 2026-10-05, 2026-10-16
-    S13 :active, 2026-10-19, 2026-10-30
-    S14 :2026-11-02, 2026-11-13
-    section 3D-ODIN-ELAIS
-    S12 :done, 2026-10-05, 2026-10-16
-    S13 :active, 2026-10-19, 2026-10-30
-    S14 :2026-11-02, 2026-11-13
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
@@ -152,12 +120,4 @@ gantt
 | kf-fe-platform | S9 | 2026-08-24 → 2026-09-04 | 62.0d | 83.9% |
 | kf-platform | S9 | 2026-08-24 → 2026-09-04 | 167.0d | 58.1% |
 | tech_brainstorming | S9 | 2026-08-24 → 2026-09-04 | 0d | 0% |
-| kf-infra-base | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
-| kf-idp-stack | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
-| kf-vault | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
-| kf-wiki | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
-| kf-platform-modules | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
-| kf-modular-demo | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
-| kf-clo3d-plugin | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
-| 3D-ODIN-ELAIS | S13 | 2026-10-19 → 2026-10-30 | 0d | 0% |
 | **TOTAL** | | | **358.5d** | **65.7%** |

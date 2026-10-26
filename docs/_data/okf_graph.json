@@ -57,13 +57,6 @@
       "url": "https://github.com/katty-fashion/kf-cpto/blob/master/docs/okf/milestones/m6-production-cutover.md"
     },
     {
-      "id": "/projects/3d-odin-elais.md",
-      "label": "3D-ODIN-ELAIS",
-      "type": "Project",
-      "status": null,
-      "url": "https://katty-fashion.github.io/kf-cpto/projects/3d-odin-elais/"
-    },
-    {
       "id": "/projects/ai-rise-options.md",
       "label": "ai-rise-options",
       "type": "Project",
@@ -78,13 +71,6 @@
       "url": "https://katty-fashion.github.io/kf-cpto/projects/kf-be-platform/"
     },
     {
-      "id": "/projects/kf-clo3d-plugin.md",
-      "label": "kf-clo3d-plugin",
-      "type": "Project",
-      "status": null,
-      "url": "https://katty-fashion.github.io/kf-cpto/projects/kf-clo3d-plugin/"
-    },
-    {
       "id": "/projects/kf-fe-platform.md",
       "label": "kf-fe-platform",
       "type": "Project",
@@ -92,53 +78,11 @@
       "url": "https://katty-fashion.github.io/kf-cpto/projects/kf-fe-platform/"
     },
     {
-      "id": "/projects/kf-idp-stack.md",
-      "label": "kf-idp-stack",
-      "type": "Project",
-      "status": null,
-      "url": "https://katty-fashion.github.io/kf-cpto/projects/kf-idp-stack/"
-    },
-    {
-      "id": "/projects/kf-infra-base.md",
-      "label": "kf-infra-base",
-      "type": "Project",
-      "status": null,
-      "url": "https://katty-fashion.github.io/kf-cpto/projects/kf-infra-base/"
-    },
-    {
-      "id": "/projects/kf-modular-demo.md",
-      "label": "kf-modular-demo",
-      "type": "Project",
-      "status": null,
-      "url": "https://katty-fashion.github.io/kf-cpto/projects/kf-modular-demo/"
-    },
-    {
-      "id": "/projects/kf-platform-modules.md",
-      "label": "kf-platform-modules",
-      "type": "Project",
-      "status": null,
-      "url": "https://katty-fashion.github.io/kf-cpto/projects/kf-platform-modules/"
-    },
-    {
       "id": "/projects/kf-platform.md",
       "label": "kf-platform",
       "type": "Project",
       "status": null,
       "url": "https://katty-fashion.github.io/kf-cpto/projects/kf-platform/"
-    },
-    {
-      "id": "/projects/kf-vault.md",
-      "label": "kf-vault",
-      "type": "Project",
-      "status": null,
-      "url": "https://katty-fashion.github.io/kf-cpto/projects/kf-vault/"
-    },
-    {
-      "id": "/projects/kf-wiki.md",
-      "label": "kf-wiki",
-      "type": "Project",
-      "status": null,
-      "url": "https://katty-fashion.github.io/kf-cpto/projects/kf-wiki/"
     },
     {
       "id": "/projects/r3-aas.md",
@@ -764,11 +708,6 @@
       "kind": "contains"
     },
     {
-      "source": "/projects/kf-clo3d-plugin.md",
-      "target": "/projects/kf-platform.md",
-      "kind": "depends"
-    },
-    {
       "source": "/projects/kf-fe-platform.md",
       "target": "/projects/kf-be-platform.md",
       "kind": "depends"
@@ -822,21 +761,6 @@
       "source": "/projects/kf-fe-platform.md",
       "target": "/tasks/kf-fe-platform/f5-s15-i18n-l10n.md",
       "kind": "contains"
-    },
-    {
-      "source": "/projects/kf-idp-stack.md",
-      "target": "/projects/kf-infra-base.md",
-      "kind": "depends"
-    },
-    {
-      "source": "/projects/kf-modular-demo.md",
-      "target": "/projects/kf-platform-modules.md",
-      "kind": "depends"
-    },
-    {
-      "source": "/projects/kf-platform-modules.md",
-      "target": "/projects/kf-platform.md",
-      "kind": "depends"
     },
     {
       "source": "/projects/kf-platform.md",
@@ -942,16 +866,6 @@
       "source": "/projects/kf-platform.md",
       "target": "/tasks/kf-platform/f6-s17-final-qa-cutover.md",
       "kind": "contains"
-    },
-    {
-      "source": "/projects/kf-vault.md",
-      "target": "/projects/kf-infra-base.md",
-      "kind": "depends"
-    },
-    {
-      "source": "/projects/kf-wiki.md",
-      "target": "/projects/kf-infra-base.md",
-      "kind": "depends"
     },
     {
       "source": "/projects/r3-aas.md",
