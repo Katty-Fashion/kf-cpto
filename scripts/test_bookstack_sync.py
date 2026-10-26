@@ -34,6 +34,14 @@ print("bs.sha:")
 check("trailing whitespace is ignored (BookStack trims on save)", bs.sha("abc\n") == bs.sha("abc"))
 check("different content hashes differently", bs.sha("abc") != bs.sha("abd"))
 
+print("bs.book_name_for / is_managed_book_name:")
+check("shelf number prefix is dropped from the book title",
+      bs.book_name_for("2601. KF-Platform") == "KF-Platform · Delivery Dashboard")
+check("renamed per-shelf books are recognised as managed",
+      bs.is_managed_book_name("R3Group · Delivery Dashboard"))
+check("legacy plain name is still recognised", bs.is_managed_book_name("Delivery Dashboard"))
+check("hand-curated books are never matched", not bs.is_managed_book_name("Module Specifications"))
+
 print("bs.convert_project_page:")
 PAGE = """---
 title: demo
