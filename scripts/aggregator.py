@@ -22,6 +22,7 @@ from utils import (
     DATA_DIR,
     DOCS_DIR,
     GANTT_DATA_FILE,
+    GIT_ACTIVITY_FILE,
     LOE_DATA_FILE,
     ORG,
     EDIT_URL_TEMPLATE,
@@ -825,6 +826,44 @@ def build_loe_rows(data: dict) -> list[dict]:
     return rows
 
 
+def build_activity_rows(activity: dict, rows: list[dict]) -> list[dict]:
+    """Git-derived LOE rows for repos with no planned effort in their kanban.
+
+    Planned (kanban) and actual (git) effort share the effort_days column, so a
+    repo that already carries planned effort is skipped — never summed twice.
+    Same row contract as build_loe_rows(); sprint "Activity", assignee "Team".
+    """
+    planned = {r["project"] for r in rows if r.get("effort_days", 0) > 0}
+    window = f"{activity.get('since', '?')}..{activity.get('until', '?')}"
+    out = []
+    for entry in activity.get("repos", []):
+        repo = entry.get("repo", "")
+        days = float(entry.get("person_days", 0) or 0)
+        if not repo or days <= 0 or repo in planned:
+            continue
+        out.append({
+            "project": repo,
+            "sprint": "Activity",
+            "task": f"Git activity {window} (conservative floor)",
+            "assignee": "Team",
+            "effort_days": days,
+            "start": activity.get("since", ""),
+            "end": activity.get("until", ""),
+            "status": "Activity",
+        })
+    return out
+
+
+def load_git_activity() -> dict:
+    """Read the committed git_activity.yml; absent or malformed -> {} (additive input)."""
+    if not GIT_ACTIVITY_FILE.exists():
+        return {}
+    try:
+        return yaml.safe_load(GIT_ACTIVITY_FILE.read_text()) or {}
+    except yaml.YAMLError:
+        return {}
+
+
 def write_loe_yaml(rows: list[dict]) -> None:
     """Persist canonical LOE data for downstream consumers (Sheets export, etc.)."""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -1101,7 +1140,12 @@ def main():
         print(f"Refreshed {augmented_count} augmented page(s)")
 
     # Write canonical LOE data for downstream consumers (Sheets export reads this)
-    loe_rows = build_loe_rows(data)
+    planned_rows = build_loe_rows(data)  # kanban tasks only; OKF models these as tasks
+    loe_rows = list(planned_rows)
+    activity_rows = build_activity_rows(load_git_activity(), planned_rows)
+    if activity_rows:
+        print(f"Added {len(activity_rows)} git-activity row(s) for repos without planned effort")
+    loe_rows += activity_rows
     write_loe_yaml(loe_rows)
     print(f"Wrote canonical LOE data: {len(loe_rows)} rows -> {LOE_DATA_FILE}")
 
@@ -1111,7 +1155,7 @@ def main():
     print(f"Wrote canonical Gantt data: {len(gantt_rows)} rows -> {GANTT_DATA_FILE}")
 
     # Generate OKF v0.1 bundle (additive — pure transform of already-parsed data)
-    okf_file_count = generate_okf_bundle(data, loe_rows, _load_calendar(), DOCS_DIR)
+    okf_file_count = generate_okf_bundle(data, planned_rows, _load_calendar(), DOCS_DIR)
     print(f"Generated OKF bundle: {okf_file_count} files -> docs/okf/")
 
     # Update aggregator section of sync_status (sheets_export section is written
@@ -1121,7 +1165,7 @@ def main():
         last_run_at=now_iso(),
         last_run_status="ok",
         source_repo_count=len(data),
-        task_count=len(loe_rows),
+        task_count=len(planned_rows),
         okf_file_count=okf_file_count,
         errors=[],
     )

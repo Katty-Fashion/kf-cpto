@@ -41,6 +41,16 @@ TRACKED_REPOS = [
     {"name": "R3-AAS",             "branch": "main"},
     {"name": "ai-rise-options",    "branch": "master"},
     {"name": "tech_brainstorming", "branch": "main"},
+    {"name": "kf-infra-base",      "branch": "master"},
+    {"name": "kf-idp-stack",       "branch": "master"},
+    {"name": "kf-vault",           "branch": "main"},
+    {"name": "kf-platform-modules", "branch": "master"},
+    {"name": "kf-modular-demo",    "branch": "master"},
+    {"name": "order-service",      "branch": "master"},
+    {"name": "kf-clo3d-plugin",    "branch": "main"},
+    {"name": "3D-ODIN-ELAIS",      "branch": "master"},
+    {"name": "kf-wiki",            "branch": "master"},
+    {"name": "AIRise-ai-fabric-inspection", "branch": "main"},
 ]
 
 

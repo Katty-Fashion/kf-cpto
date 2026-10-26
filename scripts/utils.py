@@ -27,6 +27,8 @@ DISCOVERED_FILE = REPOS_DIR / "discovered.txt"
 # This is the contract that lets the Sheets export be a strictly downstream consumer.
 LOE_DATA_FILE = DATA_DIR / "loe.yml"
 GANTT_DATA_FILE = DATA_DIR / "gantt.yml"
+# Local-only producer output (scripts/git_activity.py); committed so CI stays self-contained.
+GIT_ACTIVITY_FILE = DATA_DIR / "git_activity.yml"
 
 # Surfaced on the dashboard via the sidebar badge + index banner.
 STATUS_FILE = DATA_DIR / "sync_status.yml"
