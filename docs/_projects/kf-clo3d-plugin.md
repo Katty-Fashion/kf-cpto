@@ -4,7 +4,7 @@ description: "CLO3D plugin feeding garment data into the Katty Fashion platform.
 project: kf-clo3d-plugin
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-clo3d-plugin/edit/main/kanban.md"
-generated: 2026-10-26T17:57:27.280109
+generated: 2026-10-26T18:10:29.005042
 ---
 
 # kf-clo3d-plugin

@@ -1,6 +1,6 @@
 ---
 title: Dependency Graph
-generated: 2026-10-26T17:57:27.247033
+generated: 2026-10-26T18:10:28.672875
 ---
 
 # KF Team — Dependency Graph
@@ -29,6 +29,12 @@ graph LR
     kf_be_platform --> kf_fe_platform
     kf_fe_platform --> kf_platform
     kf_be_platform --> kf_platform
+    kf_infra_base --> kf_idp_stack
+    kf_infra_base --> kf_vault
+    kf_infra_base --> kf_wiki
+    kf_platform --> kf_platform_modules
+    kf_platform_modules --> kf_modular_demo
+    kf_platform --> kf_clo3d_plugin
 
     classDef saas fill:#4CAF50,color:#fff
     classDef eu fill:#2196F3,color:#fff

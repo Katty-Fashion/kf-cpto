@@ -4,7 +4,7 @@ description: "Identity providers for *.idp.katty-fashion.ro (Keycloak), behind t
 project: kf-idp-stack
 type: internal
 edit_url: "https://github.com/katty-fashion/kf-idp-stack/edit/master/kanban.md"
-generated: 2026-10-26T17:57:27.278467
+generated: 2026-10-26T18:10:28.985971
 ---
 
 # kf-idp-stack
