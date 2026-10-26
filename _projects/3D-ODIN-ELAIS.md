@@ -4,7 +4,7 @@ description: "ODIN: browser-based 3D co-creation tool for apparel (GLB, DXF mark
 project: 3D-ODIN-ELAIS
 type: eu-project
 edit_url: "https://github.com/katty-fashion/3D-ODIN-ELAIS/edit/master/kanban.md"
-generated: 2026-10-26T17:57:27.280383
+generated: 2026-10-26T18:10:29.039092
 ---
 
 # 3D-ODIN-ELAIS

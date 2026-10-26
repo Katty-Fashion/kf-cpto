@@ -4,7 +4,7 @@ description: "Standalone application Vault holding IdP and BaSyx client secrets,
 project: kf-vault
 type: internal
 edit_url: "https://github.com/katty-fashion/kf-vault/edit/main/kanban.md"
-generated: 2026-10-26T17:57:27.278813
+generated: 2026-10-26T18:10:28.986358
 ---
 
 # kf-vault

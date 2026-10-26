@@ -4,7 +4,7 @@ description: "KF-WIKI: Otter Wiki branded for Katty Fashion on wiki.katty-fashio
 project: kf-wiki
 type: internal
 edit_url: "https://github.com/katty-fashion/kf-wiki/edit/master/kanban.md"
-generated: 2026-10-26T17:57:27.279129
+generated: 2026-10-26T18:10:28.986993
 ---
 
 # kf-wiki

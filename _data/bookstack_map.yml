@@ -16,7 +16,7 @@ shelves:
       - {name: "Migration Gantt", source: migration-gantt.md, block: 0}
       - {name: "Dependencies", source: dependency-graph.md, block: 0}
   "2602. R3Group":
-    repos: [R3-AAS]
+    repos: [R3-AAS, tui-bridge]
   "2603. AiRise":
     repos: [ai-rise-options, AIRise-ai-fabric-inspection]
   # Own shelves (created with --create-shelves):
@@ -26,3 +26,7 @@ shelves:
   "2607. KF-Wiki":
     description: "KF-WIKI - delivery dashboard"
     repos: [kf-wiki]
+  "2608. Tech Brainstorming":
+    description: "Tech brainstorming - delivery dashboard"
+    repos: [tech_brainstorming]
+# Deliberately not published: kf-cpto (the hub that pushes the data), kf-dashboard and order-service (legacy).
