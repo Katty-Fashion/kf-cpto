@@ -7,7 +7,7 @@ sources the GitHub Pages site is built from — docs/_projects/*.md, docs/_data/
 loe.yml and git_activity.yml — and publishes them under each project's shelf:
 
     shelf (e.g. "2601. KF-Platform")
-      └─ book "Delivery Dashboard"          (managed by this script)
+      └─ book "KF-Platform · Delivery Dashboard"   (managed by this script)
            ├─ page "Overview"               (roll-up for the shelf's repos)
            ├─ page "Migration Gantt" ...    (org-level charts, where configured)
            └─ chapter "<repo>"
@@ -72,6 +72,17 @@ CHROME = os.environ.get("CHROME_PATH", "/Applications/Google Chrome.app/Contents
 USER_AGENT = "curl/8.4.0"  # Cloudflare in front of the wiki rejects Python's default UA
 
 _MERMAID_RE = re.compile(r"```mermaid\n(.*?)```", re.S)
+_SHELF_NUMBER_RE = re.compile(r"^\d+\.\s*")
+
+
+def book_name(shelf_name: str) -> str:
+    """'2601. KF-Platform' -> 'KF-Platform · Delivery Dashboard' (unique per shelf)."""
+    label = _SHELF_NUMBER_RE.sub("", shelf_name).strip() or shelf_name
+    return f"{label} · {BOOK_SUFFIX}"
+
+
+def is_managed_book_name(name: str) -> bool:
+    return name == LEGACY_BOOK_NAME or name.endswith(f" · {BOOK_SUFFIX}")
 
 
 # --------------------------------------------------------------------------- #
@@ -319,11 +330,12 @@ class Sync:
             "shelves_before": {},
             "created": {"shelves": [], "books": [], "chapters": [], "pages": [], "images": []},
             "updated": [],
+            "renamed": [],
         }
 
     def save_manifest(self) -> None:
         m = self.manifest
-        if not self.apply or not (any(m["created"].values()) or m["updated"]):
+        if not self.apply or not (any(m["created"].values()) or m["updated"] or m["renamed"]):
             return
         MANIFEST_DIR.mkdir(parents=True, exist_ok=True)
         path = MANIFEST_DIR / f"bookstack-{m['run_id']}.json"
@@ -338,6 +350,7 @@ class Sync:
 
     def ensure_book(self, shelf: dict) -> dict | None:
         """The managed book on THIS shelf (never a same-named book on another shelf)."""
+        name = book_name(shelf["name"])
         if shelf["id"] is None:  # dry-run: shelf not created yet
             print(f"[PLAN] create book '{book_name_for(shelf['name'])}' on new shelf '{shelf['name']}'")
             return None
@@ -499,6 +512,9 @@ def rollback(api: BookStack, run_id: str, apply: bool, force: bool) -> int:
             done["skipped"] += 1
             continue
         act(f"delete book '{bk['name']}'", lambda bk=bk: api.call("DELETE", f"books/{bk['id']}"))
+    for rn in reversed(m.get("renamed", [])):
+        act(f"restore book name '{rn['to']}' -> '{rn['from']}'", lambda rn=rn: api.call(
+            "PUT", f"books/{rn['id']}", {"name": rn["from"]}))
     for shelf_id, before in m["shelves_before"].items():  # detach only what this run attached
         current = api.call("GET", f"shelves/{shelf_id}").get("books", [])
         keep = [b["id"] for b in current if b["id"] in before or not is_managed_book_name(b["name"])]
