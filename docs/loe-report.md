@@ -1,6 +1,6 @@
 ---
 title: LOE Report
-generated: 2026-09-11T12:38:08.320101
+generated: 2026-10-26T01:04:25.057034
 ---
 
 # KF Team — Level of Effort Report
@@ -17,4 +17,12 @@ generated: 2026-09-11T12:38:08.320101
 | kf-fe-platform | S9 | 62.0d | 52.0d | 10.0d |
 | kf-platform | S9 | 167.0d | 97.0d | 70.0d |
 | tech_brainstorming | S9 | 0d | 0d | 0d |
+| kf-infra-base | S13 | 0d | 0d | 0d |
+| kf-idp-stack | S13 | 0d | 0d | 0d |
+| kf-vault | S13 | 0d | 0d | 0d |
+| kf-wiki | S13 | 0d | 0d | 0d |
+| kf-platform-modules | S13 | 0d | 0d | 0d |
+| kf-modular-demo | S13 | 0d | 0d | 0d |
+| kf-clo3d-plugin | S13 | 0d | 0d | 0d |
+| 3D-ODIN-ELAIS | S13 | 0d | 0d | 0d |
 | **Total** | | **358.5d** | **235.5d** | **123.0d** |

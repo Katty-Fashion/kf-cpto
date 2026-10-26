@@ -197,14 +197,14 @@ gantt
     (F4.S10.Planner) (FE+BE) :done, f4t2, 2026-09-07, 25d
     (F4.S11.Batches & Assignment) (FE+BE) :done, f4t3, 2026-09-21, 20d
     (F4.S11.Inventory & Reception) (FE+BE) :done, f4t4, 2026-09-28, 15d
-    (F4.S11.Operator View) (FE+BE) :f4t5, 2026-09-28, 20d
+    (F4.S11.Operator View) (FE+BE) :crit, f4t5, 2026-09-28, 20d
     (F4.S12.QC Module) (FE+BE) :done, f4t6, 2026-10-05, 15d
     (F4.S12.Reports & Cutting) (FE+BE) :done, f4t7, 2026-10-12, 10d
 
     section Faza 5 — ALADIN Features Noi
-    (F5.S11.DPP Module (T2.4)) (FE+BE) :f5t1, 2026-09-21, 25d
-    (F5.S12.Public DPP / GS1) (FE+BE) :f5t2, 2026-10-12, 15d
-    (F5.S13.EPCIS Export) (BE) :f5t3, 2026-10-19, 15d
+    (F5.S11.DPP Module (T2.4)) (FE+BE) :crit, f5t1, 2026-09-21, 25d
+    (F5.S12.Public DPP / GS1) (FE+BE) :crit, f5t2, 2026-10-12, 15d
+    (F5.S13.EPCIS Export) (BE) :crit, f5t3, 2026-10-19, 15d
     (F5.S13.LLM Ecodesign (WP4)) (BE) :f5t4, 2026-10-26, 15d
     (F5.S14.IoT Adapter (T2.5)) (BE) :f5t5, 2026-11-02, 15d
     (F5.S14.Garment Configurator (T2.3)) (FE) :f5t6, 2026-11-09, 15d

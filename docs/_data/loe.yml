@@ -1,5 +1,5 @@
-generated_at: '2026-09-11T12:38:08Z'
-row_count: 69
+generated_at: '2026-10-26T01:04:25Z'
+row_count: 79
 rows:
 - project: R3-AAS
   sprint: S9
@@ -553,3 +553,83 @@ rows:
   start: '2026-12-21'
   end: '2027-01-03'
   status: Todo
+- project: 3D-ODIN-ELAIS
+  sprint: Activity
+  task: Git activity 2026-07-25..2026-10-26 (conservative floor)
+  assignee: Team
+  effort_days: 7.9
+  start: '2026-07-25'
+  end: '2026-10-26'
+  status: Activity
+- project: ai-rise-options
+  sprint: Activity
+  task: Git activity 2026-07-25..2026-10-26 (conservative floor)
+  assignee: Team
+  effort_days: 0.2
+  start: '2026-07-25'
+  end: '2026-10-26'
+  status: Activity
+- project: kf-clo3d-plugin
+  sprint: Activity
+  task: Git activity 2026-07-25..2026-10-26 (conservative floor)
+  assignee: Team
+  effort_days: 2.0
+  start: '2026-07-25'
+  end: '2026-10-26'
+  status: Activity
+- project: kf-idp-stack
+  sprint: Activity
+  task: Git activity 2026-07-25..2026-10-26 (conservative floor)
+  assignee: Team
+  effort_days: 0.9
+  start: '2026-07-25'
+  end: '2026-10-26'
+  status: Activity
+- project: kf-infra-base
+  sprint: Activity
+  task: Git activity 2026-07-25..2026-10-26 (conservative floor)
+  assignee: Team
+  effort_days: 0.3
+  start: '2026-07-25'
+  end: '2026-10-26'
+  status: Activity
+- project: kf-modular-demo
+  sprint: Activity
+  task: Git activity 2026-07-25..2026-10-26 (conservative floor)
+  assignee: Team
+  effort_days: 2.5
+  start: '2026-07-25'
+  end: '2026-10-26'
+  status: Activity
+- project: kf-platform-modules
+  sprint: Activity
+  task: Git activity 2026-07-25..2026-10-26 (conservative floor)
+  assignee: Team
+  effort_days: 6.0
+  start: '2026-07-25'
+  end: '2026-10-26'
+  status: Activity
+- project: kf-vault
+  sprint: Activity
+  task: Git activity 2026-07-25..2026-10-26 (conservative floor)
+  assignee: Team
+  effort_days: 0.8
+  start: '2026-07-25'
+  end: '2026-10-26'
+  status: Activity
+- project: kf-wiki
+  sprint: Activity
+  task: Git activity 2026-07-25..2026-10-26 (conservative floor)
+  assignee: Team
+  effort_days: 1.2
+  start: '2026-07-25'
+  end: '2026-10-26'
+  status: Activity
+- project: tech_brainstorming
+  sprint: Activity
+  task: Git activity 2026-07-25..2026-10-26 (conservative floor)
+  assignee: Team
+  effort_days: 0.2
+  start: '2026-07-25'
+  end: '2026-10-26'
+  status: Activity
