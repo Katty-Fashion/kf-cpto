@@ -17,13 +17,4 @@ generated: 2026-10-26T18:10:28.670856
 | kf-fe-platform | S9 | 62.0d | 52.0d | 10.0d |
 | kf-platform | S9 | 167.0d | 97.0d | 70.0d |
 | tech_brainstorming | S9 | 0d | 0d | 0d |
-| kf-infra-base | S13 | 0d | 0d | 0d |
-| kf-idp-stack | S13 | 0d | 0d | 0d |
-| kf-vault | S13 | 0d | 0d | 0d |
-| kf-wiki | S13 | 0d | 0d | 0d |
-| kf-platform-modules | S13 | 0d | 0d | 0d |
-| kf-modular-demo | S13 | 0d | 0d | 0d |
-| kf-clo3d-plugin | S13 | 0d | 0d | 0d |
-| 3D-ODIN-ELAIS | S13 | 0d | 0d | 0d |
-| AIRise-ai-fabric-inspection | S1 | 38.0d | 2.0d | 36.0d |
-| **Total** | | **396.5d** | **237.5d** | **159.0d** |
+| **Total** | | **358.5d** | **235.5d** | **123.0d** |
