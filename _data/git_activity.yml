@@ -1,0 +1,47 @@
+generated_at: '2026-10-25T21:49:00Z'
+since: '2026-07-25'
+until: '2026-10-26'
+method: 'conservative floor: churn estimate, 8h/contributor/day cap, docs excluded'
+repos:
+- repo: 3D-ODIN-ELAIS
+  commits: 29
+  person_days: 7.9
+- repo: R3-AAS
+  commits: 162
+  person_days: 18.0
+- repo: ai-rise-options
+  commits: 1
+  person_days: 0.2
+- repo: kf-be-platform
+  commits: 1984
+  person_days: 60.3
+- repo: kf-clo3d-plugin
+  commits: 28
+  person_days: 2.0
+- repo: kf-fe-platform
+  commits: 1541
+  person_days: 56.2
+- repo: kf-idp-stack
+  commits: 4
+  person_days: 0.9
+- repo: kf-infra-base
+  commits: 2
+  person_days: 0.3
+- repo: kf-modular-demo
+  commits: 20
+  person_days: 2.5
+- repo: kf-platform
+  commits: 3169
+  person_days: 67.1
+- repo: kf-platform-modules
+  commits: 164
+  person_days: 6.0
+- repo: kf-vault
+  commits: 6
+  person_days: 0.8
+- repo: kf-wiki
+  commits: 10
+  person_days: 1.2
+- repo: tech_brainstorming
+  commits: 1
+  person_days: 0.2

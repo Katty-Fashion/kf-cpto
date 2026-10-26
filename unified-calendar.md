@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-10-19T04:18:53.243845
+generated: 2026-10-26T01:22:30.558623
 ---
 
 # KF Team — Unified Calendar
@@ -88,7 +88,7 @@ gantt
     (F2.S3.IDP + SMTP) :done, 2026-06-08, 2026-06-28
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
-    (F5.S13.EPCIS Export) :2026-10-19, 2026-11-08
+    (F5.S13.EPCIS Export) :crit, 2026-10-19, 2026-11-08
     (F5.S13.LLM Ecodesign (WP4)) :2026-10-26, 2026-11-15
     (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
     (F5.S15.Notifications) :done, 2026-11-23, 2026-12-06
@@ -163,7 +163,7 @@ gantt
     excludes weekends
 
     section kf-be-platform
-    (F5.S13.EPCIS Export) :2026-10-19, 2026-11-08
+    (F5.S13.EPCIS Export) :crit, 2026-10-19, 2026-11-08
     (F5.S13.LLM Ecodesign (WP4)) :2026-10-26, 2026-11-15
     section kf-platform
     (F4.S11.Operator View) :crit, 2026-09-28, 2026-10-25
@@ -185,7 +185,7 @@ gantt
     excludes weekends
 
     section kf-be-platform
-    (F5.S13.EPCIS Export) :2026-10-19, 2026-11-08
+    (F5.S13.EPCIS Export) :crit, 2026-10-19, 2026-11-08
     (F5.S13.LLM Ecodesign (WP4)) :2026-10-26, 2026-11-15
     (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
     section kf-fe-platform
