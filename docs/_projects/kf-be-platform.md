@@ -4,7 +4,7 @@ description: "SaaS Product"
 project: kf-be-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-be-platform/edit/main/kanban.md"
-generated: 2026-10-26T19:57:10.827033
+generated: 2026-10-27T01:03:31.771627
 ---
 
 # kf-be-platform
@@ -91,7 +91,7 @@ gantt
     (F2.S3.RBAC System) :done, 2026-06-08, 2026-07-05
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
     (F5.S13.EPCIS Export) :crit, 2026-10-19, 2026-11-08
-    (F5.S13.LLM Ecodesign (WP4)) :2026-10-26, 2026-11-15
+    (F5.S13.LLM Ecodesign (WP4)) :crit, 2026-10-26, 2026-11-15
     (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
     (F5.S15.Notifications) :done, 2026-11-23, 2026-12-06
     (F6.S17.Data Migration Scripts) :2026-12-14, 2026-12-27
