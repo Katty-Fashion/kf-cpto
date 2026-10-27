@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-10-26T23:54:15.325750
+generated: 2026-10-27T01:03:31.763684
 ---
 
 # KF Team — Agile Sprints
@@ -80,7 +80,7 @@ gantt
 
     section kf-be-platform
     (F5.S13.EPCIS Export) :crit, 2026-10-19, 2026-11-08
-    (F5.S13.LLM Ecodesign (WP4)) :2026-10-26, 2026-11-15
+    (F5.S13.LLM Ecodesign (WP4)) :crit, 2026-10-26, 2026-11-15
     section kf-platform
     (F4.S11.Operator View) :crit, 2026-09-28, 2026-10-25
     (F4.S12.QC Module) :done, 2026-10-05, 2026-10-25
@@ -102,7 +102,7 @@ gantt
 
     section kf-be-platform
     (F5.S13.EPCIS Export) :crit, 2026-10-19, 2026-11-08
-    (F5.S13.LLM Ecodesign (WP4)) :2026-10-26, 2026-11-15
+    (F5.S13.LLM Ecodesign (WP4)) :crit, 2026-10-26, 2026-11-15
     (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
     section kf-fe-platform
     (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
