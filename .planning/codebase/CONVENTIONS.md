@@ -143,7 +143,7 @@ Planning documents use `[LABEL]` text pills instead of emoji icons. Labels inclu
 
 ## Commit Message Standard
 
-Conventional Commits format, enforced by `.claude/agents/gitops-engineer.md`:
+Conventional Commits format, enforced by the `gitops` agent (commits and pushes go through it, see `.claude/commands/commit.md`):
 
 ```
 <type>(<scope>): <description>

@@ -42,4 +42,4 @@ Use ONLY: `git add`, `git commit`, `git push` - nothing else!
 ### Examples
 - `/commit` - Commit only (no deploy)
 
-**IMPORTANT**: The gitops-engineer needs the session state context from session-state-manager to create a meaningful commit message that captures the full scope of work done.
+**IMPORTANT**: The gitops needs the session state context from session-state-manager to create a meaningful commit message that captures the full scope of work done.
