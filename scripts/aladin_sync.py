@@ -31,7 +31,13 @@ Safety (inherited from bookstack_sync.Sync): dry-run by default, rollback manife
 in BookStack are reported and skipped, nothing is ever deleted. The book's permissions
 are set to KF roles only BEFORE any page is written, and checked on every run.
 
+Personas (optional, separate book "ALADIN · Personas & user stories", same KF-only rule):
+    --personas-en / --personas-ro  the full-pack Markdown exports of the 'User Persona extern view'
+    page (buttons ".md EN" / ".md RO"). One chapter per language; each page carries lang and
+    translation tags so the wiki's RO | EN switch links the two versions.
+
 Usage:
+    python scripts/aladin_sync.py --personas-en KF-persona-user-stories-en.md --personas-ro KF-persona-user-stories-ro.md
     python scripts/aladin_sync.py --plan "<dir>/ALADIN_WP2_Action_Plan_v0.8.xlsx" --ga "<dir>/ALADIN-who-does-what.md"
     python scripts/aladin_sync.py ... --apply
 Credentials: BOOKSTACK_URL / BOOKSTACK_TOKEN_ID / BOOKSTACK_TOKEN_SECRET from .env or env.
@@ -587,6 +593,33 @@ def wp_gantt(overview_md: str) -> str:
     return "\n".join(lines)
 
 
+PERSONAS_BOOK = "ALADIN · Personas & user stories"
+PERSONAS_DESC = ("ALADIN personas (P, P0–P8) and their user stories with MoSCoW priority and Given/When/Then "
+                 "acceptance criteria, in English and Romanian. Generated from the 'User Persona extern view' "
+                 "full-pack Markdown export. KF internal. Edit the source page, not these pages.")
+LANG_CHAPTERS = {"en": "English", "ro": "Română"}
+
+
+def persona_sections(md: str) -> list[tuple[str, str, str]]:
+    """Split a full-pack export into (translation key, page name, markdown).
+
+    The H1 + intro + 'Personas' index + 'What changed' become one overview page; every other
+    '## ' section is a page. Keys pair EN and RO pages: persona sections by their ID (p1, p0...),
+    the rest by position, which is identical in both languages because one generator writes both.
+    """
+    head, *parts = re.split(r"^## ", md, flags=re.M)
+    title = re.search(r"^# (.+)$", head, re.M)
+    intro = re.sub(r"^# .*\n", "", head).strip()
+    sections = [(p.partition("\n")[0].strip(), p.partition("\n")[2].strip()) for p in parts]
+    overview = [intro] + [f"## {t}\n\n{b}" for t, b in sections[:2]]
+    out = [("personas-overview", title.group(1).strip() if title else "Overview", "\n\n".join(overview) + "\n")]
+    for i, (t, b) in enumerate(sections[2:], start=2):
+        m = re.match(r"(P\d?)\s+—", t)
+        key = f"persona-{m.group(1).lower()}" if m else f"personas-{i:02d}"
+        out.append((key, t, b + "\n"))
+    return out
+
+
 # --------------------------------------------------------------------------- #
 # Snapshots (outside the repo) and permissions                                 #
 # --------------------------------------------------------------------------- #
@@ -616,16 +649,16 @@ def kf_only_permissions(api: BookStack) -> dict:
             "fallback_permissions": {"inheriting": False, "view": False, "create": False, "update": False, "delete": False}}
 
 
-def ensure_private_book(sync: Sync, shelf: dict) -> dict | None:
+def ensure_private_book(sync: Sync, shelf: dict, name: str = BOOK_NAME, desc: str = BOOK_DESC) -> dict | None:
     api = sync.api
     books = api.call("GET", f"shelves/{shelf['id']}").get("books", [])
-    book = next((b for b in books if b["name"] == BOOK_NAME), None)
+    book = next((b for b in books if b["name"] == name), None)
     wanted = kf_only_permissions(api)
     if book is None:
-        print(f"[PLAN] create book '{BOOK_NAME}' on shelf '{shelf['name']}' (KF roles only)")
+        print(f"[PLAN] create book '{name}' on shelf '{shelf['name']}' (KF roles only)")
         if not sync.apply:
             return None
-        book = api.call("POST", "books", {"name": BOOK_NAME, "description": BOOK_DESC})
+        book = api.call("POST", "books", {"name": name, "description": desc})
         sync.manifest["created"]["books"].append({"id": book["id"], "name": book["name"]})
         api.call("PUT", f"content-permissions/book/{book['id']}", wanted)  # before any page exists
         ids = [b["id"] for b in books]
@@ -648,22 +681,23 @@ def ensure_private_book(sync: Sync, shelf: dict) -> dict | None:
 # Main                                                                         #
 # --------------------------------------------------------------------------- #
 
-def publish(sync: Sync, book, chapter, name: str, markdown: str) -> None:
+def publish(sync: Sync, book, chapter, name: str, markdown: str, tags: list[dict] | None = None) -> None:
     """BookStack shows the page name as the title, so a leading '# ...' line would repeat it."""
     markdown = re.sub(r"\A# [^\n]*\n+", "", markdown)
-    sync.sync_page(book, chapter, name, markdown)
+    sync.sync_page(book, chapter, name, markdown, tags)
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description="Publish the ALADIN WP2 action plan to BookStack (dry-run by default).")
-    ap.add_argument("--plan", required=True, type=Path, help="ALADIN_WP2_Action_Plan_vX.Y.xlsx")
-    ap.add_argument("--ga", type=Path, help="ALADIN-who-does-what.md (GA working view)")
-    ap.add_argument("--shelf", default=SHELF_NAME)
-    ap.add_argument("--today", type=date.fromisoformat, help="override today's date (testing)")
-    ap.add_argument("--apply", action="store_true", help="perform writes (default: dry-run)")
-    args = ap.parse_args()
+def publish_personas(sync: Sync, shelf: dict, packs: dict[str, Path]) -> None:
+    book = ensure_private_book(sync, shelf, PERSONAS_BOOK, PERSONAS_DESC)
+    for lang, path in packs.items():
+        ch = sync.ensure_chapter(book, LANG_CHAPTERS[lang])
+        for key, name, md in persona_sections(path.read_text()):
+            # lang + translation drive the wiki's RO | EN switch (themes/kf/js/kf-lang-switch.js)
+            publish(sync, book, ch, name, md, [{"name": "lang", "value": lang},
+                                               {"name": "translation", "value": key}])
 
-    today = args.today or datetime.now(timezone.utc).date()
+
+def sync_plan(sync: Sync, shelf: dict, args, today: date) -> None:
     plan = parse_plan(args.plan)
     ga_md = args.ga.read_text() if args.ga else None
     cal = load_calendar()
@@ -677,6 +711,47 @@ def main() -> int:
         prior = sorted(folder.glob("plan-v*.json")) if folder.exists() else []
         history = [json.loads(p.read_text()) for p in prior if p.stem != f"plan-{plan['version']}"] + [plan]
 
+    book = ensure_private_book(sync, shelf)
+    publish(sync, book, None, "Overview", overview_page(plan, cal, today))
+    publish(sync, book, None, "Progress & evolution", progress_page(plan, history, today))
+
+    ch = sync.ensure_chapter(book, "Sprint plan")
+    publish(sync, book, ch, "Sprints — previous, current, next", sprint_views_page(plan, cal, today))
+    for name, md in quarter_pages(plan, cal, today):
+        publish(sync, book, ch, name, md)
+
+    ch = sync.ensure_chapter(book, "Gantt")
+    publish(sync, book, ch, "Gantt — GA task windows and gates", gantt_ga_page(plan, ga_md, today))
+    publish(sync, book, ch, "Gantt — every action by task", gantt_tasks_page(plan, cal, today))
+
+    ch = sync.ensure_chapter(book, "Action plan")
+    for name, md in group_pages(plan, today):
+        publish(sync, book, ch, name, md)
+    publish(sync, book, ch, "Partner load", partner_load_page(plan, today))
+    publish(sync, book, ch, "Notes and open points", notes_page(plan))
+    publish(sync, book, ch, "Workbook version log", version_log_page(plan))
+
+    if ga_md:
+        ch = sync.ensure_chapter(book, "Who does what (GA)")
+        for name, md in ga_pages(ga_md, today):
+            publish(sync, book, ch, name, md)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Publish the ALADIN WP2 action plan to BookStack (dry-run by default).")
+    ap.add_argument("--plan", type=Path, help="ALADIN_WP2_Action_Plan_vX.Y.xlsx")
+    ap.add_argument("--personas-en", type=Path, help="full-pack export KF-persona-user-stories-en.md")
+    ap.add_argument("--personas-ro", type=Path, help="full-pack export KF-persona-user-stories-ro.md")
+    ap.add_argument("--ga", type=Path, help="ALADIN-who-does-what.md (GA working view)")
+    ap.add_argument("--shelf", default=SHELF_NAME)
+    ap.add_argument("--today", type=date.fromisoformat, help="override today's date (testing)")
+    ap.add_argument("--apply", action="store_true", help="perform writes (default: dry-run)")
+    args = ap.parse_args()
+    packs = {lang: path for lang, path in (("en", args.personas_en), ("ro", args.personas_ro)) if path}
+    if not args.plan and not packs:
+        ap.error("give --plan and/or --personas-en / --personas-ro")
+
+    today = args.today or datetime.now(timezone.utc).date()
     api = BookStack(load_env())
     sync = Sync(api, args.apply)
     shelf = sync.find("shelves", args.shelf, name=args.shelf)
@@ -684,30 +759,11 @@ def main() -> int:
         print(f"[ERROR] shelf '{args.shelf}' does not exist in BookStack")
         return 1
     try:
-        book = ensure_private_book(sync, shelf)
-        publish(sync, book, None, "Overview", overview_page(plan, cal, today))
-        publish(sync, book, None, "Progress & evolution", progress_page(plan, history, today))
-
-        ch = sync.ensure_chapter(book, "Sprint plan")
-        publish(sync, book, ch, "Sprints — previous, current, next", sprint_views_page(plan, cal, today))
-        for name, md in quarter_pages(plan, cal, today):
-            publish(sync, book, ch, name, md)
-
-        ch = sync.ensure_chapter(book, "Gantt")
-        publish(sync, book, ch, "Gantt — GA task windows and gates", gantt_ga_page(plan, ga_md, today))
-        publish(sync, book, ch, "Gantt — every action by task", gantt_tasks_page(plan, cal, today))
-
-        ch = sync.ensure_chapter(book, "Action plan")
-        for name, md in group_pages(plan, today):
-            publish(sync, book, ch, name, md)
-        publish(sync, book, ch, "Partner load", partner_load_page(plan, today))
-        publish(sync, book, ch, "Notes and open points", notes_page(plan))
-        publish(sync, book, ch, "Workbook version log", version_log_page(plan))
-
-        if ga_md:
-            ch = sync.ensure_chapter(book, "Who does what (GA)")
-            for name, md in ga_pages(ga_md, today):
-                publish(sync, book, ch, name, md)
+        if args.plan:
+            sync_plan(sync, shelf, args, today)
+        if packs:
+            print(f"ALADIN Sync — personas ({', '.join(packs)}) — {'APPLY' if args.apply else 'dry-run'}")
+            publish_personas(sync, shelf, packs)
     finally:
         sync.save_manifest()
     print(f"[TALLY] {sync.tally['create']} create / {sync.tally['update']} update / "

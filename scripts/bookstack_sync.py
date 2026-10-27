@@ -384,11 +384,15 @@ class Sync:
         self.manifest["created"]["chapters"].append({"id": ch["id"], "name": ch["name"]})
         return ch
 
-    def sync_page(self, book: dict | None, chapter: dict | None, name: str, markdown: str) -> None:
+    def sync_page(self, book: dict | None, chapter: dict | None, name: str, markdown: str,
+                  tags: list[dict] | None = None) -> None:
+        """`tags`: extra page tags (e.g. lang / translation), kept alongside the managed ones."""
         blocks = _MERMAID_RE.findall(markdown)
         self.blocks += [(name, b) for b in blocks]
         # live mode keeps the ```mermaid fences (the wiki renders them); png mode keeps the old hash
         src_hash = sha(markdown) if (self.diagrams == "png" or not blocks) else sha(markdown + "|live")
+        if tags:  # only when given, so existing pages keep their hash and are not rewritten
+            src_hash = sha(src_hash + json.dumps(tags, sort_keys=True))
         if chapter and chapter["id"] is None:
             existing = None
         elif chapter:
@@ -430,7 +434,7 @@ class Sync:
                 final = final.replace(f"```mermaid\n{block}```", f"![{name} diagram {n}]({url})", 1)
         self.api.call("PUT", f"pages/{page_id}", {
             "name": name, "markdown": final,
-            "tags": [{"name": "managed", "value": "kf-cpto"},
+            "tags": (tags or []) + [{"name": "managed", "value": "kf-cpto"},
                      {"name": "kfcpto-src", "value": src_hash},
                      {"name": "kfcpto-md", "value": sha(final)}]})
 
