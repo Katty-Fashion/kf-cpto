@@ -1,6 +1,6 @@
 ---
 title: Agile Sprints
-generated: 2026-10-27T05:32:23.315641
+generated: 2026-11-02T04:12:07.939102
 ---
 
 # KF Team — Agile Sprints
@@ -46,34 +46,11 @@ gantt
 
 ## Sprint Views — previous / current / next
 
-### Sprint S12 (previous) — 2026-10-05 → 2026-10-16
+### Sprint S13 (previous) — 2026-10-19 → 2026-10-30
 
 ```mermaid
 gantt
-    title S12 (previous) — 2026-10-05 → 2026-10-16
-    dateFormat YYYY-MM-DD
-    axisFormat %d %b
-    excludes weekends
-
-    section kf-platform
-    (F3.S11.Tech Process Refactor) :done, 2026-09-21, 2026-10-11
-    (F4.S11.Inventory & Reception) :done, 2026-09-28, 2026-10-18
-    (F4.S10.Planner) :done, 2026-09-07, 2026-10-11
-    (F4.S11.Batches & Assignment) :done, 2026-09-21, 2026-10-18
-    (F4.S11.Operator View) :crit, 2026-09-28, 2026-10-25
-    (F4.S12.QC Module) :done, 2026-10-05, 2026-10-25
-    (F4.S12.Reports & Cutting) :done, 2026-10-12, 2026-10-25
-    (F5.S11.DPP Module (T2.4)) :crit, 2026-09-21, 2026-10-25
-    (F5.S12.Public DPP / GS1) :crit, 2026-10-12, 2026-11-01
-```
-
-<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
-
-### Sprint S13 (current) — 2026-10-19 → 2026-10-30
-
-```mermaid
-gantt
-    title S13 (current) — 2026-10-19 → 2026-10-30
+    title S13 (previous) — 2026-10-19 → 2026-10-30
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
@@ -91,11 +68,11 @@ gantt
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
 
-### Sprint S14 (next) — 2026-11-02 → 2026-11-13
+### Sprint S14 (current) — 2026-11-02 → 2026-11-13
 
 ```mermaid
 gantt
-    title S14 (next) — 2026-11-02 → 2026-11-13
+    title S14 (current) — 2026-11-02 → 2026-11-13
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
@@ -106,6 +83,27 @@ gantt
     (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
     section kf-fe-platform
     (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
+```
+
+<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
+
+### Sprint S15 (next) — 2026-11-16 → 2026-11-27
+
+```mermaid
+gantt
+    title S15 (next) — 2026-11-16 → 2026-11-27
+    dateFormat YYYY-MM-DD
+    axisFormat %d %b
+    excludes weekends
+
+    section kf-be-platform
+    (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
+    (F5.S15.Notifications) :done, 2026-11-23, 2026-12-06
+    section kf-fe-platform
+    (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
+    (F5.S15.i18n / l10n) :done, 2026-11-16, 2026-11-29
+    section kf-platform
+    (F5.S15.Auditor View) :2026-11-16, 2026-11-29
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
