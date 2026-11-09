@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-11-02T04:12:07.933294
+generated: 2026-11-09T04:12:31.622496
 ---
 
 # KF Team — Unified Calendar
@@ -90,7 +90,7 @@ gantt
     (F2.S5.Tenant Management) :done, 2026-06-29, 2026-07-19
     (F5.S13.EPCIS Export) :crit, 2026-10-19, 2026-11-08
     (F5.S13.LLM Ecodesign (WP4)) :crit, 2026-10-26, 2026-11-15
-    (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
+    (F5.S14.IoT Adapter (T2.5)) :crit, 2026-11-02, 2026-11-22
     (F5.S15.Notifications) :done, 2026-11-23, 2026-12-06
     (F6.S17.Data Migration Scripts) :2026-12-14, 2026-12-27
     section kf-fe-platform
@@ -164,7 +164,7 @@ gantt
     section kf-be-platform
     (F5.S13.EPCIS Export) :crit, 2026-10-19, 2026-11-08
     (F5.S13.LLM Ecodesign (WP4)) :crit, 2026-10-26, 2026-11-15
-    (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
+    (F5.S14.IoT Adapter (T2.5)) :crit, 2026-11-02, 2026-11-22
     section kf-fe-platform
     (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
 ```
@@ -181,7 +181,7 @@ gantt
     excludes weekends
 
     section kf-be-platform
-    (F5.S14.IoT Adapter (T2.5)) :2026-11-02, 2026-11-22
+    (F5.S14.IoT Adapter (T2.5)) :crit, 2026-11-02, 2026-11-22
     (F5.S15.Notifications) :done, 2026-11-23, 2026-12-06
     section kf-fe-platform
     (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
