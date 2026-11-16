@@ -1,6 +1,6 @@
 ---
 title: Unified Calendar
-generated: 2026-11-09T04:12:31.622496
+generated: 2026-11-16T04:12:28.692184
 ---
 
 # KF Team — Unified Calendar
@@ -102,7 +102,7 @@ gantt
     (F3.S8.Tech Pack Layout) :done, 2026-08-10, 2026-08-30
     (F3.S9.Model Sheet Fixes) :done, 2026-08-24, 2026-09-06
     (F3.S10.3D Performance) :done, 2026-09-07, 2026-09-27
-    (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
+    (F5.S14.Garment Configurator (T2.3)) :crit, 2026-11-09, 2026-11-29
     (F5.S15.i18n / l10n) :done, 2026-11-16, 2026-11-29
     section kf-platform
     (F1.S2.Project Setup) :done, 2026-05-25, 2026-06-07
@@ -130,33 +130,11 @@ gantt
 
 ## Sprint Views — previous / current / next
 
-### Sprint S13 (previous) — 2026-10-19 → 2026-10-30
+### Sprint S14 (previous) — 2026-11-02 → 2026-11-13
 
 ```mermaid
 gantt
-    title S13 (previous) — 2026-10-19 → 2026-10-30
-    dateFormat YYYY-MM-DD
-    axisFormat %d %b
-    excludes weekends
-
-    section kf-be-platform
-    (F5.S13.EPCIS Export) :crit, 2026-10-19, 2026-11-08
-    (F5.S13.LLM Ecodesign (WP4)) :crit, 2026-10-26, 2026-11-15
-    section kf-platform
-    (F4.S11.Operator View) :crit, 2026-09-28, 2026-10-25
-    (F4.S12.QC Module) :done, 2026-10-05, 2026-10-25
-    (F4.S12.Reports & Cutting) :done, 2026-10-12, 2026-10-25
-    (F5.S11.DPP Module (T2.4)) :crit, 2026-09-21, 2026-10-25
-    (F5.S12.Public DPP / GS1) :crit, 2026-10-12, 2026-11-01
-```
-
-<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
-
-### Sprint S14 (current) — 2026-11-02 → 2026-11-13
-
-```mermaid
-gantt
-    title S14 (current) — 2026-11-02 → 2026-11-13
+    title S14 (previous) — 2026-11-02 → 2026-11-13
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
@@ -166,16 +144,16 @@ gantt
     (F5.S13.LLM Ecodesign (WP4)) :crit, 2026-10-26, 2026-11-15
     (F5.S14.IoT Adapter (T2.5)) :crit, 2026-11-02, 2026-11-22
     section kf-fe-platform
-    (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
+    (F5.S14.Garment Configurator (T2.3)) :crit, 2026-11-09, 2026-11-29
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
 
-### Sprint S15 (next) — 2026-11-16 → 2026-11-27
+### Sprint S15 (current) — 2026-11-16 → 2026-11-27
 
 ```mermaid
 gantt
-    title S15 (next) — 2026-11-16 → 2026-11-27
+    title S15 (current) — 2026-11-16 → 2026-11-27
     dateFormat YYYY-MM-DD
     axisFormat %d %b
     excludes weekends
@@ -184,10 +162,28 @@ gantt
     (F5.S14.IoT Adapter (T2.5)) :crit, 2026-11-02, 2026-11-22
     (F5.S15.Notifications) :done, 2026-11-23, 2026-12-06
     section kf-fe-platform
-    (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
+    (F5.S14.Garment Configurator (T2.3)) :crit, 2026-11-09, 2026-11-29
     (F5.S15.i18n / l10n) :done, 2026-11-16, 2026-11-29
     section kf-platform
     (F5.S15.Auditor View) :2026-11-16, 2026-11-29
+```
+
+<p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
+
+### Sprint S16 (next) — 2026-11-30 → 2026-12-11
+
+```mermaid
+gantt
+    title S16 (next) — 2026-11-30 → 2026-12-11
+    dateFormat YYYY-MM-DD
+    axisFormat %d %b
+    excludes weekends
+
+    section kf-be-platform
+    (F5.S15.Notifications) :done, 2026-11-23, 2026-12-06
+    section kf-platform
+    (F5.S16.Made2Flow Schema) :2026-11-30, 2026-12-13
+    (F6.S16.Migration Testing) :2026-12-07, 2026-12-20
 ```
 
 <p class="gantt-legend"><span class="pill pill--planned">Planned</span><span class="pill pill--active">In work</span><span class="pill pill--late">Late / At risk</span><span class="pill pill--done">Done</span></p>
