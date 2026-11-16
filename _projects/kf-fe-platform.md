@@ -4,7 +4,7 @@ description: "SaaS Product"
 project: kf-fe-platform
 type: saas
 edit_url: "https://github.com/katty-fashion/kf-fe-platform/edit/main/kanban.md"
-generated: 2026-11-09T04:12:31.641591
+generated: 2026-11-16T04:12:28.710852
 ---
 
 # kf-fe-platform
@@ -92,7 +92,7 @@ gantt
     (F3.S8.Tech Pack Layout) :done, 2026-08-10, 2026-08-30
     (F3.S9.Model Sheet Fixes) :done, 2026-08-24, 2026-09-06
     (F3.S10.3D Performance) :done, 2026-09-07, 2026-09-27
-    (F5.S14.Garment Configurator (T2.3)) :2026-11-09, 2026-11-29
+    (F5.S14.Garment Configurator (T2.3)) :crit, 2026-11-09, 2026-11-29
     (F5.S15.i18n / l10n) :done, 2026-11-16, 2026-11-29
 ```
 
